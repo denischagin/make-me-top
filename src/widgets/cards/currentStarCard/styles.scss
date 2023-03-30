@@ -1,0 +1,45 @@
+.current-star-card {
+  position: relative;
+  color: #FBF9FF;
+  transition: 1s;
+  border-radius: 8px;
+  border: 1px solid transparent;
+
+  &:hover {
+    transition: 1s;
+    border-radius: 8px;
+    border: 1px solid #CF5335;
+  }
+
+  .current-star-card__heading {
+    margin-top: 8px;
+    font-family: 'Unbounded', cursive;
+    font-size: 22px;
+  }
+
+  .current-star-card__current-star,
+  .current-star-card__current-curator {
+    font-size: 14px;
+  }
+
+  .current-star-card__progress {
+    display: flex;
+    color: #CF5335;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+
+    .current-star-card__progress-bar {
+      margin-left: 20px;
+    }
+  }
+
+  .buttons {
+    position: absolute;
+    display: flex;
+    top: 8px;
+    right: 24px;
+    gap: 16px;
+  }
+}

@@ -1,0 +1,26 @@
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 14px;
+  color: #FBF9FF;
+  .nav-buttons__home-button,
+  .nav-buttons__explorers-button,
+  .nav-buttons__curators-button,
+  .nav-buttons__exit-button {
+    cursor: pointer;
+  }
+
+  .nav-buttons__exit-button {
+    margin-top: 6px;
+  }
+
+  .nav-buttons__exit-button {
+    display: flex;
+
+    .nav-buttons__exit-button-icon {
+      margin-left: 5px;
+    }
+  }
+  
+}

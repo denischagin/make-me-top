@@ -1,0 +1,22 @@
+.planet-input {
+  font-family: 'PT Mono', monospace;
+  cursor: text;
+  text-align: left;
+  margin-bottom: 16px;
+  padding: 18px;
+  width: 340px;
+  background-color: #FBF9FF;
+  border: none;
+  border-radius: 56px;
+  outline: none;
+  transition: 0.3s;
+
+  &:focus {
+    outline: none;
+    transition: 0.3s;
+    transform: scale(1.01);
+    -webkit-box-shadow: 0px 7px 7px 4px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 7px 7px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 7px 7px 4px rgba(0, 0, 0, 0.25);
+  }
+}

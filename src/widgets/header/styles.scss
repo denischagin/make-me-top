@@ -1,0 +1,23 @@
+.header {
+  background: #0B0B0B80;
+  width: 100%;
+  height: 100px;
+
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    margin: 0 240px;
+
+    .header__container-logo {
+      color: #FBF9FF;
+    }
+
+    .header__container-heading {
+      color: #FBF9FF;
+      font-size: 32px;
+      font-family: 'Poppins', sans-serif;
+    }
+  }
+}

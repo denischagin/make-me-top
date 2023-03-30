@@ -1,0 +1,19 @@
+.planet-button {
+  cursor: pointer;
+  text-align: center;
+  margin-top: 16px;
+  padding: 16px;
+  width: 340px;
+  color: #FBF9FF;
+  background-color: transparent;
+  border: 1px solid #FBF9FF;
+  border-radius: 56px;
+  transition: 0.4s;
+
+  &:hover {
+    transition: 0.4s;
+    transform: scale(0.998);
+    color: rgb(0, 0, 0);
+    background-color: #FBF9FF;
+  }
+}

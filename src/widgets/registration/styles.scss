@@ -1,0 +1,37 @@
+.registration {
+  cursor: default;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .registration__heading {
+    font-size: 18px;
+    color: #FBF9FF;
+    font-weight: 600;
+    font-family: 'Unbounded', cursive;
+    margin-bottom: 30px;
+  }
+
+  .registration__hint {
+    margin-top: 24px;
+    color: #FBF9FF;
+    font-size: 14px;
+
+    .registration__hint-login {
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      text-underline-offset: 5px;
+      transition: 0.5s;
+
+      &:hover {
+        transition: 0.5s;
+        text-decoration: underline 2px;
+        text-decoration-color: #FBF9FF;
+        text-underline-offset: 5px;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.completed-stars {
+  color: #FBF9FF;
+  display: flex;
+  gap: 24px;
+  font-size: 12px;
+
+  .completed-stars__label {
+    margin-top: 5px;
+    margin-bottom: 8px;
+  }
+
+  .completed-stars__rating {
+    display: flex;
+    align-items: center;
+
+    .completed-stars__rating-num {
+      font-size: 10px;
+      margin: 0 2px 0 4px
+    }
+  }
+}

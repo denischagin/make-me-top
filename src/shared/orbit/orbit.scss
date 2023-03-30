@@ -1,0 +1,14 @@
+.orbit {
+  width: 600px;
+  height: 600px;
+  position: relative;
+}
+
+.planet {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  text-align: center;
+}

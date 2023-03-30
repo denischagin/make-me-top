@@ -1,0 +1,25 @@
+.rating-info {
+  margin: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .rating-info__user-name {
+    padding: 0 20px 0 15px;
+    white-space: nowrap; /* Текст не переносится */
+  }
+  
+  .rating-info__user-score {
+    color: #FBF9FF;
+    display: flex;
+    align-items: center;
+  }
+
+  .rating-info__user-score-star {
+    color: #CF5335;
+  }
+  
+  .rating-info__user-score-num {
+    margin-left: 5px;
+  }
+}
