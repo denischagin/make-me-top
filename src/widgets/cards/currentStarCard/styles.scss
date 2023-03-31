@@ -1,6 +1,6 @@
 .current-star-card {
   position: relative;
-  color: #FBF9FF;
+  color: #fbf9ff;
   transition: 1s;
   border-radius: 8px;
   border: 1px solid transparent;
@@ -8,12 +8,12 @@
   &:hover {
     transition: 1s;
     border-radius: 8px;
-    border: 1px solid #CF5335;
+    border: 1px solid #cf5335;
   }
 
   .current-star-card__heading {
     margin-top: 8px;
-    font-family: 'Unbounded', cursive;
+    font-family: "Unbounded", cursive;
     font-size: 22px;
   }
 
@@ -24,7 +24,7 @@
 
   .current-star-card__progress {
     display: flex;
-    color: #CF5335;
+    color: #cf5335;
     font-weight: 500;
     font-size: 16px;
     margin-top: 24px;

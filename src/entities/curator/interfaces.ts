@@ -1,3 +1,3 @@
 export interface CuratorState {
-  isCurator: boolean
+  isCurator: boolean;
 }

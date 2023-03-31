@@ -1,0 +1,59 @@
+.button-small {
+  color: #fbf9ff;
+  background-color: transparent;
+  border: 1px solid #fbf9ff;
+
+  &:hover {
+    color: #0b0b0b;
+    background-color: #fbf9ff;
+  }
+}
+
+.button-small--filled {
+  color: #fbf9ff;
+  background-color: #cf5335;
+  border: 1px solid #cf5335;
+
+  &:hover {
+    border: 1px solid #b82e0c;
+    background-color: #b82e0c;
+  }
+}
+
+.button-small--orange {
+  color: #fbf9ff;
+  background-color: transparent;
+  border: 1px solid #cf5335;
+
+  &:hover {
+    border: 1px solid #b82e0c;
+    background-color: #b82e0c;
+  }
+}
+
+.button-small--black {
+  color: #fbf9ff;
+  background-color: transparent;
+  border: 1px solid #cf5335;
+
+  &:hover {
+    background-color: #cf5335;
+  }
+}
+
+.button-small,
+.button-small--filled,
+.button-small--orange,
+.button-small--black {
+  cursor: pointer;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 16px;
+  padding: 10px 16px;
+  border-radius: 56px;
+  transition: 0.3s;
+
+  &:hover {
+    transition: 0.3s;
+  }
+}

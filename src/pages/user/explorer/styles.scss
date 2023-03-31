@@ -2,14 +2,15 @@
   overflow: overlay;
   position: absolute;
   width: 100%;
-  color: #FBF9FF;
+  color: #fbf9ff;
   height: 100%;
   background-image: url(../../../shared/images/backgrounds/profileBG.png);
   background-size: 100%;
-  background-color: #0B0B0B;
+  background-color: #0b0b0b;
 
   .container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 9fr 3fr;
     gap: 24px;
     justify-content: space-between;
     margin: 40px 240px;
@@ -24,7 +25,7 @@
         .info__name {
           margin-top: 0;
           font-size: 28px;
-          font-family: 'Unbounded', cursive;
+          font-family: "Unbounded", cursive;
         }
 
         .info-results {
@@ -38,7 +39,7 @@
 
             .info-results__rating-star {
               margin-top: 4px;
-              color: #CF5335;
+              color: #cf5335;
             }
 
             .info-results__rating-text {
@@ -62,15 +63,15 @@
     .container__profile-heading,
     .container__rating-heading {
       font-size: 22px;
-      color: #FBF9FF;
-      font-family: 'Unbounded', cursive;
+      color: #fbf9ff;
+      font-family: "Unbounded", cursive;
     }
 
     .complted-stars__heading {
       padding-top: 24px;
       font-size: 22px;
-      color: #FBF9FF;
-      font-family: 'Unbounded', cursive;
+      color: #fbf9ff;
+      font-family: "Unbounded", cursive;
     }
   }
 }

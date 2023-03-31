@@ -1,4 +1,4 @@
-import { Header } from "../../../widgets/header/header";
+import { Header } from "@/widgets/header/header";
 
 import "./styles.scss";
 
@@ -8,5 +8,4 @@ export const Curator = () => {
       <Header />
     </div>
   );
-}
-
+};

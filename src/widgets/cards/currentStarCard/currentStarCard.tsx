@@ -1,8 +1,8 @@
-import { ProgressBar } from "../../../widgets/progressBar/progressBar";
-import { ButtonBig } from "../../../shared/buttons/buttonBig/buttonBig";
-import { CardBig } from "../../../shared/cards/cardBig/cardBig";
+import { ButtonBig } from "@/shared/buttons/buttonBig/buttonBig";
+import { CardBig } from "@/shared/cards/cardBig/cardBig";
+import { ProgressBar } from "@/widgets/progressBar/progressBar";
 
-import "./styles.scss"
+import "./styles.scss";
 
 export const CurrentStarCard = () => {
   const starInfo = {
@@ -13,36 +13,37 @@ export const CurrentStarCard = () => {
     star: "Groovy",
     curator: "Фамилия Имя Отчество",
     progress: "50",
-  }
+  };
 
-  const {
-    planet,
-    star,
-    curator,
-    progress
-  } = starInfo;
+  const { planet, star, curator, progress } = starInfo;
 
   return (
     <div className="current-star-card">
       <CardBig>
-        <p className="current-star-card__heading">Планета: {planet.id}. {planet.name}</p>
-        <p className="current-star-card__current-star">
-          Звезда: {star}
+        <p className="current-star-card__heading">
+          Планета: {planet.id}. {planet.name}
         </p>
+        <p className="current-star-card__current-star">Звезда: {star}</p>
         <p className="current-star-card__current-curator">
           Преподаватель: {curator}
         </p>
         <div className="current-star-card__progress">
           Освоено {progress}%
           <span className="current-star-card__progress-bar">
-           <ProgressBar />
+            <ProgressBar />
           </span>
         </div>
         <div className="buttons">
-          <ButtonBig color="white" title="Отменить"/>
-          <ButtonBig color="filled" title="Продолжить"/>
+          <ButtonBig
+            color="white"
+            title="Отменить"
+          />
+          <ButtonBig
+            color="filled"
+            title="Продолжить"
+          />
         </div>
       </CardBig>
     </div>
   );
-}
+};

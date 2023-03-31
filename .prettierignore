@@ -1,0 +1,6 @@
+node_modules
+tsconfig.json
+
+# Ignore artifacts:
+build
+coverage

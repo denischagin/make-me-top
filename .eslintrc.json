@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "env": {
+    "browser": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "react/react-in-jsx-scope": 0,
+    "strict": 0,
+    "indent": ["error", 2],
+    "semi": ["error", "always"],
+    "no-empty": "warn",
+    "no-cond-assign": ["error", "always"],
+    "quotes": [2, "double"],
+    "no-trailing-spaces": "error",
+    "object-property-newline": "error",
+    "react/no-array-index-key": 2,
+    "space-infix-ops": ["error", { "int32Hint": false }],
+    "object-curly-spacing": ["error", "always"]
+  }
+}

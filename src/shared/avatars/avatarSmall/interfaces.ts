@@ -1,3 +1,3 @@
 export interface AvatarInterface {
-  image: string
+  image: string;
 }

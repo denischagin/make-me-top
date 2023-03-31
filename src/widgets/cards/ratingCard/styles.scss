@@ -7,7 +7,7 @@
     .my-rating__heading {
       font-size: 16px;
     }
-  
+
     .my-rating-info {
       margin: 28px 0;
       display: flex;
@@ -15,16 +15,12 @@
       justify-content: space-between;
     }
 
-    .my-rating-info__user-name {
-      padding: 0 24px 0 15px;
-    }
-  
     .my-rating-info__user-score {
       display: flex;
-      color: #CF5335;
+      color: #cf5335;
       align-items: center;
     }
-  
+
     .my-rating-info__user-score-num {
       margin-left: 5px;
       color: white;
@@ -34,6 +30,7 @@
   .general-rating {
     .general-rating__heading {
       font-size: 16px;
+      padding-bottom: 16px;
     }
   }
 }

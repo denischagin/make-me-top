@@ -1,38 +1,38 @@
 .star {
-  background: #CF5335;
+  background: #cf5335;
 
   &:hover {
     animation-name: star;
-    animation-duration: .3s;
+    animation-duration: 0.3s;
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out;
-  
-    @keyframes star{
+
+    @keyframes star {
       from {
         background: #cf54358f;
       }
       to {
-        background: #CF5335;
+        background: #cf5335;
       }
     }
   }
 }
 
 .star--black {
-  background: #0B0B0B;
+  background: #0b0b0b;
 
   &:hover {
     animation-name: star_black;
-    animation-duration: .3s;
+    animation-duration: 0.3s;
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out;
-  
-    @keyframes star_black{
+
+    @keyframes star_black {
       from {
         background: #0b0b0b7c;
       }
       to {
-        background: #0B0B0B;
+        background: #0b0b0b;
       }
     }
   }
@@ -44,31 +44,31 @@
 }
 
 .star--white {
-  background: #FBF9FF;
+  background: #fbf9ff;
 
   &:hover {
     animation-name: star_white;
-    animation-duration: .3s;
+    animation-duration: 0.3s;
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out;
-  
-    @keyframes star_white{
+
+    @keyframes star_white {
       from {
         background: #fbf9ff71;
       }
       to {
-        background: #FBF9FF;
+        background: #fbf9ff;
       }
     }
   }
 }
 
 .star-info {
-  color: #FBF9FF;
+  color: #fbf9ff;
 }
 
 .star-info--black {
-  color: #0B0B0B;
+  color: #0b0b0b;
 }
 
 .star,
@@ -77,9 +77,9 @@
   cursor: pointer;
   border-radius: 99px;
   height: 80px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   width: 80px;
-  transition: .3s;
+  transition: 0.3s;
 
   .star-info,
   .star-info--black {

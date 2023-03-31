@@ -1,3 +1,4 @@
 export interface UserState {
-  isRegistered: boolean
+  isRegistered: boolean;
+  showModal: boolean;
 }

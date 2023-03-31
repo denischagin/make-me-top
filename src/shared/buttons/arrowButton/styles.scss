@@ -1,0 +1,54 @@
+.arrow-button {
+  transform: rotate(0);
+}
+
+.arrow-button--right {
+  transform: rotate(180deg);
+}
+
+.arrow-button--top {
+  transform: rotate(90deg);
+}
+
+.arrow-button--bottom {
+  transform: rotate(270deg);
+}
+
+.arrow-button,
+.arrow-button--right,
+.arrow-button--top,
+.arrow-button--bottom {
+  margin-top: 0px;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    .arrow-button__arrow {
+      transition: 0.2s;
+      padding-left: 10px;
+    }
+
+    .arrow-button__circle {
+      opacity: 1;
+    }
+  }
+
+  .arrow-button__arrow {
+    margin-left: 5px;
+    z-index: 1;
+    transition: 0.2s;
+  }
+
+  .arrow-button__circle {
+    position: absolute;
+    opacity: 0;
+    background-color: #cf5335;
+    padding: 20px;
+    border-radius: 99px;
+    transition: 0.2s;
+  }
+}

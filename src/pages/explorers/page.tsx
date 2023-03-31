@@ -1,8 +1,5 @@
 import "./styles.scss";
 
 export const Explorers = () => {
-  return (
-    <div className="explorers">
-    </div>
-  );
-}
+  return <div className="explorers"></div>;
+};

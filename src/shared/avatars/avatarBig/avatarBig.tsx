@@ -1,6 +1,5 @@
 import { AvatarInterface } from "./interfaces";
-
-import "./styles.scss"
+import "./styles.scss";
 
 export const AvatarBig = (props: AvatarInterface) => {
   return (
@@ -8,7 +7,11 @@ export const AvatarBig = (props: AvatarInterface) => {
       <div className="avatar-big">
         <div className="avatar-big__planet" />
       </div>
-      <img src={props.image} alt="" className="avatar-big-image"/>
+      <img
+        src={props.image}
+        alt=""
+        className="avatar-big-image"
+      />
     </>
   );
-}
+};
