@@ -1,8 +1,7 @@
-import { DividingLine } from "@/shared/DividingLine";
-import { UsersRating } from "@/shared/UsersRating";
-import { AvatarSmall } from "@/shared/avatars/AvatarSmall";
-import { CardBig } from "@/shared/cards/CardBig";
+import { AvatarSmall } from "@/shared/avatars/avatarSmall/avatarSmall";
+import { CardBig } from "@/shared/cards/cardBig/cardBig";
 import { ReactComponent as StarIcon } from "@/shared/images/star.svg";
+import { UsersRating } from "@/shared/usersRating/usersRating";
 
 import "./styles.scss";
 
@@ -23,7 +22,12 @@ export const RatingCard = () => {
             </span>
           </div>
         </div>
-        <DividingLine />
+        <hr
+          style={{
+            border: "1px solid #292929",
+            borderBottom: "0px",
+          }}
+        />
         <div className="general-rating">
           <p className="general-rating__heading">Общий рейтинг</p>
           {arrayOfUsers.map((item) => (

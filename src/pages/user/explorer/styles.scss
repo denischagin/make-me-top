@@ -1,14 +1,12 @@
-@import "@/app/styles/colors.scss";
-
 .explorer {
   overflow: overlay;
   position: absolute;
   width: 100%;
-  color: $white;
+  color: #fbf9ff;
   height: 100%;
   background-image: url(../../../shared/images/backgrounds/profileBG.png);
   background-size: 100%;
-  background-color: $dark;
+  background-color: #0b0b0b;
 
   .container {
     display: grid;
@@ -26,8 +24,8 @@
 
         .info__name {
           margin-top: 0;
-          font-size: 35px;
-          font-family: $font-heading;
+          font-size: 28px;
+          font-family: "Unbounded", cursive;
         }
 
         .info-results {
@@ -41,7 +39,7 @@
 
             .info-results__rating-star {
               margin-top: 4px;
-              color: $primary-500;
+              color: #cf5335;
             }
 
             .info-results__rating-text {
@@ -63,15 +61,17 @@
     }
 
     .container__profile-heading,
-    .container__rating-heading,
-    .container__completed-stars-heading {
-      font-size: 26px;
-      color: $white;
-      font-family: $font-heading;
+    .container__rating-heading {
+      font-size: 22px;
+      color: #fbf9ff;
+      font-family: "Unbounded", cursive;
     }
 
-    .container__completed-stars-heading {
+    .complted-stars__heading {
       padding-top: 24px;
+      font-size: 22px;
+      color: #fbf9ff;
+      font-family: "Unbounded", cursive;
     }
   }
 }

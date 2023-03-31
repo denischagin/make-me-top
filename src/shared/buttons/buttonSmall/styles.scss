@@ -1,20 +1,18 @@
-@import "@/app/styles/colors.scss";
-
 .button-small {
-  color: $white;
+  color: #fbf9ff;
   background-color: transparent;
-  border: 1px solid $white;
+  border: 1px solid #fbf9ff;
 
   &:hover {
-    color: $black;
-    background-color: $white;
+    color: #0b0b0b;
+    background-color: #fbf9ff;
   }
 }
 
 .button-small--filled {
-  color: $white;
-  background-color: $primary-500;
-  border: 1px solid $primary-500;
+  color: #fbf9ff;
+  background-color: #cf5335;
+  border: 1px solid #cf5335;
 
   &:hover {
     border: 1px solid #b82e0c;
@@ -23,9 +21,9 @@
 }
 
 .button-small--orange {
-  color: $white;
+  color: #fbf9ff;
   background-color: transparent;
-  border: 1px solid $primary-500;
+  border: 1px solid #cf5335;
 
   &:hover {
     border: 1px solid #b82e0c;
@@ -34,12 +32,12 @@
 }
 
 .button-small--black {
-  color: $white;
+  color: #fbf9ff;
   background-color: transparent;
-  border: 1px solid $primary-500;
+  border: 1px solid #cf5335;
 
   &:hover {
-    background-color: $primary-500;
+    background-color: #cf5335;
   }
 }
 

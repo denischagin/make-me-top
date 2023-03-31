@@ -1,7 +1,5 @@
-@import "@/app/styles/colors.scss";
-
 .star {
-  background: $primary-500;
+  background: #cf5335;
 
   &:hover {
     animation-name: star;
@@ -11,18 +9,17 @@
 
     @keyframes star {
       from {
-        background: $opacity-orange;
+        background: #cf54358f;
       }
       to {
-        background: $primary-500;
+        background: #cf5335;
       }
     }
   }
 }
 
 .star--black {
-  outline: 1px solid $white;
-  background: $dark;
+  background: #0b0b0b;
 
   &:hover {
     animation-name: star_black;
@@ -32,10 +29,10 @@
 
     @keyframes star_black {
       from {
-        background: $opacity-dark;
+        background: #0b0b0b7c;
       }
       to {
-        background: $dark;
+        background: #0b0b0b;
       }
     }
   }
@@ -47,7 +44,7 @@
 }
 
 .star--white {
-  background: $white;
+  background: #fbf9ff;
 
   &:hover {
     animation-name: star_white;
@@ -57,21 +54,21 @@
 
     @keyframes star_white {
       from {
-        background: $opacity-white;
+        background: #fbf9ff71;
       }
       to {
-        background: $white;
+        background: #fbf9ff;
       }
     }
   }
 }
 
 .star-info {
-  color: $white;
+  color: #fbf9ff;
 }
 
 .star-info--black {
-  color: $black;
+  color: #0b0b0b;
 }
 
 .star,

@@ -1,6 +1,6 @@
-import { ButtonBig } from "@/shared/buttons/ButtonBig";
-import { CardBig } from "@/shared/cards/CardBig";
-import { ProgressBar } from "@/widgets/ProgressBar";
+import { ButtonBig } from "@/shared/buttons/buttonBig/buttonBig";
+import { CardBig } from "@/shared/cards/cardBig/cardBig";
+import { ProgressBar } from "@/widgets/progressBar/progressBar";
 
 import "./styles.scss";
 
@@ -34,7 +34,10 @@ export const CurrentStarCard = () => {
           </span>
         </div>
         <div className="buttons">
-          <ButtonBig title="Отменить" />
+          <ButtonBig
+            color="white"
+            title="Отменить"
+          />
           <ButtonBig
             color="filled"
             title="Продолжить"
