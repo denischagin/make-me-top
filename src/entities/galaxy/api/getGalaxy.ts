@@ -8,7 +8,7 @@ interface IFetchGalaxy {
 export const getGalaxy = createAsyncThunk(
     `${FETCH_GALAXY}`,
     async (payload: IFetchGalaxy, thunkAPI) => {
-        const response = await fetch(`http://10.254.3.202:8082/galactic/1`)
+        const response = await fetch(process.env.REACT_APP_FETCH_URL + '/galactic/1');
         return await response.json()
     }
 )
