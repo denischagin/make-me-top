@@ -1,4 +1,4 @@
-import { Galaxy } from "../../pages/galaxy/page";
+import { GalaxyPage } from "../../pages/galaxyPage/page";
 import { Curator } from "../../pages/user/curator/page";
 import { Explorer } from "../../pages/user/explorer/page";
 import { createBrowserRouter } from "react-router-dom";
@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/galaxy",
-    element: <Galaxy/>,
+    element: <GalaxyPage/>,
   },
   {
     path: "/curators",
