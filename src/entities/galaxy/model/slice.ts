@@ -4,18 +4,15 @@ import { getGalaxy } from "../api/getGalaxy"
 const galaxySlice = createSlice({
     name: 'galaxy',
     initialState: {
-        list: [],
+        galaxy: {}
     },
     reducers: {
     },
     extraReducers: (builder) => {
-        // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(getGalaxy.fulfilled, (state, action) => {
-            // Add user to the state array
-            state.list = action.payload;
+            state.galaxy = action.payload;
         })
     },
 })
 
-// export const { galaxyReducer } = galaxySlice.actions
 export default galaxySlice.reducer

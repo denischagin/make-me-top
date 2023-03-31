@@ -15,7 +15,6 @@ export const explorerSlice = createSlice({
   }
 })
 
-// Action creators are generated for each case reducer function
 export const { selectRoleAsExplorer } = explorerSlice.actions
 
 export default explorerSlice.reducer
