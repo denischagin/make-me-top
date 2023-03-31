@@ -36,7 +36,7 @@ export type RootState = {
         systemName: string,
         systemLevel: number,
         systemParentList: Array<{
-          parent_id: number,
+          parent_id: number | null,
           isAlternative: boolean,
         }>,
         systemChildList: Array<number>,
