@@ -1,3 +1,5 @@
+@import "@/app/styles/colors.scss";
+
 .home {
   display: flex;
   overflow: hidden;
@@ -8,7 +10,7 @@
   height: 100%;
   background-image: url(../../shared/images/backgrounds/BG.png);
   background-size: 100%;
-  background-color: #0b0b0b;
+  background-color: $dark;
 
   .home__planet {
     position: absolute;
@@ -20,14 +22,7 @@
     height: 760px;
     border-radius: 760px;
     transition: 1s;
-    background: radial-gradient(
-      110.46% 110.46% at 100% 1.64%,
-      #f8b07d 12.44%,
-      #e74e11 39.62%,
-      #b50d02 60.27%,
-      #8b0e05 75.93%,
-      #5e0d02 95.93%
-    );
+    background: $planet-gradient;
     box-shadow: -2px 2px 10px 0px #f59c6740;
   }
 
@@ -37,7 +32,7 @@
 
   .home__planet-fields-heading {
     font-family: "Poppins", sans-serif;
-    color: #fbf9ff;
+    color: $white;
     margin: 0px 0 28px 0;
     font-size: 57px;
   }

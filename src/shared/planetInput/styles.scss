@@ -1,15 +1,23 @@
+@import "@/app/styles/colors.scss";
+
 .planet-input {
+  font-size: 16px;
   font-family: "PT Mono", monospace;
   cursor: text;
   text-align: left;
   margin-bottom: 16px;
-  padding: 18px;
+  padding: 16px 24px;
   width: 340px;
-  background-color: #fbf9ff;
-  border: none;
+  background-color: $white;
+  border: 1px solid transparent;
   border-radius: 56px;
   outline: none;
   transition: 0.3s;
+
+  &:hover {
+    transition: 0.3s;
+    border: 1px solid $black;
+  }
 
   &:focus {
     outline: none;

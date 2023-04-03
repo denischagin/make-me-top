@@ -1,3 +1,5 @@
+@import "@/app/styles/colors.scss";
+
 .rating-card {
   font-size: 14px;
 
@@ -17,7 +19,7 @@
 
     .my-rating-info__user-score {
       display: flex;
-      color: #cf5335;
+      color: $primary-500;
       align-items: center;
     }
 

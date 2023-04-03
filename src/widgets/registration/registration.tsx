@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { selectIsUserRegistered } from "@/entities/user/model";
 import { PlanetButton } from "@/shared/buttons/planetButton/button";
-import { PlanetInput } from "@/shared/buttons/planetInput/input";
+import { PlanetInput } from "@/shared/planetInput/input";
 
 import "./styles.scss";
 

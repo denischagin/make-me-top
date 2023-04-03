@@ -1,12 +1,14 @@
+@import "@/app/styles/colors.scss";
+
 .planet-button {
   cursor: pointer;
   text-align: center;
   margin-top: 16px;
-  padding: 16px;
+  padding: 16px 24px;
   width: 340px;
-  color: #fbf9ff;
+  color: $white;
   background-color: transparent;
-  border: 1px solid #fbf9ff;
+  border: 1px solid $white;
   border-radius: 56px;
   transition: 0.4s;
 
@@ -14,6 +16,6 @@
     transition: 0.4s;
     transform: scale(0.998);
     color: rgb(0, 0, 0);
-    background-color: #fbf9ff;
+    background-color: $white;
   }
 }

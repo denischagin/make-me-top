@@ -1,6 +1,8 @@
+@import "@/app/styles/colors.scss";
+
 .current-star-card {
   position: relative;
-  color: #fbf9ff;
+  color: $white;
   transition: 1s;
   border-radius: 8px;
   border: 1px solid transparent;
@@ -8,7 +10,7 @@
   &:hover {
     transition: 1s;
     border-radius: 8px;
-    border: 1px solid #cf5335;
+    border: 1px solid $primary-500;
   }
 
   .current-star-card__heading {
@@ -24,7 +26,7 @@
 
   .current-star-card__progress {
     display: flex;
-    color: #cf5335;
+    color: $primary-500;
     font-weight: 500;
     font-size: 16px;
     margin-top: 24px;

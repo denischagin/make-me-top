@@ -1,5 +1,7 @@
+@import "@/app/styles/colors.scss";
+
 .modal {
-  background: #fbf9ff;
+  background: $white;
   border-top-left-radius: 999px;
   border-bottom-left-radius: 999px;
   width: 1010px;

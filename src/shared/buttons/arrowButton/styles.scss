@@ -1,3 +1,5 @@
+@import "@/app/styles/colors.scss";
+
 .arrow-button {
   transform: rotate(0);
 }
@@ -46,7 +48,7 @@
   .arrow-button__circle {
     position: absolute;
     opacity: 0;
-    background-color: #cf5335;
+    background-color: $primary-500;
     padding: 20px;
     border-radius: 99px;
     transition: 0.2s;

@@ -1,3 +1,5 @@
+@import "@/app/styles/colors.scss";
+
 .rating-info {
   margin: 16px 0;
   display: flex;
@@ -10,13 +12,13 @@
   }
 
   .rating-info__user-score {
-    color: #fbf9ff;
+    color: $white;
     display: flex;
     align-items: center;
   }
 
   .rating-info__user-score-star {
-    color: #cf5335;
+    color: $primary-500;
   }
 
   .rating-info__user-score-num {

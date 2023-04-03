@@ -35,7 +35,6 @@ export const CurrentStarCard = () => {
         </div>
         <div className="buttons">
           <ButtonBig
-            color="white"
             title="Отменить"
           />
           <ButtonBig

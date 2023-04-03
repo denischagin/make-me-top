@@ -1,18 +1,20 @@
+@import "@/app/styles/colors.scss";
+
 .button-big {
-  color: #fbf9ff;
+  color: $white;
   background-color: transparent;
-  border: 1px solid #fbf9ff;
+  border: 1px solid $white;
 
   &:hover {
-    color: #0b0b0b;
-    background-color: #fbf9ff;
+    color: $black;
+    background-color: $white;
   }
 }
 
 .button-big--filled {
-  color: #fbf9ff;
-  background-color: #cf5335;
-  border: 1px solid #cf5335;
+  color: $white;
+  background-color: $primary-500;
+  border: 1px solid $primary-500;
 
   &:hover {
     border: 1px solid #b82e0c;
@@ -21,23 +23,23 @@
 }
 
 .button-big--orange {
-  color: #fbf9ff;
+  color: $white;
   background-color: transparent;
-  border: 1px solid #cf5335;
+  border: 1px solid $primary-500;
 
   &:hover {
-    border: 1px solid #cf5335;
-    background-color: #cf5335;
+    border: 1px solid $primary-500;
+    background-color: $primary-500;
   }
 }
 
 .button-big--black {
-  color: #fbf9ff;
+  color: $white;
   background-color: transparent;
-  border: 1px solid #cf5335;
+  border: 1px solid $primary-500;
 
   &:hover {
-    background-color: #cf5335;
+    background-color: $primary-500;
   }
 }
 
