@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { selectIsUserRegistered } from "@/entities/user/model";
-import { PlanetButton } from "@/shared/buttons/planetButton/button";
-import { PlanetInput } from "@/shared/planetInput/input";
+import { PlanetButton } from "@/shared/buttons/PlanetButton";
+import { PlanetInput } from "@/shared/PlanetInput";
 
 import "./styles.scss";
 

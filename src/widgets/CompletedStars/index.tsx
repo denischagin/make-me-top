@@ -1,5 +1,5 @@
 import { ReactComponent as StarIcon } from "@/shared/images/star.svg";
-import { Star } from "@/shared/stars/star";
+import { Star } from "@/shared/Star";
 import { arrayOfStars } from "./model";
 
 import "./styles.scss";

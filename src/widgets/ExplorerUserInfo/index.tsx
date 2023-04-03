@@ -1,5 +1,5 @@
-import { AvatarBig } from "@/shared/avatars/avatarBig/avatarBig";
-import { CardSmall } from "@/shared/cards/cardSmall/cardSmall";
+import { AvatarBig } from "@/shared/avatars/AvatarBig";
+import { CardSmall } from "@/shared/cards/CardSmall";
 import { ReactComponent as StarIcon } from "@/shared/images/star.svg";
 
 import "./styles.scss";

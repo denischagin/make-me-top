@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 
 import { selectRoleAsCurator } from "@/entities/curator/model";
 import { selectRoleAsExplorer } from "@/entities/explorer/model";
-import { PlanetButton } from "@/shared/buttons/planetButton/button";
+import { PlanetButton } from "@/shared/buttons/PlanetButton";
 
 export const SelectRole = () => {
   const dispatch = useDispatch();

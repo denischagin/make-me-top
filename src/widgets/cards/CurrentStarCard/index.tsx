@@ -1,6 +1,6 @@
-import { ButtonBig } from "@/shared/buttons/buttonBig/buttonBig";
-import { CardBig } from "@/shared/cards/cardBig/cardBig";
-import { ProgressBar } from "@/widgets/progressBar/progressBar";
+import { ButtonBig } from "@/shared/buttons/ButtonBig";
+import { CardBig } from "@/shared/cards/CardBig";
+import { ProgressBar } from "@/widgets/ProgressBar";
 
 import "./styles.scss";
 

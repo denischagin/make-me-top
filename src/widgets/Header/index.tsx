@@ -1,5 +1,5 @@
 import { ReactComponent as Logo } from "@/shared/images/logo.svg";
-import { NavButtons } from "@/shared/navButtons/nav";
+import { NavButtons } from "@/shared/NavButtons";
 
 import "./styles.scss";
 

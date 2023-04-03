@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
-import { Login } from "@/widgets/login/login";
-import { Registration } from "@/widgets/registration/registration";
-import { SelectRole } from "@/widgets/selectRole/selectRole";
+import { Login } from "@/widgets/Login";
+import { Registration } from "@/widgets/Registration";
+import { SelectRole } from "@/widgets/SelectRole";
 
 import "./styles.scss";
 
