@@ -1,11 +1,9 @@
 import { PropsWithChildren } from "react";
-
-import { useAppSelector } from "@/app/providers/store/hooks";
+import { useSelector } from "react-redux";
 
 import "./styles.scss";
 
 export const Modal = (props: PropsWithChildren) => {
-  const user = useAppSelector((state) => state.user.isRegistered);
-
+  const user = useSelector((state: any) => state.userReducer.isRegistered);
   return <>{user && <div className="modal">{props.children}</div>}</>;
 };

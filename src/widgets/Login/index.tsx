@@ -1,15 +1,22 @@
-import { useAppDispatch, useAppSelector } from "@/app/providers/store/hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import { selectIsUserRegistered } from "@/entities/user/model";
-import { PlanetInput } from "@/shared/PlanetInput";
-import { RouterLink } from "@/shared/buttons/Link";
+<<<<<<<< HEAD:src/widgets/login/login.tsx
+import { PlanetButton } from "@/shared/buttons/planetButton/button";
+import { PlanetInput } from "@/shared/buttons/planetInput/input";
+========
 import { PlanetButton } from "@/shared/buttons/PlanetButton";
-import { URL_CURATOR, URL_EXPLORER } from "@/shared/constants/links";
+import { PlanetInput } from "@/shared/PlanetInput";
+>>>>>>>> 77371ee7 (MMT-22: сменил названия папок и файлов, все папки компонентов с заглавной буквы, файл компонента index.tsx):src/widgets/Login/index.tsx
 
 import "./styles.scss";
 
 export const Login = () => {
-  const explorer = useAppSelector((state) => state.explorer.isExplorer);
-  const dispatch = useAppDispatch();
+  const explorer = useSelector(
+    (state: any) => state.explorerReducer.isExplorer
+  );
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -17,17 +24,23 @@ export const Login = () => {
         <p className="login__heading">Вход</p>
         <PlanetInput placeholder="Номер телефона" />
         <PlanetInput placeholder="Пароль" />
-        <RouterLink path={explorer ? URL_EXPLORER : URL_CURATOR}>
+        <Link
+          to={explorer ? "/explorer" : "/curator"}
+          style={{ textDecoration: "none" }}
+        >
           <PlanetButton
             action={() => console.log("logged")}
             title="Войти"
           />
-        </RouterLink>
-        <div
-          className="login__hint"
-          onClick={() => dispatch(selectIsUserRegistered())}
-        >
-          Еще не зарегистрированы? Регистрация
+        </Link>
+        <div className="login__hint">
+          Еще не зарегистрированы?{" "}
+          <span
+            className="login__hint-registration"
+            onClick={() => dispatch(selectIsUserRegistered())}
+          >
+            Регистрация
+          </span>
         </div>
       </div>
     </>

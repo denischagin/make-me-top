@@ -1,10 +1,11 @@
-import { useAppDispatch } from "@/app/providers/store/hooks";
+import { useDispatch } from "react-redux";
+
 import { selectRoleAsCurator } from "@/entities/curator/model";
 import { selectRoleAsExplorer } from "@/entities/explorer/model";
 import { PlanetButton } from "@/shared/buttons/PlanetButton";
 
 export const SelectRole = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   return (
     <>

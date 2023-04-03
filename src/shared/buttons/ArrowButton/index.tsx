@@ -6,18 +6,18 @@ import "./styles.scss";
 export const ArrowButton = (props: ArrowButtonInterface) => {
   const getArrowDirection = () => {
     if (props.direction === "top") {
-      return "arrow-button arrow-button--top";
+      return "arrow-button--top";
     }
 
     if (props.direction === "bottom") {
-      return "arrow-button arrow-button--bottom";
+      return "arrow-button--bottom";
     }
 
     if (props.direction === "right") {
-      return "arrow-button arrow-button--right";
+      return "arrow-button--right";
     }
 
-    return "arrow-button arrow-button--left";
+    return "arrow-button";
   };
 
   return (

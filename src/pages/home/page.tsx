@@ -1,5 +1,5 @@
-import { useAppSelector } from "@/app/providers/store/hooks";
-import { ReactComponent as MakeMeTopLogo } from "@/shared/images/make-me-top.svg";
+import { useSelector } from "react-redux";
+
 import { Login } from "@/widgets/Login";
 import { Registration } from "@/widgets/Registration";
 import { SelectRole } from "@/widgets/SelectRole";
@@ -7,9 +7,11 @@ import { SelectRole } from "@/widgets/SelectRole";
 import "./styles.scss";
 
 export const Home = () => {
-  const explorer = useAppSelector((state) => state.explorer.isExplorer);
-  const curator = useAppSelector((state) => state.curator.isCurator);
-  const user = useAppSelector((state) => state.user.isRegistered);
+  const explorer = useSelector(
+    (state: any) => state.explorerReducer.isExplorer
+  );
+  const curator = useSelector((state: any) => state.curatorReducer.isCurator);
+  const user = useSelector((state: any) => state.userReducer.isRegistered);
 
   const changePlanetAngle = () => {
     if ((curator || explorer) && user) {
@@ -26,7 +28,7 @@ export const Home = () => {
         style={{ transform: changePlanetAngle() }}
       />
       <div className="home__planet-fields">
-        <MakeMeTopLogo className="home__planet-fields-heading" />
+        <p className="home__planet-fields-heading">make me top</p>
         {!curator && !explorer ? (
           <SelectRole />
         ) : user ? (

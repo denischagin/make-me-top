@@ -1,14 +1,19 @@
-import { useAppDispatch } from "@/app/providers/store/hooks";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+
 import { selectIsUserRegistered } from "@/entities/user/model";
-import { PlanetInput } from "@/shared/PlanetInput";
-import { RouterLink } from "@/shared/buttons/Link";
+<<<<<<<< HEAD:src/widgets/registration/registration.tsx
+import { PlanetButton } from "@/shared/buttons/planetButton/button";
+import { PlanetInput } from "@/shared/buttons/planetInput/input";
+========
 import { PlanetButton } from "@/shared/buttons/PlanetButton";
-import { URL_EXPLORER } from "@/shared/constants/links";
+import { PlanetInput } from "@/shared/PlanetInput";
+>>>>>>>> 77371ee7 (MMT-22: сменил названия папок и файлов, все папки компонентов с заглавной буквы, файл компонента index.tsx):src/widgets/Registration/index.tsx
 
 import "./styles.scss";
 
 export const Registration = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -17,17 +22,23 @@ export const Registration = () => {
         <PlanetInput placeholder="Имя пользователя *" />
         <PlanetInput placeholder="Пароль *" />
         <PlanetInput placeholder="Пароль ещё раз *" />
-        <RouterLink path={URL_EXPLORER}>
+        <Link
+          to="/explorer"
+          style={{ textDecoration: "none" }}
+        >
           <PlanetButton
             action={() => console.log("registered")}
-            title="Зарегистрироваться"
+            title="Регистрация"
           />
-        </RouterLink>
-        <div
-          className="registration__hint"
-          onClick={() => dispatch(selectIsUserRegistered())}
-        >
-          У меня есть аккаунт. Войти
+        </Link>
+        <div className="registration__hint">
+          У меня есть аккаунт.{" "}
+          <span
+            className="registration__hint-login"
+            onClick={() => dispatch(selectIsUserRegistered())}
+          >
+            Войти
+          </span>
         </div>
       </div>
     </>

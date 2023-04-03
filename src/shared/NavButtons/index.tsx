@@ -1,41 +1,36 @@
-import { useAppDispatch } from "@/app/providers/store/hooks";
-import { logOut } from "@/entities/user/model";
-import { ReactComponent as ExitIcon } from "@/shared/images/exit.svg";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { RouterLink } from "../buttons/Link";
-import {
-  URL_CURATORS,
-  URL_DEFAULT,
-  URL_EXPLORER,
-  URL_EXPLORERS,
-} from "../constants/links";
+import { logOut } from "@/entities/user/model";
+
+import { ReactComponent as ExitIcon } from "../images/exit.svg";
 import "./styles.scss";
 
 export const NavButtons = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   return (
     <div className="nav-buttons">
-      <RouterLink path={URL_EXPLORER}>
+      <Link to="/explorer">
         <div className="nav-buttons__home-button">Главная</div>
-      </RouterLink>
-      <RouterLink path={URL_EXPLORERS}>
+      </Link>
+      <Link to="/explorers">
         <div className="nav-buttons__explorers-button">Исследователи</div>
-      </RouterLink>
-      <RouterLink path={URL_CURATORS}>
+      </Link>
+      <Link to="/curators">
         <div className="nav-buttons__curators-button">Хранители</div>
-      </RouterLink>
-      <RouterLink path={URL_DEFAULT}>
+      </Link>
+      <Link to="/">
         <div
           className="nav-buttons__exit-button"
           onClick={() => dispatch(logOut())}
         >
-          Выйти
-          <span className="nav-buttons nav-buttons__exit-icon">
+          Выйти{" "}
+          <span className="nav-buttons__exit-button-icon">
             <ExitIcon />
           </span>
         </div>
-      </RouterLink>
+      </Link>
     </div>
   );
 };

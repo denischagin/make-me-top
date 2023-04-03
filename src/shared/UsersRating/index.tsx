@@ -1,6 +1,6 @@
-import { AvatarSmall } from "@/shared/avatars/AvatarSmall";
 import { ReactComponent as StarIcon } from "@/shared/images/star.svg";
 
+import { AvatarSmall } from "../avatars/AvatarSmall";
 import "./styles.scss";
 
 export const UsersRating = () => {

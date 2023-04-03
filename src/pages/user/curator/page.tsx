@@ -1,4 +1,4 @@
-import { Header } from "@/widgets/header/header";
+import { Header } from "@/widgets/Header";
 
 import "./styles.scss";
 
