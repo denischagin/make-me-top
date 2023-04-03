@@ -25,14 +25,11 @@ export const Login = () => {
             title="Войти"
           />
         </RouterLink>
-        <div className="login__hint">
-          Еще не зарегистрированы?{" "}
-          <span
-            className="login__hint-registration"
-            onClick={() => dispatch(selectIsUserRegistered())}
-          >
-            Регистрация
-          </span>
+        <div
+          className="login__hint"
+          onClick={() => dispatch(selectIsUserRegistered())}
+        >
+          Еще не зарегистрированы? Регистрация
         </div>
       </div>
     </>

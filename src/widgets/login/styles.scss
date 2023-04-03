@@ -19,21 +19,17 @@
     margin-top: 24px;
     color: $white;
     font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 5px;
+    transition: 0.5s;
 
-    .login__hint-registration {
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: underline;
-      text-decoration-color: transparent;
-      text-underline-offset: 5px;
+    &:hover {
       transition: 0.5s;
-
-      &:hover {
-        transition: 0.5s;
-        text-decoration: underline 2px;
-        text-decoration-color: $white;
-        text-underline-offset: 5px;
-      }
+      text-decoration: underline 2px;
+      text-decoration-color: $white;
+      text-underline-offset: 5px;
     }
   }
 }

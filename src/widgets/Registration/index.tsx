@@ -23,14 +23,11 @@ export const Registration = () => {
             title="Зарегистрироваться"
           />
         </RouterLink>
-        <div className="registration__hint">
-          У меня есть аккаунт.{" "}
-          <span
-            className="registration__hint-login"
-            onClick={() => dispatch(selectIsUserRegistered())}
-          >
-            Войти
-          </span>
+        <div
+          className="registration__hint"
+          onClick={() => dispatch(selectIsUserRegistered())}
+        >
+          У меня есть аккаунт. Войти
         </div>
       </div>
     </>
