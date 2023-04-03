@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { logOut } from "@/entities/user/model";
+import { ReactComponent as ExitIcon } from "@/shared/images/exit.svg";
 
-import { ReactComponent as ExitIcon } from "../images/exit.svg";
+import { RouterLink } from "../buttons/Link";
+import { URL_DEFAULT } from "../constants/links";
 import "./styles.scss";
 
 export const NavButtons = () => {
@@ -11,16 +12,16 @@ export const NavButtons = () => {
 
   return (
     <div className="nav-buttons">
-      <Link to="/explorer">
+      <RouterLink path="/explorer">
         <div className="nav-buttons__home-button">Главная</div>
-      </Link>
-      <Link to="/explorers">
+      </RouterLink>
+      <RouterLink path="/explorers">
         <div className="nav-buttons__explorers-button">Исследователи</div>
-      </Link>
-      <Link to="/curators">
+      </RouterLink>
+      <RouterLink path="/curators">
         <div className="nav-buttons__curators-button">Хранители</div>
-      </Link>
-      <Link to="/">
+      </RouterLink>
+      <RouterLink path={URL_DEFAULT}>
         <div
           className="nav-buttons__exit-button"
           onClick={() => dispatch(logOut())}
@@ -30,7 +31,7 @@ export const NavButtons = () => {
             <ExitIcon />
           </span>
         </div>
-      </Link>
+      </RouterLink>
     </div>
   );
 };

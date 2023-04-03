@@ -31,9 +31,9 @@
   }
 
   .home__planet-fields-heading {
-    font-family: "Poppins", sans-serif;
+    margin-left: 20px;
+    font-family: $font-heading;
     color: $white;
-    margin: 0px 0 28px 0;
     font-size: 57px;
   }
 }

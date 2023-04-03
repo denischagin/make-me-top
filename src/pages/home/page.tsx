@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 
+import { ReactComponent as MakeMeTopLogo } from "@/shared/images/make-me-top.svg";
 import { Login } from "@/widgets/Login";
 import { Registration } from "@/widgets/Registration";
 import { SelectRole } from "@/widgets/SelectRole";
@@ -28,7 +29,7 @@ export const Home = () => {
         style={{ transform: changePlanetAngle() }}
       />
       <div className="home__planet-fields">
-        <p className="home__planet-fields-heading">make me top</p>
+        <MakeMeTopLogo className="home__planet-fields-heading" />
         {!curator && !explorer ? (
           <SelectRole />
         ) : user ? (

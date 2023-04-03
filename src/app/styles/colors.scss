@@ -1,23 +1,53 @@
+@font-face {
+  font-family: "Wattauchimma";
+  src: url(../fonts/Wattauchimma.ttf);
+}
+
+@font-face {
+  font-family: "Feature-Mono-regular";
+  src: url(../fonts/FeatureMono-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Feature-Mono-medium";
+  src: url(../fonts/FeatureMono-Medium.ttf);
+}
+
+// fonts
+$font-heading: "Wattauchimma";
+$font-text-regular: "Feature-Mono-regular";
+$font-text-medium: "Feature-Mono-medium";
+
 // colors
-$primary-500: #CF5335;
-$secondary-700: #220B51;
-$secondary-500: #2E0A9E;
-$black: #1F1F1F;
+$primary-500: #cf5335;
+$secondary-700: #220b51;
+$secondary-500: #2e0a9e;
+$black: #1f1f1f;
 $dark: #0b0b0b;
 $gray-600: #979797;
-$gray-500: #D3D3D3;
-$gray-400: #EEEEEE;
+$gray-500: #d3d3d3;
+$gray-400: #eeeeee;
 $white: #fbf9ff;
 
 // colors with opacity
 $opacity-dark: #0b0b0b80;
 $opacity-white: #fbf9ff80;
-$opacity-orange: #CF533580;
+$opacity-orange: #cf533580;
 
-// grdients
-$planet-gradient:
-radial-gradient(110.46% 110.46% at 100% 1.64%, #f8b07d 12.44%, #e74e11 39.62%, #b50d02 60.27%, #8b0e05 75.93%, #5e0d02 95.93%);
-$progress-bar-gradient: 
-linear-gradient(90deg, transparent, transparent 50%, $black 50%, $black 100%),
-linear-gradient(#cf533580, #75716f80);
-
+// gradients
+$planet-gradient: radial-gradient(
+  110.46% 110.46% at 100% 1.64%,
+  #f8b07d 12.44%,
+  #e74e11 39.62%,
+  #b50d02 60.27%,
+  #8b0e05 75.93%,
+  #5e0d02 95.93%
+);
+$progress-bar-gradient: linear-gradient(
+    90deg,
+    transparent,
+    transparent 50%,
+    $black 50%,
+    $black 100%
+  ),
+  linear-gradient(#cf533580, #75716f80);

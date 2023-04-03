@@ -9,7 +9,7 @@ export const ExplorerUserInfo = () => {
     <div className="profile-info">
       <AvatarBig image="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg" />
       <div className="info">
-        <p className="info__name">Фамилия Имя Отчество </p>
+        <p className="info__name">Фамилия Имя Отчество</p>
         <div className="info-results">
           <CardSmall>
             Рейтинг

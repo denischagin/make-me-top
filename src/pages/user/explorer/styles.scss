@@ -26,8 +26,8 @@
 
         .info__name {
           margin-top: 0;
-          font-size: 28px;
-          font-family: "Unbounded", cursive;
+          font-size: 35px;
+          font-family: $font-heading;
         }
 
         .info-results {
@@ -63,17 +63,15 @@
     }
 
     .container__profile-heading,
-    .container__rating-heading {
-      font-size: 22px;
+    .container__rating-heading,
+    .container__completed-stars-heading {
+      font-size: 26px;
       color: $white;
-      font-family: "Unbounded", cursive;
+      font-family: $font-heading;
     }
 
-    .complted-stars__heading {
+    .container__completed-stars-heading {
       padding-top: 24px;
-      font-size: 22px;
-      color: $white;
-      font-family: "Unbounded", cursive;
     }
   }
 }

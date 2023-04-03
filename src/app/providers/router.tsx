@@ -1,36 +1,43 @@
-
-import { GalaxyPage } from "../../pages/galaxyPage/page";
 import { createBrowserRouter } from "react-router-dom";
 
 import { Curators } from "@/pages/Curators/page";
 import { Explorers } from "@/pages/Explorers/page";
+import { Galaxy } from "@/pages/Galaxy/page";
 import { Home } from "@/pages/Home/page";
 import { Curator } from "@/pages/user/Curator/page";
 import { Explorer } from "@/pages/user/Explorer/page";
+import {
+  URL_CURATOR,
+  URL_CURATORS,
+  URL_DEFAULT,
+  URL_EXPLORER,
+  URL_EXPLORERS,
+  URL_GALAXY,
+} from "@/shared/constants/links";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: URL_DEFAULT,
     element: <Home />,
   },
   {
-    path: "/curator",
+    path: URL_CURATOR,
     element: <Curator />,
   },
   {
-    path: "/explorer",
+    path: URL_EXPLORER,
     element: <Explorer />,
   },
   {
-    path: "/galaxy",
-    element: <GalaxyPage/>,
+    path: URL_GALAXY,
+    element: <Galaxy />,
   },
   {
-    path: "/curators",
+    path: URL_CURATORS,
     element: <Curators />,
   },
   {
-    path: "/explorers",
+    path: URL_EXPLORERS,
     element: <Explorers />,
   },
 ]);

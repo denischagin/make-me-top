@@ -1,7 +1,7 @@
-import { ReactComponent as StarIcon } from "@/shared/images/star.svg";
 import { Star } from "@/shared/Star";
-import { arrayOfStars } from "./model";
+import { ReactComponent as StarIcon } from "@/shared/images/star.svg";
 
+import { arrayOfStars } from "./model";
 import "./styles.scss";
 
 export const CompletedStars = () => {

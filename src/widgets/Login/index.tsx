@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { selectIsUserRegistered } from "@/entities/user/model";
-import { PlanetButton } from "@/shared/buttons/PlanetButton";
 import { PlanetInput } from "@/shared/PlanetInput";
+import { RouterLink } from "@/shared/buttons/Link";
+import { PlanetButton } from "@/shared/buttons/PlanetButton";
 
 import "./styles.scss";
 
@@ -19,15 +19,12 @@ export const Login = () => {
         <p className="login__heading">Вход</p>
         <PlanetInput placeholder="Номер телефона" />
         <PlanetInput placeholder="Пароль" />
-        <Link
-          to={explorer ? "/explorer" : "/curator"}
-          style={{ textDecoration: "none" }}
-        >
+        <RouterLink path={explorer ? "/explorer" : "/curator"}>
           <PlanetButton
             action={() => console.log("logged")}
             title="Войти"
           />
-        </Link>
+        </RouterLink>
         <div className="login__hint">
           Еще не зарегистрированы?{" "}
           <span

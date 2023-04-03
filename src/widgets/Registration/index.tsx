@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { selectIsUserRegistered } from "@/entities/user/model";
-import { PlanetButton } from "@/shared/buttons/PlanetButton";
 import { PlanetInput } from "@/shared/PlanetInput";
+import { RouterLink } from "@/shared/buttons/Link";
+import { PlanetButton } from "@/shared/buttons/PlanetButton";
 
 import "./styles.scss";
 
@@ -17,15 +17,12 @@ export const Registration = () => {
         <PlanetInput placeholder="Имя пользователя *" />
         <PlanetInput placeholder="Пароль *" />
         <PlanetInput placeholder="Пароль ещё раз *" />
-        <Link
-          to="/explorer"
-          style={{ textDecoration: "none" }}
-        >
+        <RouterLink path="/explorer">
           <PlanetButton
             action={() => console.log("registered")}
-            title="Регистрация"
+            title="Зарегистрироваться"
           />
-        </Link>
+        </RouterLink>
         <div className="registration__hint">
           У меня есть аккаунт.{" "}
           <span

@@ -8,16 +8,16 @@
   align-items: center;
 
   .registration__heading {
-    font-size: 18px;
-    color: $white;;
+    font-size: 26px;
+    color: $white;
     font-weight: 600;
-    font-family: "Unbounded", cursive;
+    font-family: $font-heading;
     margin-bottom: 30px;
   }
 
   .registration__hint {
     margin-top: 24px;
-    color: $white;;
+    color: $white;
     font-size: 14px;
 
     .registration__hint-login {
@@ -31,7 +31,7 @@
       &:hover {
         transition: 0.5s;
         text-decoration: underline 2px;
-        text-decoration-color: $white;;
+        text-decoration-color: $white;
         text-underline-offset: 5px;
       }
     }
