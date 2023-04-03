@@ -1,20 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { ExplorerState } from './interfaces';
+import { createSlice } from "@reduxjs/toolkit";
+
+import { ExplorerState } from "./interfaces";
 
 const initialState: ExplorerState = {
   isExplorer: false,
-}
+};
 
 export const explorerSlice = createSlice({
-  name: 'explorer',
+  name: "explorer",
   initialState,
   reducers: {
-    selectRoleAsExplorer: state => {
+    selectRoleAsExplorer: (state) => {
       state.isExplorer = !state.isExplorer;
-    }
-  }
-})
+    },
+  },
+});
 
-export const { selectRoleAsExplorer } = explorerSlice.actions
+export const { selectRoleAsExplorer } = explorerSlice.actions;
 
-export default explorerSlice.reducer
+export default explorerSlice.reducer;

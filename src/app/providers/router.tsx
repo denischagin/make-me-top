@@ -1,23 +1,25 @@
+
 import { GalaxyPage } from "../../pages/galaxyPage/page";
-import { Curator } from "../../pages/user/curator/page";
-import { Explorer } from "../../pages/user/explorer/page";
 import { createBrowserRouter } from "react-router-dom";
-import { Home } from "../../pages/home/page";
-import { Curators } from "../../pages/curators/page";
-import { Explorers } from "../../pages/explorers/page";
+
+import { Curators } from "@/pages/Curators/page";
+import { Explorers } from "@/pages/Explorers/page";
+import { Home } from "@/pages/Home/page";
+import { Curator } from "@/pages/user/Curator/page";
+import { Explorer } from "@/pages/user/Explorer/page";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
+    element: <Home />,
   },
   {
     path: "/curator",
-    element: <Curator/>,
+    element: <Curator />,
   },
   {
     path: "/explorer",
-    element: <Explorer/>,
+    element: <Explorer />,
   },
   {
     path: "/galaxy",
@@ -25,10 +27,10 @@ export const router = createBrowserRouter([
   },
   {
     path: "/curators",
-    element: <Curators/>,
+    element: <Curators />,
   },
   {
     path: "/explorers",
-    element: <Explorers/>,
+    element: <Explorers />,
   },
 ]);
