@@ -17,16 +17,12 @@ export const ExplorerUserInfo = () => {
               <span className="info-results__rating-star">
                 <StarIcon />
               </span>
-              <p className="info-results__rating-text">
-                4.0
-              </p>
+              <p className="info-results__rating-text">4.0</p>
             </span>
           </CardSmall>
           <CardSmall>
             Кол-во освоенных звезд
-            <p className="info-results__rating-finished">
-              11
-            </p>
+            <p className="info-results__rating-finished">11</p>
           </CardSmall>
         </div>
       </div>

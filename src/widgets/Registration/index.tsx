@@ -4,9 +4,9 @@ import { selectIsUserRegistered } from "@/entities/user/model";
 import { PlanetInput } from "@/shared/PlanetInput";
 import { RouterLink } from "@/shared/buttons/Link";
 import { PlanetButton } from "@/shared/buttons/PlanetButton";
+import { URL_EXPLORER } from "@/shared/constants/links";
 
 import "./styles.scss";
-import { URL_EXPLORER } from "@/shared/constants/links";
 
 export const Registration = () => {
   const dispatch = useDispatch();

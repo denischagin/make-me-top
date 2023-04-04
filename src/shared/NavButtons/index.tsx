@@ -4,7 +4,12 @@ import { logOut } from "@/entities/user/model";
 import { ReactComponent as ExitIcon } from "@/shared/images/exit.svg";
 
 import { RouterLink } from "../buttons/Link";
-import { URL_CURATORS, URL_DEFAULT, URL_EXPLORER, URL_EXPLORERS } from "../constants/links";
+import {
+  URL_CURATORS,
+  URL_DEFAULT,
+  URL_EXPLORER,
+  URL_EXPLORERS,
+} from "../constants/links";
 import "./styles.scss";
 
 export const NavButtons = () => {
