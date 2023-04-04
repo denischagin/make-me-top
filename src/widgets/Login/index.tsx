@@ -1,19 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-
+import { useAppDispatch, useAppSelector } from "@/app/providers/store/hooks";
 import { selectIsUserRegistered } from "@/entities/user/model";
 import { PlanetInput } from "@/shared/PlanetInput";
 import { RouterLink } from "@/shared/buttons/Link";
 import { PlanetButton } from "@/shared/buttons/PlanetButton";
-import { RootState } from "@/app/providers/store";
 import { URL_CURATOR, URL_EXPLORER } from "@/shared/constants/links";
 
 import "./styles.scss";
 
 export const Login = () => {
-  const explorer = useSelector(
-    (state: RootState) => state.explorerReducer.isExplorer
-  );
-  const dispatch = useDispatch();
+  const explorer = useAppSelector(state => state.explorer.isExplorer);
+  const dispatch = useAppDispatch();
 
   return (
     <>

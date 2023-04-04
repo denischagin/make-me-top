@@ -1,5 +1,4 @@
-import { useDispatch } from "react-redux";
-
+import { useAppDispatch } from "@/app/providers/store/hooks";
 import { selectIsUserRegistered } from "@/entities/user/model";
 import { PlanetInput } from "@/shared/PlanetInput";
 import { RouterLink } from "@/shared/buttons/Link";
@@ -9,7 +8,7 @@ import { URL_EXPLORER } from "@/shared/constants/links";
 import "./styles.scss";
 
 export const Registration = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <>

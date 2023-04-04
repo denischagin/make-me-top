@@ -1,19 +1,17 @@
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@/app/providers/store/hooks";
 
-import { RootState } from "@/app/providers/store";
 import { ReactComponent as MakeMeTopLogo } from "@/shared/images/make-me-top.svg";
 import { Login } from "@/widgets/Login";
 import { Registration } from "@/widgets/Registration";
 import { SelectRole } from "@/widgets/SelectRole";
 
+
 import "./styles.scss";
 
 export const Home = () => {
-  const explorer = useSelector(
-    (state: RootState) => state.explorerReducer.isExplorer
-  );
-  const curator = useSelector((state: RootState) => state.curatorReducer.isCurator);
-  const user = useSelector((state: RootState) => state.userReducer.isRegistered);
+  const explorer = useAppSelector(state => state.explorer.isExplorer);
+  const curator = useAppSelector(state => state.curator.isCurator);
+  const user = useAppSelector(state => state.user.isRegistered);
 
   const changePlanetAngle = () => {
     if ((curator || explorer) && user) {

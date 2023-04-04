@@ -1,5 +1,4 @@
 import { ReactComponent as OrbitIcon } from "@/shared/images/orbit.svg";
-
 import { StarInterface } from "./interfaces";
 import "./styles.scss";
 
@@ -32,7 +31,7 @@ export const Star = (props: StarInterface) => {
       <div className={starInfoColor()}>
         {props.children}
         <div className="orbit">
-          <OrbitIcon color={orbitColor()} />
+          <OrbitIcon style={{ color: orbitColor() }} />
         </div>
       </div>
     </div>

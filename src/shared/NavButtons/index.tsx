@@ -1,7 +1,6 @@
-import { useDispatch } from "react-redux";
-
 import { logOut } from "@/entities/user/model";
 import { ReactComponent as ExitIcon } from "@/shared/images/exit.svg";
+import { useAppDispatch } from "@/app/providers/store/hooks";
 
 import { RouterLink } from "../buttons/Link";
 import {
@@ -13,7 +12,7 @@ import {
 import "./styles.scss";
 
 export const NavButtons = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <div className="nav-buttons">

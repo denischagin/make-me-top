@@ -1,22 +1,24 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import explorerReducer from "../../../entities/explorer/model";
-import curatorReducer from "../../../entities/curator/model";
-import userReducer from "../../../entities/user/model";
-import galaxySlice from "../../../entities/galaxy/model/slice";
 import logger from "redux-logger";
+
 import { GalaxyType } from "@/entities/galaxy/model/types";
 
+import curatorReducer from "@/entities/curator/model";
+import explorerReducer from "@/entities/explorer/model";
+import galaxySlice from "@/entities/galaxy/model/slice";
+import userReducer from "@/entities/user/model";
+
 export type RootState = {
-  explorerReducer: {
+  explorer: {
     isExplorer: boolean;
   };
-  curatorReducer: {
+  curator: {
     isCurator: boolean;
   };
-  userReducer: {
+  user: {
     isRegistered: boolean;
   };
-  galaxies: GalaxyType,
+  galaxies: GalaxyType;
 };
 
 const rootReducer = combineReducers({
@@ -26,7 +28,7 @@ const rootReducer = combineReducers({
   galaxies: galaxySlice,
 });
 
-export type AppDispatch = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch;
 
 const store = configureStore({
   reducer: rootReducer,
