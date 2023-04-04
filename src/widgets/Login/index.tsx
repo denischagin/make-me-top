@@ -4,13 +4,14 @@ import { selectIsUserRegistered } from "@/entities/user/model";
 import { PlanetInput } from "@/shared/PlanetInput";
 import { RouterLink } from "@/shared/buttons/Link";
 import { PlanetButton } from "@/shared/buttons/PlanetButton";
+import { RootState } from "@/app/providers/store";
+import { URL_CURATOR, URL_EXPLORER } from "@/shared/constants/links";
 
 import "./styles.scss";
-import { URL_CURATOR, URL_EXPLORER } from "@/shared/constants/links";
 
 export const Login = () => {
   const explorer = useSelector(
-    (state: any) => state.explorerReducer.isExplorer
+    (state: RootState) => state.explorerReducer.isExplorer
   );
   const dispatch = useDispatch();
 
