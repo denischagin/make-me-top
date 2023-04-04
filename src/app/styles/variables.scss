@@ -13,7 +13,13 @@
   src: url(../fonts/FeatureMono-Medium.ttf);
 }
 
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/Montserrat-Regular.ttf);
+}
+
 // fonts
+$font-montserrat: "Montserrat";
 $font-heading: "Wattauchimma";
 $font-text-regular: "Feature-Mono-regular";
 $font-text-medium: "Feature-Mono-medium";
@@ -30,6 +36,7 @@ $gray-400: #eeeeee;
 $white: #fbf9ff;
 
 // colors with opacity
+$opacity-gray: #292929;
 $opacity-dark: #0b0b0b80;
 $opacity-white: #fbf9ff80;
 $opacity-orange: #cf533580;

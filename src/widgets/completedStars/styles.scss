@@ -1,5 +1,7 @@
+@import "@/app/styles/variables.scss";
+
 .completed-stars {
-  color: #fbf9ff;
+  color: $white;
   display: flex;
   gap: 24px;
   font-size: 12px;

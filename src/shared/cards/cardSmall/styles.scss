@@ -1,8 +1,10 @@
+@import "@/app/styles/variables.scss";
+
 .card-small {
   display: flex;
   flex-direction: column;
   padding: 8px 16px;
-  background: #1f1f1f;
+  background: $black;
   border-radius: 8px;
   min-width: 120px;
 }

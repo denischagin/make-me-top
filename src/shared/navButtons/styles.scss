@@ -1,9 +1,11 @@
+@import "@/app/styles/variables.scss";
+
 .nav-buttons {
   display: flex;
   align-items: center;
   gap: 32px;
   font-size: 14px;
-  color: #fbf9ff;
+  color: $white;
   .nav-buttons__home-button,
   .nav-buttons__explorers-button,
   .nav-buttons__curators-button,
@@ -19,6 +21,7 @@
     display: flex;
 
     .nav-buttons__exit-button-icon {
+      margin-top: 2px;
       margin-left: 5px;
     }
   }

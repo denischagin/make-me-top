@@ -6,6 +6,7 @@ import { RouterLink } from "@/shared/buttons/Link";
 import { PlanetButton } from "@/shared/buttons/PlanetButton";
 
 import "./styles.scss";
+import { URL_CURATOR, URL_EXPLORER } from "@/shared/constants/links";
 
 export const Login = () => {
   const explorer = useSelector(
@@ -19,7 +20,7 @@ export const Login = () => {
         <p className="login__heading">Вход</p>
         <PlanetInput placeholder="Номер телефона" />
         <PlanetInput placeholder="Пароль" />
-        <RouterLink path={explorer ? "/explorer" : "/curator"}>
+        <RouterLink path={explorer ? URL_EXPLORER : URL_CURATOR}>
           <PlanetButton
             action={() => console.log("logged")}
             title="Войти"

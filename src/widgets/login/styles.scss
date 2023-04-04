@@ -1,3 +1,5 @@
+@import "@/app/styles/variables.scss";
+
 .login {
   cursor: default;
   flex-direction: column;
@@ -6,32 +8,28 @@
   align-items: center;
 
   .login__heading {
-    font-size: 18px;
-    color: #fbf9ff;
+    font-size: 26px;
+    color: $white;
     font-weight: 600;
-    font-family: "Unbounded", cursive;
+    font-family: $font-heading;
     margin-bottom: 30px;
   }
 
   .login__hint {
     margin-top: 24px;
-    color: #fbf9ff;
+    color: $white;
     font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 5px;
+    transition: 0.5s;
 
-    .login__hint-registration {
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: underline;
-      text-decoration-color: transparent;
-      text-underline-offset: 5px;
+    &:hover {
       transition: 0.5s;
-
-      &:hover {
-        transition: 0.5s;
-        text-decoration: underline 2px;
-        text-decoration-color: #fbf9ff;
-        text-underline-offset: 5px;
-      }
+      text-decoration: underline 2px;
+      text-decoration-color: $white;
+      text-underline-offset: 5px;
     }
   }
 }

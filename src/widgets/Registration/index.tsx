@@ -6,6 +6,7 @@ import { RouterLink } from "@/shared/buttons/Link";
 import { PlanetButton } from "@/shared/buttons/PlanetButton";
 
 import "./styles.scss";
+import { URL_EXPLORER } from "@/shared/constants/links";
 
 export const Registration = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const Registration = () => {
         <PlanetInput placeholder="Имя пользователя *" />
         <PlanetInput placeholder="Пароль *" />
         <PlanetInput placeholder="Пароль ещё раз *" />
-        <RouterLink path="/explorer">
+        <RouterLink path={URL_EXPLORER}>
           <PlanetButton
             action={() => console.log("registered")}
             title="Зарегистрироваться"

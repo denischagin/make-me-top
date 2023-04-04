@@ -1,6 +1,6 @@
-@import "@/app/styles/colors.scss";
+@import "@/app/styles/variables.scss";
 
 .dividing-line {
-  border: 1px solid #292929;
+  border: 1px solid $opacity-gray;
   border-bottom: 0px;
 }

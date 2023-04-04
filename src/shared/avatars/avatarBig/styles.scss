@@ -1,9 +1,11 @@
+@import "@/app/styles/variables.scss";
+
 .avatar-big {
   position: absolute;
   height: 133px;
   width: 133px;
   border-radius: 99px;
-  border: 2px solid #fbf9ff;
+  border: 2px solid $white;
 
   animation-name: rotate;
   animation-duration: 12s;
@@ -26,7 +28,7 @@
   border-radius: 99px;
   height: 5px;
   width: 5px;
-  background-color: #fbf9ff;
+  background-color: $white;
   border: 1px solid white;
   z-index: -1;
 
@@ -39,7 +41,7 @@
     left: -5px;
     right: -5px;
     bottom: -5px;
-    border: 1px solid #ffffff;
+    border: 1px solid $white;
   }
 }
 

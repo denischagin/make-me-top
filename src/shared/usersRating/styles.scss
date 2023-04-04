@@ -1,22 +1,23 @@
+@import "@/app/styles/variables.scss";
+
 .rating-info {
-  margin: 16px 0;
+  margin: 8px 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 
   .rating-info__user-name {
-    padding: 0 20px 0 15px;
+    padding: 0 24px 0 15px;
     white-space: nowrap; /* Текст не переносится */
   }
 
   .rating-info__user-score {
-    color: #fbf9ff;
+    color: $white;
     display: flex;
     align-items: center;
   }
 
   .rating-info__user-score-star {
-    color: #cf5335;
+    color: $primary-500;
   }
 
   .rating-info__user-score-num {

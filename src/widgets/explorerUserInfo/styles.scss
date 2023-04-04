@@ -1,39 +1,5 @@
-.rating-card {
-  font-size: 14px;
+@import "@/app/styles/variables.scss";
 
-  .my-rating {
-    max-width: 342px;
-
-    .my-rating__heading {
-      font-size: 16px;
-    }
-
-    .my-rating-info {
-      margin: 28px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .my-rating-info__user-name {
-      padding: 0 24px 0 15px;
-    }
-
-    .my-rating-info__user-score {
-      display: flex;
-      color: #cf5335;
-      align-items: center;
-    }
-
-    .my-rating-info__user-score-num {
-      margin-left: 5px;
-      color: white;
-    }
-  }
-
-  .general-rating {
-    .general-rating__heading {
-      font-size: 16px;
-    }
-  }
+.info__name {
+  margin-bottom: 24px;
 }

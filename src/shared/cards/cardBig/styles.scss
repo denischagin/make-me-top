@@ -1,7 +1,9 @@
+@import "@/app/styles/variables.scss";
+
 .card-big {
   display: flex;
   flex-direction: column;
   padding: 16px 24px;
-  background: #1f1f1f;
+  background: $black;
   border-radius: 8px;
 }

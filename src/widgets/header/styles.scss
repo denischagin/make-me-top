@@ -1,5 +1,7 @@
+@import "@/app/styles/variables.scss";
+
 .header {
-  background: #0b0b0b80;
+  background: $opacity-dark;
   width: 100%;
   height: 100px;
 
@@ -11,13 +13,7 @@
     margin: 0 240px;
 
     .header__container-logo {
-      color: #fbf9ff;
-    }
-
-    .header__container-heading {
-      color: #fbf9ff;
-      font-size: 32px;
-      font-family: "Poppins", sans-serif;
+      color: $white;
     }
   }
 }
