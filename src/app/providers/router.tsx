@@ -1,8 +1,9 @@
+
+import { GalaxyPage } from "../../pages/galaxyPage/page";
 import { createBrowserRouter } from "react-router-dom";
 
 import { Curators } from "@/pages/Curators/page";
 import { Explorers } from "@/pages/Explorers/page";
-import { Galaxy } from "@/pages/Galaxy/page";
 import { Home } from "@/pages/Home/page";
 import { Curator } from "@/pages/user/Curator/page";
 import { Explorer } from "@/pages/user/Explorer/page";
@@ -29,8 +30,8 @@ export const router = createBrowserRouter([
     element: <Explorer />,
   },
   {
-    path: URL_GALAXY,
-    element: <Galaxy />,
+    path: "/galaxy",
+    element: <GalaxyPage/>,
   },
   {
     path: URL_CURATORS,
