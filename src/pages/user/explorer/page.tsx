@@ -1,8 +1,8 @@
-import { CurrentStarCard } from "@/widgets/cards/currentStarCard/currentStarCard";
-import { RatingCard } from "@/widgets/cards/ratingCard/ratingCard";
-import { CompletedStars } from "@/widgets/completedStars/completedStars";
-import { ExplorerUserInfo } from "@/widgets/explorerUserInfo/explorerUserInfo";
-import { Header } from "@/widgets/header/header";
+import { CompletedStars } from "@/widgets/CompletedStars";
+import { ExplorerUserInfo } from "@/widgets/ExplorerUserInfo";
+import { Header } from "@/widgets/Header";
+import { CurrentStarCard } from "@/widgets/cards/CurrentStarCard";
+import { RatingCard } from "@/widgets/cards/RatingCard";
 
 import "./styles.scss";
 
@@ -13,10 +13,14 @@ export const Explorer = () => {
       <div className="container">
         <div className="profile">
           <ExplorerUserInfo />
-          <p className="container__profile-heading">Текущая звезда</p>
-          <CurrentStarCard />
-          <div className="complted-stars">
-            <p className="complted-stars__heading">Освоенные звёзды</p>
+          <div className="current-star">
+            <p className="current-star__heading">Текущая звезда</p>
+            <CurrentStarCard />
+          </div>
+          <div className="container__completed-stars">
+            <p className="container__completed-stars-heading">
+              Освоенные звёзды
+            </p>
             <CompletedStars />
           </div>
         </div>

@@ -13,10 +13,10 @@ export const CompletedStars = () => {
           key={item.name}
         >
           <p className="completed-stars__label">{item.name}</p>
-          <span className="completed-stars__rating">
+          <div className="stars-rating">
             <StarIcon />
-            <p className="completed-stars__rating-num">{item.rate}</p>
-          </span>
+            <p className="stars-rating__rating-num">{item.rate}</p>
+          </div>
         </Star>
       ))}
     </div>

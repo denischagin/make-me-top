@@ -5,14 +5,14 @@
   width: 100%;
   height: 100px;
 
-  .header__container {
+  &__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100px;
     margin: 0 240px;
 
-    .header__container-logo {
+    &__container-logo {
       color: $white;
     }
   }

@@ -6,16 +6,16 @@
   gap: 24px;
   font-size: 12px;
 
-  .completed-stars__label {
+  &__label {
     margin-top: 5px;
     margin-bottom: 8px;
   }
 
-  .completed-stars__rating {
+  .stars-rating {
     display: flex;
     align-items: center;
 
-    .completed-stars__rating-num {
+    &__rating-num {
       font-size: 10px;
       margin: 0 2px 0 4px;
     }

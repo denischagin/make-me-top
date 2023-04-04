@@ -17,61 +17,22 @@
     justify-content: space-between;
     margin: 40px 240px;
 
-    .profile-info {
+    .profile {
       display: flex;
-      margin-bottom: 40px;
-
-      .info {
-        margin-left: 40px;
-
-        .info__name {
-          margin-top: 0;
-          font-size: 35px;
-          font-family: $font-heading;
-        }
-
-        .info-results {
-          display: flex;
-          gap: 16px;
-
-          .info-results__rating {
-            display: flex;
-            align-items: center;
-            margin-top: 6px;
-
-            .info-results__rating-star {
-              margin-top: 4px;
-              color: $primary-500;
-            }
-
-            .info-results__rating-text {
-              margin: 0 5px;
-            }
-          }
-
-          .info-results__rating-finished {
-            margin: 0;
-            padding-top: 8px;
-          }
-        }
-      }
+      flex-direction: column;
+      gap: 24px;
     }
 
-    .container__rating-heading {
+    &__rating-heading {
       margin-top: 0;
-      margin-bottom: 24px;
     }
 
-    .container__profile-heading,
-    .container__rating-heading,
-    .container__completed-stars-heading {
+    &__rating-heading,
+    &__completed-stars-heading,
+    .current-star__heading {
       font-size: 26px;
       color: $white;
       font-family: $font-heading;
-    }
-
-    .container__completed-stars-heading {
-      padding-top: 20px;
     }
   }
 }

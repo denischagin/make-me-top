@@ -6,7 +6,7 @@
   .my-rating {
     max-width: 342px;
 
-    .my-rating__heading {
+    &__heading {
       font-size: 16px;
     }
 
@@ -15,21 +15,21 @@
       margin-bottom: 24px;
       display: flex;
       align-items: center;
-    }
 
-    .my-rating-info__user-name {
-      padding: 0 24px 0 15px;
-    }
-
-    .my-rating-info__user-score {
-      display: flex;
-      color: $primary-500;
-      align-items: center;
-    }
-
-    .my-rating-info__user-score-num {
-      margin-left: 5px;
-      color: white;
+      &__user-name {
+        padding: 0 24px 0 15px;
+      }
+  
+      &__user-score {
+        display: flex;
+        color: $primary-500;
+        align-items: center;
+      }
+  
+      &__user-score-num {
+        margin-left: 5px;
+        color: white;
+      }
     }
   }
 

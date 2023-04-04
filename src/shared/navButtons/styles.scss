@@ -6,23 +6,19 @@
   gap: 32px;
   font-size: 14px;
   color: $white;
-  .nav-buttons__home-button,
-  .nav-buttons__explorers-button,
-  .nav-buttons__curators-button,
-  .nav-buttons__exit-button {
+
+  &__home-button,
+  &__explorers-button,
+  &__curators-button,
+  &__exit-button {
     cursor: pointer;
   }
 
-  .nav-buttons__exit-button {
-    margin-top: 6px;
+  &__exit-button {
+    display: flex;
   }
 
-  .nav-buttons__exit-button {
-    display: flex;
-
-    .nav-buttons__exit-button-icon {
-      margin-top: 2px;
-      margin-left: 5px;
-    }
+  &__exit-icon {
+    margin-left: 5px;
   }
 }

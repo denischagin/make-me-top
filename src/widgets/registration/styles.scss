@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
 
-  .registration__heading {
+  &__heading {
     font-size: 26px;
     color: $white;
     font-weight: 600;
@@ -15,7 +15,7 @@
     margin-bottom: 30px;
   }
 
-  .registration__hint {
+  &__hint {
     margin-top: 24px;
     color: $white;
     font-size: 14px;

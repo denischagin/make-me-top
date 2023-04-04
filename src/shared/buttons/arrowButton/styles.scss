@@ -1,9 +1,5 @@
 @import "@/app/styles/variables.scss";
 
-.arrow-button {
-  transform: rotate(0);
-}
-
 .arrow-button--right {
   transform: rotate(180deg);
 }
@@ -17,6 +13,7 @@
 }
 
 .arrow-button {
+  transform: rotate(0);
   margin-top: 0px;
   display: flex;
   width: 50px;
@@ -26,23 +23,23 @@
   transition: 0.2s;
 
   &:hover {
-    .arrow-button__arrow {
+    &__arrow {
       transition: 0.2s;
       padding-left: 10px;
     }
 
-    .arrow-button__circle {
+    &__circle {
       opacity: 1;
     }
   }
 
-  .arrow-button__arrow {
+  &__arrow {
     margin-left: 5px;
     z-index: 1;
     transition: 0.2s;
   }
 
-  .arrow-button__circle {
+  &__circle {
     position: absolute;
     opacity: 0;
     background-color: $primary-500;

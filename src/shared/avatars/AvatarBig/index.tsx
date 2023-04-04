@@ -4,13 +4,13 @@ import "./styles.scss";
 export const AvatarBig = (props: AvatarInterface) => {
   return (
     <>
-      <div className="avatar-big">
-        <div className="avatar-big__planet" />
+      <div className="avatar">
+        <div className="avatar__orbit" />
       </div>
       <img
         src={props.image}
         alt=""
-        className="avatar-big-image"
+        className="avatar-image"
       />
     </>
   );

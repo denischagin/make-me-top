@@ -30,8 +30,8 @@ export const NavButtons = () => {
           className="nav-buttons__exit-button"
           onClick={() => dispatch(logOut())}
         >
-          Выйти{" "}
-          <span className="nav-buttons__exit-button-icon">
+          Выйти
+          <span className="nav-buttons nav-buttons__exit-icon">
             <ExitIcon />
           </span>
         </div>

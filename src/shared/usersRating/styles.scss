@@ -5,22 +5,22 @@
   display: flex;
   align-items: center;
 
-  .rating-info__user-name {
+  &__user-name {
     padding: 0 24px 0 15px;
     white-space: nowrap; /* Текст не переносится */
   }
 
-  .rating-info__user-score {
+  &__user-score {
     color: $white;
     display: flex;
     align-items: center;
   }
 
-  .rating-info__user-score-star {
+  &__user-score-star {
     color: $primary-500;
   }
 
-  .rating-info__user-score-num {
+  &__user-score-num {
     margin-left: 5px;
   }
 }

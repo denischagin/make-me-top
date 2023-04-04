@@ -1,19 +1,13 @@
 @import "@/app/styles/variables.scss";
 
-.rocket-line-container {
+.progress-bar {
   margin-top: 14px;
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
 
-  .rocket-image {
-    padding: 5px;
-    background-color: $black;
-    position: absolute;
-  }
-
-  .rocket-line-container__dot {
+  &__dot {
     height: 6px;
     width: 6px;
     margin-left: -8px;
@@ -21,7 +15,13 @@
     background-color: $primary-500;
   }
 
-  .line {
+  &__icon {
+    padding: 5px;
+    background-color: $black;
+    position: absolute;
+  }
+
+  &__line {
     width: 900%;
     height: 2px;
     background-image: $progress-bar-gradient;
