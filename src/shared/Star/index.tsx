@@ -1,4 +1,5 @@
 import { ReactComponent as OrbitIcon } from "@/shared/images/orbit.svg";
+
 import { StarInterface } from "./interfaces";
 import "./styles.scss";
 

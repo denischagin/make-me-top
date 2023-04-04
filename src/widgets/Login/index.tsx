@@ -8,7 +8,7 @@ import { URL_CURATOR, URL_EXPLORER } from "@/shared/constants/links";
 import "./styles.scss";
 
 export const Login = () => {
-  const explorer = useAppSelector(state => state.explorer.isExplorer);
+  const explorer = useAppSelector((state) => state.explorer.isExplorer);
   const dispatch = useAppDispatch();
 
   return (

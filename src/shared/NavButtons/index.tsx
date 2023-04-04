@@ -1,6 +1,6 @@
+import { useAppDispatch } from "@/app/providers/store/hooks";
 import { logOut } from "@/entities/user/model";
 import { ReactComponent as ExitIcon } from "@/shared/images/exit.svg";
-import { useAppDispatch } from "@/app/providers/store/hooks";
 
 import { RouterLink } from "../buttons/Link";
 import {
