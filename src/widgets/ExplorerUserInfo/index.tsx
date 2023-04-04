@@ -18,14 +18,14 @@ export const ExplorerUserInfo = () => {
                 <StarIcon />
               </span>
               <p className="info-results__rating-text">
-                <b>4.0</b>
+                4.0
               </p>
             </span>
           </CardSmall>
           <CardSmall>
             Кол-во освоенных звезд
             <p className="info-results__rating-finished">
-              <b>11</b>
+              11
             </p>
           </CardSmall>
         </div>
