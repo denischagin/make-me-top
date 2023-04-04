@@ -17,8 +17,8 @@
   border: 1px solid $primary-500;
 
   &:hover {
-    border: 1px solid #b82e0c;
-    background-color: #b82e0c;
+    border: 1px solid $primary-600;
+    background-color: $primary-600;
   }
 }
 
@@ -28,8 +28,8 @@
   border: 1px solid $primary-500;
 
   &:hover {
-    border: 1px solid #b82e0c;
-    background-color: #b82e0c;
+    border: 1px solid $primary-600;
+    background-color: $primary-600;
   }
 }
 
