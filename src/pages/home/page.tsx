@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-
+import { useAppSelector } from "@/app/providers/store/hooks";
+import { ReactComponent as MakeMeTopIcon } from "@/shared/images/make-me-top.svg";
 import { Login } from "@/widgets/Login";
 import { Registration } from "@/widgets/Registration";
 import { SelectRole } from "@/widgets/SelectRole";
@@ -7,11 +7,9 @@ import { SelectRole } from "@/widgets/SelectRole";
 import "./styles.scss";
 
 export const Home = () => {
-  const explorer = useSelector(
-    (state: any) => state.explorerReducer.isExplorer
-  );
-  const curator = useSelector((state: any) => state.curatorReducer.isCurator);
-  const user = useSelector((state: any) => state.userReducer.isRegistered);
+  const explorer = useAppSelector((state) => state.explorer.isExplorer);
+  const curator = useAppSelector((state) => state.curator.isCurator);
+  const user = useAppSelector((state) => state.user.isRegistered);
 
   const changePlanetAngle = () => {
     if ((curator || explorer) && user) {
@@ -27,8 +25,10 @@ export const Home = () => {
         className="home__planet"
         style={{ transform: changePlanetAngle() }}
       />
-      <div className="home__planet-fields">
-        <p className="home__planet-fields-heading">make me top</p>
+      <div className="home__fields">
+        <p className="home__fields-heading">
+          <MakeMeTopIcon />
+        </p>
         {!curator && !explorer ? (
           <SelectRole />
         ) : user ? (

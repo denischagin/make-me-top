@@ -4,13 +4,13 @@ import "./styles.scss";
 
 export const ProgressBar = () => {
   return (
-    <div className="rocket-line-container">
-      <div className="rocket-image">
+    <div className="progress-bar">
+      <div className="progress-bar__icon">
         <RocketIcon />
       </div>
-      <span className="rocket-line-container__dot" />
-      <div className="line" />
-      <span className="rocket-line-container__dot" />
+      <div className="progress-bar__dot" />
+      <div className="progress-bar__line" />
+      <div className="rogress-bar__dot" />
     </div>
   );
 };

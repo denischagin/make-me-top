@@ -1,10 +1,5 @@
-import { ReactComponent as StarIcon } from "@/shared/images/star.svg";
-<<<<<<<< HEAD:src/widgets/completedStars/completedStars.tsx
-import { Star } from "@/shared/stars/star";
-========
 import { Star } from "@/shared/Star";
-import { arrayOfStars } from "./model";
->>>>>>>> 77371ee7 (MMT-22: сменил названия папок и файлов, все папки компонентов с заглавной буквы, файл компонента index.tsx):src/widgets/CompletedStars/index.tsx
+import { ReactComponent as StarIcon } from "@/shared/images/star.svg";
 
 import { arrayOfStars } from "./model";
 import "./styles.scss";
@@ -18,10 +13,10 @@ export const CompletedStars = () => {
           key={item.name}
         >
           <p className="completed-stars__label">{item.name}</p>
-          <span className="completed-stars__rating">
+          <div className="stars-rating">
             <StarIcon />
-            <p className="completed-stars__rating-num">{item.rate}</p>
-          </span>
+            <p className="stars-rating__rating-num">{item.rate}</p>
+          </div>
         </Star>
       ))}
     </div>

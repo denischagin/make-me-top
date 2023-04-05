@@ -8,25 +8,19 @@ export const ExplorerUserInfo = () => {
   return (
     <div className="profile-info">
       <AvatarBig image="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg" />
-      <div className="info">
-        <p className="info__name">Фамилия Имя Отчество </p>
-        <div className="info-results">
+      <div className="profile-description">
+        <p className="profile-description__name">Фамилия Имя Отчество</p>
+        <div className="profile-rating">
           <CardSmall>
-            Рейтинг
-            <span className="info-results__rating">
-              <span className="info-results__rating-star">
-                <StarIcon />
-              </span>
-              <p className="info-results__rating-text">
-                <b>4.0</b>
-              </p>
+            <p className="profile-rating__text">Рейтинг</p>
+            <span className="profile-rating profile-rating__current-rating">
+              <StarIcon />
+              <p className="profile-rating__current-rating-text">4.0</p>
             </span>
           </CardSmall>
           <CardSmall>
-            Кол-во освоенных звезд
-            <p className="info-results__rating-finished">
-              <b>11</b>
-            </p>
+            <p className="profile-rating__text">Кол-во освоенных звезд</p>
+            <p className="profile-rating__stars">11</p>
           </CardSmall>
         </div>
       </div>

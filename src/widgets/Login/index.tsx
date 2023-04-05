@@ -1,22 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-
+import { useAppDispatch, useAppSelector } from "@/app/providers/store/hooks";
 import { selectIsUserRegistered } from "@/entities/user/model";
-<<<<<<<< HEAD:src/widgets/login/login.tsx
-import { PlanetButton } from "@/shared/buttons/planetButton/button";
-import { PlanetInput } from "@/shared/buttons/planetInput/input";
-========
-import { PlanetButton } from "@/shared/buttons/PlanetButton";
 import { PlanetInput } from "@/shared/PlanetInput";
->>>>>>>> 77371ee7 (MMT-22: сменил названия папок и файлов, все папки компонентов с заглавной буквы, файл компонента index.tsx):src/widgets/Login/index.tsx
+import { RouterLink } from "@/shared/buttons/Link";
+import { PlanetButton } from "@/shared/buttons/PlanetButton";
+import { URL_CURATOR, URL_EXPLORER } from "@/shared/constants/links";
 
 import "./styles.scss";
 
 export const Login = () => {
-  const explorer = useSelector(
-    (state: any) => state.explorerReducer.isExplorer
-  );
-  const dispatch = useDispatch();
+  const explorer = useAppSelector((state) => state.explorer.isExplorer);
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -24,15 +17,12 @@ export const Login = () => {
         <p className="login__heading">Вход</p>
         <PlanetInput placeholder="Номер телефона" />
         <PlanetInput placeholder="Пароль" />
-        <Link
-          to={explorer ? "/explorer" : "/curator"}
-          style={{ textDecoration: "none" }}
-        >
+        <RouterLink path={explorer ? URL_EXPLORER : URL_CURATOR}>
           <PlanetButton
             action={() => console.log("logged")}
             title="Войти"
           />
-        </Link>
+        </RouterLink>
         <div className="login__hint">
           Еще не зарегистрированы?{" "}
           <span

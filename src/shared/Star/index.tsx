@@ -6,16 +6,19 @@ import "./styles.scss";
 export const Star = (props: StarInterface) => {
   const starColor = () => {
     if (props.color === "black") {
-      return "star--black";
-    } else if (props.color === "white") {
-      return "star--white";
+      return "star star--black";
     }
-    return "star";
+
+    if (props.color === "white") {
+      return "star star--white";
+    }
+
+    return "star star--orange";
   };
 
   const starInfoColor = () => {
     if (props.color === "white") {
-      return "star-info--black";
+      return "star-info star-info--black";
     }
     return "star-info";
   };

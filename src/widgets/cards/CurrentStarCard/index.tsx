@@ -34,10 +34,7 @@ export const CurrentStarCard = () => {
           </span>
         </div>
         <div className="buttons">
-          <ButtonBig
-            color="white"
-            title="Отменить"
-          />
+          <ButtonBig title="Отменить" />
           <ButtonBig
             color="filled"
             title="Продолжить"

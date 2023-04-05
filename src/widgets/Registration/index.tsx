@@ -1,19 +1,16 @@
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { useAppDispatch } from "@/app/providers/store/hooks";
 import { selectIsUserRegistered } from "@/entities/user/model";
-<<<<<<<< HEAD:src/widgets/registration/registration.tsx
-import { PlanetButton } from "@/shared/buttons/planetButton/button";
-import { PlanetInput } from "@/shared/buttons/planetInput/input";
-========
-import { PlanetButton } from "@/shared/buttons/PlanetButton";
 import { PlanetInput } from "@/shared/PlanetInput";
->>>>>>>> 77371ee7 (MMT-22: сменил названия папок и файлов, все папки компонентов с заглавной буквы, файл компонента index.tsx):src/widgets/Registration/index.tsx
+import { RouterLink } from "@/shared/buttons/Link";
+import { PlanetButton } from "@/shared/buttons/PlanetButton";
+import { URL_EXPLORER } from "@/shared/constants/links";
 
 import "./styles.scss";
 
 export const Registration = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -22,15 +19,12 @@ export const Registration = () => {
         <PlanetInput placeholder="Имя пользователя *" />
         <PlanetInput placeholder="Пароль *" />
         <PlanetInput placeholder="Пароль ещё раз *" />
-        <Link
-          to="/explorer"
-          style={{ textDecoration: "none" }}
-        >
+        <RouterLink path={URL_EXPLORER}>
           <PlanetButton
             action={() => console.log("registered")}
             title="Регистрация"
           />
-        </Link>
+        </RouterLink>
         <div className="registration__hint">
           У меня есть аккаунт.{" "}
           <span
