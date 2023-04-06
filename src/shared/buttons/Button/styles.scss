@@ -1,29 +1,34 @@
 @import "@app/styles/variables.scss";
 
-.button-big {
+.button {
   color: $white;
+  cursor: pointer;
+  text-align: center;
+  font-family: $font-montserrat;
+  border-radius: 56px;
+  transition: 0.3s;
   background-color: transparent;
   border: 1px solid $white;
 
   &:hover {
+    transition: 0.3s;
     color: $black;
     background-color: $white;
   }
 }
 
-.button-big--filled {
-  color: $white;
+.button--filled {
   background-color: $primary-500;
   border: 1px solid $primary-500;
 
   &:hover {
+    color: $white;
     border: 1px solid $primary-600;
     background-color: $primary-600;
   }
 }
 
-.button-big--orange {
-  color: $white;
+.button--orange {
   background-color: transparent;
   border: 1px solid $primary-500;
 
@@ -33,8 +38,7 @@
   }
 }
 
-.button-big--black {
-  color: $white;
+.button--black {
   background-color: transparent;
   border: 1px solid $primary-500;
 
@@ -43,19 +47,14 @@
   }
 }
 
-.button-big,
-.button-big--filled,
-.button-big--orange,
-.button-big--black {
-  cursor: pointer;
-  text-align: center;
-  font-family: $font-montserrat;
-  margin-top: 16px;
-  padding: 16px 40px;
-  border-radius: 56px;
-  transition: 0.3s;
+.button--small {
+  display: inline-block;
+  font-size: 14px;
+  padding: 10px 16px;
+}
 
-  &:hover {
-    transition: 0.3s;
-  }
+.button--large {
+  display: inline-block;
+  font-size: 16px;
+  padding: 16px 40px;
 }
