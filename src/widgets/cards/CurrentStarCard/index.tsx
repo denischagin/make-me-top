@@ -1,5 +1,6 @@
 import { Button } from "@shared/buttons/Button";
 import { CardBig } from "@shared/cards/CardBig";
+import { Typography } from "@shared/Typography";
 import { ProgressBar } from "@widgets/ProgressBar";
 
 import "./styles.scss";
@@ -20,15 +21,17 @@ export const CurrentStarCard = () => {
   return (
     <div className="current-star-card">
       <CardBig>
-        <p className="current-star-card__heading">
-          Планета: {planet.id}. {planet.name}
-        </p>
-        <p className="current-star-card__current-star">Звезда: {star}</p>
-        <p className="current-star-card__current-curator">
-          Преподаватель: {curator}
-        </p>
+        <div className="current-star-card__heading">
+          <Typography variant="h2">Планета: {planet.id}. {planet.name}</Typography>
+        </div>
+        <div className="current-star-card__current-star">
+          <Typography variant="regular14">Звезда: {star}</Typography>
+        </div>
+        <div className="current-star-card__current-curator">
+          <Typography variant="regular14">Преподаватель: {curator}</Typography>
+        </div>
         <div className="current-star-card__progress">
-          Освоено {progress}%
+          <Typography variant="regular16">Освоено {progress}%</Typography>
           <span className="current-star-card__progress-bar">
             <ProgressBar />
           </span>
@@ -48,11 +51,3 @@ export const CurrentStarCard = () => {
     </div>
   );
 };
-
-
-
-
-
-
-
-

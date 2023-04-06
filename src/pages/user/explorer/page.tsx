@@ -3,6 +3,7 @@ import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
 import { Header } from "@widgets/Header";
 import { CurrentStarCard } from "@widgets/cards/CurrentStarCard";
 import { RatingCard } from "@widgets/cards/RatingCard";
+import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 
@@ -14,18 +15,22 @@ export const Explorer = () => {
         <div className="profile">
           <ExplorerUserInfo />
           <div className="current-star">
-            <p className="current-star__heading">Текущая звезда</p>
+            <div className="current-star__heading">
+              <Typography variant="h2">Текущая звезда</Typography>
+            </div>
             <CurrentStarCard />
           </div>
           <div className="container__completed-stars">
-            <p className="container__completed-stars-heading">
-              Освоенные звёзды
-            </p>
+            <div className="container__completed-stars-heading">
+              <Typography variant="h2">Освоенные звёзды</Typography>
+            </div>
             <CompletedStars />
           </div>
         </div>
         <div className="container__rating">
-          <p className="container__rating-heading">Рейтинг</p>
+          <div className="container__rating-heading">
+            <Typography variant="h2">Рейтинг</Typography>
+          </div>
           <RatingCard />
         </div>
       </div>

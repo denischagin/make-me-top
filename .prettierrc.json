@@ -4,7 +4,16 @@
   "semi": true,
   "singleQuote": false,
   "singleAttributePerLine": true,
-  "importOrder": ["^react(.*)", "@/(.*)", "@app(.*)", "@shared(.*)", "@entities(.*)", "@widgets(.*)", "@pages(.*)", "^[./]"],
+  "importOrder": [
+    "^react(.*)",
+    "@/(.*)",
+    "@app(.*)",
+    "@shared(.*)",
+    "@entities(.*)",
+    "@widgets(.*)",
+    "@pages(.*)",
+    "^[./]"
+  ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }

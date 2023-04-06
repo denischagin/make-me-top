@@ -1,17 +1,15 @@
 @import "@app/styles/variables.scss";
 
 .rating-card {
-  font-size: 14px;
-
   .my-rating {
     max-width: 342px;
 
     &__heading {
-      font-size: 16px;
+      margin-top: 8px;
     }
 
     .my-rating-info {
-      margin-top: 20px;
+      margin-top: 24px;
       margin-bottom: 24px;
       display: flex;
       align-items: center;
@@ -34,7 +32,6 @@
   }
 
   .general-rating__heading {
-    font-size: 16px;
     margin-top: 24px;
     margin-bottom: 24px;
   }

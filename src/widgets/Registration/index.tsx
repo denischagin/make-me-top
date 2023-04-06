@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
-
 import { useAppDispatch } from "@app/providers/store/hooks";
-import { selectIsUserRegistered } from "@entities/user/model";
+
 import { PlanetInput } from "@shared/PlanetInput";
+import { Typography } from "@shared/Typography";
 import { RouterLink } from "@shared/buttons/Link";
 import { PlanetButton } from "@shared/buttons/PlanetButton";
 import { URL_EXPLORER } from "@shared/constants/links";
+
+import { selectIsUserRegistered } from "@entities/user/model";
 
 import "./styles.scss";
 
@@ -15,7 +16,9 @@ export const Registration = () => {
   return (
     <>
       <div className="registration">
-        <p className="registration__heading">Регистрация</p>
+        <div className="registration__heading">
+          <Typography variant="h2">Регистрация</Typography>
+        </div>
         <PlanetInput placeholder="Имя пользователя *" />
         <PlanetInput placeholder="Пароль *" />
         <PlanetInput placeholder="Пароль ещё раз *" />
@@ -25,14 +28,13 @@ export const Registration = () => {
             title="Регистрация"
           />
         </RouterLink>
-        <div className="registration__hint">
-          У меня есть аккаунт.{" "}
-          <span
-            className="registration__hint-login"
-            onClick={() => dispatch(selectIsUserRegistered())}
-          >
-            Войти
-          </span>
+        <div
+          className="registration__hint"
+          onClick={() => dispatch(selectIsUserRegistered())}
+        >
+          <Typography variant="regular14">
+            У меня есть аккаунт. Войти
+          </Typography>
         </div>
       </div>
     </>
