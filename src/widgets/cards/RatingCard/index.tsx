@@ -1,8 +1,8 @@
-import { DividingLine } from "@/shared/DividingLine";
-import { UsersRating } from "@/shared/UsersRating";
-import { AvatarSmall } from "@/shared/avatars/AvatarSmall";
-import { CardBig } from "@/shared/cards/CardBig";
-import { ReactComponent as StarIcon } from "@/shared/images/star.svg";
+import { DividingLine } from "@shared/DividingLine";
+import { UsersRating } from "@shared/UsersRating";
+import { AvatarSmall } from "@shared/avatars/AvatarSmall";
+import { CardBig } from "@shared/cards/CardBig";
+import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 
 import "./styles.scss";
 

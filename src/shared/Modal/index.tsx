@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-import { useAppSelector } from "@/app/providers/store/hooks";
+import { useAppSelector } from "@app/providers/store/hooks";
 
 import "./styles.scss";
 

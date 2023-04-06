@@ -1,4 +1,4 @@
-import { ReactComponent as StarIcon } from "@/shared/images/star.svg";
+import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 
 import { AvatarSmall } from "../avatars/AvatarSmall";
 import "./styles.scss";

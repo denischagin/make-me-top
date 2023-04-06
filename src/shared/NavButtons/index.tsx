@@ -1,6 +1,6 @@
-import { useAppDispatch } from "@/app/providers/store/hooks";
-import { logOut } from "@/entities/user/model";
-import { RouterLink } from "@/shared/buttons/Link";
+import { useAppDispatch } from "@app/providers/store/hooks";
+import { logOut } from "@entities/user/model";
+import { RouterLink } from "@shared/buttons/Link";
 
 import {
   URL_CURATORS,

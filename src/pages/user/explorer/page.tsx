@@ -1,8 +1,8 @@
-import { CompletedStars } from "@/widgets/CompletedStars";
-import { ExplorerUserInfo } from "@/widgets/ExplorerUserInfo";
-import { Header } from "@/widgets/Header";
-import { CurrentStarCard } from "@/widgets/cards/CurrentStarCard";
-import { RatingCard } from "@/widgets/cards/RatingCard";
+import { CompletedStars } from "@widgets/CompletedStars";
+import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
+import { Header } from "@widgets/Header";
+import { CurrentStarCard } from "@widgets/cards/CurrentStarCard";
+import { RatingCard } from "@widgets/cards/RatingCard";
 
 import "./styles.scss";
 
