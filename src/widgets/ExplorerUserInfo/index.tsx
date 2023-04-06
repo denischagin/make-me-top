@@ -1,6 +1,6 @@
-import { AvatarBig } from "@/shared/avatars/AvatarBig";
-import { CardSmall } from "@/shared/cards/CardSmall";
-import { ReactComponent as StarIcon } from "@/shared/images/star.svg";
+import { AvatarBig } from "@shared/avatars/AvatarBig";
+import { CardSmall } from "@shared/cards/CardSmall";
+import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 
 import "./styles.scss";
 

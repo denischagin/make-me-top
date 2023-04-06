@@ -1,4 +1,4 @@
-import { ReactComponent as ArrowIcon } from "@/shared/images/arrow.svg";
+import { ReactComponent as ArrowIcon } from "@shared/images/arrow.svg";
 
 import { ArrowButtonInterface } from "./interfaces";
 import "./styles.scss";

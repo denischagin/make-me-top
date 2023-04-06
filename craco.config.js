@@ -1,9 +1,14 @@
-const path = require(`path`);
+const path = require("path");
 
 module.exports = {
   webpack: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@app": path.resolve(__dirname, "./src/app"),
+      "@pages": path.resolve(__dirname, "./src/pages"),
+      "@shared": path.resolve(__dirname, "./src/shared"),
+      "@widgets": path.resolve(__dirname, "./src/widgets"),
+      "@entities": path.resolve(__dirname, "./src/entities"),
     },
   },
 };

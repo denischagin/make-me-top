@@ -1,9 +1,9 @@
-import { useAppDispatch, useAppSelector } from "@/app/providers/store/hooks";
-import { selectIsUserRegistered } from "@/entities/user/model";
-import { PlanetInput } from "@/shared/PlanetInput";
-import { RouterLink } from "@/shared/buttons/Link";
-import { PlanetButton } from "@/shared/buttons/PlanetButton";
-import { URL_CURATOR, URL_EXPLORER } from "@/shared/constants/links";
+import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
+import { selectIsUserRegistered } from "@entities/user/model";
+import { PlanetInput } from "@shared/PlanetInput";
+import { RouterLink } from "@shared/buttons/Link";
+import { PlanetButton } from "@shared/buttons/PlanetButton";
+import { URL_CURATOR, URL_EXPLORER } from "@shared/constants/links";
 
 import "./styles.scss";
 

@@ -1,4 +1,4 @@
-import { ReactComponent as RocketIcon } from "@/shared/images/rocket.svg";
+import { ReactComponent as RocketIcon } from "@shared/images/rocket.svg";
 
 import "./styles.scss";
 

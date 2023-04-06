@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { Curators } from "@/pages/Curators/page";
-import { Explorers } from "@/pages/Explorers/page";
-import { GalaxyPage } from "@/pages/GalaxyPage/page";
-import { Home } from "@/pages/Home/page";
-import { Curator } from "@/pages/user/Curator/page";
-import { Explorer } from "@/pages/user/Explorer/page";
+import { Curators } from "@pages/Curators/page";
+import { Explorers } from "@pages/Explorers/page";
+import { GalaxyPage } from "@pages/GalaxyPage/page";
+import { Home } from "@pages/Home/page";
+import { Curator } from "@pages/user/Curator/page";
+import { Explorer } from "@pages/user/Explorer/page";
 import {
   URL_CURATOR,
   URL_CURATORS,
@@ -13,7 +13,7 @@ import {
   URL_EXPLORER,
   URL_EXPLORERS,
   URL_GALAXY,
-} from "@/shared/constants/links";
+} from "@shared/constants/links";
 
 export const router = createBrowserRouter([
   {
