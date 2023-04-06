@@ -1,8 +1,8 @@
-import { useAppSelector } from "@/app/providers/store/hooks";
-import { ReactComponent as MakeMeTopIcon } from "@/shared/images/make-me-top.svg";
-import { Login } from "@/widgets/Login";
-import { Registration } from "@/widgets/Registration";
-import { SelectRole } from "@/widgets/SelectRole";
+import { useAppSelector } from "@app/providers/store/hooks";
+import { ReactComponent as MakeMeTopIcon } from "@shared/images/make-me-top.svg";
+import { Login } from "@widgets/Login";
+import { Registration } from "@widgets/Registration";
+import { SelectRole } from "@widgets/SelectRole";
 
 import "./styles.scss";
 
