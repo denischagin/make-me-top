@@ -6,6 +6,7 @@
   "singleAttributePerLine": true,
   "importOrder": [
     "^react(.*)",
+    "<THIRD_PARTY_MODULES>",
     "@/(.*)",
     "@app(.*)",
     "@shared(.*)",

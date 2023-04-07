@@ -1,6 +1,7 @@
+import { Typography } from "@shared/Typography";
 import { Button } from "@shared/buttons/Button";
 import { CardBig } from "@shared/cards/CardBig";
-import { Typography } from "@shared/Typography";
+
 import { ProgressBar } from "@widgets/ProgressBar";
 
 import "./styles.scss";
@@ -22,7 +23,9 @@ export const CurrentStarCard = () => {
     <div className="current-star-card">
       <CardBig>
         <div className="current-star-card__heading">
-          <Typography variant="h2">Планета: {planet.id}. {planet.name}</Typography>
+          <Typography variant="h2">
+            Планета: {planet.id}. {planet.name}
+          </Typography>
         </div>
         <div className="current-star-card__current-star">
           <Typography variant="regular14">Звезда: {star}</Typography>

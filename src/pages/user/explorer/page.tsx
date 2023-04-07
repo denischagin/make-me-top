@@ -1,9 +1,10 @@
+import { Typography } from "@shared/Typography";
+
 import { CompletedStars } from "@widgets/CompletedStars";
 import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
 import { Header } from "@widgets/Header";
 import { CurrentStarCard } from "@widgets/cards/CurrentStarCard";
 import { RatingCard } from "@widgets/cards/RatingCard";
-import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 

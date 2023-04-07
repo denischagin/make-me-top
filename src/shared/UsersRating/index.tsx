@@ -1,6 +1,6 @@
-import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 import { Typography } from "@shared/Typography";
 import { AvatarSmall } from "@shared/avatars/AvatarSmall";
+import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 
 import "./styles.scss";
 
