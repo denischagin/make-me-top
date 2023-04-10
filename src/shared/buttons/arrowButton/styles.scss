@@ -1,17 +1,5 @@
 @import "@app/styles/variables.scss";
 
-.arrow-button--right {
-  transform: rotate(180deg);
-}
-
-.arrow-button--top {
-  transform: rotate(90deg);
-}
-
-.arrow-button--bottom {
-  transform: rotate(270deg);
-}
-
 .arrow-button {
   transform: rotate(0);
   margin-top: 0px;
@@ -46,5 +34,17 @@
     padding: 20px;
     border-radius: 99px;
     transition: 0.2s;
+  }
+
+  &--right {
+    transform: rotate(180deg);
+  }
+  
+  &--top {
+    transform: rotate(90deg);
+  }
+  
+  &--bottom {
+    transform: rotate(270deg);
   }
 }

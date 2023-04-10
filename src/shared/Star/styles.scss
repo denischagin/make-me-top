@@ -1,46 +1,5 @@
 @import "@app/styles/variables.scss";
 
-.star--black {
-  outline: 1px solid $white;
-  background: $dark;
-
-  &:hover {
-    animation-name: star_black;
-    animation-duration: 0.3s;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in-out;
-
-    @keyframes star_black {
-      from {
-        background: $opacity-dark;
-      }
-      to {
-        background: $dark;
-      }
-    }
-  }
-}
-
-.star--white {
-  background: $white;
-
-  &:hover {
-    animation-name: star_white;
-    animation-duration: 0.3s;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in-out;
-
-    @keyframes star_white {
-      from {
-        background: $opacity-white;
-      }
-      to {
-        background: $white;
-      }
-    }
-  }
-}
-
 .star {
   cursor: pointer;
   border-radius: 99px;
@@ -66,10 +25,6 @@
     }
   }
 
-  .star-info--black {
-    color: $black;
-  }
-
   .star-info {
     color: $white;
     display: flex;
@@ -77,6 +32,10 @@
     align-items: center;
     flex-direction: column;
     height: 100%;
+
+    &--black {
+      color: $black;
+    }
 
     .orbit {
       padding: 5px;
@@ -92,6 +51,47 @@
         padding: 0px;
         transition: 0.3s;
         transform: scale(1);
+      }
+    }
+  }
+
+  &--black {
+    outline: 1px solid $white;
+    background: $dark;
+  
+    &:hover {
+      animation-name: star_black;
+      animation-duration: 0.3s;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in-out;
+  
+      @keyframes star_black {
+        from {
+          background: $opacity-dark;
+        }
+        to {
+          background: $dark;
+        }
+      }
+    }
+  }
+  
+  &--white {
+    background: $white;
+  
+    &:hover {
+      animation-name: star_white;
+      animation-duration: 0.3s;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in-out;
+  
+      @keyframes star_white {
+        from {
+          background: $opacity-white;
+        }
+        to {
+          background: $white;
+        }
       }
     }
   }
