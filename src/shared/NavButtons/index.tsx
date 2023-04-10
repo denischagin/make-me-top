@@ -1,7 +1,10 @@
 import { useAppDispatch } from "@app/providers/store/hooks";
-import { logOut } from "@entities/user/model";
+
 import { RouterLink } from "@shared/buttons/Link";
 
+import { logOut } from "@entities/user/model";
+
+import { Typography } from "../Typography";
 import {
   URL_CURATORS,
   URL_DEFAULT,
@@ -17,20 +20,26 @@ export const NavButtons = () => {
   return (
     <div className="nav-buttons">
       <RouterLink path={URL_EXPLORER}>
-        <div className="nav-buttons__home-button">Главная</div>
+        <div className="nav-buttons__home-button">
+          <Typography variant="regular14">Главная</Typography>
+        </div>
       </RouterLink>
       <RouterLink path={URL_EXPLORERS}>
-        <div className="nav-buttons__explorers-button">Исследователи</div>
+        <div className="nav-buttons__explorers-button">
+          <Typography variant="regular14">Исследователи</Typography>
+        </div>
       </RouterLink>
       <RouterLink path={URL_CURATORS}>
-        <div className="nav-buttons__curators-button">Хранители</div>
+        <div className="nav-buttons__curators-button">
+          <Typography variant="regular14">Хранители</Typography>
+        </div>
       </RouterLink>
       <RouterLink path={URL_DEFAULT}>
         <div
           className="nav-buttons__exit-button"
           onClick={() => dispatch(logOut())}
         >
-          Выйти
+          <Typography variant="regular14">Выйти</Typography>
           <span className="nav-buttons nav-buttons__exit-icon">
             <ExitIcon />
           </span>
