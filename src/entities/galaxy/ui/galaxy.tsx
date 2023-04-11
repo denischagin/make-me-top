@@ -54,7 +54,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     }
   };
 
-  function getElemCoords(elem: HTMLElement | null) {
+  function getElemCoords(elem: HTMLElement | SVGSVGElement | null, type: "HTMLElement" | "SVGSVGElement") {
     if (!elem) {
       return
     }
@@ -70,15 +70,31 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const clientTop = docEl.clientTop || body.clientTop || 0;
     const clientLeft = docEl.clientLeft || body.clientLeft || 0;
 
-    const top  = box.top +  scrollTop - clientTop + planetHeight/2;
-    const left = box.left + scrollLeft - clientLeft + planetWidth/2;
+    let top = 0;
+    let left = 0;
+
+    switch (type) {
+      case "HTMLElement": {
+        top  = box.top +  scrollTop - clientTop + planetHeight/2;
+        left = box.left + scrollLeft - clientLeft + planetWidth/2;
+
+        break;
+      }
+      case "SVGSVGElement": {
+        top  = box.top +  scrollTop - clientTop;
+        left = box.left + scrollLeft - clientLeft;
+
+        break;
+      }
+      default: break;
+    }
 
     return { top: Math.round(top), left: Math.round(left) };
   }
 
   useEffect(() => {
-    setViewBoxOffsetX(svgContainerRef.current?.getBoundingClientRect().left)
-    setViewBoxOffsetY(svgContainerRef.current?.getBoundingClientRect().top)
+    setViewBoxOffsetX(getElemCoords(svgContainerRef.current, "SVGSVGElement")?.left)
+    setViewBoxOffsetY(getElemCoords(svgContainerRef.current, "SVGSVGElement")?.top)
   }, [])
 
   const deleteAllConnectionLines = () => {
@@ -89,7 +105,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   }
 
   const showChildren = (childList: string | null, currentTarget: HTMLDivElement) => {
-    const currentTargetCoords = getElemCoords(currentTarget);
+    const currentTargetCoords = getElemCoords(currentTarget, "HTMLElement");
     const childListNumbersArray = childList!.split(",");
 
     childListNumbersArray.forEach(elementId => {
@@ -99,8 +115,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
       const numberElementId = parseInt(elementId, 10);
       const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
-      const childElementCoords = getElemCoords(childElement);
-      childElement!.style.opacity = "0.5";
+      const childElementCoords = getElemCoords(childElement, "HTMLElement");
 
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 
@@ -126,12 +141,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
       const numberElementId = parseInt(elementId, 10);
       const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
-      childElement!.style.opacity = "1";
     })
   }
 
   const showParents = (parentList: string | null, currentTarget: HTMLDivElement) => {
-    const currentTargetCoords = getElemCoords(currentTarget);
+    const currentTargetCoords = getElemCoords(currentTarget, "HTMLElement");
     const parentsListArray = parentList!.split(",");
 
     parentsListArray.forEach(elementData => {
@@ -144,9 +158,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       }
 
       const parentElement = document.querySelector<HTMLDivElement>(`[data-planet-id="${numberElementId}"]`);
-      const parentElementCoords = getElemCoords(parentElement);
+      const parentElementCoords = getElemCoords(parentElement, "HTMLElement");
       const parentList = parentElement!.getAttribute("data-planet-parent-list");
-      parentElement!.style.opacity = "0.5";
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       svgLine.setAttribute('class', 'connection-line');
 
@@ -183,7 +196,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
       const parentElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
       const parentList = parentElement!.getAttribute("data-planet-parent-list");
-      parentElement!.style.opacity = "1";
 
       if (parentList) {
         hideParents(parentList);
