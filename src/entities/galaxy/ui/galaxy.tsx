@@ -8,18 +8,20 @@ interface IGalaxyProps {
   orbitList: Array<OrbitType>;
   width: number;
   height: number;
+  planetWidth: number,
+  planetHeight: number,
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
-  const { orbitList, width, height } = props;
+  const { orbitList, width, height, planetWidth, planetHeight } = props;
   const svgContainerRef = createRef<SVGSVGElement>()
 
   const galaxyOrbitSettings = {
     width: width,
-    backgroundWidth: width + 400,
+    backgroundWidth: width,
     height: height,
-    backgroundHeight: height + 150,
-    viewBox: `0 0 ${width * 2} ${height}`,
+    backgroundHeight: height,
+    viewBox: `0 0 ${width} ${height}`,
     orbitsColorId: 0,
     colorId: 0,
   };
@@ -50,7 +52,30 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     }
   }
 
+  function getElemCoords(elem: HTMLElement | null) {
+    if (!elem) {
+      return
+    }
+
+    const box = elem.getBoundingClientRect();
+
+    const body = document.body;
+    const docEl = document.documentElement;
+
+    const scrollTop = window.scrollY  || docEl.scrollTop || body.scrollTop;
+    const scrollLeft = window.scrollX || docEl.scrollLeft || body.scrollLeft;
+
+    const clientTop = docEl.clientTop || body.clientTop || 0;
+    const clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+    const top  = box.top +  scrollTop - clientTop + planetHeight/2;
+    const left = box.left + scrollLeft - clientLeft + planetWidth/2;
+
+    return { top: Math.round(top), left: Math.round(left) };
+  }
+
   const showChildren = (childList: string | null, currentTarget: HTMLDivElement) => {
+    const currentTargetCoords = getElemCoords(currentTarget);
     const childListNumbersArray = childList!.split(",");
 
     childListNumbersArray.forEach(elementId => {
@@ -60,17 +85,19 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
       const numberElementId = parseInt(elementId, 10);
       const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
+      const childElementCoords = getElemCoords(childElement);
       childElement!.style.opacity = "0.5";
 
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       svgLine.setAttribute('class', 'connection-line');
-      svgLine.setAttribute('x1', currentTarget.style.left);
-      svgLine.setAttribute('y1',  currentTarget.style.top);
-      svgLine.setAttribute('x2', childElement!.style.left);
-      svgLine.setAttribute('y2', childElement!.style.top);
-      svgLine.setAttribute('stroke', "white");
+      svgLine.setAttribute('x1', String(currentTargetCoords?.left));
+      svgLine.setAttribute('y1', String(currentTargetCoords?.top));
+      console.log(currentTargetCoords)
+      svgLine.setAttribute('x2', String(childElementCoords?.left));
+      svgLine.setAttribute('y2', String(childElementCoords?.top));
       svgContainerRef.current?.append(svgLine);
-      console.log(svgContainerRef.current?.parentElement);
+      console.log(childElementCoords)
+      // console.log(svgContainerRef.current?.parentElement, childElement!.offsetParent!.parentElement!.parentElement);
     })
   }
 
@@ -172,8 +199,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                     orbitHeight={galaxyOrbitSettings.height}
                     planetStyle={{
                       color: "white",
-                      width: "80px",
-                      height: "80px",
+                      width: planetWidth + "px",
+                      height: planetHeight + "px"
                     }}
                     showChildren={showChildren}
                     showParents={showParents}

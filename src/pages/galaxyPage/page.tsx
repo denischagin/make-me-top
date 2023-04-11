@@ -22,6 +22,8 @@ export const GalaxyPage: React.FC = () => {
         orbitList={orbitList}
         width={1920}
         height={910}
+        planetWidth={80}
+        planetHeight={80}
       />
     </div>
   );
