@@ -74,6 +74,13 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     return { top: Math.round(top), left: Math.round(left) };
   }
 
+  const deleteAllConnectionLines = () => {
+    const allConnectionLines = document.querySelectorAll('.connection-line');
+    allConnectionLines.forEach(line => {
+      line.remove();
+    })
+  }
+
   const showChildren = (childList: string | null, currentTarget: HTMLDivElement) => {
     const currentTargetCoords = getElemCoords(currentTarget);
     const childListNumbersArray = childList!.split(",");
@@ -92,12 +99,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       svgLine.setAttribute('class', 'connection-line');
       svgLine.setAttribute('x1', String(currentTargetCoords?.left));
       svgLine.setAttribute('y1', String(currentTargetCoords?.top));
-      console.log(currentTargetCoords)
       svgLine.setAttribute('x2', String(childElementCoords?.left));
       svgLine.setAttribute('y2', String(childElementCoords?.top));
       svgContainerRef.current?.append(svgLine);
-      console.log(childElementCoords)
-      // console.log(svgContainerRef.current?.parentElement, childElement!.offsetParent!.parentElement!.parentElement);
     })
   }
 
@@ -206,6 +210,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                     showParents={showParents}
                     hideChildren={hideChildren}
                     hideParents={hideParents}
+                    deleteAllConnectionLines={deleteAllConnectionLines}
                     colorId={galaxyOrbitSettings.colorId}
                 />
             );

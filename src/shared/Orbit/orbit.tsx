@@ -14,10 +14,11 @@ interface IOrbitProps {
   showParents: (parentList: string | null) => void,
   hideChildren: (childList: string | null) => void,
   hideParents: (parentList: string | null) => void,
+  deleteAllConnectionLines: () => void,
 }
 
 const Orbit: React.FC<IOrbitProps> = (props) => {
-  const { listPlanet, orbitWidth, orbitHeight, planetStyle, colorId, showChildren, showParents, hideParents, hideChildren } = props;
+  const { listPlanet, orbitWidth, orbitHeight, planetStyle, colorId, showChildren, showParents, hideParents, hideChildren, deleteAllConnectionLines } = props;
 
   const color = (id: number) => {
     switch (id) {
@@ -56,6 +57,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
 
     hideChildren(childList);
     hideParents(parentList);
+    deleteAllConnectionLines();
   }
 
   return (
