@@ -3,19 +3,16 @@ import "./styles.scss";
 
 export const Button = (props: ButtonInterface) => {
   const getButtonColor = () => {
-    if (props.color === "filled") {
-      return "button button--filled";
+    switch (props.color) {
+      case "filled":
+        return "button button--filled";
+      case "black":
+        return "button button--black";
+      case "primary-500":
+        return "button button--primary-500";
+      default:
+        return "button";
     }
-
-    if (props.color === "black") {
-      return "button button--black";
-    }
-
-    if (props.color === "orange") {
-      return "button button--orange";
-    }
-
-    return "button";
   };
 
   const getButtonClass = () => {

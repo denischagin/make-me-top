@@ -34,7 +34,7 @@ export const CurrentStarCard = () => {
           <Typography variant="regular14">Преподаватель: {curator}</Typography>
         </div>
         <div className="current-star-card__progress">
-          <Typography variant="regular16">Освоено {progress}%</Typography>
+          <Typography variant="regular16" color="primary-500">Освоено {progress}%</Typography>
           <span className="current-star-card__progress-bar">
             <ProgressBar />
           </span>

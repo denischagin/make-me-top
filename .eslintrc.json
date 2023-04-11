@@ -9,7 +9,7 @@
   "rules": {
     "react/react-in-jsx-scope": 0,
     "strict": 0,
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "semi": ["error", "always"],
     "no-empty": "warn",
     "no-cond-assign": ["error", "always"],

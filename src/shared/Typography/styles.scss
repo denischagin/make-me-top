@@ -5,32 +5,40 @@
   font-family: $font-text-regular;
   font-style: normal;
   font-feature-settings: "tnum" on, "lnum" on;
-}
 
-.typography--h1 {
-  font-family: $font-heading;
-  font-size: 35px;
-}
-
-.typography--h2 {
-  font-family: $font-heading;
-  font-size: 26px;
-}
-
-.typography--medium16 {
-  font-family: $font-text-medium;
-  font-size: 16px;
-}
-
-.typography--medium14 {
-  font-family: $font-text-medium;
-  font-size: 14px;
-}
-
-.typography--regular16 {
-  font-size: 16px;
-}
-
-.typography--regular14 {
-  font-size: 14px;
+  &--primary-500 {
+    color: $primary-500;
+  }
+  
+  &--black {
+    color: $black;
+  }
+  
+  &--h1 {
+    font-family: $font-heading;
+    font-size: 35px;
+  }
+  
+  &--h2 {
+    font-family: $font-heading;
+    font-size: 26px;
+  }
+  
+  &--medium16 {
+    font-family: $font-text-medium;
+    font-size: 16px;
+  }
+  
+  &--medium14 {
+    font-family: $font-text-medium;
+    font-size: 14px;
+  }
+  
+  &--regular16 {
+    font-size: 16px;
+  }
+  
+  &--regular14 {
+    font-size: 14px;
+  }
 }
