@@ -1,4 +1,4 @@
-import React, {createRef} from "react";
+import React, {createRef, useEffect, useState} from "react";
 
 import { OrbitType } from "@entities/galaxy/model/types";
 import Orbit from "../../../shared/Orbit/orbit";
@@ -12,14 +12,26 @@ interface IGalaxyProps {
   planetHeight: number,
 }
 
+interface IGalaxyOrbitSettings {
+  width: number,
+  backgroundWidth: number,
+  height: number,
+  backgroundHeight:number,
+  viewBox: string,
+  orbitsColorId: number,
+  colorId: number,
+}
+
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const { orbitList, width, height, planetWidth, planetHeight } = props;
   const svgContainerRef = createRef<SVGSVGElement>();
+  const [viewBoxOffsetX, setViewBoxOffsetX] = useState<number|undefined>();
+  const [viewBoxOffsetY, setViewBoxOffsetY] = useState<number|undefined>();
 
   const orbitWidthStep = width / (orbitList.length + 1);
   const orbitHeightStep = height / (orbitList.length + 1);
 
-  const galaxyOrbitSettings = {
+  const galaxyOrbitSettings: IGalaxyOrbitSettings = {
     width: width,
     backgroundWidth: width + (orbitWidthStep / 2),
     height: height,
@@ -41,19 +53,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         return "#101010";
     }
   };
-
-  const getOrbitsSizeById = (id: number) => {
-    switch (id) {
-      case 1:
-        return "#272727";
-      case 2:
-        return "#1D1D1D";
-      case 3:
-        return "#131313";
-      case 4:
-        return "#101010";
-    }
-  }
 
   function getElemCoords(elem: HTMLElement | null) {
     if (!elem) {
@@ -77,6 +76,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     return { top: Math.round(top), left: Math.round(left) };
   }
 
+  useEffect(() => {
+    setViewBoxOffsetX(svgContainerRef.current?.getBoundingClientRect().left)
+    setViewBoxOffsetY(svgContainerRef.current?.getBoundingClientRect().top)
+  }, [])
+
   const deleteAllConnectionLines = () => {
     const allConnectionLines = document.querySelectorAll('.connection-line');
     allConnectionLines.forEach(line => {
@@ -99,11 +103,15 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       childElement!.style.opacity = "0.5";
 
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      svgLine.setAttribute('class', 'connection-line');
-      svgLine.setAttribute('x1', String(currentTargetCoords?.left));
-      svgLine.setAttribute('y1', String(currentTargetCoords?.top));
-      svgLine.setAttribute('x2', String(childElementCoords?.left));
-      svgLine.setAttribute('y2', String(childElementCoords?.top));
+
+      if (currentTargetCoords && childElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
+        svgLine.setAttribute('class', 'connection-line');
+        svgLine.setAttribute('x1', String(currentTargetCoords?.left - viewBoxOffsetX));
+        svgLine.setAttribute('y1', String(currentTargetCoords?.top - viewBoxOffsetY));
+        svgLine.setAttribute('x2', String(childElementCoords?.left - viewBoxOffsetX));
+        svgLine.setAttribute('y2', String(childElementCoords?.top - viewBoxOffsetY));
+      }
+
       svgContainerRef.current?.append(svgLine);
     })
   }
@@ -139,13 +147,16 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       const parentElementCoords = getElemCoords(parentElement);
       const parentList = parentElement!.getAttribute("data-planet-parent-list");
       parentElement!.style.opacity = "0.5";
-
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       svgLine.setAttribute('class', 'connection-line');
-      svgLine.setAttribute('x1', String(currentTargetCoords?.left));
-      svgLine.setAttribute('y1', String(currentTargetCoords?.top));
-      svgLine.setAttribute('x2', String(parentElementCoords?.left));
-      svgLine.setAttribute('y2', String(parentElementCoords?.top));
+
+      if (currentTargetCoords && parentElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
+        svgLine.setAttribute('class', 'connection-line');
+        svgLine.setAttribute('x1', String(currentTargetCoords?.left - viewBoxOffsetX));
+        svgLine.setAttribute('y1', String(currentTargetCoords?.top - viewBoxOffsetY));
+        svgLine.setAttribute('x2', String(parentElementCoords?.left - viewBoxOffsetX));
+        svgLine.setAttribute('y2', String(parentElementCoords?.top - viewBoxOffsetY));
+      }
 
       if (isAlternative) {
         svgLine.setAttribute('stroke-dasharray', "10 5");
@@ -165,7 +176,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     parentsListArray.forEach(elementData => {
       const elementDataArray = elementData.split("-");
       const numberElementId = parseInt(elementDataArray[0], 10);
-      const isAlternative = !!elementDataArray[1]
 
       if (isNaN(numberElementId)) {
         return
@@ -181,6 +191,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     })
   }
 
+
+
   return (
       <div
           className="galaxy"
@@ -191,8 +203,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       >
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            viewBox={galaxyOrbitSettings.viewBox}
             className="galaxy__svg-container"
+            viewBox={galaxyOrbitSettings.viewBox}
             width={width}
             height={height}
             ref={svgContainerRef}
