@@ -1,22 +1,19 @@
 .orbit {
-  width: 600px;
-  height: 600px;
-  position: relative;
-}
-
-.planet {
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  text-align: center;
-}
 
-.orbit__line {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  fill: none;
-  border: 1px black;
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &_planet {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      text-align: center;
+    }
+  }
 }
