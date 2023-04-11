@@ -7,6 +7,13 @@ import galaxySlice from "@entities/galaxy/model/slice";
 import { GalaxyType } from "@entities/galaxy/model/types";
 import userReducer from "@entities/user/model";
 
+const rootReducer = combineReducers({
+  explorer: explorerReducer,
+  curator: curatorReducer,
+  user: userReducer,
+  galaxies: galaxySlice,
+});
+
 export type RootState = {
   explorer: {
     isExplorer: boolean;
@@ -17,15 +24,10 @@ export type RootState = {
   user: {
     isRegistered: boolean;
   };
-  galaxies: GalaxyType;
+  galaxies: {
+    galaxy: GalaxyType;
+  };
 };
-
-const rootReducer = combineReducers({
-  explorer: explorerReducer,
-  curator: curatorReducer,
-  user: userReducer,
-  galaxies: galaxySlice,
-});
 
 export type AppDispatch = typeof store.dispatch;
 
