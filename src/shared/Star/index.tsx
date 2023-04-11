@@ -6,12 +6,12 @@ import "./styles.scss";
 export const Star = (props: StarInterface) => {
   const starColor = () => {
     switch (props.color) {
-    case "black":
-      return "star star--black";
-    case "white":
-      return "star star--white";
-    default:
-      return "star star--primary-500";
+      case "black":
+        return "star star--black";
+      case "white":
+        return "star star--white";
+      default:
+        return "star star--primary-500";
     }
   };
 

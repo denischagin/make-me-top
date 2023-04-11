@@ -4,14 +4,14 @@ import "./styles.scss";
 export const Button = (props: ButtonInterface) => {
   const getButtonColor = () => {
     switch (props.color) {
-    case "filled":
-      return "button button--filled";
-    case "black":
-      return "button button--black";
-    case "primary-500":
-      return "button button--primary-500";
-    default:
-      return "button";
+      case "filled":
+        return "button button--filled";
+      case "black":
+        return "button button--black";
+      case "primary-500":
+        return "button button--primary-500";
+      default:
+        return "button";
     }
   };
 
