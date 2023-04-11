@@ -5,19 +5,18 @@ import "./styles.scss";
 
 export const Star = (props: StarInterface) => {
   const starColor = () => {
-    if (props.color === "black") {
+    switch (props.color) {
+    case "black":
       return "star star--black";
-    }
-
-    if (props.color === "white") {
+    case "white":
       return "star star--white";
+    default:
+      return "star star--primary-500";
     }
-
-    return "star star--primary-500";
   };
 
   const starInfoColor = () => {
-    if (props.color === "white") {
+    if (props.color === "black") {
       return "star-info star-info--black";
     }
     return "star-info";
