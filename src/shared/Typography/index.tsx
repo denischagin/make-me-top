@@ -27,8 +27,8 @@ export const Typography = (props: TypographyInterface) => {
   };
 
   const getTypographyClass = () => {
-    if (props.color === "orange") {
-      return `${getTypographyVariant()} typography--orange`;
+    if (props.color === "primary-500") {
+      return `${getTypographyVariant()} typography--primary-500`;
     }
 
     if (props.color === "black") {

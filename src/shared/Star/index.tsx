@@ -13,7 +13,7 @@ export const Star = (props: StarInterface) => {
       return "star star--white";
     }
 
-    return "star star--orange";
+    return "star star--primary-500";
   };
 
   const starInfoColor = () => {
@@ -24,7 +24,7 @@ export const Star = (props: StarInterface) => {
   };
 
   const orbitColor = () => {
-    if (props.color === "orange") {
+    if (props.color === "primary-500") {
       return "#CF5335";
     }
     return "#FBF9FF";

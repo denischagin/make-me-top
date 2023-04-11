@@ -11,8 +11,8 @@ export const Button = (props: ButtonInterface) => {
       return "button button--black";
     }
 
-    if (props.color === "orange") {
-      return "button button--orange";
+    if (props.color === "primary-500") {
+      return "button button--primary-500";
     }
 
     return "button";

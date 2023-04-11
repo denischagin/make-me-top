@@ -9,7 +9,7 @@ export const CompletedStars = () => {
     <div className="completed-stars">
       {arrayOfStars.map((item) => (
         <Star
-          color="orange"
+          color="primary-500"
           key={item.name}
         >
           <p className="completed-stars__label">{item.name}</p>
