@@ -11,7 +11,7 @@ interface IOrbitProps {
   planetStyle?: React.CSSProperties;
   colorId: number;
   showChildren: (childList: string | null, currentTarget: HTMLDivElement) => void,
-  showParents: (parentList: string | null) => void,
+  showParents: (parentList: string | null, currentTarget: HTMLDivElement) => void,
   hideChildren: (childList: string | null) => void,
   hideParents: (parentList: string | null) => void,
   deleteAllConnectionLines: () => void,
@@ -47,7 +47,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
     console.log("parentList: ", parentList)
 
     showChildren(childList, event.currentTarget);
-    showParents(parentList);
+    showParents(parentList, event.currentTarget);
   }
 
   const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {

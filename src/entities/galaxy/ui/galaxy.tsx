@@ -119,24 +119,39 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     })
   }
 
-  const showParents = (parentList: string | null) => {
+  const showParents = (parentList: string | null, currentTarget: HTMLDivElement) => {
+    const currentTargetCoords = getElemCoords(currentTarget);
     const parentsListArray = parentList!.split(",");
 
     parentsListArray.forEach(elementData => {
       const elementDataArray = elementData.split("-");
       const numberElementId = parseInt(elementDataArray[0], 10);
-      const isAlternative = !!elementDataArray[1]
+      const isAlternative = elementDataArray[1] === "true" ? 1 : 0
 
       if (isNaN(numberElementId)) {
         return
       }
 
-      const parentElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
+      const parentElement = document.querySelector<HTMLDivElement>(`[data-planet-id="${numberElementId}"]`);
+      const parentElementCoords = getElemCoords(parentElement);
       const parentList = parentElement!.getAttribute("data-planet-parent-list");
       parentElement!.style.opacity = "0.5";
 
-      if (parentList) {
-        showParents(parentList);
+      const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      svgLine.setAttribute('class', 'connection-line');
+      svgLine.setAttribute('x1', String(currentTargetCoords?.left));
+      svgLine.setAttribute('y1', String(currentTargetCoords?.top));
+      svgLine.setAttribute('x2', String(parentElementCoords?.left));
+      svgLine.setAttribute('y2', String(parentElementCoords?.top));
+
+      if (isAlternative) {
+        svgLine.setAttribute('stroke-dasharray', "10 5");
+      }
+
+      svgContainerRef.current?.append(svgLine);
+
+      if (parentElement && parentList) {
+        showParents(parentList, parentElement);
       }
     })
   }
