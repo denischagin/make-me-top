@@ -1,24 +1,22 @@
 import React from "react";
 
-import { PlanetType } from "@entities/galaxy/model/types";
+import {SystemType, SystemDependencyType} from "@entities/galaxy/model/types";
+import { Star } from "@shared/Star";
 
 import "./orbit.scss";
 
 interface IOrbitProps {
-  listPlanet: Array<PlanetType>;
+  systemList: Array<SystemType>;
   orbitWidth: number;
   orbitHeight: number;
   planetStyle?: React.CSSProperties;
   colorId: number;
-  showChildren: (childList: string | null, currentTarget: HTMLDivElement) => void,
-  showParents: (parentList: string | null, currentTarget: HTMLDivElement) => void,
-  hideChildren: (childList: string | null) => void,
-  hideParents: (parentList: string | null) => void,
-  deleteAllConnectionLines: () => void,
+  handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void,
+  handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void
 }
 
 const Orbit: React.FC<IOrbitProps> = (props) => {
-  const { listPlanet, orbitWidth, orbitHeight, planetStyle, colorId, showChildren, showParents, hideParents, hideChildren, deleteAllConnectionLines } = props;
+  const { systemList, orbitWidth, orbitHeight, planetStyle, colorId, handlePlanetMouseEnter, handlePlanetMouseLeave } = props;
 
   const color = (id: number) => {
     switch (id) {
@@ -39,26 +37,15 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
   const defaultElementWidth = 80;
   const defaultElementHeight = 80;
 
-  const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.currentTarget.setAttribute('data-is-active', '1');
-    const childList = event.currentTarget.getAttribute("data-planet-child-list");
-    const parentList = event.currentTarget.getAttribute("data-planet-parent-list");
-    console.log("childList: ", childList)
-    console.log("parentList: ", parentList)
-
-    showChildren(childList, event.currentTarget);
-    showParents(parentList, event.currentTarget);
+  const getElementIfChildDependency = (element: SystemDependencyType) => {
+    return element.type === "child";
   }
 
-  const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.currentTarget.setAttribute('data-is-active', '0');
-    const childList = event.currentTarget.getAttribute("data-planet-child-list");
-    const parentList = event.currentTarget.getAttribute("data-planet-parent-list");
-
-    hideChildren(childList);
-    hideParents(parentList);
-    deleteAllConnectionLines();
+  const getElementIfParentDependency = (element: SystemDependencyType) => {
+    return element.type === "parent";
   }
+
+
 
   return (
     <div className="orbit">
@@ -69,7 +56,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
           height: orbitHeight + "px",
         }}
       >
-        {listPlanet.map((planet, index) => {
+        {systemList.map((planet, index) => {
           const digitalAngle =
             ((2 * Math.PI) / 360) * planet.positionSystem + Math.PI / 2;
           const radius =
@@ -109,14 +96,25 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                 top: y + "px",
               }}
               data-planet-id={planet.systemId}
-              data-planet-parent-list={planet.systemParentList.map(item => {return `${item.parent_id}-${item.isAlternative}`})}
-              data-planet-child-list={planet.systemChildList}
+              data-planet-parent-list={planet.systemDependencyList.filter(getElementIfParentDependency).map(item => {
+                return `${item.planetId}:${item.isAlternative}`;
+              })}
+              data-planet-child-list={planet.systemDependencyList.filter(getElementIfChildDependency).map(item => {
+                return `${item.planetId}:${item.isAlternative}`;
+              })}
               data-is-active="0"
             >
-              <div>{planet.systemId}</div>
+              <Star
+                  color={"white"}
+                  children={(<div>
+                        {planet.systemName}
+                      </div>
+                  )}
+              />
             </div>
           );
-        })}
+        })
+        }
       </div>
     </div>
   );

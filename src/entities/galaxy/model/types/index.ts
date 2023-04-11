@@ -1,22 +1,22 @@
-export type SystemParentType = {
-  parent_id: number | null;
+export type SystemDependencyType = {
+  planetId: number | null;
+  type: "child" | "parent";
   isAlternative: boolean;
 };
 
-export type PlanetType = {
+export type SystemType = {
   systemId: number;
   positionSystem: number;
   systemName: string;
   systemLevel: number;
-  systemParentList: Array<SystemParentType>;
-  systemChildList: Array<number>;
+  systemDependencyList: Array<SystemDependencyType>
 };
 
 export type OrbitType = {
   orbitId: number;
   orbitLevel: number;
   positionCount: number;
-  listPlanet: Array<PlanetType>;
+  systemList: Array<SystemType>;
 };
 
 export type GalaxyType = {

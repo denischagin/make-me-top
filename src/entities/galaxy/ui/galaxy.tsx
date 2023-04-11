@@ -106,17 +106,20 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
   const showChildren = (childList: string | null, currentTarget: HTMLDivElement) => {
     const currentTargetCoords = getElemCoords(currentTarget, "HTMLElement");
-    const childListNumbersArray = childList!.split(",");
+    const childListArray = childList!.split(",");
 
-    childListNumbersArray.forEach(elementId => {
-      if (elementId === '') {
+    childListArray.forEach(elementData => {
+      const elementDataArray = elementData.split(":");
+      const numberElementId = parseInt(elementDataArray[0], 10);
+      const isAlternative = elementDataArray[1] === "true" ? 1 : 0;
+
+      if (isNaN(numberElementId)) {
         return
       }
 
-      const numberElementId = parseInt(elementId, 10);
       const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
+      childElement?.setAttribute("data-is-active", "1");
       const childElementCoords = getElemCoords(childElement, "HTMLElement");
-
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 
       if (currentTargetCoords && childElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
@@ -125,6 +128,10 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         svgLine.setAttribute('y1', String(currentTargetCoords?.top - viewBoxOffsetY));
         svgLine.setAttribute('x2', String(childElementCoords?.left - viewBoxOffsetX));
         svgLine.setAttribute('y2', String(childElementCoords?.top - viewBoxOffsetY));
+      }
+
+      if (isAlternative) {
+        svgLine.setAttribute('stroke-dasharray', "10 5");
       }
 
       svgContainerRef.current?.append(svgLine);
@@ -136,11 +143,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     childListNumbersArray.forEach(elementId => {
       if (elementId === '') {
-        return
+        return;
       }
 
       const numberElementId = parseInt(elementId, 10);
       const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
+      childElement?.setAttribute("data-is-active", "0");
     })
   }
 
@@ -149,7 +157,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const parentsListArray = parentList!.split(",");
 
     parentsListArray.forEach(elementData => {
-      const elementDataArray = elementData.split("-");
+      const elementDataArray = elementData.split(":");
       const numberElementId = parseInt(elementDataArray[0], 10);
       const isAlternative = elementDataArray[1] === "true" ? 1 : 0
 
@@ -158,6 +166,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       }
 
       const parentElement = document.querySelector<HTMLDivElement>(`[data-planet-id="${numberElementId}"]`);
+      parentElement?.setAttribute("data-is-active", "1");
       const parentElementCoords = getElemCoords(parentElement, "HTMLElement");
       const parentList = parentElement!.getAttribute("data-planet-parent-list");
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -187,7 +196,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const parentsListArray = parentList!.split(",");
 
     parentsListArray.forEach(elementData => {
-      const elementDataArray = elementData.split("-");
+      const elementDataArray = elementData.split(":");
       const numberElementId = parseInt(elementDataArray[0], 10);
 
       if (isNaN(numberElementId)) {
@@ -195,6 +204,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       }
 
       const parentElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
+      parentElement?.setAttribute("data-is-active", "0");
       const parentList = parentElement!.getAttribute("data-planet-parent-list");
 
       if (parentList) {
@@ -203,7 +213,28 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     })
   }
 
+  const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.currentTarget.setAttribute('data-is-active', '1');
+    const childList = event.currentTarget.getAttribute("data-planet-child-list");
+    const parentList = event.currentTarget.getAttribute("data-planet-parent-list");
+    // console.log("currentValue: ", event.currentTarget)
+    // console.log("currentValue: ", event.currentTarget.textContent)
+    // console.log("childList: ", childList);
+    // console.log("parentList: ", parentList);
 
+    showChildren(childList, event.currentTarget);
+    showParents(parentList, event.currentTarget);
+  }
+
+  const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.currentTarget.setAttribute('data-is-active', '0');
+    const childList = event.currentTarget.getAttribute("data-planet-child-list");
+    const parentList = event.currentTarget.getAttribute("data-planet-parent-list");
+
+    hideChildren(childList);
+    hideParents(parentList);
+    deleteAllConnectionLines();
+  }
 
   return (
       <div
@@ -240,7 +271,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             return (
                 <Orbit
                     key={orbits.orbitId}
-                    listPlanet={orbits.listPlanet}
+                    systemList={orbits.systemList}
                     orbitWidth={galaxyOrbitSettings.width}
                     orbitHeight={galaxyOrbitSettings.height}
                     planetStyle={{
@@ -248,11 +279,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                       width: planetWidth + "px",
                       height: planetHeight + "px"
                     }}
-                    showChildren={showChildren}
-                    showParents={showParents}
-                    hideChildren={hideChildren}
-                    hideParents={hideParents}
-                    deleteAllConnectionLines={deleteAllConnectionLines}
+                    handlePlanetMouseEnter={handlePlanetMouseEnter}
+                    handlePlanetMouseLeave={handlePlanetMouseLeave}
                     colorId={galaxyOrbitSettings.colorId}
                 />
             );
