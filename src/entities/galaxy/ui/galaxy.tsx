@@ -14,13 +14,16 @@ interface IGalaxyProps {
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const { orbitList, width, height, planetWidth, planetHeight } = props;
-  const svgContainerRef = createRef<SVGSVGElement>()
+  const svgContainerRef = createRef<SVGSVGElement>();
+
+  const orbitWidthStep = width / (orbitList.length + 1);
+  const orbitHeightStep = height / (orbitList.length + 1);
 
   const galaxyOrbitSettings = {
     width: width,
-    backgroundWidth: width,
+    backgroundWidth: width + (orbitWidthStep / 2),
     height: height,
-    backgroundHeight: height,
+    backgroundHeight: height + (orbitHeightStep / 2),
     viewBox: `0 0 ${width} ${height}`,
     orbitsColorId: 0,
     colorId: 0,
@@ -196,19 +199,19 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         >
           {
             orbitList.map((orbits,index) => {
-              galaxyOrbitSettings.backgroundWidth -= 400;
-              galaxyOrbitSettings.backgroundHeight -= 150;
+              galaxyOrbitSettings.backgroundWidth -= orbitWidthStep;
+              galaxyOrbitSettings.backgroundHeight -= orbitHeightStep;
               galaxyOrbitSettings.orbitsColorId++;
               return (
-                  <ellipse key={index} rx={galaxyOrbitSettings.backgroundWidth} ry={galaxyOrbitSettings.backgroundHeight} fill={getOrbitsColorById(galaxyOrbitSettings.orbitsColorId)} cx="50%" cy="50%"/>
+                  <ellipse key={index} rx={galaxyOrbitSettings.backgroundWidth/2} ry={galaxyOrbitSettings.backgroundHeight/2} fill={getOrbitsColorById(galaxyOrbitSettings.orbitsColorId)} cx="50%" cy="50%"/>
               )
             })
           }
         </svg>
         {
           orbitList.map((orbits) => {
-            galaxyOrbitSettings.width -= 400;
-            galaxyOrbitSettings.height -= 150;
+            galaxyOrbitSettings.width -= orbitWidthStep;
+            galaxyOrbitSettings.height -= orbitHeightStep;
             galaxyOrbitSettings.colorId++;
             return (
                 <Orbit
