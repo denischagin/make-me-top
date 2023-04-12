@@ -1,13 +1,16 @@
 import { NavButtons } from "@shared/NavButtons";
 import { ReactComponent as Logo } from "@shared/images/logo.svg";
+import { bem } from "@shared/utils/bem";
 
 import "./styles.scss";
 
 export const Header = () => {
+  const [block, element] = bem("header");
+
   return (
-    <div className="header">
-      <div className="header__container">
-        <Logo className="header__container-logo" />
+    <div className={block()}>
+      <div className={element("container")}>
+        <Logo className={element("logo")} />
         <NavButtons />
       </div>
     </div>

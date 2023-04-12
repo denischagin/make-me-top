@@ -10,28 +10,28 @@
   background-size: 100%;
   background-color: $dark;
 
-  .container {
+  &__container {
     display: grid;
     grid-template-columns: 9fr 3fr;
     gap: 24px;
     justify-content: space-between;
     margin: 40px 240px;
+  }
 
-    .profile {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
+  &__profile {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 
-    &__rating-heading {
-      margin-top: 0;
-      margin-bottom: 24px;
-    }
+  &__rating-heading {
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
 
-    &__completed-stars-heading,
-    .current-star__heading {
-      margin-top: 16px;
-      margin-bottom: 24px;
-    }
+  &__completed-stars-heading,
+  &__current-star-heading {
+    margin-top: 16px;
+    margin-bottom: 24px;
   }
 }

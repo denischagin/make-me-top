@@ -1,29 +1,19 @@
 import { ReactComponent as ArrowIcon } from "@shared/images/arrow.svg";
+import { bem } from "@shared/utils/bem";
 
 import { ArrowButtonInterface } from "./interfaces";
 import "./styles.scss";
 
 export const ArrowButton = (props: ArrowButtonInterface) => {
-  const getArrowDirection = () => {
-    switch (props.direction) {
-      case "top":
-        return "arrow-button arrow-button--top";
-      case "bottom":
-        return "arrow-button arrow-button--bottom";
-      case "right":
-        return "arrow-button arrow-button--right";
-      default:
-        return "arrow-button arrow-button--left";
-    }
-  };
+  const [block, element] = bem("arrow-button");
 
   return (
     <div
       onClick={props.action}
-      className={getArrowDirection()}
+      className={block({ direction: props.direction })}
     >
-      <ArrowIcon className="arrow-button__arrow" />
-      <div className="arrow-button__circle" />
+      <ArrowIcon className={element("arrow")} />
+      <div className={element("circle")} />
     </div>
   );
 };

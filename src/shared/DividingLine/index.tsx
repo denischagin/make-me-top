@@ -1,5 +1,9 @@
+import { bem } from "@shared/utils/bem";
+
 import "./styles.scss";
 
 export const DividingLine = () => {
-  return <hr className="dividing-line" />;
+  const [block, element] = bem("dividing-line");
+
+  return <hr className={block()} />;
 };

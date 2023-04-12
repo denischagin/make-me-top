@@ -1,4 +1,5 @@
 import { Typography } from "@shared/Typography";
+import { bem } from "@shared/utils/bem";
 
 import { CompletedStars } from "@widgets/CompletedStars";
 import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
@@ -9,27 +10,29 @@ import { RatingCard } from "@widgets/cards/RatingCard";
 import "./styles.scss";
 
 export const Explorer = () => {
+  const [block, element] = bem("explorer");
+
   return (
-    <div className="explorer">
+    <div className={block()}>
       <Header />
-      <div className="container">
-        <div className="profile">
+      <div className={element("container")}>
+        <div className={element("profile")}>
           <ExplorerUserInfo />
-          <div className="current-star">
-            <div className="current-star__heading">
+          <div className={element("current-star")}>
+            <div className={element("current-star-heading")}>
               <Typography variant="h2">Текущая звезда</Typography>
             </div>
             <CurrentStarCard />
           </div>
-          <div className="container__completed-stars">
-            <div className="container__completed-stars-heading">
+          <div className={element("completed-stars")}>
+            <div className={element("completed-stars-heading")}>
               <Typography variant="h2">Освоенные звёзды</Typography>
             </div>
             <CompletedStars />
           </div>
         </div>
-        <div className="container__rating">
-          <div className="container__rating-heading">
+        <div className={element("rating")}>
+          <div className={element("rating-heading")}>
             <Typography variant="h2">Рейтинг</Typography>
           </div>
           <RatingCard />
