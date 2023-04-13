@@ -1,5 +1,3 @@
-import "@app.css";
-
 import { bem } from "@shared/utils/bem";
 
 export const App = () => {
