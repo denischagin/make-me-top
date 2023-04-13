@@ -22,6 +22,18 @@ interface IGalaxyOrbitSettings {
   colorId: number,
 }
 
+interface IGetCoordsForConnectionProps {
+  currentTarget: {
+    top: number,
+    left: number
+  },
+  elementToConnect: {
+    top: number,
+    left: number
+  },
+  swingCountProp?: number
+}
+
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const { orbitList, width, height, planetWidth, planetHeight } = props;
   const svgContainerRef = createRef<SVGSVGElement>();
@@ -41,7 +53,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     colorId: 0,
   };
 
-  const colors: Array<string> = ["#755FFF", "#BFFF00", "#FFA674"];
+  const colors: Array<string> = ["#DA3287", "#BFFF00", "#755FFF"];
   let colorShelf: Array<string> = colors.slice();
   const emptyColorShelf: Array<string> = [];
 
@@ -122,6 +134,65 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     })
   }
 
+  const connectionsOverlapCheck = (currentTargetCoords: { top: number, left: number }, elementToConnect: { top: number, left: number }) => {
+    const allConnectionLines = document.querySelectorAll('.connection-line');
+    const allConnectionLinesArray = Array.from(allConnectionLines);
+
+    const checkResult = allConnectionLinesArray.findIndex(line => {
+          if (viewBoxOffsetX !== undefined && viewBoxOffsetY !== undefined) {
+            return line.getAttribute("x1") === String(currentTargetCoords.left - viewBoxOffsetX) &&
+                line.getAttribute("y1") === String(currentTargetCoords.top - viewBoxOffsetY) &&
+                line.getAttribute("x2") === String(elementToConnect.left - viewBoxOffsetX) &&
+                line.getAttribute("y2") === String(elementToConnect.top - viewBoxOffsetY)
+          }
+        }
+    )
+
+    return checkResult > -1;
+  }
+
+  const getCoordsForConnection = (props: IGetCoordsForConnectionProps): IGetCoordsForConnectionProps => {
+    const {
+      currentTarget,
+      elementToConnect,
+      swingCountProp
+    } = props
+
+    let swingCount = swingCountProp || 1;
+    const step = 5;
+    let swingDirection = 0;
+    const offset = step * swingCount;
+    const isOverlapped = connectionsOverlapCheck(currentTarget, elementToConnect);
+
+    if (swingCount % 2 === 0) {
+      swingDirection = -1;
+    }
+    else {
+      swingDirection = 1;
+    }
+
+    if (isOverlapped) {
+
+      return getCoordsForConnection({
+        currentTarget: {
+          top: currentTarget.top + offset * swingDirection,
+          left: currentTarget.left + offset * swingDirection
+        },
+        elementToConnect: {
+          top: elementToConnect.top + offset * swingDirection,
+          left: elementToConnect.left + offset * swingDirection,
+        },
+        swingCountProp: ++swingCount,
+      });
+    }
+
+    return {
+      currentTarget: currentTarget,
+      elementToConnect: elementToConnect,
+      swingCountProp: swingCount,
+    }
+  }
+
   const showChildren = (childList: string | null, currentTarget: HTMLDivElement) => {
     const currentTargetCoords = getElemCoords(currentTarget, "HTMLElement");
     const childListArray = childList!.split(",");
@@ -193,20 +264,24 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       const parentList = parentElement!.getAttribute("data-planet-parent-list");
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 
-      svgLine.setAttribute('class', 'connection-line');
+      if (currentTargetCoords && parentElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
+        const lineCoordsWithoutOverlaps = getCoordsForConnection({
+          currentTarget: currentTargetCoords,
+          elementToConnect: parentElementCoords
+        })
+
+        svgLine.setAttribute('x1', String(lineCoordsWithoutOverlaps!.currentTarget.left - viewBoxOffsetX));
+        svgLine.setAttribute('y1', String(lineCoordsWithoutOverlaps!.currentTarget.top - viewBoxOffsetY));
+        svgLine.setAttribute('x2', String(lineCoordsWithoutOverlaps!.elementToConnect.left - viewBoxOffsetX));
+        svgLine.setAttribute('y2', String(lineCoordsWithoutOverlaps!.elementToConnect.top - viewBoxOffsetY));
+
+        svgLine.setAttribute('class', 'connection-line');
+        svgLine.setAttribute('stroke', "white");
+      }
 
       if (isAlternative) {
         svgLine.setAttribute('stroke-dasharray', "10 5");
         colorList.push(getColorFromShelf());
-      }
-
-      if (currentTargetCoords && parentElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
-        svgLine.setAttribute('class', 'connection-line');
-        svgLine.setAttribute('x1', String(currentTargetCoords?.left - viewBoxOffsetX));
-        svgLine.setAttribute('y1', String(currentTargetCoords?.top - viewBoxOffsetY));
-        svgLine.setAttribute('x2', String(parentElementCoords?.left - viewBoxOffsetX));
-        svgLine.setAttribute('y2', String(parentElementCoords?.top - viewBoxOffsetY));
-        svgLine.setAttribute('stroke', "white");
       }
 
       if (colorList.length) {
