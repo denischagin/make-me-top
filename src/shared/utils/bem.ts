@@ -51,6 +51,7 @@ export function bem(blockName: string): UseBemMethods {
         Object.keys(blockModifiersFromRender),
         blockModifiersFromRender
       );
+
       return [blockName, ...blockModifiersAppliedFromRender].join(" ").trim();
     },
     [blockName]
@@ -68,6 +69,7 @@ export function bem(blockName: string): UseBemMethods {
         Object.keys(elementModifiers),
         elementModifiers
       );
+
       return [
         elementFullName,
         ...elementModifiersAppliedFromRender,
