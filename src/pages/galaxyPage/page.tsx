@@ -18,50 +18,13 @@ export const GalaxyPage: React.FC = () => {
 
   return (
     <div className="galaxyPage">
-      <div
-          style={{
-            width: "100px",
-            height: "100px",
-            background: "gray"
-          }}
-      />
-      <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
-      >
-        <div
-            style={{
-              width: "100px",
-              height: "100px",
-              background: "gray"
-            }}
-        />
         <Galaxy
             orbitList={orbitList}
-            width={1366}
+            width={1920}
             height={910}
             planetWidth={80}
             planetHeight={80}
         />
-        <div
-            style={{
-              width: "100px",
-              height: "100px",
-              background: "gray"
-            }}
-        />
-      </div>
-      <div
-          style={{
-            width: "100px",
-            height: "100px",
-            background: "gray"
-          }}
-      />
     </div>
   );
 };

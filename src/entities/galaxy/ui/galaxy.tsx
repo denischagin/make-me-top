@@ -1,7 +1,7 @@
 import React, {createRef, useEffect, useState} from "react";
 
 import { OrbitType } from "@entities/galaxy/model/types";
-import Orbit from "../../../shared/Orbit/orbit";
+import Orbit from "../../orbit/ui/orbit";
 import "./style.scss";
 
 interface IGalaxyProps {
@@ -19,7 +19,6 @@ interface IGalaxyOrbitSettings {
   backgroundHeight:number,
   viewBox: string,
   orbitsColorId: number,
-  colorId: number,
 }
 
 interface IGetCoordsForConnectionProps {
@@ -50,7 +49,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     backgroundHeight: height + (orbitHeightStep / 2),
     viewBox: `0 0 ${width} ${height}`,
     orbitsColorId: 0,
-    colorId: 0,
   };
 
   const colors: Array<string> = ["#DA3287", "#BFFF00", "#755FFF"];
@@ -159,7 +157,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     } = props
 
     let swingCount = swingCountProp || 1;
-    const step = 5;
+    const step = 7;
     let swingDirection = 0;
     const offset = step * swingCount;
     const isOverlapped = connectionsOverlapCheck(currentTarget, elementToConnect);
@@ -372,7 +370,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
           orbitList.map((orbits) => {
             galaxyOrbitSettings.width -= orbitWidthStep;
             galaxyOrbitSettings.height -= orbitHeightStep;
-            galaxyOrbitSettings.colorId++;
             return (
                 <Orbit
                     key={orbits.orbitId}
@@ -382,11 +379,10 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                     planetStyle={{
                       color: "white",
                       width: planetWidth + "px",
-                      height: planetHeight + "px"
+                      height: planetHeight + "px",
                     }}
                     handlePlanetMouseEnter={handlePlanetMouseEnter}
                     handlePlanetMouseLeave={handlePlanetMouseLeave}
-                    colorId={galaxyOrbitSettings.colorId}
                 />
             );
           })
