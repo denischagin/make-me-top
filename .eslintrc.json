@@ -1,25 +1,48 @@
 {
   "root": true,
   "env": {
-    "browser": true
+    "browser": true,
+    "es2021": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12
+  },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "react/react-in-jsx-scope": 0,
     "strict": 0,
     "indent": ["error", 2, { "SwitchCase": 1 }],
+    "comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
     "semi": ["error", "always"],
     "no-empty": "warn",
     "no-cond-assign": ["error", "always"],
     "quotes": [2, "double"],
     "no-trailing-spaces": "error",
-    "object-property-newline": "error",
+    "object-property-newline": ["error"],
     "react/no-array-index-key": 2,
     "space-infix-ops": ["error", { "int32Hint": false }],
     "object-curly-spacing": ["error", "always"],
-    "no-unused-vars": "warn",
-    "no-undef": "warn"
+    "no-unused-vars": "off",
+    "no-undef": "warn",
+    "key-spacing": [
+      "error",
+      {
+        "afterColon": true,
+        "mode": "strict"
+      }
+    ],
+    "object-curly-newline": ["error", { "minProperties": 2 }],
+    "newline-before-return": "error"
   }
 }

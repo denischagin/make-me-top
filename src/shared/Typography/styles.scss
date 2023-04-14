@@ -6,39 +6,39 @@
   font-style: normal;
   font-feature-settings: "tnum" on, "lnum" on;
 
-  &--primary-500 {
+  &--color-primary-500 {
     color: $primary-500;
   }
-  
-  &--black {
+
+  &--color-black {
     color: $black;
   }
-  
-  &--h1 {
+
+  &--variant-h1 {
     font-family: $font-heading;
     font-size: 35px;
   }
-  
-  &--h2 {
+
+  &--variant-h2 {
     font-family: $font-heading;
     font-size: 26px;
   }
-  
-  &--medium16 {
+
+  &--variant-medium16 {
     font-family: $font-text-medium;
     font-size: 16px;
   }
-  
-  &--medium14 {
+
+  &--variant-medium14 {
     font-family: $font-text-medium;
     font-size: 14px;
   }
-  
-  &--regular16 {
+
+  &--variant-regular16 {
     font-size: 16px;
   }
-  
-  &--regular14 {
+
+  &--variant-regular14 {
     font-size: 14px;
   }
 }

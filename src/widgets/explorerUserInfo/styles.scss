@@ -3,31 +3,37 @@
 .profile-info {
   display: flex;
 
-  .profile-description {
+  &__description {
     margin-left: 40px;
+  }
 
-    &__name {
-      margin-top: 4px;
-      margin-bottom: 24px;
-    }
+  &__description-name {
+    margin-top: 4px;
+    margin-bottom: 24px;
+  }
 
-    .profile-rating {
-      display: flex;
-      gap: 16px;
+  &__rating {
+    display: flex;
+    gap: 16px;
+  }
 
-      &__text {
-        margin-bottom: 4px;
-      }
+  &__heading {
+    margin-bottom: 4px;
+  }
 
-      &__current-rating {
-        align-items: center;
-        gap: 6px;
-      }
+  &__current-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
 
-      &__current-rating-text,
-      &__stars {
-        margin: 0;
-      }
-    }
+  &__current-score {
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__current-score,
+  &__completed-stars {
+    margin: 0;
   }
 }

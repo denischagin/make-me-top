@@ -1,5 +1,9 @@
+import { bem } from "@shared/utils/bem";
+
 import "./styles.scss";
 
 export const Explorers = () => {
-  return <div className="explorers"></div>;
+  const [block, element] = bem("explorers");
+
+  return <div className={block()}></div>;
 };

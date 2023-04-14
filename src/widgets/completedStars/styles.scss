@@ -11,13 +11,13 @@
     margin-bottom: 8px;
   }
 
-  .stars-rating {
+  &__star-rating {
     display: flex;
     align-items: center;
+  }
 
-    &__rating-num {
-      font-size: 10px;
-      margin: 0 2px 0 4px;
-    }
+  &__star-rating-score {
+    font-size: 10px;
+    margin: 0 2px 0 4px;
   }
 }

@@ -2,34 +2,37 @@ import { Typography } from "@shared/Typography";
 import { AvatarBig } from "@shared/avatars/AvatarBig";
 import { CardSmall } from "@shared/cards/CardSmall";
 import { ReactComponent as StarIcon } from "@shared/images/star.svg";
+import { bem } from "@shared/utils/bem";
 
 import "./styles.scss";
 
 export const ExplorerUserInfo = () => {
+  const [block, element] = bem("profile-info");
+
   return (
-    <div className="profile-info">
+    <div className={block()}>
       <AvatarBig image="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg" />
-      <div className="profile-description">
-        <div className="profile-description__name">
+      <div className={element("description")}>
+        <div className={element("description-name")}>
           <Typography variant="h1">Фамилия Имя Отчество</Typography>
         </div>
-        <div className="profile-rating">
+        <div className={element("rating")}>
           <CardSmall>
-            <div className="profile-rating__text">
+            <div className={element("heading")}>
               <Typography variant="regular16">Рейтинг</Typography>
             </div>
-            <span className="profile-rating profile-rating__current-rating">
+            <span className={element("current-rating")}>
               <StarIcon />
-              <p className="profile-rating__current-rating-text">4.0</p>
+              <p className={element("current-score")}>4.0</p>
             </span>
           </CardSmall>
           <CardSmall>
-            <div className="profile-rating__text">
+            <div className={element("heading")}>
               <Typography variant="regular16">
                 Кол-во освоенных звезд
               </Typography>
             </div>
-            <p className="profile-rating__stars">11</p>
+            <p className={element("completed-stars")}>11</p>
           </CardSmall>
         </div>
       </div>
