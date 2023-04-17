@@ -1,7 +1,10 @@
-import React, {createRef, useEffect, useState} from "react";
-
+import React, { createRef, useEffect, useState } from "react";
 import { OrbitType } from "@entities/galaxy/model/types";
 import Orbit from "../../orbit/ui/orbit";
+import { getElemCoords } from "@entities/galaxy/lib/getElemCoords";
+import {deleteAllConnectionLines} from "@entities/galaxy/lib/deleteAllConnecctionLines";
+import {connectionsOverlapCheck} from "@entities/galaxy/lib/connectionsOverlapCheck";
+import "@app/styles/variables.scss";
 import "./style.scss";
 
 interface IGalaxyProps {
@@ -18,7 +21,6 @@ interface IGalaxyOrbitSettings {
   height: number,
   backgroundHeight:number,
   viewBox: string,
-  orbitsColorId: number,
 }
 
 interface IGetCoordsForConnectionProps {
@@ -34,120 +36,70 @@ interface IGetCoordsForConnectionProps {
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
-  const { orbitList, width, height, planetWidth, planetHeight } = props;
+  const {
+    orbitList,
+    width,
+    height,
+    planetWidth,
+    planetHeight
+  } = props;
   const svgContainerRef = createRef<SVGSVGElement>();
   const [viewBoxOffsetX, setViewBoxOffsetX] = useState<number|undefined>();
   const [viewBoxOffsetY, setViewBoxOffsetY] = useState<number|undefined>();
-
   const orbitWidthStep = width / (orbitList.length + 1);
   const orbitHeightStep = height / (orbitList.length + 1);
-
   const galaxyOrbitSettings: IGalaxyOrbitSettings = {
     width: width,
     backgroundWidth: width + (orbitWidthStep / 2),
     height: height,
     backgroundHeight: height + (orbitHeightStep / 2),
     viewBox: `0 0 ${width} ${height}`,
-    orbitsColorId: 0,
   };
-
-  const colors: Array<string> = ["#DA3287", "#BFFF00", "#755FFF"];
-  let colorShelf: Array<string> = colors.slice();
-  const emptyColorShelf: Array<string> = [];
+  const colorModificationArray: Array<string> = ["blue-stroke-color", "orange-stroke-color"];
+  let colorShelf: Array<string> = colorModificationArray.slice();
 
   const restoreColorShelf = (): void => {
-    colorShelf = colors.slice();
+    colorShelf = colorModificationArray.slice();
   }
   const getColorFromShelf = (): string => {
-    let color = colorShelf.shift();
+    let colorModification = colorShelf.shift();
 
-    if (color === undefined) {
-      color = "white";
+    if (colorModification === undefined) {
+      colorModification = "white-stroke-color";
     }
 
-    return color;
+    return colorModification;
   }
 
-
-  const getOrbitsColorById = (id: number) => {
+  const getOrbitModificationById = (id: number): string => {
     switch (id) {
       case 1:
-        return "#272727";
+        return "orange-fill-color";
       case 2:
-        return "#1D1D1D";
+        return "violet-fill-color";
       case 3:
-        return "#131313";
+        return "white-fill-color";
       case 4:
-        return "#101010";
+        return "black-fill-color";
+      default:
+        return "black-fill-color";
     }
   };
 
-  function getElemCoords(elem: HTMLElement | SVGSVGElement | null, type: "HTMLElement" | "SVGSVGElement") {
-    if (!elem) {
-      return
-    }
-
-    const box = elem.getBoundingClientRect();
-
-    const body = document.body;
-    const docEl = document.documentElement;
-
-    const scrollTop = window.scrollY  || docEl.scrollTop || body.scrollTop;
-    const scrollLeft = window.scrollX || docEl.scrollLeft || body.scrollLeft;
-
-    const clientTop = docEl.clientTop || body.clientTop || 0;
-    const clientLeft = docEl.clientLeft || body.clientLeft || 0;
-
-    let top = 0;
-    let left = 0;
-
-    switch (type) {
-      case "HTMLElement": {
-        top  = box.top +  scrollTop - clientTop + planetHeight/2;
-        left = box.left + scrollLeft - clientLeft + planetWidth/2;
-
-        break;
-      }
-      case "SVGSVGElement": {
-        top  = box.top +  scrollTop - clientTop;
-        left = box.left + scrollLeft - clientLeft;
-
-        break;
-      }
-      default: break;
-    }
-
-    return { top: Math.round(top), left: Math.round(left) };
-  }
-
   useEffect(() => {
-    setViewBoxOffsetX(getElemCoords(svgContainerRef.current, "SVGSVGElement")?.left)
-    setViewBoxOffsetY(getElemCoords(svgContainerRef.current, "SVGSVGElement")?.top)
+    setViewBoxOffsetX(getElemCoords({
+      elem: svgContainerRef.current,
+      type: "SVGSVGElement",
+      planetWidth,
+      planetHeight
+    })?.left)
+    setViewBoxOffsetY(getElemCoords({
+      elem: svgContainerRef.current,
+      type: "SVGSVGElement",
+      planetWidth,
+      planetHeight
+    })?.top)
   }, [])
-
-  const deleteAllConnectionLines = () => {
-    const allConnectionLines = document.querySelectorAll('.connection-line');
-    allConnectionLines.forEach(line => {
-      line.remove();
-    })
-  }
-
-  const connectionsOverlapCheck = (currentTargetCoords: { top: number, left: number }, elementToConnect: { top: number, left: number }) => {
-    const allConnectionLines = document.querySelectorAll('.connection-line');
-    const allConnectionLinesArray = Array.from(allConnectionLines);
-
-    const checkResult = allConnectionLinesArray.findIndex(line => {
-          if (viewBoxOffsetX !== undefined && viewBoxOffsetY !== undefined) {
-            return line.getAttribute("x1") === String(currentTargetCoords.left - viewBoxOffsetX) &&
-                line.getAttribute("y1") === String(currentTargetCoords.top - viewBoxOffsetY) &&
-                line.getAttribute("x2") === String(elementToConnect.left - viewBoxOffsetX) &&
-                line.getAttribute("y2") === String(elementToConnect.top - viewBoxOffsetY)
-          }
-        }
-    )
-
-    return checkResult > -1;
-  }
 
   const getCoordsForConnection = (props: IGetCoordsForConnectionProps): IGetCoordsForConnectionProps => {
     const {
@@ -160,7 +112,13 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const step = 7;
     let swingDirection = 0;
     const offset = step * swingCount;
-    const isOverlapped = connectionsOverlapCheck(currentTarget, elementToConnect);
+    const isOverlapped = connectionsOverlapCheck({
+      currentTargetCoords: currentTarget,
+      elementToConnectCoords: elementToConnect,
+      viewBoxOffsetY,
+      viewBoxOffsetX,
+      svgContainer: svgContainerRef.current
+    });
 
     if (swingCount % 2 === 0) {
       swingDirection = -1;
@@ -192,7 +150,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   }
 
   const showChildren = (childList: string | null, currentTarget: HTMLDivElement) => {
-    const currentTargetCoords = getElemCoords(currentTarget, "HTMLElement");
+    const currentTargetCoords = getElemCoords({
+      elem: currentTarget,
+      type: "HTMLElement",
+      planetWidth,
+      planetHeight
+    });
     const childListArray = childList!.split(",");
 
     childListArray.forEach(elementData => {
@@ -205,9 +168,15 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       }
 
       const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
-      childElement?.setAttribute("data-is-active", "1");
-      const childElementCoords = getElemCoords(childElement, "HTMLElement");
+      const childElementCoords = getElemCoords({
+        elem: childElement,
+        type: "HTMLElement",
+        planetWidth,
+        planetHeight
+      });
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+
+      childElement?.setAttribute("data-is-active", "1");
 
       if (currentTargetCoords && childElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
         svgLine.setAttribute('class', 'connection-line');
@@ -240,8 +209,13 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     })
   }
 
-  const showParents = (parentList: string | null, currentTarget: HTMLDivElement, colorListProp: Array<string>) => {
-    const currentTargetCoords = getElemCoords(currentTarget, "HTMLElement");
+  const showParents = (parentList: string | null, currentTarget: HTMLDivElement, color: string | null) => {
+    const currentTargetCoords = getElemCoords({
+      elem: currentTarget,
+      type: "HTMLElement",
+      planetWidth,
+      planetHeight
+    });
     const parentsListArray = parentList!.split(",");
 
     parentsListArray.forEach(elementData => {
@@ -253,14 +227,17 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       }
 
       const isAlternative = elementDataArray[1] === "true" ? 1 : 0;
-      const colorList = colorListProp.slice();
       const parentElement = document.querySelector<HTMLDivElement>(`[data-planet-id="${numberElementId}"]`);
-
-      parentElement?.setAttribute("data-is-active", "1");
-
-      const parentElementCoords = getElemCoords(parentElement, "HTMLElement");
+      const parentElementCoords = getElemCoords({
+        elem: parentElement,
+        type: "HTMLElement",
+        planetWidth,
+        planetHeight
+      });
       const parentList = parentElement!.getAttribute("data-planet-parent-list");
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+
+      parentElement?.setAttribute("data-is-active", "1");
 
       if (currentTargetCoords && parentElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
         const lineCoordsWithoutOverlaps = getCoordsForConnection({
@@ -279,17 +256,17 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
       if (isAlternative) {
         svgLine.setAttribute('stroke-dasharray', "10 5");
-        colorList.push(getColorFromShelf());
+        color = getColorFromShelf();
       }
 
-      if (colorList.length) {
-        svgLine.setAttribute('stroke', String(colorList[0]));
+      if (color) {
+        svgLine.setAttribute('class', svgLine!.getAttribute("class")+ " " + color);
       }
 
       svgContainerRef.current?.append(svgLine);
 
       if (parentElement && parentList) {
-        showParents(parentList, parentElement, colorList);
+        showParents(parentList, parentElement, color);
       }
     })
   }
@@ -306,8 +283,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       }
 
       const parentElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
-      parentElement?.setAttribute("data-is-active", "0");
       const parentList = parentElement!.getAttribute("data-planet-parent-list");
+
+      parentElement?.setAttribute("data-is-active", "0");
 
       if (parentList) {
         hideParents(parentList);
@@ -316,16 +294,18 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   }
 
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.currentTarget.setAttribute('data-is-active', '1');
     const childList = event.currentTarget.getAttribute("data-planet-child-list");
     const parentList = event.currentTarget.getAttribute("data-planet-parent-list");
+
+    event.currentTarget.setAttribute('data-is-active', '1');
+
     // console.log("currentValue: ", event.currentTarget)
     // console.log("currentValue: ", event.currentTarget.textContent)
     // console.log("childList: ", childList);
     // console.log("parentList: ", parentList);
 
     showChildren(childList, event.currentTarget);
-    showParents(parentList, event.currentTarget, emptyColorShelf);
+    showParents(parentList, event.currentTarget, null);
   }
 
   const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -335,7 +315,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     hideChildren(childList);
     hideParents(parentList);
-    deleteAllConnectionLines();
+    deleteAllConnectionLines(svgContainerRef.current);
     restoreColorShelf();
   }
 
@@ -359,9 +339,15 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             orbitList.map((orbits,index) => {
               galaxyOrbitSettings.backgroundWidth -= orbitWidthStep;
               galaxyOrbitSettings.backgroundHeight -= orbitHeightStep;
-              galaxyOrbitSettings.orbitsColorId++;
               return (
-                  <ellipse key={index} rx={galaxyOrbitSettings.backgroundWidth/2} ry={galaxyOrbitSettings.backgroundHeight/2} fill={getOrbitsColorById(galaxyOrbitSettings.orbitsColorId)} cx="50%" cy="50%"/>
+                  <ellipse
+                      key={index}
+                      className={`background-ellipse ${getOrbitModificationById(orbits.orbitLevel)}`}
+                      rx={galaxyOrbitSettings.backgroundWidth / 2}
+                      ry={galaxyOrbitSettings.backgroundHeight / 2}
+                      cx="50%"
+                      cy="50%"
+                  />
               )
             })
           }

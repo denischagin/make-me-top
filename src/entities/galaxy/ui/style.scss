@@ -1,3 +1,5 @@
+@import "@app/styles/variables.scss";
+
 .galaxy {
   position: relative;
   display: flex;
@@ -14,4 +16,37 @@
 
 .connection-line {
   stroke-width: 1px
+}
+
+.background-ellipse {
+  opacity: 0.3;
+}
+
+.black-fill-color {
+  opacity: 1;
+  fill: $black;
+}
+
+.white-fill-color {;
+  fill: $white;
+}
+
+.violet-fill-color {
+  fill: $secondary-700;
+}
+
+.orange-fill-color {
+  fill: $primary-500;
+}
+
+.blue-stroke-color {
+  stroke: $secondary-500;
+}
+
+.orange-stroke-color {
+  stroke: $primary-500;
+}
+
+.white-stroke-color {
+  stroke: $white;
 }
