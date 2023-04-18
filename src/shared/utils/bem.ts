@@ -55,7 +55,7 @@ export function bem(blockName: string): UseBemMethods {
         ? { [blockModifiersAndClasses]: true }
         : blockModifiersAndClasses;
 
-      const getAdditionalClasses = Array.isArray(additionalClasses)
+      const additionalClassesArray = Array.isArray(additionalClasses)
         ? additionalClasses
         : arrayOfClasses.concat(additionalClasses);
 
@@ -65,11 +65,11 @@ export function bem(blockName: string): UseBemMethods {
         modifiersAndClasses
       );
 
-      const getClassesAsSecondArg = typeof blockModifiersAndClasses === "string"
+      const modifiersOrAdditionalClasses = typeof blockModifiersAndClasses === "string"
         ? arrayOfClasses.concat(blockModifiersAndClasses)
         : blockModifiersAppliedFromRender;
 
-      return [blockName, ...getAdditionalClasses, ...getClassesAsSecondArg]
+      return [blockName, ...additionalClassesArray, ...modifiersOrAdditionalClasses]
         .join(" ")
         .trim();
     },
@@ -89,7 +89,7 @@ export function bem(blockName: string): UseBemMethods {
         ? { [blockModifiersAndClasses]: true }
         : blockModifiersAndClasses;
 
-      const getAdditionalClasses = Array.isArray(additionalClasses)
+      const additionalClassesArray = Array.isArray(additionalClasses)
         ? additionalClasses
         : arrayOfClasses.concat(additionalClasses);
 
@@ -99,14 +99,14 @@ export function bem(blockName: string): UseBemMethods {
         modifiersAndClasses
       );
 
-      const getClassesAsSecondArg = typeof blockModifiersAndClasses === "string"
+      const modifiersOrAdditionalClasses = typeof blockModifiersAndClasses === "string"
         ? arrayOfClasses.concat(blockModifiersAndClasses)
         : elementModifiersAppliedFromRender;
 
       return [
         elementFullName,
-        ...getClassesAsSecondArg,
-        ...getAdditionalClasses,
+        ...modifiersOrAdditionalClasses,
+        ...additionalClassesArray,
       ]
         .join(" ")
         .trim();
