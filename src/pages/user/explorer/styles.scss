@@ -3,35 +3,27 @@
 .explorer {
   overflow: overlay;
   position: absolute;
-  width: 100%;
   color: $white;
+  width: 100%;
   height: 100%;
   background-image: url(../../../shared/images/backgrounds/profileBG.png);
   background-size: 100%;
   background-color: $dark;
 
   &__container {
-    display: grid;
-    grid-template-columns: 9fr 3fr;
-    gap: 24px;
-    justify-content: space-between;
-    margin: 40px 240px;
+    margin: 40px;
   }
 
   &__profile {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 40px;
   }
 
-  &__rating-heading {
-    margin-top: 0;
-    margin-bottom: 24px;
-  }
-
+  &__rating-heading,
   &__completed-stars-heading,
   &__current-star-heading {
-    margin-top: 16px;
+    margin-top: 0px;
     margin-bottom: 24px;
   }
 }

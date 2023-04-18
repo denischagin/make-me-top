@@ -6,12 +6,15 @@ interface ModifiersHash {
   [key: string]: ModifierValue;
 }
 
-export type GetClassBlock = (modifiers?: ModifiersHash) => string;
+export type GetClassBlock = (
+  modifiers?: ModifiersHash,
+  additionalClasses?: string | string[]
+) => string;
 
 export type GetClassElement = (
   element: string,
   modifiers?: ModifiersHash,
-  ...additionalClasses: Array<string>
+  additionalClasses?: string | string[]
 ) => string;
 
 type UseBemMethods = [GetClassBlock, GetClassElement];
@@ -45,14 +48,23 @@ function getModifiers(
 
 export function bem(blockName: string): UseBemMethods {
   const block: GetClassBlock = useCallback(
-    (blockModifiersFromRender = {}): string => {
+    (blockModifiersFromRender = {}, additionalClasses: string | string[] = ""): string => {
+      const arrayOfClasses: Array<string> = [];
+
       const blockModifiersAppliedFromRender = getModifiers(
         blockName,
         Object.keys(blockModifiersFromRender),
         blockModifiersFromRender
       );
 
-      return [blockName, ...blockModifiersAppliedFromRender].join(" ").trim();
+      const getAdditionalClasses = Array.isArray(additionalClasses)
+        ? additionalClasses
+        : arrayOfClasses.concat(additionalClasses);
+
+
+      return [blockName, ...getAdditionalClasses, ...blockModifiersAppliedFromRender]
+        .join(" ")
+        .trim();
     },
     [blockName]
   );
@@ -61,19 +73,25 @@ export function bem(blockName: string): UseBemMethods {
     (
       elementName: string,
       elementModifiers = {},
-      ...additionalClasses: Array<string>
+      additionalClasses: string | string[] = ""
     ): string => {
+      const arrayOfClasses: Array<string> = [];
       const elementFullName = `${blockName}__${elementName}`;
+
       const elementModifiersAppliedFromRender = getModifiers(
         elementFullName,
         Object.keys(elementModifiers),
         elementModifiers
       );
 
+      const getAdditionalClasses = Array.isArray(additionalClasses)
+        ? additionalClasses
+        : arrayOfClasses.concat(additionalClasses);
+
       return [
         elementFullName,
         ...elementModifiersAppliedFromRender,
-        ...additionalClasses,
+        ...getAdditionalClasses,
       ]
         .join(" ")
         .trim();
