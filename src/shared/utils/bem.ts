@@ -51,6 +51,10 @@ export function bem(blockName: string): UseBemMethods {
     (blockModifiersAndClasses = {}, additionalClasses: string | Array<string> = ""): string => {
       const arrayOfClasses: Array<string> = [];
 
+      const modifiersAndClasses = typeof blockModifiersAndClasses === "string"
+        ? { [blockModifiersAndClasses]: true }
+        : blockModifiersAndClasses;
+
       const getAdditionalClasses = Array.isArray(additionalClasses)
         ? additionalClasses
         : arrayOfClasses.concat(additionalClasses);
@@ -58,7 +62,7 @@ export function bem(blockName: string): UseBemMethods {
       const blockModifiersAppliedFromRender = getModifiers(
         blockName,
         Object.keys(blockModifiersAndClasses),
-        blockModifiersAndClasses
+        modifiersAndClasses
       );
 
       const getClassesAsSecondArg = typeof blockModifiersAndClasses === "string"
@@ -81,6 +85,10 @@ export function bem(blockName: string): UseBemMethods {
       const arrayOfClasses: Array<string> = [];
       const elementFullName = `${blockName}__${elementName}`;
 
+      const modifiersAndClasses = typeof blockModifiersAndClasses === "string"
+        ? { [blockModifiersAndClasses]: true }
+        : blockModifiersAndClasses;
+
       const getAdditionalClasses = Array.isArray(additionalClasses)
         ? additionalClasses
         : arrayOfClasses.concat(additionalClasses);
@@ -88,7 +96,7 @@ export function bem(blockName: string): UseBemMethods {
       const elementModifiersAppliedFromRender = getModifiers(
         elementFullName,
         Object.keys(blockModifiersAndClasses),
-        blockModifiersAndClasses
+        modifiersAndClasses
       );
 
       const getClassesAsSecondArg = typeof blockModifiersAndClasses === "string"
