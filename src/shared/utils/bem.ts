@@ -7,13 +7,13 @@ interface ModifiersHash {
 }
 
 export type GetClassBlock = (
-  modifiersAndClasses?: ModifiersHash | string,
+  modifiersAndClasses?: ModifiersHash | string | Array<string>,
   additionalClasses?: string | Array<string>
 ) => string;
 
 export type GetClassElement = (
   element: string,
-  modifiersAndClasses?: ModifiersHash | string,
+  modifiersAndClasses?: ModifiersHash | string | Array<string>,
   additionalClasses?: string | Array<string>
 ) => string;
 
@@ -46,30 +46,33 @@ function getModifiers(
     );
 }
 
+function getAdditionalClasses(blockName: string, additionalClasses: string | Array<string>) {
+  if (typeof additionalClasses === "string") {
+    return `${blockName} ${additionalClasses}`;
+  }
+
+  return `${blockName} ${additionalClasses.join(" ")}`;
+}
+
 export function bem(blockName: string): UseBemMethods {
   const block: GetClassBlock = useCallback(
     (blockModifiersAndClasses = {}, additionalClasses: string | Array<string> = ""): string => {
-      const arrayOfClasses: Array<string> = [];
 
-      const modifiersAndClasses = typeof blockModifiersAndClasses === "string"
-        ? { [blockModifiersAndClasses]: true }
-        : blockModifiersAndClasses;
-
-      const additionalClassesArray = Array.isArray(additionalClasses)
-        ? additionalClasses
-        : arrayOfClasses.concat(additionalClasses);
+      if (typeof blockModifiersAndClasses === "string" || Array.isArray(blockModifiersAndClasses)) {
+        return getAdditionalClasses(blockName, blockModifiersAndClasses);
+      }
 
       const blockModifiersAppliedFromRender = getModifiers(
         blockName,
         Object.keys(blockModifiersAndClasses),
-        modifiersAndClasses
+        blockModifiersAndClasses
       );
 
-      const modifiersOrAdditionalClasses = typeof blockModifiersAndClasses === "string"
-        ? arrayOfClasses.concat(blockModifiersAndClasses)
-        : blockModifiersAppliedFromRender;
+      const arrayOfAdditionalClasses = typeof additionalClasses === "string"
+        ? [additionalClasses]
+        : additionalClasses;
 
-      return [blockName, ...additionalClassesArray, ...modifiersOrAdditionalClasses]
+      return [blockName, ...blockModifiersAppliedFromRender, ...arrayOfAdditionalClasses]
         .join(" ")
         .trim();
     },
@@ -82,31 +85,27 @@ export function bem(blockName: string): UseBemMethods {
       blockModifiersAndClasses = {},
       additionalClasses: string | Array<string> = ""
     ): string => {
-      const arrayOfClasses: Array<string> = [];
+
       const elementFullName = `${blockName}__${elementName}`;
 
-      const modifiersAndClasses = typeof blockModifiersAndClasses === "string"
-        ? { [blockModifiersAndClasses]: true }
-        : blockModifiersAndClasses;
-
-      const additionalClassesArray = Array.isArray(additionalClasses)
-        ? additionalClasses
-        : arrayOfClasses.concat(additionalClasses);
+      if (typeof blockModifiersAndClasses === "string" || Array.isArray(blockModifiersAndClasses)) {
+        return getAdditionalClasses(elementFullName, blockModifiersAndClasses);
+      }
 
       const elementModifiersAppliedFromRender = getModifiers(
         elementFullName,
         Object.keys(blockModifiersAndClasses),
-        modifiersAndClasses
+        blockModifiersAndClasses
       );
 
-      const modifiersOrAdditionalClasses = typeof blockModifiersAndClasses === "string"
-        ? arrayOfClasses.concat(blockModifiersAndClasses)
-        : elementModifiersAppliedFromRender;
+      const arrayOfAdditionalClasses = typeof additionalClasses === "string"
+        ? [additionalClasses]
+        : additionalClasses;
 
       return [
         elementFullName,
-        ...modifiersOrAdditionalClasses,
-        ...additionalClassesArray,
+        ...elementModifiersAppliedFromRender,
+        ...arrayOfAdditionalClasses,
       ]
         .join(" ")
         .trim();
