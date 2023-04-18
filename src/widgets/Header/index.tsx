@@ -9,7 +9,7 @@ export const Header = () => {
 
   return (
     <div className={block()}>
-      <div className={element("container")}>
+      <div className={element("container", "container")}>
         <Logo className={element("logo")} />
         <NavButtons />
       </div>

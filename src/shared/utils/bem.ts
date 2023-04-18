@@ -7,14 +7,14 @@ interface ModifiersHash {
 }
 
 export type GetClassBlock = (
-  modifiers?: ModifiersHash,
-  additionalClasses?: string | string[]
+  modifiersAndClasses?: ModifiersHash | string,
+  additionalClasses?: string | Array<string>
 ) => string;
 
 export type GetClassElement = (
   element: string,
-  modifiers?: ModifiersHash,
-  additionalClasses?: string | string[]
+  modifiersAndClasses?: ModifiersHash | string,
+  additionalClasses?: string | Array<string>
 ) => string;
 
 type UseBemMethods = [GetClassBlock, GetClassElement];
@@ -32,7 +32,7 @@ function getModifier(
 function getModifiers(
   base: string,
   modifiersArray: Array<string>,
-  modifiersObject: ModifiersHash
+  modifiersObject: ModifiersHash,
 ): Array<string> {
   return modifiersArray
     .filter(
@@ -48,49 +48,56 @@ function getModifiers(
 
 export function bem(blockName: string): UseBemMethods {
   const block: GetClassBlock = useCallback(
-    (blockModifiersFromRender = {}, additionalClasses: string | string[] = ""): string => {
+    (blockModifiersAndClasses = {}, additionalClasses: string | Array<string> = ""): string => {
       const arrayOfClasses: Array<string> = [];
-
-      const blockModifiersAppliedFromRender = getModifiers(
-        blockName,
-        Object.keys(blockModifiersFromRender),
-        blockModifiersFromRender
-      );
 
       const getAdditionalClasses = Array.isArray(additionalClasses)
         ? additionalClasses
         : arrayOfClasses.concat(additionalClasses);
 
+      const blockModifiersAppliedFromRender = getModifiers(
+        blockName,
+        Object.keys(blockModifiersAndClasses),
+        blockModifiersAndClasses
+      );
 
-      return [blockName, ...getAdditionalClasses, ...blockModifiersAppliedFromRender]
+      const getClassesAsSecondArg = typeof blockModifiersAndClasses === "string"
+        ? arrayOfClasses.concat(blockModifiersAndClasses)
+        : blockModifiersAppliedFromRender;
+
+      return [blockName, ...getAdditionalClasses, ...getClassesAsSecondArg]
         .join(" ")
         .trim();
     },
     [blockName]
   );
 
-  const element = useCallback(
+  const element: GetClassElement = useCallback(
     (
       elementName: string,
-      elementModifiers = {},
-      additionalClasses: string | string[] = ""
+      blockModifiersAndClasses = {},
+      additionalClasses: string | Array<string> = ""
     ): string => {
       const arrayOfClasses: Array<string> = [];
       const elementFullName = `${blockName}__${elementName}`;
-
-      const elementModifiersAppliedFromRender = getModifiers(
-        elementFullName,
-        Object.keys(elementModifiers),
-        elementModifiers
-      );
 
       const getAdditionalClasses = Array.isArray(additionalClasses)
         ? additionalClasses
         : arrayOfClasses.concat(additionalClasses);
 
+      const elementModifiersAppliedFromRender = getModifiers(
+        elementFullName,
+        Object.keys(blockModifiersAndClasses),
+        blockModifiersAndClasses
+      );
+
+      const getClassesAsSecondArg = typeof blockModifiersAndClasses === "string"
+        ? arrayOfClasses.concat(blockModifiersAndClasses)
+        : elementModifiersAppliedFromRender;
+
       return [
         elementFullName,
-        ...elementModifiersAppliedFromRender,
+        ...getClassesAsSecondArg,
         ...getAdditionalClasses,
       ]
         .join(" ")

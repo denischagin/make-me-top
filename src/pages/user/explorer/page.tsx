@@ -13,11 +13,11 @@ export const Explorer = () => {
   const [block, element] = bem("explorer");
 
   return (
-    <div className={block({})}>
+    <div className={block()}>
       <Header />
-      <div className={element("container", {}, "container")}>
-        <div className={element("row", {}, "row")}>
-          <div className={element("profile", {}, "col-xxl-9")}>
+      <div className={element("container", "container p-0")}>
+        <div className={element("row", "row")}>
+          <div className={element("profile", "col-xxl-9")}>
             <ExplorerUserInfo />
             <div className={element("current-star")}>
               <div className={element("current-star-heading")}>
@@ -32,7 +32,7 @@ export const Explorer = () => {
               <CompletedStars />
             </div>
           </div>
-          <div className={element("rating", {}, "col-xxl-3")}>
+          <div className={element("rating", "col-xxl-3")}>
             <div className={element("rating-heading")}>
               <Typography variant="h2">Рейтинг</Typography>
             </div>
