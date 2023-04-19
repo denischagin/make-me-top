@@ -46,18 +46,20 @@ function getModifiers(
     );
 }
 
-function getAdditionalClasses(blockName: string, additionalClasses: string | Array<string>) {
-  if (typeof additionalClasses === "string") {
-    return `${blockName} ${additionalClasses}`;
+function getAdditionalClasses(blockName: string, blockClasses: string | Array<string>) {
+  if (typeof blockClasses === "string") {
+    return `${blockName} ${blockClasses}`;
   }
 
-  return `${blockName} ${additionalClasses.join(" ")}`;
+  return `${blockName} ${blockClasses.join(" ")}`;
 }
 
 export function bem(blockName: string): UseBemMethods {
   const block: GetClassBlock = useCallback(
-    (blockModifiersAndClasses = {}, additionalClasses: string | Array<string> = ""): string => {
-
+    (
+      blockModifiersAndClasses: ModifiersHash | string | Array<string> = {},
+      additionalClasses: string | Array<string> = ""
+    ): string => {
       if (typeof blockModifiersAndClasses === "string" || Array.isArray(blockModifiersAndClasses)) {
         return getAdditionalClasses(blockName, blockModifiersAndClasses);
       }
@@ -82,10 +84,9 @@ export function bem(blockName: string): UseBemMethods {
   const element: GetClassElement = useCallback(
     (
       elementName: string,
-      blockModifiersAndClasses = {},
+      blockModifiersAndClasses: ModifiersHash | string | Array<string> = {},
       additionalClasses: string | Array<string> = ""
     ): string => {
-
       const elementFullName = `${blockName}__${elementName}`;
 
       if (typeof blockModifiersAndClasses === "string" || Array.isArray(blockModifiersAndClasses)) {
