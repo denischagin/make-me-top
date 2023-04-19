@@ -10,5 +10,6 @@ export const Modal = (props: PropsWithChildren) => {
   const [block, element] = bem("modal");
 
   const user = useAppSelector((state) => state.user.isRegistered);
+
   return <>{user && <div className={block()}>{props.children}</div>}</>;
 };

@@ -42,7 +42,6 @@
         "mode": "strict"
       }
     ],
-    "object-curly-newline": ["error", { "minProperties": 2 }],
     "newline-before-return": "error"
   }
 }
