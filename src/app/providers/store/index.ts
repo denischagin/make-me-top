@@ -16,6 +16,7 @@ export type RootState = {
   };
   user: {
     isRegistered: boolean;
+    isModalOpen: boolean;
   };
   galaxies: GalaxyType;
 };

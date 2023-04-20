@@ -1,3 +1,7 @@
-export interface AvatarInterface {
-  image: string;
+import { ReactNode } from "react";
+
+export interface ModalInterface {
+  modalName: string;
+  locked: boolean;
+  children: ReactNode;
 }

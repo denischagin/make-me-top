@@ -1,7 +1,13 @@
+import { useAppDispatch } from "@app/providers/store/hooks";
+
+import { Modal } from "@shared/Modal";
+import { Portal } from "@shared/Portal";
 import { Typography } from "@shared/Typography";
 import { Button } from "@shared/buttons/Button";
 import { CardBig } from "@shared/cards/CardBig";
 import { bem } from "@shared/utils/bem";
+
+import { showModal } from "@entities/user/model";
 
 import { ProgressBar } from "@widgets/ProgressBar";
 
@@ -21,9 +27,18 @@ export const CurrentStarCard = () => {
   };
 
   const { planet, star, curator, progress } = starInfo;
+  const dispatch = useAppDispatch();
 
   return (
     <div className={block()}>
+      <Portal target="portal-root">
+        <Modal
+          modalName={planet.name}
+          locked={false}
+        >
+          ...
+        </Modal>
+      </Portal>
       <CardBig>
         <div className={element("heading")}>
           <Typography variant="h2">
@@ -56,6 +71,9 @@ export const CurrentStarCard = () => {
             size="large"
             color="filled"
             title="Продолжить"
+            action={() => {
+              dispatch(showModal());
+            }}
           />
         </div>
       </CardBig>
