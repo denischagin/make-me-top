@@ -2,5 +2,5 @@ import { ReactNode } from "react";
 
 export interface PortalInterface {
   children: ReactNode;
-  target: string;
+  target: HTMLElement | DocumentFragment;
 }

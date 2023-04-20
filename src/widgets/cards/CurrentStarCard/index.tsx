@@ -1,7 +1,6 @@
 import { useAppDispatch } from "@app/providers/store/hooks";
 
 import { Modal } from "@shared/Modal";
-import { Portal } from "@shared/Portal";
 import { Typography } from "@shared/Typography";
 import { Button } from "@shared/buttons/Button";
 import { CardBig } from "@shared/cards/CardBig";
@@ -31,14 +30,12 @@ export const CurrentStarCard = () => {
 
   return (
     <div className={block()}>
-      <Portal target="portal-root">
-        <Modal
-          modalName={planet.name}
-          locked
-        >
-          ...
-        </Modal>
-      </Portal>
+      <Modal
+        modalName={planet.name}
+        locked
+      >
+        ...
+      </Modal>
       <CardBig>
         <div className={element("heading")}>
           <Typography variant="h2">
