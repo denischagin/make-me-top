@@ -34,7 +34,7 @@ export const CurrentStarCard = () => {
       <Portal target="portal-root">
         <Modal
           modalName={planet.name}
-          locked={false}
+          locked
         >
           ...
         </Modal>
