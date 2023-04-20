@@ -1,6 +1,7 @@
 node_modules
 tsconfig.json
 src/app/styles/bootstrap-grid.min.css
+src/shared/utils/bem.ts
 
 # Ignore artifacts:
 build
