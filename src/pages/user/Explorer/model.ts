@@ -9,16 +9,7 @@ export const starInfo = {
 };
 
 export const tabsList = [
-  {
-    title: "Планеты",
-    active: true,
-  },
-  {
-    title: "Исследователи",
-    active: false,
-  },
-  {
-    title: "Хранители",
-    active: false,
-  },
+  "Планеты",
+  "Исследователи",
+  "Хранители",
 ];

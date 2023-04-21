@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { useAppDispatch } from "@app/providers/store/hooks";
 
 import { Modal } from "@shared/Modal";
@@ -5,7 +7,7 @@ import { Typography } from "@shared/Typography";
 import { Button } from "@shared/buttons/Button";
 import { CardBig } from "@shared/cards/CardBig";
 import { bem } from "@shared/utils/bem";
-import { Tabs } from "@shared/buttons/Tabs";
+import { TabsList } from "@shared/buttons/Tabs";
 
 import { showModal } from "@entities/user/model";
 
@@ -26,6 +28,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
   } = props;
 
   const [block, element] = bem("current-star-card");
+  const [currantTab, setCurrentTab] = useState("Планеты");
 
   const dispatch = useAppDispatch();
 
@@ -35,7 +38,10 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         name={planet.name}
         locked
       >
-        <Tabs list={tabsList}/>
+        <TabsList
+          list={tabsList}
+          setCurrentTab={setCurrentTab}
+        />
       </Modal>
       <CardBig>
         <div className={element("heading")}>

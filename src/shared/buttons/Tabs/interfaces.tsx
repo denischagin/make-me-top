@@ -1,9 +1,7 @@
-export interface TabsInterface {
-  title: string
-  active: boolean
-}
+import { Dispatch, SetStateAction } from "react";
 
 export interface TabsListInterface {
-  list: Array<TabsInterface>
+  list: Array<string>
+  setCurrentTab: Dispatch<SetStateAction<string>>
 }
 
