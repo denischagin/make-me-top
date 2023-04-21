@@ -5,32 +5,28 @@ import { Typography } from "@shared/Typography";
 import { Button } from "@shared/buttons/Button";
 import { CardBig } from "@shared/cards/CardBig";
 import { bem } from "@shared/utils/bem";
+import { Tabs } from "@shared/buttons/Tabs";
 
 import { showModal } from "@entities/user/model";
 
 import { ProgressBar } from "@widgets/ProgressBar";
 
+import { CurrentStarCardInterface } from "./interfaces";
 import "./styles.scss";
 
-export const CurrentStarCard = () => {
+export const CurrentStarCard = (props: CurrentStarCardInterface) => {
+  const {
+    tabsList,
+    starInfo: {
+      planet,
+      star,
+      curator,
+      progress
+    },
+  } = props;
+
   const [block, element] = bem("current-star-card");
 
-  const starInfo = {
-    planet: {
-      id: 2,
-      name: "SQL",
-    },
-    star: "Groovy",
-    curator: "Фамилия Имя Отчество",
-    progress: "50",
-  };
-
-  const {
-    planet,
-    star,
-    curator,
-    progress
-  } = starInfo;
   const dispatch = useAppDispatch();
 
   return (
@@ -39,7 +35,7 @@ export const CurrentStarCard = () => {
         name={planet.name}
         locked
       >
-        ...
+        <Tabs list={tabsList}/>
       </Modal>
       <CardBig>
         <div className={element("heading")}>
@@ -55,7 +51,7 @@ export const CurrentStarCard = () => {
         </div>
         <div className={element("progress")}>
           <Typography
-            variant="regular16"
+            variant="medium16"
             color="primary-500"
           >
             Освоено {progress}%

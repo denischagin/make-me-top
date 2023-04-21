@@ -1,9 +1,14 @@
-interface TabsInterface {
-  title: string
-  active: boolean
-}
+export const starInfo = {
+  planet: {
+    id: 2,
+    name: "SQL",
+  },
+  star: "Groovy",
+  curator: "Фамилия Имя Отчество",
+  progress: 50,
+};
 
-export const TABS: Array<TabsInterface> = [
+export const tabsList = [
   {
     title: "Планеты",
     active: true,

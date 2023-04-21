@@ -2,12 +2,12 @@ import { useState } from "react";
 
 import { bem } from "@shared/utils/bem";
 
-import { TABS } from "./model";
+import { TabsInterface, TabsListInterface } from "./interfaces";
 import "./styles.scss";
 
-export const Tabs = () => {
-  const [tabs, setTabs] = useState(TABS);
+export const Tabs = (props: TabsListInterface) => {
   const [block, element] = bem("tabs");
+  const [tabs, setTabs] = useState(props.list);
 
   const handleTabClick = (index: number) => {
     setTabs(
@@ -20,15 +20,17 @@ export const Tabs = () => {
 
   return (
     <div className={block()}>
-      {tabs.map((tab, index) => (
-        <div
-          key={tab.title}
-          className={element("button", { active: tab.active })}
-          onClick={() => handleTabClick(index)}
-        >
-          {tab.title}
-        </div>
-      ))}
+      {
+        tabs.map((tab: TabsInterface, index) => (
+          <div
+            key={tab.title}
+            className={element("button", { active: tab.active })}
+            onClick={() => handleTabClick(index)}
+          >
+            {tab.title}
+          </div>
+        ))
+      }
     </div>
   );
 };

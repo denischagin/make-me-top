@@ -7,6 +7,7 @@ import { Header } from "@widgets/Header";
 import { CurrentStarCard } from "@widgets/cards/CurrentStarCard";
 import { RatingCard } from "@widgets/cards/RatingCard";
 
+import { starInfo, tabsList } from "./model";
 import "./styles.scss";
 
 export const Explorer = () => {
@@ -23,7 +24,7 @@ export const Explorer = () => {
               <div className={element("current-star-heading")}>
                 <Typography variant="h2">Текущая звезда</Typography>
               </div>
-              <CurrentStarCard />
+              <CurrentStarCard starInfo={starInfo} tabsList={tabsList}/>
             </div>
             <div className={element("completed-stars")}>
               <div className={element("completed-stars-heading")}>
