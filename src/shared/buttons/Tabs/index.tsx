@@ -2,22 +2,8 @@ import { useState } from "react";
 
 import { bem } from "@shared/utils/bem";
 
+import { TABS } from "./model";
 import "./styles.scss";
-
-const TABS = [
-  {
-    title: "Планеты",
-    active: true,
-  },
-  {
-    title: "Исследователи",
-    active: false,
-  },
-  {
-    title: "Хранители",
-    active: false,
-  },
-];
 
 export const Tabs = () => {
   const [tabs, setTabs] = useState(TABS);
