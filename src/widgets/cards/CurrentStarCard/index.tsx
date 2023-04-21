@@ -31,7 +31,7 @@ export const CurrentStarCard = () => {
   return (
     <div className={block()}>
       <Modal
-        modalName={planet.name}
+        name={planet.name}
         locked
       >
         ...

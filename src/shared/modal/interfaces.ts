@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 export interface ModalInterface {
-  modalName: string;
+  name: string;
   locked: boolean;
   children: ReactNode;
 }

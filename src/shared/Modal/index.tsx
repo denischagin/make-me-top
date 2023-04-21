@@ -11,7 +11,9 @@ import { showModal } from "@entities/user/model";
 import { ModalInterface } from "./interfaces";
 import "./styles.scss";
 
-export const Modal = ({ modalName, locked, children }: ModalInterface) => {
+export const Modal = (props: ModalInterface) => {
+  const { name, locked, children } = props;
+
   const [block, element] = bem("modal");
 
   const isModalOpen = useAppSelector((state) => state.user.isModalOpen);
@@ -30,7 +32,7 @@ export const Modal = ({ modalName, locked, children }: ModalInterface) => {
             >
               <p className={element("name")}>
                 {lockIcon}
-                {modalName}
+                {name}
               </p>
             </Typography>
             <CloseIcon
