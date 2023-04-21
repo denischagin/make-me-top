@@ -25,7 +25,12 @@ export const CurrentStarCard = () => {
     progress: "50",
   };
 
-  const { planet, star, curator, progress } = starInfo;
+  const {
+    planet,
+    star,
+    curator,
+    progress
+  } = starInfo;
   const dispatch = useAppDispatch();
 
   return (

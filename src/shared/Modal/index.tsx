@@ -12,7 +12,11 @@ import { ModalInterface } from "./interfaces";
 import "./styles.scss";
 
 export const Modal = (props: ModalInterface) => {
-  const { name, locked, children } = props;
+  const {
+    name,
+    locked,
+    children
+  } = props;
 
   const [block, element] = bem("modal");
 
