@@ -32,7 +32,7 @@ function getModifier(
 function getModifiers(
   base: string,
   modifiersArray: Array<string>,
-  modifiersObject: ModifiersHash,
+  modifiersObject: ModifiersHash
 ): Array<string> {
   return modifiersArray
     .filter(
@@ -46,7 +46,10 @@ function getModifiers(
     );
 }
 
-function getAdditionalClasses(blockName: string, blockClasses: string | Array<string>) {
+function getAdditionalClasses(
+  blockName: string,
+  blockClasses: string | Array<string>
+) {
   if (typeof blockClasses === "string") {
     return `${blockName} ${blockClasses}`;
   }
@@ -60,7 +63,10 @@ export function bem(blockName: string): UseBemMethods {
       blockModifiersAndClasses: ModifiersHash | string | Array<string> = {},
       additionalClasses: string | Array<string> = ""
     ): string => {
-      if (typeof blockModifiersAndClasses === "string" || Array.isArray(blockModifiersAndClasses)) {
+      if (
+        typeof blockModifiersAndClasses === "string" ||
+        Array.isArray(blockModifiersAndClasses)
+      ) {
         return getAdditionalClasses(blockName, blockModifiersAndClasses);
       }
 
@@ -70,11 +76,16 @@ export function bem(blockName: string): UseBemMethods {
         blockModifiersAndClasses
       );
 
-      const arrayOfAdditionalClasses = typeof additionalClasses === "string"
-        ? [additionalClasses]
-        : additionalClasses;
+      const arrayOfAdditionalClasses =
+        typeof additionalClasses === "string"
+          ? [additionalClasses]
+          : additionalClasses;
 
-      return [blockName, ...blockModifiersAppliedFromRender, ...arrayOfAdditionalClasses]
+      return [
+        blockName,
+        ...blockModifiersAppliedFromRender,
+        ...arrayOfAdditionalClasses,
+      ]
         .join(" ")
         .trim();
     },
@@ -89,7 +100,10 @@ export function bem(blockName: string): UseBemMethods {
     ): string => {
       const elementFullName = `${blockName}__${elementName}`;
 
-      if (typeof blockModifiersAndClasses === "string" || Array.isArray(blockModifiersAndClasses)) {
+      if (
+        typeof blockModifiersAndClasses === "string" ||
+        Array.isArray(blockModifiersAndClasses)
+      ) {
         return getAdditionalClasses(elementFullName, blockModifiersAndClasses);
       }
 
@@ -99,9 +113,10 @@ export function bem(blockName: string): UseBemMethods {
         blockModifiersAndClasses
       );
 
-      const arrayOfAdditionalClasses = typeof additionalClasses === "string"
-        ? [additionalClasses]
-        : additionalClasses;
+      const arrayOfAdditionalClasses =
+        typeof additionalClasses === "string"
+          ? [additionalClasses]
+          : additionalClasses;
 
       return [
         elementFullName,

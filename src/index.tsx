@@ -5,7 +5,6 @@ import { RouterProvider } from "react-router-dom";
 
 import { router } from "@app/providers/router";
 import store from "@app/providers/store/index";
-import "@app/styles/bootstrap-grid.min.css";
 import "@app/styles/fonts.scss";
 import "@app/styles/global.scss";
 

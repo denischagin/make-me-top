@@ -1,7 +1,12 @@
+import { useAppDispatch } from "@app/providers/store/hooks";
+
+import { Modal } from "@shared/Modal";
 import { Typography } from "@shared/Typography";
 import { Button } from "@shared/buttons/Button";
 import { CardBig } from "@shared/cards/CardBig";
 import { bem } from "@shared/utils/bem";
+
+import { showModal } from "@entities/user/model";
 
 import { ProgressBar } from "@widgets/ProgressBar";
 
@@ -20,10 +25,22 @@ export const CurrentStarCard = () => {
     progress: "50",
   };
 
-  const { planet, star, curator, progress } = starInfo;
+  const {
+    planet,
+    star,
+    curator,
+    progress
+  } = starInfo;
+  const dispatch = useAppDispatch();
 
   return (
     <div className={block()}>
+      <Modal
+        name={planet.name}
+        locked
+      >
+        ...
+      </Modal>
       <CardBig>
         <div className={element("heading")}>
           <Typography variant="h2">
@@ -56,6 +73,9 @@ export const CurrentStarCard = () => {
             size="large"
             color="filled"
             title="Продолжить"
+            action={() => {
+              dispatch(showModal());
+            }}
           />
         </div>
       </CardBig>
