@@ -1,4 +1,4 @@
-import { TabInterface } from "@shared/api/types";
+import { TabInterface } from "@shared/types/common";
 
 export interface CurrentStarCardInterface {
   starInfo: CurrentStarItemInterface;
