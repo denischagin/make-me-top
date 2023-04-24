@@ -5,7 +5,7 @@ import { useAppDispatch } from "@app/providers/store/hooks";
 import { Modal } from "@shared/Modal";
 import { Typography } from "@shared/Typography";
 import { Button } from "@shared/Button";
-import { TabsList } from "@shared/Tabs";
+import { MmtTabs } from "@shared/MmtTabs";
 import { CardBig } from "@shared/CardBig";
 import { bem } from "@shared/utils/bem";
 
@@ -38,11 +38,11 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         name={planet.name}
         locked
       >
-        <TabsList list={tabsList}>
+        <MmtTabs list={tabsList}>
           <TabPanel>Контент 1</TabPanel>
           <TabPanel>Контент 2</TabPanel>
           <TabPanel>Контент 3</TabPanel>
-        </TabsList>
+        </MmtTabs>
       </Modal>
       <CardBig>
         <div className={element("heading")}>

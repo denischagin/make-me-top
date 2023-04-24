@@ -4,7 +4,7 @@ import { TabsListInterface } from "./interfaces";
 
 import "./styles.scss";
 
-export const TabsList = (props: TabsListInterface) => {
+export const MmtTabs = (props: TabsListInterface) => {
   const {
     list,
     children
