@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction } from "react";
+import { ReactNode } from "react";
 
 export interface TabsListInterface {
   list: Array<string>
-  setCurrentTab: Dispatch<SetStateAction<string>>
+  children: ReactNode
 }
 

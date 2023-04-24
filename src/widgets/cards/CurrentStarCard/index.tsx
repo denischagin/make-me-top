@@ -1,11 +1,11 @@
-import { useState } from "react";
-
 import { useAppDispatch } from "@app/providers/store/hooks";
 
 import { Modal } from "@shared/Modal";
 import { Typography } from "@shared/Typography";
 import { Button } from "@shared/buttons/Button";
 import { CardBig } from "@shared/cards/CardBig";
+import { TabPanel } from "react-tabs";
+
 import { bem } from "@shared/utils/bem";
 import { TabsList } from "@shared/buttons/Tabs";
 
@@ -28,7 +28,6 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
   } = props;
 
   const [block, element] = bem("current-star-card");
-  const [currantTab, setCurrentTab] = useState("Планеты");
 
   const dispatch = useAppDispatch();
 
@@ -40,8 +39,17 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
       >
         <TabsList
           list={tabsList}
-          setCurrentTab={setCurrentTab}
-        />
+        >
+          <TabPanel>
+            Контент 1
+          </TabPanel>
+          <TabPanel>
+            Контент 2
+          </TabPanel>
+          <TabPanel>
+            Контент 3
+          </TabPanel>
+        </TabsList>
       </Modal>
       <CardBig>
         <div className={element("heading")}>

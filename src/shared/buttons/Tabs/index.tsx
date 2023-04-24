@@ -6,11 +6,11 @@ import "./styles.scss";
 export const TabsList = (props: TabsListInterface) => {
   const {
     list,
-    setCurrentTab
+    children
   } = props;
 
   return (
-    <Tabs onSelect={(index) => setCurrentTab(props.list[index])}>
+    <Tabs>
       <TabList>
         {
           list.map((tab) => (
@@ -20,6 +20,7 @@ export const TabsList = (props: TabsListInterface) => {
           ))
         }
       </TabList>
+      { children }
     </Tabs>
   );
 };
