@@ -3,6 +3,7 @@ import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 import { bem } from "@shared/utils/bem";
 
 import { arrayOfStars } from "./model";
+
 import "./styles.scss";
 
 export const CompletedStars = () => {

@@ -1,4 +1,5 @@
 import { planetInputInterface } from "./interfaces";
+
 import "./styles.scss";
 
 export const PlanetInput = (props: planetInputInterface) => {

@@ -1,5 +1,5 @@
 import { Typography } from "@shared/Typography";
-import { AvatarSmall } from "@shared/avatars/AvatarSmall";
+import { AvatarSmall } from "@shared/AvatarSmall";
 import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 import { bem } from "@shared/utils/bem";
 

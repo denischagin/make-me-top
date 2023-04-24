@@ -1,6 +1,6 @@
 import { Typography } from "@shared/Typography";
-import { AvatarBig } from "@shared/avatars/AvatarBig";
-import { CardSmall } from "@shared/cards/CardSmall";
+import { AvatarBig } from "@shared/AvatarBig";
+import { CardSmall } from "@shared/CardSmall";
 import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 import { bem } from "@shared/utils/bem";
 
