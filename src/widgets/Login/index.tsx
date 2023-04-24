@@ -2,8 +2,8 @@ import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
 import { PlanetInput } from "@shared/PlanetInput";
 import { Typography } from "@shared/Typography";
-import { RouterLink } from "@shared/buttons/Link";
-import { PlanetButton } from "@shared/buttons/PlanetButton";
+import { RouterLink } from "@shared/Link";
+import { PlanetButton } from "@shared/PlanetButton";
 import { URL_CURATOR, URL_EXPLORER } from "@shared/constants/links";
 import { bem } from "@shared/utils/bem";
 

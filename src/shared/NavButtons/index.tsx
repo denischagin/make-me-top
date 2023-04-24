@@ -1,17 +1,19 @@
 import { useAppDispatch } from "@app/providers/store/hooks";
 
-import { RouterLink } from "@shared/buttons/Link";
+import { RouterLink } from "@shared/Link";
 
 import { logOut } from "@entities/user/model";
 
-import { Typography } from "../Typography";
 import {
   URL_CURATORS,
   URL_DEFAULT,
   URL_EXPLORER,
   URL_EXPLORERS,
 } from "../constants/links";
+
+import { Typography } from "../Typography";
 import { ReactComponent as ExitIcon } from "../images/exit.svg";
+
 import "./styles.scss";
 
 export const NavButtons = () => {

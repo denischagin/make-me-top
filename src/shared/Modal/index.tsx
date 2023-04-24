@@ -9,6 +9,7 @@ import { bem } from "@shared/utils/bem";
 import { showModal } from "@entities/user/model";
 
 import { ModalInterface } from "./interfaces";
+
 import "./styles.scss";
 
 export const Modal = (props: ModalInterface) => {
