@@ -1,7 +1,10 @@
+import { TabInterface } from "@shared/api/types";
+
 export interface CurrentStarCardInterface {
   starInfo: CurrentStarItemInterface;
-  tabsList: Array<string>;
+  tabsList: Array<TabInterface>;
 }
+
 interface CurrentStarItemInterface {
   planet: {
     id: number;

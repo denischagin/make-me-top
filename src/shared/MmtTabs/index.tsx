@@ -14,7 +14,9 @@ export const MmtTabs = (props: TabsListInterface) => {
     <Tabs>
       <TabList>
         {list.map((tab) => (
-          <Tab key={tab}>{tab}</Tab>
+          <Tab key={tab.id}>
+            {tab.name}
+          </Tab>
         ))}
       </TabList>
       {children}

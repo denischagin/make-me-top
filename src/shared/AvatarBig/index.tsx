@@ -1,6 +1,6 @@
 import { bem } from "@shared/utils/bem";
 
-import { AvatarInterface } from "./interfaces";
+import { AvatarInterface } from "@shared/api/types";
 
 import "./styles.scss";
 
