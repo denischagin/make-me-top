@@ -31,6 +31,16 @@
 
   &__star {
 
+    &--size-small,
+    &--size-medium {
+      transform: scale(1);
+    }
+
+    &--size-large {
+      transform: scale(1.5);
+      margin: 0px 4px;
+    }
+
     &--color-primary-500 {
       color: $primary-500;
     }
