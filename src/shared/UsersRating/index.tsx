@@ -2,15 +2,17 @@ import { Typography } from "@shared/Typography";
 import { AvatarSmall } from "@shared/AvatarSmall";
 import { Rating } from "@shared/Rating";
 import { bem } from "@shared/utils/bem";
-import { UserInterface } from "@shared/types/common";
+import { UserInfoInterface } from "@shared/types/common";
 
 import "./styles.scss";
 
-export const UsersRating = (props: UserInterface) => {
+export const UsersRating = (props: UserInfoInterface) => {
   const {
-    name,
-    avatar,
-    rating
+    user: {
+      name,
+      avatar,
+      rating
+    }
   } = props;
 
   const [block, element] = bem("rating-info");

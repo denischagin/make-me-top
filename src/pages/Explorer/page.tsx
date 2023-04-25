@@ -25,12 +25,7 @@ export const Explorer = () => {
       <div className={element("container", "container p-0")}>
         <div className={element("row", "row")}>
           <div className={element("profile", "col-xxl-9")}>
-            <ExplorerUserInfo
-              name={USER_INFO.name}
-              avatar={USER_INFO.avatar}
-              rating={USER_INFO.rating}
-              id={USER_INFO.id}
-            />
+            <ExplorerUserInfo user={USER_INFO} />
             <div className={element("current-star")}>
               <div className={element("current-star-heading")}>
                 <Typography variant="h2">Текущая звезда</Typography>
@@ -48,7 +43,7 @@ export const Explorer = () => {
             </div>
           </div>
           <div className={element("rating", "col-xxl-3")}>
-            <div className={element("rating-heading")}>
+            <div className={element("rating-heading", "mt-1")}>
               <Typography variant="h2">Рейтинг</Typography>
             </div>
             <RatingCard

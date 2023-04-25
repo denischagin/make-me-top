@@ -22,20 +22,16 @@ export const RatingCard = (props: RatingCardInterface) => {
           <Typography variant="medium16">Мой рейтинг</Typography>
         </div>
         <UsersRating
-          name={user.name}
-          avatar={user.avatar}
-          rating={user.rating}
+          user={user}
         />
         <DividingLine />
         <div className={element("heading")}>
           <Typography variant="medium16">Общий рейтинг</Typography>
         </div>
-        {list.map((item) => (
+        {list.map((user) => (
           <UsersRating
-            key={item.id}
-            name={item.name}
-            avatar={item.avatar}
-            rating={item.rating}
+            key={user.id}
+            user={user}
           />
         ))}
       </div>

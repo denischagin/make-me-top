@@ -3,16 +3,19 @@ import { AvatarBig } from "@shared/AvatarBig";
 import { CardSmall } from "@shared/CardSmall";
 import { Rating } from "@shared/Rating";
 import { bem } from "@shared/utils/bem";
-import { UserInterface } from "@shared/types/common";
+import { UserInfoInterface } from "@shared/types/common";
 
 import "./styles.scss";
 
-export const ExplorerUserInfo = (props: UserInterface) => {
+export const ExplorerUserInfo = (props: UserInfoInterface) => {
   const {
-    name,
-    avatar,
-    rating
+    user: {
+      name,
+      avatar,
+      rating
+    }
   } = props;
+
   const [block, element] = bem("profile-info");
 
   return (
