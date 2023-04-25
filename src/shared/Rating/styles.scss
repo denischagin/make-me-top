@@ -19,6 +19,14 @@
     &--size-small {
       font-size: 10px;
     }
+
+    &--color-black {
+      color: $black;
+    }
+
+    &--color-white {
+      color: $white;
+    }
   }
 
   &__star {

@@ -9,6 +9,7 @@ import "./styles.scss";
 export const Rating = (props: RatingInterface) => {
   const {
     starColor,
+    scoreColor,
     size
   } = props;
 
@@ -24,7 +25,12 @@ export const Rating = (props: RatingInterface) => {
             : <StarBigIcon className={element("star", { color: starColor })} />
         )
       }
-      <p className={element("score", { size: size })}>{ props.rating.toFixed(1) }</p>
+      <p className={element("score", {
+        size: size,
+        color: scoreColor
+      })}>
+        { props.rating.toFixed(1) }
+      </p>
       {
         props.reflect &&
         (

@@ -27,6 +27,7 @@ export const UsersRating = (props: UserInfoInterface) => {
         <Rating
           rating={rating}
           size="medium"
+          scoreColor="white"
           starColor="primary-500"
         />
       </span>

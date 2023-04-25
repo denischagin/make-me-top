@@ -32,6 +32,7 @@ export const ExplorerUserInfo = (props: UserInfoInterface) => {
             </div>
             <span className={element("current-rating")}>
               <Rating
+                scoreColor="white"
                 rating={ rating }
                 size="large"
                 starColor="primary-500"

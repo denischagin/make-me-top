@@ -19,6 +19,7 @@ export const CompletedStars = () => {
           <p className={element("label")}>{item.name}</p>
           <div className={element("star-rating")}>
             <Rating
+              scoreColor="white"
               rating={item.rate}
               size="small"
               starColor="white"

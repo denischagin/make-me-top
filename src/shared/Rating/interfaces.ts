@@ -3,4 +3,5 @@ export interface RatingInterface {
   rating: number
   starColor: "primary-500" | "white"
   size: "small" | "large" | "medium"
+  scoreColor: "black" | "white"
 }
