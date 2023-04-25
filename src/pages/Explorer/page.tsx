@@ -7,7 +7,12 @@ import { Header } from "@widgets/Header";
 import { CurrentStarCard } from "@widgets/CurrentStarCard";
 import { RatingCard } from "@widgets/RatingCard";
 
-import { starInfo, tabsList } from "./model";
+import {
+  USERS_LIST,
+  USER_INFO,
+  STAR_INFO,
+  TABS_LIST
+} from "./model";
 
 import "./styles.scss";
 
@@ -20,14 +25,19 @@ export const Explorer = () => {
       <div className={element("container", "container p-0")}>
         <div className={element("row", "row")}>
           <div className={element("profile", "col-xxl-9")}>
-            <ExplorerUserInfo />
+            <ExplorerUserInfo
+              name={USER_INFO.name}
+              avatar={USER_INFO.avatar}
+              rating={USER_INFO.rating}
+              id={USER_INFO.id}
+            />
             <div className={element("current-star")}>
               <div className={element("current-star-heading")}>
                 <Typography variant="h2">Текущая звезда</Typography>
               </div>
               <CurrentStarCard
-                starInfo={starInfo}
-                tabsList={tabsList}
+                starInfo={STAR_INFO}
+                tabsList={TABS_LIST}
               />
             </div>
             <div className={element("completed-stars")}>
@@ -41,7 +51,10 @@ export const Explorer = () => {
             <div className={element("rating-heading")}>
               <Typography variant="h2">Рейтинг</Typography>
             </div>
-            <RatingCard />
+            <RatingCard
+              list={USERS_LIST}
+              user={USER_INFO}
+            />
           </div>
         </div>
       </div>

@@ -1,0 +1,34 @@
+@import "@app/styles/variables.scss";
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &__score {
+    margin: 0;
+
+    &--size-large {
+      font-size: 16px;
+    }
+  
+    &--size-medium {
+      font-size: 14px;
+    }
+  
+    &--size-small {
+      font-size: 10px;
+    }
+  }
+
+  &__star {
+
+    &--color-primary-500 {
+      color: $primary-500;
+    }
+  
+    &--color-white {
+      color: $white;
+    }
+  }
+}

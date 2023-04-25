@@ -6,3 +6,10 @@ export interface TabInterface {
 export interface AvatarInterface {
   image: string;
 }
+
+export interface UserInterface {
+  name: string
+  avatar: string
+  rating: number
+  id?: number
+}

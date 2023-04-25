@@ -1,6 +1,6 @@
 import { Star } from "@shared/Star";
-import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 import { bem } from "@shared/utils/bem";
+import { Rating } from "@shared/Rating";
 
 import { arrayOfStars } from "./model";
 
@@ -18,8 +18,11 @@ export const CompletedStars = () => {
         >
           <p className={element("label")}>{item.name}</p>
           <div className={element("star-rating")}>
-            <StarIcon />
-            <p className={element("star-rating-score")}>{item.rate}</p>
+            <Rating
+              rating={item.rate}
+              size="small"
+              starColor="white"
+            />
           </div>
         </Star>
       ))}
