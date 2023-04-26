@@ -1,20 +1,29 @@
 import { Typography } from "@shared/Typography";
 import { AvatarBig } from "@shared/AvatarBig";
 import { CardSmall } from "@shared/CardSmall";
-import { ReactComponent as StarIcon } from "@shared/images/star.svg";
+import { Rating } from "@shared/Rating";
 import { bem } from "@shared/utils/bem";
+import { UserInfoInterface } from "@shared/types/common";
 
 import "./styles.scss";
 
-export const ExplorerUserInfo = () => {
+export const ExplorerUserInfo = (props: UserInfoInterface) => {
+  const {
+    user: {
+      name,
+      avatar,
+      rating
+    }
+  } = props;
+
   const [block, element] = bem("profile-info");
 
   return (
     <div className={block()}>
-      <AvatarBig image="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg" />
+      <AvatarBig image={ avatar } />
       <div className={element("description")}>
         <div className={element("description-name")}>
-          <Typography variant="h1">Фамилия Имя Отчество</Typography>
+          <Typography variant="h1">{ name }</Typography>
         </div>
         <div className={element("rating")}>
           <CardSmall>
@@ -22,8 +31,12 @@ export const ExplorerUserInfo = () => {
               <Typography variant="regular16">Рейтинг</Typography>
             </div>
             <span className={element("current-rating")}>
-              <StarIcon />
-              <p className={element("current-score")}>4.0</p>
+              <Rating
+                scoreColor="white"
+                rating={ rating }
+                size="large"
+                starColor="primary-500"
+              />
             </span>
           </CardSmall>
           <CardSmall>

@@ -1,22 +1,35 @@
 import { Typography } from "@shared/Typography";
 import { AvatarSmall } from "@shared/AvatarSmall";
-import { ReactComponent as StarIcon } from "@shared/images/star.svg";
+import { Rating } from "@shared/Rating";
 import { bem } from "@shared/utils/bem";
+import { UserInfoInterface } from "@shared/types/common";
 
 import "./styles.scss";
 
-export const UsersRating = () => {
+export const UsersRating = (props: UserInfoInterface) => {
+  const {
+    user: {
+      name,
+      avatar,
+      rating
+    }
+  } = props;
+
   const [block, element] = bem("rating-info");
 
   return (
     <div className={block()}>
-      <AvatarSmall image="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg" />
+      <AvatarSmall image={avatar} />
       <div className={element("user-name")}>
-        <Typography variant="regular14">Фамилия Имя Отчество</Typography>
+        <Typography variant="regular14">{ name }</Typography>
       </div>
       <span className={element("user-score")}>
-        <StarIcon className={element("user-score-star")} />
-        <p className={element("user-score-num")}>4.8</p>
+        <Rating
+          rating={ rating }
+          size="medium"
+          scoreColor="white"
+          starColor="primary-500"
+        />
       </span>
     </div>
   );
