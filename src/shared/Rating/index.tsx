@@ -9,10 +9,13 @@ export const Rating = (props: RatingInterface) => {
   const {
     starColor,
     scoreColor,
-    size
+    size,
+    rating
   } = props;
 
   const [block, element] = bem("rating");
+
+  const score = rating ? rating.toFixed(1) : "—";
 
   return (
     <div className={block()}>
@@ -25,14 +28,14 @@ export const Rating = (props: RatingInterface) => {
           })}
         />
       }
-      <p
+      <span
         className={element("score", {
           size: size,
           color: scoreColor
         })}
       >
-        { props.rating.toFixed(1) }
-      </p>
+        { score }
+      </span>
       {
         props.reflect &&
         <StarIcon className={element("star", {

@@ -14,6 +14,6 @@ export interface UserInfoInterface {
 export interface UserInterface {
   name: string
   avatar: string
-  rating: number
+  rating?: number | null;
   id?: number
 }

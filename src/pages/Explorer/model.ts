@@ -39,7 +39,7 @@ export const USERS_LIST = [
   {
     name: "Фамилия Имя Отчество",
     avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
-    rating: 4.8,
+    rating: null,
     id: 3
   },
   {
@@ -51,7 +51,6 @@ export const USERS_LIST = [
   {
     name: "Фамилия Имя Отчество",
     avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
-    rating: 3.5,
     id: 5
   },
   {

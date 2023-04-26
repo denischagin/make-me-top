@@ -25,7 +25,7 @@ export const UsersRating = (props: UserInfoInterface) => {
       </div>
       <span className={element("user-score")}>
         <Rating
-          rating={rating}
+          rating={ rating }
           size="medium"
           scoreColor="white"
           starColor="primary-500"
