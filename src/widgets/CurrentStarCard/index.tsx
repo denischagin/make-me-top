@@ -62,7 +62,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
           <TabPanel>
             <CurrentUserItem
               user={USER_INFO}
-              badgeTitle={"Мой рейтинг"}
+              badgeTitle="Мой рейтинг"
             />
             <DividingLine color="gray-500"/>
             <UsersList list={EXPLORERS_LIST} />

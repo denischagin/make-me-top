@@ -26,9 +26,9 @@ export const UsersList = (props: UserListInterface) => {
             </div>
             <div className={element("info")}>
               <Rating
-                starColor={"primary-500"}
-                size={"medium"}
-                scoreColor={"black"}
+                starColor="primary-500"
+                size="medium"
+                scoreColor="black"
                 rating={user.rating}
               />
             </div>

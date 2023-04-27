@@ -2,7 +2,7 @@ import { bem } from "@shared/utils/bem";
 import { Button } from "@shared/Button";
 import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 
-import { RequiredStarsListInterface } from "./interfaces";
+import { RequiredStarsListInterface, RequiredStarInterface } from "./interfaces";
 
 import "./styles.scss";
 
@@ -16,7 +16,7 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
   return (
     <div className={block()}>
       {
-        list.map((star) => (
+        list.map((star: RequiredStarInterface) => (
           <div
             key={star.id}
             className={element("item")}

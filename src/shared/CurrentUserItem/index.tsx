@@ -30,9 +30,9 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
             { badgeTitle }
           </span>
           <Rating
-            starColor={"primary-500"}
-            size={"medium"}
-            scoreColor={"black"}
+            starColor="primary-500"
+            size="medium"
+            scoreColor="black"
             rating={ rating }
           />
         </div>

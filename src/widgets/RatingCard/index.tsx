@@ -3,6 +3,7 @@ import { Typography } from "@shared/Typography";
 import { UsersRating } from "@shared/UsersRating";
 import { CardBig } from "@shared/CardBig";
 import { bem } from "@shared/utils/bem";
+import { UserInterface } from "@shared/types/common";
 
 import { RatingCardInterface } from "./interfaces";
 
@@ -29,7 +30,7 @@ export const RatingCard = (props: RatingCardInterface) => {
         <div className={element("heading")}>
           <Typography variant="medium16">Общий рейтинг</Typography>
         </div>
-        {list.map((user) => (
+        {list.map((user: UserInterface) => (
           <UsersRating
             key={user.id}
             user={user}
