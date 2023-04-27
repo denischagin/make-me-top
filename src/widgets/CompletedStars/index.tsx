@@ -2,7 +2,7 @@ import { Star } from "@shared/Star";
 import { bem } from "@shared/utils/bem";
 import { Rating } from "@shared/Rating";
 
-import { arrayOfStars } from "./model";
+import { COMPLETED_STARS_LIST } from "./model";
 
 import "./styles.scss";
 
@@ -11,7 +11,7 @@ export const CompletedStars = () => {
 
   return (
     <div className={block()}>
-      {arrayOfStars.map((item) => (
+      {COMPLETED_STARS_LIST.map((item) => (
         <Star
           color="primary-500"
           key={item.name}

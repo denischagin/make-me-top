@@ -45,7 +45,9 @@ export const Modal = (props: ModalInterface) => {
               onClick={() => dispatch(showModal())}
             />
           </div>
-          <div className={element("item-list")}>{children}</div>
+          <div className={element("item-list")}>
+            {children}
+          </div>
         </div>
       </div>
     </Portal>

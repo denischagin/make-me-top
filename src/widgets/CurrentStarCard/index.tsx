@@ -1,4 +1,5 @@
 import { TabPanel } from "react-tabs";
+import { motion } from "framer-motion";
 
 import { useAppDispatch } from "@app/providers/store/hooks";
 
@@ -8,20 +9,37 @@ import { Button } from "@shared/Button";
 import { MmtTabs } from "@shared/MmtTabs";
 import { CardBig } from "@shared/CardBig";
 import { bem } from "@shared/utils/bem";
+import { PlanetList } from "@shared/PlanetList";
+import { CuratorsList } from "@shared/CuratorsList";
+import { ExplorersList } from "@shared/ExplorersList";
 
 import { showModal } from "@entities/user/model";
 
 import { ProgressBar } from "@widgets/ProgressBar";
 
+import {
+  PLANETS_LIST,
+  CURATORS_LIST,
+  EXPLORERS_LIST,
+  USER_INFO,
+  CURATOR_INFO
+} from "./model";
+
+
 import { CurrentStarCardInterface } from "./interfaces";
 
 import "./styles.scss";
+import { CurrentUserItem } from "@shared/CurrentUserItem";
+import { DividingLine } from "@shared/DividingLine";
 
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
   const {
     tabsList,
     starInfo: {
-      planet,
+      planet: {
+        name,
+        id
+      },
       star,
       curator,
       progress
@@ -34,20 +52,36 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
   return (
     <div className={block()}>
-      <Modal
-        name={planet.name}
-        locked
-      >
+      <Modal name={ name }>
         <MmtTabs list={tabsList}>
-          <TabPanel>Контент 1</TabPanel>
-          <TabPanel>Контент 2</TabPanel>
-          <TabPanel>Контент 3</TabPanel>
+          <TabPanel>
+            <PlanetList
+              list={PLANETS_LIST}
+              currentPlanet={ name }
+            />
+          </TabPanel>
+          <TabPanel>
+            <CurrentUserItem
+              user={USER_INFO}
+              badgeTitle={"Мой рейтинг"}
+            />
+            <DividingLine color="gray-500"/>
+            <ExplorersList list={EXPLORERS_LIST} />
+          </TabPanel>
+          <TabPanel>
+            <CurrentUserItem
+              user={CURATOR_INFO}
+              badgeTitle={"Мой рейтинг"}
+            />
+            <DividingLine color="gray-500"/>
+            <CuratorsList list={CURATORS_LIST} />
+          </TabPanel>
         </MmtTabs>
       </Modal>
       <CardBig>
         <div className={element("heading")}>
           <Typography variant="h2">
-            Планета: {planet.id}. {planet.name}
+            Планета: { id }. { name }
           </Typography>
         </div>
         <div className={element("current-star")}>

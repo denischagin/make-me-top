@@ -1,0 +1,67 @@
+@import "@app/styles/variables.scss";
+
+.curators-list {
+  margin: 24px auto;
+
+  &__item,
+  &__current-user  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: default;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: $gray-400;
+
+      .curators-list__name  {
+        font-family: $font-text-medium;
+      }
+
+      .curators-list__button {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__current-user {
+    padding: 12px 16px;
+    background-color: $gray-400;
+  }
+
+  &__my-name {
+    font-family: $font-text-medium;
+  }
+
+  &__user,
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__badge {
+    color: $white;
+    font-size: 14px;
+    padding: 4px 10px;
+    background-color: $primary-500;
+    border-radius: 50px;
+  }
+
+  &__rating {
+    &--hide {
+      display: none;
+    }
+  }
+
+  &__button {
+    opacity: 0;
+    transition: 0.2s;
+
+    &--visible {
+      opacity: 1;
+    }
+  }
+}

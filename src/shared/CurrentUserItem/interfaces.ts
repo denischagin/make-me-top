@@ -1,6 +1,6 @@
 import { UserInterface } from "@shared/types/common";
 
-export interface RatingCardInterface {
+export interface CurrentUserItemInterface {
   user: UserInterface
-  list: Array<UserInterface>
+  badgeTitle: string
 }
