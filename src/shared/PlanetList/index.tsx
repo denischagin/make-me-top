@@ -26,7 +26,7 @@ export const PlanetList = (props: PlanetListInterface) => {
             })}
           >
             <span className={element("name")}>
-              { index + 1 }. { planet.name }
+              { ++index }. { planet.name }
             </span>
             { planet.locked && <LockIcon className={element("lock-icon")}/> }
             {

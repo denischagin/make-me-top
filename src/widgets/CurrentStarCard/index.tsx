@@ -10,7 +10,7 @@ import { MmtTabs } from "@shared/MmtTabs";
 import { CardBig } from "@shared/CardBig";
 import { bem } from "@shared/utils/bem";
 import { PlanetList } from "@shared/PlanetList";
-import { UsersList } from "@shared/SelectUsersList";
+import { UsersList } from "@shared/UsersList";
 import { CurrentUserItem } from "@shared/CurrentUserItem";
 import { DividingLine } from "@shared/DividingLine";
 

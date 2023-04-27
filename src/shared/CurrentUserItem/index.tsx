@@ -29,14 +29,12 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
           <span className={element("badge")}>
             { badgeTitle }
           </span>
-          <span className={element("rating")}>
-            <Rating
-              starColor={"primary-500"}
-              size={"medium"}
-              scoreColor={"black"}
-              rating={ rating }
-            />
-          </span>
+          <Rating
+            starColor={"primary-500"}
+            size={"medium"}
+            scoreColor={"black"}
+            rating={ rating }
+          />
         </div>
       </div>
     </div>
