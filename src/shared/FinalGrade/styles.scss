@@ -1,0 +1,47 @@
+@import "@app/styles/variables.scss";
+
+.final-grade {
+    cursor: default;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    transition: 0.2s;
+    margin-left: 2px;
+    font-family: $font-text-regular;
+    color: $gray-600;
+
+    &:hover {
+      color: $black;
+
+      .final-grade__lock-icon {
+        opacity: 1;
+        margin-left: 28px;
+      }
+    }
+
+    &__lock-icon {
+      transition: 0.2s;
+      color: $black;
+      opacity: 0;
+      margin-bottom: 2px;
+      transform: scale(1.5);
+    }
+
+    &__star-icon {
+      color: $gray-500;
+      transition: 0.2s;
+      margin-left: 10px;
+      transform: scale(1.3);
+
+      &:hover {
+        color: $primary-500;
+      }
+    }
+  
+    &__stars {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }

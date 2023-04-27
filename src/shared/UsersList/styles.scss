@@ -3,8 +3,7 @@
 .users-list {
   margin: 24px auto;
   
-  &__item,
-  &__current-user {
+  &__item {
     cursor: default;
     border-radius: 8px;
     padding: 12px 16px;
@@ -14,26 +13,10 @@
     align-items: center;
   }
 
-  &__current-user {
-    background-color: $gray-400;
-  }
-
-  &__my-name {
-    font-family: $font-text-medium;
-  }
-
   &__info {
     display: flex;
     gap: 16px;
     align-items: center;
-  }
-
-  &__badge {
-    color: $white;
-    font-size: 14px;
-    padding: 4px 10px;
-    background-color: $primary-500;
-    border-radius: 50px;
   }
 
   &__user {

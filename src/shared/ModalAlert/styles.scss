@@ -1,0 +1,11 @@
+@import "@app/styles/variables.scss";
+
+.modal-alert {
+  padding: 16px;
+  background-color: $gray-400;
+  border-radius: 8px;
+
+  &__title {
+    color: $primary-500;
+  }
+}

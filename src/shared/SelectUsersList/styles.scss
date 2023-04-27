@@ -3,8 +3,7 @@
 .select-list {
   margin: 24px auto;
 
-  &__item,
-  &__current-user  {
+  &__item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,28 +26,11 @@
     }
   }
 
-  &__current-user {
-    padding: 12px 16px;
-    background-color: $gray-400;
-  }
-
-  &__my-name {
-    font-family: $font-text-medium;
-  }
-
   &__user,
   &__info {
     display: flex;
     align-items: center;
     gap: 16px;
-  }
-
-  &__badge {
-    color: $white;
-    font-size: 14px;
-    padding: 4px 10px;
-    background-color: $primary-500;
-    border-radius: 50px;
   }
 
   &__rating {

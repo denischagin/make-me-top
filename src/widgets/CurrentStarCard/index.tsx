@@ -1,5 +1,4 @@
 import { TabPanel } from "react-tabs";
-import { motion } from "framer-motion";
 
 import { useAppDispatch } from "@app/providers/store/hooks";
 
@@ -13,6 +12,7 @@ import { PlanetList } from "@shared/PlanetList";
 import { UsersList } from "@shared/UsersList";
 import { CurrentUserItem } from "@shared/CurrentUserItem";
 import { DividingLine } from "@shared/DividingLine";
+import { FinalGrade } from "@shared/FinalGrade";
 
 import { showModal } from "@entities/user/model";
 
@@ -57,6 +57,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
               list={PLANETS_LIST}
               currentPlanet={ name }
             />
+            <FinalGrade />
           </TabPanel>
           <TabPanel>
             <CurrentUserItem
