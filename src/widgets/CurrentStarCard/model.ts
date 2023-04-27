@@ -23,6 +23,26 @@ export const PLANETS_LIST = [
     name: "Java",
     id: 5,
     locked: true
+  },
+  {
+    name: "React",
+    id: 6,
+    locked: true
+  },
+  {
+    name: "React",
+    id: 7,
+    locked: true
+  },
+  {
+    name: "CSS",
+    id: 8,
+    locked: true
+  },
+  {
+    name: "Angular",
+    id: 9,
+    locked: true
   }
 ];
 
@@ -56,7 +76,13 @@ export const EXPLORERS_LIST = [
     avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
     rating: 4.1,
     id: 5,
-  }
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    rating: 4.7,
+    id: 6,
+  },
 ];
 
 export const CURATORS_LIST = [
@@ -89,6 +115,12 @@ export const CURATORS_LIST = [
     avatar: "https://img.freepik.com/free-photo/happy-smiling-businessman-in-eyeglasses-holding-folder_171337-18854.jpg",
     rating: 4.6,
     id: 5,
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://img.freepik.com/free-photo/happy-smiling-businessman-in-eyeglasses-holding-folder_171337-18854.jpg",
+    rating: 4.1,
+    id: 6,
   }
 ];
 
@@ -102,6 +134,6 @@ export const USER_INFO = {
 export const CURATOR_INFO = {
   name: "Фамилия Имя Отчество",
   avatar: "https://img.freepik.com/free-photo/happy-smiling-businessman-in-eyeglasses-holding-folder_171337-18854.jpg",
-  rating: 4.8,
+  rating: 5.0,
   id: 1,
 };

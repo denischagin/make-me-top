@@ -1,6 +1,6 @@
 @import "@app/styles/variables.scss";
 
-.curators-list {
+.select-list {
   margin: 24px auto;
 
   &__item,
@@ -16,11 +16,12 @@
     &:hover {
       background-color: $gray-400;
 
-      .curators-list__name  {
+      .select-list__name  {
         font-family: $font-text-medium;
       }
 
-      .curators-list__button {
+      .select-list__button {
+        transition: 0.2s;
         opacity: 1;
       }
     }
@@ -58,7 +59,7 @@
 
   &__button {
     opacity: 0;
-    transition: 0.2s;
+    transition: 0.3s;
 
     &--visible {
       opacity: 1;

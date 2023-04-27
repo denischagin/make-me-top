@@ -3,14 +3,16 @@ import { Button } from "@shared/Button";
 import { ReactComponent as LockIcon } from "@shared/images/lock.svg";
 
 import { PlanetInterface, PlanetListInterface } from "./interfaces";
+
 import "./styles.scss";
 
 export const PlanetList = (props: PlanetListInterface) => {
-  const [block, element] = bem("planet-list");
   const {
     list,
     currentPlanet
   } = props;
+
+  const [block, element] = bem("planet-list");
 
   return (
     <div className={block()}>
@@ -20,17 +22,17 @@ export const PlanetList = (props: PlanetListInterface) => {
             key={planet.id}
             className={element("item", {
               active: !planet.locked,
-              "current-planet": planet.name === currentPlanet
+              current: planet.name === currentPlanet
             })}
           >
-            <p className={element("name")}>
+            <span className={element("name")}>
               { index + 1 }. { planet.name }
-            </p>
+            </span>
             { planet.locked && <LockIcon className={element("lock-icon")}/> }
             {
-              planet.name === currentPlanet
-              && <div className={element("info")}>
-                <p className={element("item-text")}>Текущая планета</p>
+              planet.name === currentPlanet &&
+              <div className={element("info")}>
+                <span className={element("item-text")}>Текущая планета</span>
                 <Button
                   title="Проверить"
                   size="small"

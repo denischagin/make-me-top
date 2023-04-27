@@ -1,7 +1,7 @@
 @import "@app/styles/variables.scss";
 
 .planet-list {
-  margin: 24px auto;
+  margin: 24px auto auto 2px;
   font-family: $font-text-medium;
 
   &__item {
@@ -24,7 +24,7 @@
       }
     }
 
-    &--current-planet {
+    &--current {
       color: $black;
       padding: 8px 16px;
       border-left: 3px solid #CF5335;

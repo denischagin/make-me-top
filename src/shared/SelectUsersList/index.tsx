@@ -6,8 +6,8 @@ import { UserInterface, UserListInterface } from "@shared/types/common";
 
 import "./styles.scss";
 
-export const ExplorersList = (props: UserListInterface) => {
-  const [block, element] = bem("explorers-list");
+export const UsersList = (props: UserListInterface) => {
+  const [block, element] = bem("users-list");
   const {
     list,
   } = props;

@@ -9,12 +9,12 @@ import { UserInterface, UserListInterface } from "@shared/types/common";
 
 import "./styles.scss";
 
-export const CuratorsList = (props: UserListInterface) => {
+export const SelectUsersList = (props: UserListInterface) => {
   const {
     list
   } = props;
 
-  const [block, element] = bem("curators-list");
+  const [block, element] = bem("select-list");
   const [selectedUserIds, setSelectedUserIds] = useState<Array<number>>([]);
 
   function handleUserSelect(userId: number) {

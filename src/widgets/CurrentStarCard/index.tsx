@@ -10,8 +10,9 @@ import { MmtTabs } from "@shared/MmtTabs";
 import { CardBig } from "@shared/CardBig";
 import { bem } from "@shared/utils/bem";
 import { PlanetList } from "@shared/PlanetList";
-import { CuratorsList } from "@shared/CuratorsList";
-import { ExplorersList } from "@shared/ExplorersList";
+import { UsersList } from "@shared/SelectUsersList";
+import { CurrentUserItem } from "@shared/CurrentUserItem";
+import { DividingLine } from "@shared/DividingLine";
 
 import { showModal } from "@entities/user/model";
 
@@ -25,12 +26,9 @@ import {
   CURATOR_INFO
 } from "./model";
 
-
 import { CurrentStarCardInterface } from "./interfaces";
 
 import "./styles.scss";
-import { CurrentUserItem } from "@shared/CurrentUserItem";
-import { DividingLine } from "@shared/DividingLine";
 
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
   const {
@@ -66,15 +64,15 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
               badgeTitle={"Мой рейтинг"}
             />
             <DividingLine color="gray-500"/>
-            <ExplorersList list={EXPLORERS_LIST} />
+            <UsersList list={EXPLORERS_LIST} />
           </TabPanel>
           <TabPanel>
             <CurrentUserItem
               user={CURATOR_INFO}
-              badgeTitle={"Мой рейтинг"}
+              badgeTitle="Мой хранитель"
             />
             <DividingLine color="gray-500"/>
-            <CuratorsList list={CURATORS_LIST} />
+            <UsersList list={CURATORS_LIST} />
           </TabPanel>
         </MmtTabs>
       </Modal>

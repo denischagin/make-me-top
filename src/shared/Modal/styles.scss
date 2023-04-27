@@ -5,7 +5,6 @@
   position: fixed;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
   z-index: 1;
   width: 1010px;
   height: 1510px;
@@ -23,6 +22,7 @@
   }
 
   &__content {
+    margin-top: 400px;
     margin-bottom: 235px;
     display: flex;
     flex-direction: column;
