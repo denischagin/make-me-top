@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
-import { PlanetInput } from "@shared/PlanetInput";
+import { Input } from "@shared/Input";
 import { Typography } from "@shared/Typography";
 import { RouterLink } from "@shared/Link";
 import { PlanetButton } from "@shared/PlanetButton";
@@ -23,8 +23,14 @@ export const Login = () => {
         <div className={element("heading")}>
           <Typography variant="h2">Вход</Typography>
         </div>
-        <PlanetInput placeholder="Номер телефона" />
-        <PlanetInput placeholder="Пароль" />
+        <Input
+          placeholder="Номер телефона"
+          type="tel"
+        />
+        <Input
+          placeholder="Пароль"
+          type="password"
+        />
         <RouterLink path={explorer ? URL_EXPLORER : URL_CURATOR}>
           <PlanetButton
             action={() => console.log("logged")}

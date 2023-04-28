@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@app/providers/store/hooks";
 
-import { PlanetInput } from "@shared/PlanetInput";
+import { Input } from "@shared/Input";
 import { Typography } from "@shared/Typography";
 import { RouterLink } from "@shared/Link";
 import { PlanetButton } from "@shared/PlanetButton";
@@ -21,9 +21,15 @@ export const Registration = () => {
       <div className={element("heading")}>
         <Typography variant="h2">Регистрация</Typography>
       </div>
-      <PlanetInput placeholder="Имя пользователя *" />
-      <PlanetInput placeholder="Пароль *" />
-      <PlanetInput placeholder="Пароль ещё раз *" />
+      <Input placeholder="Имя пользователя *" />
+      <Input
+        placeholder="Пароль *"
+        type="password"
+      />
+      <Input
+        placeholder="Пароль ещё раз *"
+        type="password"
+      />
       <RouterLink path={URL_EXPLORER}>
         <PlanetButton
           action={() => console.log("registered")}
