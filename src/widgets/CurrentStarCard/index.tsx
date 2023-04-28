@@ -56,17 +56,15 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         <div className={element("current-curator")}>
           <Typography variant="regular14">Преподаватель: {curator}</Typography>
         </div>
-        <div className={element("progress")}>
+        <span className={element("progress")}>
           <Typography
             variant="medium16"
             color="primary-500"
           >
             Освоено {progress}%
           </Typography>
-          <span className={element("progress-bar")}>
-            <ProgressBar />
-          </span>
-        </div>
+          <ProgressBar progress={progress} />
+        </span>
         <div className={element("buttons")}>
           <Button
             size="large"

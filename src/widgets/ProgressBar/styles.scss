@@ -1,31 +1,27 @@
 @import "@app/styles/variables.scss";
 
 .progress-bar {
-  margin-top: 14px;
-  display: flex;
+  height: 2px;
   width: 100%;
-  justify-content: center;
-  align-items: center;
+  background-image: $progress-bar-gradient-after;
+  background-size: 30px;
 
-  &__dot {
-    height: 6px;
-    width: 6px;
-    margin-left: -8px;
-    border-radius: 10px;
-    background-color: $primary-500;
-  }
-
-  &__icon {
-    padding: 5px;
-    background-color: $black;
-    position: absolute;
+  &__container {
+    text-align: right;
+    height: 100%;
+    background-image: $progress-bar-gradient-before;
+    background-size: 30px;
   }
 
   &__line {
-    width: 900%;
-    height: 2px;
-    background-image: $progress-bar-gradient;
-    background-size: 30px;
-    border: none;
+    position: absolute;
+  };
+
+  &__icon {
+    background-color: $black;
+    padding: 2px;
+    position: absolute;
+    top: -10px;
+    right: -5px;
   }
 }
