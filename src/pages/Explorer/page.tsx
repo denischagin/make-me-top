@@ -11,7 +11,8 @@ import {
   USERS_LIST,
   USER_INFO,
   STAR_INFO,
-  TABS_LIST
+  TABS_LIST,
+  LINKS
 } from "./model";
 
 import "./styles.scss";
@@ -21,7 +22,7 @@ export const Explorer = () => {
 
   return (
     <div className={block()}>
-      <Header />
+      <Header links={LINKS}/>
       <div className={element("container", "container p-0")}>
         <div className={element("row", "row")}>
           <div className={element("profile", "col-xxl-9")}>

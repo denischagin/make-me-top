@@ -1,3 +1,24 @@
+import { URL_EXPLORER, URL_CURATORS, URL_DEFAULT, URL_EXPLORERS } from "@shared/constants/links";
+
+export const LINKS = [
+  {
+    link: URL_EXPLORER,
+    text: "Главная",
+  },
+  {
+    link: URL_EXPLORERS,
+    text: "Исследователи",
+  },
+  {
+    link: URL_CURATORS,
+    text: "Хранители",
+  },
+  {
+    link: URL_DEFAULT,
+    text: "Выйти",
+  },
+];
+
 export const STAR_INFO = {
   planet: {
     id: 2,

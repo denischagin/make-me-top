@@ -2,6 +2,8 @@ import { bem } from "@shared/utils/bem";
 
 import { Header } from "@widgets/Header";
 
+import { LINKS } from "./model";
+
 import "./styles.scss";
 
 export const Curator = () => {
@@ -9,7 +11,7 @@ export const Curator = () => {
 
   return (
     <div className={block()}>
-      <Header />
+      <Header links={LINKS}/>
       <div className={element("container", "container")}></div>
     </div>
   );
