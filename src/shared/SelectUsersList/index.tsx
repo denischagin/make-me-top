@@ -17,11 +17,11 @@ export const SelectUsersList = (props: UserListInterface) => {
   const [block, element] = bem("select-list");
   const [selectedUserIds, setSelectedUserIds] = useState<Array<number>>([]);
 
-  function handleUserSelect(userId: number) {
+  function getSelectedUser(userId: number) {
     setSelectedUserIds([...selectedUserIds, userId]);
   }
 
-  function handleCancelSelect(userId: number) {
+  function removeSelectedUser(userId: number) {
     setSelectedUserIds(selectedUserIds.filter((id) => id !== userId));
   }
 
@@ -44,13 +44,13 @@ export const SelectUsersList = (props: UserListInterface) => {
                     ? <Button
                       size="small"
                       color={ "filled" }
-                      action={() => handleUserSelect(user.id)}
+                      action={() => getSelectedUser(user.id)}
                       title={ "Выбрать хранителя" }
                     />
                     : <Button
                       size="small"
                       color={ "primary-500" }
-                      action={() => handleCancelSelect(user.id)}
+                      action={() => removeSelectedUser(user.id)}
                       title={ "Отменить выбор" }
                     />
                 }
