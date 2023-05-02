@@ -5,7 +5,7 @@ export const STAR_INFO = {
   },
   star: "Groovy",
   curator: "Фамилия Имя Отчество",
-  progress: 5,
+  progress: 86,
 };
 
 export const TABS_LIST = [

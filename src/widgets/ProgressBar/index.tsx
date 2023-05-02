@@ -14,6 +14,7 @@ export const ProgressBar = (props: ProgressInterface) => {
 
   return (
     <div className={block()}>
+      <span className={element("left-dot")}/>
       <div
         className={element("container")}
         style={progressStyle}
@@ -22,6 +23,7 @@ export const ProgressBar = (props: ProgressInterface) => {
           <RocketIcon className={element("icon")}/>
         </span>
       </div>
+      <span className={element("right-dot")}/>
     </div>
   );
 };
