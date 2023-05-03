@@ -1,3 +1,8 @@
 export interface DividingLineInterface {
-  color: "opacity-gray" | "gray-500"
+  color: DividingLineColor
+}
+
+export enum DividingLineColor {
+  opacitygray = "opacity-gray",
+  gray500 = "gray-500"
 }

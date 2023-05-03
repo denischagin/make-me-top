@@ -3,6 +3,7 @@ import { AvatarSmall } from "@shared/AvatarSmall";
 import { Rating } from "@shared/Rating";
 
 import { UserInterface, UserListInterface } from "@shared/types/common";
+import { ratingStarColor, ratingSize, ratingScoreColor } from "@shared/Rating/interfaces";
 
 import "./styles.scss";
 
@@ -26,10 +27,10 @@ export const UsersList = (props: UserListInterface) => {
             </div>
             <div className={element("info")}>
               <Rating
-                starColor="primary-500"
-                size="medium"
-                scoreColor="black"
-                rating={user.rating}
+                starColor={ratingStarColor.primary500}
+                size={ratingSize.medium}
+                scoreColor={ratingScoreColor.black}
+                rating={ user.rating }
               />
             </div>
           </div>

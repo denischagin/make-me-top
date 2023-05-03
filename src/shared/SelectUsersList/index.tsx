@@ -4,6 +4,8 @@ import { bem } from "@shared/utils/bem";
 import { Button } from "@shared/Button";
 import { AvatarSmall } from "@shared/AvatarSmall";
 import { Rating } from "@shared/Rating";
+import { ratingStarColor, ratingSize, ratingScoreColor } from "@shared/Rating/interfaces";
+import { buttonColor, buttonSize } from "@shared/Button/interfaces";
 
 import { UserInterface, UserListInterface } from "@shared/types/common";
 
@@ -42,25 +44,25 @@ export const SelectUsersList = (props: UserListInterface) => {
                 {
                   !selectedUserIds.includes(user.id)
                     ? <Button
-                      size="small"
-                      color={ "filled" }
+                      size={buttonSize.small}
+                      color={buttonColor.filled}
                       action={() => getSelectedUser(user.id)}
-                      title={ "Выбрать хранителя" }
+                      title="Выбрать хранителя"
                     />
                     : <Button
-                      size="small"
-                      color={ "primary-500" }
+                      size={buttonSize.small}
+                      color={buttonColor.primary500}
                       action={() => removeSelectedUser(user.id)}
-                      title={ "Отменить выбор" }
+                      title="Отменить выбор"
                     />
                 }
               </div>
               <div className={element("rating", { hide: selectedUserIds.includes(user.id) } )}>
                 <Rating
-                  starColor="primary-500"
-                  size="medium"
-                  scoreColor="black"
-                  rating={user.rating}
+                  starColor={ratingStarColor.primary500}
+                  size={ratingSize.medium}
+                  scoreColor={ratingScoreColor.black}
+                  rating={ user.rating }
                 />
               </div>
             </div>

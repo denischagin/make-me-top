@@ -24,14 +24,6 @@
     align-items: center;
   }
 
-  &__badge {
-    color: $white;
-    font-size: 14px;
-    padding: 4px 10px;
-    background-color: $primary-500;
-    border-radius: 50px;
-  }
-
   &__user {
     display: flex;
     gap: 16px;

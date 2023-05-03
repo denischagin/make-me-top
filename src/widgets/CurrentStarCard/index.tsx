@@ -15,6 +15,7 @@ import { DividingLine } from "@shared/DividingLine";
 import { FinalGrade } from "@shared/FinalGrade";
 import { typographyVariant, typographyColor } from "@shared/Typography/interfaces";
 import { buttonSize, buttonColor } from "@shared/Button/interfaces";
+import { DividingLineColor } from "@shared/DividingLine/interfaces";
 
 import { showModal } from "@entities/user/model";
 
@@ -65,7 +66,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
               user={USER_INFO}
               badgeTitle="Мой рейтинг"
             />
-            <DividingLine color="gray-500"/>
+            <DividingLine color={DividingLineColor.gray500} />
             <UsersList list={EXPLORERS_LIST} />
           </TabPanel>
           <TabPanel>
@@ -73,7 +74,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
               user={CURATOR_INFO}
               badgeTitle="Мой хранитель"
             />
-            <DividingLine color="gray-500"/>
+            <DividingLine color={DividingLineColor.gray500} />
             <UsersList list={CURATORS_LIST} />
           </TabPanel>
         </MmtTabs>

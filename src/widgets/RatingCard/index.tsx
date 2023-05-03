@@ -5,6 +5,7 @@ import { CardBig } from "@shared/CardBig";
 import { bem } from "@shared/utils/bem";
 import { UserInterface } from "@shared/types/common";
 import { typographyVariant } from "@shared/Typography/interfaces";
+import { DividingLineColor } from "@shared/DividingLine/interfaces";
 import { RatingCardInterface } from "./interfaces";
 
 import "./styles.scss";
@@ -26,7 +27,7 @@ export const RatingCard = (props: RatingCardInterface) => {
         <UsersRating
           user={user}
         />
-        <DividingLine color="opacity-gray"/>
+        <DividingLine color={DividingLineColor.opacitygray} />
         <div className={element("heading")}>
           <Typography variant={typographyVariant.medium16}>Общий рейтинг</Typography>
         </div>

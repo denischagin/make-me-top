@@ -3,6 +3,7 @@ import { Button } from "@shared/Button";
 import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 
 import { RequiredStarsListInterface, RequiredStarInterface } from "./interfaces";
+import { buttonColor, buttonSize } from "@shared/Button/interfaces";
 
 import "./styles.scss";
 
@@ -28,9 +29,9 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
             <div className={element("info")}>
               <div className={element("button")}>
                 <Button
-                  size="small"
-                  color={ "filled" }
-                  title={ "Перейти" }
+                  size={buttonSize.small}
+                  color={buttonColor.filled}
+                  title="Перейти"
                 />
               </div>
             </div>

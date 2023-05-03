@@ -1,6 +1,7 @@
 import { bem } from "@shared/utils/bem";
 import { Button } from "@shared/Button";
 import { ReactComponent as LockIcon } from "@shared/images/lock.svg";
+import { buttonColor, buttonSize } from "@shared/Button/interfaces";
 
 import { PlanetInterface, PlanetListInterface } from "./interfaces";
 
@@ -35,8 +36,8 @@ export const PlanetList = (props: PlanetListInterface) => {
                 <span className={element("item-text")}>Текущая планета</span>
                 <Button
                   title="Проверить"
-                  size="small"
-                  color="primary-500"
+                  size={buttonSize.small}
+                  color={buttonColor.primary500}
                 />
               </div>
             }
