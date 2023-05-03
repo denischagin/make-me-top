@@ -8,6 +8,8 @@ import { Button } from "@shared/Button";
 import { MmtTabs } from "@shared/MmtTabs";
 import { CardBig } from "@shared/CardBig";
 import { bem } from "@shared/utils/bem";
+import { typographyVariant, typographyColor } from "@shared/Typography/interfaces";
+import { buttonSize, buttonColor } from "@shared/Button/interfaces";
 
 import { showModal } from "@entities/user/model";
 
@@ -16,7 +18,6 @@ import { ProgressBar } from "@widgets/ProgressBar";
 import { CurrentStarCardInterface } from "./interfaces";
 
 import "./styles.scss";
-
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
   const {
     tabsList,
@@ -46,20 +47,20 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
       </Modal>
       <CardBig>
         <div className={element("heading")}>
-          <Typography variant="h2">
+          <Typography variant={typographyVariant.h2}>
             Планета: {planet.id}. {planet.name}
           </Typography>
         </div>
         <div className={element("current-star")}>
-          <Typography variant="regular14">Звезда: {star}</Typography>
+          <Typography variant={typographyVariant.regular14}>Звезда: {star}</Typography>
         </div>
         <div className={element("current-curator")}>
-          <Typography variant="regular14">Преподаватель: {curator}</Typography>
+          <Typography variant={typographyVariant.regular14}>Преподаватель: {curator}</Typography>
         </div>
         <div className={element("progress")}>
           <Typography
-            variant="medium16"
-            color="primary-500"
+            variant={typographyVariant.medium16}
+            color={typographyColor.primary500}
           >
             Освоено {progress}%
           </Typography>
@@ -69,12 +70,12 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         </div>
         <div className={element("buttons")}>
           <Button
-            size="large"
+            size={buttonSize.large}
             title="Отменить"
           />
           <Button
-            size="large"
-            color="filled"
+            size={buttonSize.large}
+            color={buttonColor.filled}
             title="Продолжить"
             action={() => {
               dispatch(showModal());

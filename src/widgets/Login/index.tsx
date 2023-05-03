@@ -6,6 +6,7 @@ import { RouterLink } from "@shared/Link";
 import { PlanetButton } from "@shared/PlanetButton";
 import { URL_CURATOR, URL_EXPLORER } from "@shared/constants/links";
 import { bem } from "@shared/utils/bem";
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import { selectIsUserRegistered } from "@entities/user/model";
 
@@ -21,7 +22,7 @@ export const Login = () => {
     <>
       <div className={block()}>
         <div className={element("heading")}>
-          <Typography variant="h2">Вход</Typography>
+          <Typography variant={typographyVariant.h2}>Вход</Typography>
         </div>
         <PlanetInput placeholder="Номер телефона" />
         <PlanetInput placeholder="Пароль" />
@@ -35,7 +36,7 @@ export const Login = () => {
           className={element("hint")}
           onClick={() => dispatch(selectIsUserRegistered())}
         >
-          <Typography variant="regular14">
+          <Typography variant={typographyVariant.regular14}>
             Еще не зарегистрированы? Регистрация
           </Typography>
         </div>

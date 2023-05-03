@@ -1,6 +1,8 @@
 import { Star } from "@shared/Star";
 import { bem } from "@shared/utils/bem";
 import { Rating } from "@shared/Rating";
+import { starColor } from "@shared/Star/interfaces";
+import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
 
 import { arrayOfStars } from "./model";
 
@@ -13,16 +15,16 @@ export const CompletedStars = () => {
     <div className={block()}>
       {arrayOfStars.map((item) => (
         <Star
-          color="primary-500"
+          color={starColor.primary500}
           key={item.name}
         >
           <p className={element("label")}>{item.name}</p>
           <div className={element("star-rating")}>
             <Rating
-              scoreColor="white"
+              scoreColor={ratingScoreColor.white}
               rating={item.rate}
-              size="small"
-              starColor="white"
+              size={ratingSize.small}
+              starColor={ratingStarColor.white}
             />
           </div>
         </Star>
