@@ -1,15 +1,11 @@
 @import "@app/styles/variables.scss";
 
 .explorer {
-  overflow: overlay;
   position: absolute;
+  overflow: overlay;
   color: $white;
   width: 100%;
   height: 100%;
-  background-attachment: local;
-  background-image: url(../../shared/images/profileBG.png);
-  background-size: 100%;
-  background-color: $dark;
 
   &__container {
     margin: 40px auto 40px auto;

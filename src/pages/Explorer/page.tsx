@@ -1,5 +1,6 @@
 import { Typography } from "@shared/Typography";
 import { bem } from "@shared/utils/bem";
+import { BackgroundProfile } from "@shared/BackgroundProfile";
 
 import { CompletedStars } from "@widgets/CompletedStars";
 import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
@@ -21,6 +22,7 @@ export const Explorer = () => {
 
   return (
     <div className={block()}>
+      <BackgroundProfile />
       <Header />
       <div className={element("container", "container p-0")}>
         <div className={element("row", "row")}>

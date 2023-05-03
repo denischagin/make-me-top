@@ -1,0 +1,40 @@
+@import "@app/styles/variables.scss";
+
+.background-users-list {
+  background-image: url(../images/list-bg.png);
+  background-color: $dark;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  height: 170%;
+  width: 100%;
+
+  &__star-first,
+  &__star-second,
+  &__star-third,
+  &__star-fourth {
+    position: absolute;
+  }
+
+  &__star-first {
+    left: -125px;
+    top: 752px;    
+  }
+
+  &__star-second {
+    left: 1643px;
+    top: 396px;
+  }
+
+  &__star-third {
+    left: 1623px;
+    top: 1290px;
+  }
+  
+  &__star-fourth {
+    left: -69px;
+    top: 248px;
+  }
+}

@@ -42,19 +42,19 @@ export const BackgroundHome = () => {
   return (
     <div className={block()}>
       <div className={element("static-bg")} />
-      <div className={element("star-first", "shine")}>
+      <div className={element("star-first")}>
         <ShiningStar size="small" />
       </div>
-      <div className={element("star-second", "shine")}>
+      <div className={element("star-second")}>
         <ShiningStar size="small" />
       </div>
-      <div className={element("star-third", "shine")}>
+      <div className={element("star-third")}>
         <ShiningStar />
       </div>
-      <div className={element("star-fourth", "shine")}>
+      <div className={element("star-fourth")}>
         <ShiningStar />
       </div>
-      <div className={element("star-fifth", "shine")}>
+      <div className={element("star-fifth")}>
         <ShiningStar size="small"/>
       </div>
       <div className={element("noice")} />
