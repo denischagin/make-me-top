@@ -4,6 +4,7 @@ import { CardSmall } from "@shared/CardSmall";
 import { Rating } from "@shared/Rating";
 import { bem } from "@shared/utils/bem";
 import { UserInfoInterface } from "@shared/types/common";
+import { RatingScoreColor, RatingSize, RatingStarColor, TypographyVariant } from "@shared/types/enums";
 
 import "./styles.scss";
 
@@ -23,25 +24,25 @@ export const ExplorerUserInfo = (props: UserInfoInterface) => {
       <AvatarBig image={ avatar } />
       <div className={element("description")}>
         <div className={element("description-name")}>
-          <Typography variant="h1">{ name }</Typography>
+          <Typography variant={TypographyVariant.h1}>{ name }</Typography>
         </div>
         <div className={element("rating")}>
           <CardSmall>
             <div className={element("heading")}>
-              <Typography variant="regular16">Рейтинг</Typography>
+              <Typography variant={TypographyVariant.regular16}>Рейтинг</Typography>
             </div>
             <span className={element("current-rating")}>
               <Rating
-                scoreColor="white"
+                scoreColor={RatingScoreColor.white}
                 rating={ rating }
-                size="large"
-                starColor="primary-500"
+                size={RatingSize.large}
+                starColor={RatingStarColor.primary500}
               />
             </span>
           </CardSmall>
           <CardSmall>
             <div className={element("heading")}>
-              <Typography variant="regular16">
+              <Typography variant={TypographyVariant.regular16}>
                 Кол-во освоенных звезд
               </Typography>
             </div>

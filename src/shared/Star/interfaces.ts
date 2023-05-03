@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 
+import { StarColor } from "@shared/types/enums";
+
 export interface StarInterface {
-  color: "white" | "black" | "primary-500";
+  color: StarColor
   children: ReactNode;
 }

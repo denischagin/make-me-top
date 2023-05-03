@@ -1,4 +1,6 @@
+import { ArrowButtonDirection } from "@shared/types/enums";
+
 export interface ArrowButtonInterface {
-  direction: "top" | "bottom" | "left" | "right";
+  direction: ArrowButtonDirection
   action?: () => void;
 }

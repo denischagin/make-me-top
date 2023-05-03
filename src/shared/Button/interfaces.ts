@@ -1,6 +1,8 @@
+import { ButtonColor, ButtonSize } from "@shared/types/enums";
+
 export interface ButtonInterface {
   title: string;
-  color?: "filled" | "primary-500" | "black";
-  size: "small" | "large";
+  color?: ButtonColor;
+  size: ButtonSize
   action?: () => void;
 }
