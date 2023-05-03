@@ -1,8 +1,13 @@
 import { ReactNode } from "react";
 
-import { BadgeColor } from "@shared/types/enums";
-
 export interface BadgeInterface {
-  color: BadgeColor
+  color: badgeColor
   children: ReactNode
+}
+
+export enum badgeColor {
+  primary500 = "primary-500",
+  secondary500 = "secondary-500",
+  white = "white",
+  black = "black"
 }

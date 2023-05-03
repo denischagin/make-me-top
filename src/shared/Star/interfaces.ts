@@ -1,8 +1,12 @@
 import { ReactNode } from "react";
 
-import { StarColor } from "@shared/types/enums";
-
 export interface StarInterface {
-  color: StarColor
+  color: starColor
   children: ReactNode;
+}
+
+export enum starColor {
+  primary500 = "primary-500",
+  white = "white",
+  black = "black"
 }

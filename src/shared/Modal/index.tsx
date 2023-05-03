@@ -5,7 +5,7 @@ import { Typography } from "@shared/Typography";
 import { ReactComponent as CloseIcon } from "@shared/images/close.svg";
 import { ReactComponent as LockIcon } from "@shared/images/lock-big.svg";
 import { bem } from "@shared/utils/bem";
-import { TypographyColor, TypographyVariant } from "@shared/types/enums";
+import { typographyColor, typographyVariant } from "@shared/Typography/interfaces";
 
 import { showModal } from "@entities/user/model";
 
@@ -33,8 +33,8 @@ export const Modal = (props: ModalInterface) => {
         <div className={element("content")}>
           <div className={element("header")}>
             <Typography
-              variant={TypographyVariant.h2}
-              color={TypographyColor.black}
+              variant={typographyVariant.h2}
+              color={typographyColor.black}
             >
               <p className={element("name")}>
                 {lockIcon}

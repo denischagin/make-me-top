@@ -8,8 +8,8 @@ import { Button } from "@shared/Button";
 import { MmtTabs } from "@shared/MmtTabs";
 import { CardBig } from "@shared/CardBig";
 import { bem } from "@shared/utils/bem";
-import { Badge } from "@shared/Badge";
-import { BadgeColor, ButtonColor, ButtonSize, TypographyColor, TypographyVariant } from "@shared/types/enums";
+import { typographyVariant, typographyColor } from "@shared/Typography/interfaces";
+import { buttonSize, buttonColor } from "@shared/Button/interfaces";
 
 import { showModal } from "@entities/user/model";
 
@@ -41,26 +41,26 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
       >
         <MmtTabs list={tabsList}>
           <TabPanel>Контент 1</TabPanel>
-          <TabPanel>Контент 1</TabPanel>
-          <TabPanel>Контент 1</TabPanel>
+          <TabPanel>Контент 2</TabPanel>
+          <TabPanel>Контент 3</TabPanel>
         </MmtTabs>
       </Modal>
       <CardBig>
         <div className={element("heading")}>
-          <Typography variant={TypographyVariant.h2}>
+          <Typography variant={typographyVariant.h2}>
             Планета: {planet.id}. {planet.name}
           </Typography>
         </div>
         <div className={element("current-star")}>
-          <Typography variant={TypographyVariant.regular14}>Звезда: {star}</Typography>
+          <Typography variant={typographyVariant.regular14}>Звезда: {star}</Typography>
         </div>
         <div className={element("current-curator")}>
-          <Typography variant={TypographyVariant.regular14}>Преподаватель: {curator}</Typography>
+          <Typography variant={typographyVariant.regular14}>Преподаватель: {curator}</Typography>
         </div>
         <div className={element("progress")}>
           <Typography
-            variant={TypographyVariant.medium16}
-            color={TypographyColor.primary500}
+            variant={typographyVariant.medium16}
+            color={typographyColor.primary500}
           >
             Освоено {progress}%
           </Typography>
@@ -70,12 +70,12 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         </div>
         <div className={element("buttons")}>
           <Button
-            size={ButtonSize.large}
+            size={buttonSize.large}
             title="Отменить"
           />
           <Button
-            size={ButtonSize.large}
-            color={ButtonColor.filled}
+            size={buttonSize.large}
+            color={buttonColor.filled}
             title="Продолжить"
             action={() => {
               dispatch(showModal());
