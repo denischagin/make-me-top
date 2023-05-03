@@ -17,9 +17,9 @@ interface IGalaxyProps {
 
 interface IGalaxyOrbitSettings {
   width: number,
-  backgroundWidth: number,
   height: number,
-  backgroundHeight:number,
+  orbitWidthStep: number,
+  orbitHeightStep: number,
   viewBox: string,
 }
 
@@ -43,18 +43,20 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     planetWidth,
     planetHeight
   } = props;
+
   const svgContainerRef = createRef<SVGSVGElement>();
+
   const [viewBoxOffsetX, setViewBoxOffsetX] = useState<number|undefined>();
   const [viewBoxOffsetY, setViewBoxOffsetY] = useState<number|undefined>();
-  const orbitWidthStep = width / (orbitList.length + 1);
-  const orbitHeightStep = height / (orbitList.length + 1);
+
   const galaxyOrbitSettings: IGalaxyOrbitSettings = {
     width: width,
-    backgroundWidth: width + (orbitWidthStep / 2),
     height: height,
-    backgroundHeight: height + (orbitHeightStep / 2),
+    orbitWidthStep: width / (orbitList.length + 1),
+    orbitHeightStep: height / (orbitList.length + 1),
     viewBox: `0 0 ${width} ${height}`,
   };
+
   const colorModificationArray: Array<string> = ["blue-stroke-color", "orange-stroke-color"];
   let colorShelf: Array<string> = colorModificationArray.slice();
 
@@ -71,21 +73,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     return colorModification;
   }
 
-  const getOrbitModificationById = (id: number): string => {
-    switch (id) {
-      case 1:
-        return "orange-fill-color";
-      case 2:
-        return "violet-fill-color";
-      case 3:
-        return "white-fill-color";
-      case 4:
-        return "black-fill-color";
-      default:
-        return "black-fill-color";
-    }
-  };
-
   useEffect(() => {
     setViewBoxOffsetX(getElemCoords({
       elem: svgContainerRef.current,
@@ -93,12 +80,14 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       planetWidth,
       planetHeight
     })?.left)
+
     setViewBoxOffsetY(getElemCoords({
       elem: svgContainerRef.current,
       type: "SVGSVGElement",
       planetWidth,
       planetHeight
     })?.top)
+
   }, [])
 
   const getCoordsForConnection = (props: IGetCoordsForConnectionProps): IGetCoordsForConnectionProps => {
@@ -168,12 +157,14 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       }
 
       const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
+
       const childElementCoords = getElemCoords({
         elem: childElement,
         type: "HTMLElement",
         planetWidth,
         planetHeight
       });
+
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 
       childElement?.setAttribute("data-is-active", "1");
@@ -299,11 +290,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     event.currentTarget.setAttribute('data-is-active', '1');
 
-    // console.log("currentValue: ", event.currentTarget)
-    // console.log("currentValue: ", event.currentTarget.textContent)
-    // console.log("childList: ", childList);
-    // console.log("parentList: ", parentList);
-
     showChildren(childList, event.currentTarget);
     showParents(parentList, event.currentTarget, null);
   }
@@ -327,6 +313,13 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             height: height,
           }}
       >
+        <div
+            className="galaxy__background"
+            style={{
+              width: galaxyOrbitSettings.width,
+              height: galaxyOrbitSettings.height,
+            }}
+        />
         <svg
             xmlns="http://www.w3.org/2000/svg"
             className="galaxy__svg-container"
@@ -334,28 +327,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             width={width}
             height={height}
             ref={svgContainerRef}
-        >
-          {
-            orbitList.map((orbits,index) => {
-              galaxyOrbitSettings.backgroundWidth -= orbitWidthStep;
-              galaxyOrbitSettings.backgroundHeight -= orbitHeightStep;
-              return (
-                  <ellipse
-                      key={index}
-                      className={`background-ellipse ${getOrbitModificationById(orbits.orbitLevel)}`}
-                      rx={galaxyOrbitSettings.backgroundWidth / 2}
-                      ry={galaxyOrbitSettings.backgroundHeight / 2}
-                      cx="50%"
-                      cy="50%"
-                  />
-              )
-            })
-          }
-        </svg>
+        />
         {
           orbitList.map((orbits) => {
-            galaxyOrbitSettings.width -= orbitWidthStep;
-            galaxyOrbitSettings.height -= orbitHeightStep;
+            galaxyOrbitSettings.width -= galaxyOrbitSettings.orbitWidthStep;
+            galaxyOrbitSettings.height -= galaxyOrbitSettings.orbitHeightStep;
             return (
                 <Orbit
                     key={orbits.orbitId}

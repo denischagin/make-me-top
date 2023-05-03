@@ -9,12 +9,14 @@ import "./styles.scss";
 
 export const GalaxyPage: React.FC = () => {
   const dispatch = useAppDispatch();
+
+  const orbitList = useAppSelector(
+      (state) => state.galaxies.galaxy.orbitList || []
+  );
+
   useEffect(() => {
     dispatch(getGalaxy({}));
   }, [dispatch]);
-  const orbitList = useAppSelector(
-    (state) => state.galaxies.galaxy.orbitList || []
-  );
 
   return (
     <div className="galaxyPage">
