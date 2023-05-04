@@ -1,0 +1,29 @@
+@import "@app/styles/variables.scss";
+
+.rating-info {
+  display: flex;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  align-items: center;
+
+  &__user-name {
+    padding: 0 34px 0 16px;
+    white-space: nowrap; /* Текст не переносится */
+  }
+
+  &__user-score {
+    color: $white;
+    display: flex;
+    align-items: center;
+  }
+
+  &__user-score-star {
+    color: $primary-500;
+  }
+
+  &__user-score-num {
+    margin: 0;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+}

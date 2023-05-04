@@ -8,7 +8,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url(../../shared/images/backgrounds/BG.png);
+  background-image: url(../../shared/images/BG.png);
   background-size: 100%;
   background-color: $dark;
 
@@ -30,7 +30,7 @@
     z-index: 1;
   }
 
-  &__fields-heading {
+  &__heading {
     color: $white;
     margin: 0;
     font-size: 57px;

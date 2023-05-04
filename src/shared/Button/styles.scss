@@ -1,0 +1,60 @@
+@import "@app/styles/variables.scss";
+
+.button {
+  color: $white;
+  cursor: pointer;
+  text-align: center;
+  font-family: $font-montserrat;
+  border-radius: 56px;
+  transition: 0.3s;
+  background-color: transparent;
+  border: 1px solid $white;
+
+  &:hover {
+    transition: 0.3s;
+    color: $black;
+    background-color: $white;
+  }
+
+  &--color-filled {
+    background-color: $primary-500;
+    border: 1px solid $primary-500;
+
+    &:hover {
+      color: $white;
+      border: 1px solid $primary-600;
+      background-color: $primary-600;
+    }
+  }
+
+  &--color-primary-500 {
+    background-color: transparent;
+    border: 1px solid $primary-500;
+
+    &:hover {
+      border: 1px solid $primary-500;
+      background-color: $primary-500;
+    }
+  }
+
+  &--color-black {
+    background-color: transparent;
+    border: 1px solid $primary-500;
+
+    &:hover {
+      background-color: $primary-500;
+    }
+  }
+
+  &--size-small {
+    display: inline-block;
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  &--size-large {
+    display: inline-block;
+    font-size: 16px;
+    padding: 16px 40px;
+  }
+}

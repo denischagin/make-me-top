@@ -1,35 +1,53 @@
 import { Typography } from "@shared/Typography";
-import { AvatarBig } from "@shared/avatars/AvatarBig";
-import { CardSmall } from "@shared/cards/CardSmall";
-import { ReactComponent as StarIcon } from "@shared/images/star.svg";
+import { AvatarBig } from "@shared/AvatarBig";
+import { CardSmall } from "@shared/CardSmall";
+import { Rating } from "@shared/Rating";
+import { bem } from "@shared/utils/bem";
+import { UserInfoInterface } from "@shared/types/common";
+import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 
-export const ExplorerUserInfo = () => {
+export const ExplorerUserInfo = (props: UserInfoInterface) => {
+  const {
+    user: {
+      name,
+      avatar,
+      rating
+    }
+  } = props;
+
+  const [block, element] = bem("profile-info");
+
   return (
-    <div className="profile-info">
-      <AvatarBig image="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg" />
-      <div className="profile-description">
-        <div className="profile-description__name">
-          <Typography variant="h1">Фамилия Имя Отчество</Typography>
+    <div className={block()}>
+      <AvatarBig image={ avatar } />
+      <div className={element("description")}>
+        <div className={element("description-name")}>
+          <Typography variant={typographyVariant.h1}>{ name }</Typography>
         </div>
-        <div className="profile-rating">
+        <div className={element("rating")}>
           <CardSmall>
-            <div className="profile-rating__text">
-              <Typography variant="regular16">Рейтинг</Typography>
+            <div className={element("heading")}>
+              <Typography variant={typographyVariant.regular16}>Рейтинг</Typography>
             </div>
-            <span className="profile-rating profile-rating__current-rating">
-              <StarIcon />
-              <p className="profile-rating__current-rating-text">4.0</p>
+            <span className={element("current-rating")}>
+              <Rating
+                scoreColor={ratingScoreColor.white}
+                rating={ rating }
+                size={ratingSize.large}
+                starColor={ratingStarColor.primary500}
+              />
             </span>
           </CardSmall>
           <CardSmall>
-            <div className="profile-rating__text">
-              <Typography variant="regular16">
+            <div className={element("heading")}>
+              <Typography variant={typographyVariant.regular16}>
                 Кол-во освоенных звезд
               </Typography>
             </div>
-            <p className="profile-rating__stars">11</p>
+            <p className={element("completed-stars")}>11</p>
           </CardSmall>
         </div>
       </div>

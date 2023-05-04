@@ -1,29 +1,3 @@
-@font-face {
-  font-family: "Wattauchimma";
-  src: url(../fonts/Wattauchimma.ttf);
-}
-
-@font-face {
-  font-family: "Feature-Mono-regular";
-  src: url(../fonts/FeatureMono-Regular.ttf);
-}
-
-@font-face {
-  font-family: "Feature-Mono-medium";
-  src: url(../fonts/FeatureMono-Medium.ttf);
-}
-
-@font-face {
-  font-family: "Montserrat";
-  src: url(../fonts/Montserrat-Regular.ttf);
-}
-
-// fonts
-$font-montserrat: "Montserrat";
-$font-heading: "Wattauchimma";
-$font-text-regular: "Feature-Mono-regular";
-$font-text-medium: "Feature-Mono-medium";
-
 // colors
 $primary-600: #b13517;
 $primary-500: #cf5335;
@@ -36,12 +10,13 @@ $gray-500: #d3d3d3;
 $gray-400: #eeeeee;
 $white: #fbf9ff;
 $planet-shadow: #f59c6740;
+$modal-background: #f5f5f5;
 
 // colors with opacity
 $opacity-gray: #292929;
 $opacity-dark: #0b0b0b80;
 $opacity-white: #fbf9ff80;
-$opacity-orange: #cf533580;
+$opacity-primary-500: #cf533580;
 
 // gradients
 $planet-gradient: radial-gradient(
@@ -60,3 +35,9 @@ $progress-bar-gradient: linear-gradient(
     $black 100%
   ),
   linear-gradient(#cf533580, #75716f80);
+
+// fonts
+$font-montserrat: "Montserrat";
+$font-heading: "Wattauchimma";
+$font-text-regular: "Feature-Mono-regular";
+$font-text-medium: "Feature-Mono-medium";

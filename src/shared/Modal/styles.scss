@@ -1,0 +1,60 @@
+@import "@app/styles/variables.scss";
+
+.modal {
+  background: $modal-background;
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 1;
+  width: 1010px;
+  height: 1510px;
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+  right: 0px;
+  top: -215px;
+  opacity: 1;
+  transition: 0.5s;
+
+  &--closed {
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.5s;
+  }
+
+  &__content {
+    margin-bottom: 235px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 40px;
+    gap: 24px;
+    width: 830px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__name {
+    margin: 0;
+  }
+
+  &__close-icon {
+    cursor: pointer;
+    color: $black;
+    transition: 0.2s;
+    border-radius: 100%;
+
+    &:hover {
+      background-color: $primary-500;
+      color: $white;
+      transition: 0.2s;
+    }
+  }
+
+  &__lock-icon {
+    margin-right: 14px;
+  }
+}

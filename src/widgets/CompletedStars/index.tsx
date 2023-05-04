@@ -1,21 +1,31 @@
 import { Star } from "@shared/Star";
-import { ReactComponent as StarIcon } from "@shared/images/star.svg";
+import { bem } from "@shared/utils/bem";
+import { Rating } from "@shared/Rating";
+import { starColor } from "@shared/Star/interfaces";
+import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
 
 import { arrayOfStars } from "./model";
+
 import "./styles.scss";
 
 export const CompletedStars = () => {
+  const [block, element] = bem("completed-stars");
+
   return (
-    <div className="completed-stars">
+    <div className={block()}>
       {arrayOfStars.map((item) => (
         <Star
-          color="orange"
+          color={starColor.primary500}
           key={item.name}
         >
-          <p className="completed-stars__label">{item.name}</p>
-          <div className="stars-rating">
-            <StarIcon />
-            <p className="stars-rating__rating-num">{item.rate}</p>
+          <p className={element("label")}>{item.name}</p>
+          <div className={element("star-rating")}>
+            <Rating
+              scoreColor={ratingScoreColor.white}
+              rating={item.rate}
+              size={ratingSize.small}
+              starColor={ratingStarColor.white}
+            />
           </div>
         </Star>
       ))}

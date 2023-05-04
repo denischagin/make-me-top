@@ -1,11 +1,12 @@
 import React from "react";
-import { SystemType } from "@entities/galaxy/model/types";
-import { Star } from "@shared/Star";
+import {SystemType} from "@entities/galaxy/model/types";
+import {Star} from "@shared/Star";
 import {getDigitalAngle} from "@entities/orbit/lib/getDigitalAngle";
 import {getRadius} from "@entities/orbit/lib/getRadius";
 import {getNumberByHTMLSize} from "@entities/orbit/lib/getNumberByHTMLSize";
 import {getXCoordinateOnEllipse} from "@entities/orbit/lib/getXCoordinateOnEllipse";
 import {getYCoordinateOnEllipse} from "@entities/orbit/lib/getYCoordinateOnEllipse";
+import {starColor} from "@shared/Star/interfaces";
 import "./orbit.scss";
 
 interface IOrbitProps {
@@ -88,7 +89,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
               data-is-active="0"
             >
               <Star
-                  color="white"
+                  color={starColor.white}
                   children={(
                       <div>
                         {planet.systemName}

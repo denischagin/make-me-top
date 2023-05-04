@@ -5,7 +5,7 @@ import { getElemCoords } from "@entities/galaxy/lib/getElemCoords";
 import {deleteAllConnectionLines} from "@entities/galaxy/lib/deleteAllConnecctionLines";
 import {connectionsOverlapCheck} from "@entities/galaxy/lib/connectionsOverlapCheck";
 import "@app/styles/variables.scss";
-import "./style.scss";
+import "./styles.scss";
 
 interface IGalaxyProps {
   orbitList: Array<OrbitType>;

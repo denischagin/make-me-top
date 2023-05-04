@@ -4,7 +4,7 @@ import { UserState } from "./interfaces";
 
 const initialState: UserState = {
   isRegistered: true,
-  showModal: false,
+  isModalOpen: false,
 };
 
 export const userSlice = createSlice({
@@ -17,10 +17,17 @@ export const userSlice = createSlice({
     logOut: (state) => {
       state.isRegistered = true;
     },
+    showModal: (state) => {
+      state.isModalOpen = !state.isModalOpen;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { selectIsUserRegistered, logOut } = userSlice.actions;
+export const {
+  selectIsUserRegistered,
+  logOut,
+  showModal
+} = userSlice.actions;
 
 export default userSlice.reducer;
