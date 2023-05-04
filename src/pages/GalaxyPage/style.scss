@@ -1,11 +1,9 @@
-@import "@app/styles/variables.scss";
-
 .galaxyPage {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   height: 100%;
   width: 100%;
   align-items: center;
   justify-content: center;
-  background: $dark;
+  background: #1D1D1D;
 }
