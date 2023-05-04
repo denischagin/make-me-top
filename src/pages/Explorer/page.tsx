@@ -1,5 +1,6 @@
 import { Typography } from "@shared/Typography";
 import { bem } from "@shared/utils/bem";
+import { HEADER_LINKS } from "@shared/constants/links";
 
 import { CompletedStars } from "@widgets/CompletedStars";
 import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
@@ -11,8 +12,7 @@ import {
   USERS_LIST,
   USER_INFO,
   STAR_INFO,
-  TABS_LIST,
-  LINKS
+  TABS_LIST
 } from "./model";
 
 import "./styles.scss";
@@ -22,7 +22,7 @@ export const Explorer = () => {
 
   return (
     <div className={block()}>
-      <Header links={LINKS}/>
+      <Header links={HEADER_LINKS}/>
       <div className={element("container", "container p-0")}>
         <div className={element("row", "row")}>
           <div className={element("profile", "col-xxl-9")}>

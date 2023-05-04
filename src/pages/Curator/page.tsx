@@ -1,8 +1,7 @@
 import { bem } from "@shared/utils/bem";
+import { HEADER_LINKS } from "@shared/constants/links";
 
 import { Header } from "@widgets/Header";
-
-import { LINKS } from "./model";
 
 import "./styles.scss";
 
@@ -11,7 +10,7 @@ export const Curator = () => {
 
   return (
     <div className={block()}>
-      <Header links={LINKS}/>
+      <Header links={HEADER_LINKS}/>
       <div className={element("container", "container")}></div>
     </div>
   );
