@@ -3,12 +3,11 @@
 .background-users-list {
   background-image: url(../images/list-bg.png);
   background-color: $dark;
-  background-repeat: no-repeat;
-  background-size: cover;
   overflow: hidden;
+  background-attachment: local;
   position: absolute;
   z-index: -1;
-  height: 170%;
+  min-height: 170%;
   width: 100%;
 
   &__star-first,
@@ -19,22 +18,22 @@
   }
 
   &__star-first {
-    left: -125px;
-    top: 752px;    
+    left: calc(50% - 15px/2 - 840px);
+    top: calc(50% - 18px/2 - 262px);
   }
 
   &__star-second {
-    left: 1643px;
-    top: 396px;
+    left: calc(50% - 15px/2 + 55px);
+    top: calc(50% - 18px/2 - 424px);
   }
 
   &__star-third {
-    left: 1623px;
-    top: 1290px;
+    left: calc(50% - 20px/2 - 306px);
+    top: calc(50% - 24px/2 + 681px);
   }
   
   &__star-fourth {
-    left: -69px;
-    top: 248px;
+    left: calc(50% - 20px/2 - 713px);
+    top: calc(50% - 24px/2 + 247px);
   }
 }

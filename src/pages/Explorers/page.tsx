@@ -9,8 +9,8 @@ export const Explorers = () => {
 
   return (
     <div className={block()}>
-      <Header />
       <BackgroundUsersList />
+      <Header />
     </div>
   );
 };

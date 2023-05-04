@@ -3,12 +3,11 @@
 .background-profile {
   background-image: url(../images/profile-bg.png);
   background-color: $dark;
-  background-repeat: no-repeat;
-  background-size: cover;
   overflow: hidden;
+  background-attachment: local;
   position: absolute;
   z-index: -1;
-  height: 115%;
+  min-height: 115%;
   width: 100%;
 
   &__star-first,

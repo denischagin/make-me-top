@@ -18,6 +18,7 @@ body {
   margin: 0;
   background-color: $dark;
   overflow-x: hidden;
+  overflow-y: overlay;
   font-family: $font-text-regular;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

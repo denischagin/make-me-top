@@ -9,8 +9,8 @@ export const Curators = () => {
 
   return (
     <div className={block()}>
-      <Header />
       <BackgroundUsersList />
+      <Header />
     </div>
   );
 };
