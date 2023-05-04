@@ -1,4 +1,13 @@
-export const deleteAllConnectionLines = (svgContainer: SVGSVGElement | null) => {
+import {restoreColorShelf} from "@entities/galaxy/lib/colorShelf";
+
+interface IDeleteAllConnectionLinesProps {
+    svgContainer: SVGSVGElement | null,
+}
+export const deleteAllConnectionLines = (props: IDeleteAllConnectionLinesProps) => {
+    const {
+        svgContainer,
+    } = props
+
     if (!svgContainer) {
         return
     }
@@ -9,4 +18,6 @@ export const deleteAllConnectionLines = (svgContainer: SVGSVGElement | null) => 
     allConnectionLines.forEach(line => {
         line.remove();
     })
+
+    restoreColorShelf();
 }
