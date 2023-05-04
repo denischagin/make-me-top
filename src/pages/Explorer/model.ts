@@ -1,5 +1,3 @@
-import { URL_EXPLORER, URL_CURATORS, URL_DEFAULT, URL_EXPLORERS } from "@shared/constants/links";
-
 export const STAR_INFO = {
   planet: {
     id: 2,
