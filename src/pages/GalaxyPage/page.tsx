@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 import { getGalaxy } from "@entities/galaxy/api/getGalaxy";
 import Galaxy from "@entities/galaxy/ui/galaxy";
 
-import "./styles.scss";
+import "./style.scss"
 
 export const GalaxyPage: React.FC = () => {
   const dispatch = useAppDispatch();
