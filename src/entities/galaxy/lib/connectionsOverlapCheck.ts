@@ -22,7 +22,7 @@ export const connectionsOverlapCheck = (props: IConnectionsOverlapCheck) => {
     }
 
     const elementsFromSvgContainer = Array.from(svgContainer.children || []);
-    const allConnectionLines = elementsFromSvgContainer.filter(element => element.matches(".connection-line"));
+    const allConnectionLines = elementsFromSvgContainer.filter(element => element.matches(".galaxy__connection-line"));
 
     const checkResult = allConnectionLines.findIndex(line => {
             if (viewBoxOffsetX !== undefined && viewBoxOffsetY !== undefined) {

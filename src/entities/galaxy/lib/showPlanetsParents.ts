@@ -72,7 +72,7 @@ export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
             svgLine.setAttribute('y1', String(lineCoordsWithoutOverlaps?.currentTarget.top - viewBoxOffsetY));
             svgLine.setAttribute('x2', String(lineCoordsWithoutOverlaps?.elementToConnect.left - viewBoxOffsetX));
             svgLine.setAttribute('y2', String(lineCoordsWithoutOverlaps?.elementToConnect.top - viewBoxOffsetY));
-            svgLine.setAttribute('class', 'connection-line');
+            svgLine.setAttribute('class', 'galaxy__connection-line');
             svgLine.setAttribute('stroke', "white");
         }
 
@@ -82,7 +82,7 @@ export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
         }
 
         if (color) {
-            svgLine.setAttribute('class', svgLine?.getAttribute("class")+ " " + color);
+            svgLine.setAttribute('class', `${svgLine?.getAttribute("class")} galaxy__connection-line_${color}`);
         }
 
         svgContainer?.append(svgLine);

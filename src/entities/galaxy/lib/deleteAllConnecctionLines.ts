@@ -13,7 +13,7 @@ export const deleteAllConnectionLines = (props: IDeleteAllConnectionLinesProps) 
     }
 
     const elementsFromSvgContainer = Array.from(svgContainer.children || []);
-    const allConnectionLines = elementsFromSvgContainer.filter(element => element.matches(".connection-line"));
+    const allConnectionLines = elementsFromSvgContainer.filter(element => element.matches(".galaxy__connection-line"));
 
     allConnectionLines.forEach(line => {
         line.remove();

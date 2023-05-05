@@ -53,7 +53,7 @@ export const showPlanetsChildren = (props: IShowChildrenProps) => {
         childElement?.setAttribute("data-is-active", "1");
 
         if (currentTargetCoords && childElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
-            svgLine.setAttribute('class', 'connection-line');
+            svgLine.setAttribute('class', 'galaxy__connection-line');
             svgLine.setAttribute('x1', String(currentTargetCoords?.left - viewBoxOffsetX));
             svgLine.setAttribute('y1', String(currentTargetCoords?.top - viewBoxOffsetY));
             svgLine.setAttribute('x2', String(childElementCoords?.left - viewBoxOffsetX));

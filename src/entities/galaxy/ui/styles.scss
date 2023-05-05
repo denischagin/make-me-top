@@ -48,20 +48,20 @@
     position: absolute;
     width: 100%;
   }
-}
 
-.connection-line {
-  stroke-width: 1px
-}
+  &__connection-line {
+    stroke-width: 1px;
 
-.blue-stroke-color {
-  stroke: $secondary-500;
-}
+    &_blue-stroke-color {
+      stroke: $secondary-500;
+    }
 
-.orange-stroke-color {
-  stroke: $primary-500;
-}
+    &_orange-stroke-color {
+      stroke: $primary-500;
+    }
 
-.white-stroke-color {
-  stroke: $white;
+    &_white-stroke-color {
+      stroke: $white;
+    }
+  }
 }
