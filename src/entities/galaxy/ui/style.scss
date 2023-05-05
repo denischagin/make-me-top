@@ -10,6 +10,19 @@
     position: absolute;
     width: 100%;
   }
+
+  &__ellipse-0 {
+    fill: #272727;
+  }
+  &__ellipse-1 {
+    fill: #1D1D1D;
+  }
+  &__ellipse-2 {
+    fill: #131313;
+  }
+  &__ellipse-3 {
+    fill: #101010;
+  }
 }
 
 .connection-line {

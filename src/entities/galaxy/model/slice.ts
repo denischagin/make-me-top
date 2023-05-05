@@ -5,7 +5,11 @@ import { getGalaxy } from "../api/getGalaxy";
 const galaxySlice = createSlice({
   name: "galaxy",
   initialState: {
-    galaxy: {},
+    galaxy: {
+      galacticId: 0,
+      galacticName: "",
+      orbitList: [],
+    },
   },
   reducers: {},
   extraReducers: (builder) => {

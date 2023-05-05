@@ -45,8 +45,6 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
     return element.type === "parent";
   }
 
-
-
   return (
     <div className="orbit">
       <div

@@ -23,8 +23,16 @@ interface IGalaxyOrbitSettings {
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
-  const { orbitList, width, height, planetWidth, planetHeight } = props;
+  const {
+    orbitList,
+    width,
+    height,
+    planetWidth,
+    planetHeight
+  } = props;
+
   const svgContainerRef = createRef<SVGSVGElement>();
+
   const [viewBoxOffsetX, setViewBoxOffsetX] = useState<number|undefined>();
   const [viewBoxOffsetY, setViewBoxOffsetY] = useState<number|undefined>();
 
@@ -39,19 +47,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     viewBox: `0 0 ${width} ${height}`,
     orbitsColorId: 0,
     colorId: 0,
-  };
-
-  const getOrbitsColorById = (id: number) => {
-    switch (id) {
-      case 1:
-        return "#272727";
-      case 2:
-        return "#1D1D1D";
-      case 3:
-        return "#131313";
-      case 4:
-        return "#101010";
-    }
   };
 
   function getElemCoords(elem: HTMLElement | SVGSVGElement | null, type: "HTMLElement" | "SVGSVGElement") {
@@ -119,6 +114,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
       const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
       childElement?.setAttribute("data-is-active", "1");
+
       const childElementCoords = getElemCoords(childElement, "HTMLElement");
       const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 
@@ -159,7 +155,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     parentsListArray.forEach(elementData => {
       const elementDataArray = elementData.split(":");
       const numberElementId = parseInt(elementDataArray[0], 10);
-      const isAlternative = elementDataArray[1] === "true" ? 1 : 0
+      const isAlternative = elementDataArray[1] === "true" ? 1 : 0;
 
       if (isNaN(numberElementId)) {
         return
@@ -216,11 +212,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
     event.currentTarget.setAttribute('data-is-active', '1');
     const childList = event.currentTarget.getAttribute("data-planet-child-list");
-    const parentList = event.currentTarget.getAttribute("data-planet-parent-list");
-    // console.log("currentValue: ", event.currentTarget)
-    // console.log("currentValue: ", event.currentTarget.textContent)
-    // console.log("childList: ", childList);
-    // console.log("parentList: ", parentList);
+    const parentList = event.currentTarget.getAttribute("data-planet-parent-list")
 
     showChildren(childList, event.currentTarget);
     showParents(parentList, event.currentTarget);
@@ -258,7 +250,13 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
               galaxyOrbitSettings.backgroundHeight -= orbitHeightStep;
               galaxyOrbitSettings.orbitsColorId++;
               return (
-                  <ellipse key={index} rx={galaxyOrbitSettings.backgroundWidth/2} ry={galaxyOrbitSettings.backgroundHeight/2} fill={getOrbitsColorById(galaxyOrbitSettings.orbitsColorId)} cx="50%" cy="50%"/>
+                  <ellipse
+                      key={index}
+                      className={`galaxy__ellipse-${index}`}
+                      rx={galaxyOrbitSettings.backgroundWidth / 2}
+                      ry={galaxyOrbitSettings.backgroundHeight / 2}
+                      cx="50%"
+                      cy="50%"/>
               )
             })
           }
