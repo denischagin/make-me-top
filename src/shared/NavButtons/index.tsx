@@ -1,6 +1,7 @@
 import { useAppDispatch } from "@app/providers/store/hooks";
 
 import { RouterLink } from "@shared/Link";
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import { logOut } from "@entities/user/model";
 
@@ -23,17 +24,17 @@ export const NavButtons = () => {
     <div className="nav-buttons">
       <RouterLink path={URL_EXPLORER}>
         <div className="nav-buttons__home-button">
-          <Typography variant="regular14">Главная</Typography>
+          <Typography variant={typographyVariant.regular14}>Главная</Typography>
         </div>
       </RouterLink>
       <RouterLink path={URL_EXPLORERS}>
         <div className="nav-buttons__explorers-button">
-          <Typography variant="regular14">Исследователи</Typography>
+          <Typography variant={typographyVariant.regular14}>Исследователи</Typography>
         </div>
       </RouterLink>
       <RouterLink path={URL_CURATORS}>
         <div className="nav-buttons__curators-button">
-          <Typography variant="regular14">Хранители</Typography>
+          <Typography variant={typographyVariant.regular14}>Хранители</Typography>
         </div>
       </RouterLink>
       <RouterLink path={URL_DEFAULT}>
@@ -41,7 +42,7 @@ export const NavButtons = () => {
           className="nav-buttons__exit-button"
           onClick={() => dispatch(logOut())}
         >
-          <Typography variant="regular14">Выйти</Typography>
+          <Typography variant={typographyVariant.regular14}>Выйти</Typography>
           <span className="nav-buttons nav-buttons__exit-icon">
             <ExitIcon />
           </span>
