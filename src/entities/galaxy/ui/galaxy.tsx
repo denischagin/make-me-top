@@ -1,7 +1,7 @@
 import React, {createRef, useEffect, useState} from "react";
 
 import { OrbitType } from "@entities/galaxy/model/types";
-import Orbit from "../../../shared/Orbit/orbit";
+import Orbit from "../../orbit/ui/orbit";
 import "./style.scss";
 
 interface IGalaxyProps {
@@ -18,8 +18,6 @@ interface IGalaxyOrbitSettings {
   height: number,
   backgroundHeight:number,
   viewBox: string,
-  orbitsColorId: number,
-  colorId: number,
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
@@ -45,8 +43,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     height: height,
     backgroundHeight: height + (orbitHeightStep / 2),
     viewBox: `0 0 ${width} ${height}`,
-    orbitsColorId: 0,
-    colorId: 0,
   };
 
   function getElemCoords(elem: HTMLElement | SVGSVGElement | null, type: "HTMLElement" | "SVGSVGElement") {
@@ -210,7 +206,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   }
 
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
-    const childList = event.currentTarget.getAttribute("data-planet-child-list");
+    const childList = event.currentTarget.getAttribute("data-planet-children-list");
     const parentList = event.currentTarget.getAttribute("data-planet-parent-list")
 
     event.currentTarget.setAttribute('data-is-active', '1');
@@ -220,7 +216,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   }
 
   const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
-    const childList = event.currentTarget.getAttribute("data-planet-child-list");
+    const childList = event.currentTarget.getAttribute("data-planet-children-list");
     const parentList = event.currentTarget.getAttribute("data-planet-parent-list");
 
     event.currentTarget.setAttribute('data-is-active', '0');
@@ -250,7 +246,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             orbitList.map((orbits,index) => {
               galaxyOrbitSettings.backgroundWidth -= orbitWidthStep;
               galaxyOrbitSettings.backgroundHeight -= orbitHeightStep;
-              galaxyOrbitSettings.orbitsColorId++;
               return (
                   <ellipse
                       key={index}
@@ -267,7 +262,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
           orbitList.map((orbits) => {
             galaxyOrbitSettings.width -= orbitWidthStep;
             galaxyOrbitSettings.height -= orbitHeightStep;
-            galaxyOrbitSettings.colorId++;
             return (
                 <Orbit
                     key={orbits.orbitId}
@@ -281,7 +275,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                     }}
                     handlePlanetMouseEnter={handlePlanetMouseEnter}
                     handlePlanetMouseLeave={handlePlanetMouseLeave}
-                    colorId={galaxyOrbitSettings.colorId}
                 />
             );
           })
