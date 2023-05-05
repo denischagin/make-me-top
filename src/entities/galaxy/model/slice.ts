@@ -5,16 +5,17 @@ import { getGalaxy } from "../api/getGalaxy";
 const galaxySlice = createSlice({
   name: "galaxy",
   initialState: {
-    galaxy: {
-      galacticId: 0,
-      galacticName: "",
-      orbitList: [],
-    },
+    galacticId: 0,
+    galacticName: "",
+    orbitList: [],
   },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getGalaxy.fulfilled, (state, action) => {
-      state.galaxy = action.payload;
+
+      state.orbitList = action.payload.orbitList;
+      state.galacticId = action.payload.galacticId;
+      state.galacticName = action.payload.galacticName;
     });
   },
 });

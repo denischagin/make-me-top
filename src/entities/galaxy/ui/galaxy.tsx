@@ -210,18 +210,20 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   }
 
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.currentTarget.setAttribute('data-is-active', '1');
     const childList = event.currentTarget.getAttribute("data-planet-child-list");
     const parentList = event.currentTarget.getAttribute("data-planet-parent-list")
+
+    event.currentTarget.setAttribute('data-is-active', '1');
 
     showChildren(childList, event.currentTarget);
     showParents(parentList, event.currentTarget);
   }
 
   const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.currentTarget.setAttribute('data-is-active', '0');
     const childList = event.currentTarget.getAttribute("data-planet-child-list");
     const parentList = event.currentTarget.getAttribute("data-planet-parent-list");
+
+    event.currentTarget.setAttribute('data-is-active', '0');
 
     hideChildren(childList);
     hideParents(parentList);
