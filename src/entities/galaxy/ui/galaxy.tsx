@@ -130,6 +130,13 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             height: height,
           }}
       >
+        <div
+            className="galaxy__background"
+            style={{
+              width: galaxyOrbitSettings.width,
+              height: galaxyOrbitSettings.height,
+            }}
+        />
         <svg
             xmlns="http://www.w3.org/2000/svg"
             className="galaxy__svg-container"
@@ -137,27 +144,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             width={width}
             height={height}
             ref={svgContainerRef}
-        >
-          {
-            orbitList.map((orbits,index) => {
-              galaxyOrbitSettings.backgroundWidth -= orbitWidthStep;
-              galaxyOrbitSettings.backgroundHeight -= orbitHeightStep;
-              return (
-                  <ellipse
-                      key={index}
-                      className={`galaxy__ellipse-${index}`}
-                      rx={galaxyOrbitSettings.backgroundWidth / 2}
-                      ry={galaxyOrbitSettings.backgroundHeight / 2}
-                      cx="50%"
-                      cy="50%"/>
-              )
-            })
-          }
-        </svg>
+        />
         {
           orbitList.map((orbits) => {
             galaxyOrbitSettings.width -= orbitWidthStep;
             galaxyOrbitSettings.height -= orbitHeightStep;
+
             return (
                 <Orbit
                     key={orbits.orbitId}
