@@ -1,4 +1,5 @@
 import { bem } from "@shared/utils/bem";
+import { BackgroundProfile } from "@shared/BackgroundProfile";
 
 import { Header } from "@widgets/Header";
 
@@ -9,6 +10,7 @@ export const Curator = () => {
 
   return (
     <div className={block()}>
+      <BackgroundProfile />
       <Header />
       <div className={element("container", "container")}></div>
     </div>
