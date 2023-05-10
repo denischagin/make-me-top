@@ -1,10 +1,11 @@
 import { Typography } from "@shared/Typography";
-import { AvatarBig } from "@shared/AvatarBig";
 import { CardSmall } from "@shared/CardSmall";
+import { Avatar } from "@shared/Avatar";
 import { Rating } from "@shared/Rating";
 import { bem } from "@shared/utils/bem";
 import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
+import { avatarSize } from "@shared/Avatar/interfaces";
 
 import { ExplorerUserInfoInterface } from "./interfaces";
 
@@ -23,7 +24,11 @@ export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
 
   return (
     <div className={block()}>
-      <AvatarBig image={ avatar } />
+      <Avatar
+        size={ avatarSize.large }
+        image={ avatar }
+        orbit
+      />
       <div className={element("description")}>
         <div className={element("description-name")}>
           <Typography variant={typographyVariant.h1}>{ name }</Typography>

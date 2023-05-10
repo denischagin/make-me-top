@@ -3,6 +3,7 @@ import { bem } from "@shared/utils/bem";
 import { CuratorApplicationInterface } from "./interfaces";
 
 import "./styles.scss";
+import { CardBig } from "@shared/CardBig";
 
 export const CuratorApplication = (props: CuratorApplicationInterface) => {
 
@@ -10,6 +11,9 @@ export const CuratorApplication = (props: CuratorApplicationInterface) => {
 
   return (
     <div className={block()}>
+      <CardBig>
+
+      </CardBig>
     </div>
   );
 };

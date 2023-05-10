@@ -1,10 +1,11 @@
 import { Typography } from "@shared/Typography";
-import { AvatarSmall } from "@shared/AvatarSmall";
 import { Rating } from "@shared/Rating";
 import { bem } from "@shared/utils/bem";
 import { UserInfoInterface } from "@shared/types/common";
 import { ratingSize, ratingScoreColor, ratingStarColor } from "@shared/Rating/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
+import { avatarSize } from "@shared/Avatar/interfaces";
+import { Avatar } from "@shared/Avatar";
 
 import "./styles.scss";
 
@@ -21,7 +22,10 @@ export const UsersRating = (props: UserInfoInterface) => {
 
   return (
     <div className={block()}>
-      <AvatarSmall image={avatar} />
+      <Avatar
+        size={ avatarSize.small }
+        image={ avatar }
+      />
       <div className={element("user-name")}>
         <Typography variant={typographyVariant.regular14}>{ name }</Typography>
       </div>
