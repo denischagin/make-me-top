@@ -7,14 +7,14 @@ interface IConnectionsOverlapCheck {
 }
 
 //проверка наличия связи между планетами
-export const connectionsOverlapCheck = (props: IConnectionsOverlapCheck) => {
+export const isConnectionOverlapped = (params: IConnectionsOverlapCheck) => {
     const {
         currentTargetCoords,
         elementToConnectCoords,
         viewBoxOffsetX,
         viewBoxOffsetY,
         svgContainer
-    } = props
+    } = params
 
     //остановка если ref на контейнер еще не был создан
     if (!svgContainer) {

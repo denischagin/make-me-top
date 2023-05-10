@@ -1,6 +1,6 @@
 import {getElemCoords} from "@entities/galaxy/lib/getElemCoords";
 
-interface IShowChildrenProps {
+interface IShowChildren {
     childrenList: string | null,
     currentTarget: HTMLDivElement,
     planetWidth: number,
@@ -12,7 +12,7 @@ interface IShowChildrenProps {
 
 //функция создания svg линий связи между текущей планетой и всеми ее child зависимостями
 //изменения dataset атрбута (атрибут активности при наведении)
-export const showPlanetsChildren = (props: IShowChildrenProps) => {
+export const showPlanetsChildren = (params: IShowChildren) => {
     const {
         childrenList,
         currentTarget,
@@ -21,7 +21,7 @@ export const showPlanetsChildren = (props: IShowChildrenProps) => {
         viewBoxOffsetX,
         viewBoxOffsetY,
         svgContainer,
-    } = props
+    } = params
 
     const currentTargetCoords = getElemCoords({
         elem: currentTarget,

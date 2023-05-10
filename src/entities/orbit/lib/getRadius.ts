@@ -5,12 +5,12 @@ interface IGetRadius {
 }
 
 //расчет радиуса эллипса по определенному градусу
-export const getRadius = (props: IGetRadius): number => {
+export const getRadius = (params: IGetRadius): number => {
     const {
         digitalAngle,
         halfHeight,
         halfWidth
-    } = props
+    } = params
 
     return (halfWidth * halfHeight) /
         Math.sqrt(

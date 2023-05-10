@@ -1,4 +1,4 @@
-interface IGetYCoordinateOnEllipseProps {
+interface IGetYCoordinateOnEllipse {
     ellipseHalfHeight: number,
     radius: number,
     digitalAngle: number,
@@ -6,13 +6,13 @@ interface IGetYCoordinateOnEllipseProps {
 }
 
 //расчет координаты Y для элемента на границе эллипса
-export const getYCoordinateOnEllipse = (props: IGetYCoordinateOnEllipseProps): number => {
+export const getYCoordinateOnEllipse = (params: IGetYCoordinateOnEllipse): number => {
     const {
         ellipseHalfHeight,
         radius,
         digitalAngle,
         elementHeight
-    } = props
+    } = params
 
     return Math.round(
         ellipseHalfHeight -

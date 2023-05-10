@@ -1,13 +1,13 @@
-interface IHidePlanetsChildrenProps {
+interface IHidePlanetsChildren {
     childrenList: string | null,
 }
 
 //функция изменения dataset атрбута для всех child зависимостей планеты
 //(атрибут активности при наведении)
-export const hidePlanetsChildren = (props: IHidePlanetsChildrenProps) => {
+export const hidePlanetsChildren = (params: IHidePlanetsChildren) => {
     const {
         childrenList
-    } = props;
+    } = params;
 
     const childrenListArray = childrenList!.split(",");
 

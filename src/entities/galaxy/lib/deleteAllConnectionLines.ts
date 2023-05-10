@@ -1,12 +1,12 @@
-interface IDeleteAllConnectionLinesProps {
+interface IDeleteAllConnectionLines {
     svgContainer: SVGSVGElement | null,
 }
 
 //функция удаления всех элементов определенного класса в заданном svg контейнере
-export const deleteAllConnectionLines = (props: IDeleteAllConnectionLinesProps) => {
+export const deleteAllConnectionLines = (params: IDeleteAllConnectionLines) => {
     const {
         svgContainer,
-    } = props
+    } = params
 
     //остановка если ref на контейнер еще не был создан
     if (!svgContainer) {

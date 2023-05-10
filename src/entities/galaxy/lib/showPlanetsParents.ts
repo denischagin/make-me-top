@@ -1,7 +1,7 @@
 import {getElemCoords} from "@entities/galaxy/lib/getElemCoords";
 import {getCoordsForConnection} from "@entities/galaxy/lib/getCoordsForConnection";
 
-interface IShowPlanetsParentsProps {
+interface IShowPlanetsParents {
     parentsList: string | null,
     currentTarget: HTMLDivElement,
     planetWidth: number,
@@ -17,7 +17,7 @@ interface IShowPlanetsParentsProps {
 //так же изменения dataset атрбута для всех parent зависимостей планеты
 //связи и атрибуты будут настроены у всех зависимых элементов вплоть до крайнего parent элемента без зависимостей
 //(атрибут активности при наведении)
-export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
+export const showPlanetsParents = (params: IShowPlanetsParents) => {
     const {
         parentsList,
         currentTarget,
@@ -26,7 +26,7 @@ export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
         viewBoxOffsetX,
         viewBoxOffsetY,
         svgContainer
-    } = props
+    } = params
 
     const currentTargetCoords = getElemCoords({
         elem: currentTarget,
@@ -38,7 +38,7 @@ export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
     const parentsListArray = parentsList?.split(",");
 
     parentsListArray?.forEach(parent => {
-        let color = props.color || null;
+        let color = params.color || null;
 
         const elementData = parent.split(":");
         const [elementId, isAlternative] = elementData;

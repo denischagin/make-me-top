@@ -7,13 +7,13 @@ interface IGetElemCoords {
 
 
 //получение координат SVGSVGElement элемента или середины HTMLElement элемента
-export const getElemCoords = (props: IGetElemCoords) => {
+export const getElemCoords = (params: IGetElemCoords) => {
     const {
         elem,
         type,
         planetWidth,
         planetHeight,
-    } = props
+    } = params
 
     if (!elem) {
         return

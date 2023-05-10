@@ -5,10 +5,10 @@ interface IHidePlanetsParents {
 //рекурсивная функция изменения dataset атрбута для всех parent зависимостей планеты
 //атрибут будет изменен у всех зависимых элементов вплоть до крайнего parent элемента без зависимостей
 //(атрибут активности при наведении)
-export const hidePlanetsParents = (props: IHidePlanetsParents) => {
+export const hidePlanetsParents = (params: IHidePlanetsParents) => {
     const {
         parentsList
-    } = props;
+    } = params;
 
     //преобразование строки в массив формата ["КодПланеты:ТипСвязи",...]
     const parentsListArray = parentsList?.split(",");
