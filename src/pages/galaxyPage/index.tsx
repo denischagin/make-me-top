@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
 import { getGalaxy } from "@entities/galaxy/api/getGalaxy";
-import Galaxy from "@entities/galaxy/ui/galaxy";
+import Galaxy from "@entities/galaxy/ui";
 
 import "./styles.scss";
 

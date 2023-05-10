@@ -1,6 +1,6 @@
 import React, {createRef, useEffect, useState} from "react";
 
-import Orbit from "../../orbit/ui/orbit";
+import Orbit from "../../orbit/ui";
 
 import {getElemCoords} from "@entities/galaxy/lib/getElemCoords";
 import {deleteAllConnectionLines} from "@entities/galaxy/lib/deleteAllConnectionLines";

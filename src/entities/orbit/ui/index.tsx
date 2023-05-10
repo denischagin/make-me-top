@@ -10,7 +10,7 @@ import {getYCoordinateOnEllipse} from "@entities/orbit/lib/getYCoordinateOnEllip
 import {getPlanetParentData} from "@entities/orbit/lib/getPlanetParentData";
 import {getPlanetChildData} from "@entities/orbit/lib/getPlanetChildData";
 
-import "@entities/orbit/ui/orbit.scss";
+import "@entities/orbit/ui/styles.scss";
 
 
 interface IOrbitProps {

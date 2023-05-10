@@ -11,8 +11,8 @@ import {
 
 import { Curators } from "@pages/curators/page";
 import { Explorers } from "@pages/explorers/page";
-import { GalaxyPage } from "@pages/galaxyPage/page";
-import { Home } from "@pages/home/page";
+import { GalaxyPage } from "@pages/galaxyPage";
+import { Home } from "@pages/home";
 import { Curator } from "@pages/user/curator/page";
 import { Explorer } from "@pages/user/explorer/page";
 
