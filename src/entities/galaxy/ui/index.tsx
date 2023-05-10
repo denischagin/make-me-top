@@ -1,6 +1,6 @@
 import React, {createRef, useEffect, useState} from "react";
 
-import Orbit from "../../orbit/ui";
+import Orbit from "@entities/orbit/ui";
 
 import {getElemCoords} from "@entities/galaxy/lib/getElemCoords";
 import {deleteAllConnectionLines} from "@entities/galaxy/lib/deleteAllConnectionLines";
@@ -39,8 +39,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
   const svgContainerRef = createRef<SVGSVGElement>();
 
-  const [viewBoxOffsetX, setViewBoxOffsetX] = useState<number|undefined>();
-  const [viewBoxOffsetY, setViewBoxOffsetY] = useState<number|undefined>();
+  const [viewBoxOffsetX, setViewBoxOffsetX] = useState<number>(0);
+  const [viewBoxOffsetY, setViewBoxOffsetY] = useState<number>(0);
 
   const orbitWidthStep = width / (orbitList.length + 1);
   const orbitHeightStep = height / (orbitList.length + 1);
@@ -57,12 +57,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     setViewBoxOffsetX(getElemCoords({
       elem: svgContainerRef.current,
       type: "SVGSVGElement",
-    })?.left);
+    })!.left);
 
     setViewBoxOffsetY(getElemCoords({
       elem: svgContainerRef.current,
       type: "SVGSVGElement",
-    })?.top);
+    })!.top);
 
   }, []);
 

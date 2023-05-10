@@ -5,8 +5,8 @@ interface IShowChildrenProps {
     currentTarget: HTMLDivElement,
     planetWidth: number,
     planetHeight: number,
-    viewBoxOffsetX: number | undefined,
-    viewBoxOffsetY: number | undefined,
+    viewBoxOffsetX: number,
+    viewBoxOffsetY: number,
     svgContainer: SVGSVGElement | null,
 }
 
@@ -58,7 +58,7 @@ export const showPlanetsChildren = (props: IShowChildrenProps) => {
         childElement?.setAttribute("data-is-active", "1");
 
         //позиционирование и стилизация линии
-        if (currentTargetCoords && childElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
+        if (currentTargetCoords && childElementCoords) {
             svgLine.setAttribute('class', 'galaxy__connection-line');
             svgLine.setAttribute('x1', String(currentTargetCoords?.left - viewBoxOffsetX));
             svgLine.setAttribute('y1', String(currentTargetCoords?.top - viewBoxOffsetY));

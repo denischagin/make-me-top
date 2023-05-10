@@ -6,8 +6,8 @@ interface IShowPlanetsParentsProps {
     currentTarget: HTMLDivElement,
     planetWidth: number,
     planetHeight: number,
-    viewBoxOffsetX: number | undefined,
-    viewBoxOffsetY: number | undefined,
+    viewBoxOffsetX: number,
+    viewBoxOffsetY: number,
     svgContainer : SVGSVGElement | null,
     color?: string | null,
 }
@@ -65,7 +65,7 @@ export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
         const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 
         //поиск и установка координат для связи
-        if (currentTargetCoords && parentElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
+        if (currentTargetCoords && parentElementCoords) {
             const lineCoordsWithoutOverlaps = getCoordsForConnection({
                 currentTarget: currentTargetCoords,
                 elementToConnect: parentElementCoords,

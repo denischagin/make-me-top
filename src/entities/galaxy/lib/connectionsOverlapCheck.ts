@@ -1,8 +1,8 @@
 interface IConnectionsOverlapCheck {
     currentTargetCoords: { top: number, left: number },
     elementToConnectCoords: { top: number, left: number },
-    viewBoxOffsetX: number | undefined,
-    viewBoxOffsetY: number | undefined,
+    viewBoxOffsetX: number,
+    viewBoxOffsetY: number,
     svgContainer: SVGSVGElement | null,
 }
 
@@ -28,12 +28,10 @@ export const connectionsOverlapCheck = (props: IConnectionsOverlapCheck) => {
 
     //проверка наличия связи между планетами по точным координатам
     const checkResult = allConnectionLines.findIndex(line => {
-            if (viewBoxOffsetX !== undefined && viewBoxOffsetY !== undefined) {
-                return line.getAttribute("x1") === String(currentTargetCoords.left - viewBoxOffsetX) &&
-                    line.getAttribute("y1") === String(currentTargetCoords.top - viewBoxOffsetY) &&
-                    line.getAttribute("x2") === String(elementToConnectCoords.left - viewBoxOffsetX) &&
-                    line.getAttribute("y2") === String(elementToConnectCoords.top - viewBoxOffsetY)
-            }
+        return line.getAttribute("x1") === String(currentTargetCoords.left - viewBoxOffsetX) &&
+            line.getAttribute("y1") === String(currentTargetCoords.top - viewBoxOffsetY) &&
+            line.getAttribute("x2") === String(elementToConnectCoords.left - viewBoxOffsetX) &&
+            line.getAttribute("y2") === String(elementToConnectCoords.top - viewBoxOffsetY)
         }
     )
 
