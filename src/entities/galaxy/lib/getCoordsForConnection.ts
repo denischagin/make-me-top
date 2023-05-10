@@ -29,12 +29,12 @@ export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoo
     } = params
 
     //swingCount: количество изменений направления при наложении
-    //swingDirection: направление для следующей связи (1 или -1)
+    //swingDirection: множитель направления для следующей связи (1 или -1)
     let swingCount = swingCountProp || 1;
     let swingDirection;
 
     //step: расстояние между линиями
-    //offset: отступ от текйщей связи
+    //offset: отступ от текущей связи
     const step = 7;
     const offset = step * swingCount;
 
@@ -45,8 +45,10 @@ export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoo
         viewBoxOffsetY,
         viewBoxOffsetX,
         svgContainer: svgContainer,
+        svgLineClass: ".galaxy__connection-line"
     });
 
+    //чередование направления в зависимости от их количества
     swingCount % 2 === 0 ? swingDirection = -1 : swingDirection = 1;
 
     //если было наложение(место занято) - поиск следующего места

@@ -4,6 +4,7 @@ interface IIsConnectionOverlapped {
     viewBoxOffsetX: number,
     viewBoxOffsetY: number,
     svgContainer: SVGSVGElement | null,
+    svgLineClass: string,
 }
 
 //проверка наличия связи между планетами
@@ -13,7 +14,8 @@ export const isConnectionOverlapped = (params: IIsConnectionOverlapped) => {
         elementToConnectCoords,
         viewBoxOffsetX,
         viewBoxOffsetY,
-        svgContainer
+        svgContainer,
+        svgLineClass,
     } = params
 
     //остановка если ref на контейнер еще не был создан
@@ -24,7 +26,7 @@ export const isConnectionOverlapped = (params: IIsConnectionOverlapped) => {
     //создание массива HTML элементов
     //каждый элемент является svg линией связи
     const elementsFromSvgContainer = Array.from(svgContainer.children || []);
-    const allConnectionLines = elementsFromSvgContainer.filter(element => element.matches(".galaxy__connection-line"));
+    const allConnectionLines = elementsFromSvgContainer.filter(element => element.matches(svgLineClass));
 
     //проверка наличия связи между планетами по точным координатам
     const checkResult = allConnectionLines.findIndex(line => {
