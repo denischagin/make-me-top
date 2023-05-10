@@ -5,6 +5,7 @@ interface IGetYCoordinateOnEllipseProps {
     elementHeight: number
 }
 
+//расчет координаты Y для элемента на границе эллипса
 export const getYCoordinateOnEllipse = (props: IGetYCoordinateOnEllipseProps): number => {
     const {
         ellipseHalfHeight,

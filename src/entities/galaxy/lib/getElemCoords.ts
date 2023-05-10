@@ -1,16 +1,18 @@
 interface IGetElemCoords {
     elem: HTMLElement | SVGSVGElement | null,
     type: "HTMLElement" | "SVGSVGElement",
-    planetWidth: number,
-    planetHeight: number
+    planetWidth?: number,
+    planetHeight?: number
 }
 
+
+//получение координат SVGSVGElement элемента или середины HTMLElement элемента
 export const getElemCoords = (props: IGetElemCoords) => {
     const {
         elem,
         type,
         planetWidth,
-        planetHeight
+        planetHeight,
     } = props
 
     if (!elem) {
@@ -33,8 +35,10 @@ export const getElemCoords = (props: IGetElemCoords) => {
 
     switch (type) {
         case "HTMLElement": {
-            top  = box.top +  scrollTop - clientTop + planetHeight / 2;
-            left = box.left + scrollLeft - clientLeft + planetWidth / 2;
+            if (planetWidth !== undefined && planetHeight !== undefined) {
+                top  = box.top +  scrollTop - clientTop + planetHeight / 2;
+                left = box.left + scrollLeft - clientLeft + planetWidth / 2;
+            }
 
             break;
         }

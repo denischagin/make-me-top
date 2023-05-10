@@ -11,6 +11,12 @@ interface IShowPlanetsParentsProps {
     svgContainer : SVGSVGElement | null,
     color?: string | null,
 }
+
+
+//рекурсивная функция изменения создания связей между текущей и всеми ее parent зависимостями
+//так же изменения dataset атрбута для всех parent зависимостей планеты
+//связи и атрибуты будут настроены у всех зависимых элементов вплоть до крайнего parent элемента без зависимостей
+//(атрибут активности при наведении)
 export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
     const {
         parentsList,
@@ -58,6 +64,7 @@ export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
 
         const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 
+        //поиск и установка координат для связи
         if (currentTargetCoords && parentElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
             const lineCoordsWithoutOverlaps = getCoordsForConnection({
                 currentTarget: currentTargetCoords,
@@ -79,12 +86,14 @@ export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
             svgLine.setAttribute('stroke-dasharray', "10 5");
         }
 
+        //WIP цвета связей
         if (color) {
             svgLine.setAttribute('class', `${svgLine?.getAttribute("class")} galaxy__connection-line_${color}`);
         }
 
         svgContainer?.append(svgLine);
 
+        //если у текущего parent элемента есть parent зависимости
         if (parentElement && parentsListOfCurrentParent) {
             showPlanetsParents({
                 parentsList: parentsListOfCurrentParent,

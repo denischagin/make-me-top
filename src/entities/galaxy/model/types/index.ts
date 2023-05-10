@@ -1,5 +1,5 @@
 export type SystemDependencyType = {
-  planetId: number | null;
+  systemId: number | null;
   type: "child" | "parent";
   isAlternative: boolean;
 };

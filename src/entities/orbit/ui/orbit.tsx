@@ -1,6 +1,6 @@
 import React from "react";
 
-import {SystemType, SystemDependencyType} from "@entities/galaxy/model/types";
+import {SystemType} from "@entities/galaxy/model/types";
 import { Star } from "@shared/Star";
 
 import {getDigitalAngle} from "@entities/orbit/lib/getDigitalAngle";

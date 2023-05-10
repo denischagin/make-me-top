@@ -10,6 +10,8 @@ interface IShowChildrenProps {
     svgContainer: SVGSVGElement | null,
 }
 
+//функция создания svg линий связи между текущей планетой и всеми ее child зависимостями
+//изменения dataset атрбута (атрибут активности при наведении)
 export const showPlanetsChildren = (props: IShowChildrenProps) => {
     const {
         childrenList,
@@ -30,10 +32,13 @@ export const showPlanetsChildren = (props: IShowChildrenProps) => {
 
     const childrenListArray = childrenList!.split(",");
 
-    childrenListArray.forEach(elementData => {
-        const elementDataArray = elementData.split(":");
-        const numberElementId = parseInt(elementDataArray[0], 10);
-        const isAlternative = elementDataArray[1] === "true" ? 1 : 0;
+    //для каждой child зависимости построение связи
+    childrenListArray.forEach(child => {
+        const elementData = child.split(":");
+        const [elementId, isAlternative] = elementData;
+
+        const numberElementId = Number(elementId);
+        const booleanIsAlternative = isAlternative === "true";
 
         if (isNaN(numberElementId)) {
             return
@@ -52,16 +57,17 @@ export const showPlanetsChildren = (props: IShowChildrenProps) => {
 
         childElement?.setAttribute("data-is-active", "1");
 
+        //позиционирование и стилизация линии
         if (currentTargetCoords && childElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
             svgLine.setAttribute('class', 'galaxy__connection-line');
             svgLine.setAttribute('x1', String(currentTargetCoords?.left - viewBoxOffsetX));
             svgLine.setAttribute('y1', String(currentTargetCoords?.top - viewBoxOffsetY));
             svgLine.setAttribute('x2', String(childElementCoords?.left - viewBoxOffsetX));
             svgLine.setAttribute('y2', String(childElementCoords?.top - viewBoxOffsetY));
-            svgLine.setAttribute('stroke', "white");
         }
 
-        if (isAlternative) {
+        //установка атрибута пунктира, если путь альтернативен
+        if (booleanIsAlternative) {
             svgLine.setAttribute('stroke-dasharray', "10 5");
         }
 

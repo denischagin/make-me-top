@@ -57,15 +57,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     setViewBoxOffsetX(getElemCoords({
       elem: svgContainerRef.current,
       type: "SVGSVGElement",
-      planetWidth,
-      planetHeight
     })?.left);
 
     setViewBoxOffsetY(getElemCoords({
       elem: svgContainerRef.current,
       type: "SVGSVGElement",
-      planetWidth,
-      planetHeight
     })?.top);
 
   }, []);
