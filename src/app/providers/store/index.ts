@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
   explorer: explorerReducer,
   curator: curatorReducer,
   user: userReducer,
-  galactic: galaxySlice,
+  galaxy: galaxySlice,
 });
 
 export type RootState = {
@@ -24,7 +24,7 @@ export type RootState = {
   user: {
     isRegistered: boolean;
   };
-  galactic: GalaxyType;
+  galaxy: GalaxyType;
 };
 
 export type AppDispatch = typeof store.dispatch;

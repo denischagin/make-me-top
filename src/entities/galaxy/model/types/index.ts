@@ -20,7 +20,7 @@ export type OrbitType = {
 };
 
 export type GalaxyType = {
-  galacticId: number;
-  galacticName: string;
+  galaxyId: number;
+  galaxyName: string;
   orbitList: Array<OrbitType>;
 };

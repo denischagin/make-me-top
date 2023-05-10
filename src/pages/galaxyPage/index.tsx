@@ -15,7 +15,7 @@ export const GalaxyPage: React.FC = () => {
   }, [dispatch]);
 
   const orbitList = useAppSelector(
-    (state) => state.galactic.orbitList
+    (state) => state.galaxy.orbitList
   );
 
   return (
