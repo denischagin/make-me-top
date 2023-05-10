@@ -1,4 +1,4 @@
-interface IConnectionsOverlapCheck {
+interface IIsConnectionOverlapped {
     currentTargetCoords: { top: number, left: number },
     elementToConnectCoords: { top: number, left: number },
     viewBoxOffsetX: number,
@@ -7,7 +7,7 @@ interface IConnectionsOverlapCheck {
 }
 
 //проверка наличия связи между планетами
-export const isConnectionOverlapped = (params: IConnectionsOverlapCheck) => {
+export const isConnectionOverlapped = (params: IIsConnectionOverlapped) => {
     const {
         currentTargetCoords,
         elementToConnectCoords,
