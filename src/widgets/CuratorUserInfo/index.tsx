@@ -6,20 +6,22 @@ import { bem } from "@shared/utils/bem";
 import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
 
-import { ExplorerUserInfoInterface } from "./interfaces";
+import { CuratorInterface } from "./interfaces";
 
 import "./styles.scss";
 
-export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
+export const CuratorUserInfo = (props: CuratorInterface) => {
   const {
-    user: {
+    curator: {
       name,
       avatar,
-      rating
+      rating,
+      explorers,
+      planets
     }
   } = props;
 
-  const [block, element] = bem("profile-info");
+  const [block, element] = bem("curator-info");
 
   return (
     <div className={block()}>
@@ -45,10 +47,18 @@ export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
           <CardSmall>
             <div className={element("heading")}>
               <Typography variant={typographyVariant.regular16}>
-                Кол-во освоенных звезд
+                Кол-во планет
               </Typography>
             </div>
-            <span className={element("completed-stars")}>11</span>
+            <span className={element("completed-stars")}>{ planets }</span>
+          </CardSmall>
+          <CardSmall>
+            <div className={element("heading")}>
+              <Typography variant={typographyVariant.regular16}>
+                Кол-во исследователей
+              </Typography>
+            </div>
+            <span className={element("explorers-count")}>{ explorers }</span>
           </CardSmall>
         </div>
       </div>
