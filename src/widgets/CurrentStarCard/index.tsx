@@ -18,11 +18,11 @@ import { buttonSize, buttonColor } from "@shared/Button/interfaces";
 import { DividingLineColor } from "@shared/DividingLine/interfaces";
 
 import { showModal } from "@entities/user/model";
+import { getModalPlanets } from "@entities/explorer/api/getModalPlanets";
 
 import { ProgressBar } from "@widgets/ProgressBar";
 
 import {
-  PLANETS_LIST,
   CURATORS_LIST,
   EXPLORERS_LIST,
   USER_INFO,
@@ -32,6 +32,7 @@ import {
 import { CurrentStarCardInterface } from "./interfaces";
 
 import "./styles.scss";
+
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
   const {
     tabsList,
@@ -52,13 +53,10 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
   return (
     <div className={block()}>
-      <Modal name={ name }>
+      <Modal name="Groovy">
         <MmtTabs list={tabsList}>
           <TabPanel>
-            <PlanetList
-              list={PLANETS_LIST}
-              currentPlanet={ name }
-            />
+            <PlanetList currentPlanet={ name }/>
             <FinalGrade />
           </TabPanel>
           <TabPanel>
@@ -112,6 +110,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
             color={buttonColor.filled}
             title="Продолжить"
             action={() => {
+              dispatch(getModalPlanets());
               dispatch(showModal());
             }}
           />
