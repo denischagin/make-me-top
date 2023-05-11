@@ -2,10 +2,43 @@
 
 .galaxyPage {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   height: 100%;
   width: 100%;
   align-items: center;
   justify-content: center;
   background: $dark;
+
+
+  &__description {
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    z-index: 0;
+
+    &_page-context {
+      color: $white;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      font: $font-text-regular;
+      padding-bottom: 16px;
+    }
+
+    &_galaxy-name {
+      color: $white;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 26px;
+      line-height: 32px;
+      height: 32px;
+      font: $font-heading;
+    }
+  }
 }

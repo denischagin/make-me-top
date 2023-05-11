@@ -11,6 +11,7 @@ import {showPlanetsChildren} from "@entities/Galaxy/lib/showPlanetsChildren";
 
 import { OrbitType } from "@entities/Galaxy/model/types";
 import "./style.scss";
+import {BackgroundProfile} from "@shared/BackgroundProfile";
 
 interface IGalaxyProps {
   orbitList: Array<OrbitType>;

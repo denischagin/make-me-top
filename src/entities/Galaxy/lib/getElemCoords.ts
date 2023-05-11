@@ -21,29 +21,33 @@ export const getElemCoords = (params: IGetElemCoords) => {
 
     const box = elem.getBoundingClientRect();
 
+    console.log(elem, box, elem)
+
     const body = document.body;
     const docEl = document.documentElement;
 
     const scrollTop = window.scrollY  || docEl.scrollTop || body.scrollTop;
     const scrollLeft = window.scrollX || docEl.scrollLeft || body.scrollLeft;
 
-    const clientTop = docEl.clientTop || body.clientTop || 0;
-    const clientLeft = docEl.clientLeft || body.clientLeft || 0;
+    const clientTop = docEl.clientTop || body.clientTop;
+    const clientLeft = docEl.clientLeft || body.clientLeft;
+    console.log(window.scrollY, docEl.scrollTop, body.scrollTop, docEl.clientTop, body.clientTop)
 
     let top = 0;
     let left = 0;
 
+
     switch (type) {
         case "HTMLElement": {
             if (planetWidth !== undefined && planetHeight !== undefined) {
-                top  = box.top +  scrollTop - clientTop + planetHeight / 2;
+                top  = box.top + scrollTop - clientTop + planetHeight / 2;
                 left = box.left + scrollLeft - clientLeft + planetWidth / 2;
             }
 
             break;
         }
         case "SVGSVGElement": {
-            top  = box.top +  scrollTop - clientTop;
+            top  = box.top + scrollTop + - clientTop;
             left = box.left + scrollLeft - clientLeft;
 
             break;
