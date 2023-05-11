@@ -1,9 +1,9 @@
 import { bem } from "@shared/utils/bem";
 import { BackgroundProfile } from "@shared/BackgroundProfile";
-import { ApplicationEducation } from "@shared/ApplicationEducation";
 
 import { Header } from "@widgets/Header";
 import { CuratorUserInfo } from "@widgets/CuratorUserInfo";
+import { ApplicationsEducationList } from "@widgets/ApplicationsEducationList";
 
 import {
   CURATOR_INFO,
@@ -22,7 +22,7 @@ export const Curator = () => {
         <Header />
         <div className={element("container", "container p-0")}>
           <CuratorUserInfo curator={CURATOR_INFO} />
-          <ApplicationEducation applications={APPLICATIONS_LIST}/>
+          <ApplicationsEducationList applications={APPLICATIONS_LIST}/>
         </div>
       </div>
     </>

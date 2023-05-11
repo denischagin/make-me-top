@@ -1,38 +1,32 @@
 @import "@app/styles/variables.scss";
 
-.curator-application {
-  &__heading {
-    margin-top: 42px;
-    margin-bottom: 24px;
-  }
+.application-education-card {
+  margin-bottom: 8px;
+  transition: 0.3s;
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: 8px;
 
-  &__application {
-    margin-bottom: 8px;
-    transition: 0.3s;
-    position: relative;
-    border: 1px solid transparent;
+  &:hover {
+    border: 1px solid $primary-500;
     border-radius: 8px;
 
-    &:hover {
-      border: 1px solid $primary-500;
-      border-radius: 8px;
+    .application-education-card__buttons {
+      opacity: 1;
+      pointer-events: all;
+      right: 0;
+    }
 
-      .curator-application__buttons {
-        opacity: 1;
-        right: 0;
-      }
+    .application-education-card__extra-content {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
 
-      .curator-application__extra-content {
-        display: flex;
-        align-items: center;
-        position: relative;
-      }
-
-      .curator-application__rating {
-        position: relative;
-        margin-right: 330px;
-        margin-top: 32px;
-      }
+    .application-education-card__rating {
+      position: relative;
+      margin-right: 330px;
+      margin-top: 32px;
     }
   }
 
@@ -40,6 +34,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__heading {
+    margin-top: 42px;
+    margin-bottom: 24px;
   }
 
   &__info {
@@ -69,6 +68,7 @@
   }
 
   &__buttons {
+    pointer-events: none;
     transition: 0.2s;
     opacity: 0;
     position: absolute;
