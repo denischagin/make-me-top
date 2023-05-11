@@ -14,8 +14,7 @@
   }
 
   &__heading {
-    margin-top: 8px;
-    margin-bottom: 0px;
+    margin: 0px;
   }
 
   &__current-star,
@@ -30,7 +29,6 @@
   &__progress {
     display: flex;
     color: $primary-500;
-    margin-bottom: 8px;
   }
 
   &__progress-bar {
