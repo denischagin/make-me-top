@@ -1,5 +1,5 @@
-export interface CuratorApplicationInterface {
-  applications: ApplicationInterface
+export interface ApplicationEducationInterface {
+  applications: Array<ApplicationInterface>
 }
 
 export interface ApplicationInterface {
