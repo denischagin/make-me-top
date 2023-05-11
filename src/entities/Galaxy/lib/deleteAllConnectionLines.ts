@@ -1,3 +1,5 @@
+import {restoreColorShelf} from "@entities/Galaxy/lib/colorShelf";
+
 interface IDeleteAllConnectionLines {
     svgContainer: SVGSVGElement | null,
 }
@@ -22,4 +24,6 @@ export const deleteAllConnectionLines = (params: IDeleteAllConnectionLines) => {
     allConnectionLines.forEach(line => {
         line.remove();
     })
+
+    restoreColorShelf()
 }

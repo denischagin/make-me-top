@@ -52,5 +52,21 @@
   &__connection-line {
     stroke: $white;
     stroke-width: 1px;
+
+    &_orange-stroke-color {
+      stroke: $primary-500;
+    }
+
+    &_green-stroke-color {
+      stroke: #1A9234;
+    }
+
+    &_pink-stroke-color {
+      stroke: #9D2892;
+    }
+
+    &_white-stroke-color {
+      stroke: $white;
+    }
   }
 }

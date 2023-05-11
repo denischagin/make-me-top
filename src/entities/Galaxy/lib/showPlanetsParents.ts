@@ -1,5 +1,6 @@
 import {getElemCoords} from "@entities/Galaxy/lib/getElemCoords";
 import {getCoordsForConnection} from "@entities/Galaxy/lib/getCoordsForConnection";
+import {getColorFromShelf} from "@entities/Galaxy/lib/colorShelf";
 
 interface IShowPlanetsParents {
     parentsList: string | null,
@@ -84,6 +85,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
 
         if (booleanIsAlternative) {
             svgLine.setAttribute('stroke-dasharray', "10 5");
+            color = getColorFromShelf();
         }
 
         //WIP цвета связей

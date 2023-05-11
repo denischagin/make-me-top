@@ -35,7 +35,7 @@ export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoo
 
     //step: расстояние между линиями
     //offset: отступ от текущей связи
-    const step = 7;
+    const step = 4;
     const offset = step * swingCount;
 
     //проверка на наложение связей
