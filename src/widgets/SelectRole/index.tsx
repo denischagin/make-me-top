@@ -1,6 +1,6 @@
 import { useAppDispatch } from "@app/providers/store/hooks";
 
-import { PlanetButton } from "@shared/buttons/PlanetButton";
+import { PlanetButton } from "@shared/PlanetButton";
 
 import { selectRoleAsCurator } from "@entities/Сurator/model";
 import { selectRoleAsExplorer } from "@entities/Explorer/model";

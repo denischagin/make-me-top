@@ -1,0 +1,53 @@
+@import "@app/styles/variables.scss";
+
+.arrow-button {
+  margin-top: 0px;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &--direction-left {
+    transform: rotate(0);
+  }
+
+  &--direction-right {
+    transform: rotate(180deg);
+  }
+
+  &--direction-top {
+    transform: rotate(90deg);
+  }
+
+  &--direction-bottom {
+    transform: rotate(270deg);
+  }
+
+  &:hover {
+    .arrow-button__arrow {
+      transition: 0.2s;
+      padding-left: 10px;
+    }
+
+    .arrow-button__circle {
+      opacity: 1;
+    }
+  }
+
+  &__arrow {
+    margin-left: 5px;
+    z-index: 1;
+    transition: 0.2s;
+  }
+
+  &__circle {
+    position: absolute;
+    opacity: 0;
+    background-color: $primary-500;
+    padding: 20px;
+    border-radius: 99px;
+    transition: 0.2s;
+  }
+}

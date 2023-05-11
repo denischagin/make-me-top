@@ -1,0 +1,22 @@
+@import "@app/styles/variables.scss";
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  &__home-button,
+  &__explorers-button,
+  &__curators-button,
+  &__exit-button {
+    cursor: pointer;
+  }
+
+  &__exit-button {
+    display: flex;
+  }
+
+  &__exit-icon {
+    margin-left: 10px;
+  }
+}

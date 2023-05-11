@@ -1,19 +1,37 @@
 import { Typography } from "@shared/Typography";
-import { AvatarSmall } from "@shared/avatars/AvatarSmall";
-import { ReactComponent as StarIcon } from "@shared/images/star.svg";
+import { AvatarSmall } from "@shared/AvatarSmall";
+import { Rating } from "@shared/Rating";
+import { bem } from "@shared/utils/bem";
+import { UserInfoInterface } from "@shared/types/common";
+import { ratingSize, ratingScoreColor, ratingStarColor } from "@shared/Rating/interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 
-export const UsersRating = () => {
+export const UsersRating = (props: UserInfoInterface) => {
+  const {
+    user: {
+      name,
+      avatar,
+      rating
+    }
+  } = props;
+
+  const [block, element] = bem("rating-info");
+
   return (
-    <div className="rating-info">
-      <AvatarSmall image="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg" />
-      <div className="rating-info__user-name">
-        <Typography variant="regular14">Фамилия Имя Отчество</Typography>
+    <div className={block()}>
+      <AvatarSmall image={avatar} />
+      <div className={element("user-name")}>
+        <Typography variant={typographyVariant.regular14}>{ name }</Typography>
       </div>
-      <span className="rating-info__user-score">
-        <StarIcon className="rating-info__user-score-star" />
-        <p className="rating-info__user-score-num">4.8</p>
+      <span className={element("user-score")}>
+        <Rating
+          rating={ rating }
+          size={ratingSize.medium}
+          scoreColor={ratingScoreColor.white}
+          starColor={ratingStarColor.primary500}
+        />
       </span>
     </div>
   );

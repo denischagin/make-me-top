@@ -1,41 +1,21 @@
 import { ReactComponent as OrbitIcon } from "@shared/images/orbit.svg";
+import { bem } from "@shared/utils/bem";
 
 import { StarInterface } from "./interfaces";
+
 import "./styles.scss";
 
 export const Star = (props: StarInterface) => {
-  const starColor = () => {
-    if (props.color === "black") {
-      return "star star--black";
-    }
-
-    if (props.color === "white") {
-      return "star star--white";
-    }
-
-    return "star star--orange";
-  };
-
-  const starInfoColor = () => {
-    if (props.color === "white") {
-      return "star-info star-info--black";
-    }
-    return "star-info";
-  };
-
-  const orbitColor = () => {
-    if (props.color === "orange") {
-      return "#CF5335";
-    }
-    return "#FBF9FF";
-  };
+  const [block, element] = bem("star");
 
   return (
-    <div className={starColor()}>
-      <div className={starInfoColor()}>
+    <div className={block({ color: props.color })}>
+      <div className={element("info", { color: props.color })}>
         {props.children}
-        <div className="orbit">
-          <OrbitIcon style={{ color: orbitColor() }} />
+        <div className={element("orbit")}>
+          <OrbitIcon
+            className={element("orbit-icon", { color: props.color })}
+          />
         </div>
       </div>
     </div>

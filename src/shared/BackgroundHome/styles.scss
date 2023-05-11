@@ -1,0 +1,103 @@
+@import "@app/styles/variables.scss";
+
+.background-home {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  background-color: $dark;
+  z-index: 1;
+
+  &__static-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-attachment: local;
+    background-size: cover;
+    background-image: url(../images/static-home-bg.png);
+  }
+
+  &__nebula-first,
+  &__nebula-second,
+  &__nebula-third {
+    transition: 0.8s;
+    position: absolute;
+    border-radius: 760px;
+  }
+
+  &__nebula-first {
+    z-index: -1;
+    left: 22.81%;
+    right: 49.79%;
+    top: 47.19%;
+    bottom: 0%;
+
+    background: $nebula-purple;
+    filter: blur(150px);
+    border-radius: 760px;
+  }
+
+  &__nebula-second {
+    z-index: -2;
+    left: 15.05%;
+    right: 66.41%;
+    top: 50.2%;
+    bottom: 10.06%;
+    
+    background: $nebula-blue;
+    filter: blur(150px);
+
+    &--moved {
+      left: 17.05%;
+      right: 72.41%;
+      top: 55.2%;
+      bottom: 15.06%;
+
+      filter: blur(85px);
+    }
+  }
+
+  &__nebula-third {
+    z-index: -1;
+    left: 79.48%;
+    right: 8.91%;
+    top: 5.12%;
+    bottom: 72.49%;
+    
+    background: $nebula-blue;
+    filter: blur(100px);
+  }
+
+  &__star-first,
+  &__star-second,
+  &__star-third,
+  &__star-fourth,
+  &__star-fifth {
+    position: absolute;
+  }
+
+  &__star-first {
+    left: calc(50% - 15px/2 - 647.5px);
+    top: calc(50% - 18px/2 - 17.5px);
+  }
+
+  &__star-second {
+    left: calc(50% - 15px/2 + 187.5px);
+    top: calc(50% - 18px/2 - 405.5px);
+  }
+
+  &__star-third {
+    left: calc(50% - 20px/2 - 580.5px);
+    top: calc(50% - 24px/2 + 265.5px);
+  }
+  
+  &__star-fourth {
+    left: calc(50% - 20px/2 + 496.5px);
+    top: calc(50% - 24px/2 - 95.5px);
+  }
+  
+  &__star-fifth {
+    left: calc(50% - 15px/2 + 611px);
+    top: calc(50% - 18px/2 - 358.5px);
+  }
+}

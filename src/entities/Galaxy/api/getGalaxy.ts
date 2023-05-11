@@ -12,6 +12,7 @@ export const getGalaxy = createAsyncThunk(
     const response = await fetch(
       `${process.env.REACT_APP_FETCH_URL}/galaxy-app/galaxy/1`
     );
+
     return await response.json();
   }
 );
