@@ -1,7 +1,6 @@
 @import "@app/styles/variables.scss";
 
 .curator-application {
-
   &__heading {
     margin-top: 42px;
     margin-bottom: 24px;
@@ -17,13 +16,34 @@
     &:hover {
       border: 1px solid $primary-500;
       border-radius: 8px;
+
+      .curator-application__buttons {
+        opacity: 1;
+        right: 0;
+      }
+
+      .curator-application__extra-content {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      .curator-application__rating {
+        position: relative;
+        margin-right: 330px;
+        margin-top: 32px;
+      }
     }
   }
 
-  &__info {
-    padding: 8px 0;
+  &__content {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+  }
+
+  &__info {
+    display: flex;
     gap: 24px;
   }
 
@@ -33,8 +53,27 @@
   }
 
   &__extra-content {
-    right: 24px;
-    top: 24px;
+    display: flex;
+    align-items: center;
     position: absolute;
+    gap: 16px;
+    right: 0;
+    transition: 0.2s;
+  }
+
+  &__rating {
+    transition: 0.2s;
+    position: relative;
+    right: 24px;
+    bottom: 16px;
+  }
+
+  &__buttons {
+    transition: 0.2s;
+    opacity: 0;
+    position: absolute;
+    right: -200px;
+    display: flex;
+    gap: 16px;
   }
 }
