@@ -3,7 +3,7 @@ import { BackgroundProfile } from "@shared/BackgroundProfile";
 
 import { Header } from "@widgets/Header";
 import { CuratorUserInfo } from "@widgets/CuratorUserInfo";
-import { ApplicationsEducationList } from "@widgets/ApplicationsEducationList";
+import { EducationApplications } from "@widgets/EducationApplications";
 
 import {
   CURATOR_INFO,
@@ -22,7 +22,7 @@ export const Curator = () => {
         <Header />
         <div className={element("container", "container p-0")}>
           <CuratorUserInfo curator={CURATOR_INFO} />
-          <ApplicationsEducationList applications={APPLICATIONS_LIST}/>
+          <EducationApplications applications={APPLICATIONS_LIST}/>
         </div>
       </div>
     </>

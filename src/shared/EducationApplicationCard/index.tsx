@@ -13,11 +13,11 @@ import {
   ratingStarColor
 } from "@shared/Rating/interfaces";
 
-import { ApplicationEducationCardInterface } from "./interfaces";
+import { EducationApplicationCardInterface } from "./interfaces";
 
 import "./styles.scss";
 
-export const ApplicationEducationCard = (props: ApplicationEducationCardInterface) => {
+export const EducationApplicationCard = (props: EducationApplicationCardInterface) => {
   const {
     user
   } = props;

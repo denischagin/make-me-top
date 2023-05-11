@@ -1,4 +1,4 @@
-export interface ApplicationEducationCardInterface {
+export interface EducationApplicationCardInterface {
   user: ApplicationInterface
 }
 

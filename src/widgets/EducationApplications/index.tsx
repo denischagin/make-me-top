@@ -1,13 +1,13 @@
 import { bem } from "@shared/utils/bem";
 import { Typography } from "@shared/Typography";
 import { typographyVariant } from "@shared/Typography/interfaces";
-import { ApplicationEducationCard } from "@shared/ApplicationEducationCard";
+import { EducationApplicationCard } from "@shared/EducationApplicationCard";
 
-import { ApplicationEducationInterface } from "./interfaces";
+import { EducationApplicationsInterface } from "./interfaces";
 
 import "./styles.scss";
 
-export const ApplicationsEducationList = (props: ApplicationEducationInterface) => {
+export const EducationApplications = (props: EducationApplicationsInterface) => {
   const {
     applications
   } = props;
@@ -24,7 +24,7 @@ export const ApplicationsEducationList = (props: ApplicationEducationInterface) 
       {
         applications.length !== 0
           ? applications.map((application) => (
-            <ApplicationEducationCard
+            <EducationApplicationCard
               key={application.id}
               user={application}
             />

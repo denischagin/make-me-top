@@ -1,4 +1,4 @@
-export interface ApplicationEducationInterface {
+export interface EducationApplicationsInterface {
   applications: Array<ApplicationInterface>
 }
 
