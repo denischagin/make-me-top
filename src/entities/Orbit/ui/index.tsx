@@ -1,7 +1,7 @@
 import React from "react";
 
 import {SystemType} from "@entities/Galaxy/model/types";
-import { Star } from "@shared/Star";
+import {Star} from "@shared/Star";
 
 import {getDigitalAngle} from "@entities/Orbit/lib/getDigitalAngle";
 import {getRadius} from "@entities/Orbit/lib/getRadius";
@@ -11,6 +11,7 @@ import {getPlanetParentData} from "@entities/Orbit/lib/getPlanetParentData";
 import {getPlanetChildData} from "@entities/Orbit/lib/getPlanetChildData";
 
 import "@entities/Orbit/ui/styles.scss";
+import {starColor} from "@shared/Star/interfaces";
 
 
 interface IOrbitProps {
@@ -84,7 +85,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
               data-is-active="0"
             >
               <Star
-                  color="white"
+                  color={starColor.white}
                   children={(<div>
                         {planet.systemName}
                       </div>

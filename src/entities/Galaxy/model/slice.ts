@@ -17,6 +17,13 @@ const galaxySlice = createSlice({
       state.galaxyId = action.payload.galaxyId;
       state.galaxyName = action.payload.galaxyName;
     });
+
+    builder.addCase(getGalaxy.rejected, (state, action) => {
+
+      state.galaxyId = 0;
+      state.galaxyName = String(action.payload);
+      state.orbitList = [];
+    });
   },
 });
 
