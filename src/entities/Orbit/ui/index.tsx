@@ -86,7 +86,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
             >
               <Star
                   color={starColor.white}
-                  children={(<div>
+                  children={(<div className="orbit__content_planet-name">
                         {planet.systemName}
                       </div>
                   )}
