@@ -12,11 +12,11 @@ export const EducationApplications = (props: EducationApplicationsInterface) => 
     applications
   } = props;
 
-  const [block, element] = bem("curator-application");
+  const [block, element] = bem("education-application");
 
   return (
     <div className={block()}>
-      <div className={element("heading")}>
+      <div className={element("heading", "mb-4")}>
         <Typography variant={typographyVariant.h2}>
           Заявки на обучение
         </Typography>

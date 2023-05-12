@@ -13,3 +13,9 @@ export interface UserInterface {
   rating?: number | null;
   id?: number
 }
+
+export interface ExplorerCardInterface {
+  name: string
+  avatar: string
+  id?: number
+}

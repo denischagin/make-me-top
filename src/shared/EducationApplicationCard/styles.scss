@@ -1,7 +1,7 @@
 @import "@app/styles/variables.scss";
 
 .application-education-card {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   transition: 0.3s;
   position: relative;
   border: 1px solid transparent;
@@ -28,6 +28,10 @@
       margin-right: 330px;
       margin-top: 32px;
     }
+
+    .application-education-card__user-name {
+      color: $primary-500;
+    }
   }
 
   &__content {
@@ -36,17 +40,13 @@
     align-items: center;
   }
 
-  &__heading {
-    margin-top: 42px;
-    margin-bottom: 24px;
-  }
-
   &__info {
     display: flex;
     gap: 24px;
   }
 
   &__user-name {
+    transition: 0.3s;
     margin: 0;
     padding-top: 8px;
   }
@@ -57,11 +57,11 @@
     position: absolute;
     gap: 16px;
     right: 0;
-    transition: 0.2s;
+    transition: 0.3s;
   }
 
   &__rating {
-    transition: 0.2s;
+    transition: 0.3s;
     position: relative;
     right: 24px;
     bottom: 16px;
@@ -69,10 +69,10 @@
 
   &__buttons {
     pointer-events: none;
-    transition: 0.2s;
+    transition: 0.3s;
     opacity: 0;
     position: absolute;
-    right: -200px;
+    right: -450px;
     display: flex;
     gap: 16px;
   }

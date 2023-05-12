@@ -19,14 +19,14 @@ export const RatingCard = (props: RatingCardInterface) => {
   return (
     <CardBig>
       <div className={block()}>
-        <div className={element("heading")}>
+        <div className={element("heading", "mb-4")}>
           <Typography variant={typographyVariant.medium16}>Мой рейтинг</Typography>
         </div>
         <UsersRating
           user={user}
         />
         <DividingLine />
-        <div className={element("heading")}>
+        <div className={element("heading", "mb-4")}>
           <Typography variant={typographyVariant.medium16}>Общий рейтинг</Typography>
         </div>
         {list.map((user) => (

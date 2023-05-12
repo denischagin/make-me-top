@@ -30,3 +30,56 @@ export const APPLICATIONS_LIST = [
     id: 3
   }
 ];
+
+export const MY_EXPLORERS = [
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    id: 1
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    id: 2
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    id: 3
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    id: 4
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    id: 5
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    id: 6
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    id: 7
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    id: 8
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    id: 9
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    id: 10
+  }
+];

@@ -1,13 +1,19 @@
 @import "@app/styles/variables.scss";
 
 .curator {
-  overflow: overlay;
-  position: absolute;
   color: $white;
   width: 100%;
+  background-size: cover;
+  background-position: center;
   height: 100%;
 
   &__container {
     margin: 40px auto 40px auto;
+  }
+
+  &__profile {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
   }
 }

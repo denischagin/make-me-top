@@ -54,7 +54,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         <div className={element("current-star")}>
           <Typography variant={typographyVariant.regular14}>Звезда: {star}</Typography>
         </div>
-        <div className={element("current-curator")}>
+        <div className={element("current-curator", "mb-4")}>
           <Typography variant={typographyVariant.regular14}>Преподаватель: {curator}</Typography>
         </div>
         <div className={element("progress")}>
