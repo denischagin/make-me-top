@@ -1,12 +1,13 @@
 export type UserStateType = {
-    isRegistered: boolean;
-    isModalOpen: boolean;
-    userData: {
-        username: string,
-        openSystemList: Array<number>,
-        closeSystemList: Array<number>,
-        educationSystemList: Array<EducationSystemType>,
-    }
+    isRegistered: boolean,
+    isModalOpen: boolean,
+    userData: UserProgress,
+}
+
+export type UserProgress = {
+    openSystemList: Array<number>,
+    closeSystemList: Array<number>,
+    educationSystemList: Array<EducationSystemType>,
 }
 
 export type EducationSystemType = {

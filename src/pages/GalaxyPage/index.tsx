@@ -16,12 +16,13 @@ export const GalaxyPage: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const testUserProgress = {
-      "openSystemList":[4,6,7,8,9,10,11],
-      "closeSystemList":[12,13,14,15,16,17,18,19,20,21,22,23,24],
+      "openSystemList":[4,7,8,9,10,13,17,],
+      "closeSystemList":[11,12,14,15,16,18,19,20,21,22,23,24],
       "educationSystemList": [
           {"systemId":1,"completed":25},
           {"systemId":2,"completed":50},
           {"systemId":3,"completed":75},
+          {"systemId":5,"completed":50},
           {"systemId":6,"completed":100}
       ]}
 
@@ -53,6 +54,7 @@ export const GalaxyPage: React.FC = () => {
           galaxyName={galaxyName}
       />
       <Galaxy
+          userProgress={testUserProgress}
           orbitList={orbitList}
           width={1920}
           height={910}

@@ -11,10 +11,14 @@ import {getPlanetParentData} from "@entities/Orbit/lib/getPlanetParentData";
 import {getPlanetChildData} from "@entities/Orbit/lib/getPlanetChildData";
 
 import "@entities/Orbit/ui/styles.scss";
-import {starColor} from "@shared/Star/interfaces";
+
+import {UserProgress} from "@entities/user/model/types";
+import {getPlanetProgress} from "@entities/Orbit/lib/getPlanetProgress";
+import {getPlanetColorByProgress} from "@entities/Orbit/lib/getPlanetColorByProgress";
 
 
 interface IOrbitProps {
+  userProgress: UserProgress
   systemList: Array<SystemType>;
   orbitWidth: number;
   orbitHeight: number;
@@ -25,6 +29,7 @@ interface IOrbitProps {
 
 const Orbit: React.FC<IOrbitProps> = (props) => {
   const {
+    userProgress,
     systemList,
     orbitWidth,
     orbitHeight,
@@ -48,7 +53,16 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
           height: orbitHeight + "px",
         }}
       >
-        {systemList.map((planet, index) => {
+        {systemList.map((planet) => {
+          const planetProgress = getPlanetProgress({
+            planet,
+            userProgress
+          })
+
+          const planetColor = getPlanetColorByProgress({
+            planetProgress,
+          })
+
           const digitalAngle = getDigitalAngle(planet.positionSystem);
 
           const radius = getRadius({
@@ -82,10 +96,11 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
               data-planet-id={planet.systemId}
               data-planet-parent-list={getPlanetParentData(planet)}
               data-planet-children-list={getPlanetChildData(planet)}
+              data-planet-progress={planetProgress}
               data-is-active="0"
             >
               <Star
-                  color={starColor.white}
+                  color={planetColor}
                   children={(<div className="orbit__content_planet-name">
                         {planet.systemName}
                       </div>

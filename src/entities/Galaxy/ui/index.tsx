@@ -10,10 +10,11 @@ import {showPlanetsParents} from "@entities/Galaxy/lib/showPlanetsParents";
 import {showPlanetsChildren} from "@entities/Galaxy/lib/showPlanetsChildren";
 
 import { OrbitType } from "@entities/Galaxy/model/types";
+import {UserProgress} from "@entities/user/model/types";
 import "./style.scss";
-import {BackgroundProfile} from "@shared/BackgroundProfile";
 
 interface IGalaxyProps {
+  userProgress: UserProgress
   orbitList: Array<OrbitType>;
   width: number;
   height: number;
@@ -31,6 +32,7 @@ interface IGalaxyOrbitSettings {
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const {
+    userProgress,
     orbitList,
     width,
     height,
@@ -71,30 +73,34 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const currentTarget = event.currentTarget;
 
     const childrenList = currentTarget.getAttribute("data-planet-children-list");
-    const parentsList = currentTarget.getAttribute("data-planet-parent-list")
+    const parentsList = currentTarget.getAttribute("data-planet-parent-list");
+    const planetProgress = currentTarget.getAttribute("data-planet-progress")
 
     event.currentTarget.setAttribute('data-is-active', '1');
 
-    showPlanetsChildren({
-      childrenList,
-      currentTarget,
-      planetWidth,
-      planetHeight,
-      viewBoxOffsetX,
-      viewBoxOffsetY,
-      svgContainer: svgContainerRef.current
-    });
+    if (planetProgress === "systemOpen" || planetProgress === "systemEducation") {
+      showPlanetsChildren({
+        childrenList,
+        currentTarget,
+        planetWidth,
+        planetHeight,
+        viewBoxOffsetX,
+        viewBoxOffsetY,
+        svgContainer: svgContainerRef.current
+      });
+    }
 
-    showPlanetsParents({
-      parentsList,
-      currentTarget,
-      planetWidth,
-      planetHeight,
-      viewBoxOffsetX,
-      viewBoxOffsetY,
-      svgContainer: svgContainerRef.current
-    });
-
+    if (planetProgress === "systemClose") {
+      showPlanetsParents({
+        parentsList,
+        currentTarget,
+        planetWidth,
+        planetHeight,
+        viewBoxOffsetX,
+        viewBoxOffsetY,
+        svgContainer: svgContainerRef.current
+      });
+    }
   }
 
   const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -150,11 +156,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             return (
                 <Orbit
                     key={orbits.orbitId}
+                    userProgress={userProgress}
                     systemList={orbits.systemList}
                     orbitWidth={galaxyOrbitSettings.width}
                     orbitHeight={galaxyOrbitSettings.height}
                     planetStyle={{
-                      color: "white",
                       width: planetWidth + "px",
                       height: planetHeight + "px"
                     }}

@@ -12,6 +12,7 @@ interface IShowChildren {
 
 //функция создания svg линий связи между текущей планетой и всеми ее child зависимостями
 //изменения dataset атрбута (атрибут активности при наведении)
+//TODO при наведении создаются лишние линии без классов
 export const showPlanetsChildren = (params: IShowChildren) => {
     const {
         childrenList,
