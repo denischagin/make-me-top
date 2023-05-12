@@ -7,7 +7,7 @@ import { ReactComponent as LockIcon } from "@shared/images/lock-big.svg";
 import { bem } from "@shared/utils/bem";
 import { typographyColor, typographyVariant } from "@shared/Typography/interfaces";
 
-import { showModal } from "@entities/user/model";
+import { showModal } from "@entities/user/model/slice";
 
 import { ModalInterface } from "./interfaces";
 

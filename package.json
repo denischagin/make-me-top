@@ -12,6 +12,7 @@
     "@types/node": "^16.18.21",
     "@types/react": "^18.0.29",
     "@types/react-dom": "^18.0.11",
+    "axios": "^1.4.0",
     "framer-motion": "^10.9.2",
     "node-sass": "^8.0.0",
     "react": "^18.2.0",

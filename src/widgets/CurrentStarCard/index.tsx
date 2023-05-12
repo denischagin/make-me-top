@@ -11,7 +11,7 @@ import { bem } from "@shared/utils/bem";
 import { typographyVariant, typographyColor } from "@shared/Typography/interfaces";
 import { buttonSize, buttonColor } from "@shared/Button/interfaces";
 
-import { showModal } from "@entities/user/model";
+import { showModal } from "@entities/user/model/slice";
 
 import { ProgressBar } from "@widgets/ProgressBar";
 

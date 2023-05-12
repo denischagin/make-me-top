@@ -4,8 +4,10 @@ import logger from "redux-logger";
 import curatorReducer from "@entities/Сurator/model";
 import explorerReducer from "@entities/Explorer/model";
 import galaxySlice from "@entities/Galaxy/model/slice";
+import userReducer from "@entities/user/model/slice";
+
 import { GalaxyType } from "@entities/Galaxy/model/types";
-import userReducer from "@entities/user/model";
+import {UserStateType} from "@entities/user/model/types";
 
 const rootReducer = combineReducers({
   explorer: explorerReducer,
@@ -24,6 +26,7 @@ export type RootState = {
   user: {
     isRegistered: boolean;
     isModalOpen: boolean;
+    userData: UserStateType;
   };
   galaxy: GalaxyType;
 };
