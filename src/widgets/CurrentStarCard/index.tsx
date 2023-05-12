@@ -110,7 +110,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
             color={buttonColor.filled}
             title="Продолжить"
             action={() => {
-              dispatch(getModalPlanets());
+              dispatch(getModalPlanets(id));
               dispatch(showModal());
             }}
           />

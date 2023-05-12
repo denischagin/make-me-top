@@ -3,7 +3,7 @@ import { useAppSelector } from "@app/providers/store/hooks";
 import { bem } from "@shared/utils/bem";
 import { Button } from "@shared/Button";
 import { buttonColor, buttonSize } from "@shared/Button/interfaces";
-// import { ReactComponent as LockIcon } from "@shared/images/lock.svg";
+import { ReactComponent as LockIcon } from "@shared/images/lock.svg";
 
 import { PlanetListInterface } from "./interfaces";
 import { ModalPlanetInterface } from "@entities/explorer/model/interfaces";
@@ -18,6 +18,8 @@ export const PlanetList = (props: PlanetListInterface) => {
     (state) => state.explorer.planetList
   );
 
+  const currentPlanet = planetList.find((item: ModalPlanetInterface) => item.planetName === props.currentPlanet);
+
   return (
     <div className={block()}>
       {
@@ -25,14 +27,17 @@ export const PlanetList = (props: PlanetListInterface) => {
           <div
             key={planet.planetId}
             className={element("item", {
-              active: true, // !planet.locked, (установить другой стиль, если планета недоступна)
+              active: planet.planetId < currentPlanet?.planetId!,
               current: planet.planetName === props.currentPlanet
             })}
           >
             <span className={element("name")}>
               { ++index }. { planet.planetName }
             </span>
-            {/* { planet.locked && <LockIcon className={element("lock-icon")}/> } (Отображение замочка если планета будет недоступна) */}
+            {
+              (planet.planetId > currentPlanet?.planetId! || !currentPlanet) &&
+              <LockIcon className={element("lock-icon")}/>
+            }
             {
               planet.planetName === props.currentPlanet &&
               <div className={element("info")}>
