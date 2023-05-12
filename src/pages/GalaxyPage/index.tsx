@@ -2,11 +2,14 @@ import React, { useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
-import { getGalaxy } from "@entities/Galaxy/api/getGalaxy";
+import {BackgroundGalaxyPage} from "@shared/BackgroundGalaxyPage";
 import Galaxy from "@entities/Galaxy/ui";
 
+import { getGalaxy } from "@entities/Galaxy/api/getGalaxy";
+
 import "./styles.scss";
-import {BackgroundProfile} from "@shared/BackgroundProfile";
+import GalaxyPageName from "@shared/GalaxyPageName";
+
 
 export const GalaxyPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -25,19 +28,10 @@ export const GalaxyPage: React.FC = () => {
 
   return (
     <div className="galaxyPage">
-      <BackgroundProfile/>
-      <div className="galaxyPage__description">
-        <div
-            className="galaxyPage__description_page-context"
-        >
-          Галактика
-        </div>
-        <div
-            className="galaxyPage__description_galaxy-name"
-        >
-          {galaxyName}
-        </div>
-      </div>
+      <BackgroundGalaxyPage/>
+      <GalaxyPageName
+          galaxyName={galaxyName}
+      />
       <Galaxy
           orbitList={orbitList}
           width={1920}

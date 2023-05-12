@@ -21,8 +21,6 @@ export const getElemCoords = (params: IGetElemCoords) => {
 
     const box = elem.getBoundingClientRect();
 
-    console.log(elem, box, elem)
-
     const body = document.body;
     const docEl = document.documentElement;
 
@@ -31,7 +29,6 @@ export const getElemCoords = (params: IGetElemCoords) => {
 
     const clientTop = docEl.clientTop || body.clientTop;
     const clientLeft = docEl.clientLeft || body.clientLeft;
-    console.log(window.scrollY, docEl.scrollTop, body.scrollTop, docEl.clientTop, body.clientTop)
 
     let top = 0;
     let left = 0;
