@@ -18,13 +18,13 @@ export const explorerSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getModalPlanets.fulfilled, (state: ExplorerState, action) => {
-      state.planetList = action.payload;
-    });
-
-    builder.addCase(getModalPlanets.rejected, (state) => {
-      state.planetList = [];
-    });
+    builder
+      .addCase(getModalPlanets.fulfilled, (state: ExplorerState, action) => {
+        state.planetList = action.payload;
+      })
+      .addCase(getModalPlanets.rejected, (state) => {
+        state.planetList = [];
+      });
   },
 });
 
