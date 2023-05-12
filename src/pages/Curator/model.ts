@@ -31,6 +31,49 @@ export const APPLICATIONS_LIST = [
   }
 ];
 
+export const GRADE_APPLICATIONS_LIST = [
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    star: "Groovy",
+    planet: "2. SQL",
+    rating: 4.5,
+    id: 1
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    star: "JS",
+    planet: "2. SQL",
+    rating: 4.6,
+    id: 2
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    star: "Git",
+    planet: "2. SQL",
+    rating: null,
+    id: 3
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    star: "Git",
+    planet: "2. SQL",
+    rating: null,
+    id: 4
+  },
+  {
+    name: "Фамилия Имя Отчество",
+    avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
+    star: "Git",
+    planet: "2. SQL",
+    rating: null,
+    id: 5
+  }
+];
+
 export const MY_EXPLORERS = [
   {
     name: "Фамилия Имя Отчество",

@@ -19,3 +19,20 @@ export interface ExplorerCardInterface {
   avatar: string
   id?: number
 }
+
+export interface EducationApplicationInterface {
+  name: string
+  avatar: string
+  planet: string
+  rating?: number | null;
+  id?: number
+}
+
+export interface GradeApplicationInterface {
+  name: string
+  avatar: string
+  star: string
+  planet: string
+  rating?: number | null;
+  id?: number
+}

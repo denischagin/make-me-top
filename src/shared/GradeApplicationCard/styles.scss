@@ -1,8 +1,9 @@
 @import "@app/styles/variables.scss";
 
-.application-education-card {
+.grade-application-card {
   transition: 0.2s;
   position: relative;
+  align-items: center;
   outline: 1px solid transparent;
   border-radius: 8px;
 
@@ -10,25 +11,19 @@
     outline: 1px solid $primary-500;
     border-radius: 8px;
 
-    .application-education-card__buttons {
+    .grade-application-card__button {
       opacity: 1;
       pointer-events: all;
-      right: 0;
+      right: 24px;
     }
 
-    .application-education-card__extra-content {
+    .grade-application-card__extra-content {
       display: flex;
       align-items: center;
       position: relative;
     }
 
-    .application-education-card__rating {
-      position: relative;
-      margin-right: 330px;
-      margin-top: 32px;
-    }
-
-    .application-education-card__user-name {
+    .grade-application-card__planet {
       color: $primary-500;
     }
   }
@@ -41,13 +36,17 @@
 
   &__info {
     display: flex;
+    align-items: center;
     gap: 24px;
   }
 
-  &__user-name {
+  &__star-title {
+    margin: 7px 0;
+  }
+
+  &__planet {
     transition: 0.2s;
     margin: 0;
-    padding-top: 8px;
   }
 
   &__extra-content {
@@ -59,19 +58,13 @@
     transition: 0.2s;
   }
 
-  &__rating {
-    transition: 0.2s;
-    position: relative;
-    right: 24px;
-    bottom: 16px;
-  }
-
-  &__buttons {
+  &__button {
     pointer-events: none;
-    transition: 0.2s;
+    transition: 0.2s ease-in-out;
     opacity: 0;
     position: absolute;
-    right: -450px;
+    top: 24px;
+    right: -200px;
     display: flex;
     gap: 16px;
   }

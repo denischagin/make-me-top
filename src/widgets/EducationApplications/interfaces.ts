@@ -1,11 +1,5 @@
-export interface EducationApplicationsInterface {
-  applications: Array<ApplicationInterface>
-}
+import { EducationApplicationInterface } from "@shared/types/common";
 
-export interface ApplicationInterface {
-  name: string
-  avatar: string
-  planet: string
-  rating?: number | null;
-  id?: number
+export interface EducationApplicationsInterface {
+  applications: Array<EducationApplicationInterface>
 }
