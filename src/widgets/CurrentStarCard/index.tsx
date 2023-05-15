@@ -10,7 +10,7 @@ import { Card } from "@shared/Card";
 import { bem } from "@shared/utils/bem";
 import { typographyVariant, typographyColor } from "@shared/Typography/interfaces";
 import { buttonSize, buttonColor } from "@shared/Button/interfaces";
-import { CardSize } from "@shared/Card/interfaces";
+import { cardSize } from "@shared/Card/interfaces";
 
 import { showModal } from "@entities/user/model";
 
@@ -46,7 +46,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
           <TabPanel>Контент 3</TabPanel>
         </MmtTabs>
       </Modal>
-      <Card size={CardSize.medium}>
+      <Card size={cardSize.large}>
         <div className={element("heading")}>
           <Typography variant={typographyVariant.h2}>
             Планета: {planet.id}. {planet.name}

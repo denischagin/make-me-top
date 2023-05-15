@@ -1,11 +1,12 @@
 import { bem } from "@shared/utils/bem";
-import { CardBig } from "@shared/CardBig";
 import { ExplorerCard } from "@shared/ExplorerCard";
 import { Typography } from "@shared/Typography";
 import { typographyVariant } from "@shared/Typography/interfaces";
 import { ExplorerCardInterface } from "@shared/types/common";
 import { Button } from "@shared/Button";
 import { buttonSize } from "@shared/Button/interfaces";
+import { Card } from "@shared/Card";
+import { cardSize } from "@shared/Card/interfaces";
 
 import { ExplorerCardListInterface } from "./interfaces";
 
@@ -27,7 +28,7 @@ export const ExplorerCardList = (props: ExplorerCardListInterface) => {
           Мои ученики
         </Typography>
       </div>
-      <CardBig>
+      <Card size={cardSize.large}>
         <div className={element("card-heading", "mb-4")}>
           <Typography variant={typographyVariant.regular16}>
             Всего учеников: {totalExplorers}
@@ -51,7 +52,7 @@ export const ExplorerCardList = (props: ExplorerCardListInterface) => {
             />
           </div>
         }
-      </CardBig>
+      </Card>
     </div>
   );
 };

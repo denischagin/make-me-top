@@ -1,5 +1,4 @@
 import { bem } from "@shared/utils/bem";
-import { CardBig } from "@shared/CardBig";
 import { Avatar } from "@shared/Avatar";
 import { avatarSize } from "@shared/Avatar/interfaces";
 import { Typography } from "@shared/Typography";
@@ -7,6 +6,8 @@ import { typographyVariant } from "@shared/Typography/interfaces";
 import { Rating } from "@shared/Rating";
 import { Button } from "@shared/Button";
 import { buttonColor, buttonSize } from "@shared/Button/interfaces";
+import { Card } from "@shared/Card";
+import { cardSize } from "@shared/Card/interfaces";
 import {
   ratingScoreColor,
   ratingSize,
@@ -26,7 +27,7 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
 
   return (
     <div className={block()}>
-      <CardBig>
+      <Card size={cardSize.large}>
         <div className={element("content")}>
           <div className={element("info")}>
             <Avatar
@@ -65,7 +66,7 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
             </div>
           </div>
         </div>
-      </CardBig>
+      </Card>
     </div>
   );
 };

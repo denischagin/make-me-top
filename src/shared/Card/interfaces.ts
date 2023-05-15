@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 
 export interface CardInterface {
   children: ReactNode
-  size: CardSize
+  size: cardSize
 }
 
-export enum CardSize {
+export enum cardSize {
   small = "small",
   medium = "medium",
   large = "large"

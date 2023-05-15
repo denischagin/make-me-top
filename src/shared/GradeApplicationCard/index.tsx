@@ -1,15 +1,16 @@
 import { bem } from "@shared/utils/bem";
-import { CardBig } from "@shared/CardBig";
 import { Avatar } from "@shared/Avatar";
 import { avatarSize } from "@shared/Avatar/interfaces";
 import { Typography } from "@shared/Typography";
 import { typographyVariant } from "@shared/Typography/interfaces";
 import { Button } from "@shared/Button";
 import { buttonColor, buttonSize } from "@shared/Button/interfaces";
+import { Card } from "@shared/Card";
 
 import { GradeApplicationCardInterface } from "./interfaces";
 
 import "./styles.scss";
+import { cardSize } from "@shared/Card/interfaces";
 
 export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
   const {
@@ -20,7 +21,7 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
 
   return (
     <div className={block()}>
-      <CardBig>
+      <Card size={cardSize.large}>
         <div className={element("content")}>
           <div className={element("info")}>
             <Avatar
@@ -47,7 +48,7 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
             />
           </div>
         </div>
-      </CardBig>
+      </Card>
     </div>
   );
 };
