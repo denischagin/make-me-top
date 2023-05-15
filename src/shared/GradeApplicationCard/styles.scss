@@ -11,20 +11,22 @@
     outline: 1px solid $primary-500;
     border-radius: 8px;
 
-    .grade-application-card__button {
-      opacity: 1;
-      pointer-events: all;
-      right: 24px;
-    }
-
-    .grade-application-card__extra-content {
-      display: flex;
-      align-items: center;
-      position: relative;
-    }
-
-    .grade-application-card__planet {
-      color: $primary-500;
+    .grade-application-card {
+      &__button {
+        opacity: 1;
+        pointer-events: all;
+        right: 24px;
+      }
+  
+      &__extra-content {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+  
+      &__planet {
+        color: $primary-500;
+      }
     }
   }
 

@@ -30,7 +30,7 @@ export const ExplorerCardList = (props: ExplorerCardListInterface) => {
       <CardBig>
         <div className={element("card-heading", "mb-4")}>
           <Typography variant={typographyVariant.regular16}>
-            Всего учеников: { totalExplorers }
+            Всего учеников: {totalExplorers}
           </Typography>
         </div>
         {

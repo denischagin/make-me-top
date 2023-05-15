@@ -25,13 +25,13 @@ export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
   return (
     <div className={block()}>
       <Avatar
-        size={ avatarSize.large }
-        image={ avatar }
+        size={avatarSize.large}
+        image={avatar}
         orbit
       />
       <div className={element("description")}>
         <div className={element("description-name", "mb-4")}>
-          <Typography variant={typographyVariant.h1}>{ name }</Typography>
+          <Typography variant={typographyVariant.h1}>{name}</Typography>
         </div>
         <div className={element("rating")}>
           <CardSmall>
@@ -41,7 +41,7 @@ export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
             <span className={element("current-rating")}>
               <Rating
                 scoreColor={ratingScoreColor.white}
-                rating={ rating }
+                rating={rating}
                 size={ratingSize.large}
                 starColor={ratingStarColor.primary500}
               />
