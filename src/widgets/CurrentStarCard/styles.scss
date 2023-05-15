@@ -14,7 +14,7 @@
   }
 
   &__heading {
-    margin-top: 8px;
+    margin: 0px;
     margin-bottom: 4px;
   }
 
@@ -23,14 +23,9 @@
     margin: 4px 0;
   }
 
-  &__current-curator {
-    margin-bottom: 24px;
-  }
-
   &__progress {
     display: flex;
     color: $primary-500;
-    margin-bottom: 8px;
   }
 
   &__progress-bar {

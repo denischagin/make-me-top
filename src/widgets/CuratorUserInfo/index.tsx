@@ -1,38 +1,40 @@
 import { Typography } from "@shared/Typography";
-import { Avatar } from "@shared/Avatar";
 import { Rating } from "@shared/Rating";
+import { Avatar } from "@shared/Avatar";
 import { bem } from "@shared/utils/bem";
 import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
-import { cardSize } from "@shared/Card/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
 import { avatarSize } from "@shared/Avatar/interfaces";
 import { Card } from "@shared/Card";
 
-import { ExplorerUserInfoInterface } from "./interfaces";
+import { CuratorInterface } from "./interfaces";
 
 import "./styles.scss";
+import { cardSize } from "@shared/Card/interfaces";
 
-export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
+export const CuratorUserInfo = (props: CuratorInterface) => {
   const {
-    user: {
+    curator: {
       name,
       avatar,
-      rating
+      rating,
+      explorers,
+      planets
     }
   } = props;
 
-  const [block, element] = bem("profile-info");
+  const [block, element] = bem("curator-info");
 
   return (
     <div className={block()}>
       <Avatar
-        size={avatarSize.large}
-        image={avatar}
+        size={ avatarSize.large }
+        image={ avatar }
         orbit
       />
       <div className={element("description")}>
         <div className={element("description-name", "mb-4")}>
-          <Typography variant={typographyVariant.h1}>{name}</Typography>
+          <Typography variant={typographyVariant.h1}>{ name }</Typography>
         </div>
         <div className={element("rating")}>
           <Card size={cardSize.small}>
@@ -42,7 +44,7 @@ export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
             <span className={element("current-rating")}>
               <Rating
                 scoreColor={ratingScoreColor.white}
-                rating={rating}
+                rating={ rating }
                 size={ratingSize.large}
                 starColor={ratingStarColor.primary500}
               />
@@ -51,10 +53,18 @@ export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
           <Card size={cardSize.small}>
             <div className={element("heading")}>
               <Typography variant={typographyVariant.regular16}>
-                Кол-во освоенных звезд
+                Кол-во планет
               </Typography>
             </div>
-            <span className={element("completed-stars")}>11</span>
+            <span className={element("completed-stars")}>{ planets }</span>
+          </Card>
+          <Card size={cardSize.small}>
+            <div className={element("heading")}>
+              <Typography variant={typographyVariant.regular16}>
+                Кол-во исследователей
+              </Typography>
+            </div>
+            <span className={element("explorers-count")}>{ explorers }</span>
           </Card>
         </div>
       </div>
