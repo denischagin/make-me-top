@@ -45,7 +45,7 @@ export const ExplorerCardList = (props: ExplorerCardListInterface) => {
         }
         {
           explorers.length > 9 &&
-          <div className={element("button", "mt-4")}>
+          <div className={element("button", "mt-3")}>
             <Button
               title={"Все ученики"}
               size={buttonSize.large}
