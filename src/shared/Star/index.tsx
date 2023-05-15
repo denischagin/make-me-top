@@ -11,7 +11,17 @@ export const Star = (props: StarInterface) => {
   return (
     <div className={block({ color: props.color })}>
       <div className={element("info", { color: props.color })}>
-        {props.children}
+          {
+              (props.percentageProgress === undefined || props.percentageProgress === 0) ?
+                  null
+                  : <div
+                      className={element("progress")}
+                      style={{
+                          height: `${props.percentageProgress}%`,
+                      }}
+                  />
+          }
+          {props.children}
         <div className={element("orbit")}>
           <OrbitIcon
             className={element("orbit-icon", { color: props.color })}

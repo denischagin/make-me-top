@@ -9,12 +9,13 @@ import {getXCoordinateOnEllipse} from "@entities/Orbit/lib/getXCoordinateOnEllip
 import {getYCoordinateOnEllipse} from "@entities/Orbit/lib/getYCoordinateOnEllipse";
 import {getPlanetParentData} from "@entities/Orbit/lib/getPlanetParentData";
 import {getPlanetChildData} from "@entities/Orbit/lib/getPlanetChildData";
+import {getPlanetProgress} from "@entities/Orbit/lib/getPlanetProgress";
+import {getPlanetColorByProgress} from "@entities/Orbit/lib/getPlanetColorByProgress";
+import {getPercentageProgress} from "@entities/Orbit/lib/getPercentageProgress";
 
 import "@entities/Orbit/ui/styles.scss";
 
 import {UserProgress} from "@entities/user/model/types";
-import {getPlanetProgress} from "@entities/Orbit/lib/getPlanetProgress";
-import {getPlanetColorByProgress} from "@entities/Orbit/lib/getPlanetColorByProgress";
 
 
 interface IOrbitProps {
@@ -53,14 +54,20 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
           height: orbitHeight + "px",
         }}
       >
-        {systemList.map((planet) => {
+        {
+          systemList.map((planet) => {
           const planetProgress = getPlanetProgress({
             planet,
             userProgress
-          })
+          });
 
           const planetColor = getPlanetColorByProgress({
             planetProgress,
+          });
+
+          const planetPercentageProgress = getPercentageProgress({
+            planet,
+            userProgress
           })
 
           const digitalAngle = getDigitalAngle(planet.positionSystem);
@@ -100,6 +107,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
               data-is-active="0"
             >
               <Star
+                  percentageProgress={planetPercentageProgress}
                   color={planetColor}
                   children={(<div className="orbit__content_planet-name">
                         {planet.systemName}
