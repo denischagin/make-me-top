@@ -20,6 +20,8 @@ body {
   overflow-x: hidden;
   overflow-y: overlay;
   font-family: $font-text-regular;
+  background-image: url("../../shared/images/noice.png");
+  background-repeat: repeat;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
