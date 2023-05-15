@@ -1,10 +1,11 @@
 import { DividingLine } from "@shared/DividingLine";
 import { Typography } from "@shared/Typography";
 import { UsersRating } from "@shared/UsersRating";
-import { CardBig } from "@shared/CardBig";
+import { Card } from "@shared/Card";
 import { bem } from "@shared/utils/bem";
 import { typographyVariant } from "@shared/Typography/interfaces";
 import { RatingCardInterface } from "./interfaces";
+import { CardSize } from "@shared/Card/interfaces";
 
 import "./styles.scss";
 
@@ -17,7 +18,7 @@ export const RatingCard = (props: RatingCardInterface) => {
   const [block, element] = bem("rating-card");
 
   return (
-    <CardBig>
+    <Card size={CardSize.large}>
       <div className={block()}>
         <div className={element("heading", "mb-4")}>
           <Typography variant={typographyVariant.medium16}>Мой рейтинг</Typography>
@@ -36,6 +37,6 @@ export const RatingCard = (props: RatingCardInterface) => {
           />
         ))}
       </div>
-    </CardBig>
+    </Card>
   );
 };

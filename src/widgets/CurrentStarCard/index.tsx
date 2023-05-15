@@ -6,10 +6,11 @@ import { Modal } from "@shared/Modal";
 import { Typography } from "@shared/Typography";
 import { Button } from "@shared/Button";
 import { MmtTabs } from "@shared/MmtTabs";
-import { CardBig } from "@shared/CardBig";
+import { Card } from "@shared/Card";
 import { bem } from "@shared/utils/bem";
 import { typographyVariant, typographyColor } from "@shared/Typography/interfaces";
 import { buttonSize, buttonColor } from "@shared/Button/interfaces";
+import { CardSize } from "@shared/Card/interfaces";
 
 import { showModal } from "@entities/user/model";
 
@@ -45,7 +46,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
           <TabPanel>Контент 3</TabPanel>
         </MmtTabs>
       </Modal>
-      <CardBig>
+      <Card size={CardSize.medium}>
         <div className={element("heading")}>
           <Typography variant={typographyVariant.h2}>
             Планета: {planet.id}. {planet.name}
@@ -82,7 +83,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
             }}
           />
         </div>
-      </CardBig>
+      </Card>
     </div>
   );
 };
