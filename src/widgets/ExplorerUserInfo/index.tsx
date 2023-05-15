@@ -1,11 +1,12 @@
 import { Typography } from "@shared/Typography";
 import { AvatarBig } from "@shared/AvatarBig";
-import { CardSmall } from "@shared/CardSmall";
 import { Rating } from "@shared/Rating";
 import { bem } from "@shared/utils/bem";
 import { UserInfoInterface } from "@shared/types/common";
 import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
+import { CardSize } from "@shared/Card/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
+import { Card } from "@shared/Card";
 
 import "./styles.scss";
 
@@ -28,7 +29,7 @@ export const ExplorerUserInfo = (props: UserInfoInterface) => {
           <Typography variant={typographyVariant.h1}>{ name }</Typography>
         </div>
         <div className={element("rating")}>
-          <CardSmall>
+          <Card size={CardSize.small}>
             <div className={element("heading")}>
               <Typography variant={typographyVariant.regular16}>Рейтинг</Typography>
             </div>
@@ -40,15 +41,15 @@ export const ExplorerUserInfo = (props: UserInfoInterface) => {
                 starColor={ratingStarColor.primary500}
               />
             </span>
-          </CardSmall>
-          <CardSmall>
+          </Card>
+          <Card size={CardSize.small}>
             <div className={element("heading")}>
               <Typography variant={typographyVariant.regular16}>
                 Кол-во освоенных звезд
               </Typography>
             </div>
             <p className={element("completed-stars")}>11</p>
-          </CardSmall>
+          </Card>
         </div>
       </div>
     </div>
