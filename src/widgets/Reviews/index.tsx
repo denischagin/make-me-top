@@ -5,9 +5,15 @@ import { typographyVariant } from "@shared/Typography/interfaces";
 import { Button } from "@shared/Button";
 import { buttonSize } from "@shared/Button/interfaces";
 
+import { ReviewsInterface } from "./interfaces";
+
 import "./styles.scss";
 
-export const Reviews = () => {
+export const Reviews = (props: ReviewsInterface) => {
+  const {
+    reviews
+  } = props;
+
   const [block, element] = bem("reviews");
 
   return (
@@ -16,48 +22,18 @@ export const Reviews = () => {
         <div className={element("planet-name", "mb-4")}>Отзывы</div>
       </Typography>
       <div className={element("cards")}>
-        <ReviewCard
-          planet={"SQL - базовые навыки"}
-          avatar="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg"
-          rating={4}
-          name={"ФИО исследователя"}
-          review={"Прекрасный хранитель, мы освоили звезду за очень короткий срок, мне понравилось с ним работать"}
-        />
-        <ReviewCard
-          planet={"SQL - базовые навыки"}
-          avatar="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg"
-          rating={5}
-          name={"ФИО исследователя"}
-          review={"Прекрасный хранитель, мы освоили звезду за очень короткий срок, мне понравилось с ним работать и изучать новые планеты, побольше бы таких хранителей"}
-        />
-        <ReviewCard
-          planet={"SQL - базовые навыки"}
-          avatar="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg"
-          rating={2}
-          name={"ФИО исследователя"}
-          review={"Прекрасный хранитель, мы освоили звезду за очень короткий срок, мне понравилось с ним работать и изучать новые планеты, побольше бы таких хранителей"}
-        />
-        <ReviewCard
-          planet={"SQL - базовые навыки"}
-          avatar="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg"
-          rating={3}
-          name={"ФИО исследователя"}
-          review={"Прекрасный хранитель, мы освоили звезду за очень короткий срок, мне понравилось с ним работать"}
-        />
-        <ReviewCard
-          planet={"SQL - базовые навыки"}
-          avatar="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg"
-          rating={5}
-          name={"ФИО исследователя"}
-          review={"Прекрасный хранитель, мы освоили звезду за очень короткий срок, мне понравилось с ним работать"}
-        />
-        <ReviewCard
-          planet={"SQL - базовые навыки"}
-          avatar="https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg"
-          rating={3}
-          name={"ФИО исследователя"}
-          review={"Прекрасный хранитель, мы освоили звезду за очень короткий срок, мне понравилось с ним работать и изучать новые планеты, побольше бы таких хранителей"}
-        />
+        {
+          reviews.map((item) => (
+            <ReviewCard
+              key={item.id}
+              planet={item.planet}
+              avatar={item.avatar}
+              rating={item.rating}
+              name={item.name}
+              review={item.review}
+            />
+          ))
+        }
       </div>
       <div className={element("button")}>
         <Button

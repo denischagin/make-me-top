@@ -49,6 +49,7 @@ export interface ReviewCardInterface {
   name: string
   avatar: string
   review: string
+  id?: number
   setIsExpanded?: Dispatch<SetStateAction<boolean>>
   isExpanded?: boolean
 }

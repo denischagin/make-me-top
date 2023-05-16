@@ -8,7 +8,10 @@ import { Header } from "@widgets/Header";
 import { Reviews } from "@widgets/Reviews";
 import { CuratorStars } from "@widgets/CuratorStars";
 
-import { USER_INFO } from "./model";
+import {
+  USER_INFO,
+  REVIEW_LIST
+} from "./model";
 
 import "./styles.scss";
 
@@ -34,7 +37,7 @@ export const CuratorCard = () => {
             />
           </div>
           <CuratorStars />
-          <Reviews />
+          <Reviews reviews={REVIEW_LIST}/>
         </div>
       </div>
     </>
