@@ -1,0 +1,55 @@
+@import "@app/styles/variables.scss";
+
+.review-modal {
+    background: $modal-background;
+    align-items: center;
+    position: absolute;
+    top: 40px;
+    right: 50%;
+    left: 32%;
+    width: 700px;
+    z-index: 1;
+    opacity: 1;
+    border-radius: 24px;
+    transition: 0.5s;
+  
+    &--closed {
+      pointer-events: none;
+      opacity: 0;
+      transition: 0.5s;
+    }
+
+    &__close-icon {
+      cursor: pointer;
+      position: absolute;
+      right: 24px;
+      top: 24px;
+      color: $black;
+      transition: 0.2s;
+      border-radius: 100%;
+  
+      &:hover {
+        background-color: $primary-500;
+        color: $white;
+        transition: 0.2s;
+      }
+    }
+
+    &__content {
+      margin: 40px 60px;
+    }
+
+    &__user {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    &__user-name {
+      margin: 8px 0;
+    }
+
+    &__review-text {
+      margin-top: 24px;
+    }
+}
