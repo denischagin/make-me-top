@@ -7,13 +7,19 @@ import "./styles.scss";
 export const Card = (props: CardInterface) => {
   const {
     size,
-    children
+    children,
+    glow
   } = props;
 
   const [block, element] = bem("card");
 
   return (
-    <div className={block({ size: size })}>
+    <div
+      className={block({
+        size: size,
+        glow: glow
+      })}
+    >
       { children }
     </div>
   );

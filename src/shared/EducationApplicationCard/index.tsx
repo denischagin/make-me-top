@@ -27,7 +27,10 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
 
   return (
     <div className={block()}>
-      <Card size={cardSize.large}>
+      <Card
+        size={cardSize.large}
+        glow
+      >
         <div className={element("content")}>
           <div className={element("info")}>
             <Avatar

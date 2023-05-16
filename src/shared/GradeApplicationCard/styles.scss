@@ -1,16 +1,11 @@
 @import "@app/styles/variables.scss";
 
 .grade-application-card {
-  transition: 0.2s;
   position: relative;
   align-items: center;
-  outline: 1px solid transparent;
   border-radius: 8px;
 
   &:hover {
-    outline: 1px solid $primary-500;
-    border-radius: 8px;
-
     .grade-application-card {
       &__button {
         opacity: 1;

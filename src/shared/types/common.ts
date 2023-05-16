@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface TabInterface {
   name: string
   id: number
@@ -35,4 +37,18 @@ export interface GradeApplicationInterface {
   planet: string
   rating?: number | null;
   id?: number
+}
+
+export interface ReviewInterface {
+  info: ReviewCardInterface
+}
+
+export interface ReviewCardInterface {
+  planet: string
+  rating: number
+  name: string
+  avatar: string
+  review: string
+  setIsExpanded?: Dispatch<SetStateAction<boolean>>
+  isExpanded?: boolean
 }

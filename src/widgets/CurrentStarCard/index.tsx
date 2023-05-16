@@ -46,7 +46,10 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
           <TabPanel>Контент 3</TabPanel>
         </MmtTabs>
       </Modal>
-      <Card size={cardSize.large}>
+      <Card
+        size={cardSize.large}
+        glow
+      >
         <div className={element("heading")}>
           <Typography variant={typographyVariant.h2}>
             Планета: {planet.id}. {planet.name}

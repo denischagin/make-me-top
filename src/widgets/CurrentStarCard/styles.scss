@@ -3,15 +3,7 @@
 .current-star-card {
   position: relative;
   color: $white;
-  transition: 1s;
   border-radius: 8px;
-  border: 1px solid transparent;
-
-  &:hover {
-    transition: 1s;
-    border-radius: 8px;
-    border: 1px solid $primary-500;
-  }
 
   &__heading {
     margin: 0px;
