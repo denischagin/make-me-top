@@ -1,6 +1,7 @@
 @import "@app/styles/variables.scss";
 
 .star {
+  z-index: 2;
   cursor: pointer;
   border-radius: 99px;
   height: 80px;
@@ -67,7 +68,7 @@
   }
 
   &--color-primary-500 {
-    background: $white;
+    background: $primary-500;
 
     &:hover {
       animation-name: star_primary-500;
@@ -77,28 +78,12 @@
 
       @keyframes star_primary-500 {
         from {
-          background: $opacity-white;
+          background: $opacity-primary-500;
         }
         to {
-          background: $white;
+          background: $primary-500;
         }
       }
-    }
-  }
-
-  &__progress-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    overflow: hidden;
-
-    &_progress {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background: $primary-500;
     }
   }
 

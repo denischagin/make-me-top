@@ -109,11 +109,11 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
               <Star
                   percentageProgress={planetPercentageProgress}
                   color={planetColor}
-                  children={(<div className="orbit__content_planet-name">
-                        {planet.systemName}
-                      </div>
-                  )}
-              />
+              >
+                <p className="orbit__content_planet-name">
+                  {planet.systemName}
+                </p>
+              </Star>
             </div>
           );
         })
@@ -121,6 +121,6 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
       </div>
     </div>
   );
-};
+}
 
 export default Orbit;

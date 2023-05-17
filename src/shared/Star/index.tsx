@@ -4,6 +4,7 @@ import { bem } from "@shared/utils/bem";
 import { StarInterface } from "./interfaces";
 
 import "./styles.scss";
+import StarProgress from "@shared/StarProgress";
 
 export const Star = (props: StarInterface) => {
   const [block, element] = bem("star");
@@ -11,18 +12,12 @@ export const Star = (props: StarInterface) => {
   return (
     <div className={block({ color: props.color })}>
       <div className={element("info", { color: props.color })}>
-
           {
               (props.percentageProgress === undefined || props.percentageProgress === 0) ?
-                  null
-                  : <div className={element("progress-container")}>
-                      <div
-                          className={element("progress-container_progress")}
-                          style={{
-                              height: `${props.percentageProgress}%`,
-                          }}
-                      />
-                  </div>
+                  null :
+                  <StarProgress
+                      percentageProgress={props.percentageProgress}
+                  />
           }
           {props.children}
         <div className={element("orbit")}>
