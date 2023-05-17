@@ -1,15 +1,18 @@
 import { Typography } from "@shared/Typography";
-import { AvatarBig } from "@shared/AvatarBig";
-import { CardSmall } from "@shared/CardSmall";
+import { Avatar } from "@shared/Avatar";
 import { Rating } from "@shared/Rating";
 import { bem } from "@shared/utils/bem";
-import { UserInfoInterface } from "@shared/types/common";
 import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
+import { cardSize } from "@shared/Card/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
+import { avatarSize } from "@shared/Avatar/interfaces";
+import { Card } from "@shared/Card";
+
+import { ExplorerUserInfoInterface } from "./interfaces";
 
 import "./styles.scss";
 
-export const ExplorerUserInfo = (props: UserInfoInterface) => {
+export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
   const {
     user: {
       name,
@@ -22,33 +25,37 @@ export const ExplorerUserInfo = (props: UserInfoInterface) => {
 
   return (
     <div className={block()}>
-      <AvatarBig image={ avatar } />
+      <Avatar
+        size={avatarSize.large}
+        image={avatar}
+        orbit
+      />
       <div className={element("description")}>
-        <div className={element("description-name")}>
-          <Typography variant={typographyVariant.h1}>{ name }</Typography>
+        <div className={element("description-name", "mb-4")}>
+          <Typography variant={typographyVariant.h1}>{name}</Typography>
         </div>
         <div className={element("rating")}>
-          <CardSmall>
+          <Card size={cardSize.small}>
             <div className={element("heading")}>
               <Typography variant={typographyVariant.regular16}>Рейтинг</Typography>
             </div>
             <span className={element("current-rating")}>
               <Rating
                 scoreColor={ratingScoreColor.white}
-                rating={ rating }
+                rating={rating}
                 size={ratingSize.large}
                 starColor={ratingStarColor.primary500}
               />
             </span>
-          </CardSmall>
-          <CardSmall>
+          </Card>
+          <Card size={cardSize.small}>
             <div className={element("heading")}>
               <Typography variant={typographyVariant.regular16}>
                 Кол-во освоенных звезд
               </Typography>
             </div>
-            <p className={element("completed-stars")}>11</p>
-          </CardSmall>
+            <span className={element("completed-stars")}>11</span>
+          </Card>
         </div>
       </div>
     </div>

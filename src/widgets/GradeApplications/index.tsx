@@ -1,0 +1,36 @@
+import { bem } from "@shared/utils/bem";
+import { Typography } from "@shared/Typography";
+import { typographyVariant } from "@shared/Typography/interfaces";
+import { GradeApplicationCard } from "@shared/GradeApplicationCard";
+
+import { GradeApplicationsInterface } from "./interfaces";
+
+import "./styles.scss";
+
+export const GradeApplications = (props: GradeApplicationsInterface) => {
+  const {
+    applications
+  } = props;
+
+  const [block, element] = bem("grade-application");
+
+  return (
+    <div className={block()}>
+      <Typography variant={typographyVariant.h2}>
+        <p className={element("heading", "mb-4")}>Запрос на проверку</p>
+      </Typography>
+      <div className={element("cards")}>
+        {
+          applications.length !== 0
+            ? applications.map((application) => (
+              <GradeApplicationCard
+                key={application.id}
+                user={application}
+              />
+            ))
+            : <Typography variant={typographyVariant.medium16}>Заявки отсутствуют</Typography>
+        }
+      </div>
+    </div>
+  );
+};
