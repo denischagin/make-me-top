@@ -1,5 +1,7 @@
 import React from "react";
 
+import { ReactComponent as LockIcon } from "@shared/images/lock.svg";
+
 import {SystemType} from "@entities/Galaxy/model/types";
 import {Star} from "@shared/Star";
 
@@ -13,7 +15,7 @@ import {getPlanetProgress} from "@entities/Orbit/lib/getPlanetProgress";
 import {getPlanetColorByProgress} from "@entities/Orbit/lib/getPlanetColorByProgress";
 import {getPercentageProgress} from "@entities/Orbit/lib/getPercentageProgress";
 
-import "@entities/Orbit/ui/styles.scss";
+import "./styles.scss";
 
 import {UserProgress} from "@entities/user/model/types";
 
@@ -110,6 +112,13 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                   percentageProgress={planetPercentageProgress}
                   color={planetColor}
               >
+                {
+                  planetProgress === "systemClose" ?
+                      <div className="orbit__content_lock-icon">
+                        <LockIcon/>
+                      </div>
+                      : null
+                }
                 <p className="orbit__content_planet-name">
                   {planet.systemName}
                 </p>
