@@ -4,10 +4,10 @@ import { BackgroundProfile } from "@shared/BackgroundProfile";
 import { typographyVariant } from "@shared/Typography/interfaces";
 
 import { CompletedStars } from "@widgets/CompletedStars";
-import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
 import { Header } from "@widgets/Header";
 import { CurrentStarCard } from "@widgets/CurrentStarCard";
 import { RatingCard } from "@widgets/RatingCard";
+import { UserInfo } from "@widgets/UserInfo";
 
 import {
   USERS_LIST,
@@ -29,7 +29,12 @@ export const Explorer = () => {
         <div className={element("container", "container p-0")}>
           <div className={element("row", "row")}>
             <div className={element("profile", "col-xxl-9")}>
-              <ExplorerUserInfo user={USER_INFO} />
+              <UserInfo
+                name={USER_INFO.name}
+                avatar={USER_INFO.avatar}
+                rating={USER_INFO.rating}
+                stars={USER_INFO.stars}
+              />
               <div className={element("current-star")}>
                 <div className={element("current-star-heading", "mb-4")}>
                   <Typography variant={typographyVariant.h2}>Текущая звезда</Typography>

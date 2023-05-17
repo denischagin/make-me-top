@@ -1,3 +1,5 @@
+import { useLocation } from "react-router";
+
 import { Typography } from "@shared/Typography";
 import { Rating } from "@shared/Rating";
 import { Avatar } from "@shared/Avatar";
@@ -27,16 +29,19 @@ export const UserInfo = (props: UserInfoInterface) => {
 
   const [block, element] = bem("user-info");
 
+  const location = useLocation();
+  const isCurator = location.pathname === "/curator" && "/curator-card";
+
   return (
     <div className={block()}>
       <Avatar
-        size={ avatarSize.large }
-        image={ avatar }
+        size={avatarSize.large}
+        image={avatar}
         orbit
       />
       <div className={element("description")}>
         <div className={element("description-name", "mb-4")}>
-          <Typography variant={typographyVariant.h1}>{ name }</Typography>
+          <Typography variant={typographyVariant.h1}>{name}</Typography>
         </div>
         <div className={element("rating")}>
           <Card size={cardSize.small}>
@@ -46,35 +51,31 @@ export const UserInfo = (props: UserInfoInterface) => {
             <span className={element("current-rating")}>
               <Rating
                 scoreColor={ratingScoreColor.white}
-                rating={ rating }
+                rating={rating}
                 size={ratingSize.large}
                 starColor={ratingStarColor.primary500}
               />
             </span>
           </Card>
-          {
-            stars &&
+          {stars &&
             <InfoCard
-              title="Кол-во звёзд"
+              title={isCurator ? "Кол-во звёзд" : "Кол-во освоенных звёзд"}
               count={stars || 0}
             />
           }
-          {
-            reviews &&
+          {reviews &&
             <InfoCard
               title="Отзывы"
               count={reviews || 0}
             />
           }
-          {
-            planets &&
+          {planets &&
             <InfoCard
-              title="Кол-во планет"
+              title={isCurator ? "Кол-во планет" : "Кол-во освоенных планет"}
               count={planets || 0}
             />
           }
-          {
-            explorers &&
+          {explorers &&
             <InfoCard
               title="Кол-во исследователей"
               count={explorers || 0}
