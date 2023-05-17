@@ -26,7 +26,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         planetHeight,
         viewBoxOffsetX,
         viewBoxOffsetY,
-        svgContainer
+        svgContainer,
     } = params
 
     const currentTargetCoords = getElemCoords({
@@ -94,6 +94,14 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         }
 
         svgContainer?.append(svgLine);
+
+        //если планета, к которой будем строить связь,
+        //открыта или в процессе изучения, то дальше связи не строим
+        const parentElementProgress = parentElement?.getAttribute("data-planet-progress");
+
+        if (parentElementProgress === "systemOpen" || parentElementProgress === "systemEducation") {
+            return;
+        }
 
         //если у текущего parent элемента есть parent зависимости
         if (parentElement && parentsListOfCurrentParent) {
