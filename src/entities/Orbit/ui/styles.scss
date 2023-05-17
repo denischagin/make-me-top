@@ -14,9 +14,11 @@
       align-items: center;
       border-radius: 50%;
       text-align: center;
+
     }
 
     &_planet-name {
+      z-index: 1;
       font-weight: bold;
       font-size: 12px;
     }
