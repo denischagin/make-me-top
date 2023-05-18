@@ -6,7 +6,7 @@ import { Modal } from "@shared/Modal";
 import { Typography } from "@shared/Typography";
 import { Button } from "@shared/Button";
 import { MmtTabs } from "@shared/MmtTabs";
-import { CardBig } from "@shared/CardBig";
+import { Card } from "@shared/Card";
 import { bem } from "@shared/utils/bem";
 import { PlanetList } from "@shared/PlanetList";
 import { UsersList } from "@shared/UsersList";
@@ -16,6 +16,7 @@ import { FinalGrade } from "@shared/FinalGrade";
 import { typographyVariant, typographyColor } from "@shared/Typography/interfaces";
 import { buttonSize, buttonColor } from "@shared/Button/interfaces";
 import { DividingLineColor } from "@shared/DividingLine/interfaces";
+import { cardSize } from "@shared/Card/interfaces";
 
 import { showModal } from "@entities/user/model";
 import { getModalPlanets } from "@entities/explorer/api/getModalPlanets";
@@ -77,7 +78,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
           </TabPanel>
         </MmtTabs>
       </Modal>
-      <CardBig>
+      <Card size={cardSize.large}>
         <div className={element("heading")}>
           <Typography variant={typographyVariant.h2}>
             Планета: {id}. {name}
@@ -86,7 +87,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         <div className={element("current-star")}>
           <Typography variant={typographyVariant.regular14}>Звезда: {star}</Typography>
         </div>
-        <div className={element("current-curator")}>
+        <div className={element("current-curator", "mb-4")}>
           <Typography variant={typographyVariant.regular14}>Преподаватель: {curator}</Typography>
         </div>
         <div className={element("progress")}>
@@ -115,7 +116,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
             }}
           />
         </div>
-      </CardBig>
+      </Card>
     </div>
   );
 };
