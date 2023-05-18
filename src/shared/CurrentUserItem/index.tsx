@@ -1,4 +1,5 @@
-import { AvatarSmall } from "@shared/AvatarSmall";
+import { Avatar } from "@shared/Avatar";
+import { avatarSize } from "@shared/Avatar/interfaces";
 import { Rating } from "@shared/Rating";
 import { bem } from "@shared/utils/bem";
 import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
@@ -25,8 +26,11 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
     <div className={block()}>
       <div className={element("item")}>
         <div className={element("user")}>
-          <AvatarSmall image={ avatar } />
-          <span className={element("my-name")}>{ name }</span>
+          <Avatar
+            size={avatarSize.small}
+            image={avatar}
+          />
+          <span className={element("my-name")}>{name}</span>
         </div>
         <div className={element("info")}>
           <span className={element("badge")}>
@@ -36,7 +40,7 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
             starColor={ratingStarColor.primary500}
             size={ratingSize.medium}
             scoreColor={ratingScoreColor.black}
-            rating={ rating }
+            rating={rating}
           />
         </div>
       </div>

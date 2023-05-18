@@ -2,11 +2,11 @@ import { useState } from "react";
 
 import { bem } from "@shared/utils/bem";
 import { Button } from "@shared/Button";
-import { AvatarSmall } from "@shared/AvatarSmall";
+import { Avatar } from "@shared/Avatar";
+import { avatarSize } from "@shared/Avatar/interfaces";
 import { Rating } from "@shared/Rating";
 import { ratingStarColor, ratingSize, ratingScoreColor } from "@shared/Rating/interfaces";
 import { buttonColor, buttonSize } from "@shared/Button/interfaces";
-
 import { UserInterface, UserListInterface } from "@shared/types/common";
 
 import "./styles.scss";
@@ -36,8 +36,11 @@ export const SelectUsersList = (props: UserListInterface) => {
             className={element("item", { selected: selectedUserIds.includes(user.id) })}
           >
             <div className={element("user")}>
-              <AvatarSmall image={user.avatar} />
-              <span className={element("name")}>{ user.name }</span>
+              <Avatar
+                size={avatarSize.small}
+                image={user.avatar}
+              />
+              <span className={element("name")}>{user.name}</span>
             </div>
             <div className={element("info")}>
               <div className={element("button", { visible: selectedUserIds.includes(user.id) })}>
@@ -57,12 +60,12 @@ export const SelectUsersList = (props: UserListInterface) => {
                     />
                 }
               </div>
-              <div className={element("rating", { hide: selectedUserIds.includes(user.id) } )}>
+              <div className={element("rating", { hide: selectedUserIds.includes(user.id) })}>
                 <Rating
                   starColor={ratingStarColor.primary500}
                   size={ratingSize.medium}
                   scoreColor={ratingScoreColor.black}
-                  rating={ user.rating }
+                  rating={user.rating}
                 />
               </div>
             </div>
