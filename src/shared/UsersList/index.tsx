@@ -8,10 +8,11 @@ import { ratingStarColor, ratingSize, ratingScoreColor } from "@shared/Rating/in
 import "./styles.scss";
 
 export const UsersList = (props: UserListInterface) => {
-  const [block, element] = bem("users-list");
   const {
     list,
   } = props;
+
+  const [block, element] = bem("users-list");
 
   return (
     <div className={block()}>

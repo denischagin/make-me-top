@@ -1,51 +1,3 @@
-export const PLANETS_LIST = [
-  {
-    name: "HTML",
-    id: 1,
-    locked: false
-  },
-  {
-    name: "C ++",
-    id: 2,
-    locked: false
-  },
-  {
-    name: "SQL",
-    id: 3,
-    locked: false
-  },
-  {
-    name: "JavaScript",
-    id: 4,
-    locked: true
-  },
-  {
-    name: "Java",
-    id: 5,
-    locked: true
-  },
-  {
-    name: "React",
-    id: 6,
-    locked: true
-  },
-  {
-    name: "React",
-    id: 7,
-    locked: true
-  },
-  {
-    name: "CSS",
-    id: 8,
-    locked: true
-  },
-  {
-    name: "Angular",
-    id: 9,
-    locked: true
-  }
-];
-
 export const EXPLORERS_LIST = [
   {
     name: "Фамилия Имя Отчество",
@@ -128,12 +80,5 @@ export const USER_INFO = {
   name: "Фамилия Имя Отчество",
   avatar: "https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg",
   rating: 4.8,
-  id: 1,
-};
-
-export const CURATOR_INFO = {
-  name: "Фамилия Имя Отчество",
-  avatar: "https://img.freepik.com/free-photo/happy-smiling-businessman-in-eyeglasses-holding-folder_171337-18854.jpg",
-  rating: 5.0,
   id: 1,
 };

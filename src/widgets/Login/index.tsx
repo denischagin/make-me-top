@@ -8,7 +8,7 @@ import { URL_CURATOR, URL_EXPLORER } from "@shared/constants/links";
 import { bem } from "@shared/utils/bem";
 import { typographyVariant } from "@shared/Typography/interfaces";
 
-import { selectIsUserRegistered } from "@entities/user/model";
+import { selectIsUserRegistered } from "@entities/user/model/slice";
 
 import "./styles.scss";
 

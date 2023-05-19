@@ -1,6 +1,9 @@
 import { TabPanel } from "react-tabs";
 
-import { useAppDispatch } from "@app/providers/store/hooks";
+import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
+
+import { showModal } from "@entities/user/model/slice";
+import { getModalPlanets } from "@entities/user/api/getModalPlanets";
 
 import { Modal } from "@shared/Modal";
 import { Typography } from "@shared/Typography";
@@ -8,27 +11,17 @@ import { Button } from "@shared/Button";
 import { MmtTabs } from "@shared/MmtTabs";
 import { Card } from "@shared/Card";
 import { bem } from "@shared/utils/bem";
-import { PlanetList } from "@shared/PlanetList";
-import { UsersList } from "@shared/UsersList";
-import { CurrentUserItem } from "@shared/CurrentUserItem";
-import { DividingLine } from "@shared/DividingLine";
-import { FinalGrade } from "@shared/FinalGrade";
 import { typographyVariant, typographyColor } from "@shared/Typography/interfaces";
 import { buttonSize, buttonColor } from "@shared/Button/interfaces";
-import { DividingLineColor } from "@shared/DividingLine/interfaces";
 import { cardSize } from "@shared/Card/interfaces";
-
-import { showModal } from "@entities/user/model";
-import { getModalPlanets } from "@entities/explorer/api/getModalPlanets";
+import { CurrentUserItem } from "@shared/CurrentUserItem";
+import { DividingLine } from "@shared/DividingLine";
+import { DividingLineColor } from "@shared/DividingLine/interfaces";
+import { FinalGrade } from "@shared/FinalGrade";
+import { PlanetList } from "@shared/PlanetList";
+import { UsersList } from "@shared/UsersList";
 
 import { ProgressBar } from "@widgets/ProgressBar";
-
-import {
-  CURATORS_LIST,
-  EXPLORERS_LIST,
-  USER_INFO,
-  CURATOR_INFO
-} from "./model";
 
 import { CurrentStarCardInterface } from "./interfaces";
 
@@ -51,30 +44,33 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
   const [block, element] = bem("current-star-card");
 
   const dispatch = useAppDispatch();
+  const userInfo = useAppSelector((state) => state.user.userInfo);
+  const explorersList = useAppSelector((state) => state.user.explorersList);
+  const curatorsList = useAppSelector((state) => state.user.curatorsList);
 
   return (
     <div className={block()}>
       <Modal name="Groovy">
         <MmtTabs list={tabsList}>
           <TabPanel>
-            <PlanetList currentPlanet={ name }/>
+            <PlanetList currentPlanet={"SQL"} />
             <FinalGrade />
           </TabPanel>
           <TabPanel>
             <CurrentUserItem
-              user={USER_INFO}
+              user={userInfo}
               badgeTitle="Мой рейтинг"
             />
             <DividingLine color={DividingLineColor.gray500} />
-            <UsersList list={EXPLORERS_LIST} />
+            <UsersList list={explorersList} />
           </TabPanel>
           <TabPanel>
             <CurrentUserItem
-              user={CURATOR_INFO}
+              user={userInfo}
               badgeTitle="Мой хранитель"
             />
             <DividingLine color={DividingLineColor.gray500} />
-            <UsersList list={CURATORS_LIST} />
+            <UsersList list={curatorsList} />
           </TabPanel>
         </MmtTabs>
       </Modal>

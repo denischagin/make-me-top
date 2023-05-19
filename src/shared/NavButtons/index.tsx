@@ -3,7 +3,7 @@ import { useAppDispatch } from "@app/providers/store/hooks";
 import { RouterLink } from "@shared/Link";
 import { typographyVariant } from "@shared/Typography/interfaces";
 
-import { logOut } from "@entities/user/model";
+import { logOut } from "@entities/user/model/slice";
 
 import {
   URL_CURATORS,

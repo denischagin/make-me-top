@@ -1,12 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getModalPlanets } from "../api/getModalPlanets";
-
-import { ExplorerState, ModalPlanetInterface } from "./interfaces";
+import { ExplorerState } from "./interfaces";
 
 const initialState: ExplorerState = {
   isExplorer: false,
-  planetList: [],
 };
 
 export const explorerSlice = createSlice({
@@ -16,15 +13,6 @@ export const explorerSlice = createSlice({
     selectRoleAsExplorer: (state) => {
       state.isExplorer = !state.isExplorer;
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getModalPlanets.fulfilled, (state: ExplorerState, action) => {
-        state.planetList = action.payload;
-      })
-      .addCase(getModalPlanets.rejected, (state) => {
-        state.planetList = [];
-      });
   },
 });
 
