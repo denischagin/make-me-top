@@ -4,7 +4,7 @@ import { UserState } from "./types/index";
 
 import { getModalPlanets } from "../api/getModalPlanets";
 
-import { CURATORS_LIST, EXPLORERS_LIST, USER_INFO } from "./consts";
+import { CURATORS_LIST, EXPLORERS_LIST, USER_INFO } from "./mocks";
 
 const initialState: UserState = {
   isRegistered: true,
