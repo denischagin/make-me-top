@@ -1,4 +1,5 @@
-export interface InputInterface {
-  placeholder: string;
-  type?: string
+import { InputHTMLAttributes } from "react";
+
+export interface InputInterface extends InputHTMLAttributes<HTMLInputElement> {
+
 }
