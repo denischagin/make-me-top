@@ -27,6 +27,8 @@ import { CurrentStarCardInterface } from "./interfaces";
 
 import "./styles.scss";
 
+const CURRENT_PLANET = "SQL";
+
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
   const {
     tabsList,
@@ -53,7 +55,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
       <Modal name="Groovy">
         <MmtTabs list={tabsList}>
           <TabPanel>
-            <PlanetList currentPlanet={"SQL"} />
+            <PlanetList currentPlanet={CURRENT_PLANET} />
             <FinalGrade />
           </TabPanel>
           <TabPanel>
