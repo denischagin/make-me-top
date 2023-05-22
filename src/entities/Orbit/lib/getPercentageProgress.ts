@@ -21,24 +21,7 @@ export const getPercentageProgress = (params: IGetPercentageProgress): number =>
             return educationSystem.systemId === planet.systemId;
         });
 
-        console.log(educationSystem?.completed)
         return educationSystem?.completed || 0;
-    }
-
-    const isSystemOpen = userProgress.openSystemList.findIndex(openSystemId => {
-        return openSystemId === planet.systemId;
-    });
-
-    if (isSystemOpen > -1) {
-        return 0;
-    }
-
-    const isSystemClose = userProgress.closeSystemList.findIndex(closeSystemId => {
-        return closeSystemId === planet.systemId;
-    });
-
-    if (isSystemClose > -1) {
-        return 0;
     }
 
     return 0;

@@ -1,6 +1,7 @@
 @import "@app/styles/variables.scss";
 
 .star-progress {
+  z-index: -1;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,7 +1,6 @@
 @import "@app/styles/variables.scss";
 
 .star {
-  z-index: 2;
   cursor: pointer;
   border-radius: 99px;
   height: 80px;
@@ -89,6 +88,7 @@
   }
 
   &__info {
+    z-index: 0;
     color: $white;
     display: flex;
     justify-content: center;
