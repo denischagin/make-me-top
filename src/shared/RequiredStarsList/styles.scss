@@ -3,7 +3,7 @@
 .required-list {
   font-family: $font-text-medium;
 
-  &__item  {
+  &__item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,11 +13,11 @@
     transition: 0.2s;
 
     &:hover {
-      .required-list__name  {
+      .required-list__name {
         margin-left: 2rem;
       }
 
-      .required-list__star-icon  {
+      .required-list__star-icon {
         color: $primary-500;
       }
 

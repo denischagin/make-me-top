@@ -1,21 +1,21 @@
 import { useAppDispatch } from "@app/providers/store/hooks";
 
-import { RouterLink } from "@shared/Link";
-import { typographyVariant } from "@shared/Typography/interfaces";
-
 import { logOut } from "@entities/user/model/slice";
 
+import { typographyVariant } from "@shared/Typography/interfaces";
+
+import { RouterLink } from "@shared/Link";
+
+import "./styles.scss";
+
+import { Typography } from "../Typography";
 import {
   URL_CURATORS,
   URL_DEFAULT,
   URL_EXPLORER,
   URL_EXPLORERS,
 } from "../constants/links";
-
-import { Typography } from "../Typography";
 import { ReactComponent as ExitIcon } from "../images/exit.svg";
-
-import "./styles.scss";
 
 export const NavButtons = () => {
   const dispatch = useAppDispatch();
@@ -29,12 +29,16 @@ export const NavButtons = () => {
       </RouterLink>
       <RouterLink path={URL_EXPLORERS}>
         <div className="nav-buttons__explorers-button">
-          <Typography variant={typographyVariant.regular14}>Исследователи</Typography>
+          <Typography variant={typographyVariant.regular14}>
+            Исследователи
+          </Typography>
         </div>
       </RouterLink>
       <RouterLink path={URL_CURATORS}>
         <div className="nav-buttons__curators-button">
-          <Typography variant={typographyVariant.regular14}>Хранители</Typography>
+          <Typography variant={typographyVariant.regular14}>
+            Хранители
+          </Typography>
         </div>
       </RouterLink>
       <RouterLink path={URL_DEFAULT}>

@@ -1,4 +1,5 @@
 import { bem } from "@shared/utils/bem";
+
 import { ShiningStar } from "@shared/ShiningStar";
 
 import "./styles.scss";
@@ -10,7 +11,7 @@ export const BackgroundUsersList = () => {
     <div className={block()}>
       <div className={element("static-bg")} />
       <div className={element("star-first")}>
-        <ShiningStar size="small"/>
+        <ShiningStar size="small" />
       </div>
       <div className={element("star-second")}>
         <ShiningStar size="small" />

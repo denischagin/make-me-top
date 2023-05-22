@@ -5,25 +5,29 @@ import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 import { showModal } from "@entities/user/model/slice";
 import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 
-import { Modal } from "@shared/Modal";
-import { Typography } from "@shared/Typography";
-import { Button } from "@shared/Button";
-import { MmtTabs } from "@shared/MmtTabs";
-import { Card } from "@shared/Card";
-import { bem } from "@shared/utils/bem";
-import { typographyVariant, typographyColor } from "@shared/Typography/interfaces";
-import { buttonSize, buttonColor } from "@shared/Button/interfaces";
-import { cardSize } from "@shared/Card/interfaces";
-import { CurrentUserItem } from "@shared/CurrentUserItem";
-import { DividingLine } from "@shared/DividingLine";
-import { DividingLineColor } from "@shared/DividingLine/interfaces";
-import { FinalGrade } from "@shared/FinalGrade";
-import { PlanetList } from "@shared/PlanetList";
-import { UsersList } from "@shared/UsersList";
-
 import { ProgressBar } from "@widgets/ProgressBar";
 
+import { bem } from "@shared/utils/bem";
+
 import { CurrentStarCardInterface } from "./interfaces";
+import { buttonColor, buttonSize } from "@shared/Button/interfaces";
+import { cardSize } from "@shared/Card/interfaces";
+import { DividingLineColor } from "@shared/DividingLine/interfaces";
+import {
+  typographyColor,
+  typographyVariant,
+} from "@shared/Typography/interfaces";
+
+import { Button } from "@shared/Button";
+import { Card } from "@shared/Card";
+import { CurrentUserItem } from "@shared/CurrentUserItem";
+import { DividingLine } from "@shared/DividingLine";
+import { FinalGrade } from "@shared/FinalGrade";
+import { MmtTabs } from "@shared/MmtTabs";
+import { Modal } from "@shared/Modal";
+import { PlanetList } from "@shared/PlanetList";
+import { Typography } from "@shared/Typography";
+import { UsersList } from "@shared/UsersList";
 
 import "./styles.scss";
 
@@ -39,7 +43,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
       },
       star,
       curator,
-      progress
+      progress,
     },
   } = props;
 
@@ -83,10 +87,14 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
           </Typography>
         </div>
         <div className={element("current-star")}>
-          <Typography variant={typographyVariant.regular14}>Звезда: {star}</Typography>
+          <Typography variant={typographyVariant.regular14}>
+            Звезда: {star}
+          </Typography>
         </div>
         <div className={element("current-curator", "mb-4")}>
-          <Typography variant={typographyVariant.regular14}>Преподаватель: {curator}</Typography>
+          <Typography variant={typographyVariant.regular14}>
+            Преподаватель: {curator}
+          </Typography>
         </div>
         <div className={element("progress")}>
           <Typography

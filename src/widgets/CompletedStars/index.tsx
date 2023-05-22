@@ -1,12 +1,18 @@
-import { Star } from "@shared/Star";
 import { bem } from "@shared/utils/bem";
-import { Rating } from "@shared/Rating";
-import { starColor } from "@shared/Star/interfaces";
-import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
 
-import { COMPLETED_STARS_LIST } from "./model";
+import {
+  ratingScoreColor,
+  ratingSize,
+  ratingStarColor,
+} from "@shared/Rating/interfaces";
+import { starColor } from "@shared/Star/interfaces";
+
+import { Rating } from "@shared/Rating";
+import { Star } from "@shared/Star";
 
 import "./styles.scss";
+
+import { COMPLETED_STARS_LIST } from "./model";
 
 export const CompletedStars = () => {
   const [block, element] = bem("completed-stars");

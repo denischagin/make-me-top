@@ -18,7 +18,7 @@
       border-left: 3px solid transparent;
 
       &:hover {
-        border-left: 3px solid #CF5335;
+        border-left: 3px solid #cf5335;
         background-color: $gray-400;
       }
     }
@@ -26,7 +26,7 @@
     &--current {
       color: $black;
       padding: 8px 16px;
-      border-left: 3px solid #CF5335;
+      border-left: 3px solid #cf5335;
       border-radius: 0px 8px 8px 0px;
       background-color: $gray-400;
     }

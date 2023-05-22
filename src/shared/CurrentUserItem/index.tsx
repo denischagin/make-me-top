@@ -1,12 +1,17 @@
-import { Avatar } from "@shared/Avatar";
-import { avatarSize } from "@shared/Avatar/interfaces";
-import { Rating } from "@shared/Rating";
 import { bem } from "@shared/utils/bem";
-import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
-import { badgeColor } from "@shared/Badge/interfaces";
-import { Badge } from "@shared/Badge";
 
 import { CurrentUserItemInterface } from "./interfaces";
+import { avatarSize } from "@shared/Avatar/interfaces";
+import { badgeColor } from "@shared/Badge/interfaces";
+import {
+  ratingScoreColor,
+  ratingSize,
+  ratingStarColor,
+} from "@shared/Rating/interfaces";
+
+import { Avatar } from "@shared/Avatar";
+import { Badge } from "@shared/Badge";
+import { Rating } from "@shared/Rating";
 
 import "./styles.scss";
 
@@ -17,7 +22,7 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
       name,
       avatar,
       rating
-    }
+    },
   } = props;
 
   const [block, element] = bem("current-user");

@@ -1,15 +1,20 @@
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
-import { Portal } from "@shared/Portal";
-import { Typography } from "@shared/Typography";
-import { ReactComponent as CloseIcon } from "@shared/images/close.svg";
-import { ReactComponent as LockIcon } from "@shared/images/lock-big.svg";
-import { bem } from "@shared/utils/bem";
-import { typographyColor, typographyVariant } from "@shared/Typography/interfaces";
-
 import { showModal } from "@entities/user/model/slice";
 
+import { ReactComponent as CloseIcon } from "@shared/images/close.svg";
+import { ReactComponent as LockIcon } from "@shared/images/lock-big.svg";
+
+import { bem } from "@shared/utils/bem";
+
 import { ModalInterface } from "./interfaces";
+import {
+  typographyColor,
+  typographyVariant,
+} from "@shared/Typography/interfaces";
+
+import { Portal } from "@shared/Portal";
+import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 
@@ -46,9 +51,7 @@ export const Modal = (props: ModalInterface) => {
               onClick={() => dispatch(showModal())}
             />
           </div>
-          <div className={element("item-list")}>
-            {children}
-          </div>
+          <div className={element("item-list")}>{children}</div>
         </div>
       </div>
     </Portal>

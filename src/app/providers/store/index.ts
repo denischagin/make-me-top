@@ -1,19 +1,19 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
+import { CuratorState } from "@entities/curator/interfaces";
 import curatorReducer from "@entities/curator/model";
+import { ExplorerState } from "@entities/explorer/model/interfaces";
 import explorerReducer from "@entities/explorer/model/slice";
 import galaxySlice from "@entities/galaxy/model/slice";
 import { GalaxyType } from "@entities/galaxy/model/types";
 import userReducer from "@entities/user/model/slice";
 import { UserState } from "@entities/user/model/types";
-import { CuratorState } from "@entities/curator/interfaces";
-import { ExplorerState } from "@entities/explorer/model/interfaces";
 
 export type RootState = {
-  explorer: ExplorerState
-  curator: CuratorState
-  user: UserState
+  explorer: ExplorerState;
+  curator: CuratorState;
+  user: UserState;
   galaxies: GalaxyType;
 };
 

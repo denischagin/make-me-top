@@ -1,12 +1,12 @@
 export interface CuratorInterface {
-  curator: CuratorUserInterface
+  curator: CuratorUserInterface;
 }
 
 export interface CuratorUserInterface {
-  name: string
-  avatar: string
+  name: string;
+  avatar: string;
   rating?: number | null;
-  id?: number
+  id?: number;
   planets: number | null;
   explorers: number | null;
 }

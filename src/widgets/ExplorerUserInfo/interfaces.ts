@@ -1,11 +1,11 @@
 export interface ExplorerUserInfoInterface {
-  user: ExplorerInterface
+  user: ExplorerInterface;
 }
 
 export interface ExplorerInterface {
-  name: string
-  avatar: string
+  name: string;
+  avatar: string;
   rating?: number | null;
-  id?: number
+  id?: number;
   stars: number | null;
 }

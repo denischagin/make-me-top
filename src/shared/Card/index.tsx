@@ -12,9 +12,5 @@ export const Card = (props: CardInterface) => {
 
   const [block, element] = bem("card");
 
-  return (
-    <div className={block({ size: size })}>
-      { children }
-    </div>
-  );
+  return <div className={block({ size: size })}>{children}</div>;
 };

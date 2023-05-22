@@ -14,8 +14,8 @@ export const ModalAlert = (props: ModalAlertInterface) => {
 
   return (
     <div className={block()}>
-      <div className={element("title")}>{ title }</div>
-      { children }
+      <div className={element("title")}>{title}</div>
+      {children}
     </div>
   );
 };

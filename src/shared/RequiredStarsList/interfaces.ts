@@ -1,8 +1,8 @@
 export interface RequiredStarInterface {
-  name: string
-  id: number
+  name: string;
+  id: number;
 }
 
 export interface RequiredStarsListInterface {
-  list: Array<RequiredStarInterface>
+  list: Array<RequiredStarInterface>;
 }
