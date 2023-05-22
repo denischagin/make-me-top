@@ -30,15 +30,15 @@ const StarProgress: React.FC<IStarProgressProps> = (props) => {
     return (
         <div className={block()}>
             <svg
-                className={element("progress")}
+                className={element("svg")}
                 xmlns="http://www.w3.org/2000/svg"
                 width="120px"
                 height="120px"
             >
                 <path
+                    className={element("svg-path")}
                     d={percentageProgressToSVGPath(percentageProgress)}
-                    stroke="white"
-                    fill="#7c7abd"/>
+                    />
             </svg>
         </div>
     );

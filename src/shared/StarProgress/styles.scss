@@ -11,7 +11,12 @@
   overflow: hidden;
   border-radius: 50%;
 
-  &__progress {
+  &__svg {
     position: absolute;
+
+    &-path {
+      fill: #7c7abd;
+      stroke: $white;
+    }
   }
 }
