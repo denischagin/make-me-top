@@ -3,7 +3,7 @@ import { TabPanel } from "react-tabs";
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
 import { showModal } from "@entities/user/model/slice";
-import { getModalPlanets } from "@entities/user/api/getModalPlanets";
+import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 
 import { Modal } from "@shared/Modal";
 import { Typography } from "@shared/Typography";

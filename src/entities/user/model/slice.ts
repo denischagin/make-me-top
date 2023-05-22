@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { UserState } from "./types/index";
 
-import { getModalPlanets } from "../api/getModalPlanets";
+import { getModalPlanets } from "../thunks/getModalPlanets";
 
 import { CURATORS_LIST, EXPLORERS_LIST, USER_INFO } from "./mocks";
 
