@@ -37,7 +37,7 @@ const StarProgress: React.FC<IStarProgressProps> = (props) => {
             >
                 <path
                     d={percentageProgressToSVGPath(percentageProgress)}
-                    stroke="black"
+                    stroke="white"
                     fill="#7c7abd"/>
             </svg>
         </div>
