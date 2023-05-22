@@ -1,6 +1,6 @@
 import { useAppSelector } from "@app/providers/store/hooks";
 
-import { ModalPlanetInterface } from "@entities/explorer/model/interfaces";
+import { ModalPlanetInterface } from "@entities/user/model/types";
 
 import { bem } from "@shared/utils/bem";
 import { Button } from "@shared/Button";

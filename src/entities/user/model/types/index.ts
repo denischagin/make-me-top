@@ -1,5 +1,3 @@
-import { ModalPlanetInterface } from "@entities/explorer/model/interfaces";
-
 import { UserInterface } from "@shared/types/common";
 
 export interface UserState {
@@ -10,3 +8,10 @@ export interface UserState {
   curatorsList: Array<UserInterface>
   userInfo: UserInterface
 }
+
+export interface ModalPlanetInterface {
+  planetId: number,
+  planetName: string,
+  systemId: number
+}
+
