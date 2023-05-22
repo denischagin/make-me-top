@@ -27,19 +27,19 @@ export const PlanetList = (props: PlanetListInterface) => {
           <div
             key={planet.planetId}
             className={element("item", {
-              active: planet.planetId < currentPlanet?.planetId!,
-              current: planet.planetName === props.currentPlanet
+              active: (planet.planetId < currentPlanet?.planetId!),
+              current: (planet.planetName === props.currentPlanet)
             })}
           >
             <span className={element("name")}>
-              { ++index }. { planet.planetName }
+              {++index}. {planet.planetName}
             </span>
             {
-              planet.planetId > currentPlanet?.planetId! &&
-              <LockIcon className={element("lock-icon")}/>
+              (planet.planetId > currentPlanet?.planetId!) &&
+              <LockIcon className={element("lock-icon")} />
             }
             {
-              planet.planetName === props.currentPlanet &&
+              (planet.planetName === props.currentPlanet) &&
               <div className={element("info")}>
                 <span className={element("item-text")}>Текущая планета</span>
                 <Button
