@@ -1,3 +1,8 @@
+import { Card } from "@shared/Card";
+import { DividingLine } from "@shared/DividingLine";
+import { Typography } from "@shared/Typography";
+import { UsersRating } from "@shared/UsersRating";
+
 import { bem } from "@shared/utils/bem";
 
 import { RatingCardInterface } from "./interfaces";
@@ -6,11 +11,6 @@ import { DividingLineColor } from "@shared/DividingLine/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
 
 import { UserInterface } from "@shared/types/common";
-
-import { Card } from "@shared/Card";
-import { DividingLine } from "@shared/DividingLine";
-import { Typography } from "@shared/Typography";
-import { UsersRating } from "@shared/UsersRating";
 
 import "./styles.scss";
 

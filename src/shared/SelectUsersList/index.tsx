@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+import { Avatar } from "@shared/Avatar";
+import { Button } from "@shared/Button";
+import { Rating } from "@shared/Rating";
+
 import { bem } from "@shared/utils/bem";
 
 import { avatarSize } from "@shared/Avatar/interfaces";
@@ -11,10 +15,6 @@ import {
 } from "@shared/Rating/interfaces";
 
 import { UserInterface, UserListInterface } from "@shared/types/common";
-
-import { Avatar } from "@shared/Avatar";
-import { Button } from "@shared/Button";
-import { Rating } from "@shared/Rating";
 
 import "./styles.scss";
 

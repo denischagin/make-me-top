@@ -1,8 +1,8 @@
 import { useAppSelector } from "@app/providers/store/hooks";
 
-import { bem } from "@shared/utils/bem";
-
 import { ShiningStar } from "@shared/ShiningStar";
+
+import { bem } from "@shared/utils/bem";
 
 import "./styles.scss";
 

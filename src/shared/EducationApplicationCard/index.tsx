@@ -1,3 +1,9 @@
+import { Avatar } from "@shared/Avatar";
+import { Button } from "@shared/Button";
+import { Card } from "@shared/Card";
+import { Rating } from "@shared/Rating";
+import { Typography } from "@shared/Typography";
+
 import { bem } from "@shared/utils/bem";
 
 import { EducationApplicationCardInterface } from "./interfaces";
@@ -10,12 +16,6 @@ import {
   ratingStarColor,
 } from "@shared/Rating/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
-
-import { Avatar } from "@shared/Avatar";
-import { Button } from "@shared/Button";
-import { Card } from "@shared/Card";
-import { Rating } from "@shared/Rating";
-import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 

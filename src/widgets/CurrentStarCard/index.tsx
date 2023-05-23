@@ -5,19 +5,6 @@ import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 import { showModal } from "@entities/user/model/slice";
 import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 
-import { ProgressBar } from "@widgets/ProgressBar";
-
-import { bem } from "@shared/utils/bem";
-
-import { CurrentStarCardInterface } from "./interfaces";
-import { buttonColor, buttonSize } from "@shared/Button/interfaces";
-import { cardSize } from "@shared/Card/interfaces";
-import { DividingLineColor } from "@shared/DividingLine/interfaces";
-import {
-  typographyColor,
-  typographyVariant,
-} from "@shared/Typography/interfaces";
-
 import { Button } from "@shared/Button";
 import { Card } from "@shared/Card";
 import { CurrentUserItem } from "@shared/CurrentUserItem";
@@ -28,6 +15,19 @@ import { Modal } from "@shared/Modal";
 import { PlanetList } from "@shared/PlanetList";
 import { Typography } from "@shared/Typography";
 import { UsersList } from "@shared/UsersList";
+
+import { bem } from "@shared/utils/bem";
+
+import { ProgressBar } from "@widgets/ProgressBar";
+
+import { CurrentStarCardInterface } from "./interfaces";
+import { buttonColor, buttonSize } from "@shared/Button/interfaces";
+import { cardSize } from "@shared/Card/interfaces";
+import { DividingLineColor } from "@shared/DividingLine/interfaces";
+import {
+  typographyColor,
+  typographyVariant,
+} from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 

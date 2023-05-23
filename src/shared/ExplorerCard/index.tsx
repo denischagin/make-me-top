@@ -1,3 +1,6 @@
+import { Avatar } from "@shared/Avatar";
+import { Typography } from "@shared/Typography";
+
 import { ReactComponent as ArrowIcon } from "@shared/images/small-arrow.svg";
 
 import { bem } from "@shared/utils/bem";
@@ -6,9 +9,6 @@ import { avatarSize } from "@shared/Avatar/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
 
 import { ExplorerCardInterface } from "@shared/types/common";
-
-import { Avatar } from "@shared/Avatar";
-import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 

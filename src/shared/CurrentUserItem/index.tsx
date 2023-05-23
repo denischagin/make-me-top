@@ -1,3 +1,7 @@
+import { Avatar } from "@shared/Avatar";
+import { Badge } from "@shared/Badge";
+import { Rating } from "@shared/Rating";
+
 import { bem } from "@shared/utils/bem";
 
 import { CurrentUserItemInterface } from "./interfaces";
@@ -8,10 +12,6 @@ import {
   ratingSize,
   ratingStarColor,
 } from "@shared/Rating/interfaces";
-
-import { Avatar } from "@shared/Avatar";
-import { Badge } from "@shared/Badge";
-import { Rating } from "@shared/Rating";
 
 import "./styles.scss";
 

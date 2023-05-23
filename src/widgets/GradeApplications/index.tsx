@@ -1,10 +1,10 @@
+import { GradeApplicationCard } from "@shared/GradeApplicationCard";
+import { Typography } from "@shared/Typography";
+
 import { bem } from "@shared/utils/bem";
 
 import { GradeApplicationsInterface } from "./interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
-
-import { GradeApplicationCard } from "@shared/GradeApplicationCard";
-import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 

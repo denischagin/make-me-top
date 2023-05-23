@@ -1,10 +1,10 @@
+import { EducationApplicationCard } from "@shared/EducationApplicationCard";
+import { Typography } from "@shared/Typography";
+
 import { bem } from "@shared/utils/bem";
 
 import { EducationApplicationsInterface } from "./interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
-
-import { EducationApplicationCard } from "@shared/EducationApplicationCard";
-import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 

@@ -1,3 +1,8 @@
+import { Button } from "@shared/Button";
+import { Card } from "@shared/Card";
+import { ExplorerCard } from "@shared/ExplorerCard";
+import { Typography } from "@shared/Typography";
+
 import { bem } from "@shared/utils/bem";
 
 import { ExplorerCardListInterface } from "./interfaces";
@@ -6,11 +11,6 @@ import { cardSize } from "@shared/Card/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
 
 import { ExplorerCardInterface } from "@shared/types/common";
-
-import { Button } from "@shared/Button";
-import { Card } from "@shared/Card";
-import { ExplorerCard } from "@shared/ExplorerCard";
-import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 

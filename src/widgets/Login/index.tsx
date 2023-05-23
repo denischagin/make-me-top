@@ -2,15 +2,16 @@ import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
 import { selectIsUserRegistered } from "@entities/user/model/slice";
 
-import { bem } from "@shared/utils/bem";
-
-import { typographyVariant } from "@shared/Typography/interfaces";
-
 import { RouterLink } from "@shared/Link";
 import { PlanetButton } from "@shared/PlanetButton";
 import { PlanetInput } from "@shared/PlanetInput";
 import { Typography } from "@shared/Typography";
+
+import { bem } from "@shared/utils/bem";
+
 import { URL_CURATOR, URL_EXPLORER } from "@shared/constants/links";
+
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 

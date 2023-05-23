@@ -1,6 +1,6 @@
-import { bem } from "@shared/utils/bem";
-
 import { ShiningStar } from "@shared/ShiningStar";
+
+import { bem } from "@shared/utils/bem";
 
 import "./styles.scss";
 

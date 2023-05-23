@@ -1,3 +1,7 @@
+import { Avatar } from "@shared/Avatar";
+import { Rating } from "@shared/Rating";
+import { Typography } from "@shared/Typography";
+
 import { bem } from "@shared/utils/bem";
 
 import { avatarSize } from "@shared/Avatar/interfaces";
@@ -9,10 +13,6 @@ import {
 import { typographyVariant } from "@shared/Typography/interfaces";
 
 import { UserInfoInterface } from "@shared/types/common";
-
-import { Avatar } from "@shared/Avatar";
-import { Rating } from "@shared/Rating";
-import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 

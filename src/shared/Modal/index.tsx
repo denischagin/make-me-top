@@ -2,6 +2,9 @@ import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
 import { showModal } from "@entities/user/model/slice";
 
+import { Portal } from "@shared/Portal";
+import { Typography } from "@shared/Typography";
+
 import { ReactComponent as CloseIcon } from "@shared/images/close.svg";
 import { ReactComponent as LockIcon } from "@shared/images/lock-big.svg";
 
@@ -12,9 +15,6 @@ import {
   typographyColor,
   typographyVariant,
 } from "@shared/Typography/interfaces";
-
-import { Portal } from "@shared/Portal";
-import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 

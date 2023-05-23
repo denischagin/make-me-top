@@ -1,3 +1,6 @@
+import { Rating } from "@shared/Rating";
+import { Star } from "@shared/Star";
+
 import { bem } from "@shared/utils/bem";
 
 import {
@@ -6,9 +9,6 @@ import {
   ratingStarColor,
 } from "@shared/Rating/interfaces";
 import { starColor } from "@shared/Star/interfaces";
-
-import { Rating } from "@shared/Rating";
-import { Star } from "@shared/Star";
 
 import "./styles.scss";
 

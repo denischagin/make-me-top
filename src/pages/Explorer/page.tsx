@@ -1,15 +1,15 @@
+import { BackgroundProfile } from "@shared/BackgroundProfile";
+import { Typography } from "@shared/Typography";
+
+import { bem } from "@shared/utils/bem";
+
 import { CompletedStars } from "@widgets/CompletedStars";
 import { CurrentStarCard } from "@widgets/CurrentStarCard";
 import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
 import { Header } from "@widgets/Header";
 import { RatingCard } from "@widgets/RatingCard";
 
-import { bem } from "@shared/utils/bem";
-
 import { typographyVariant } from "@shared/Typography/interfaces";
-
-import { BackgroundProfile } from "@shared/BackgroundProfile";
-import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 

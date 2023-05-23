@@ -2,9 +2,9 @@ import { useAppDispatch } from "@app/providers/store/hooks";
 
 import { logOut } from "@entities/user/model/slice";
 
-import { typographyVariant } from "@shared/Typography/interfaces";
-
 import { RouterLink } from "@shared/Link";
+
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 

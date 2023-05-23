@@ -1,16 +1,16 @@
+import { BackgroundProfile } from "@shared/BackgroundProfile";
+import { GradeApplicationCard } from "@shared/GradeApplicationCard";
+import { Typography } from "@shared/Typography";
+
+import { bem } from "@shared/utils/bem";
+
 import { CuratorUserInfo } from "@widgets/CuratorUserInfo";
 import { EducationApplications } from "@widgets/EducationApplications";
 import { ExplorerCardList } from "@widgets/ExplorerCardList";
 import { GradeApplications } from "@widgets/GradeApplications";
 import { Header } from "@widgets/Header";
 
-import { bem } from "@shared/utils/bem";
-
 import { typographyVariant } from "@shared/Typography/interfaces";
-
-import { BackgroundProfile } from "@shared/BackgroundProfile";
-import { GradeApplicationCard } from "@shared/GradeApplicationCard";
-import { Typography } from "@shared/Typography";
 
 import "./styles.scss";
 

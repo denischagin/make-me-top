@@ -1,3 +1,5 @@
+import { Button } from "@shared/Button";
+
 import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 
 import { bem } from "@shared/utils/bem";
@@ -7,8 +9,6 @@ import {
   RequiredStarsListInterface,
 } from "./interfaces";
 import { buttonColor, buttonSize } from "@shared/Button/interfaces";
-
-import { Button } from "@shared/Button";
 
 import "./styles.scss";
 
