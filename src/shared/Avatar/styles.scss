@@ -1,0 +1,83 @@
+@import "@app/styles/variables.scss";
+
+.avatar {
+  &--size-small {
+    width: 32px;
+    height: 32px;
+  }
+
+  &--size-medium {
+    width: 56px;
+    height: 56px;
+  }
+
+  &--size-large {
+    width: 136px;
+    height: 136px;
+  }
+
+  &__image {
+    border-radius: 99px;
+    object-fit: cover;
+
+    &--size-small {
+      width: 32px;
+      height: 32px;
+    }
+
+    &--size-medium {
+      width: 56px;
+      height: 56px;
+    }
+
+    &--size-large {
+      width: 136px;
+      height: 136px;
+    }
+  }
+
+  &__border {
+    position: absolute;
+    height: 133px;
+    width: 133px;
+    border-radius: 99px;
+    border: 2px solid $white;
+
+    animation-name: rotate;
+    animation-duration: 13s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    @keyframes rotate {
+      from {
+        transform: rotate(-360deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  &__orbit {
+    margin-top: 40px;
+    position: relative;
+    border-radius: 99px;
+    height: 5px;
+    width: 5px;
+    background-color: $white;
+    border: 1px solid white;
+    z-index: -1;
+
+    &:before {
+      content: "";
+      z-index: 1;
+      position: absolute;
+      border-radius: 99px;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border: 1px solid $white;
+    }
+  }
+}

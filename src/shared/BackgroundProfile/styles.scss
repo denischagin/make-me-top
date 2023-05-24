@@ -1,0 +1,63 @@
+@import "@app/styles/variables.scss";
+
+.background-profile {
+  background-image: url(../images/profile-bg.png);
+  background-color: $dark;
+  overflow: hidden;
+  background-attachment: local;
+  position: absolute;
+  z-index: -1;
+  min-height: 115%;
+  width: 100%;
+
+  &__star-first,
+  &__star-second,
+  &__star-third,
+  &__star-fourth,
+  &__star-fifth,
+  &__star-sixth,
+  &__star-seventh,
+  &__star-eighth {
+    position: absolute;
+  }
+
+  &__star-first {
+    left: calc(50% - 15px / 2 - 780px);
+    top: calc(50% - 18px / 2 - 36px);
+  }
+
+  &__star-second {
+    left: calc(50% - 15px / 2 + 55px);
+    top: calc(50% - 18px / 2 - 424px);
+  }
+
+  &__star-third {
+    left: calc(50% - 20px / 2 - 306px);
+    top: calc(50% - 24px / 2 + 978px);
+  }
+
+  &__star-fourth {
+    left: calc(50% - 20px / 2 - 713px);
+    top: calc(50% - 24px / 2 + 247px);
+  }
+
+  &__star-fifth {
+    left: calc(50% - 20px / 2 + 364px);
+    top: calc(50% - 24px / 2 - 114px);
+  }
+
+  &__star-sixth {
+    left: calc(50% - 15px / 2 + 478.5px);
+    top: calc(50% - 18px / 2 - 377px);
+  }
+
+  &__star-seventh {
+    left: calc(50% - 15px / 2 - 710.5px);
+    top: calc(50% - 18px / 2 + 1174px);
+  }
+
+  &__star-eighth {
+    left: calc(50% - 15px / 2 + 149px);
+    top: calc(50% - 18px / 2 + 58px);
+  }
+}

@@ -1,6 +1,9 @@
 import { useAppSelector } from "@app/providers/store/hooks";
 
+import { BackgroundHome } from "@shared/BackgroundHome";
+
 import { ReactComponent as MakeMeTopIcon } from "@shared/images/make-me-top.svg";
+
 import { bem } from "@shared/utils/bem";
 
 import { Login } from "@widgets/Login";
@@ -25,23 +28,26 @@ export const Home = () => {
   };
 
   return (
-    <div className={block()}>
-      <div
-        className={element("planet")}
-        style={{ transform: changePlanetAngle() }}
-      />
-      <div className={element("fields")}>
-        <p className={element("heading")}>
-          <MakeMeTopIcon />
-        </p>
-        {!curator && !explorer ? (
-          <SelectRole />
-        ) : user ? (
-          <Login />
-        ) : (
-          <Registration />
-        )}
+    <>
+      <BackgroundHome />
+      <div className={block()}>
+        <div
+          className={element("planet")}
+          style={{ transform: changePlanetAngle() }}
+        />
+        <div className={element("fields")}>
+          <p className={element("heading")}>
+            <MakeMeTopIcon />
+          </p>
+          {!curator && !explorer ? (
+            <SelectRole />
+          ) : user ? (
+            <Login />
+          ) : (
+            <Registration />
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
