@@ -1,4 +1,4 @@
-export const arrayOfStars = [
+export const COMPLETED_STARS_LIST = [
   {
     name: "Docker",
     rate: 4.7,

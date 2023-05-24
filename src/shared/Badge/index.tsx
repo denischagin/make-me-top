@@ -12,9 +12,5 @@ export const Badge = (props: BadgeInterface) => {
 
   const [block, element] = bem("badge");
 
-  return (
-    <span className={block({ color: color })}>
-      { children }
-    </span>
-  );
+  return <span className={block({ color: color })}>{children}</span>;
 };

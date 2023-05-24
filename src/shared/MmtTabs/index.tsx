@@ -2,6 +2,8 @@ import { Tab, TabList, Tabs } from "react-tabs";
 
 import { TabsListInterface } from "./interfaces";
 
+import { TabInterface } from "@shared/types/common";
+
 import "./styles.scss";
 
 export const MmtTabs = (props: TabsListInterface) => {
@@ -13,10 +15,8 @@ export const MmtTabs = (props: TabsListInterface) => {
   return (
     <Tabs>
       <TabList>
-        {list.map((tab) => (
-          <Tab key={tab.id}>
-            {tab.name}
-          </Tab>
+        {list.map((tab: TabInterface) => (
+          <Tab key={tab.id}>{tab.name}</Tab>
         ))}
       </TabList>
       {children}

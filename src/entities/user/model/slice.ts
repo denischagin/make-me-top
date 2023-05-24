@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { UserState } from "./interfaces";
+import { getModalPlanets } from "../thunks/getModalPlanets";
+import { CURATORS_LIST, EXPLORERS_LIST, USER_INFO } from "./mocks";
+import { UserState } from "./types/index";
 
 const initialState: UserState = {
   isRegistered: true,
   isModalOpen: false,
+  planetList: [],
+  explorersList: EXPLORERS_LIST,
+  curatorsList: CURATORS_LIST,
+  userInfo: USER_INFO,
 };
 
 export const userSlice = createSlice({
@@ -20,6 +26,15 @@ export const userSlice = createSlice({
     showModal: (state) => {
       state.isModalOpen = !state.isModalOpen;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getModalPlanets.fulfilled, (state: UserState, action) => {
+        state.planetList = action.payload;
+      })
+      .addCase(getModalPlanets.rejected, (state) => {
+        state.planetList = [];
+      });
   },
 });
 

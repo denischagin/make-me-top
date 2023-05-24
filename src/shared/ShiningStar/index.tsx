@@ -1,5 +1,6 @@
-import { ReactComponent as ShineBigIcon } from "@shared/images/shine24.svg";
 import { ReactComponent as ShineSmallIcon } from "@shared/images/shine18.svg";
+import { ReactComponent as ShineBigIcon } from "@shared/images/shine24.svg";
+
 import { bem } from "@shared/utils/bem";
 
 import { ShiningStarProps } from "./interfaces";
@@ -15,11 +16,11 @@ export const ShiningStar = (props: ShiningStarProps) => {
 
   return (
     <>
-      {
-        size === "small"
-          ? <ShineSmallIcon className={block()}/>
-          : <ShineBigIcon className={block()}/>
-      }
+      {size === "small" ? (
+        <ShineSmallIcon className={block()} />
+      ) : (
+        <ShineBigIcon className={block()} />
+      )}
     </>
   );
 };

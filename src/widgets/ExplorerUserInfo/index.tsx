@@ -1,14 +1,19 @@
-import { Typography } from "@shared/Typography";
 import { Avatar } from "@shared/Avatar";
-import { Rating } from "@shared/Rating";
-import { bem } from "@shared/utils/bem";
-import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
-import { cardSize } from "@shared/Card/interfaces";
-import { typographyVariant } from "@shared/Typography/interfaces";
-import { avatarSize } from "@shared/Avatar/interfaces";
 import { Card } from "@shared/Card";
+import { Rating } from "@shared/Rating";
+import { Typography } from "@shared/Typography";
+
+import { bem } from "@shared/utils/bem";
 
 import { ExplorerUserInfoInterface } from "./interfaces";
+import { avatarSize } from "@shared/Avatar/interfaces";
+import { cardSize } from "@shared/Card/interfaces";
+import {
+  ratingScoreColor,
+  ratingSize,
+  ratingStarColor,
+} from "@shared/Rating/interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 
@@ -18,7 +23,7 @@ export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
       name,
       avatar,
       rating
-    }
+    },
   } = props;
 
   const [block, element] = bem("profile-info");
@@ -37,7 +42,9 @@ export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
         <div className={element("rating")}>
           <Card size={cardSize.small}>
             <div className={element("heading")}>
-              <Typography variant={typographyVariant.regular16}>Рейтинг</Typography>
+              <Typography variant={typographyVariant.regular16}>
+                Рейтинг
+              </Typography>
             </div>
             <span className={element("current-rating")}>
               <Rating

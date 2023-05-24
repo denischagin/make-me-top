@@ -1,14 +1,17 @@
 import { useAppDispatch } from "@app/providers/store/hooks";
 
-import { PlanetInput } from "@shared/PlanetInput";
-import { Typography } from "@shared/Typography";
+import { selectIsUserRegistered } from "@entities/user/model/slice";
+
 import { RouterLink } from "@shared/Link";
 import { PlanetButton } from "@shared/PlanetButton";
-import { URL_EXPLORER } from "@shared/constants/links";
-import { typographyVariant } from "@shared/Typography/interfaces";
+import { PlanetInput } from "@shared/PlanetInput";
+import { Typography } from "@shared/Typography";
+
 import { bem } from "@shared/utils/bem";
 
-import { selectIsUserRegistered } from "@entities/user/model";
+import { URL_EXPLORER } from "@shared/constants/links";
+
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 
@@ -35,7 +38,9 @@ export const Registration = () => {
         className={element("hint")}
         onClick={() => dispatch(selectIsUserRegistered())}
       >
-        <Typography variant={typographyVariant.regular14}>У меня есть аккаунт. Войти</Typography>
+        <Typography variant={typographyVariant.regular14}>
+          У меня есть аккаунт. Войти
+        </Typography>
       </div>
     </div>
   );

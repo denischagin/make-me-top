@@ -15,14 +15,13 @@ export const Avatar = (props: AvatarInterface) => {
 
   return (
     <div className={block({ size: size })}>
-      {
-        (orbit && size === "large") &&
+      {orbit && size === "large" && (
         <div className={element("border")}>
           <div className={element("orbit")} />
         </div>
-      }
+      )}
       <img
-        src={ image }
+        src={image}
         alt=""
         className={element("image", { size: size })}
       />

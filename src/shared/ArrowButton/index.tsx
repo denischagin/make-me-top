@@ -1,4 +1,5 @@
 import { ReactComponent as ArrowIcon } from "@shared/images/arrow.svg";
+
 import { bem } from "@shared/utils/bem";
 
 import { ArrowButtonInterface } from "./interfaces";

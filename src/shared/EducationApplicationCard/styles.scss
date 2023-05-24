@@ -16,19 +16,19 @@
         pointer-events: all;
         right: 0;
       }
-  
+
       &__extra-content {
         display: flex;
         align-items: center;
         position: relative;
       }
-  
+
       &__rating {
         position: relative;
         margin-right: 330px;
         margin-top: 32px;
       }
-  
+
       &__user-name {
         color: $primary-500;
       }

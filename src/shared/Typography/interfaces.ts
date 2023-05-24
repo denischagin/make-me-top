@@ -2,13 +2,13 @@ import { ReactNode } from "react";
 
 export interface TypographyInterface {
   children: ReactNode;
-  variant: typographyVariant
-  color?: typographyColor
+  variant: typographyVariant;
+  color?: typographyColor;
 }
 
 export enum typographyColor {
   primary500 = "primary-500",
-  black = "black"
+  black = "black",
 }
 
 export enum typographyVariant {
@@ -17,5 +17,5 @@ export enum typographyVariant {
   medium16 = "medium16",
   medium14 = "medium14",
   regular16 = "regular16",
-  regular14 = "regular14"
+  regular14 = "regular14",
 }

@@ -1,5 +1,7 @@
 import { NavButtons } from "@shared/NavButtons";
+
 import { ReactComponent as Logo } from "@shared/images/logo.svg";
+
 import { bem } from "@shared/utils/bem";
 
 import "./styles.scss";
