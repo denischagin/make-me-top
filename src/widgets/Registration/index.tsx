@@ -3,9 +3,9 @@ import { useAppDispatch } from "@app/providers/store/hooks";
 import { selectIsUserRegistered } from "@entities/user/model/slice";
 
 import { RouterLink } from "@shared/Link";
-import { PlanetButton } from "@shared/PlanetButton";
-import { PlanetInput } from "@shared/PlanetInput";
+import { Input } from "@shared/Input";
 import { Typography } from "@shared/Typography";
+import { PlanetButton } from "@shared/PlanetButton";
 
 import { bem } from "@shared/utils/bem";
 
@@ -25,9 +25,15 @@ export const Registration = () => {
       <div className={element("heading")}>
         <Typography variant={typographyVariant.h2}>Регистрация</Typography>
       </div>
-      <PlanetInput placeholder="Имя пользователя *" />
-      <PlanetInput placeholder="Пароль *" />
-      <PlanetInput placeholder="Пароль ещё раз *" />
+      <Input placeholder="Имя пользователя *" />
+      <Input
+        placeholder="Пароль *"
+        type="password"
+      />
+      <Input
+        placeholder="Пароль ещё раз *"
+        type="password"
+      />
       <RouterLink path={URL_EXPLORER}>
         <PlanetButton
           action={() => console.log("registered")}
