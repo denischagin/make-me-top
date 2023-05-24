@@ -1,5 +1,6 @@
-import { BackgroundProfile } from "@shared/BackgroundProfile";
+
 import { Typography } from "@shared/Typography";
+import { BackgroundProfile } from "@shared/BackgroundProfile";
 
 import { bem } from "@shared/utils/bem";
 
