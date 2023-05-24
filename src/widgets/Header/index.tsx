@@ -3,7 +3,7 @@ import { ReactComponent as Logo } from "@shared/images/logo.svg";
 
 import { bem } from "@shared/utils/bem";
 
-import { URL_DEFAULT } from "@shared/constants/links";
+import { HEADER_LINKS, URL_DEFAULT } from "@shared/constants/links";
 
 import { RouterLink } from "@shared/Link";
 
@@ -13,7 +13,7 @@ import "./styles.scss";
 
 export const Header = (props: HeaderInterface) => {
   const {
-    links
+    links = HEADER_LINKS
   } = props;
 
   const [block, element] = bem("header");

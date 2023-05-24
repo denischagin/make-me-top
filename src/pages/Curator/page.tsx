@@ -4,8 +4,6 @@ import { Typography } from "@shared/Typography";
 
 import { bem } from "@shared/utils/bem";
 
-import { HEADER_LINKS } from "@shared/constants/links";
-
 import { CuratorUserInfo } from "@widgets/CuratorUserInfo";
 import { EducationApplications } from "@widgets/EducationApplications";
 import { ExplorerCardList } from "@widgets/ExplorerCardList";
@@ -30,7 +28,7 @@ export const Curator = () => {
     <>
       <BackgroundProfile />
       <div className={block()}>
-        <Header links={HEADER_LINKS} />
+        <Header />
         <div className={element("container", "container p-0")}>
           <div className={element("row", "row")}>
             <div className={element("profile", "col-xxl-9")}>

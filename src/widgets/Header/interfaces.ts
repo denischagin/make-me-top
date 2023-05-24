@@ -4,5 +4,5 @@ export interface HeaderLinkInterface {
 }
 
 export interface HeaderInterface {
-  links: Array<HeaderLinkInterface>;
+  links?: Array<HeaderLinkInterface>;
 }

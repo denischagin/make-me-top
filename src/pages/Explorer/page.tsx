@@ -4,8 +4,6 @@ import { BackgroundProfile } from "@shared/BackgroundProfile";
 
 import { bem } from "@shared/utils/bem";
 
-import { HEADER_LINKS } from "@shared/constants/links";
-
 import { CompletedStars } from "@widgets/CompletedStars";
 import { CurrentStarCard } from "@widgets/CurrentStarCard";
 import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
@@ -25,7 +23,7 @@ export const Explorer = () => {
     <>
       <BackgroundProfile />
       <div className={block()}>
-        <Header links={HEADER_LINKS}/>
+        <Header />
         <div className={element("container", "container p-0")}>
           <div className={element("row", "row")}>
             <div className={element("profile", "col-xxl-9")}>
