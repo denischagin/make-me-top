@@ -1,23 +1,22 @@
+
 import { Typography } from "@shared/Typography";
-import { bem } from "@shared/utils/bem";
-import { HEADER_LINKS } from "@shared/constants/links";
 import { BackgroundProfile } from "@shared/BackgroundProfile";
-import { typographyVariant } from "@shared/Typography/interfaces";
+
+import { bem } from "@shared/utils/bem";
+
+import { HEADER_LINKS } from "@shared/constants/links";
 
 import { CompletedStars } from "@widgets/CompletedStars";
+import { CurrentStarCard } from "@widgets/CurrentStarCard";
 import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
 import { Header } from "@widgets/Header";
-import { CurrentStarCard } from "@widgets/CurrentStarCard";
 import { RatingCard } from "@widgets/RatingCard";
 
-import {
-  USERS_LIST,
-  USER_INFO,
-  STAR_INFO,
-  TABS_LIST
-} from "./model";
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
+
+import { STAR_INFO, TABS_LIST, USERS_LIST, USER_INFO } from "./model";
 
 export const Explorer = () => {
   const [block, element] = bem("explorer");
@@ -33,7 +32,9 @@ export const Explorer = () => {
               <ExplorerUserInfo user={USER_INFO} />
               <div className={element("current-star")}>
                 <div className={element("current-star-heading", "mb-4")}>
-                  <Typography variant={typographyVariant.h2}>Текущая звезда</Typography>
+                  <Typography variant={typographyVariant.h2}>
+                    Текущая звезда
+                  </Typography>
                 </div>
                 <CurrentStarCard
                   starInfo={STAR_INFO}
@@ -42,7 +43,9 @@ export const Explorer = () => {
               </div>
               <div className={element("completed-stars")}>
                 <div className={element("completed-stars-heading", "mb-4")}>
-                  <Typography variant={typographyVariant.h2}>Освоенные звёзды</Typography>
+                  <Typography variant={typographyVariant.h2}>
+                    Освоенные звёзды
+                  </Typography>
                 </div>
                 <CompletedStars />
               </div>

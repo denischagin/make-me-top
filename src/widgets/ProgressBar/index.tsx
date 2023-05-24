@@ -1,4 +1,5 @@
 import { ReactComponent as RocketIcon } from "@shared/images/rocket.svg";
+
 import { bem } from "@shared/utils/bem";
 
 import "./styles.scss";

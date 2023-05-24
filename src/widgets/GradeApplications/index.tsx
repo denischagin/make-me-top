@@ -1,9 +1,10 @@
-import { bem } from "@shared/utils/bem";
-import { Typography } from "@shared/Typography";
-import { typographyVariant } from "@shared/Typography/interfaces";
 import { GradeApplicationCard } from "@shared/GradeApplicationCard";
+import { Typography } from "@shared/Typography";
+
+import { bem } from "@shared/utils/bem";
 
 import { GradeApplicationsInterface } from "./interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 
@@ -20,16 +21,18 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
         <p className={element("heading", "mb-4")}>Запрос на проверку</p>
       </Typography>
       <div className={element("cards")}>
-        {
-          applications.length !== 0
-            ? applications.map((application) => (
-              <GradeApplicationCard
-                key={application.id}
-                user={application}
-              />
-            ))
-            : <Typography variant={typographyVariant.medium16}>Заявки отсутствуют</Typography>
-        }
+        {applications.length !== 0 ? (
+          applications.map((application) => (
+            <GradeApplicationCard
+              key={application.id}
+              user={application}
+            />
+          ))
+        ) : (
+          <Typography variant={typographyVariant.medium16}>
+            Заявки отсутствуют
+          </Typography>
+        )}
       </div>
     </div>
   );

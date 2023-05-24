@@ -1,8 +1,11 @@
 import { ReactComponent as ExitIcon } from "@shared/images/exit.svg";
 import { ReactComponent as Logo } from "@shared/images/logo.svg";
-import { URL_DEFAULT } from "@shared/constants/links";
-import { RouterLink } from "@shared/Link";
+
 import { bem } from "@shared/utils/bem";
+
+import { URL_DEFAULT } from "@shared/constants/links";
+
+import { RouterLink } from "@shared/Link";
 
 import { HeaderInterface, HeaderLinkInterface } from "./interfaces";
 
