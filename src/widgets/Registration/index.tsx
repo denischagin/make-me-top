@@ -1,13 +1,17 @@
 import { useAppDispatch } from "@app/providers/store/hooks";
 
-import { PlanetInput } from "@shared/PlanetInput";
-import { Typography } from "@shared/Typography";
+import { selectIsUserRegistered } from "@entities/user/model/slice";
+
 import { RouterLink } from "@shared/Link";
+import { Input } from "@shared/Input";
+import { Typography } from "@shared/Typography";
 import { PlanetButton } from "@shared/PlanetButton";
-import { URL_EXPLORER } from "@shared/constants/links";
+
 import { bem } from "@shared/utils/bem";
 
-import { selectIsUserRegistered } from "@entities/user/model";
+import { URL_EXPLORER } from "@shared/constants/links";
+
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 
@@ -19,11 +23,17 @@ export const Registration = () => {
   return (
     <div className={block()}>
       <div className={element("heading")}>
-        <Typography variant="h2">Регистрация</Typography>
+        <Typography variant={typographyVariant.h2}>Регистрация</Typography>
       </div>
-      <PlanetInput placeholder="Имя пользователя *" />
-      <PlanetInput placeholder="Пароль *" />
-      <PlanetInput placeholder="Пароль ещё раз *" />
+      <Input placeholder="Имя пользователя *" />
+      <Input
+        placeholder="Пароль *"
+        type="password"
+      />
+      <Input
+        placeholder="Пароль ещё раз *"
+        type="password"
+      />
       <RouterLink path={URL_EXPLORER}>
         <PlanetButton
           action={() => console.log("registered")}
@@ -34,7 +44,9 @@ export const Registration = () => {
         className={element("hint")}
         onClick={() => dispatch(selectIsUserRegistered())}
       >
-        <Typography variant="regular14">У меня есть аккаунт. Войти</Typography>
+        <Typography variant={typographyVariant.regular14}>
+          У меня есть аккаунт. Войти
+        </Typography>
       </div>
     </div>
   );

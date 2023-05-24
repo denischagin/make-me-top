@@ -1,13 +1,17 @@
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
-import { PlanetInput } from "@shared/PlanetInput";
+import { selectIsUserRegistered } from "@entities/user/model/slice";
+
+import { Input } from "@shared/Input";
 import { Typography } from "@shared/Typography";
 import { RouterLink } from "@shared/Link";
 import { PlanetButton } from "@shared/PlanetButton";
-import { URL_CURATOR, URL_EXPLORER } from "@shared/constants/links";
+
 import { bem } from "@shared/utils/bem";
 
-import { selectIsUserRegistered } from "@entities/user/model";
+import { URL_CURATOR, URL_EXPLORER } from "@shared/constants/links";
+
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 
@@ -21,10 +25,16 @@ export const Login = () => {
     <>
       <div className={block()}>
         <div className={element("heading")}>
-          <Typography variant="h2">Вход</Typography>
+          <Typography variant={typographyVariant.h2}>Вход</Typography>
         </div>
-        <PlanetInput placeholder="Номер телефона" />
-        <PlanetInput placeholder="Пароль" />
+        <Input
+          placeholder="Номер телефона"
+          type="tel"
+        />
+        <Input
+          placeholder="Пароль"
+          type="password"
+        />
         <RouterLink path={explorer ? URL_EXPLORER : URL_CURATOR}>
           <PlanetButton
             action={() => console.log("logged")}
@@ -35,7 +45,7 @@ export const Login = () => {
           className={element("hint")}
           onClick={() => dispatch(selectIsUserRegistered())}
         >
-          <Typography variant="regular14">
+          <Typography variant={typographyVariant.regular14}>
             Еще не зарегистрированы? Регистрация
           </Typography>
         </div>

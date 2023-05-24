@@ -1,0 +1,64 @@
+@import "@app/styles/variables.scss";
+
+.planet-list {
+  margin: 24px auto auto 2px;
+  font-family: $font-text-medium;
+
+  &__item {
+    cursor: default;
+    border-radius: 0px 8px 8px 0px;
+    padding: 16px;
+    color: $gray-600;
+    transition: 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--active {
+      border-left: 3px solid transparent;
+
+      &:hover {
+        border-left: 3px solid #cf5335;
+        background-color: $gray-400;
+      }
+    }
+
+    &--current {
+      color: $black;
+      padding: 8px 16px;
+      border-left: 3px solid #cf5335;
+      border-radius: 0px 8px 8px 0px;
+      background-color: $gray-400;
+    }
+
+    &:hover {
+      color: $black;
+
+      .planet-list__lock-icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    gap: 17px;
+    align-items: center;
+  }
+
+  &__item-text {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  &__lock-icon {
+    color: $black;
+    transition: 0.2s;
+    opacity: 0;
+    transform: scale(1.5);
+  }
+
+  &__name {
+    margin: 0;
+  }
+}

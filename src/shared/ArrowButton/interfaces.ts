@@ -1,4 +1,11 @@
 export interface ArrowButtonInterface {
-  direction: "top" | "bottom" | "left" | "right";
+  direction: arrowButtonDirection;
   action?: () => void;
+}
+
+export enum arrowButtonDirection {
+  top = "top",
+  bottom = "bottom",
+  left = "left",
+  right = "right",
 }

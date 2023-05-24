@@ -1,14 +1,20 @@
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
+import { showModal } from "@entities/user/model/slice";
+
 import { Portal } from "@shared/Portal";
 import { Typography } from "@shared/Typography";
+
 import { ReactComponent as CloseIcon } from "@shared/images/close.svg";
 import { ReactComponent as LockIcon } from "@shared/images/lock-big.svg";
+
 import { bem } from "@shared/utils/bem";
 
-import { showModal } from "@entities/user/model";
-
 import { ModalInterface } from "./interfaces";
+import {
+  typographyColor,
+  typographyVariant,
+} from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 
@@ -32,8 +38,8 @@ export const Modal = (props: ModalInterface) => {
         <div className={element("content")}>
           <div className={element("header")}>
             <Typography
-              variant="h2"
-              color="black"
+              variant={typographyVariant.h2}
+              color={typographyColor.black}
             >
               <p className={element("name")}>
                 {lockIcon}
