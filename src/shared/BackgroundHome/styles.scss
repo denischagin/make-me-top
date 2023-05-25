@@ -43,7 +43,7 @@
     right: 66.41%;
     top: 50.2%;
     bottom: 10.06%;
-    
+
     background: $nebula-blue;
     filter: blur(150px);
 
@@ -63,7 +63,7 @@
     right: 8.91%;
     top: 5.12%;
     bottom: 72.49%;
-    
+
     background: $nebula-blue;
     filter: blur(100px);
   }
@@ -77,27 +77,27 @@
   }
 
   &__star-first {
-    left: calc(50% - 15px/2 - 647.5px);
-    top: calc(50% - 18px/2 - 17.5px);
+    left: calc(50% - 15px / 2 - 647.5px);
+    top: calc(50% - 18px / 2 - 17.5px);
   }
 
   &__star-second {
-    left: calc(50% - 15px/2 + 187.5px);
-    top: calc(50% - 18px/2 - 405.5px);
+    left: calc(50% - 15px / 2 + 187.5px);
+    top: calc(50% - 18px / 2 - 405.5px);
   }
 
   &__star-third {
-    left: calc(50% - 20px/2 - 580.5px);
-    top: calc(50% - 24px/2 + 265.5px);
+    left: calc(50% - 20px / 2 - 580.5px);
+    top: calc(50% - 24px / 2 + 265.5px);
   }
-  
+
   &__star-fourth {
-    left: calc(50% - 20px/2 + 496.5px);
-    top: calc(50% - 24px/2 - 95.5px);
+    left: calc(50% - 20px / 2 + 496.5px);
+    top: calc(50% - 24px / 2 - 95.5px);
   }
-  
+
   &__star-fifth {
-    left: calc(50% - 15px/2 + 611px);
-    top: calc(50% - 18px/2 - 358.5px);
+    left: calc(50% - 15px / 2 + 611px);
+    top: calc(50% - 18px / 2 - 358.5px);
   }
 }

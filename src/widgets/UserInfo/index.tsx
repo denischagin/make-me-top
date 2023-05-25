@@ -1,20 +1,25 @@
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 
-import { Typography } from "@shared/Typography";
-import { Rating } from "@shared/Rating";
 import { Avatar } from "@shared/Avatar";
-import { bem } from "@shared/utils/bem";
-import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
-import { typographyVariant } from "@shared/Typography/interfaces";
-import { avatarSize } from "@shared/Avatar/interfaces";
 import { Card } from "@shared/Card";
-import { cardSize } from "@shared/Card/interfaces";
+import { Rating } from "@shared/Rating";
+import { Typography } from "@shared/Typography";
 import { InfoCard } from "@shared/InfoCard";
 
+import { bem } from "@shared/utils/bem";
 
 import { UserInfoInterface } from "./interfaces";
+import { avatarSize } from "@shared/Avatar/interfaces";
+import { cardSize } from "@shared/Card/interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
+import {
+  ratingScoreColor,
+  ratingSize,
+  ratingStarColor,
+} from "@shared/Rating/interfaces";
 
 import "./styles.scss";
+
 
 export const UserInfo = (props: UserInfoInterface) => {
   const {
@@ -46,7 +51,9 @@ export const UserInfo = (props: UserInfoInterface) => {
         <div className={element("rating")}>
           <Card size={cardSize.small}>
             <div className={element("heading")}>
-              <Typography variant={typographyVariant.regular16}>Рейтинг</Typography>
+              <Typography variant={typographyVariant.regular16}>
+                Рейтинг
+              </Typography>
             </div>
             <span className={element("current-rating")}>
               <Rating

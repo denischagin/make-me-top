@@ -87,7 +87,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
         return (
           <div
             key={planet.systemId}
-            className={"planet"}
+            className="planet"
             style={{
               background: defaultBackground,
               ...planetStyle,

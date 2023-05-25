@@ -1,9 +1,10 @@
 import { useAppDispatch } from "@app/providers/store/hooks";
 
-import { PlanetButton } from "@shared/PlanetButton";
+import { selectRoleAsExplorer } from "@entities/explorer/model/slice";
 
 import { selectRoleAsCurator } from "@entities/curator/model";
-import { selectRoleAsExplorer } from "@entities/explorer/model";
+
+import { PlanetButton } from "@shared/PlanetButton";
 
 export const SelectRole = () => {
   const dispatch = useAppDispatch();

@@ -1,7 +1,7 @@
 export interface AvatarInterface {
-  image: string
-  size: avatarSize
-  orbit?: boolean
+  image: string;
+  size: avatarSize;
+  orbit?: boolean;
 }
 
 export enum avatarSize {

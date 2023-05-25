@@ -16,6 +16,8 @@ export const explorerSlice = createSlice({
   },
 });
 
-export const { selectRoleAsExplorer } = explorerSlice.actions;
+export const {
+  selectRoleAsExplorer
+} = explorerSlice.actions;
 
 export default explorerSlice.reducer;

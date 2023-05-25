@@ -1,16 +1,17 @@
-import { bem } from "@shared/utils/bem";
 import { Avatar } from "@shared/Avatar";
-import { avatarSize } from "@shared/Avatar/interfaces";
-import { Typography } from "@shared/Typography";
-import { typographyVariant } from "@shared/Typography/interfaces";
 import { Button } from "@shared/Button";
-import { buttonColor, buttonSize } from "@shared/Button/interfaces";
 import { Card } from "@shared/Card";
+import { Typography } from "@shared/Typography";
+
+import { bem } from "@shared/utils/bem";
 
 import { GradeApplicationCardInterface } from "./interfaces";
+import { avatarSize } from "@shared/Avatar/interfaces";
+import { buttonColor, buttonSize } from "@shared/Button/interfaces";
+import { cardSize } from "@shared/Card/interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
-import { cardSize } from "@shared/Card/interfaces";
 
 export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
   const {

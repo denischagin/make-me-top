@@ -1,20 +1,21 @@
-import { bem } from "@shared/utils/bem";
 import { Avatar } from "@shared/Avatar";
-import { avatarSize } from "@shared/Avatar/interfaces";
-import { Typography } from "@shared/Typography";
-import { typographyVariant } from "@shared/Typography/interfaces";
-import { Rating } from "@shared/Rating";
 import { Button } from "@shared/Button";
-import { buttonColor, buttonSize } from "@shared/Button/interfaces";
 import { Card } from "@shared/Card";
+import { Rating } from "@shared/Rating";
+import { Typography } from "@shared/Typography";
+
+import { bem } from "@shared/utils/bem";
+
+import { EducationApplicationCardInterface } from "./interfaces";
+import { avatarSize } from "@shared/Avatar/interfaces";
+import { buttonColor, buttonSize } from "@shared/Button/interfaces";
 import { cardSize } from "@shared/Card/interfaces";
 import {
   ratingScoreColor,
   ratingSize,
-  ratingStarColor
+  ratingStarColor,
 } from "@shared/Rating/interfaces";
-
-import { EducationApplicationCardInterface } from "./interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 

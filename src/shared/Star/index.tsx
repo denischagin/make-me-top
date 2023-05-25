@@ -1,4 +1,5 @@
 import { ReactComponent as OrbitIcon } from "@shared/images/orbit.svg";
+
 import { bem } from "@shared/utils/bem";
 
 import { StarInterface } from "./interfaces";

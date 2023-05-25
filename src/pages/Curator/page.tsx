@@ -1,23 +1,25 @@
-import { bem } from "@shared/utils/bem";
 import { BackgroundProfile } from "@shared/BackgroundProfile";
 import { GradeApplicationCard } from "@shared/GradeApplicationCard";
 import { Typography } from "@shared/Typography";
-import { typographyVariant } from "@shared/Typography/interfaces";
 
-import { Header } from "@widgets/Header";
+import { bem } from "@shared/utils/bem";
+
+import { UserInfo } from "@widgets/UserInfo";
 import { EducationApplications } from "@widgets/EducationApplications";
 import { ExplorerCardList } from "@widgets/ExplorerCardList";
 import { GradeApplications } from "@widgets/GradeApplications";
-import { UserInfo } from "@widgets/UserInfo";
+import { Header } from "@widgets/Header";
 
-import {
-  CURATOR_INFO,
-  APPLICATIONS_LIST,
-  MY_EXPLORERS,
-  GRADE_APPLICATIONS_LIST
-} from "./model";
+import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
+
+import {
+  APPLICATIONS_LIST,
+  CURATOR_INFO,
+  GRADE_APPLICATIONS_LIST,
+  MY_EXPLORERS,
+} from "./model";
 
 export const Curator = () => {
   const [block, element] = bem("curator");
@@ -40,7 +42,9 @@ export const Curator = () => {
               <EducationApplications applications={APPLICATIONS_LIST} />
               <div className="">
                 <Typography variant={typographyVariant.h2}>
-                  <div className={element("final-grade-heading", "mb-4")}>Итоговая оценка</div>
+                  <div className={element("final-grade-heading", "mb-4")}>
+                    Итоговая оценка
+                  </div>
                 </Typography>
                 <GradeApplicationCard user={GRADE_APPLICATIONS_LIST[0]} />
               </div>

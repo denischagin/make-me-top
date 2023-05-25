@@ -1,49 +1,83 @@
 import { TabPanel } from "react-tabs";
 
-import { useAppDispatch } from "@app/providers/store/hooks";
+import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
-import { Modal } from "@shared/Modal";
-import { Typography } from "@shared/Typography";
+import { showModal } from "@entities/user/model/slice";
+import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
+
 import { Button } from "@shared/Button";
-import { MmtTabs } from "@shared/MmtTabs";
 import { Card } from "@shared/Card";
-import { bem } from "@shared/utils/bem";
-import { typographyVariant, typographyColor } from "@shared/Typography/interfaces";
-import { buttonSize, buttonColor } from "@shared/Button/interfaces";
-import { cardSize } from "@shared/Card/interfaces";
+import { CurrentUserItem } from "@shared/CurrentUserItem";
+import { DividingLine } from "@shared/DividingLine";
+import { FinalGrade } from "@shared/FinalGrade";
+import { MmtTabs } from "@shared/MmtTabs";
+import { Modal } from "@shared/Modal";
+import { PlanetList } from "@shared/PlanetList";
+import { Typography } from "@shared/Typography";
+import { UsersList } from "@shared/UsersList";
 
-import { showModal } from "@entities/user/model";
+import { bem } from "@shared/utils/bem";
 
 import { ProgressBar } from "@widgets/ProgressBar";
 
 import { CurrentStarCardInterface } from "./interfaces";
+import { buttonColor, buttonSize } from "@shared/Button/interfaces";
+import { cardSize } from "@shared/Card/interfaces";
+import { DividingLineColor } from "@shared/DividingLine/interfaces";
+import {
+  typographyColor,
+  typographyVariant,
+} from "@shared/Typography/interfaces";
 
 import "./styles.scss";
+
+const CURRENT_PLANET = "SQL";
+
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
   const {
     tabsList,
     starInfo: {
-      planet,
+      planet: {
+        name,
+        id
+      },
       star,
       curator,
-      progress
+      progress,
     },
   } = props;
 
   const [block, element] = bem("current-star-card");
 
   const dispatch = useAppDispatch();
+  const userInfo = useAppSelector((state) => state.user.userInfo);
+  const explorersList = useAppSelector((state) => state.user.explorersList);
+  const curatorsList = useAppSelector((state) => state.user.curatorsList);
 
   return (
     <div className={block()}>
-      <Modal
-        name={planet.name}
-        locked
-      >
+      <Modal name="Groovy">
         <MmtTabs list={tabsList}>
-          <TabPanel>Контент 1</TabPanel>
-          <TabPanel>Контент 2</TabPanel>
-          <TabPanel>Контент 3</TabPanel>
+          <TabPanel>
+            <PlanetList currentPlanet={CURRENT_PLANET} />
+            <FinalGrade />
+          </TabPanel>
+          <TabPanel>
+            <CurrentUserItem
+              user={userInfo}
+              badgeTitle="Мой рейтинг"
+            />
+            <DividingLine color={DividingLineColor.gray500} />
+            <UsersList list={explorersList} />
+          </TabPanel>
+          <TabPanel>
+            <CurrentUserItem
+              user={userInfo}
+              badgeTitle="Мой хранитель"
+            />
+            <DividingLine color={DividingLineColor.gray500} />
+            <UsersList list={curatorsList} />
+          </TabPanel>
         </MmtTabs>
       </Modal>
       <Card
@@ -52,26 +86,28 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
       >
         <div className={element("heading")}>
           <Typography variant={typographyVariant.h2}>
-            Планета: {planet.id}. {planet.name}
+            Планета: {id}. {name}
           </Typography>
         </div>
         <div className={element("current-star")}>
-          <Typography variant={typographyVariant.regular14}>Звезда: {star}</Typography>
+          <Typography variant={typographyVariant.regular14}>
+            Звезда: {star}
+          </Typography>
         </div>
         <div className={element("current-curator", "mb-4")}>
-          <Typography variant={typographyVariant.regular14}>Преподаватель: {curator}</Typography>
+          <Typography variant={typographyVariant.regular14}>
+            Преподаватель: {curator}
+          </Typography>
         </div>
-        <div className={element("progress")}>
+        <span className={element("progress")}>
           <Typography
             variant={typographyVariant.medium16}
             color={typographyColor.primary500}
           >
             Освоено {progress}%
           </Typography>
-          <span className={element("progress-bar")}>
-            <ProgressBar />
-          </span>
-        </div>
+          <ProgressBar progress={progress} />
+        </span>
         <div className={element("buttons")}>
           <Button
             size={buttonSize.large}
@@ -82,6 +118,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
             color={buttonColor.filled}
             title="Продолжить"
             action={() => {
+              dispatch(getModalPlanets(id));
               dispatch(showModal());
             }}
           />

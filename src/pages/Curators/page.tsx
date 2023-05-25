@@ -1,5 +1,7 @@
-import { bem } from "@shared/utils/bem";
 import { BackgroundUsersList } from "@shared/BackgroundUsersList";
+
+import { bem } from "@shared/utils/bem";
+
 import { Header } from "@widgets/Header";
 
 import "./styles.scss";

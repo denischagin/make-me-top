@@ -1,7 +1,8 @@
 import { useAppSelector } from "@app/providers/store/hooks";
 
-import { bem } from "@shared/utils/bem";
 import { ShiningStar } from "@shared/ShiningStar";
+
+import { bem } from "@shared/utils/bem";
 
 import "./styles.scss";
 
@@ -55,7 +56,7 @@ export const BackgroundHome = () => {
         <ShiningStar />
       </div>
       <div className={element("star-fifth")}>
-        <ShiningStar size="small"/>
+        <ShiningStar size="small" />
       </div>
       <div className={element("noice")} />
       <div

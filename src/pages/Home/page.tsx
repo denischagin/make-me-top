@@ -1,7 +1,9 @@
 import { useAppSelector } from "@app/providers/store/hooks";
 
-import { ReactComponent as MakeMeTopIcon } from "@shared/images/make-me-top.svg";
 import { BackgroundHome } from "@shared/BackgroundHome";
+
+import { ReactComponent as MakeMeTopIcon } from "@shared/images/make-me-top.svg";
+
 import { bem } from "@shared/utils/bem";
 
 import { Login } from "@widgets/Login";

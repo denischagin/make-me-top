@@ -9,5 +9,5 @@ export interface CardInterface {
 export enum cardSize {
   small = "small",
   medium = "medium",
-  large = "large"
+  large = "large",
 }
