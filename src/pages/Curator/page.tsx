@@ -1,3 +1,5 @@
+import { useAppSelector } from "@app/providers/store/hooks";
+
 import { BackgroundProfile } from "@shared/BackgroundProfile";
 import { GradeApplicationCard } from "@shared/GradeApplicationCard";
 import { Typography } from "@shared/Typography";
@@ -16,13 +18,22 @@ import "./styles.scss";
 
 import {
   APPLICATIONS_LIST,
-  CURATOR_INFO,
   GRADE_APPLICATIONS_LIST,
   MY_EXPLORERS,
 } from "./model";
 
 export const Curator = () => {
   const [block, element] = bem("curator");
+
+  const userInfo = useAppSelector((state) => state.user.userInfo);
+
+  const {
+    name,
+    avatar,
+    rating,
+    planets,
+    explorers,
+  } = userInfo;
 
   return (
     <>
@@ -33,11 +44,11 @@ export const Curator = () => {
           <div className={element("row", "row")}>
             <div className={element("profile", "col-xxl-9")}>
               <UserInfo
-                name={CURATOR_INFO.name}
-                avatar={CURATOR_INFO.avatar}
-                rating={CURATOR_INFO.rating}
-                planets={CURATOR_INFO.planets}
-                explorers={CURATOR_INFO.explorers}
+                name={name}
+                avatar={avatar}
+                rating={rating}
+                planets={planets}
+                explorers={explorers}
               />
               <EducationApplications applications={APPLICATIONS_LIST} />
               <div className="">

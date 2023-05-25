@@ -8,7 +8,7 @@ import { InfoCard } from "@shared/InfoCard";
 
 import { bem } from "@shared/utils/bem";
 
-import { UserInfoInterface } from "./interfaces";
+import { UserDataInterface } from "./interfaces";
 import { avatarSize } from "@shared/Avatar/interfaces";
 import { cardSize } from "@shared/Card/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
@@ -21,7 +21,7 @@ import {
 import "./styles.scss";
 
 
-export const UserInfo = (props: UserInfoInterface) => {
+export const UserInfo = (props: UserDataInterface) => {
   const {
     name,
     avatar,
@@ -48,22 +48,24 @@ export const UserInfo = (props: UserInfoInterface) => {
         <div className={element("description-name", "mb-4")}>
           <Typography variant={typographyVariant.h1}>{name}</Typography>
         </div>
-        <div className={element("rating")}>
-          <Card size={cardSize.small}>
-            <div className={element("heading")}>
-              <Typography variant={typographyVariant.regular16}>
-                Рейтинг
-              </Typography>
-            </div>
-            <span className={element("current-rating")}>
-              <Rating
-                scoreColor={ratingScoreColor.white}
-                rating={rating}
-                size={ratingSize.large}
-                starColor={ratingStarColor.primary500}
-              />
-            </span>
-          </Card>
+        <div className={element("cards")}>
+          <div className={element("rating")}>
+            <Card size={cardSize.small}>
+              <div className={element("rating-heading")}>
+                <Typography variant={typographyVariant.regular16}>
+                  Рейтинг
+                </Typography>
+              </div>
+              <span className={element("current-rating")}>
+                <Rating
+                  scoreColor={ratingScoreColor.white}
+                  rating={rating}
+                  size={ratingSize.large}
+                  starColor={ratingStarColor.primary500}
+                />
+              </span>
+            </Card>
+          </div>
           {stars &&
             <InfoCard
               title={isCurator ? "Кол-во звёзд" : "Кол-во освоенных звёзд"}

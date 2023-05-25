@@ -1,3 +1,4 @@
+import { useAppSelector } from "@app/providers/store/hooks";
 
 import { Typography } from "@shared/Typography";
 import { BackgroundProfile } from "@shared/BackgroundProfile";
@@ -14,10 +15,23 @@ import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 
-import { STAR_INFO, TABS_LIST, USERS_LIST, USER_INFO } from "./model";
+import {
+  STAR_INFO,
+  TABS_LIST,
+  USERS_LIST
+} from "./model";
 
 export const Explorer = () => {
   const [block, element] = bem("explorer");
+
+  const userInfo = useAppSelector((state) => state.user.userInfo);
+
+  const {
+    name,
+    avatar,
+    rating,
+    stars,
+  } = userInfo;
 
   return (
     <>
@@ -28,10 +42,10 @@ export const Explorer = () => {
           <div className={element("row", "row")}>
             <div className={element("profile", "col-xxl-9")}>
               <UserInfo
-                name={USER_INFO.name}
-                avatar={USER_INFO.avatar}
-                rating={USER_INFO.rating}
-                stars={USER_INFO.stars}
+                name={name}
+                avatar={avatar}
+                rating={rating}
+                stars={stars}
               />
               <div className={element("current-star")}>
                 <div className={element("current-star-heading", "mb-4")}>
@@ -45,7 +59,7 @@ export const Explorer = () => {
                 />
               </div>
               <div className={element("completed-stars")}>
-                <div className={element("completed-stars-heading", "mb-4")}>
+                <div className={element("completed-stars-heading", "mb-4 mt-1")}>
                   <Typography variant={typographyVariant.h2}>
                     Освоенные звёзды
                   </Typography>
@@ -59,7 +73,7 @@ export const Explorer = () => {
               </div>
               <RatingCard
                 list={USERS_LIST}
-                user={USER_INFO}
+                user={userInfo}
               />
             </div>
           </div>

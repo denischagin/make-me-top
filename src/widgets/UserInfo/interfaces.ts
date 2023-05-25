@@ -1,7 +1,7 @@
-export interface UserInfoInterface {
+export interface UserDataInterface {
   name: string
   avatar: string
-  rating: number | null;
+  rating?: number | null;
   id?: number
   stars?: number | null;
   reviews?: number | null;

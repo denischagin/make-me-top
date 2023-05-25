@@ -18,7 +18,6 @@ import { GalaxyPage } from "@pages/GalaxyPage/page";
 import { CuratorCard } from "@pages/CuratorCard";
 import { Home } from "@pages/Home/page";
 
-
 export const router = createBrowserRouter([
   {
     path: URL_DEFAULT,
@@ -27,6 +26,12 @@ export const router = createBrowserRouter([
   {
     path: URL_CURATOR,
     element: <Curator />,
+    children: [
+      {
+        path: URL_CURATOR_CARD,
+        element: <CuratorCard />,
+      }
+    ]
   },
   {
     path: URL_EXPLORER,

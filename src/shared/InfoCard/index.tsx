@@ -14,7 +14,7 @@ export const InfoCard = (props: InfoCardInterface) => {
     count
   } = props;
 
-  const [block, element] = bem("user-info");
+  const [block, element] = bem("info-сard");
 
   return (
     <div className={block()}>

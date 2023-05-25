@@ -12,6 +12,10 @@ export interface UserInfoInterface {
 export interface UserInterface {
   name: string;
   avatar: string;
+  planets?: number;
+  explorers?: number
+  stars?: number;
+  reviews?: number
   rating?: number | null;
   id: number;
 }
