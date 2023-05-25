@@ -33,13 +33,13 @@ $planet-gradient: radial-gradient(
   #5e0d02 95.93%
 );
 
-$progress-bar-gradient-before: linear-gradient(
+$progress-bar-progress: linear-gradient(
   90deg,
   $primary-500 50%,
   $black 50%,
 );
 
-$progress-bar-gradient-after: linear-gradient(
+$progress-bar-line: linear-gradient(
   90deg,
   $opacity-white 50%,
   $black 50%,

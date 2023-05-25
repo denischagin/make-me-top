@@ -4,7 +4,7 @@
   position: relative;
   height: 2px;
   width: 100%;
-  background-image: $progress-bar-gradient-after;
+  background-image: $progress-bar-line;
   background-size: 30px;
 
   &__container {
@@ -13,7 +13,7 @@
     min-width: 1%;
     max-width: 99%;
     height: 100%;
-    background-image: $progress-bar-gradient-before;
+    background-image: $progress-bar-progress;
     background-size: 30px;
   }
 
