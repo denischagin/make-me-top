@@ -32,14 +32,18 @@ $planet-gradient: radial-gradient(
   #8b0e05 75.93%,
   #5e0d02 95.93%
 );
-$progress-bar-gradient: linear-gradient(
-    90deg,
-    transparent,
-    transparent 50%,
-    $black 50%,
-    $black 100%
-  ),
-  linear-gradient(#cf533580, #75716f80);
+
+$progress-bar-progress: linear-gradient(
+  90deg,
+  $primary-500 50%,
+  $black 50%,
+);
+
+$progress-bar-line: linear-gradient(
+  90deg,
+  $opacity-white 50%,
+  $black 50%,
+);
 
 // fonts
 $font-montserrat: "Montserrat";

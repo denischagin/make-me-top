@@ -24,12 +24,11 @@
   }
 
   &__progress {
+    white-space: nowrap;
     display: flex;
+    align-items: center;
+    gap: 16px;
     color: $primary-500;
-  }
-
-  &__progress-bar {
-    margin-left: 20px;
   }
 
   &__buttons {
