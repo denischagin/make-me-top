@@ -9,17 +9,19 @@ import { Avatar } from "@shared/Avatar";
 import { avatarSize } from "@shared/Avatar/interfaces";
 import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
 import { Portal } from "@shared/Portal";
-import { ReviewCardInterface } from "@shared/types/common";
+import { ReviewModalInterface } from "@shared/types/common";
 
 import "./styles.scss";
 
-export const ReviewModal = (props: ReviewCardInterface) => {
+export const ReviewModal = (props: ReviewModalInterface) => {
   const {
-    planet,
-    rating,
-    name,
-    avatar,
-    review,
+    review: {
+      planet,
+      rating,
+      name,
+      avatar,
+      comment,
+    },
     setIsExpanded,
     isExpanded
   } = props;
@@ -64,7 +66,7 @@ export const ReviewModal = (props: ReviewCardInterface) => {
             variant={typographyVariant.medium16}
             color={typographyColor.black}
           >
-            <p className={element("review-text")}>{review}</p>
+            <p className={element("review-text")}>{comment}</p>
           </Typography>
         </div>
       </div>

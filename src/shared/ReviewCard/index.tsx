@@ -13,33 +13,30 @@ import { cardSize } from "@shared/Card/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
 import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
 
-import { ReviewInterface } from "@shared/types/common";
+import { ReviewCardInterface } from "@shared/types/common";
 
 import "./styles.scss";
 
-export const ReviewCard = (props: ReviewInterface) => {
+export const ReviewCard = (props: ReviewCardInterface) => {
   const {
+    review,
     review: {
       planet,
       rating,
       name,
       avatar,
-      review,
+      comment,
     }
   } = props;
 
   const [block, element] = bem("review-card");
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const reviewText = `${review.slice(0, 140)}${review.length > 140 ? "..." : ""}`;
+  const reviewText = `${comment.slice(0, 140)}${comment.length > 140 ? "..." : ""}`;
 
   return (
     <>
       <ReviewModal
-        planet={planet}
-        rating={rating}
-        name={name}
-        avatar={avatar}
         review={review}
         setIsExpanded={setIsExpanded}
         isExpanded={isExpanded}
@@ -74,7 +71,7 @@ export const ReviewCard = (props: ReviewInterface) => {
               <p className={element("review-text")}>{reviewText}</p>
             </Typography>
             {
-              review.length > 140 &&
+              comment.length > 140 &&
               <Typography variant={typographyVariant.regular14}>
                 <div
                   className={element("expand")}

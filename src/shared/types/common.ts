@@ -46,17 +46,21 @@ export interface GradeApplicationInterface {
   id?: number;
 }
 
-export interface ReviewInterface {
-  review: ReviewCardInterface
+export interface ReviewCardInterface {
+  review: ReviewInterface
 }
 
-export interface ReviewCardInterface {
+export interface ReviewInterface {
   planet: string
   rating: number
   name: string
   avatar: string
-  review: string
+  comment: string
   id?: number
+}
+
+export interface ReviewModalInterface {
+  review: ReviewInterface
   setIsExpanded?: Dispatch<SetStateAction<boolean>>
   isExpanded?: boolean
 }

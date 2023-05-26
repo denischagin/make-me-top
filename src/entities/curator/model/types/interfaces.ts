@@ -3,7 +3,7 @@ export interface ReviewInterface {
   rating: number
   name: string
   avatar: string
-  review: string
+  comment: string
   id?: number
 }
 
