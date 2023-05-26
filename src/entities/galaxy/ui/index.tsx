@@ -1,4 +1,4 @@
-import React, {createRef, useEffect, useState} from "react";
+import React, {createRef, useEffect, useRef, useState} from "react";
 
 import Orbit from "@entities/orbit/ui";
 
@@ -22,10 +22,6 @@ interface IGalaxyProps {
 }
 
 interface IGalaxyOrbitSettings {
-  width: number,
-  backgroundWidth: number,
-  height: number,
-  backgroundHeight:number,
   viewBox: string,
 }
 
@@ -46,14 +42,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const orbitWidthStep = width / (orbitList.length + 1);
   const orbitHeightStep = height / (orbitList.length + 1);
 
-  const galaxyOrbitSettings: IGalaxyOrbitSettings = {
-    width: width,
-    backgroundWidth: width + (orbitWidthStep / 2),
-    height: height,
-    backgroundHeight: height + (orbitHeightStep / 2),
-    viewBox: `0 0 ${width} ${height}`,
-  };
-
+  const galaxyOrbitSettingsRef = useRef<IGalaxyOrbitSettings>(
+      {
+        viewBox: `0 0 ${width} ${height}`,
+      }
+  );
 
   useEffect(() => {
     setViewBoxOffsetX(getElemCoords({
@@ -128,29 +121,26 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         <div
             className="galaxy__background"
             style={{
-              width: galaxyOrbitSettings.width,
-              height: galaxyOrbitSettings.height,
+              width,
+              height,
             }}
         />
         <svg
             xmlns="http://www.w3.org/2000/svg"
             className="galaxy__svg-container"
-            viewBox={galaxyOrbitSettings.viewBox}
+            viewBox={galaxyOrbitSettingsRef.current.viewBox}
             width={width}
             height={height}
             ref={svgContainerRef}
         />
         {
           orbitList.map((orbits) => {
-            galaxyOrbitSettings.width -= orbitWidthStep
-            galaxyOrbitSettings.height -= orbitHeightStep;
-
             return (
                 <Orbit
                     key={orbits.orbitId}
                     systemList={orbits.systemList}
-                    orbitWidth={galaxyOrbitSettings.width}
-                    orbitHeight={galaxyOrbitSettings.height}
+                    orbitWidth={width - orbitWidthStep * orbits.orbitId}
+                    orbitHeight={height - orbitHeightStep * orbits.orbitId}
                     planetStyle={{
                       color: "white",
                       width: planetWidth + "px",
