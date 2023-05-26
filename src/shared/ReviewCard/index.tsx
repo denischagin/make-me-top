@@ -13,17 +13,19 @@ import { cardSize } from "@shared/Card/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
 import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
 
-import { ReviewCardInterface } from "@shared/types/common";
+import { ReviewInterface } from "@shared/types/common";
 
 import "./styles.scss";
 
-export const ReviewCard = (props: ReviewCardInterface) => {
+export const ReviewCard = (props: ReviewInterface) => {
   const {
-    planet,
-    rating,
-    name,
-    avatar,
-    review,
+    review: {
+      planet,
+      rating,
+      name,
+      avatar,
+      review,
+    }
   } = props;
 
   const [block, element] = bem("review-card");

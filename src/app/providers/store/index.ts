@@ -7,8 +7,8 @@ import { UserState } from "@entities/user/model/types";
 import { ExplorerState } from "@entities/explorer/model/interfaces";
 import explorerReducer from "@entities/explorer/model/slice";
 
-import { CuratorState } from "@entities/curator/interfaces";
-import curatorReducer from "@entities/curator/model";
+import { CuratorState } from "@entities/curator/model/types/interfaces";
+import curatorReducer from "@entities/curator/model/slice";
 
 import galaxySlice from "@entities/galaxy/model/slice";
 import { GalaxyType } from "@entities/galaxy/model/types";

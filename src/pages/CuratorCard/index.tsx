@@ -12,8 +12,6 @@ import { Reviews } from "@widgets/Reviews";
 import { CuratorCardUserInfo } from "@widgets/CuratorCardUserInfo";
 import { CuratorStars } from "@widgets/CuratorStars";
 
-import { REVIEW_LIST } from "./model";
-
 import "./styles.scss";
 
 export const CuratorCard = () => {
@@ -31,7 +29,7 @@ export const CuratorCard = () => {
           <CuratorCardUserInfo />
         </div>
         <CuratorStars />
-        <Reviews reviews={REVIEW_LIST} />
+        <Reviews />
       </div>
     </div>
   );

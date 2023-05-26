@@ -2,7 +2,7 @@ import { useAppDispatch } from "@app/providers/store/hooks";
 
 import { selectRoleAsExplorer } from "@entities/explorer/model/slice";
 
-import { selectRoleAsCurator } from "@entities/curator/model";
+import { selectRoleAsCurator } from "@entities/curator/model/slice";
 
 import { PlanetButton } from "@shared/PlanetButton";
 

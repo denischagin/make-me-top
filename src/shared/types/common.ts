@@ -47,7 +47,7 @@ export interface GradeApplicationInterface {
 }
 
 export interface ReviewInterface {
-  info: ReviewCardInterface
+  review: ReviewCardInterface
 }
 
 export interface ReviewCardInterface {

@@ -1,21 +1,20 @@
+import { useAppSelector } from "@app/providers/store/hooks";
+
 import { ReviewCard } from "@shared/ReviewCard";
 import { Typography } from "@shared/Typography";
 import { Button } from "@shared/Button";
 
 import { bem } from "@shared/utils/bem";
 
-import { ReviewsInterface } from "./interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
 import { buttonSize } from "@shared/Button/interfaces";
 
 import "./styles.scss";
 
-export const Reviews = (props: ReviewsInterface) => {
-  const {
-    reviews
-  } = props;
-
+export const Reviews = () => {
   const [block, element] = bem("reviews");
+
+  const reviews = useAppSelector((state) => state.curator.reviews);
 
   return (
     <div className={block()}>
@@ -27,11 +26,7 @@ export const Reviews = (props: ReviewsInterface) => {
           reviews.map((item) => (
             <ReviewCard
               key={item.id}
-              planet={item.planet}
-              avatar={item.avatar}
-              rating={item.rating}
-              name={item.name}
-              review={item.review}
+              review={item}
             />
           ))
         }
