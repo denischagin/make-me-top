@@ -1,10 +1,9 @@
+import { ReactNode } from "react";
+
 export interface UserDataInterface {
   name: string
   avatar: string
   rating?: number | null;
   id?: number
-  stars?: number | null;
-  reviews?: number | null;
-  planets?: number | null;
-  explorers?: number | null;
+  children: ReactNode
 }

@@ -2,6 +2,7 @@ import { useAppSelector } from "@app/providers/store/hooks";
 
 import { Typography } from "@shared/Typography";
 import { BackgroundProfile } from "@shared/BackgroundProfile";
+import { InfoCard } from "@shared/InfoCard";
 
 import { bem } from "@shared/utils/bem";
 
@@ -45,8 +46,12 @@ export const Explorer = () => {
                 name={name}
                 avatar={avatar}
                 rating={rating}
-                stars={stars}
-              />
+              >
+                <InfoCard
+                  title="Кол-во освоенных звёзд"
+                  count={stars || 0}
+                />
+              </UserInfo>
               <div className={element("current-star")}>
                 <div className={element("current-star-heading", "mb-4")}>
                   <Typography variant={typographyVariant.h2}>

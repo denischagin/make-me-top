@@ -3,11 +3,13 @@ import { useAppSelector } from "@app/providers/store/hooks";
 import { bem } from "@shared/utils/bem";
 import { BackgroundProfile } from "@shared/BackgroundProfile";
 import { ArrowButton } from "@shared/ArrowButton";
+import { InfoCard } from "@shared/InfoCard";
+
 import { arrowButtonDirection } from "@shared/ArrowButton/interfaces";
 
-import { UserInfo } from "@widgets/UserInfo";
 import { Header } from "@widgets/Header";
 import { Reviews } from "@widgets/Reviews";
+import { UserInfo } from "@widgets/UserInfo";
 import { CuratorStars } from "@widgets/CuratorStars";
 
 import { REVIEW_LIST } from "./model";
@@ -40,9 +42,16 @@ export const CuratorCard = () => {
             name={name}
             avatar={avatar}
             rating={rating}
-            stars={stars}
-            explorers={explorers}
-          />
+          >
+            <InfoCard
+              title="Кол-во звёзд"
+              count={stars || 0}
+            />
+            <InfoCard
+              title="Кол-во исследователей"
+              count={explorers || 0}
+            />
+          </UserInfo>
         </div>
         <CuratorStars />
         <Reviews reviews={REVIEW_LIST} />

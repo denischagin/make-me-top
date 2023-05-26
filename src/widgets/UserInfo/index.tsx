@@ -1,10 +1,7 @@
-import { useLocation } from "react-router-dom";
-
 import { Avatar } from "@shared/Avatar";
 import { Card } from "@shared/Card";
 import { Rating } from "@shared/Rating";
 import { Typography } from "@shared/Typography";
-import { InfoCard } from "@shared/InfoCard";
 
 import { bem } from "@shared/utils/bem";
 
@@ -26,16 +23,10 @@ export const UserInfo = (props: UserDataInterface) => {
     name,
     avatar,
     rating,
-    stars,
-    reviews,
-    planets,
-    explorers
+    children
   } = props;
 
   const [block, element] = bem("user-info");
-
-  const location = useLocation();
-  const isCurator = location.pathname === "/curator" && "/curator-card";
 
   return (
     <div className={block()}>
@@ -66,30 +57,7 @@ export const UserInfo = (props: UserDataInterface) => {
               </span>
             </Card>
           </div>
-          {stars &&
-            <InfoCard
-              title={isCurator ? "Кол-во звёзд" : "Кол-во освоенных звёзд"}
-              count={stars || 0}
-            />
-          }
-          {reviews &&
-            <InfoCard
-              title="Отзывы"
-              count={reviews || 0}
-            />
-          }
-          {planets &&
-            <InfoCard
-              title={isCurator ? "Кол-во планет" : "Кол-во освоенных планет"}
-              count={planets || 0}
-            />
-          }
-          {explorers &&
-            <InfoCard
-              title="Кол-во исследователей"
-              count={explorers || 0}
-            />
-          }
+          { children }
         </div>
       </div>
     </div>

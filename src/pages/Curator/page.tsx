@@ -3,14 +3,15 @@ import { useAppSelector } from "@app/providers/store/hooks";
 import { BackgroundProfile } from "@shared/BackgroundProfile";
 import { GradeApplicationCard } from "@shared/GradeApplicationCard";
 import { Typography } from "@shared/Typography";
+import { InfoCard } from "@shared/InfoCard";
 
 import { bem } from "@shared/utils/bem";
 
-import { UserInfo } from "@widgets/UserInfo";
 import { EducationApplications } from "@widgets/EducationApplications";
 import { ExplorerCardList } from "@widgets/ExplorerCardList";
 import { GradeApplications } from "@widgets/GradeApplications";
 import { Header } from "@widgets/Header";
+import { UserInfo } from "@widgets/UserInfo";
 
 import { typographyVariant } from "@shared/Typography/interfaces";
 
@@ -47,18 +48,23 @@ export const Curator = () => {
                 name={name}
                 avatar={avatar}
                 rating={rating}
-                planets={planets}
-                explorers={explorers}
-              />
+              >
+                <InfoCard
+                  title="Кол-во планет"
+                  count={planets || 0}
+                />
+                <InfoCard
+                  title="Кол-во исследователей"
+                  count={explorers || 0}
+                />
+              </UserInfo>
               <EducationApplications applications={APPLICATIONS_LIST} />
-              <div className="">
-                <Typography variant={typographyVariant.h2}>
-                  <div className={element("final-grade-heading", "mb-4")}>
-                    Итоговая оценка
-                  </div>
-                </Typography>
-                <GradeApplicationCard user={GRADE_APPLICATIONS_LIST[0]} />
-              </div>
+              <Typography variant={typographyVariant.h2}>
+                <div className={element("final-grade-heading", "mb-4")}>
+                  Итоговая оценка
+                </div>
+              </Typography>
+              <GradeApplicationCard user={GRADE_APPLICATIONS_LIST[0]} />
               <GradeApplications applications={GRADE_APPLICATIONS_LIST} />
             </div>
             <div className={element("explorers-list", "col-xxl-3")}>
