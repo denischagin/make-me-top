@@ -39,6 +39,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const [viewBoxOffsetX, setViewBoxOffsetX] = useState<number>(0);
   const [viewBoxOffsetY, setViewBoxOffsetY] = useState<number>(0);
 
+  //что бы последняя орбита с планетами не была 0x0, уменьшаем шаг между орбитами,
+  //увеличив кол-во орбит в подсчетах на 1
   const orbitWidthStep = width / (orbitList.length + 1);
   const orbitHeightStep = height / (orbitList.length + 1);
 
