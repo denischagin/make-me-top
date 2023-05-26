@@ -1,3 +1,5 @@
+import {INACTIVE_PLANET} from "@entities/galaxy/model/constants";
+
 interface IHidePlanetsParents {
     parentsList: string | null
 }
@@ -10,10 +12,14 @@ export const hidePlanetsParents = (params: IHidePlanetsParents) => {
         parentsList
     } = params;
 
-    //преобразование строки в массив формата ["КодПланеты:ТипСвязи",...]
-    const parentsListArray = parentsList?.split(",");
+    if (parentsList === null) {
+        return;
+    }
 
-    parentsListArray?.forEach(parent => {
+    //преобразование строки в массив формата ["КодПланеты:ТипСвязи",...]
+    const parentsListArray = parentsList.split(",");
+
+    parentsListArray.forEach(parent => {
         //преобразование строки в массив формата [КодПланеты, ТипСвязи]
         const elementData = parent.split(":");
 
@@ -29,7 +35,7 @@ export const hidePlanetsParents = (params: IHidePlanetsParents) => {
         const parentsListOfCurrentParent = parentElement?.getAttribute("data-planet-parent-list");
 
         //изменение атрибута
-        parentElement?.setAttribute("data-is-active", "0");
+        parentElement?.setAttribute("data-is-active", INACTIVE_PLANET);
 
         //если у текущего parent элемента есть parent зависимости
         if (parentsListOfCurrentParent) {

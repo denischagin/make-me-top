@@ -1,5 +1,6 @@
 import {getElemCoords} from "@entities/galaxy/lib/getElemCoords";
 import {getCoordsForConnection} from "@entities/galaxy/lib/getCoordsForConnection";
+import {ACTIVE_PLANET, HTML_ELEMENT} from "@entities/galaxy/model/constants";
 
 interface IShowPlanetsParents {
     parentsList: string | null,
@@ -30,12 +31,16 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
 
     const currentTargetCoords = getElemCoords({
         elem: currentTarget,
-        type: "HTMLElement",
+        type: HTML_ELEMENT,
         planetWidth,
         planetHeight
     });
 
-    const parentsListArray = parentsList?.split(",");
+    if (parentsList === null) {
+        return;
+    }
+
+    const parentsListArray = parentsList.split(",");
 
     parentsListArray?.forEach(parent => {
         let color = params.color || null;
@@ -54,13 +59,13 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
 
         const parentElementCoords = getElemCoords({
             elem: parentElement,
-            type: "HTMLElement",
+            type: HTML_ELEMENT,
             planetWidth,
             planetHeight
         });
 
         const parentsListOfCurrentParent = parentElement?.getAttribute("data-planet-parent-list");
-        parentElement?.setAttribute("data-is-active", "1");
+        parentElement?.setAttribute("data-is-active", ACTIVE_PLANET);
 
         const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 

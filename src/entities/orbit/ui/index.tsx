@@ -3,6 +3,8 @@ import React from "react";
 import {SystemType} from "@entities/galaxy/model/types";
 import { Star } from "@shared/Star";
 
+import {INACTIVE_PLANET} from "@entities/galaxy/model/constants";
+
 import {getDigitalAngle} from "@entities/orbit/lib/getDigitalAngle";
 import {getRadius} from "@entities/orbit/lib/getRadius";
 import {getXCoordinateOnEllipse} from "@entities/orbit/lib/getXCoordinateOnEllipse";
@@ -81,7 +83,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
               data-planet-id={planet.systemId}
               data-planet-parent-list={getPlanetParentData(planet)}
               data-planet-children-list={getPlanetChildData(planet)}
-              data-is-active="0"
+              data-is-active={INACTIVE_PLANET}
             >
               <Star
                   color="white"

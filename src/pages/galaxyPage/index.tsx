@@ -19,7 +19,7 @@ export const GalaxyPage: React.FC = () => {
   );
 
   return (
-    <div className="galaxyPage">
+    <div className="galaxy-page">
         <Galaxy
             orbitList={orbitList}
             width={1920}

@@ -11,6 +11,7 @@ import {showPlanetsChildren} from "@entities/galaxy/lib/showPlanetsChildren";
 
 import { OrbitType } from "@entities/galaxy/model/types";
 import "./style.scss";
+import {ACTIVE_PLANET, INACTIVE_PLANET, SVG_ELEMENT} from "@entities/galaxy/model/constants";
 
 interface IGalaxyProps {
   orbitList: Array<OrbitType>;
@@ -53,17 +54,17 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     viewBox: `0 0 ${width} ${height}`,
   };
 
+
   useEffect(() => {
     setViewBoxOffsetX(getElemCoords({
       elem: svgContainerRef.current,
-      type: "SVGSVGElement",
+      type: SVG_ELEMENT,
     })!.left);
 
     setViewBoxOffsetY(getElemCoords({
       elem: svgContainerRef.current,
-      type: "SVGSVGElement",
+      type: SVG_ELEMENT,
     })!.top);
-
   }, []);
 
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -72,7 +73,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const childrenList = currentTarget.getAttribute("data-planet-children-list");
     const parentsList = currentTarget.getAttribute("data-planet-parent-list")
 
-    event.currentTarget.setAttribute('data-is-active', '1');
+    event.currentTarget.setAttribute('data-is-active', ACTIVE_PLANET);
 
     showPlanetsChildren({
       childrenList,
@@ -93,7 +94,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       viewBoxOffsetY,
       svgContainer: svgContainerRef.current
     });
-
   }
 
   const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -102,7 +102,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const childrenList = currentTarget.getAttribute("data-planet-children-list");
     const parentsList = currentTarget.getAttribute("data-planet-parent-list");
 
-    event.currentTarget.setAttribute('data-is-active', '0');
+    event.currentTarget.setAttribute('data-is-active', INACTIVE_PLANET);
 
     hidePlanetsChildren({
       childrenList,
@@ -115,15 +115,14 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     deleteAllConnectionLines({
       svgContainer: svgContainerRef.current,
     });
-
   }
 
   return (
       <div
           className="galaxy"
           style={{
-            width: width,
-            height: height,
+            width,
+            height,
           }}
       >
         <div
@@ -143,7 +142,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         />
         {
           orbitList.map((orbits) => {
-            galaxyOrbitSettings.width -= orbitWidthStep;
+            galaxyOrbitSettings.width -= orbitWidthStep
             galaxyOrbitSettings.height -= orbitHeightStep;
 
             return (

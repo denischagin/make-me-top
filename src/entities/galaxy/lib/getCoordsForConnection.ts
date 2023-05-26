@@ -53,7 +53,6 @@ export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoo
 
     //если было наложение(место занято) - поиск следующего места
     if (isOverlapped) {
-
         return getCoordsForConnection({
             currentTarget: {
                 top: currentTarget.top + offset * swingDirection,
