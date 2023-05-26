@@ -1,9 +1,6 @@
-import { useAppSelector } from "@app/providers/store/hooks";
-
 import { BackgroundProfile } from "@shared/BackgroundProfile";
 import { GradeApplicationCard } from "@shared/GradeApplicationCard";
 import { Typography } from "@shared/Typography";
-import { InfoCard } from "@shared/InfoCard";
 
 import { bem } from "@shared/utils/bem";
 
@@ -11,7 +8,7 @@ import { EducationApplications } from "@widgets/EducationApplications";
 import { ExplorerCardList } from "@widgets/ExplorerCardList";
 import { GradeApplications } from "@widgets/GradeApplications";
 import { Header } from "@widgets/Header";
-import { UserInfo } from "@widgets/UserInfo";
+import { CuratorUserInfo } from "@widgets/CuratorUserInfo";
 
 import { typographyVariant } from "@shared/Typography/interfaces";
 
@@ -26,16 +23,6 @@ import {
 export const Curator = () => {
   const [block, element] = bem("curator");
 
-  const userInfo = useAppSelector((state) => state.user.userInfo);
-
-  const {
-    name,
-    avatar,
-    rating,
-    planets,
-    explorers,
-  } = userInfo;
-
   return (
     <>
       <BackgroundProfile />
@@ -44,20 +31,7 @@ export const Curator = () => {
         <div className={element("container", "container p-0")}>
           <div className={element("row", "row")}>
             <div className={element("profile", "col-xxl-9")}>
-              <UserInfo
-                name={name}
-                avatar={avatar}
-                rating={rating}
-              >
-                <InfoCard
-                  title="Кол-во планет"
-                  count={planets || 0}
-                />
-                <InfoCard
-                  title="Кол-во исследователей"
-                  count={explorers || 0}
-                />
-              </UserInfo>
+              <CuratorUserInfo />
               <EducationApplications applications={APPLICATIONS_LIST} />
               <Typography variant={typographyVariant.h2}>
                 <div className={element("final-grade-heading", "mb-4")}>

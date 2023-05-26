@@ -1,10 +1,11 @@
 import { Typography } from "@shared/Typography";
-import { bem } from "@shared/utils/bem";
-import { typographyVariant } from "@shared/Typography/interfaces";
 import { Card } from "@shared/Card";
-import { cardSize } from "@shared/Card/interfaces";
+
+import { bem } from "@shared/utils/bem";
 
 import { InfoCardInterface } from "./interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
+import { cardSize } from "@shared/Card/interfaces";
 
 import "./styles.scss";
 

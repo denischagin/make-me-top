@@ -1,15 +1,18 @@
 import { useState } from "react";
 
-import { bem } from "@shared/utils/bem";
 import { Card } from "@shared/Card";
-import { cardSize } from "@shared/Card/interfaces";
 import { Typography } from "@shared/Typography";
-import { typographyVariant } from "@shared/Typography/interfaces";
 import { Rating } from "@shared/Rating";
 import { Avatar } from "@shared/Avatar";
-import { avatarSize } from "@shared/Avatar/interfaces";
-import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
 import { ReviewModal } from "@shared/ReviewModal";
+
+import { bem } from "@shared/utils/bem";
+
+import { avatarSize } from "@shared/Avatar/interfaces";
+import { cardSize } from "@shared/Card/interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
+import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
+
 import { ReviewCardInterface } from "@shared/types/common";
 
 import "./styles.scss";

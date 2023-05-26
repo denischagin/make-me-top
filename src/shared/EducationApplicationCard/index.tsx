@@ -9,13 +9,13 @@ import { bem } from "@shared/utils/bem";
 import { EducationApplicationCardInterface } from "./interfaces";
 import { avatarSize } from "@shared/Avatar/interfaces";
 import { buttonColor, buttonSize } from "@shared/Button/interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
 import { cardSize } from "@shared/Card/interfaces";
 import {
   ratingScoreColor,
   ratingSize,
   ratingStarColor,
 } from "@shared/Rating/interfaces";
-import { typographyVariant } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
 

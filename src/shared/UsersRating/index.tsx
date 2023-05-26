@@ -5,12 +5,12 @@ import { Typography } from "@shared/Typography";
 import { bem } from "@shared/utils/bem";
 
 import { avatarSize } from "@shared/Avatar/interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
 import {
   ratingScoreColor,
   ratingSize,
   ratingStarColor,
 } from "@shared/Rating/interfaces";
-import { typographyVariant } from "@shared/Typography/interfaces";
 
 import { UserInfoInterface } from "@shared/types/common";
 

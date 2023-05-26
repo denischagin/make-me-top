@@ -1,11 +1,12 @@
-import { bem } from "@shared/utils/bem";
 import { ReviewCard } from "@shared/ReviewCard";
 import { Typography } from "@shared/Typography";
-import { typographyVariant } from "@shared/Typography/interfaces";
 import { Button } from "@shared/Button";
-import { buttonSize } from "@shared/Button/interfaces";
+
+import { bem } from "@shared/utils/bem";
 
 import { ReviewsInterface } from "./interfaces";
+import { typographyVariant } from "@shared/Typography/interfaces";
+import { buttonSize } from "@shared/Button/interfaces";
 
 import "./styles.scss";
 

@@ -1,0 +1,19 @@
+@import "@app/styles/variables.scss";
+
+.explorer-info {
+  display: flex;
+
+  &__description {
+    margin-left: 40px;
+    margin-top: 4px;
+  }
+
+  &__rating-heading {
+    margin-bottom: 4px;
+  }
+
+  &__cards {
+    display: flex;
+    gap: 16px;
+  }
+}

@@ -1,11 +1,13 @@
+import { useAppSelector } from "@app/providers/store/hooks";
+
 import { Avatar } from "@shared/Avatar";
 import { Card } from "@shared/Card";
 import { Rating } from "@shared/Rating";
 import { Typography } from "@shared/Typography";
+import { InfoCard } from "@shared/InfoCard";
 
 import { bem } from "@shared/utils/bem";
 
-import { UserDataInterface } from "./interfaces";
 import { avatarSize } from "@shared/Avatar/interfaces";
 import { cardSize } from "@shared/Card/interfaces";
 import { typographyVariant } from "@shared/Typography/interfaces";
@@ -17,16 +19,17 @@ import {
 
 import "./styles.scss";
 
+export const ExplorerUserInfo = () => {
+  const [block, element] = bem("explorer-user-info");
 
-export const UserInfo = (props: UserDataInterface) => {
+  const userInfo = useAppSelector((state) => state.user.userInfo);
+
   const {
     name,
     avatar,
     rating,
-    children
-  } = props;
-
-  const [block, element] = bem("user-info");
+    stars,
+  } = userInfo;
 
   return (
     <div className={block()}>
@@ -57,7 +60,10 @@ export const UserInfo = (props: UserDataInterface) => {
               </span>
             </Card>
           </div>
-          { children }
+          <InfoCard
+            title="Кол-во освоенных звёзд"
+            count={stars || 0}
+          />
         </div>
       </div>
     </div>

@@ -2,7 +2,6 @@ import { useAppSelector } from "@app/providers/store/hooks";
 
 import { Typography } from "@shared/Typography";
 import { BackgroundProfile } from "@shared/BackgroundProfile";
-import { InfoCard } from "@shared/InfoCard";
 
 import { bem } from "@shared/utils/bem";
 
@@ -10,7 +9,7 @@ import { CompletedStars } from "@widgets/CompletedStars";
 import { CurrentStarCard } from "@widgets/CurrentStarCard";
 import { Header } from "@widgets/Header";
 import { RatingCard } from "@widgets/RatingCard";
-import { UserInfo } from "@widgets/UserInfo";
+import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
 
 import { typographyVariant } from "@shared/Typography/interfaces";
 
@@ -27,13 +26,6 @@ export const Explorer = () => {
 
   const userInfo = useAppSelector((state) => state.user.userInfo);
 
-  const {
-    name,
-    avatar,
-    rating,
-    stars,
-  } = userInfo;
-
   return (
     <>
       <BackgroundProfile />
@@ -42,16 +34,7 @@ export const Explorer = () => {
         <div className={element("container", "container p-0")}>
           <div className={element("row", "row")}>
             <div className={element("profile", "col-xxl-9")}>
-              <UserInfo
-                name={name}
-                avatar={avatar}
-                rating={rating}
-              >
-                <InfoCard
-                  title="Кол-во освоенных звёзд"
-                  count={stars || 0}
-                />
-              </UserInfo>
+              <ExplorerUserInfo />
               <div className={element("current-star")}>
                 <div className={element("current-star-heading", "mb-4")}>
                   <Typography variant={typographyVariant.h2}>

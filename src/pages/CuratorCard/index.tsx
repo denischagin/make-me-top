@@ -9,7 +9,7 @@ import { arrowButtonDirection } from "@shared/ArrowButton/interfaces";
 
 import { Header } from "@widgets/Header";
 import { Reviews } from "@widgets/Reviews";
-import { UserInfo } from "@widgets/UserInfo";
+import { CuratorCardUserInfo } from "@widgets/CuratorCardUserInfo";
 import { CuratorStars } from "@widgets/CuratorStars";
 
 import { REVIEW_LIST } from "./model";
@@ -18,16 +18,6 @@ import "./styles.scss";
 
 export const CuratorCard = () => {
   const [block, element] = bem("curator-card");
-
-  const userInfo = useAppSelector((state) => state.user.userInfo);
-
-  const {
-    name,
-    avatar,
-    rating,
-    stars,
-    explorers,
-  } = userInfo;
 
   return (
     <div className={block()}>
@@ -38,20 +28,7 @@ export const CuratorCard = () => {
           <div className={element("back-arrow")}>
             <ArrowButton direction={arrowButtonDirection.left} />
           </div>
-          <UserInfo
-            name={name}
-            avatar={avatar}
-            rating={rating}
-          >
-            <InfoCard
-              title="Кол-во звёзд"
-              count={stars || 0}
-            />
-            <InfoCard
-              title="Кол-во исследователей"
-              count={explorers || 0}
-            />
-          </UserInfo>
+          <CuratorCardUserInfo />
         </div>
         <CuratorStars />
         <Reviews reviews={REVIEW_LIST} />
