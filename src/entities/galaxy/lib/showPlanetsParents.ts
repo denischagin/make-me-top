@@ -90,6 +90,8 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
 
         if (booleanIsAlternative) {
             svgLine.setAttribute('stroke-dasharray', "10 5");
+
+            //забираем модификатор с полки
             color = getColorFromShelf();
         }
 
