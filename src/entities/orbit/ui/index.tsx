@@ -1,7 +1,7 @@
 import React from "react";
 
 import {SystemType} from "@entities/galaxy/model/types";
-import { Star } from "@shared/Star";
+import {Star} from "@shared/Star";
 
 import {INACTIVE_PLANET} from "@entities/galaxy/model/constants";
 
@@ -13,6 +13,7 @@ import {getPlanetParentData} from "@entities/orbit/lib/getPlanetParentData";
 import {getPlanetChildData} from "@entities/orbit/lib/getPlanetChildData";
 
 import "@entities/orbit/ui/styles.scss";
+import {starColor} from "@shared/Star/interfaces";
 
 
 interface IOrbitProps {
@@ -86,7 +87,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
               data-is-active={INACTIVE_PLANET}
             >
               <Star
-                  color="white"
+                  color={starColor.white}
                   children={(<div>
                         {planet.systemName}
                       </div>
