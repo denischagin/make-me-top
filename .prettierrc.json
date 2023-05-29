@@ -7,14 +7,25 @@
   "importOrder": [
     "^react(.*)",
     "<THIRD_PARTY_MODULES>",
-    "@/(.*)",
-    "@app(.*)",
-    "@shared(.*)",
-    "@entities(.*)",
-    "@widgets(.*)",
-    "@pages(.*)",
+    "^@/(.*)$",
+    "^@app/(.*)$",
+    "^@entities/[a-zA-Z]+$",
+    "^@entities/user/(.*)$",
+    "^@entities/explorer/(.*)$",
+    "^@entities/curator/(.*)$",
+    "^@entities/galaxy/(.*)$",
+    "^@shared/[a-zA-Z]+$",
+    "^@shared/images/(.*)$",
+    "^@shared/utils/(.*)$",
+    "^@shared/constants/(.*)$",
+    "^@widgets/(.*)$",
+    "^@pages/(.*)$",
+    "^(@shared/(.*)/interfaces$)|(./interfaces)$",
+    "^@shared/types/(.*)$",
+    "./styles",
     "^[./]"
   ],
   "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "importOrderSortSpecifiers": true,
+  "bracketSpacing": true
 }

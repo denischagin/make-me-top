@@ -17,7 +17,7 @@
 
     @keyframes star {
       from {
-        background: $opacity-orange;
+        background: $opacity-primary-500;
       }
       to {
         background: $primary-500;
@@ -25,46 +25,16 @@
     }
   }
 
-  .star-info {
-    color: $white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-
-    &--black {
-      color: $black;
-    }
-
-    .orbit {
-      padding: 5px;
-      filter: opacity(0);
-      margin-top: 5px;
-      margin-right: 2px;
-      position: absolute;
-      transition: 0.3s;
-      transform: scale(0.75);
-
-      &:hover {
-        filter: opacity(1);
-        padding: 0px;
-        transition: 0.3s;
-        transform: scale(1);
-      }
-    }
-  }
-
-  &--black {
+  &--color-black {
     outline: 1px solid $white;
     background: $dark;
-  
+
     &:hover {
       animation-name: star_black;
       animation-duration: 0.3s;
       animation-iteration-count: 1;
       animation-timing-function: ease-in-out;
-  
+
       @keyframes star_black {
         from {
           background: $opacity-dark;
@@ -75,16 +45,16 @@
       }
     }
   }
-  
-  &--white {
+
+  &--color-white {
     background: $white;
-  
+
     &:hover {
       animation-name: star_white;
       animation-duration: 0.3s;
       animation-iteration-count: 1;
       animation-timing-function: ease-in-out;
-  
+
       @keyframes star_white {
         from {
           background: $opacity-white;
@@ -93,6 +63,52 @@
           background: $white;
         }
       }
+    }
+  }
+
+  &__info {
+    color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+
+    &--color-black {
+      color: $white;
+    }
+
+    &--color-white {
+      color: $black;
+    }
+  }
+
+  &__orbit {
+    padding: 5px;
+    filter: opacity(0);
+    margin-top: 5px;
+    margin-right: 2px;
+    position: absolute;
+    transition: 0.3s;
+    transform: scale(0.75);
+
+    &:hover {
+      filter: opacity(1);
+      padding: 0px;
+      transition: 0.3s;
+      transform: scale(1);
+    }
+  }
+
+  &__orbit-icon {
+    color: $primary-500;
+
+    &--color-white {
+      color: $white;
+    }
+
+    &--color-black {
+      color: $white;
     }
   }
 }

@@ -1,0 +1,48 @@
+@import "@app/styles/variables.scss";
+
+.progress-bar {
+  position: relative;
+  height: 2px;
+  width: 100%;
+  background-image: $progress-bar-line;
+  background-size: 30px;
+
+  &__container {
+    transition: 0.2s;
+    text-align: right;
+    min-width: 1%;
+    max-width: 99%;
+    height: 100%;
+    background-image: $progress-bar-progress;
+    background-size: 30px;
+  }
+
+  &__line {
+    position: absolute;
+  };
+
+  &__icon {
+    background-color: $black;
+    padding: 2px;
+    position: absolute;
+    top: -10px;
+    left: -15px;
+    z-index: 1;
+    right: -5px;
+  }
+
+  &__left-dot,
+  &__right-dot  {
+    position: absolute;
+    z-index: 0;
+    padding: 3px;
+    border-radius: 10px;
+    bottom: -2px;
+    background-color: $primary-500;
+  }
+
+  &__right-dot {
+    right: 0;
+    background-color: $gray-500;
+  }
+}

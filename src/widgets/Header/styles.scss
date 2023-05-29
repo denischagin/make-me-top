@@ -1,0 +1,30 @@
+@import "@app/styles/variables.scss";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+  }
+
+  &__logo {
+    color: $white;
+  }
+
+  &__link {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    margin-left: 10px;
+    margin-right: 2px;
+  }
+}

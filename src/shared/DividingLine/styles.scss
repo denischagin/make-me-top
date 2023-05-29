@@ -1,6 +1,14 @@
 @import "@app/styles/variables.scss";
 
 .dividing-line {
-  border: 1px solid $opacity-gray;
-  border-bottom: 0px;
+  border: none;
+  margin: 24px auto;
+
+  &--color-opacity-gray {
+    border-bottom: 1px solid $opacity-gray;
+  }
+
+  &--color-gray-500 {
+    border-top: 1px solid $gray-500;
+  }
 }
