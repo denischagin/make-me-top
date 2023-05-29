@@ -12,7 +12,7 @@ import "./styles.scss";
 export const InfoCard = (props: InfoCardInterface) => {
   const {
     title,
-    count
+    value
   } = props;
 
   const [block, element] = bem("info-сard");
@@ -25,7 +25,9 @@ export const InfoCard = (props: InfoCardInterface) => {
             { title }
           </Typography>
         </div>
-        <span className={element("count")}>{ count }</span>
+        <div className={element("value")}>
+          { value }
+        </div>
       </Card>
     </div>
   );

@@ -1,4 +1,6 @@
+import { ReactNode } from "react";
+
 export interface InfoCardInterface {
   title: string
-  count: number | null
+  value: ReactNode | number | null
 }
