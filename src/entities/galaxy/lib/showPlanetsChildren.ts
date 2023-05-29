@@ -1,16 +1,19 @@
 import {getElemCoords} from "@entities/galaxy/lib/getElemCoords";
+import {ACTIVE_PLANET, HTML_ELEMENT} from "@entities/galaxy/model/constants";
 
-interface IShowChildrenProps {
+interface IShowChildren {
     childrenList: string | null,
     currentTarget: HTMLDivElement,
     planetWidth: number,
     planetHeight: number,
-    viewBoxOffsetX: number | undefined,
-    viewBoxOffsetY: number | undefined,
+    viewBoxOffsetX: number,
+    viewBoxOffsetY: number,
     svgContainer: SVGSVGElement | null,
 }
 
-export const showPlanetsChildren = (props: IShowChildrenProps) => {
+//функция создания svg линий связи между текущей планетой и всеми ее child зависимостями
+//изменения dataset атрбута (атрибут активности при наведении)
+export const showPlanetsChildren = (params: IShowChildren) => {
     const {
         childrenList,
         currentTarget,
@@ -19,21 +22,28 @@ export const showPlanetsChildren = (props: IShowChildrenProps) => {
         viewBoxOffsetX,
         viewBoxOffsetY,
         svgContainer,
-    } = props
+    } = params
 
     const currentTargetCoords = getElemCoords({
         elem: currentTarget,
-        type: "HTMLElement",
+        type: HTML_ELEMENT,
         planetWidth,
         planetHeight
     });
 
-    const childrenListArray = childrenList!.split(",");
+    if (childrenList === null) {
+        return;
+    }
 
-    childrenListArray.forEach(elementData => {
-        const elementDataArray = elementData.split(":");
-        const numberElementId = parseInt(elementDataArray[0], 10);
-        const isAlternative = elementDataArray[1] === "true" ? 1 : 0;
+    const childrenListArray = childrenList.split(",");
+
+    //для каждой child зависимости построение связи
+    childrenListArray.forEach(child => {
+        const elementData = child.split(":");
+        const [elementId, isAlternative] = elementData;
+
+        const numberElementId = Number(elementId);
+        const booleanIsAlternative = isAlternative === "true";
 
         if (isNaN(numberElementId)) {
             return
@@ -43,25 +53,26 @@ export const showPlanetsChildren = (props: IShowChildrenProps) => {
 
         const childElementCoords = getElemCoords({
             elem: childElement,
-            type: "HTMLElement",
+            type: HTML_ELEMENT,
             planetWidth,
             planetHeight
         });
 
         const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 
-        childElement?.setAttribute("data-is-active", "1");
+        childElement?.setAttribute("data-is-active", ACTIVE_PLANET);
 
-        if (currentTargetCoords && childElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
+        //позиционирование и стилизация линии
+        if (currentTargetCoords && childElementCoords) {
             svgLine.setAttribute('class', 'galaxy__connection-line');
             svgLine.setAttribute('x1', String(currentTargetCoords?.left - viewBoxOffsetX));
             svgLine.setAttribute('y1', String(currentTargetCoords?.top - viewBoxOffsetY));
             svgLine.setAttribute('x2', String(childElementCoords?.left - viewBoxOffsetX));
             svgLine.setAttribute('y2', String(childElementCoords?.top - viewBoxOffsetY));
-            svgLine.setAttribute('stroke', "white");
         }
 
-        if (isAlternative) {
+        //установка атрибута пунктира, если путь альтернативен
+        if (booleanIsAlternative) {
             svgLine.setAttribute('stroke-dasharray', "10 5");
         }
 

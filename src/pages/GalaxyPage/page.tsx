@@ -3,23 +3,23 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
 import { getGalaxy } from "@entities/galaxy/api/getGalaxy";
-import Galaxy from "@entities/galaxy/ui/galaxy";
+import Galaxy from "@entities/galaxy/ui";
 
-import "./styles.scss"
+import "./styles.scss";
 
 export const GalaxyPage: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const orbitList = useAppSelector(
-      (state) => state.galaxies.galaxy.orbitList || []
-  );
-
   useEffect(() => {
     dispatch(getGalaxy({}));
-  }, []);
+  }, [dispatch]);
+
+  const orbitList = useAppSelector(
+    (state) => state.galaxies.orbitList
+  );
 
   return (
-    <div className="galaxyPage">
+    <div className="galaxy-page">
         <Galaxy
             orbitList={orbitList}
             width={1920}
@@ -28,5 +28,5 @@ export const GalaxyPage: React.FC = () => {
             planetHeight={80}
         />
     </div>
-  );
-};
+  )
+}

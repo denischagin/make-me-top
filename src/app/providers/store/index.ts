@@ -1,11 +1,24 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
+import userReducer from "@entities/user/model/slice";
+import { UserState } from "@entities/user/model/types";
+
+import { ExplorerState } from "@entities/explorer/model/interfaces";
+import explorerReducer from "@entities/explorer/model/slice";
+
+import { CuratorState } from "@entities/curator/interfaces";
 import curatorReducer from "@entities/curator/model";
-import explorerReducer from "@entities/explorer/model";
+
 import galaxySlice from "@entities/galaxy/model/slice";
 import { GalaxyType } from "@entities/galaxy/model/types";
-import userReducer from "@entities/user/model";
+
+export type RootState = {
+  explorer: ExplorerState;
+  curator: CuratorState;
+  user: UserState;
+  galaxies: GalaxyType;
+};
 
 const rootReducer = combineReducers({
   explorer: explorerReducer,
@@ -13,22 +26,6 @@ const rootReducer = combineReducers({
   user: userReducer,
   galaxies: galaxySlice,
 });
-
-export type RootState = {
-  explorer: {
-    isExplorer: boolean;
-  };
-  curator: {
-    isCurator: boolean;
-  };
-  user: {
-    isRegistered: boolean;
-    isModalOpen: boolean;
-  };
-  galaxies: {
-    galaxy: GalaxyType;
-  };
-};
 
 export type AppDispatch = typeof store.dispatch;
 

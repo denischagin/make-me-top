@@ -11,11 +11,11 @@
     &--size-large {
       font-size: 16px;
     }
-  
+
     &--size-medium {
       font-size: 14px;
     }
-  
+
     &--size-small {
       font-size: 10px;
     }
@@ -30,7 +30,6 @@
   }
 
   &__star {
-
     &--size-small,
     &--size-medium {
       transform: scale(1);
@@ -44,7 +43,7 @@
     &--color-primary-500 {
       color: $primary-500;
     }
-  
+
     &--color-white {
       color: $white;
     }

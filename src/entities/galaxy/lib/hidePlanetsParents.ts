@@ -1,14 +1,26 @@
+import {INACTIVE_PLANET} from "@entities/galaxy/model/constants";
+
 interface IHidePlanetsParents {
     parentsList: string | null
 }
-export const hidePlanetsParents = (props: IHidePlanetsParents) => {
+
+//рекурсивная функция изменения dataset атрбута для всех parent зависимостей планеты
+//атрибут будет изменен у всех зависимых элементов вплоть до крайнего parent элемента без зависимостей
+//(атрибут активности при наведении)
+export const hidePlanetsParents = (params: IHidePlanetsParents) => {
     const {
         parentsList
-    } = props;
+    } = params;
 
-    const parentsListArray = parentsList?.split(",");
+    if (parentsList === null) {
+        return;
+    }
 
-    parentsListArray?.forEach(parent => {
+    //преобразование строки в массив формата ["КодПланеты:ТипСвязи",...]
+    const parentsListArray = parentsList.split(",");
+
+    parentsListArray.forEach(parent => {
+        //преобразование строки в массив формата [КодПланеты, ТипСвязи]
         const elementData = parent.split(":");
 
         const [elementId, isAlternative] = elementData;
@@ -18,11 +30,14 @@ export const hidePlanetsParents = (props: IHidePlanetsParents) => {
             return
         }
 
+        //массив parent зависимостей текущего parent элемента
         const parentElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
-        const parentsListOfCurrentParent = parentElement!.getAttribute("data-planet-parent-list");
+        const parentsListOfCurrentParent = parentElement?.getAttribute("data-planet-parent-list");
 
-        parentElement?.setAttribute("data-is-active", "0");
+        //изменение атрибута
+        parentElement?.setAttribute("data-is-active", INACTIVE_PLANET);
 
+        //если у текущего parent элемента есть parent зависимости
         if (parentsListOfCurrentParent) {
             hidePlanetsParents({
                 parentsList: parentsListOfCurrentParent,

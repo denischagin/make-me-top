@@ -1,5 +1,5 @@
 export type SystemDependencyType = {
-  planetId: number | null;
+  systemId: number | null;
   type: "child" | "parent";
   isAlternative: boolean;
 };
@@ -20,7 +20,7 @@ export type OrbitType = {
 };
 
 export type GalaxyType = {
-  galacticId: number;
-  galacticName: string;
+  galaxyId: number;
+  galaxyName: string;
   orbitList: Array<OrbitType>;
 };

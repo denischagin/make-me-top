@@ -1,18 +1,25 @@
 import {getElemCoords} from "@entities/galaxy/lib/getElemCoords";
 import {getCoordsForConnection} from "@entities/galaxy/lib/getCoordsForConnection";
+import {ACTIVE_PLANET, HTML_ELEMENT} from "@entities/galaxy/model/constants";
 import {getColorFromShelf} from "@entities/galaxy/lib/colorShelf";
 
-interface IShowPlanetsParentsProps {
+interface IShowPlanetsParents {
     parentsList: string | null,
     currentTarget: HTMLDivElement,
     planetWidth: number,
     planetHeight: number,
-    viewBoxOffsetX: number | undefined,
-    viewBoxOffsetY: number | undefined,
+    viewBoxOffsetX: number,
+    viewBoxOffsetY: number,
     svgContainer : SVGSVGElement | null,
     color?: string | null,
 }
-export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
+
+
+//рекурсивная функция изменения создания связей между текущей и всеми ее parent зависимостями
+//так же изменения dataset атрбута для всех parent зависимостей планеты
+//связи и атрибуты будут настроены у всех зависимых элементов вплоть до крайнего parent элемента без зависимостей
+//(атрибут активности при наведении)
+export const showPlanetsParents = (params: IShowPlanetsParents) => {
     const {
         parentsList,
         currentTarget,
@@ -21,19 +28,23 @@ export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
         viewBoxOffsetX,
         viewBoxOffsetY,
         svgContainer
-    } = props
+    } = params
 
     const currentTargetCoords = getElemCoords({
         elem: currentTarget,
-        type: "HTMLElement",
+        type: HTML_ELEMENT,
         planetWidth,
         planetHeight
     });
 
-    const parentsListArray = parentsList?.split(",");
+    if (parentsList === null) {
+        return;
+    }
+
+    const parentsListArray = parentsList.split(",");
 
     parentsListArray?.forEach(parent => {
-        let color = props.color || null;
+        let color = params.color || null;
 
         const elementData = parent.split(":");
         const [elementId, isAlternative] = elementData;
@@ -49,17 +60,18 @@ export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
 
         const parentElementCoords = getElemCoords({
             elem: parentElement,
-            type: "HTMLElement",
+            type: HTML_ELEMENT,
             planetWidth,
             planetHeight
         });
 
         const parentsListOfCurrentParent = parentElement?.getAttribute("data-planet-parent-list");
-        parentElement?.setAttribute("data-is-active", "1");
+        parentElement?.setAttribute("data-is-active", ACTIVE_PLANET);
 
         const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 
-        if (currentTargetCoords && parentElementCoords && (viewBoxOffsetX !== undefined) && (viewBoxOffsetY !== undefined)) {
+        //поиск и установка координат для связи
+        if (currentTargetCoords && parentElementCoords) {
             const lineCoordsWithoutOverlaps = getCoordsForConnection({
                 currentTarget: currentTargetCoords,
                 elementToConnect: parentElementCoords,
@@ -81,12 +93,14 @@ export const showPlanetsParents = (props: IShowPlanetsParentsProps) => {
             color = getColorFromShelf();
         }
 
+        //цвета связей
         if (color) {
             svgLine.setAttribute('class', `${svgLine?.getAttribute("class")} galaxy__connection-line_${color}`);
         }
 
         svgContainer?.append(svgLine);
 
+        //если у текущего parent элемента есть parent зависимости
         if (parentElement && parentsListOfCurrentParent) {
             showPlanetsParents({
                 parentsList: parentsListOfCurrentParent,

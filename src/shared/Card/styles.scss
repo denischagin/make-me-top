@@ -1,0 +1,21 @@
+@import "@app/styles/variables.scss";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: $black;
+  min-width: 118px;
+  border-radius: 8px;
+
+  &--size-large {
+    padding: 24px 24px;
+  }
+
+  &--size-medium {
+    padding: 16px 24px;
+  }
+
+  &--size-small {
+    padding: 8px 16px;
+  }
+}

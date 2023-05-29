@@ -1,4 +1,5 @@
 import { ReactComponent as StarIcon } from "@shared/images/star.svg";
+
 import { bem } from "@shared/utils/bem";
 
 import { RatingInterface } from "./interfaces";
@@ -19,30 +20,30 @@ export const Rating = (props: RatingInterface) => {
 
   return (
     <div className={block()}>
-      {
-        !props.reflect &&
+      {!props.reflect && (
         <StarIcon
           className={element("star", {
             color: starColor,
-            size: size
+            size: size,
           })}
         />
-      }
+      )}
       <span
         className={element("score", {
           size: size,
-          color: scoreColor
+          color: scoreColor,
         })}
       >
-        { score }
+        {score}
       </span>
-      {
-        props.reflect &&
-        <StarIcon className={element("star", {
-          color: starColor,
-          size: size
-        })} />
-      }
+      {props.reflect && (
+        <StarIcon
+          className={element("star", {
+            color: starColor,
+            size: size,
+          })}
+        />
+      )}
     </div>
   );
 };

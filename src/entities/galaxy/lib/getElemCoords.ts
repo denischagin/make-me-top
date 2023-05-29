@@ -1,17 +1,21 @@
+import {HTML_ELEMENT, SVG_ELEMENT} from "@entities/galaxy/model/constants";
+
 interface IGetElemCoords {
     elem: HTMLElement | SVGSVGElement | null,
     type: "HTMLElement" | "SVGSVGElement",
-    planetWidth: number,
-    planetHeight: number
+    planetWidth?: number,
+    planetHeight?: number
 }
 
-export const getElemCoords = (props: IGetElemCoords) => {
+
+//получение координат SVGSVGElement элемента или середины HTMLElement элемента
+export const getElemCoords = (params: IGetElemCoords) => {
     const {
         elem,
         type,
         planetWidth,
-        planetHeight
-    } = props
+        planetHeight,
+    } = params
 
     if (!elem) {
         return
@@ -20,25 +24,36 @@ export const getElemCoords = (props: IGetElemCoords) => {
     const box = elem.getBoundingClientRect();
 
     const body = document.body;
-    const docEl = document.documentElement;
+    const documentElement = document.documentElement;
 
-    const scrollTop = window.scrollY  || docEl.scrollTop || body.scrollTop;
-    const scrollLeft = window.scrollX || docEl.scrollLeft || body.scrollLeft;
+    const scrollTop = window.scrollY
+        || documentElement.scrollTop
+        || body.scrollTop;
 
-    const clientTop = docEl.clientTop || body.clientTop || 0;
-    const clientLeft = docEl.clientLeft || body.clientLeft || 0;
+    const scrollLeft = window.scrollX
+        || documentElement.scrollLeft
+        || body.scrollLeft;
+
+    const clientTop = documentElement.clientTop
+        || body.clientTop
+        || 0;
+    const clientLeft = documentElement.clientLeft
+        || body.clientLeft
+        || 0;
 
     let top = 0;
     let left = 0;
 
     switch (type) {
-        case "HTMLElement": {
-            top  = box.top +  scrollTop - clientTop + planetHeight / 2;
-            left = box.left + scrollLeft - clientLeft + planetWidth / 2;
+        case HTML_ELEMENT: {
+            if (planetWidth !== undefined && planetHeight !== undefined) {
+                top  = box.top + scrollTop - clientTop + planetHeight / 2;
+                left = box.left + scrollLeft - clientLeft + planetWidth / 2;
+            }
 
             break;
         }
-        case "SVGSVGElement": {
+        case SVG_ELEMENT: {
             top  = box.top +  scrollTop - clientTop;
             left = box.left + scrollLeft - clientLeft;
 
