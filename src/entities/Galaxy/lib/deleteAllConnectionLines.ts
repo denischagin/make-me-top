@@ -1,7 +1,7 @@
 import {restoreColorShelf} from "@entities/Galaxy/lib/colorShelf";
 
 interface IDeleteAllConnectionLines {
-    svgContainer: SVGSVGElement | null,
+    svgContainer: SVGElement | null,
 }
 
 //функция удаления всех элементов определенного класса в заданном svg контейнере

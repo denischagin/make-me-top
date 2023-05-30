@@ -7,9 +7,7 @@ interface IShowPlanetsParents {
     currentTarget: HTMLDivElement,
     planetWidth: number,
     planetHeight: number,
-    viewBoxOffsetX: number,
-    viewBoxOffsetY: number,
-    svgContainer : SVGSVGElement | null,
+    svgContainer : SVGElement | null,
     color?: string | null,
 }
 
@@ -24,8 +22,6 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         currentTarget,
         planetWidth,
         planetHeight,
-        viewBoxOffsetX,
-        viewBoxOffsetY,
         svgContainer,
     } = params
 
@@ -71,14 +67,12 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
                 currentTarget: currentTargetCoords,
                 elementToConnect: parentElementCoords,
                 svgContainer,
-                viewBoxOffsetX,
-                viewBoxOffsetY,
             })
 
-            svgLine.setAttribute('x1', String(lineCoordsWithoutOverlaps?.currentTarget.left - viewBoxOffsetX));
-            svgLine.setAttribute('y1', String(lineCoordsWithoutOverlaps?.currentTarget.top - viewBoxOffsetY));
-            svgLine.setAttribute('x2', String(lineCoordsWithoutOverlaps?.elementToConnect.left - viewBoxOffsetX));
-            svgLine.setAttribute('y2', String(lineCoordsWithoutOverlaps?.elementToConnect.top - viewBoxOffsetY));
+            svgLine.setAttribute('x1', String(lineCoordsWithoutOverlaps?.currentTarget.left));
+            svgLine.setAttribute('y1', String(lineCoordsWithoutOverlaps?.currentTarget.top));
+            svgLine.setAttribute('x2', String(lineCoordsWithoutOverlaps?.elementToConnect.left));
+            svgLine.setAttribute('y2', String(lineCoordsWithoutOverlaps?.elementToConnect.top));
             svgLine.setAttribute('class', 'galaxy__connection-line');
             svgLine.setAttribute('stroke', "white");
         }
@@ -110,8 +104,6 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
                 currentTarget: parentElement,
                 planetWidth,
                 planetHeight,
-                viewBoxOffsetX,
-                viewBoxOffsetY,
                 svgContainer,
                 color,
             });

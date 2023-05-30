@@ -9,9 +9,7 @@ interface IGetCoordsForConnection {
         top: number,
         left: number
     },
-    svgContainer: SVGSVGElement | null,
-    viewBoxOffsetY: number,
-    viewBoxOffsetX: number,
+    svgContainer: SVGElement | null,
     swingCountProp?: number,
 }
 
@@ -23,8 +21,6 @@ export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoo
         currentTarget,
         elementToConnect,
         svgContainer,
-        viewBoxOffsetY,
-        viewBoxOffsetX,
         swingCountProp
     } = params
 
@@ -42,9 +38,7 @@ export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoo
     const isOverlapped = isConnectionOverlapped({
         currentTargetCoords: currentTarget,
         elementToConnectCoords: elementToConnect,
-        viewBoxOffsetY,
-        viewBoxOffsetX,
-        svgContainer: svgContainer,
+        svgContainer,
         svgLineClass: ".galaxy__connection-line"
     });
 
@@ -65,8 +59,6 @@ export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoo
             },
             swingCountProp: ++swingCount,
             svgContainer,
-            viewBoxOffsetX,
-            viewBoxOffsetY,
         });
     }
 
@@ -76,7 +68,5 @@ export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoo
         elementToConnect: elementToConnect,
         swingCountProp: swingCount,
         svgContainer,
-        viewBoxOffsetX,
-        viewBoxOffsetY,
     }
 }

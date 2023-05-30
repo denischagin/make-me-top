@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useRef} from "react";
 
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
@@ -15,6 +15,8 @@ import {getUser} from "@entities/user/api/getUser";
 export const GalaxyPage: React.FC = () => {
   const dispatch = useAppDispatch();
 
+  const galaxyPageRef = useRef<HTMLDivElement | null>(null);
+
   const testUserProgress = {
       "openSystemList":[4,7,8,9,10,13,17,],
       "closeSystemList":[11,12,14,15,16,18,19,20,21,22,23,24],
@@ -26,10 +28,6 @@ export const GalaxyPage: React.FC = () => {
           {"systemId":6,"completed":100}
       ]}
 
-  const user = useAppSelector(
-      (state) => state.user.userData
-  )
-
   useEffect(() => {
     dispatch(getGalaxy({}));
 
@@ -38,6 +36,10 @@ export const GalaxyPage: React.FC = () => {
     // }));
 
   }, []);
+
+  const user = useAppSelector(
+      (state) => state.user.userData
+  )
 
   const galaxyName = useAppSelector(
       (state) => state.galaxy.galaxyName
@@ -48,18 +50,19 @@ export const GalaxyPage: React.FC = () => {
   );
 
   return (
-    <div className="galaxyPage">
+    <div
+        className="galaxyPage"
+        ref={galaxyPageRef}
+    >
       <BackgroundGalaxyPage/>
       <GalaxyPageName
           galaxyName={galaxyName}
       />
       <Galaxy
+          galaxyPage={galaxyPageRef.current}
+          svgContainerClass="galaxyPage__svg-container"
           userProgress={testUserProgress}
           orbitList={orbitList}
-          width={1920}
-          height={910}
-          planetWidth={80}
-          planetHeight={80}
       />
     </div>
   )

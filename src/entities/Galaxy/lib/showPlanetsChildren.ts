@@ -5,22 +5,17 @@ interface IShowChildren {
     currentTarget: HTMLDivElement,
     planetWidth: number,
     planetHeight: number,
-    viewBoxOffsetX: number,
-    viewBoxOffsetY: number,
-    svgContainer: SVGSVGElement | null,
+    svgContainer: SVGElement | null,
 }
 
 //функция создания svg линий связи между текущей планетой и всеми ее child зависимостями
 //изменения dataset атрбута (атрибут активности при наведении)
-//TODO при наведении создаются лишние линии без классов
 export const showPlanetsChildren = (params: IShowChildren) => {
     const {
         childrenList,
         currentTarget,
         planetHeight,
         planetWidth,
-        viewBoxOffsetX,
-        viewBoxOffsetY,
         svgContainer,
     } = params
 
@@ -61,10 +56,10 @@ export const showPlanetsChildren = (params: IShowChildren) => {
         //позиционирование и стилизация линии
         if (currentTargetCoords && childElementCoords) {
             svgLine.setAttribute('class', 'galaxy__connection-line');
-            svgLine.setAttribute('x1', String(currentTargetCoords?.left - viewBoxOffsetX));
-            svgLine.setAttribute('y1', String(currentTargetCoords?.top - viewBoxOffsetY));
-            svgLine.setAttribute('x2', String(childElementCoords?.left - viewBoxOffsetX));
-            svgLine.setAttribute('y2', String(childElementCoords?.top - viewBoxOffsetY));
+            svgLine.setAttribute('x1', String(currentTargetCoords?.left));
+            svgLine.setAttribute('y1', String(currentTargetCoords?.top));
+            svgLine.setAttribute('x2', String(childElementCoords?.left));
+            svgLine.setAttribute('y2', String(childElementCoords?.top));
         }
 
         //установка атрибута пунктира, если путь альтернативен

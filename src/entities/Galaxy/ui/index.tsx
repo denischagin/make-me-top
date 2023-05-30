@@ -2,7 +2,7 @@ import React, {createRef, useEffect, useState} from "react";
 
 import Orbit from "@entities/Orbit/ui";
 
-import {getElemCoords} from "@entities/Galaxy/lib/getElemCoords";
+import {createSvgContainer} from "@entities/Galaxy/lib/createSvgContainer";
 import {deleteAllConnectionLines} from "@entities/Galaxy/lib/deleteAllConnectionLines";
 import {hidePlanetsChildren} from "@entities/Galaxy/lib/hidePlanetsChildren";
 import {hidePlanetsParents} from "@entities/Galaxy/lib/hidePlanetsParents";
@@ -11,63 +11,62 @@ import {showPlanetsChildren} from "@entities/Galaxy/lib/showPlanetsChildren";
 
 import { OrbitType } from "@entities/Galaxy/model/types";
 import {UserProgress} from "@entities/user/model/types";
+
 import "./style.scss";
 
+
+
 interface IGalaxyProps {
-  userProgress: UserProgress
-  orbitList: Array<OrbitType>;
-  width: number;
-  height: number;
-  planetWidth: number,
-  planetHeight: number,
+  galaxyPage: HTMLDivElement | null,
+  userProgress: UserProgress,
+  orbitList: Array<OrbitType>,
+  svgContainerClass: string
+  width?: number;
+  height?: number;
+  planetWidth?: number,
+  planetHeight?: number,
 }
 
 interface IGalaxyOrbitSettings {
   width: number,
+  planetWidth: number,
   backgroundWidth: number,
   height: number,
+  planetHeight: number,
   backgroundHeight:number,
-  viewBox: string,
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const {
+    svgContainerClass,
+    galaxyPage,
     userProgress,
     orbitList,
-    width,
-    height,
-    planetWidth,
-    planetHeight
   } = props;
 
-  const svgContainerRef = createRef<SVGSVGElement>();
+  const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null)
 
-  const [viewBoxOffsetX, setViewBoxOffsetX] = useState<number>(0);
-  const [viewBoxOffsetY, setViewBoxOffsetY] = useState<number>(0);
+  const width = props.width || 1920;
+  const height = props.height || 910;
 
   const orbitWidthStep = width / (orbitList.length + 1);
   const orbitHeightStep = height / (orbitList.length + 1);
 
   const galaxyOrbitSettings: IGalaxyOrbitSettings = {
-    width: width,
+    width,
+    planetWidth: props.planetWidth || 80,
     backgroundWidth: width + (orbitWidthStep / 2),
-    height: height,
+    height,
+    planetHeight: props.planetWidth || 80,
     backgroundHeight: height + (orbitHeightStep / 2),
-    viewBox: `0 0 ${width} ${height}`,
   };
 
   useEffect(() => {
-    setViewBoxOffsetX(getElemCoords({
-      elem: svgContainerRef.current,
-      type: "SVGSVGElement",
-    })!.left);
-
-    setViewBoxOffsetY(getElemCoords({
-      elem: svgContainerRef.current,
-      type: "SVGSVGElement",
-    })!.top);
-
-  }, []);
+    setSvgContainer(createSvgContainer({
+      galaxyPage,
+      svgContainerClass,
+    }));
+  }, [galaxyPage])
 
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
     const currentTarget = event.currentTarget;
@@ -82,11 +81,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       showPlanetsChildren({
         childrenList,
         currentTarget,
-        planetWidth,
-        planetHeight,
-        viewBoxOffsetX,
-        viewBoxOffsetY,
-        svgContainer: svgContainerRef.current
+        planetWidth: galaxyOrbitSettings.planetWidth,
+        planetHeight: galaxyOrbitSettings.planetHeight,
+        svgContainer,
       });
     }
 
@@ -94,11 +91,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       showPlanetsParents({
         parentsList,
         currentTarget,
-        planetWidth,
-        planetHeight,
-        viewBoxOffsetX,
-        viewBoxOffsetY,
-        svgContainer: svgContainerRef.current
+        planetWidth: galaxyOrbitSettings.planetWidth,
+        planetHeight: galaxyOrbitSettings.planetHeight,
+        svgContainer
       });
     }
   }
@@ -120,9 +115,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     });
 
     deleteAllConnectionLines({
-      svgContainer: svgContainerRef.current,
+      svgContainer,
     });
-
   }
 
   return (
@@ -140,14 +134,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
               height: galaxyOrbitSettings.height,
             }}
         />
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="galaxy__svg-container"
-            viewBox={galaxyOrbitSettings.viewBox}
-            width={width}
-            height={height}
-            ref={svgContainerRef}
-        />
         {
           orbitList.map((orbits) => {
             galaxyOrbitSettings.width -= orbitWidthStep;
@@ -161,8 +147,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                     orbitWidth={galaxyOrbitSettings.width}
                     orbitHeight={galaxyOrbitSettings.height}
                     planetStyle={{
-                      width: planetWidth + "px",
-                      height: planetHeight + "px"
+                      width: galaxyOrbitSettings.planetWidth + "px",
+                      height: galaxyOrbitSettings.planetHeight + "px"
                     }}
                     handlePlanetMouseEnter={handlePlanetMouseEnter}
                     handlePlanetMouseLeave={handlePlanetMouseLeave}
