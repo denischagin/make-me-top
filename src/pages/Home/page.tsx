@@ -1,5 +1,8 @@
 import { useAppSelector } from "@app/providers/store/hooks";
 
+import { isCuratorSelector } from "@entities/curator/model/selectors";
+import { isExplorerSelector } from "@entities/explorer/model/selectors";
+
 import { BackgroundHome } from "@shared/BackgroundHome";
 
 import { ReactComponent as MakeMeTopIcon } from "@shared/images/make-me-top.svg";
@@ -15,8 +18,8 @@ import "./styles.scss";
 export const Home = () => {
   const [block, element] = bem("home");
 
-  const explorer = useAppSelector((state) => state.explorer.isExplorer);
-  const curator = useAppSelector((state) => state.curator.isCurator);
+  const explorer = useAppSelector(isExplorerSelector);
+  const curator = useAppSelector(isCuratorSelector);
   const user = useAppSelector((state) => state.user.isRegistered);
 
   const changePlanetAngle = () => {

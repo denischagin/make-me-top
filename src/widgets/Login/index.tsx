@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
 import { selectIsUserRegistered } from "@entities/user/model/slice";
+import { isExplorerSelector } from "@entities/explorer/model/selectors";
 
 import { Input } from "@shared/Input";
 import { Typography } from "@shared/Typography";
@@ -18,7 +19,7 @@ import "./styles.scss";
 export const Login = () => {
   const [block, element] = bem("login");
 
-  const explorer = useAppSelector((state) => state.explorer.isExplorer);
+  const explorer = useAppSelector(isExplorerSelector);
   const dispatch = useAppDispatch();
 
   return (

@@ -1,6 +1,7 @@
 import { useAppSelector } from "@app/providers/store/hooks";
 
 import { ModalPlanetInterface } from "@entities/user/model/types";
+import { planetListSelector } from "@entities/user/model/selectors";
 
 import { Button } from "@shared/Button";
 
@@ -16,7 +17,7 @@ import "./styles.scss";
 export const PlanetList = (props: PlanetListInterface) => {
   const [block, element] = bem("planet-list");
 
-  const planetList = useAppSelector((state) => state.user.planetList);
+  const planetList = useAppSelector(planetListSelector);
 
   const currentPlanet = planetList.find(
     (item: ModalPlanetInterface) => item.planetName === props.currentPlanet

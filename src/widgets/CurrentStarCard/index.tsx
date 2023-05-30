@@ -4,6 +4,11 @@ import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
 import { showModal } from "@entities/user/model/slice";
 import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
+import {
+  curatorsListSelector,
+  explorersListSelector,
+  userInfoSelector
+} from "@entities/user/model/selectors";
 
 import { Button } from "@shared/Button";
 import { Card } from "@shared/Card";
@@ -50,9 +55,9 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
   const [block, element] = bem("current-star-card");
 
   const dispatch = useAppDispatch();
-  const userInfo = useAppSelector((state) => state.user.userInfo);
-  const explorersList = useAppSelector((state) => state.user.explorersList);
-  const curatorsList = useAppSelector((state) => state.user.curatorsList);
+  const userInfo = useAppSelector(userInfoSelector);
+  const explorersList = useAppSelector(explorersListSelector);
+  const curatorsList = useAppSelector(curatorsListSelector);
 
   return (
     <div className={block()}>

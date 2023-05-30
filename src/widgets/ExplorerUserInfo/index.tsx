@@ -1,5 +1,7 @@
 import { useAppSelector } from "@app/providers/store/hooks";
 
+import { userInfoSelector } from "@entities/user/model/selectors";
+
 import { Avatar } from "@shared/Avatar";
 import { Rating } from "@shared/Rating";
 import { Typography } from "@shared/Typography";
@@ -20,7 +22,7 @@ import "./styles.scss";
 export const ExplorerUserInfo = () => {
   const [block, element] = bem("explorer-user-info");
 
-  const userInfo = useAppSelector((state) => state.user.userInfo);
+  const userInfo = useAppSelector(userInfoSelector);
 
   const {
     name,
