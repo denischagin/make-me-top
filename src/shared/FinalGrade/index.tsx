@@ -3,9 +3,9 @@ import { ReactComponent as StarIcon } from "@shared/images/star.svg";
 
 import { bem } from "@shared/utils/bem";
 
-import "./styles.scss";
-
 import { GRADES } from "./model";
+
+import "./styles.scss";
 
 export const FinalGrade = () => {
   const [block, element] = bem("final-grade");

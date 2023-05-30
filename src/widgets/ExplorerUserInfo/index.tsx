@@ -37,11 +37,12 @@ export const ExplorerUserInfo = () => {
         orbit
       />
       <div className={element("description")}>
-        <div className={element("description-name", "mb-4")}>
-          <Typography variant={typographyVariant.h1}>
-            {name}
-          </Typography>
-        </div>
+        <Typography
+          variant={typographyVariant.h1}
+          className={element("description-name", "mb-4")}
+        >
+          {name}
+        </Typography>
         <div className={element("cards")}>
           <InfoCard
             title="Рейтинг"

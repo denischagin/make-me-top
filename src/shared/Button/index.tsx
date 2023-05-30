@@ -5,17 +5,24 @@ import { ButtonInterface } from "./interfaces";
 import "./styles.scss";
 
 export const Button = (props: ButtonInterface) => {
+  const {
+    color,
+    size,
+    title,
+    onClick
+  } = props;
+
   const [block, element] = bem("button");
 
   return (
     <div
-      onClick={props.action}
+      onClick={onClick}
       className={block({
-        color: props.color,
-        size: props.size,
+        color,
+        size,
       })}
     >
-      {props.title}
+      {title}
     </div>
   );
 };

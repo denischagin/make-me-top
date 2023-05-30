@@ -6,7 +6,7 @@ import { REVIEW_LIST } from "./mocks";
 
 const initialState: CuratorState = {
   isCurator: false,
-  reviews: REVIEW_LIST
+  reviews: REVIEW_LIST,
 };
 
 export const curatorSlice = createSlice({

@@ -16,8 +16,8 @@ export const Card = (props: CardInterface) => {
   return (
     <div
       className={block({
-        size: size,
-        glow: glow
+        size,
+        glow
       })}
     >
       { children }

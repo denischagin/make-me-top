@@ -117,7 +117,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
             size={buttonSize.large}
             color={buttonColor.filled}
             title="Продолжить"
-            action={() => {
+            onClick={() => {
               dispatch(getModalPlanets(id));
               dispatch(showModal());
             }}

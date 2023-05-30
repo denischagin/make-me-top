@@ -7,6 +7,7 @@ import { Avatar } from "@shared/Avatar";
 import { ReviewModal } from "@shared/ReviewModal";
 
 import { bem } from "@shared/utils/bem";
+import { sliceString } from "@shared/utils/sliceString";
 
 import { avatarSize } from "@shared/Avatar/interfaces";
 import { cardSize } from "@shared/Card/interfaces";
@@ -32,8 +33,6 @@ export const ReviewCard = (props: ReviewCardInterface) => {
   const [block, element] = bem("review-card");
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const reviewText = `${comment.slice(0, 140)}${comment.length > 140 ? "..." : ""}`;
-
   return (
     <>
       <ReviewModal
@@ -47,8 +46,11 @@ export const ReviewCard = (props: ReviewCardInterface) => {
           glow
         >
           <div className={element("heading")}>
-            <Typography variant={typographyVariant.regular14}>
-              <div className={element("planet-name")}>{planet}</div>
+            <Typography
+              className={element("planet-name")}
+              variant={typographyVariant.regular14}
+            >
+              {planet}
             </Typography>
             <Rating
               scoreColor={ratingScoreColor.white}
@@ -63,22 +65,24 @@ export const ReviewCard = (props: ReviewCardInterface) => {
               image={avatar}
             />
             <Typography variant={typographyVariant.regular16}>
-              <span>{name}</span>
+              {name}
             </Typography>
           </div>
           <div className={element("review")}>
-            <Typography variant={typographyVariant.regular14}>
-              <p className={element("review-text")}>{reviewText}</p>
+            <Typography
+              className={element("review-text")}
+              variant={typographyVariant.regular14}
+            >
+              {sliceString(comment, 180)}
             </Typography>
             {
-              comment.length > 140 &&
-              <Typography variant={typographyVariant.regular14}>
-                <div
-                  className={element("expand")}
-                  onClick={() => setIsExpanded(!isExpanded)}
-                >
-                  Прочитать полностью
-                </div>
+              comment.length > 180 &&
+              <Typography
+                className={element("expand")}
+                onClick={() => setIsExpanded(!isExpanded)}
+                variant={typographyVariant.regular14}
+              >
+                Прочитать полностью
               </Typography>
             }
           </div>

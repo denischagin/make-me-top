@@ -40,10 +40,13 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
             />
             <div className={element("about")}>
               <Typography variant={typographyVariant.regular14}>
-                <span>Звезда: {user.planet}</span>
+                Звезда: {user.planet}
               </Typography>
-              <Typography variant={typographyVariant.medium16}>
-                <p className={element("user-name")}>{user.name}</p>
+              <Typography
+                className={element("user-name")}
+                variant={typographyVariant.medium16}
+              >
+                {user.name}
               </Typography>
             </div>
           </div>

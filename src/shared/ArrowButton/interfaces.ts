@@ -1,6 +1,6 @@
 export interface ArrowButtonInterface {
   direction: arrowButtonDirection;
-  action?: () => void;
+  onClick?: () => void;
 }
 
 export enum arrowButtonDirection {

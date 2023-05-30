@@ -60,14 +60,14 @@ export const SelectUsersList = (props: UserListInterface) => {
                 <Button
                   size={buttonSize.small}
                   color={buttonColor.filled}
-                  action={() => getSelectedUser(user.id)}
+                  onClick={() => getSelectedUser(user.id)}
                   title="Выбрать хранителя"
                 />
               ) : (
                 <Button
                   size={buttonSize.small}
                   color={buttonColor.primary500}
-                  action={() => removeSelectedUser(user.id)}
+                  onClick={() => removeSelectedUser(user.id)}
                   title="Отменить выбор"
                 />
               )}

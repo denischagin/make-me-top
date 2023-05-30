@@ -12,11 +12,11 @@ export const SelectRole = () => {
   return (
     <>
       <PlanetButton
-        action={() => dispatch(selectRoleAsExplorer())}
+        onClick={() => dispatch(selectRoleAsExplorer())}
         title="Я – исследователь"
       />
       <PlanetButton
-        action={() => dispatch(selectRoleAsCurator())}
+        onClick={() => dispatch(selectRoleAsCurator())}
         title="Я – хранитель"
       />
     </>

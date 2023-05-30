@@ -15,8 +15,11 @@ export const CuratorStars = () => {
 
   return (
     <div className={block()}>
-      <Typography variant={typographyVariant.h2}>
-        <div className={element("heading", "mb-4")}>Звезды исследователя</div>
+      <Typography
+        variant={typographyVariant.h2}
+        className={element("heading", "mb-4 mt-5")}
+      >
+        Звезды исследователя
       </Typography>
       <div className={element("stars", "mb-4")}>
         {arrayOfStars.map((item) => (

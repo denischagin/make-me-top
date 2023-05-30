@@ -34,7 +34,9 @@ export const UsersRating = (props: UserInfoInterface) => {
         image={avatar}
       />
       <div className={element("user-name")}>
-        <Typography variant={typographyVariant.regular14}>{name}</Typography>
+        <Typography variant={typographyVariant.regular14}>
+          {name}
+        </Typography>
       </div>
       <span className={element("user-score")}>
         <Rating

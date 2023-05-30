@@ -25,15 +25,18 @@ export const ExplorerCardList = (props: ExplorerCardListInterface) => {
 
   return (
     <div className={block()}>
-      <div className={element("heading", "mb-4")}>
-        <Typography variant={typographyVariant.h2}>Мои ученики</Typography>
-      </div>
+      <Typography
+        variant={typographyVariant.h2}
+        className={element("heading", "mb-4")}
+      >
+        Мои ученики
+      </Typography>
       <Card size={cardSize.large}>
-        <div className={element("card-heading", "mb-4")}>
-          <Typography variant={typographyVariant.regular16}>
-            Всего учеников: {totalExplorers}
-          </Typography>
-        </div>
+        <Typography
+          className={element("card-heading", "mb-4")}
+          variant={typographyVariant.regular16}>
+          Всего учеников: {totalExplorers}
+        </Typography>
         {explorers.slice(0, 9).map((item: ExplorerCardInterface) => (
           <ExplorerCard
             key={item.id}

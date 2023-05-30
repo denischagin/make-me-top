@@ -33,14 +33,23 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
               size={avatarSize.medium}
             />
             <div className={element("about")}>
-              <Typography variant={typographyVariant.regular14}>
-                <span>{user.name}</span>
+              <Typography
+                className={element("name")}
+                variant={typographyVariant.regular14}
+              >
+                {user.name}
               </Typography>
-              <Typography variant={typographyVariant.regular14}>
-                <p className={element("star-title")}>Звезда: {user.star}</p>
+              <Typography
+                className={element("star-title")}
+                variant={typographyVariant.regular14}
+              >
+                Звезда: {user.star}
               </Typography>
-              <Typography variant={typographyVariant.medium16}>
-                <p className={element("planet")}>Планета: {user.planet}</p>
+              <Typography
+                className={element("planet")}
+                variant={typographyVariant.medium16}
+              >
+                Планета: {user.planet}
               </Typography>
             </div>
           </div>

@@ -2,7 +2,7 @@ export interface ButtonInterface {
   title: string;
   color?: buttonColor;
   size: buttonSize;
-  action?: () => void;
+  onClick?: () => void;
 }
 
 export enum buttonColor {

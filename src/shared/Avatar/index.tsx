@@ -14,16 +14,16 @@ export const Avatar = (props: AvatarInterface) => {
   const [block, element] = bem("avatar");
 
   return (
-    <div className={block({ size: size })}>
+    <div className={block({ size })}>
       {orbit && size === "large" && (
         <div className={element("border")}>
-          <div className={element("orbit")} />
+          <div className={element("orbit", "mt-5")} />
         </div>
       )}
       <img
         src={image}
         alt=""
-        className={element("image", { size: size })}
+        className={element("image", { size })}
       />
     </div>
   );

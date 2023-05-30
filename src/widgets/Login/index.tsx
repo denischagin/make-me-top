@@ -24,9 +24,12 @@ export const Login = () => {
   return (
     <>
       <div className={block()}>
-        <div className={element("heading")}>
-          <Typography variant={typographyVariant.h2}>Вход</Typography>
-        </div>
+        <Typography
+          className={element("heading")}
+          variant={typographyVariant.h2}
+        >
+          Вход
+        </Typography>
         <Input
           placeholder="Номер телефона"
           type="tel"
@@ -37,18 +40,17 @@ export const Login = () => {
         />
         <RouterLink path={explorer ? URL_EXPLORER : URL_CURATOR}>
           <PlanetButton
-            action={() => console.log("logged")}
+            onClick={() => console.log("logged")}
             title="Войти"
           />
         </RouterLink>
-        <div
+        <Typography
+          variant={typographyVariant.regular14}
           className={element("hint")}
           onClick={() => dispatch(selectIsUserRegistered())}
         >
-          <Typography variant={typographyVariant.regular14}>
-            Еще не зарегистрированы? Регистрация
-          </Typography>
-        </div>
+          Еще не зарегистрированы? Регистрация
+        </Typography>
       </div>
     </>
   );

@@ -25,8 +25,11 @@ export const ExplorerCard = (props: ExplorerCardInterface) => {
         size={avatarSize.small}
         image={avatar}
       />
-      <Typography variant={typographyVariant.regular14}>
-        <span className={element("name")}>{name}</span>
+      <Typography
+        className={element("name")}
+        variant={typographyVariant.regular14}
+      >
+        {name}
       </Typography>
       <ArrowIcon className={element("icon")} />
     </div>

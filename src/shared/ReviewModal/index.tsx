@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { ReactComponent as CloseIcon } from "@shared/images/close.svg";
 
 import { bem } from "@shared/utils/bem";
-import { Typography } from "@shared/Typography";
-import { typographyColor, typographyVariant } from "@shared/Typography/interfaces";
-import { ReactComponent as CloseIcon } from "@shared/images/close.svg";
+
+import { Portal } from "@shared/Portal";
 import { Rating } from "@shared/Rating";
 import { Avatar } from "@shared/Avatar";
+import { Typography } from "@shared/Typography";
+
 import { avatarSize } from "@shared/Avatar/interfaces";
+import { typographyColor, typographyVariant } from "@shared/Typography/interfaces";
 import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
-import { Portal } from "@shared/Portal";
+
 import { ReviewModalInterface } from "@shared/types/common";
 
 import "./styles.scss";
@@ -45,14 +47,16 @@ export const ReviewModal = (props: ReviewModalInterface) => {
               <Typography
                 variant={typographyVariant.regular14}
                 color={typographyColor.black}
+                className={element("planet-name")}
               >
-                <div className={element("planet-name")}>{planet}</div>
+                {planet}
               </Typography>
               <Typography
                 variant={typographyVariant.h1}
                 color={typographyColor.black}
+                className={element("user-name")}
               >
-                <p className={element("user-name")}>{name}</p>
+                {name}
               </Typography>
               <Rating
                 scoreColor={ratingScoreColor.black}
@@ -65,8 +69,9 @@ export const ReviewModal = (props: ReviewModalInterface) => {
           <Typography
             variant={typographyVariant.medium16}
             color={typographyColor.black}
+            className={element("review-text")}
           >
-            <p className={element("review-text")}>{comment}</p>
+            {comment}
           </Typography>
         </div>
       </div>

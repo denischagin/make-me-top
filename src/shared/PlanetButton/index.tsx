@@ -5,14 +5,19 @@ import { PlanetButtonInterface } from "./interfaces";
 import "./styles.scss";
 
 export const PlanetButton = (props: PlanetButtonInterface) => {
+  const {
+    title,
+    onClick
+  } = props;
+
   const [block, element] = bem("planet-button");
 
   return (
     <div
-      onClick={props.action}
+      onClick={onClick}
       className={block()}
     >
-      {props.title}
+      {title}
     </div>
   );
 };

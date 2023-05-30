@@ -10,9 +10,9 @@ import {
 } from "@shared/Rating/interfaces";
 import { starColor } from "@shared/Star/interfaces";
 
-import "./styles.scss";
-
 import { COMPLETED_STARS_LIST } from "./model";
+
+import "./styles.scss";
 
 export const CompletedStars = () => {
   const [block, element] = bem("completed-stars");

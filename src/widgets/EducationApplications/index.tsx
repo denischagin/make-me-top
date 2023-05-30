@@ -17,8 +17,11 @@ export const EducationApplications = (props: EducationApplicationsInterface) => 
 
   return (
     <div className={block()}>
-      <Typography variant={typographyVariant.h2}>
-        <p className={element("heading", "mb-4")}>Заявки на обучение</p>
+      <Typography
+        className={element("heading", "mb-4")}
+        variant={typographyVariant.h2}
+      >
+        Заявки на обучение
       </Typography>
       <div className={element("cards")}>
         {applications.length !== 0 ? (

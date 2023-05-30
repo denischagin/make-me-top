@@ -17,8 +17,11 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
 
   return (
     <div className={block()}>
-      <Typography variant={typographyVariant.h2}>
-        <p className={element("heading", "mb-4")}>Запрос на проверку</p>
+      <Typography
+        className={element("heading", "mb-4")}
+        variant={typographyVariant.h2}
+      >
+        Запрос на проверку
       </Typography>
       <div className={element("cards")}>
         {applications.length !== 0 ? (

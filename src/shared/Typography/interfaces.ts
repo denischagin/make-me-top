@@ -4,6 +4,8 @@ export interface TypographyInterface {
   children: ReactNode;
   variant: typographyVariant;
   color?: typographyColor;
+  className?: string
+  onClick?: () => void;
 }
 
 export enum typographyColor {

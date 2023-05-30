@@ -25,18 +25,20 @@ export const RatingCard = (props: RatingCardInterface) => {
   return (
     <Card size={cardSize.large}>
       <div className={block()}>
-        <div className={element("heading", "mb-4")}>
-          <Typography variant={typographyVariant.medium16}>
-            Мой рейтинг
-          </Typography>
-        </div>
+        <Typography
+          variant={typographyVariant.medium16}
+          className={element("heading", "mb-4")}
+        >
+          Мой рейтинг
+        </Typography>
         <UsersRating user={user} />
         <DividingLine color={DividingLineColor.opacitygray} />
-        <div className={element("heading", "mb-4")}>
-          <Typography variant={typographyVariant.medium16}>
-            Общий рейтинг
-          </Typography>
-        </div>
+        <Typography
+          variant={typographyVariant.medium16}
+          className={element("heading", "mb-4")}
+        >
+          Общий рейтинг
+        </Typography>
         {list.map((user: UserInterface) => (
           <UsersRating
             key={user.id}

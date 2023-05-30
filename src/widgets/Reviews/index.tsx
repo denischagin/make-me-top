@@ -18,8 +18,11 @@ export const Reviews = () => {
 
   return (
     <div className={block()}>
-      <Typography variant={typographyVariant.h2}>
-        <div className={element("planet-name", "mb-4")}>Отзывы</div>
+      <Typography
+        className={element("heading", "mb-4 mt-5")}
+        variant={typographyVariant.h2}
+      >
+        Отзывы
       </Typography>
       <div className={element("cards")}>
         {
@@ -31,7 +34,7 @@ export const Reviews = () => {
           ))
         }
       </div>
-      <div className={element("button")}>
+      <div className={element("button", "mt-5")}>
         <Button
           title="Показать ещё"
           size={buttonSize.large}

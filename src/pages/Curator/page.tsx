@@ -12,13 +12,13 @@ import { CuratorUserInfo } from "@widgets/CuratorUserInfo";
 
 import { typographyVariant } from "@shared/Typography/interfaces";
 
-import "./styles.scss";
-
 import {
   APPLICATIONS_LIST,
   GRADE_APPLICATIONS_LIST,
   MY_EXPLORERS,
 } from "./model";
+
+import "./styles.scss";
 
 export const Curator = () => {
   const [block, element] = bem("curator");
@@ -33,12 +33,15 @@ export const Curator = () => {
             <div className={element("profile", "col-xxl-9")}>
               <CuratorUserInfo />
               <EducationApplications applications={APPLICATIONS_LIST} />
-              <Typography variant={typographyVariant.h2}>
-                <div className={element("final-grade-heading", "mb-4")}>
+              <div className={element("final-grade-cards")}>
+                <Typography
+                  className={element("final-grade-heading", "mb-4 mt-1")}
+                  variant={typographyVariant.h2}
+                >
                   Итоговая оценка
-                </div>
-              </Typography>
-              <GradeApplicationCard user={GRADE_APPLICATIONS_LIST[0]} />
+                </Typography>
+                <GradeApplicationCard user={GRADE_APPLICATIONS_LIST[0]} />
+              </div>
               <GradeApplications applications={GRADE_APPLICATIONS_LIST} />
             </div>
             <div className={element("explorers-list", "col-xxl-3")}>

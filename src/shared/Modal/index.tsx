@@ -40,11 +40,10 @@ export const Modal = (props: ModalInterface) => {
             <Typography
               variant={typographyVariant.h2}
               color={typographyColor.black}
+              className={element("name")}
             >
-              <p className={element("name")}>
-                {lockIcon}
-                {name}
-              </p>
+              {lockIcon}
+              {name}
             </Typography>
             <CloseIcon
               className={element("close-icon")}

@@ -24,13 +24,13 @@ export const Rating = (props: RatingInterface) => {
         <StarIcon
           className={element("star", {
             color: starColor,
-            size: size,
+            size,
           })}
         />
       )}
       <span
         className={element("score", {
-          size: size,
+          size,
           color: scoreColor,
         })}
       >
@@ -40,7 +40,7 @@ export const Rating = (props: RatingInterface) => {
         <StarIcon
           className={element("star", {
             color: starColor,
-            size: size,
+            size,
           })}
         />
       )}

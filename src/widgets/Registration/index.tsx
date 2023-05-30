@@ -22,9 +22,12 @@ export const Registration = () => {
 
   return (
     <div className={block()}>
-      <div className={element("heading")}>
-        <Typography variant={typographyVariant.h2}>Регистрация</Typography>
-      </div>
+      <Typography
+        className={element("heading")}
+        variant={typographyVariant.h2}
+      >
+        Регистрация
+      </Typography>
       <Input placeholder="Имя пользователя *" />
       <Input
         placeholder="Пароль *"
@@ -36,18 +39,17 @@ export const Registration = () => {
       />
       <RouterLink path={URL_EXPLORER}>
         <PlanetButton
-          action={() => console.log("registered")}
+          onClick={() => console.log("registered")}
           title="Регистрация"
         />
       </RouterLink>
-      <div
+      <Typography
         className={element("hint")}
         onClick={() => dispatch(selectIsUserRegistered())}
+        variant={typographyVariant.regular14}
       >
-        <Typography variant={typographyVariant.regular14}>
-          У меня есть аккаунт. Войти
-        </Typography>
-      </div>
+        У меня есть аккаунт. Войти
+      </Typography>
     </div>
   );
 };
