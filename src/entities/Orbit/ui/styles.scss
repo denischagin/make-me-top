@@ -1,11 +1,13 @@
 .orbit {
   position: absolute;
+  border-radius: 50%;
 
   &__content {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    border-radius: 50%;
 
     &_planet {
       position: absolute;
