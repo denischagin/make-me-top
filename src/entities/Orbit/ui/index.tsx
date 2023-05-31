@@ -118,7 +118,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                   </div>
                 ) : null}
                 <p className="orbit__content_planet-name">
-                  {planet.systemId}
+                  {planet.systemName}
                 </p>
               </Star>
             </div>
