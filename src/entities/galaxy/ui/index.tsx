@@ -1,38 +1,38 @@
 import React, {createRef, useEffect, useRef, useState} from "react";
-import {ACTIVE_PLANET, INACTIVE_PLANET, SVG_ELEMENT} from "@entities/galaxy/model/constants";
 
 import Orbit from "@entities/orbit/ui";
 
-import {getElemCoords} from "@entities/galaxy/lib/getElemCoords";
-import {deleteAllConnectionLines} from "@entities/galaxy/lib/deleteAllConnectionLines";
-import {hidePlanetsChildren} from "@entities/galaxy/lib/hidePlanetsChildren";
-import {hidePlanetsParents} from "@entities/galaxy/lib/hidePlanetsParents";
-import {showPlanetsParents} from "@entities/galaxy/lib/showPlanetsParents";
-import {showPlanetsChildren} from "@entities/galaxy/lib/showPlanetsChildren";
+import { deleteAllConnectionLines } from "@entities/galaxy/lib/deleteAllConnectionLines";
+import { getElemCoords } from "@entities/galaxy/lib/getElemCoords";
+import { hidePlanetsChildren } from "@entities/galaxy/lib/hidePlanetsChildren";
+import { hidePlanetsParents } from "@entities/galaxy/lib/hidePlanetsParents";
+import { showPlanetsChildren } from "@entities/galaxy/lib/showPlanetsChildren";
+import { showPlanetsParents } from "@entities/galaxy/lib/showPlanetsParents";
+
+import {
+  ACTIVE_PLANET,
+  INACTIVE_PLANET,
+  SVG_ELEMENT,
+} from "@entities/galaxy/model/constants";
 
 import { OrbitType } from "@entities/galaxy/model/types";
+
 import "./style.scss";
 
 interface IGalaxyProps {
-  orbitList: Array<OrbitType>;
-  width: number;
-  height: number;
+  orbitList: Array<OrbitType>,
+  width: number,
+  height: number,
   planetWidth: number,
   planetHeight: number,
 }
 
 interface IGalaxyOrbitSettings {
-  viewBox: string,
+  viewBox: string;
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
-  const {
-    orbitList,
-    width,
-    height,
-    planetWidth,
-    planetHeight
-  } = props;
+  const { orbitList, width, height, planetWidth, planetHeight } = props;
 
   const svgContainerRef = createRef<SVGSVGElement>();
 
@@ -44,31 +44,35 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const orbitWidthStep = width / (orbitList.length + 1);
   const orbitHeightStep = height / (orbitList.length + 1);
 
-  const galaxyOrbitSettingsRef = useRef<IGalaxyOrbitSettings>(
-      {
-        viewBox: `0 0 ${width} ${height}`,
-      }
-  );
+  const galaxyOrbitSettingsRef = useRef<IGalaxyOrbitSettings>({
+    viewBox: `0 0 ${width} ${height}`,
+  });
 
   useEffect(() => {
-    setViewBoxOffsetX(getElemCoords({
-      elem: svgContainerRef.current,
-      type: SVG_ELEMENT,
-    })!.left);
+    setViewBoxOffsetX(
+      getElemCoords({
+        elem: svgContainerRef.current,
+        type: SVG_ELEMENT,
+      })!.left
+    );
 
-    setViewBoxOffsetY(getElemCoords({
-      elem: svgContainerRef.current,
-      type: SVG_ELEMENT,
-    })!.top);
+    setViewBoxOffsetY(
+      getElemCoords({
+        elem: svgContainerRef.current,
+        type: SVG_ELEMENT,
+      })!.top
+    );
   }, []);
 
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
     const currentTarget = event.currentTarget;
 
-    const childrenList = currentTarget.getAttribute("data-planet-children-list");
-    const parentsList = currentTarget.getAttribute("data-planet-parent-list")
+    const childrenList = currentTarget.getAttribute(
+      "data-planet-children-list"
+    );
+    const parentsList = currentTarget.getAttribute("data-planet-parent-list");
 
-    event.currentTarget.setAttribute('data-is-active', ACTIVE_PLANET);
+    event.currentTarget.setAttribute("data-is-active", ACTIVE_PLANET);
 
     showPlanetsChildren({
       childrenList,
@@ -77,7 +81,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       planetHeight,
       viewBoxOffsetX,
       viewBoxOffsetY,
-      svgContainer: svgContainerRef.current
+      svgContainer: svgContainerRef.current,
     });
 
     showPlanetsParents({
@@ -87,17 +91,19 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       planetHeight,
       viewBoxOffsetX,
       viewBoxOffsetY,
-      svgContainer: svgContainerRef.current
+      svgContainer: svgContainerRef.current,
     });
-  }
+  };
 
   const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
     const currentTarget = event.currentTarget;
 
-    const childrenList = currentTarget.getAttribute("data-planet-children-list");
+    const childrenList = currentTarget.getAttribute(
+      "data-planet-children-list"
+    );
     const parentsList = currentTarget.getAttribute("data-planet-parent-list");
 
-    event.currentTarget.setAttribute('data-is-active', INACTIVE_PLANET);
+    event.currentTarget.setAttribute("data-is-active", INACTIVE_PLANET);
 
     hidePlanetsChildren({
       childrenList,
@@ -110,51 +116,49 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     deleteAllConnectionLines({
       svgContainer: svgContainerRef.current,
     });
-  }
+  };
 
   return (
+    <div
+      className="galaxy"
+      style={{
+        width,
+        height,
+      }}
+    >
       <div
-          className="galaxy"
-          style={{
-            width,
-            height,
-          }}
-      >
-        <div
-            className="galaxy__background"
-            style={{
-              width,
-              height,
+        className="galaxy__background"
+        style={{
+          width,
+          height,
+        }}
+      />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="galaxy__svg-container"
+        viewBox={galaxyOrbitSettingsRef.current.viewBox}
+        width={width}
+        height={height}
+        ref={svgContainerRef}
+      />
+      {orbitList.map((orbits) => {
+        return (
+          <Orbit
+            key={orbits.orbitId}
+            systemList={orbits.systemList}
+            orbitWidth={width - orbitWidthStep * orbits.orbitId}
+            orbitHeight={height - orbitHeightStep * orbits.orbitId}
+            planetStyle={{
+              color: "white",
+              width: planetWidth + "px",
+              height: planetHeight + "px",
             }}
-        />
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="galaxy__svg-container"
-            viewBox={galaxyOrbitSettingsRef.current.viewBox}
-            width={width}
-            height={height}
-            ref={svgContainerRef}
-        />
-        {
-          orbitList.map((orbits) => {
-            return (
-                <Orbit
-                    key={orbits.orbitId}
-                    systemList={orbits.systemList}
-                    orbitWidth={width - orbitWidthStep * orbits.orbitId}
-                    orbitHeight={height - orbitHeightStep * orbits.orbitId}
-                    planetStyle={{
-                      color: "white",
-                      width: planetWidth + "px",
-                      height: planetHeight + "px"
-                    }}
-                    handlePlanetMouseEnter={handlePlanetMouseEnter}
-                    handlePlanetMouseLeave={handlePlanetMouseLeave}
-                />
-            );
-          })
-        }
-      </div>
+            handlePlanetMouseEnter={handlePlanetMouseEnter}
+            handlePlanetMouseLeave={handlePlanetMouseLeave}
+          />
+        );
+      })}
+    </div>
   );
 };
 

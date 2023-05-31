@@ -1,28 +1,28 @@
 import React from "react";
 
-import {SystemType} from "@entities/galaxy/model/types";
-import {Star} from "@shared/Star";
+import { getDigitalAngle } from "@entities/orbit/lib/getDigitalAngle";
+import { getPlanetChildData } from "@entities/orbit/lib/getPlanetChildData";
+import { getPlanetParentData } from "@entities/orbit/lib/getPlanetParentData";
+import { getRadius } from "@entities/orbit/lib/getRadius";
+import { getXCoordinateOnEllipse } from "@entities/orbit/lib/getXCoordinateOnEllipse";
+import { getYCoordinateOnEllipse } from "@entities/orbit/lib/getYCoordinateOnEllipse";
 
-import {INACTIVE_PLANET} from "@entities/galaxy/model/constants";
+import { INACTIVE_PLANET } from "@entities/galaxy/model/constants";
+import { SystemType } from "@entities/galaxy/model/types";
 
-import {getDigitalAngle} from "@entities/orbit/lib/getDigitalAngle";
-import {getRadius} from "@entities/orbit/lib/getRadius";
-import {getXCoordinateOnEllipse} from "@entities/orbit/lib/getXCoordinateOnEllipse";
-import {getYCoordinateOnEllipse} from "@entities/orbit/lib/getYCoordinateOnEllipse";
-import {getPlanetParentData} from "@entities/orbit/lib/getPlanetParentData";
-import {getPlanetChildData} from "@entities/orbit/lib/getPlanetChildData";
+import { Star } from "@shared/Star";
+
+import { starColor } from "@shared/Star/interfaces";
 
 import "@entities/orbit/ui/styles.scss";
-import {starColor} from "@shared/Star/interfaces";
-
 
 interface IOrbitProps {
   systemList: Array<SystemType>;
   orbitWidth: number;
   orbitHeight: number;
   planetStyle?: React.CSSProperties;
-  handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void,
-  handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void
+  handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
+  handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const Orbit: React.FC<IOrbitProps> = (props) => {
@@ -32,7 +32,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
     orbitHeight,
     planetStyle,
     handlePlanetMouseEnter,
-    handlePlanetMouseLeave
+    handlePlanetMouseLeave,
   } = props;
 
   const orbitHalfWidth = orbitWidth / 2;
@@ -56,19 +56,22 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
           const radius = getRadius({
             digitalAngle,
             halfWidth: orbitHalfWidth,
-            halfHeight: orbitHalfHeight});
+            halfHeight: orbitHalfHeight,
+          });
 
           const x = getXCoordinateOnEllipse({
             ellipseHalfWidth: orbitHalfWidth,
             radius,
             digitalAngle,
-            elementWidth: defaultElementWidth});
+            elementWidth: defaultElementWidth,
+          });
 
           const y = getYCoordinateOnEllipse({
             ellipseHalfHeight: orbitHalfHeight,
             radius,
             digitalAngle,
-            elementHeight: defaultElementHeight});
+            elementHeight: defaultElementHeight,
+          });
 
           return (
             <div
@@ -87,16 +90,12 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
               data-is-active={INACTIVE_PLANET}
             >
               <Star
-                  color={starColor.white}
-                  children={(<div>
-                        {planet.systemName}
-                      </div>
-                  )}
+                color={starColor.white}
+                children={<div>{planet.systemName}</div>}
               />
             </div>
           );
-        })
-        }
+        })}
       </div>
     </div>
   );

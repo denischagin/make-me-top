@@ -14,19 +14,17 @@ export const GalaxyPage: React.FC = () => {
     dispatch(getGalaxy({}));
   }, [dispatch]);
 
-  const orbitList = useAppSelector(
-    (state) => state.galaxies.orbitList
-  );
+  const orbitList = useAppSelector((state) => state.galaxies.orbitList);
 
   return (
     <div className="galaxy-page">
-        <Galaxy
-            orbitList={orbitList}
-            width={1920}
-            height={910}
-            planetWidth={80}
-            planetHeight={80}
-        />
+      <Galaxy
+        orbitList={orbitList}
+        width={1920}
+        height={910}
+        planetWidth={80}
+        planetHeight={80}
+      />
     </div>
-  )
-}
+  );
+};
