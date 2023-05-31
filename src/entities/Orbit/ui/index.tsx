@@ -1,32 +1,31 @@
 import React from "react";
 
+import { Star } from "@shared/Star";
 import { ReactComponent as LockIcon } from "@shared/images/lock.svg";
-import {Star} from "@shared/Star";
+import { PlanetProgressTypes } from "@shared/types/common";
 
-import {UserProgress} from "@entities/user/model/types";
-import {PlanetProgressTypes} from "@shared/types/common";
-import {SystemType} from "@entities/Galaxy/model/types";
-
-import {getDigitalAngle} from "@entities/Orbit/lib/getDigitalAngle";
-import {getRadius} from "@entities/Orbit/lib/getRadius";
-import {getXCoordinateOnEllipse} from "@entities/Orbit/lib/getXCoordinateOnEllipse";
-import {getYCoordinateOnEllipse} from "@entities/Orbit/lib/getYCoordinateOnEllipse";
-import {getPlanetParentData} from "@entities/Orbit/lib/getPlanetParentData";
-import {getPlanetChildData} from "@entities/Orbit/lib/getPlanetChildData";
-import {getPlanetProgressType} from "@entities/Orbit/lib/getPlanetProgressType";
-import {getPlanetColorByProgressType} from "@entities/Orbit/lib/getPlanetColorByProgressType";
-import {getPercentageProgress} from "@entities/Orbit/lib/getPercentageProgress";
+import { SystemType } from "@entities/Galaxy/model/types";
+import { getDigitalAngle } from "@entities/Orbit/lib/getDigitalAngle";
+import { getPercentageProgress } from "@entities/Orbit/lib/getPercentageProgress";
+import { getPlanetChildData } from "@entities/Orbit/lib/getPlanetChildData";
+import { getPlanetColorByProgressType } from "@entities/Orbit/lib/getPlanetColorByProgressType";
+import { getPlanetParentData } from "@entities/Orbit/lib/getPlanetParentData";
+import { getPlanetProgressType } from "@entities/Orbit/lib/getPlanetProgressType";
+import { getRadius } from "@entities/Orbit/lib/getRadius";
+import { getXCoordinateOnEllipse } from "@entities/Orbit/lib/getXCoordinateOnEllipse";
+import { getYCoordinateOnEllipse } from "@entities/Orbit/lib/getYCoordinateOnEllipse";
+import { UserProgress } from "@entities/user/model/types";
 
 import "./styles.scss";
 
 interface IOrbitProps {
-  userProgress: UserProgress
+  userProgress: UserProgress;
   systemList: Array<SystemType>;
   orbitWidth: number;
   orbitHeight: number;
   planetStyle?: React.CSSProperties;
-  handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void,
-  handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void
+  handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
+  handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const Orbit: React.FC<IOrbitProps> = (props) => {
@@ -37,7 +36,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
     orbitHeight,
     planetStyle,
     handlePlanetMouseEnter,
-    handlePlanetMouseLeave
+    handlePlanetMouseLeave,
   } = props;
 
   const orbitHalfWidth = orbitWidth / 2;
@@ -55,11 +54,10 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
           height: orbitHeight + "px",
         }}
       >
-        {
-          systemList.map((planet) => {
+        {systemList.map((planet) => {
           const planetProgressType = getPlanetProgressType({
             planet,
-            userProgress
+            userProgress,
           });
 
           const planetColor = getPlanetColorByProgressType({
@@ -68,27 +66,30 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
 
           const planetPercentageProgress = getPercentageProgress({
             planet,
-            userProgress
-          })
+            userProgress,
+          });
 
           const digitalAngle = getDigitalAngle(planet.positionSystem);
 
           const radius = getRadius({
             digitalAngle,
             halfWidth: orbitHalfWidth,
-            halfHeight: orbitHalfHeight});
+            halfHeight: orbitHalfHeight,
+          });
 
           const x = getXCoordinateOnEllipse({
             ellipseHalfWidth: orbitHalfWidth,
             radius,
             digitalAngle,
-            elementWidth: defaultElementWidth});
+            elementWidth: defaultElementWidth,
+          });
 
           const y = getYCoordinateOnEllipse({
             ellipseHalfHeight: orbitHalfHeight,
             radius,
             digitalAngle,
-            elementHeight: defaultElementHeight});
+            elementHeight: defaultElementHeight,
+          });
 
           return (
             <div
@@ -108,27 +109,24 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
               data-is-active="0"
             >
               <Star
-                  percentageProgress={planetPercentageProgress}
-                  color={planetColor}
+                percentageProgress={planetPercentageProgress}
+                color={planetColor}
               >
-                {
-                  planetProgressType === PlanetProgressTypes.SYSTEM_CLOSE ?
-                      <div className="orbit__content_lock-icon">
-                        <LockIcon/>
-                      </div>
-                      : null
-                }
+                {planetProgressType === PlanetProgressTypes.SYSTEM_CLOSE ? (
+                  <div className="orbit__content_lock-icon">
+                    <LockIcon />
+                  </div>
+                ) : null}
                 <p className="orbit__content_planet-name">
                   {planet.systemName}
                 </p>
               </Star>
             </div>
           );
-        })
-        }
+        })}
       </div>
     </div>
   );
-}
+};
 
 export default Orbit;

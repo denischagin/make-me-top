@@ -1,13 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
-import curatorReducer from "@entities/Сurator/model";
 import explorerReducer from "@entities/Explorer/model";
 import galaxySlice from "@entities/Galaxy/model/slice";
-import userReducer from "@entities/user/model/slice";
-
 import { GalaxyType } from "@entities/Galaxy/model/types";
-import {UserStateType} from "@entities/user/model/types";
+import userReducer from "@entities/user/model/slice";
+import { UserStateType } from "@entities/user/model/types";
+import curatorReducer from "@entities/Сurator/model";
 
 const rootReducer = combineReducers({
   explorer: explorerReducer,
