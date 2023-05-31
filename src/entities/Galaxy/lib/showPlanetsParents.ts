@@ -5,7 +5,7 @@ import { getCoordsForConnection } from "@entities/Galaxy/lib/getCoordsForConnect
 import { getElemCoords } from "@entities/Galaxy/lib/getElemCoords";
 import {
   DATA_PLANET_CHILDREN_LIST,
-  DATA_PLANET_ID,
+  DATA_PLANET_ID, DATA_PLANET_PARENT_LIST,
   DATA_PLANET_PROGRESS_TYPE,
 } from "@entities/Orbit/model/types";
 
@@ -65,7 +65,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
     });
 
     const parentsListOfCurrentParent = parentElement?.getAttribute(
-      DATA_PLANET_CHILDREN_LIST
+      DATA_PLANET_PARENT_LIST
     );
     parentElement?.setAttribute("data-is-active", "1");
 
@@ -119,13 +119,13 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
 
     //если планета, к которой будем строить связь,
     //открыта или в процессе изучения, то дальше связи не строим
-    const parentElementProgress = parentElement?.getAttribute(
+    const parentElementProgressType = parentElement?.getAttribute(
       DATA_PLANET_PROGRESS_TYPE
     );
 
     if (
-      parentElementProgress === PlanetProgressTypes.SYSTEM_OPEN ||
-      parentElementProgress === PlanetProgressTypes.SYSTEM_EDUCATION
+      parentElementProgressType === PlanetProgressTypes.SYSTEM_OPEN ||
+      parentElementProgressType === PlanetProgressTypes.SYSTEM_EDUCATION
     ) {
       return;
     }

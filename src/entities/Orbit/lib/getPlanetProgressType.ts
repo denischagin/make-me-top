@@ -11,31 +11,27 @@ interface IGetPlanetProgress {
 export const getPlanetProgressType = (params: IGetPlanetProgress) => {
   const { planet, userProgress } = params;
 
-  const isSystemOpen = userProgress.openSystemList.findIndex((openSystemId) => {
-    return openSystemId === planet.systemId;
-  });
+  const isSystemOpen = userProgress.openSystemList.some(
+    (openSystemId) => openSystemId === planet.systemId
+  );
 
-  if (isSystemOpen > -1) {
+  if (isSystemOpen) {
     return PlanetProgressTypes.SYSTEM_OPEN;
   }
 
-  const isSystemClose = userProgress.closeSystemList.findIndex(
-    (closeSystemId) => {
-      return closeSystemId === planet.systemId;
-    }
+  const isSystemClose = userProgress.closeSystemList.some(
+    (closeSystemId) => closeSystemId === planet.systemId
   );
 
-  if (isSystemClose > -1) {
+  if (isSystemClose) {
     return PlanetProgressTypes.SYSTEM_CLOSE;
   }
 
-  const isSystemEducation = userProgress.educationSystemList.findIndex(
-    (educationSystemId) => {
-      return educationSystemId.systemId === planet.systemId;
-    }
+  const isSystemEducation = userProgress.educationSystemList.some(
+    (educationSystemId) => educationSystemId.systemId === planet.systemId
   );
 
-  if (isSystemEducation > -1) {
+  if (isSystemEducation) {
     return PlanetProgressTypes.SYSTEM_EDUCATION;
   }
 
