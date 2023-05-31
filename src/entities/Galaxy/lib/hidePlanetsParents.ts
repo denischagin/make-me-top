@@ -1,3 +1,5 @@
+import {DATA_PLANET_ID, DATA_PLANET_PARENT_LIST} from "@entities/Orbit/model/types";
+
 interface IHidePlanetsParents {
     parentsList: string | null
 }
@@ -25,8 +27,8 @@ export const hidePlanetsParents = (params: IHidePlanetsParents) => {
         }
 
         //массив parent зависимостей текущего parent элемента
-        const parentElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
-        const parentsListOfCurrentParent = parentElement?.getAttribute("data-planet-parent-list");
+        const parentElement = document.querySelector<HTMLElement>(`[${DATA_PLANET_ID}="${numberElementId}"]`);
+        const parentsListOfCurrentParent = parentElement?.getAttribute(DATA_PLANET_PARENT_LIST);
 
         //изменение атрибута
         parentElement?.setAttribute("data-is-active", "0");

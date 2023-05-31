@@ -1,10 +1,12 @@
 import { ReactComponent as OrbitIcon } from "@shared/images/orbit.svg";
 import { bem } from "@shared/utils/bem";
 
+import StarProgress from "@shared/StarProgress";
+
 import { StarInterface } from "./interfaces";
 
 import "./styles.scss";
-import StarProgress from "@shared/StarProgress";
+
 
 export const Star = (props: StarInterface) => {
   const [block, element] = bem("star");

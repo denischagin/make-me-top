@@ -1,3 +1,5 @@
+import {DATA_PLANET_ID} from "@entities/Orbit/model/types";
+
 interface IHidePlanetsChildren {
     childrenList: string | null,
 }
@@ -18,7 +20,7 @@ export const hidePlanetsChildren = (params: IHidePlanetsChildren) => {
 
         const numberElementId = Number(elementId);
 
-        const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
+        const childElement = document.querySelector<HTMLElement>(`[${DATA_PLANET_ID}="${numberElementId}"]`);
 
         childElement?.setAttribute("data-is-active", "0");
     })

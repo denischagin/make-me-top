@@ -69,7 +69,7 @@
 
   &--color-primary-500 {
     outline: 1px solid $white;
-    background: $white;
+    background: $primary-500;
 
     &:hover {
       animation-name: star_primary-500;
@@ -79,10 +79,10 @@
 
       @keyframes star_primary-500 {
         from {
-          background: $opacity-white;
+          background: $opacity-primary-500;
         }
         to {
-          background: $white;
+          background: $primary-500;
         }
       }
     }
@@ -128,7 +128,7 @@
   }
 
   &__orbit-icon {
-    color: #7c7abd;
+    color: $white;
 
     &--color-white {
       color: $white;

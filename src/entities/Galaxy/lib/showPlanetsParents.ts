@@ -2,6 +2,9 @@ import {getElemCoords} from "@entities/Galaxy/lib/getElemCoords";
 import {getCoordsForConnection} from "@entities/Galaxy/lib/getCoordsForConnection";
 import {getColorFromShelf} from "@entities/Galaxy/lib/colorShelf";
 
+import { PlanetProgressTypes } from "@shared/types/common";
+import {DATA_PLANET_CHILDREN_LIST, DATA_PLANET_ID, DATA_PLANET_PROGRESS_TYPE} from "@entities/Orbit/model/types";
+
 interface IShowPlanetsParents {
     parentsList: string | null,
     currentTarget: HTMLDivElement,
@@ -47,7 +50,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
             return
         }
 
-        const parentElement = document.querySelector<HTMLDivElement>(`[data-planet-id="${numberElementId}"]`);
+        const parentElement = document.querySelector<HTMLDivElement>(`[${DATA_PLANET_ID}="${numberElementId}"]`);
 
         const parentElementCoords = getElemCoords({
             elem: parentElement,
@@ -56,7 +59,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
             planetHeight
         });
 
-        const parentsListOfCurrentParent = parentElement?.getAttribute("data-planet-parent-list");
+        const parentsListOfCurrentParent = parentElement?.getAttribute(DATA_PLANET_CHILDREN_LIST);
         parentElement?.setAttribute("data-is-active", "1");
 
         const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -91,9 +94,9 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
 
         //если планета, к которой будем строить связь,
         //открыта или в процессе изучения, то дальше связи не строим
-        const parentElementProgress = parentElement?.getAttribute("data-planet-progress");
+        const parentElementProgress = parentElement?.getAttribute(DATA_PLANET_PROGRESS_TYPE);
 
-        if (parentElementProgress === "systemOpen" || parentElementProgress === "systemEducation") {
+        if (parentElementProgress === PlanetProgressTypes.SYSTEM_OPEN  || parentElementProgress === PlanetProgressTypes.SYSTEM_EDUCATION) {
             return;
         }
 

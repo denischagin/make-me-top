@@ -1,12 +1,13 @@
 import {SystemType} from "@entities/Galaxy/model/types";
 import {UserProgress} from "@entities/user/model/types";
+import {PlanetProgressTypes} from "@shared/types/common";
 
 interface IGetPlanetProgress {
     planet: SystemType,
     userProgress: UserProgress,
 }
 
-export const getPlanetProgress = (params: IGetPlanetProgress) => {
+export const getPlanetProgressType = (params: IGetPlanetProgress) => {
     const {
         planet,
         userProgress
@@ -17,7 +18,7 @@ export const getPlanetProgress = (params: IGetPlanetProgress) => {
     })
 
     if (isSystemOpen > -1) {
-        return "systemOpen";
+        return PlanetProgressTypes.SYSTEM_OPEN;
     }
 
     const isSystemClose = userProgress.closeSystemList.findIndex(closeSystemId => {
@@ -25,7 +26,7 @@ export const getPlanetProgress = (params: IGetPlanetProgress) => {
     })
 
     if (isSystemClose > -1) {
-        return "systemClose";
+        return PlanetProgressTypes.SYSTEM_CLOSE;
     }
 
     const isSystemEducation = userProgress.educationSystemList.findIndex(educationSystemId => {
@@ -33,8 +34,8 @@ export const getPlanetProgress = (params: IGetPlanetProgress) => {
     })
 
     if (isSystemEducation > -1) {
-        return "systemEducation";
+        return PlanetProgressTypes.SYSTEM_EDUCATION;
     }
 
-    return "progressNotFound"
+    return PlanetProgressTypes.PROGRESS_NOT_FOUND
 };

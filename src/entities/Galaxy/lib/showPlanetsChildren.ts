@@ -1,4 +1,5 @@
 import {getElemCoords} from "@entities/Galaxy/lib/getElemCoords";
+import {DATA_PLANET_ID} from "@entities/Orbit/model/types";
 
 interface IShowChildren {
     childrenList: string | null,
@@ -40,7 +41,7 @@ export const showPlanetsChildren = (params: IShowChildren) => {
             return
         }
 
-        const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
+        const childElement = document.querySelector<HTMLElement>(`[${DATA_PLANET_ID}="${numberElementId}"]`);
 
         const childElementCoords = getElemCoords({
             elem: childElement,

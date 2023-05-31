@@ -13,6 +13,12 @@ import { OrbitType } from "@entities/Galaxy/model/types";
 import {UserProgress} from "@entities/user/model/types";
 
 import "./style.scss";
+import {PlanetProgressTypes} from "@shared/types/common";
+import {
+  DATA_PLANET_CHILDREN_LIST,
+  DATA_PLANET_PARENT_LIST,
+  DATA_PLANET_PROGRESS_TYPE
+} from "@entities/Orbit/model/types";
 
 
 
@@ -71,13 +77,13 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
     const currentTarget = event.currentTarget;
 
-    const childrenList = currentTarget.getAttribute("data-planet-children-list");
-    const parentsList = currentTarget.getAttribute("data-planet-parent-list");
-    const planetProgress = currentTarget.getAttribute("data-planet-progress")
+    const childrenList = currentTarget.getAttribute(DATA_PLANET_CHILDREN_LIST);
+    const parentsList = currentTarget.getAttribute(DATA_PLANET_PARENT_LIST);
+    const planetProgressType = currentTarget.getAttribute(DATA_PLANET_PROGRESS_TYPE)
 
     event.currentTarget.setAttribute('data-is-active', '1');
 
-    if (planetProgress === "systemOpen" || planetProgress === "systemEducation") {
+    if (planetProgressType === PlanetProgressTypes.SYSTEM_OPEN || planetProgressType === PlanetProgressTypes.SYSTEM_EDUCATION) {
       showPlanetsChildren({
         childrenList,
         currentTarget,
@@ -87,7 +93,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       });
     }
 
-    if (planetProgress === "systemClose") {
+    if (planetProgressType === PlanetProgressTypes.SYSTEM_CLOSE) {
       showPlanetsParents({
         parentsList,
         currentTarget,
@@ -101,8 +107,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
     const currentTarget = event.currentTarget;
 
-    const childrenList = currentTarget.getAttribute("data-planet-children-list");
-    const parentsList = currentTarget.getAttribute("data-planet-parent-list");
+    const childrenList = currentTarget.getAttribute(DATA_PLANET_CHILDREN_LIST);
+    const parentsList = currentTarget.getAttribute(DATA_PLANET_PARENT_LIST);
 
     event.currentTarget.setAttribute('data-is-active', '0');
 

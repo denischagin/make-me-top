@@ -1,9 +1,11 @@
 import React from "react";
 
 import { ReactComponent as LockIcon } from "@shared/images/lock.svg";
-
-import {SystemType} from "@entities/Galaxy/model/types";
 import {Star} from "@shared/Star";
+
+import {UserProgress} from "@entities/user/model/types";
+import {PlanetProgressTypes} from "@shared/types/common";
+import {SystemType} from "@entities/Galaxy/model/types";
 
 import {getDigitalAngle} from "@entities/Orbit/lib/getDigitalAngle";
 import {getRadius} from "@entities/Orbit/lib/getRadius";
@@ -11,14 +13,11 @@ import {getXCoordinateOnEllipse} from "@entities/Orbit/lib/getXCoordinateOnEllip
 import {getYCoordinateOnEllipse} from "@entities/Orbit/lib/getYCoordinateOnEllipse";
 import {getPlanetParentData} from "@entities/Orbit/lib/getPlanetParentData";
 import {getPlanetChildData} from "@entities/Orbit/lib/getPlanetChildData";
-import {getPlanetProgress} from "@entities/Orbit/lib/getPlanetProgress";
-import {getPlanetColorByProgress} from "@entities/Orbit/lib/getPlanetColorByProgress";
+import {getPlanetProgressType} from "@entities/Orbit/lib/getPlanetProgressType";
+import {getPlanetColorByProgressType} from "@entities/Orbit/lib/getPlanetColorByProgressType";
 import {getPercentageProgress} from "@entities/Orbit/lib/getPercentageProgress";
 
 import "./styles.scss";
-
-import {UserProgress} from "@entities/user/model/types";
-
 
 interface IOrbitProps {
   userProgress: UserProgress
@@ -58,13 +57,13 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
       >
         {
           systemList.map((planet) => {
-          const planetProgress = getPlanetProgress({
+          const planetProgressType = getPlanetProgressType({
             planet,
             userProgress
           });
 
-          const planetColor = getPlanetColorByProgress({
-            planetProgress,
+          const planetColor = getPlanetColorByProgressType({
+            planetProgressType,
           });
 
           const planetPercentageProgress = getPercentageProgress({
@@ -105,7 +104,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
               data-planet-id={planet.systemId}
               data-planet-parent-list={getPlanetParentData(planet)}
               data-planet-children-list={getPlanetChildData(planet)}
-              data-planet-progress={planetProgress}
+              data-planet-progress-type={planetProgressType}
               data-is-active="0"
             >
               <Star
@@ -113,7 +112,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                   color={planetColor}
               >
                 {
-                  planetProgress === "systemClose" ?
+                  planetProgressType === PlanetProgressTypes.SYSTEM_CLOSE ?
                       <div className="orbit__content_lock-icon">
                         <LockIcon/>
                       </div>

@@ -17,3 +17,10 @@ export interface UserInterface {
   rating?: number | null;
   id?: number
 }
+
+export enum PlanetProgressTypes {
+  SYSTEM_CLOSE = "systemClose",
+  SYSTEM_OPEN = "systemOpen",
+  SYSTEM_EDUCATION = "systemEducation",
+  PROGRESS_NOT_FOUND = "progressNotFound"
+}
