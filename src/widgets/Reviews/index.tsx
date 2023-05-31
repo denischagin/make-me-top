@@ -1,5 +1,7 @@
 import { useAppSelector } from "@app/providers/store/hooks";
 
+import { reviewsSelector } from "@entities/curator/model/selectors";
+
 import { ReviewCard } from "@shared/ReviewCard";
 import { Typography } from "@shared/Typography";
 import { Button } from "@shared/Button";
@@ -14,7 +16,7 @@ import "./styles.scss";
 export const Reviews = () => {
   const [block, element] = bem("reviews");
 
-  const reviews = useAppSelector((state) => state.curator.reviews);
+  const reviews = useAppSelector(reviewsSelector);
 
   return (
     <div className={block()}>
