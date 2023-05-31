@@ -89,21 +89,24 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         size={cardSize.large}
         glow
       >
-        <div className={element("heading")}>
-          <Typography variant={typographyVariant.h2}>
-            Планета: {id}. {name}
-          </Typography>
-        </div>
-        <div className={element("current-star")}>
-          <Typography variant={typographyVariant.regular14}>
-            Звезда: {star}
-          </Typography>
-        </div>
-        <div className={element("current-curator", "mb-4")}>
-          <Typography variant={typographyVariant.regular14}>
-            Преподаватель: {curator}
-          </Typography>
-        </div>
+        <Typography
+          variant={typographyVariant.h2}
+          className={element("heading")}
+        >
+          Планета: {id}. {name}
+        </Typography>
+        <Typography
+          variant={typographyVariant.regular14}
+          className={element("current-star")}
+        >
+          Звезда: {star}
+        </Typography>
+        <Typography
+          variant={typographyVariant.regular14}
+          className={element("current-curator", "mb-4")}
+        >
+          Преподаватель: {curator}
+        </Typography>
         <span className={element("progress")}>
           <Typography
             variant={typographyVariant.medium16}

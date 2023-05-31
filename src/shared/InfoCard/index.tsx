@@ -20,13 +20,14 @@ export const InfoCard = (props: InfoCardInterface) => {
   return (
     <div className={block()}>
       <Card size={cardSize.small}>
-        <div className={element("heading")}>
-          <Typography variant={typographyVariant.regular16}>
-            { title }
-          </Typography>
-        </div>
+        <Typography
+          variant={typographyVariant.regular16}
+          className={element("heading")}
+        >
+          {title}
+        </Typography>
         <div className={element("value")}>
-          { value }
+          {value}
         </div>
       </Card>
     </div>

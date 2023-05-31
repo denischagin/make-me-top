@@ -33,11 +33,12 @@ export const UsersRating = (props: UserInfoInterface) => {
         size={avatarSize.small}
         image={avatar}
       />
-      <div className={element("user-name")}>
-        <Typography variant={typographyVariant.regular14}>
-          {name}
-        </Typography>
-      </div>
+      <Typography
+        variant={typographyVariant.regular14}
+        className={element("user-name")}
+      >
+        {name}
+      </Typography>
       <span className={element("user-score")}>
         <Rating
           rating={rating}
