@@ -35,8 +35,8 @@ export const hidePlanetsParents = (params: IHidePlanetsParents) => {
       DATA_PLANET_PARENT_LIST
     );
 
-    //изменение атрибута
-    parentElement?.setAttribute("data-is-active", "0");
+    // //изменение атрибута
+    // parentElement?.setAttribute("data-is-active", "0");
 
     //если у текущего parent элемента есть parent зависимости
     if (parentsListOfCurrentParent) {

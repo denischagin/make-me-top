@@ -22,6 +22,6 @@ export const hidePlanetsChildren = (params: IHidePlanetsChildren) => {
       `[${DATA_PLANET_ID}="${numberElementId}"]`
     );
 
-    childElement?.setAttribute("data-is-active", "0");
+    // childElement?.setAttribute("data-is-active", "0");
   });
 };

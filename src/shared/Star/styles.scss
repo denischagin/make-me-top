@@ -61,6 +61,20 @@
       transition: 0.3s;
       transform: scale(1);
     }
+
+    &_active {
+      filter: opacity(1);
+      padding: 0;
+      transition: 0.3s;
+      transform: scale(1);
+    }
+
+    &_inactive {
+      filter: opacity(0);
+      padding: 5px;
+      transition: 0.3s;
+      transform: scale(0.75);
+    }
   }
 
   &__orbit-icon {

@@ -8,6 +8,8 @@ import {
   DATA_PLANET_ID, DATA_PLANET_PARENT_LIST,
   DATA_PLANET_PROGRESS_TYPE,
 } from "@entities/Orbit/model/types";
+import React from "react";
+import {addActivePlanet} from "@entities/Galaxy/lib/addActivePlanet";
 
 interface IShowPlanetsParents {
   parentsList: string | null;
@@ -15,11 +17,11 @@ interface IShowPlanetsParents {
   planetWidth: number;
   planetHeight: number;
   svgContainer: SVGElement | null;
+  setActivePlanets:  React.Dispatch<React.SetStateAction<Array<number>>>,
   color?: string | null;
 }
 
-//рекурсивная функция изменения создания связей между текущей и всеми ее parent зависимостями
-//так же изменения dataset атрбута для всех parent зависимостей планеты
+//рекурсивная функция создания связей между текущей и всеми ее parent зависимостями
 //связи и атрибуты будут настроены у всех зависимых элементов вплоть до крайнего parent элемента без зависимостей
 //(атрибут активности при наведении)
 export const showPlanetsParents = (params: IShowPlanetsParents) => {
@@ -29,6 +31,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
     planetWidth,
     planetHeight,
     svgContainer,
+    setActivePlanets,
   } = params;
 
   const currentTargetCoords = getElemCoords({
@@ -53,6 +56,11 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
       return;
     }
 
+    addActivePlanet({
+      activePlanetId: numberElementId,
+      setActivePlanets,
+    })
+
     const parentElement = document.querySelector<HTMLDivElement>(
       `[${DATA_PLANET_ID}="${numberElementId}"]`
     );
@@ -67,7 +75,6 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
     const parentsListOfCurrentParent = parentElement?.getAttribute(
       DATA_PLANET_PARENT_LIST
     );
-    parentElement?.setAttribute("data-is-active", "1");
 
     const svgLine = document.createElementNS(
       "http://www.w3.org/2000/svg",
@@ -138,6 +145,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         planetWidth,
         planetHeight,
         svgContainer,
+        setActivePlanets,
         color,
       });
     }

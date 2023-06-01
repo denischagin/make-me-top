@@ -10,7 +10,7 @@ import { showPlanetsChildren } from "@entities/Galaxy/lib/showPlanetsChildren";
 import { showPlanetsParents } from "@entities/Galaxy/lib/showPlanetsParents";
 import { OrbitType } from "@entities/Galaxy/model/types";
 import {
-  DATA_PLANET_CHILDREN_LIST,
+  DATA_PLANET_CHILDREN_LIST, DATA_PLANET_ID,
   DATA_PLANET_PARENT_LIST,
   DATA_PLANET_PROGRESS_TYPE,
 } from "@entities/Orbit/model/types";
@@ -18,6 +18,8 @@ import Orbit from "@entities/Orbit/ui";
 import { UserProgress } from "@entities/user/model/types";
 
 import "./style.scss";
+
+import {addActivePlanet} from "@entities/Galaxy/lib/addActivePlanet";
 
 interface IGalaxyProps {
   galaxyPage: HTMLDivElement | null;
@@ -43,8 +45,10 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const { svgContainerClass, galaxyPage, userProgress, orbitList } = props;
 
   const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
+  const [activePlanets, setActivePlanets] = useState<Array<number>>([]);
+  const [starOrbitCollection, setStarOrbitCollection] = useState<NodeListOf<Element>>(document.querySelectorAll("div.orbit__content_planet"));
 
-  const width = props.width || 1920;
+  const width = props.width || 1920;// TODO деф присваивание
   const height = props.height || 910;
 
   const orbitWidthStep = width / (orbitList.length + 1);
@@ -59,6 +63,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     backgroundHeight: height + orbitHeightStep / 2,
   };
 
+
+
+  useEffect(() => {
+    setStarOrbitCollection(document.getElementsByClassName("orbit__content_planet"));
+  }, [])
+
   useEffect(() => {
     setSvgContainer(
       createSvgContainer({
@@ -68,16 +78,32 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     );
   }, [galaxyPage]);
 
+  useEffect(() => {
+    const arrFromList = Array.prototype.slice.call(starOrbitCollection);
+
+
+    arrFromList.forEach((planet) => {
+      const planetId = planet.getAttribute(DATA_PLANET_ID);
+      const planetOrbit = planet.querySelector("div.star__orbit");
+      console.log(planetId, planetOrbit)
+    })
+
+  }, [starOrbitCollection, activePlanets])
+
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
     const currentTarget = event.currentTarget;
 
+    const targetId = currentTarget.getAttribute(DATA_PLANET_ID)
     const childrenList = currentTarget.getAttribute(DATA_PLANET_CHILDREN_LIST);
     const parentsList = currentTarget.getAttribute(DATA_PLANET_PARENT_LIST);
     const planetProgressType = currentTarget.getAttribute(
       DATA_PLANET_PROGRESS_TYPE
     );
 
-    event.currentTarget.setAttribute("data-is-active", "1");
+    addActivePlanet({
+      activePlanetId: targetId,
+      setActivePlanets,
+    })
 
     if (
       planetProgressType === PlanetProgressTypes.SYSTEM_OPEN ||
@@ -89,6 +115,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         planetWidth: galaxyOrbitSettings.planetWidth,
         planetHeight: galaxyOrbitSettings.planetHeight,
         svgContainer,
+        setActivePlanets
       });
     }
 
@@ -99,6 +126,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         planetWidth: galaxyOrbitSettings.planetWidth,
         planetHeight: galaxyOrbitSettings.planetHeight,
         svgContainer,
+        setActivePlanets
       });
     }
   };
@@ -109,7 +137,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const childrenList = currentTarget.getAttribute(DATA_PLANET_CHILDREN_LIST);
     const parentsList = currentTarget.getAttribute(DATA_PLANET_PARENT_LIST);
 
-    event.currentTarget.setAttribute("data-is-active", "0");
+    // event.currentTarget.setAttribute("data-is-active", "0");
 
     hidePlanetsChildren({
       childrenList,
@@ -122,10 +150,13 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     deleteAllConnectionLines({
       svgContainer,
     });
+
+    setActivePlanets([]);
   };
 
   return (
     <div
+      id="galaxy-element"
       className="galaxy"
       style={{
         width: width,
