@@ -1,7 +1,8 @@
+import React from "react";
+
+import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
 import { getElemCoords } from "@entities/Galaxy/lib/getElemCoords";
 import { DATA_PLANET_ID } from "@entities/Orbit/model/types";
-import React from "react";
-import {addActivePlanet} from "@entities/Galaxy/lib/addActivePlanet";
 
 interface IShowChildren {
   childrenList: string | null;
@@ -9,7 +10,7 @@ interface IShowChildren {
   planetWidth: number;
   planetHeight: number;
   svgContainer: SVGElement | null;
-  setActivePlanets:  React.Dispatch<React.SetStateAction<Array<number>>>,
+  setActivePlanets: React.Dispatch<React.SetStateAction<Array<number>>>;
 }
 
 //функция создания svg линий связи между текущей планетой и всеми ее child зависимостями
@@ -21,7 +22,7 @@ export const showPlanetsChildren = (params: IShowChildren) => {
     planetHeight,
     planetWidth,
     svgContainer,
-    setActivePlanets
+    setActivePlanets,
   } = params;
 
   const currentTargetCoords = getElemCoords({

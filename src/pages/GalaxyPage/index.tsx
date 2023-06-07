@@ -9,6 +9,8 @@ import { getGalaxy } from "@entities/Galaxy/api/getGalaxy";
 import Galaxy from "@entities/Galaxy/ui";
 import { getUser } from "@entities/user/api/getUser";
 
+import { Header } from "@widgets/Header";
+
 import "./styles.scss";
 
 export const GalaxyPage: React.FC = () => {
@@ -63,6 +65,7 @@ export const GalaxyPage: React.FC = () => {
       ref={galaxyPageRef}
     >
       <BackgroundGalaxyPage />
+      <Header />
       <GalaxyPageName galaxyName={galaxyName} />
       <Galaxy
         galaxyPage={galaxyPageRef.current}

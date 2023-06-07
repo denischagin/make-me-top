@@ -3,6 +3,8 @@
 .header {
   background: $opacity-dark;
   height: 100px;
+  width: 100%;
+  z-index: 1;
 
   &__container {
     display: flex;

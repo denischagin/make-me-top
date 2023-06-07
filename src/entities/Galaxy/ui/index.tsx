@@ -1,7 +1,9 @@
 import React, { createRef, useEffect, useState } from "react";
 
 import { PlanetProgressTypes } from "@shared/types/common";
+import { bem } from "@shared/utils/bem";
 
+import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
 import { createSvgContainer } from "@entities/Galaxy/lib/createSvgContainer";
 import { deleteAllConnectionLines } from "@entities/Galaxy/lib/deleteAllConnectionLines";
 import { hidePlanetsChildren } from "@entities/Galaxy/lib/hidePlanetsChildren";
@@ -10,7 +12,8 @@ import { showPlanetsChildren } from "@entities/Galaxy/lib/showPlanetsChildren";
 import { showPlanetsParents } from "@entities/Galaxy/lib/showPlanetsParents";
 import { OrbitType } from "@entities/Galaxy/model/types";
 import {
-  DATA_PLANET_CHILDREN_LIST, DATA_PLANET_ID,
+  DATA_PLANET_CHILDREN_LIST,
+  DATA_PLANET_ID,
   DATA_PLANET_PARENT_LIST,
   DATA_PLANET_PROGRESS_TYPE,
 } from "@entities/Orbit/model/types";
@@ -18,8 +21,6 @@ import Orbit from "@entities/Orbit/ui";
 import { UserProgress } from "@entities/user/model/types";
 
 import "./style.scss";
-
-import {addActivePlanet} from "@entities/Galaxy/lib/addActivePlanet";
 
 interface IGalaxyProps {
   galaxyPage: HTMLDivElement | null;
@@ -45,10 +46,15 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const { svgContainerClass, galaxyPage, userProgress, orbitList } = props;
 
   const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
-  const [activePlanets, setActivePlanets] = useState<Array<number>>([]);
-  const [starOrbitCollection, setStarOrbitCollection] = useState<NodeListOf<Element>>(document.querySelectorAll("div.orbit__content_planet"));
+  const [activePlanetsId, setActivePlanetsId] = useState<Array<number>>([]);
+  const [planetsChild, setPlanetsChild] = useState<NodeListOf<HTMLDivElement>>(
+    document.querySelectorAll(
+      ".star__orbit.star__orbit--activity-inactive , .star__orbit.star__orbit--activity-active"
+    )
+  );
+  //TODO возможность добавить в state текущий элемент, котоырй будет изменятся при mouseenter
 
-  const width = props.width || 1920;// TODO деф присваивание
+  const width = props.width || 1920; // TODO деф присваивание
   const height = props.height || 910;
 
   const orbitWidthStep = width / (orbitList.length + 1);
@@ -63,12 +69,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     backgroundHeight: height + orbitHeightStep / 2,
   };
 
-
-
-  useEffect(() => {
-    setStarOrbitCollection(document.getElementsByClassName("orbit__content_planet"));
-  }, [])
-
   useEffect(() => {
     setSvgContainer(
       createSvgContainer({
@@ -79,31 +79,61 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   }, [galaxyPage]);
 
   useEffect(() => {
-    const arrFromList = Array.prototype.slice.call(starOrbitCollection);
+    setPlanetsChild(
+      document.querySelectorAll(
+        ".star__orbit.star__orbit--activity-inactive , .star__orbit.star__orbit--activity-active"
+      )
+    );
+  }, [activePlanetsId]);
 
+  useEffect(() => {
+    planetsChild.forEach((planet) => {
+      if (activePlanetsId.length === 0) {
+        planet.setAttribute(
+          "class",
+          "star__orbit star__orbit--activity-inactive"
+        );
+      } else {
+        activePlanetsId.forEach((planetId) => {
+          const planet = document.querySelector<HTMLElement>(
+            `[${DATA_PLANET_ID}="${planetId}"]`
+          );
 
-    arrFromList.forEach((planet) => {
-      const planetId = planet.getAttribute(DATA_PLANET_ID);
-      const planetOrbit = planet.querySelector("div.star__orbit");
-      console.log(planetId, planetOrbit)
-    })
+          if (planet === null) {
+            return;
+          }
 
-  }, [starOrbitCollection, activePlanets])
+          const planetChild = planet.querySelector(".star__orbit");
+
+          if (planetChild === null) {
+            return;
+          }
+
+          planetChild.setAttribute(
+            "class",
+            "star__orbit star__orbit--activity-active"
+          );
+        });
+      }
+    });
+  }, [planetsChild, activePlanetsId]);
 
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
     const currentTarget = event.currentTarget;
 
-    const targetId = currentTarget.getAttribute(DATA_PLANET_ID)
+    const targetId = currentTarget.getAttribute(DATA_PLANET_ID);
     const childrenList = currentTarget.getAttribute(DATA_PLANET_CHILDREN_LIST);
     const parentsList = currentTarget.getAttribute(DATA_PLANET_PARENT_LIST);
     const planetProgressType = currentTarget.getAttribute(
       DATA_PLANET_PROGRESS_TYPE
     );
 
+    console.log(true);
+
     addActivePlanet({
       activePlanetId: targetId,
-      setActivePlanets,
-    })
+      setActivePlanets: setActivePlanetsId,
+    });
 
     if (
       planetProgressType === PlanetProgressTypes.SYSTEM_OPEN ||
@@ -115,7 +145,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         planetWidth: galaxyOrbitSettings.planetWidth,
         planetHeight: galaxyOrbitSettings.planetHeight,
         svgContainer,
-        setActivePlanets
+        setActivePlanets: setActivePlanetsId,
       });
     }
 
@@ -126,7 +156,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         planetWidth: galaxyOrbitSettings.planetWidth,
         planetHeight: galaxyOrbitSettings.planetHeight,
         svgContainer,
-        setActivePlanets
+        setActivePlanets: setActivePlanetsId,
       });
     }
   };
@@ -137,8 +167,10 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const childrenList = currentTarget.getAttribute(DATA_PLANET_CHILDREN_LIST);
     const parentsList = currentTarget.getAttribute(DATA_PLANET_PARENT_LIST);
 
-    // event.currentTarget.setAttribute("data-is-active", "0");
+    setActivePlanetsId([]);
+    console.log(false);
 
+    // event.currentTarget.setAttribute("data-is-active", "0");
     hidePlanetsChildren({
       childrenList,
     });
@@ -150,8 +182,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     deleteAllConnectionLines({
       svgContainer,
     });
-
-    setActivePlanets([]);
   };
 
   return (

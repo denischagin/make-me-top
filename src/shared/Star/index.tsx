@@ -4,7 +4,6 @@ import { bem } from "@shared/utils/bem";
 
 import { StarInterface } from "./interfaces";
 import "./styles.scss";
-import {useRef} from "react";
 
 export const Star = (props: StarInterface) => {
   const [block, element] = bem("star");
@@ -17,9 +16,7 @@ export const Star = (props: StarInterface) => {
             <StarProgress percentageProgress={props.percentageProgress} />
           )}
         {props.children}
-        <div
-            className={element("orbit")}
-        >
+        <div className={element("orbit", { activity: "inactive" })}>
           <OrbitIcon
             className={element("orbit-icon", { color: props.color })}
           />
