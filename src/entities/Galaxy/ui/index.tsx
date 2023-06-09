@@ -11,6 +11,7 @@ import { createSvgContainer } from "@entities/Galaxy/lib/createSvgContainer";
 import { deleteAllConnectionLines } from "@entities/Galaxy/lib/deleteAllConnectionLines";
 import { hidePlanetsChildren } from "@entities/Galaxy/lib/hidePlanetsChildren";
 import { hidePlanetsParents } from "@entities/Galaxy/lib/hidePlanetsParents";
+import { setStarsActivity } from "@entities/Galaxy/lib/setStarsActivity";
 import { showPlanetsChildren } from "@entities/Galaxy/lib/showPlanetsChildren";
 import { showPlanetsParents } from "@entities/Galaxy/lib/showPlanetsParents";
 import { OrbitType, SystemType } from "@entities/Galaxy/model/types";
@@ -55,10 +56,10 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
   const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
   const [activePlanetsId, setActivePlanetsId] = useState<Array<number>>([]);
-  const [planetsChild, setPlanetsChild] = useState<NodeListOf<HTMLDivElement>>(
+  const [star, setStar] = useState<NodeListOf<HTMLDivElement>>(
     document.querySelectorAll(".star__orbit.star__orbit--activity-inactive")
   );
-  const [currentStar, setCurrentStar] = useState<SystemType>({
+  const [lastChosenStar, setLastChosenStar] = useState<SystemType>({
     systemId: 0,
     systemName: "Выбирете звезду",
     systemLevel: 0,
@@ -91,7 +92,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   }, [galaxyPage]);
 
   useEffect(() => {
-    setPlanetsChild(
+    setStar(
       document.querySelectorAll(
         ".star__orbit.star__orbit--activity-inactive , .star__orbit.star__orbit--activity-active"
       )
@@ -99,36 +100,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   }, [activePlanetsId]);
 
   useEffect(() => {
-    planetsChild.forEach((planet) => {
-      if (activePlanetsId.length === 0) {
-        planet.setAttribute(
-          "class",
-          "star__orbit star__orbit--activity-inactive"
-        );
-      } else {
-        activePlanetsId.forEach((planetId) => {
-          const planet = document.querySelector<HTMLElement>(
-            `[${DATA_PLANET_ID}="${planetId}"]`
-          );
-
-          if (planet === null) {
-            return;
-          }
-
-          const planetChild = planet.querySelector(".star__orbit");
-
-          if (planetChild === null) {
-            return;
-          }
-
-          planetChild.setAttribute(
-            "class",
-            "star__orbit star__orbit--activity-active"
-          );
-        });
-      }
+    setStarsActivity({
+      planetsChild: star,
+      activePlanetsId,
     });
-  }, [planetsChild, activePlanetsId]);
+  }, [star, activePlanetsId]);
 
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
     const currentTarget = event.currentTarget;
@@ -179,7 +155,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     setActivePlanetsId([]);
 
-    // event.currentTarget.setAttribute("data-is-active", "0");
     hidePlanetsChildren({
       childrenList,
     });
@@ -200,7 +175,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     FetchSystemById({
       id: targetId,
-    }).then((data) => setCurrentStar(data));
+    }).then((data) => setLastChosenStar(data));
   };
 
   return (
@@ -212,7 +187,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       }}
     >
       <Modal
-        name={currentStar.systemName}
+        name={lastChosenStar.systemName}
         locked
       >
         <MmtTabs list={TABS_LIST}>
