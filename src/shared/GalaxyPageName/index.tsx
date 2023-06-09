@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./styles.scss";
+import {bem} from "@shared/utils/bem";
 
 interface IGalaxyPageName {
   galaxyName: string;
@@ -9,10 +10,12 @@ interface IGalaxyPageName {
 const GalaxyPageName: React.FC<IGalaxyPageName> = (props) => {
   const { galaxyName } = props;
 
+  const [block, element] = bem("galaxy-page-name");
+
   return (
-    <div className="galaxyPageName">
-      <div className="galaxyPageName__page-context">Галактика</div>
-      <div className="galaxyPageName__galaxy-name">{galaxyName}</div>
+    <div className={block()}>
+      <div className={element("page-context")}>Галактика</div>
+      <div className={element(("galaxy-name"))}>{galaxyName}</div>
     </div>
   );
 };
