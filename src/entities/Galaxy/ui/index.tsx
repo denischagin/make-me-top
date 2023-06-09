@@ -1,33 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { TabPanel } from "react-tabs";
 
+
+
 import { MmtTabs } from "@shared/MmtTabs";
 import { Modal } from "@shared/Modal";
 import { PlanetProgressTypes } from "@shared/types/common";
 import { bem } from "@shared/utils/bem";
+
+
 
 import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
 import { createSvgContainer } from "@entities/Galaxy/lib/createSvgContainer";
 import { deleteAllConnectionLines } from "@entities/Galaxy/lib/deleteAllConnectionLines";
 import { hidePlanetsChildren } from "@entities/Galaxy/lib/hidePlanetsChildren";
 import { hidePlanetsParents } from "@entities/Galaxy/lib/hidePlanetsParents";
+import { isChosenStarClosed } from "@entities/Galaxy/lib/isChosenStarClosed";
 import { setStarsActivity } from "@entities/Galaxy/lib/setStarsActivity";
 import { showPlanetsChildren } from "@entities/Galaxy/lib/showPlanetsChildren";
 import { showPlanetsParents } from "@entities/Galaxy/lib/showPlanetsParents";
 import { OrbitType, SystemType } from "@entities/Galaxy/model/types";
 import { FetchSystemById } from "@entities/Orbit/api/getSystemById";
-import {
-  DATA_PLANET_CHILDREN_LIST,
-  DATA_PLANET_ID,
-  DATA_PLANET_PARENT_LIST,
-  DATA_PLANET_PROGRESS_TYPE,
-} from "@entities/Orbit/model/types";
+import { DATA_PLANET_CHILDREN_LIST, DATA_PLANET_ID, DATA_PLANET_PARENT_LIST, DATA_PLANET_PROGRESS_TYPE } from "@entities/Orbit/model/types";
 import Orbit from "@entities/Orbit/ui";
 import { UserProgress } from "@entities/user/model/types";
 
+
+
 import { TABS_LIST } from "@pages/Explorer/model";
 
+
+
 import "./style.scss";
+
 
 interface IGalaxyProps {
   galaxyPage: HTMLDivElement | null;
@@ -109,11 +114,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   }, [star, activePlanetsId]);
 
   useEffect(() => {
-    const searchResult = userProgress.closeSystemList.some(
-      (closeSystemId) => closeSystemId === lastChosenStar.systemId
+    setUserProgressOnLastChosenStar(
+      isChosenStarClosed({
+        userProgress,
+        lastChosenStar,
+      })
     );
-
-    setUserProgressOnLastChosenStar(searchResult);
   }, [lastChosenStar.systemId]);
 
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
