@@ -1,7 +1,9 @@
 import React from "react";
 
-import "./styles.scss";
 import {bem} from "@shared/utils/bem";
+
+import "./styles.scss";
+
 
 interface IGalaxyPageName {
   galaxyName: string;
