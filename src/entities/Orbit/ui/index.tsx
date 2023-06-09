@@ -112,11 +112,9 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                 percentageProgress={planetPercentageProgress}
                 color={planetColor}
               >
-                {planetProgressType === PlanetProgressTypes.SYSTEM_CLOSE ? (
-                  <div className="orbit__content_lock-icon">
-                    <LockIcon />
-                  </div>
-                ) : null}
+                {planetProgressType === PlanetProgressTypes.SYSTEM_CLOSE && (
+                  <LockIcon />
+                )}
                 <p className="orbit__content_planet-name">
                   {planet.systemName}
                 </p>
