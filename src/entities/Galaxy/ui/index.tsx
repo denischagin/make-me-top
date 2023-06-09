@@ -66,6 +66,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     positionSystem: 0,
     systemDependencyList: [],
   });
+  const [userProgressOnLastChosenStar, setUserProgressOnLastChosenStar] =
+    useState<boolean>(true);
 
   const width = props.width || 1920; // TODO деф присваивание
   const height = props.height || 910;
@@ -105,6 +107,14 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       activePlanetsId,
     });
   }, [star, activePlanetsId]);
+
+  useEffect(() => {
+    const searchResult = userProgress.closeSystemList.some(
+      (closeSystemId) => closeSystemId === lastChosenStar.systemId
+    );
+
+    setUserProgressOnLastChosenStar(searchResult);
+  }, [lastChosenStar.systemId]);
 
   const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
     const currentTarget = event.currentTarget;
@@ -188,7 +198,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     >
       <Modal
         name={lastChosenStar.systemName}
-        locked
+        locked={userProgressOnLastChosenStar}
       >
         <MmtTabs list={TABS_LIST}>
           <TabPanel>Контент 1</TabPanel>
