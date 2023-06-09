@@ -1,3 +1,3 @@
 export interface IStarProgressProps {
-    percentageProgress: number,
+    percentageProgress: number | undefined,
 }

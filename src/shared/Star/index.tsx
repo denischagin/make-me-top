@@ -11,10 +11,9 @@ export const Star = (props: StarInterface) => {
   return (
     <div className={block({ color: props.color })}>
       <div className={element("info", { color: props.color })}>
-        {props.percentageProgress === undefined ||
-        props.percentageProgress === 0 ? null : (
-            <StarProgress percentageProgress={props.percentageProgress} />
-          )}
+        {(props.percentageProgress !== 0) && (
+          <StarProgress percentageProgress={props.percentageProgress} />
+        )}
         {props.children}
         <div className={element("orbit", { activity: "inactive" })}>
           <OrbitIcon

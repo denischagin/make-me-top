@@ -10,7 +10,13 @@ const StarProgress: React.FC<IStarProgressProps> = (props) => {
 
   const [block, element] = bem("star-progress");
 
-  const percentageProgressToSVGPath = (percentageProgress: number): string => {
+  const percentageProgressToSVGPath = (
+    percentageProgress: number | undefined
+  ): string | undefined => {
+    if (percentageProgress === undefined) {
+      return;
+    }
+
     let pixelProgress = (80 / 100) * (100 - percentageProgress);
     const offsetForException100 = 20;
 

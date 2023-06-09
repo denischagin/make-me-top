@@ -49,10 +49,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const [activePlanetsId, setActivePlanetsId] = useState<Array<number>>([]);
   const [planetsChild, setPlanetsChild] = useState<NodeListOf<HTMLDivElement>>(
     document.querySelectorAll(
-      ".star__orbit.star__orbit--activity-inactive , .star__orbit.star__orbit--activity-active"
+      ".star__orbit.star__orbit--activity-inactive"
     )
   );
-  //TODO возможность добавить в state текущий элемент, котоырй будет изменятся при mouseenter
 
   const width = props.width || 1920; // TODO деф присваивание
   const height = props.height || 910;
