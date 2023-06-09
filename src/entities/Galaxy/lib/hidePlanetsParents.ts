@@ -20,7 +20,7 @@ export const hidePlanetsParents = (params: IHidePlanetsParents) => {
     //преобразование строки в массив формата [КодПланеты, ТипСвязи]
     const elementData = parent.split(":");
 
-    const [elementId, isAlternative] = elementData;
+    const [elementId] = elementData;
     const numberElementId = Number(elementId);
 
     if (isNaN(numberElementId)) {

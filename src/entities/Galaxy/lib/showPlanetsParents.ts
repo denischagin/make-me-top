@@ -1,15 +1,16 @@
+import React from "react";
+
 import { PlanetProgressTypes } from "@shared/types/common";
 
+import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
 import { getColorFromShelf } from "@entities/Galaxy/lib/colorShelf";
 import { getCoordsForConnection } from "@entities/Galaxy/lib/getCoordsForConnection";
 import { getElemCoords } from "@entities/Galaxy/lib/getElemCoords";
 import {
-  DATA_PLANET_CHILDREN_LIST,
-  DATA_PLANET_ID, DATA_PLANET_PARENT_LIST,
+  DATA_PLANET_ID,
+  DATA_PLANET_PARENT_LIST,
   DATA_PLANET_PROGRESS_TYPE,
 } from "@entities/Orbit/model/types";
-import React from "react";
-import {addActivePlanet} from "@entities/Galaxy/lib/addActivePlanet";
 
 interface IShowPlanetsParents {
   parentsList: string | null;
@@ -17,7 +18,7 @@ interface IShowPlanetsParents {
   planetWidth: number;
   planetHeight: number;
   svgContainer: SVGElement | null;
-  setActivePlanets:  React.Dispatch<React.SetStateAction<Array<number>>>,
+  setActivePlanets: React.Dispatch<React.SetStateAction<Array<number>>>;
   color?: string | null;
 }
 
@@ -59,7 +60,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
     addActivePlanet({
       activePlanetId: numberElementId,
       setActivePlanets,
-    })
+    });
 
     const parentElement = document.querySelector<HTMLDivElement>(
       `[${DATA_PLANET_ID}="${numberElementId}"]`
@@ -105,7 +106,10 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         "y2",
         String(lineCoordsWithoutOverlaps?.elementToConnect.top)
       );
-      svgLine.setAttribute("class", "galaxy-page__svg-container--connection-line");
+      svgLine.setAttribute(
+        "class",
+        "galaxy-page__svg-container--connection-line"
+      );
       svgLine.setAttribute("stroke", "white");
     }
 
@@ -117,7 +121,9 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
     if (color) {
       svgLine.setAttribute(
         "class",
-        `${svgLine?.getAttribute("class")} galaxy-page__svg-container--connection-line--${color}`
+        `${svgLine?.getAttribute(
+          "class"
+        )} galaxy-page__svg-container--connection-line--${color}`
       );
     }
 
