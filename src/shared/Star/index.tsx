@@ -7,11 +7,13 @@ import "./styles.scss";
 
 export const Star = (props: StarInterface) => {
   const [block, element] = bem("star");
+  console.log(props.percentageProgress);
 
   return (
     <div className={block({ color: props.color })}>
       <div className={element("info", { color: props.color })}>
-        {(props.percentageProgress !== 0) && (
+        {props.percentageProgress === 0 ||
+        props.percentageProgress === undefined ? null : (
           <StarProgress percentageProgress={props.percentageProgress} />
         )}
         {props.children}
