@@ -105,7 +105,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         "y2",
         String(lineCoordsWithoutOverlaps?.elementToConnect.top)
       );
-      svgLine.setAttribute("class", "galaxy__connection-line");
+      svgLine.setAttribute("class", "galaxy-page__svg-container--connection-line");
       svgLine.setAttribute("stroke", "white");
     }
 
@@ -114,11 +114,10 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
       color = getColorFromShelf();
     }
 
-    //WIP цвета связей
     if (color) {
       svgLine.setAttribute(
         "class",
-        `${svgLine?.getAttribute("class")} galaxy__connection-line_${color}`
+        `${svgLine?.getAttribute("class")} galaxy-page__svg-container--connection-line--${color}`
       );
     }
 

@@ -1,18 +1,18 @@
 import React, { useEffect, useRef } from "react";
 
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
-import {bem} from "@shared/utils/bem";
 
 import { BackgroundGalaxyPage } from "@shared/BackgroundGalaxyPage";
 import GalaxyPageName from "@shared/GalaxyPageName";
-import Galaxy from "@entities/Galaxy/ui";
-import { Header } from "@widgets/Header";
+import { bem } from "@shared/utils/bem";
 
 import { getGalaxy } from "@entities/Galaxy/api/getGalaxy";
+import Galaxy from "@entities/Galaxy/ui";
 import { getUser } from "@entities/user/api/getUser";
 
-import "./styles.scss";
+import { Header } from "@widgets/Header";
 
+import "./styles.scss";
 
 export const GalaxyPage: React.FC = () => {
   const [block, element] = bem("galaxy-page");

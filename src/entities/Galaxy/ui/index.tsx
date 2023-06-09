@@ -3,6 +3,8 @@ import React, { createRef, useEffect, useState } from "react";
 import { PlanetProgressTypes } from "@shared/types/common";
 import { bem } from "@shared/utils/bem";
 
+import Orbit from "@entities/Orbit/ui";
+
 import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
 import { createSvgContainer } from "@entities/Galaxy/lib/createSvgContainer";
 import { deleteAllConnectionLines } from "@entities/Galaxy/lib/deleteAllConnectionLines";
@@ -10,6 +12,7 @@ import { hidePlanetsChildren } from "@entities/Galaxy/lib/hidePlanetsChildren";
 import { hidePlanetsParents } from "@entities/Galaxy/lib/hidePlanetsParents";
 import { showPlanetsChildren } from "@entities/Galaxy/lib/showPlanetsChildren";
 import { showPlanetsParents } from "@entities/Galaxy/lib/showPlanetsParents";
+
 import { OrbitType } from "@entities/Galaxy/model/types";
 import {
   DATA_PLANET_CHILDREN_LIST,
@@ -17,7 +20,6 @@ import {
   DATA_PLANET_PARENT_LIST,
   DATA_PLANET_PROGRESS_TYPE,
 } from "@entities/Orbit/model/types";
-import Orbit from "@entities/Orbit/ui";
 import { UserProgress } from "@entities/user/model/types";
 
 import "./style.scss";
@@ -43,7 +45,14 @@ interface IGalaxyOrbitSettings {
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
-  const { svgContainerClass, galaxyPage, userProgress, orbitList } = props;
+  const {
+    svgContainerClass,
+    galaxyPage,
+    userProgress,
+    orbitList
+  } = props;
+
+  const [block, element] = bem("galaxy");
 
   const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
   const [activePlanetsId, setActivePlanetsId] = useState<Array<number>>([]);
@@ -185,15 +194,14 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
   return (
     <div
-      id="galaxy-element"
-      className="galaxy"
+      className={block()}
       style={{
         width: width,
         height: height,
       }}
     >
       <div
-        className="galaxy__background"
+        className={element("background")}
         style={{
           width: galaxyOrbitSettings.width,
           height: galaxyOrbitSettings.height,
