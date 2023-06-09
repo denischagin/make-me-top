@@ -1,9 +1,10 @@
-import React, { createRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { TabPanel } from "react-tabs";
 
+import { MmtTabs } from "@shared/MmtTabs";
+import { Modal } from "@shared/Modal";
 import { PlanetProgressTypes } from "@shared/types/common";
 import { bem } from "@shared/utils/bem";
-
-import Orbit from "@entities/Orbit/ui";
 
 import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
 import { createSvgContainer } from "@entities/Galaxy/lib/createSvgContainer";
@@ -12,15 +13,18 @@ import { hidePlanetsChildren } from "@entities/Galaxy/lib/hidePlanetsChildren";
 import { hidePlanetsParents } from "@entities/Galaxy/lib/hidePlanetsParents";
 import { showPlanetsChildren } from "@entities/Galaxy/lib/showPlanetsChildren";
 import { showPlanetsParents } from "@entities/Galaxy/lib/showPlanetsParents";
-
-import { OrbitType } from "@entities/Galaxy/model/types";
+import { OrbitType, SystemType } from "@entities/Galaxy/model/types";
+import { FetchSystemById } from "@entities/Orbit/api/getSystemById";
 import {
   DATA_PLANET_CHILDREN_LIST,
   DATA_PLANET_ID,
   DATA_PLANET_PARENT_LIST,
   DATA_PLANET_PROGRESS_TYPE,
 } from "@entities/Orbit/model/types";
+import Orbit from "@entities/Orbit/ui";
 import { UserProgress } from "@entities/user/model/types";
+
+import { TABS_LIST } from "@pages/Explorer/model";
 
 import "./style.scss";
 
@@ -45,22 +49,22 @@ interface IGalaxyOrbitSettings {
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
-  const {
-    svgContainerClass,
-    galaxyPage,
-    userProgress,
-    orbitList
-  } = props;
+  const { svgContainerClass, galaxyPage, userProgress, orbitList } = props;
 
   const [block, element] = bem("galaxy");
 
   const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
   const [activePlanetsId, setActivePlanetsId] = useState<Array<number>>([]);
   const [planetsChild, setPlanetsChild] = useState<NodeListOf<HTMLDivElement>>(
-    document.querySelectorAll(
-      ".star__orbit.star__orbit--activity-inactive"
-    )
+    document.querySelectorAll(".star__orbit.star__orbit--activity-inactive")
   );
+  const [currentStar, setCurrentStar] = useState<SystemType>({
+    systemId: 0,
+    systemName: "Выбирете звезду",
+    systemLevel: 0,
+    positionSystem: 0,
+    systemDependencyList: [],
+  });
 
   const width = props.width || 1920; // TODO деф присваивание
   const height = props.height || 910;
@@ -136,8 +140,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       DATA_PLANET_PROGRESS_TYPE
     );
 
-    console.log(true);
-
     addActivePlanet({
       activePlanetId: targetId,
       setActivePlanets: setActivePlanetsId,
@@ -176,7 +178,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const parentsList = currentTarget.getAttribute(DATA_PLANET_PARENT_LIST);
 
     setActivePlanetsId([]);
-    console.log(false);
 
     // event.currentTarget.setAttribute("data-is-active", "0");
     hidePlanetsChildren({
@@ -192,6 +193,16 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     });
   };
 
+  const handlePlanetClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const currentTarget = event.currentTarget;
+
+    const targetId = Number(currentTarget.getAttribute(DATA_PLANET_ID));
+
+    FetchSystemById({
+      id: targetId,
+    }).then((data) => setCurrentStar(data));
+  };
+
   return (
     <div
       className={block()}
@@ -200,6 +211,16 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         height: height,
       }}
     >
+      <Modal
+        name={currentStar.systemName}
+        locked
+      >
+        <MmtTabs list={TABS_LIST}>
+          <TabPanel>Контент 1</TabPanel>
+          <TabPanel>Контент 2</TabPanel>
+          <TabPanel>Контент 3</TabPanel>
+        </MmtTabs>
+      </Modal>
       <div
         className={element("background")}
         style={{
@@ -222,6 +243,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
               width: galaxyOrbitSettings.planetWidth + "px",
               height: galaxyOrbitSettings.planetHeight + "px",
             }}
+            handlePlanetClick={handlePlanetClick}
             handlePlanetMouseEnter={handlePlanetMouseEnter}
             handlePlanetMouseLeave={handlePlanetMouseLeave}
           />

@@ -8,7 +8,7 @@ interface IGalaxyPageName {
   galaxyName: string;
 }
 
-const GalaxyPageName: React.FC<IGalaxyPageName> = (props) => {
+export const GalaxyPageName: React.FC<IGalaxyPageName> = (props) => {
   const { galaxyName } = props;
 
   const [block, element] = bem("galaxy-page-name");
@@ -20,5 +20,3 @@ const GalaxyPageName: React.FC<IGalaxyPageName> = (props) => {
     </div>
   );
 };
-
-export default GalaxyPageName;

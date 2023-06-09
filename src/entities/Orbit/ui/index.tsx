@@ -17,6 +17,8 @@ import { getYCoordinateOnEllipse } from "@entities/Orbit/lib/getYCoordinateOnEll
 import { UserProgress } from "@entities/user/model/types";
 
 import "./styles.scss";
+import {showModal} from "@entities/user/model/slice";
+import {useAppDispatch} from "@app/providers/store/hooks";
 
 interface IOrbitProps {
   userProgress: UserProgress;
@@ -24,6 +26,7 @@ interface IOrbitProps {
   orbitWidth: number;
   orbitHeight: number;
   planetStyle?: React.CSSProperties;
+  handlePlanetClick: (event: React.MouseEvent<HTMLDivElement>) => void;
   handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
   handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
@@ -35,9 +38,12 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
     orbitWidth,
     orbitHeight,
     planetStyle,
+    handlePlanetClick,
     handlePlanetMouseEnter,
     handlePlanetMouseLeave,
   } = props;
+
+  const dispatch = useAppDispatch();
 
   const orbitHalfWidth = orbitWidth / 2;
   const orbitHalfHeight = orbitHeight / 2;
@@ -95,6 +101,10 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
             <div
               key={planet.systemId}
               className="orbit__content_planet"
+              onClick={(event) => {
+                dispatch(showModal());
+                handlePlanetClick(event);
+              }}
               onMouseEnter={handlePlanetMouseEnter}
               onMouseLeave={handlePlanetMouseLeave}
               style={{

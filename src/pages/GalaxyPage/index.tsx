@@ -1,81 +1,81 @@
-import React, { useEffect, useRef } from "react";
+import React, {useEffect, useRef} from "react";
 
-import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
+import {useAppDispatch, useAppSelector} from "@app/providers/store/hooks";
 
-import { BackgroundGalaxyPage } from "@shared/BackgroundGalaxyPage";
-import GalaxyPageName from "@shared/GalaxyPageName";
-import { bem } from "@shared/utils/bem";
+import {BackgroundGalaxyPage} from "@shared/BackgroundGalaxyPage";
+import {GalaxyPageName} from "@shared/GalaxyPageName";
+import {Header} from "@widgets/Header";
+import {bem} from "@shared/utils/bem";
 
-import { getGalaxy } from "@entities/Galaxy/api/getGalaxy";
+import {getGalaxy} from "@entities/Galaxy/api/getGalaxy";
 import Galaxy from "@entities/Galaxy/ui";
-import { getUser } from "@entities/user/api/getUser";
-
-import { Header } from "@widgets/Header";
+import {getUser} from "@entities/user/api/getUser";
 
 import "./styles.scss";
 
 export const GalaxyPage: React.FC = () => {
-  const [block, element] = bem("galaxy-page");
+    const [block, element] = bem("galaxy-page");
 
-  const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
-  const galaxyPageRef = useRef<HTMLDivElement | null>(null);
 
-  const testUserProgress = {
-    openSystemList: [4, 7, 8, 9, 10, 13, 17],
-    closeSystemList: [11, 12, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24],
-    educationSystemList: [
-      {
-        systemId: 1,
-        completed: 25,
-      },
-      {
-        systemId: 2,
-        completed: 50,
-      },
-      {
-        systemId: 3,
-        completed: 75,
-      },
-      {
-        systemId: 5,
-        completed: 50,
-      },
-      {
-        systemId: 6,
-        completed: 100,
-      },
-    ],
-  };
+    const galaxyPageRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    dispatch(getGalaxy({}));
+    const testUserProgress = {
+        openSystemList: [4, 7, 8, 9, 10, 13, 17],
+        closeSystemList: [11, 12, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24],
+        educationSystemList: [
+            {
+                systemId: 1,
+                completed: 25,
+            },
+            {
+                systemId: 2,
+                completed: 50,
+            },
+            {
+                systemId: 3,
+                completed: 75,
+            },
+            {
+                systemId: 5,
+                completed: 50,
+            },
+            {
+                systemId: 6,
+                completed: 100,
+            },
+        ],
+    };
 
-    // dispatch(getUser({
-    //     username: "test"
-    // }));
-  }, []);
+    useEffect(() => {
+        dispatch(getGalaxy({}));
 
-  const user = useAppSelector((state) => state.user.userData);
+        // dispatch(getUser({
+        //     username: "test"
+        // }));
+    }, []);
 
-  const galaxyName = useAppSelector((state) => state.galaxy.galaxyName);
+    const user = useAppSelector((state) => state.user.userData);
 
-  const orbitList = useAppSelector((state) => state.galaxy.orbitList);
+    const galaxyName = useAppSelector((state) => state.galaxy.galaxyName);
 
-  return (
-    <div
-      className={block()}
-      ref={galaxyPageRef}
-    >
-      <BackgroundGalaxyPage />
-      <Header />
-      <GalaxyPageName galaxyName={galaxyName} />
-      <Galaxy
-        galaxyPage={galaxyPageRef.current}
-        svgContainerClass={element("svg-container")}
-        userProgress={testUserProgress}
-        orbitList={orbitList}
-      />
-    </div>
-  );
+    const orbitList = useAppSelector((state) => state.galaxy.orbitList);
+
+    return (
+        <div
+            className={block()}
+            ref={galaxyPageRef}
+        >
+            <BackgroundGalaxyPage/>
+            <Header/>
+            <GalaxyPageName galaxyName={galaxyName}/>
+            <Galaxy
+                galaxyPage={galaxyPageRef.current}
+                svgContainerClass={element("svg-container")}
+                userProgress={testUserProgress}
+                orbitList={orbitList}
+            />
+        </div>
+    );
 };
