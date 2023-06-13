@@ -43,13 +43,13 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                 className={element("star-title")}
                 variant={typographyVariant.regular14}
               >
-                Звезда: {user.star}
+                {`Звезда: ${user.star}`}
               </Typography>
               <Typography
                 className={element("planet")}
                 variant={typographyVariant.medium16}
               >
-                Планета: {user.planet}
+                {`Планета: ${user.planet}`}
               </Typography>
             </div>
           </div>

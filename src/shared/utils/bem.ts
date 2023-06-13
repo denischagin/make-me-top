@@ -57,6 +57,23 @@ function getAdditionalClasses(
   return `${blockName} ${blockClasses.join(" ")}`;
 }
 
+/**
+ * Возвращает две мемоизированные функции для генерации классов блока и классов элемента
+ *
+ * @example
+ * const [block, element] = useBem('block-name')
+ * return (
+ *     <div className={block({modA: true, modD: 42})}>
+ *         <p className={element('element-name', {modA: true, modD: 42})} >
+ *             ...
+ *         </p>
+ *     </div>
+ * )
+ *
+ * @param {string} blockName - имя блока
+ *
+ * @return {[Function, Function]} - [block, element]
+ */
 export function bem(blockName: string): UseBemMethods {
   const block: GetClassBlock = useCallback(
     (

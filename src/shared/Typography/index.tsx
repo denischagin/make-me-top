@@ -6,20 +6,25 @@ import "./styles.scss";
 
 export const Typography = (props: TypographyInterface) => {
   const {
-    className
+    className,
+    color,
+    variant,
+    children,
+    onClick,
   } = props;
 
   const [block, element] = bem("typography");
 
   return (
     <div
+      onClick={onClick}
       className={block({
-        color: props.color,
-        variant: props.variant,
+        color,
+        variant,
       })}
     >
       <div className={className}>
-        {props.children}
+        {children}
       </div>
     </div>
   );

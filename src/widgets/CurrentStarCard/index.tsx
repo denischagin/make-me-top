@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 import { showModal } from "@entities/user/model/slice";
 import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 import {
-  curatorsListSelector,
-  explorersListSelector,
+  userCuratorsListSelector,
+  userExplorersListSelector,
   userInfoSelector
 } from "@entities/user/model/selectors";
 
@@ -56,8 +56,8 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
   const dispatch = useAppDispatch();
   const userInfo = useAppSelector(userInfoSelector);
-  const explorersList = useAppSelector(explorersListSelector);
-  const curatorsList = useAppSelector(curatorsListSelector);
+  const explorersList = useAppSelector(userExplorersListSelector);
+  const curatorsList = useAppSelector(userCuratorsListSelector);
 
   return (
     <div className={block()}>
@@ -93,26 +93,26 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
           variant={typographyVariant.h2}
           className={element("heading")}
         >
-          Планета: {id}. {name}
+          {`Планета: ${id}. ${name}`}
         </Typography>
         <Typography
           variant={typographyVariant.regular14}
           className={element("current-star")}
         >
-          Звезда: {star}
+          {`Звезда: ${star}`}
         </Typography>
         <Typography
           variant={typographyVariant.regular14}
           className={element("current-curator", "mb-4")}
         >
-          Преподаватель: {curator}
+          {`Преподаватель: ${curator}`}
         </Typography>
         <span className={element("progress")}>
           <Typography
             variant={typographyVariant.medium16}
             color={typographyColor.primary500}
           >
-            Освоено {progress}%
+            {`Освоено ${progress}%`}
           </Typography>
           <ProgressBar progress={progress} />
         </span>

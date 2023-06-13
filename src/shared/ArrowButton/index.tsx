@@ -17,7 +17,7 @@ export const ArrowButton = (props: ArrowButtonInterface) => {
   return (
     <div
       onClick={onClick}
-      className={block({ direction: direction })}
+      className={block({ direction })}
     >
       <ArrowIcon className={element("arrow")} />
       <div className={element("circle")} />

@@ -31,10 +31,13 @@
     right: 49.79%;
     top: 47.19%;
     bottom: 0%;
-
     background: $nebula-purple;
     filter: blur(150px);
     border-radius: 760px;
+
+    &--changePos {
+      transform: translate(0, -400px);
+    }
   }
 
   &__nebula-second {
@@ -43,7 +46,6 @@
     right: 66.41%;
     top: 50.2%;
     bottom: 10.06%;
-
     background: $nebula-blue;
     filter: blur(150px);
 
@@ -55,6 +57,10 @@
 
       filter: blur(85px);
     }
+
+    &--changePos {
+      transform: translate(0, -400px);
+    }
   }
 
   &__nebula-third {
@@ -63,9 +69,12 @@
     right: 8.91%;
     top: 5.12%;
     bottom: 72.49%;
-
     background: $nebula-blue;
     filter: blur(100px);
+
+    &--changePos {
+      transform: translate(0, 450px);
+    }
   }
 
   &__star-first,

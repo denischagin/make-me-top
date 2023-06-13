@@ -1,16 +1,13 @@
-import { useAppSelector } from "@app/providers/store/hooks";
-
 import { bem } from "@shared/utils/bem";
 import { BackgroundProfile } from "@shared/BackgroundProfile";
 import { ArrowButton } from "@shared/ArrowButton";
-import { InfoCard } from "@shared/InfoCard";
-
-import { arrowButtonDirection } from "@shared/ArrowButton/interfaces";
 
 import { Header } from "@widgets/Header";
 import { Reviews } from "@widgets/Reviews";
 import { CuratorCardUserInfo } from "@widgets/CuratorCardUserInfo";
 import { CuratorStars } from "@widgets/CuratorStars";
+
+import { arrowButtonDirection } from "@shared/ArrowButton/interfaces";
 
 import "./styles.scss";
 

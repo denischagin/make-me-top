@@ -11,7 +11,8 @@ export const getModalPlanets = createAsyncThunk(
       const response = await fetch(`${URL_MMT_PLANET}${planetId}`);
 
       return await response.json();
-    } catch (error) {
+    }
+    catch (error) {
       console.log("Не удалось получить список планет");
     }
   }

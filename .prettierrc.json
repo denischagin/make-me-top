@@ -25,7 +25,10 @@
     "./styles",
     "^[./]"
   ],
+  "bracketSameLine": false,
+  "jsxBracketSameLine": false,
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "bracketSpacing": true
+  "bracketSpacing": true,
+  "arrowParens": "always"
 }

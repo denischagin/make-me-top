@@ -9,22 +9,22 @@ export const userInfoSelector = createSelector(
   (userState) => userState.userInfo
 );
 
-export const isModalOpenSelector = createSelector(
+export const userIsModalOpenSelector = createSelector(
   userState,
   (userState) => userState.isModalOpen
 );
 
-export const planetListSelector = createSelector(
+export const userPlanetListSelector = createSelector(
   userState,
   (userState) => userState.planetList
 );
 
-export const explorersListSelector = createSelector(
+export const userExplorersListSelector = createSelector(
   userState,
   (userState) => userState.explorersList
 );
 
-export const curatorsListSelector = createSelector(
+export const userCuratorsListSelector = createSelector(
   userState,
   (userState) => userState.curatorsList
 );

@@ -4,6 +4,7 @@ import { Card } from "@shared/Card";
 import { Typography } from "@shared/Typography";
 import { Rating } from "@shared/Rating";
 import { Avatar } from "@shared/Avatar";
+import { ShowMoreText } from "@shared/ShowMoreText";
 import { ReviewModal } from "@shared/ReviewModal";
 
 import { bem } from "@shared/utils/bem";
@@ -32,6 +33,8 @@ export const ReviewCard = (props: ReviewCardInterface) => {
 
   const [block, element] = bem("review-card");
   const [isExpanded, setIsExpanded] = useState(false);
+
+  console.log(isExpanded);
 
   return (
     <>
@@ -75,16 +78,10 @@ export const ReviewCard = (props: ReviewCardInterface) => {
             >
               {sliceString(comment, 180)}
             </Typography>
-            {
-              comment.length > 180 &&
-              <Typography
-                className={element("expand")}
-                onClick={() => setIsExpanded(!isExpanded)}
-                variant={typographyVariant.regular14}
-              >
-                Прочитать полностью
-              </Typography>
-            }
+            <ShowMoreText
+              setIsExpanded={setIsExpanded}
+              isExpanded={isExpanded}
+            />
           </div>
         </Card>
       </div>

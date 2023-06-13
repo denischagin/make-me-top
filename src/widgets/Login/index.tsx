@@ -19,7 +19,7 @@ import "./styles.scss";
 export const Login = () => {
   const [block, element] = bem("login");
 
-  const explorer = useAppSelector(isExplorerSelector);
+  const isExplorer = useAppSelector(isExplorerSelector);
   const dispatch = useAppDispatch();
 
   return (
@@ -39,7 +39,7 @@ export const Login = () => {
           placeholder="Пароль"
           type="password"
         />
-        <RouterLink path={explorer ? URL_EXPLORER : URL_CURATOR}>
+        <RouterLink path={isExplorer ? URL_EXPLORER : URL_CURATOR}>
           <PlanetButton
             onClick={() => console.log("logged")}
             title="Войти"

@@ -10,7 +10,7 @@ import { ReactComponent as LockIcon } from "@shared/images/lock-big.svg";
 
 import { bem } from "@shared/utils/bem";
 
-import { isModalOpenSelector } from "@entities/user/model/selectors";
+import { userIsModalOpenSelector } from "@entities/user/model/selectors";
 
 import { ModalInterface } from "./interfaces";
 import {
@@ -23,16 +23,16 @@ import "./styles.scss";
 export const Modal = (props: ModalInterface) => {
   const {
     name,
-    locked,
+    isLocked,
     children
   } = props;
 
   const [block, element] = bem("modal");
 
-  const isModalOpen = useAppSelector(isModalOpenSelector);
+  const isModalOpen = useAppSelector(userIsModalOpenSelector);
   const dispatch = useAppDispatch();
 
-  const lockIcon = locked && <LockIcon className={element("lock-icon")} />;
+  const lockIcon = isLocked && <LockIcon className={element("lock-icon")} />;
 
   return (
     <Portal target={document.body}>

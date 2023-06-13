@@ -35,7 +35,7 @@ export const ExplorerCardList = (props: ExplorerCardListInterface) => {
         <Typography
           className={element("card-heading", "mb-4")}
           variant={typographyVariant.regular16}>
-          Всего учеников: {totalExplorers}
+          {`Всего учеников: ${totalExplorers}`}
         </Typography>
         {explorers.slice(0, 9).map((item: ExplorerCardInterface) => (
           <ExplorerCard
