@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { TabPanel } from "react-tabs";
 
-
-
 import { MmtTabs } from "@shared/MmtTabs";
 import { Modal } from "@shared/Modal";
 import { PlanetProgressTypes } from "@shared/types/common";
 import { bem } from "@shared/utils/bem";
-
-
 
 import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
 import { createSvgContainer } from "@entities/Galaxy/lib/createSvgContainer";
@@ -19,17 +15,14 @@ import { isChosenStarClosed } from "@entities/Galaxy/lib/isChosenStarClosed";
 import { setStarsActivity } from "@entities/Galaxy/lib/setStarsActivity";
 import { showPlanetsChildren } from "@entities/Galaxy/lib/showPlanetsChildren";
 import { showPlanetsParents } from "@entities/Galaxy/lib/showPlanetsParents";
+
 import { OrbitType, SystemType } from "@entities/Galaxy/model/types";
 import { FetchSystemById } from "@entities/Orbit/api/getSystemById";
 import { DATA_PLANET_CHILDREN_LIST, DATA_PLANET_ID, DATA_PLANET_PARENT_LIST, DATA_PLANET_PROGRESS_TYPE } from "@entities/Orbit/model/types";
 import Orbit from "@entities/Orbit/ui";
 import { UserProgress } from "@entities/user/model/types";
 
-
-
 import { TABS_LIST } from "@pages/Explorer/model";
-
-
 
 import "./style.scss";
 
@@ -55,7 +48,12 @@ interface IGalaxyOrbitSettings {
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
-  const { svgContainerClass, galaxyPage, userProgress, orbitList } = props;
+  const {
+    svgContainerClass,
+    galaxyPage,
+    userProgress,
+    orbitList
+  } = props;
 
   const [block, element] = bem("galaxy");
 
