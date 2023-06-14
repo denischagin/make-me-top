@@ -3,14 +3,14 @@ import { Star } from "@shared/Star";
 
 import { bem } from "@shared/utils/bem";
 
+import { COMPLETED_STARS_LIST } from "./model";
+
 import {
   ratingScoreColor,
   ratingSize,
   ratingStarColor,
 } from "@shared/Rating/interfaces";
 import { starColor } from "@shared/Star/interfaces";
-
-import { COMPLETED_STARS_LIST } from "./model";
 
 import "./styles.scss";
 

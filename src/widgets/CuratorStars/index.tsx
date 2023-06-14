@@ -1,3 +1,5 @@
+import { arrayOfStars } from "./model";
+
 import { Star } from "@shared/Star";
 import { bem } from "@shared/utils/bem";
 import { Rating } from "@shared/Rating";
@@ -5,8 +7,6 @@ import { starColor } from "@shared/Star/interfaces";
 import { ratingScoreColor, ratingSize, ratingStarColor } from "@shared/Rating/interfaces";
 import { Typography } from "@shared/Typography";
 import { typographyVariant } from "@shared/Typography/interfaces";
-
-import { arrayOfStars } from "./model";
 
 import "./styles.scss";
 

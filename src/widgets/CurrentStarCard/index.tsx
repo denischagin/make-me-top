@@ -7,7 +7,8 @@ import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 import {
   userCuratorsListSelector,
   userExplorersListSelector,
-  userInfoSelector
+  userInfoSelector,
+  userIsModalOpenSelector
 } from "@entities/user/model/selectors";
 
 import { Button } from "@shared/Button";
@@ -16,7 +17,7 @@ import { CurrentUserItem } from "@shared/CurrentUserItem";
 import { DividingLine } from "@shared/DividingLine";
 import { FinalGrade } from "@shared/FinalGrade";
 import { MmtTabs } from "@shared/MmtTabs";
-import { Modal } from "@shared/Modal";
+import { CircleModal } from "@shared/CircleModal";
 import { PlanetList } from "@shared/PlanetList";
 import { Typography } from "@shared/Typography";
 import { UsersList } from "@shared/UsersList";
@@ -58,33 +59,37 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
   const userInfo = useAppSelector(userInfoSelector);
   const explorersList = useAppSelector(userExplorersListSelector);
   const curatorsList = useAppSelector(userCuratorsListSelector);
+  const isModalOpen = useAppSelector(userIsModalOpenSelector);
 
   return (
     <div className={block()}>
-      <Modal name="Groovy">
-        <MmtTabs list={tabsList}>
-          <TabPanel>
-            <PlanetList currentPlanet={CURRENT_PLANET} />
-            <FinalGrade />
-          </TabPanel>
-          <TabPanel>
-            <CurrentUserItem
-              user={userInfo}
-              badgeTitle="Мой рейтинг"
-            />
-            <DividingLine color={DividingLineColor.gray500} />
-            <UsersList list={explorersList} />
-          </TabPanel>
-          <TabPanel>
-            <CurrentUserItem
-              user={userInfo}
-              badgeTitle="Мой хранитель"
-            />
-            <DividingLine color={DividingLineColor.gray500} />
-            <UsersList list={curatorsList} />
-          </TabPanel>
-        </MmtTabs>
-      </Modal>
+      {
+        isModalOpen &&
+        <CircleModal name="Groovy">
+          <MmtTabs list={tabsList}>
+            <TabPanel>
+              <PlanetList currentPlanet={CURRENT_PLANET} />
+              <FinalGrade />
+            </TabPanel>
+            <TabPanel>
+              <CurrentUserItem
+                user={userInfo}
+                badgeTitle="Мой рейтинг"
+              />
+              <DividingLine color={DividingLineColor.gray500} />
+              <UsersList list={explorersList} />
+            </TabPanel>
+            <TabPanel>
+              <CurrentUserItem
+                user={userInfo}
+                badgeTitle="Мой хранитель"
+              />
+              <DividingLine color={DividingLineColor.gray500} />
+              <UsersList list={curatorsList} />
+            </TabPanel>
+          </MmtTabs>
+        </CircleModal>
+      }
       <Card
         size={cardSize.large}
         glow

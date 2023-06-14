@@ -7,6 +7,12 @@ import { BackgroundProfile } from "@shared/BackgroundProfile";
 
 import { bem } from "@shared/utils/bem";
 
+import {
+  STAR_INFO,
+  TABS_LIST,
+  USERS_LIST
+} from "./model";
+
 import { CompletedStars } from "@widgets/CompletedStars";
 import { CurrentStarCard } from "@widgets/CurrentStarCard";
 import { Header } from "@widgets/Header";
@@ -14,12 +20,6 @@ import { RatingCard } from "@widgets/RatingCard";
 import { ExplorerUserInfo } from "@widgets/ExplorerUserInfo";
 
 import { typographyVariant } from "@shared/Typography/interfaces";
-
-import {
-  STAR_INFO,
-  TABS_LIST,
-  USERS_LIST
-} from "./model";
 
 import "./styles.scss";
 

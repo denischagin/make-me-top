@@ -4,6 +4,12 @@ import { Typography } from "@shared/Typography";
 
 import { bem } from "@shared/utils/bem";
 
+import {
+  APPLICATIONS_LIST,
+  GRADE_APPLICATIONS_LIST,
+  MY_EXPLORERS,
+} from "./model";
+
 import { EducationApplications } from "@widgets/EducationApplications";
 import { ExplorerCardList } from "@widgets/ExplorerCardList";
 import { GradeApplications } from "@widgets/GradeApplications";
@@ -11,12 +17,6 @@ import { Header } from "@widgets/Header";
 import { CuratorUserInfo } from "@widgets/CuratorUserInfo";
 
 import { typographyVariant } from "@shared/Typography/interfaces";
-
-import {
-  APPLICATIONS_LIST,
-  GRADE_APPLICATIONS_LIST,
-  MY_EXPLORERS,
-} from "./model";
 
 import "./styles.scss";
 

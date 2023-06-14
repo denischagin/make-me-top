@@ -5,7 +5,7 @@ import { Typography } from "@shared/Typography";
 import { Rating } from "@shared/Rating";
 import { Avatar } from "@shared/Avatar";
 import { ShowMoreText } from "@shared/ShowMoreText";
-import { ReviewModal } from "@shared/ReviewModal";
+import { Modal } from "@shared/Modal";
 
 import { bem } from "@shared/utils/bem";
 import { sliceString } from "@shared/utils/sliceString";
@@ -36,11 +36,14 @@ export const ReviewCard = (props: ReviewCardInterface) => {
 
   return (
     <>
-      <ReviewModal
-        review={review}
-        setIsExpanded={setIsExpanded}
-        isExpanded={isExpanded}
-      />
+      {
+        isExpanded &&
+        <Modal
+          review={review}
+          setIsExpanded={setIsExpanded}
+          isExpanded={isExpanded}
+        />
+      }
       <div className={block()}>
         <Card
           size={cardSize.medium}
