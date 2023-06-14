@@ -1,5 +1,4 @@
 import { Typography } from "@shared/Typography";
-import { ReviewModal } from "@shared/ReviewModal";
 
 import { bem } from "@shared/utils/bem";
 
@@ -10,23 +9,21 @@ import "./styles.scss";
 
 export const ShowMoreText = (props: ShowMoreTextInterface) => {
   const {
-    setIsExpanded,
-    isExpanded
+    showModalOnClick,
+    isModalShown
   } = props;
 
   const [block, element] = bem("show-more-text");
 
   return (
-    <>
-      <div className={block()}>
-        <Typography
-          className={element("expand")}
-          onClick={() => setIsExpanded(!isExpanded)}
-          variant={typographyVariant.regular14}
-        >
-          Прочитать полностью
-        </Typography>
-      </div>
-    </>
+    <div className={block()}>
+      <Typography
+        className={element("expand")}
+        onClick={() => showModalOnClick(!isModalShown)}
+        variant={typographyVariant.regular14}
+      >
+        Прочитать полностью
+      </Typography>
+    </div>
   );
 };

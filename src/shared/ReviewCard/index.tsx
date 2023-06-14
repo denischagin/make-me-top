@@ -34,8 +34,6 @@ export const ReviewCard = (props: ReviewCardInterface) => {
   const [block, element] = bem("review-card");
   const [isExpanded, setIsExpanded] = useState(false);
 
-  console.log(isExpanded);
-
   return (
     <>
       <ReviewModal
@@ -78,10 +76,13 @@ export const ReviewCard = (props: ReviewCardInterface) => {
             >
               {sliceString(comment, 180)}
             </Typography>
-            <ShowMoreText
-              setIsExpanded={setIsExpanded}
-              isExpanded={isExpanded}
-            />
+            {
+              comment.length > 180 &&
+              <ShowMoreText
+                showModalOnClick={setIsExpanded}
+                isModalShown={isExpanded}
+              />
+            }
           </div>
         </Card>
       </div>

@@ -1,4 +1,4 @@
 export interface ShowMoreTextInterface {
-  setIsExpanded: (flag: boolean) => void
-  isExpanded: boolean
+  isModalShown: boolean
+  showModalOnClick: (flag: boolean) => void
 }
