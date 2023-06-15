@@ -41,7 +41,7 @@ export const ReviewCard = (props: ReviewCardInterface) => {
     <>
       {
         isExpanded &&
-        <Modal onClose={() => setIsExpanded(!isExpanded)}>
+        <Modal onClose={() => setIsExpanded(false)}>
           <div className={element("user")}>
             <Avatar
               size={avatarSize.large}
@@ -116,7 +116,7 @@ export const ReviewCard = (props: ReviewCardInterface) => {
             </Typography>
             {
               comment.length > 180 &&
-              <ShowMoreText onClick={() => setIsExpanded(!isExpanded)}/>
+              <ShowMoreText onClick={() => setIsExpanded(true)} />
             }
           </div>
         </Card>

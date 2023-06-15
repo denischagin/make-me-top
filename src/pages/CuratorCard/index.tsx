@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useParams } from "react-router";
+
 import { ArrowButton } from "@shared/ArrowButton";
 import { BackgroundProfile } from "@shared/BackgroundProfile";
 
@@ -14,6 +17,13 @@ import "./styles.scss";
 
 export const CuratorCard = () => {
   const [block, element] = bem("curator-card");
+
+  const { curatorId } = useParams();
+
+  useEffect(() => {
+    // Тут будет вызываться метод запроса
+    // getCuratorData(curatorId);
+  }, [curatorId]);
 
   return (
     <div className={block()}>
