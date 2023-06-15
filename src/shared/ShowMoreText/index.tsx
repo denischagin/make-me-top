@@ -9,8 +9,7 @@ import "./styles.scss";
 
 export const ShowMoreText = (props: ShowMoreTextInterface) => {
   const {
-    showModalOnClick,
-    isModalShown
+    onClick
   } = props;
 
   const [block, element] = bem("show-more-text");
@@ -19,7 +18,7 @@ export const ShowMoreText = (props: ShowMoreTextInterface) => {
     <div className={block()}>
       <Typography
         className={element("expand")}
-        onClick={() => showModalOnClick(!isModalShown)}
+        onClick={onClick}
         variant={typographyVariant.regular14}
       >
         Прочитать полностью

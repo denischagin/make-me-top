@@ -1,7 +1,3 @@
-import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
-
-import { showModal } from "@entities/user/model/slice";
-
 import { Portal } from "@shared/Portal";
 import { Typography } from "@shared/Typography";
 
@@ -9,8 +5,6 @@ import { ReactComponent as CloseIcon } from "@shared/images/close.svg";
 import { ReactComponent as LockIcon } from "@shared/images/lock-big.svg";
 
 import { bem } from "@shared/utils/bem";
-
-import { userIsModalOpenSelector } from "@entities/user/model/selectors";
 
 import { ModalInterface } from "./interfaces";
 import {
@@ -22,14 +16,13 @@ import "./styles.scss";
 
 export const CircleModal = (props: ModalInterface) => {
   const {
-    name,
+    header,
     isLocked,
-    children
+    children,
+    onClose
   } = props;
 
   const [block, element] = bem("circle-modal");
-
-  const dispatch = useAppDispatch();
 
   const lockIcon = isLocked && <LockIcon className={element("lock-icon")} />;
 
@@ -44,11 +37,11 @@ export const CircleModal = (props: ModalInterface) => {
               className={element("name")}
             >
               {lockIcon}
-              {name}
+              {header}
             </Typography>
             <CloseIcon
               className={element("close-icon")}
-              onClick={() => dispatch(showModal())}
+              onClick={onClose}
             />
           </div>
           <div className={element("item-list")}>{children}</div>

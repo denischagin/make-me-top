@@ -1,6 +1,5 @@
-import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
+import { useAppSelector } from "@app/providers/store/hooks";
 
-import { selectIsUserRegistered } from "@entities/user/model/slice";
 import { isExplorerSelector } from "@entities/explorer/model/selectors";
 
 import { Input } from "@shared/Input";
@@ -20,7 +19,6 @@ export const Login = () => {
   const [block, element] = bem("login");
 
   const isExplorer = useAppSelector(isExplorerSelector);
-  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -45,13 +43,6 @@ export const Login = () => {
             title="Войти"
           />
         </RouterLink>
-        <Typography
-          variant={typographyVariant.regular14}
-          className={element("hint")}
-          onClick={() => dispatch(selectIsUserRegistered())}
-        >
-          Еще не зарегистрированы? Регистрация
-        </Typography>
       </div>
     </>
   );

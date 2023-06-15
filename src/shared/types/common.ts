@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { ReactNode } from "react";
 
 export interface TabInterface {
   name: string;
@@ -60,7 +60,6 @@ export interface ReviewInterface {
 }
 
 export interface ReviewModalInterface {
-  review: ReviewInterface
-  setIsExpanded?: Dispatch<SetStateAction<boolean>>
-  isExpanded?: boolean
+  children: ReactNode
+  onClose: () => void
 }

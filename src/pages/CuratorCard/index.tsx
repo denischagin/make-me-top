@@ -1,11 +1,12 @@
-import { bem } from "@shared/utils/bem";
-import { BackgroundProfile } from "@shared/BackgroundProfile";
 import { ArrowButton } from "@shared/ArrowButton";
+import { BackgroundProfile } from "@shared/BackgroundProfile";
 
-import { Header } from "@widgets/Header";
-import { Reviews } from "@widgets/Reviews";
+import { bem } from "@shared/utils/bem";
+
 import { CuratorCardUserInfo } from "@widgets/CuratorCardUserInfo";
 import { CuratorStars } from "@widgets/CuratorStars";
+import { Header } from "@widgets/Header";
+import { Reviews } from "@widgets/Reviews";
 
 import { arrowButtonDirection } from "@shared/ArrowButton/interfaces";
 

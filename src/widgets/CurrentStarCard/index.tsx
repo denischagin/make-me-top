@@ -2,22 +2,22 @@ import { TabPanel } from "react-tabs";
 
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
-import { showModal } from "@entities/user/model/slice";
-import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 import {
   userCuratorsListSelector,
   userExplorersListSelector,
   userInfoSelector,
-  userIsModalOpenSelector
+  userIsModalOpenSelector,
 } from "@entities/user/model/selectors";
+import { showModal } from "@entities/user/model/slice";
+import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 
 import { Button } from "@shared/Button";
 import { Card } from "@shared/Card";
+import { CircleModal } from "@shared/CircleModal";
 import { CurrentUserItem } from "@shared/CurrentUserItem";
 import { DividingLine } from "@shared/DividingLine";
 import { FinalGrade } from "@shared/FinalGrade";
 import { MmtTabs } from "@shared/MmtTabs";
-import { CircleModal } from "@shared/CircleModal";
 import { PlanetList } from "@shared/PlanetList";
 import { Typography } from "@shared/Typography";
 import { UsersList } from "@shared/UsersList";
@@ -63,9 +63,11 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
   return (
     <div className={block()}>
-      {
-        isModalOpen &&
-        <CircleModal name="Groovy">
+      {isModalOpen && (
+        <CircleModal
+          header="Groovy"
+          onClose={() => dispatch(showModal())}
+        >
           <MmtTabs list={tabsList}>
             <TabPanel>
               <PlanetList currentPlanet={CURRENT_PLANET} />
@@ -89,7 +91,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
             </TabPanel>
           </MmtTabs>
         </CircleModal>
-      }
+      )}
       <Card
         size={cardSize.large}
         glow
