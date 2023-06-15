@@ -4,12 +4,12 @@ import { RootState } from "@app/providers/store";
 
 const userState = (state: RootState) => state.curator;
 
-export const isCuratorSelector = createSelector(
+export const curatorIsCuratorSelector = createSelector(
   userState,
   (userState) => userState.isCurator
 );
 
-export const reviewsSelector = createSelector(
+export const curatorReviewsSelector = createSelector(
   userState,
   (userState) => userState.reviews
 );

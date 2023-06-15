@@ -4,7 +4,7 @@ import { RootState } from "@app/providers/store";
 
 const userState = (state: RootState) => state.explorer;
 
-export const isExplorerSelector = createSelector(
+export const explorerIsExplorerSelector = createSelector(
   userState,
   (userState) => userState.isExplorer
 );

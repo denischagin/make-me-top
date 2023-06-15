@@ -1,6 +1,6 @@
 import { useAppSelector } from "@app/providers/store/hooks";
 
-import { isExplorerSelector } from "@entities/explorer/model/selectors";
+import { explorerIsExplorerSelector } from "@entities/explorer/model/selectors";
 
 import { Input } from "@shared/Input";
 import { Typography } from "@shared/Typography";
@@ -18,7 +18,7 @@ import "./styles.scss";
 export const Login = () => {
   const [block, element] = bem("login");
 
-  const isExplorer = useAppSelector(isExplorerSelector);
+  const isExplorer = useAppSelector(explorerIsExplorerSelector);
 
   return (
     <>

@@ -16,11 +16,11 @@ export const ShiningStar = (props: ShiningStarProps) => {
 
   return (
     <>
-      {size === "small" ? (
-        <ShineSmallIcon className={block()} />
-      ) : (
-        <ShineBigIcon className={block()} />
-      )}
+      {
+        size === "small"
+          ? <ShineSmallIcon className={block()} />
+          : <ShineBigIcon className={block()} />
+      }
     </>
   );
 };

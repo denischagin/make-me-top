@@ -56,21 +56,21 @@ export const SelectUsersList = (props: UserListInterface) => {
                 visible: selectedUserIds.includes(user.id),
               })}
             >
-              {!selectedUserIds.includes(user.id) ? (
-                <Button
-                  size={buttonSize.small}
-                  color={buttonColor.filled}
-                  onClick={() => getSelectedUser(user.id)}
-                  title="Выбрать хранителя"
-                />
-              ) : (
-                <Button
-                  size={buttonSize.small}
-                  color={buttonColor.primary500}
-                  onClick={() => removeSelectedUser(user.id)}
-                  title="Отменить выбор"
-                />
-              )}
+              {
+                !selectedUserIds.includes(user.id)
+                  ? <Button
+                    size={buttonSize.small}
+                    color={buttonColor.filled}
+                    onClick={() => getSelectedUser(user.id)}
+                    title="Выбрать хранителя"
+                  />
+                  : <Button
+                    size={buttonSize.small}
+                    color={buttonColor.primary500}
+                    onClick={() => removeSelectedUser(user.id)}
+                    title="Отменить выбор"
+                  />
+              }
             </div>
             <div
               className={element("rating", {
