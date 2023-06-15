@@ -7,14 +7,18 @@ import { LinkInterface } from "./interfaces";
 import "./styles.scss";
 
 export const RouterLink = (props: LinkInterface) => {
+  const {
+    to,
+    children
+  } = props;
   const [block, element] = bem("link");
 
   return (
     <Link
-      to={props.path}
+      to={to}
       className={block()}
     >
-      {props.children}
+      {children}
     </Link>
   );
 };

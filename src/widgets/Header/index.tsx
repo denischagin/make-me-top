@@ -5,7 +5,7 @@ import { bem } from "@shared/utils/bem";
 
 import { HEADER_LINKS, URL_DEFAULT } from "@shared/constants/links";
 
-import { RouterLink } from "@shared/Link";
+import { RouterLink } from "@shared/RouterLink";
 
 import { HeaderInterface, HeaderLinkInterface } from "./interfaces";
 
@@ -25,7 +25,7 @@ export const Header = (props: HeaderInterface) => {
         {
           links.map((item: HeaderLinkInterface) => (
             <RouterLink
-              path={item.link}
+              to={item.link}
               key={item.text}
             >
               <span className={element("link")}>

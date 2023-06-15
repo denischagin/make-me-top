@@ -4,7 +4,7 @@ import { isExplorerSelector } from "@entities/explorer/model/selectors";
 
 import { Input } from "@shared/Input";
 import { Typography } from "@shared/Typography";
-import { RouterLink } from "@shared/Link";
+import { RouterLink } from "@shared/RouterLink";
 import { PlanetButton } from "@shared/PlanetButton";
 
 import { bem } from "@shared/utils/bem";
@@ -37,7 +37,7 @@ export const Login = () => {
           placeholder="Пароль"
           type="password"
         />
-        <RouterLink path={isExplorer ? URL_EXPLORER : URL_CURATOR}>
+        <RouterLink to={isExplorer ? URL_EXPLORER : URL_CURATOR}>
           <PlanetButton
             onClick={() => console.log("logged")}
             title="Войти"
