@@ -11,7 +11,8 @@ import './styles.scss';
 
 export const InfoCard = (props: InfoCardInterface) => {
     const {
-        title, value,
+        title,
+        value,
     } = props;
 
     const [block, element] = bem('info-сard');
@@ -25,7 +26,9 @@ export const InfoCard = (props: InfoCardInterface) => {
                 >
                     {title}
                 </Typography>
-                <div className={element('value')}>{value}</div>
+                <div className={element('value')}>
+                    {value}
+                </div>
             </Card>
         </div>
     );

@@ -50,7 +50,8 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         tabsList,
         starInfo: {
             planet: {
-                name, id,
+                name,
+                id,
             },
             star,
             curator,
@@ -68,7 +69,8 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
     return (
         <div className={block()}>
-            {isModalOpen && (
+            {
+                isModalOpen &&
                 <CircleModal
                     header="Groovy"
                     onClose={() => dispatch(showModal())}
@@ -96,7 +98,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                         </TabPanel>
                     </MmtTabs>
                 </CircleModal>
-            )}
+            }
             <Card
                 size={cardSize.large}
                 glow

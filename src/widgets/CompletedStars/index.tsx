@@ -24,7 +24,9 @@ export const CompletedStars = () => {
                     color={starColor.primary500}
                     key={item.name}
                 >
-                    <p className={element('label')}>{item.name}</p>
+                    <p className={element('label')}>
+                        {item.name}
+                    </p>
                     <div className={element('star-rating')}>
                         <Rating
                             scoreColor={ratingScoreColor.white}

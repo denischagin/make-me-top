@@ -28,22 +28,26 @@ export const CuratorStars = () => {
                 Звезды исследователя
             </Typography>
             <div className={element('stars', 'mb-4')}>
-                {arrayOfStars.map((item) => (
-                    <Star
-                        color={starColor.primary500}
-                        key={item.name}
-                    >
-                        <p className={element('label')}>{item.name}</p>
-                        <div className={element('star-rating')}>
-                            <Rating
-                                scoreColor={ratingScoreColor.white}
-                                rating={item.rate}
-                                size={ratingSize.small}
-                                starColor={ratingStarColor.white}
-                            />
-                        </div>
-                    </Star>
-                ))}
+                {
+                    arrayOfStars.map((item) => (
+                        <Star
+                            color={starColor.primary500}
+                            key={item.name}
+                        >
+                            <p className={element('label')}>
+                                {item.name}
+                            </p>
+                            <div className={element('star-rating')}>
+                                <Rating
+                                    scoreColor={ratingScoreColor.white}
+                                    rating={item.rate}
+                                    size={ratingSize.small}
+                                    starColor={ratingStarColor.white}
+                                />
+                            </div>
+                        </Star>
+                    ))
+                }
             </div>
         </div>
     );

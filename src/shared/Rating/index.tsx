@@ -20,14 +20,15 @@ export const Rating = (props: RatingInterface) => {
 
     return (
         <div className={block()}>
-            {!props.reflect && (
+            {
+                !props.reflect &&
                 <StarIcon
                     className={element('star', {
                         color: starColor,
                         size,
                     })}
                 />
-            )}
+            }
             <span
                 className={element('score', {
                     size,
@@ -36,14 +37,15 @@ export const Rating = (props: RatingInterface) => {
             >
                 {score}
             </span>
-            {props.reflect && (
+            {
+                props.reflect &&
                 <StarIcon
                     className={element('star', {
                         color: starColor,
                         size,
                     })}
                 />
-            )}
+            }
         </div>
     );
 };

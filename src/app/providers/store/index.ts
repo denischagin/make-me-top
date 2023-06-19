@@ -1,9 +1,3 @@
-import {
-    combineReducers,
-    configureStore,
-} from '@reduxjs/toolkit';
-import logger from 'redux-logger';
-
 import userReducer from '@entities/user/model/slice';
 import { UserState } from '@entities/user/model/types';
 
@@ -15,6 +9,12 @@ import { CuratorState } from '@entities/curator/model/types/interfaces';
 
 import galaxySlice from '@entities/galaxy/model/slice';
 import { GalaxyType } from '@entities/galaxy/model/types';
+
+import {
+    combineReducers,
+    configureStore,
+} from '@reduxjs/toolkit';
+import logger from 'redux-logger';
 
 export type RootState = {
     explorer: ExplorerState;

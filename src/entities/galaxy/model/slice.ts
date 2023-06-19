@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-
 import { getGalaxy } from '../api/getGalaxy';
+
+import { createSlice } from '@reduxjs/toolkit';
 
 const galaxySlice = createSlice({
     name: 'galaxy',

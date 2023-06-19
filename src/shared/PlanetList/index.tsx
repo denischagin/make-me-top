@@ -37,8 +37,12 @@ export const PlanetList = (props: PlanetListInterface) => {
                     <span className={element('name')}>
                         {++index}. {planet.planetName}
                     </span>
-                    {planet.planetId > currentPlanet?.planetId! && <LockIcon className={element('lock-icon')} />}
-                    {planet.planetName === props.currentPlanet && (
+                    {
+                        (planet.planetId > currentPlanet?.planetId!) &&
+                        <LockIcon className={element('lock-icon')} />
+                    }
+                    {
+                        planet.planetName === props.currentPlanet &&
                         <div className={element('info')}>
                             <span className={element('item-text')}>Текущая планета</span>
                             <Button
@@ -47,7 +51,7 @@ export const PlanetList = (props: PlanetListInterface) => {
                                 color={buttonColor.primary500}
                             />
                         </div>
-                    )}
+                    }
                 </div>
             ))}
         </div>

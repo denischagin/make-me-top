@@ -10,7 +10,8 @@ import './styles.scss';
 
 export const Modal = (props: ReviewModalInterface) => {
     const {
-        children, onClose,
+        children,
+        onClose,
     } = props;
 
     const [block, element] = bem('modal');

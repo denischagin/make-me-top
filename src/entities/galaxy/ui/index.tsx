@@ -1,5 +1,3 @@
-import Orbit from '@entities/orbit/ui';
-
 import React,
 {
     createRef,
@@ -22,6 +20,7 @@ import {
 import { OrbitType } from '@entities/galaxy/model/types';
 
 import './style.scss';
+import Orbit from '@entities/orbit/ui';
 
 interface IGalaxyProps {
     orbitList: Array<OrbitType>;

@@ -1,5 +1,3 @@
-import { createSlice } from '@reduxjs/toolkit';
-
 import { getModalPlanets } from '../thunks/getModalPlanets';
 import {
     CURATORS_LIST,
@@ -7,6 +5,8 @@ import {
     USER_INFO,
 } from './mocks';
 import { UserState } from './types/index';
+
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: UserState = {
     isRegistered: true,

@@ -6,7 +6,8 @@ import './styles.scss';
 
 export const PlanetButton = (props: PlanetButtonInterface) => {
     const {
-        title, onClick,
+        title,
+        onClick,
     } = props;
 
     const [block, element] = bem('planet-button');

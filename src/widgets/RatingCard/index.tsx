@@ -16,7 +16,8 @@ import './styles.scss';
 
 export const RatingCard = (props: RatingCardInterface) => {
     const {
-        list, user,
+        list,
+        user,
     } = props;
 
     const [block, element] = bem('rating-card');

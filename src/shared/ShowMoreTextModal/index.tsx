@@ -17,7 +17,8 @@ export const ShowMoreTextModal = (props: ShowMoreTextModalInterface) => {
         maxLength,
         children,
         typographySettings: {
-            variant, color,
+            variant,
+            color,
         },
     } = props;
 
@@ -26,7 +27,12 @@ export const ShowMoreTextModal = (props: ShowMoreTextModalInterface) => {
 
     return (
         <>
-            {isExpanded && <Modal onClose={() => setIsExpanded(false)}>{children}</Modal>}
+            {
+                isExpanded &&
+                <Modal onClose={() => setIsExpanded(false)}>
+                    {children}
+                </Modal>
+            }
             <div className={block()}>
                 <div className={element('content')}>
                     <Typography
@@ -36,7 +42,8 @@ export const ShowMoreTextModal = (props: ShowMoreTextModalInterface) => {
                     >
                         {sliceString(text, maxLength)}
                     </Typography>
-                    {text.length > maxLength && (
+                    {
+                        (text.length > maxLength) &&
                         <Typography
                             className={element('expand')}
                             onClick={() => setIsExpanded(true)}
@@ -44,7 +51,7 @@ export const ShowMoreTextModal = (props: ShowMoreTextModalInterface) => {
                         >
                             Прочитать полностью
                         </Typography>
-                    )}
+                    }
                 </div>
             </div>
         </>

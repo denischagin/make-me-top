@@ -22,7 +22,9 @@ export const FinalGrade = () => {
                         />
                     ))}
                 </span>
-                <span>{<LockIcon className={element('lock-icon')} />}</span>
+                <span>
+                    {<LockIcon className={element('lock-icon')} />}
+                </span>
             </div>
         </div>
     );

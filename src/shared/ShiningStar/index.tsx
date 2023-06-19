@@ -14,5 +14,13 @@ export const ShiningStar = (props: ShiningStarProps) => {
 
     const [block, element] = bem('shining-star');
 
-    return <>{size === 'small' ? <ShineSmallIcon className={block()} /> : <ShineBigIcon className={block()} />}</>;
+    return (
+        <>
+            {
+                (size === 'small')
+                    ? <ShineSmallIcon className={block()} />
+                    : <ShineBigIcon className={block()} />
+            }
+        </>
+    );
 };

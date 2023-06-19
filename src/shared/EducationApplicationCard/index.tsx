@@ -42,7 +42,9 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                             size={avatarSize.medium}
                         />
                         <div className={element('about')}>
-                            <Typography variant={typographyVariant.regular14}>{`Звезда: ${user.planet}`}</Typography>
+                            <Typography variant={typographyVariant.regular14}>
+                                {`Звезда: ${user.planet}`}
+                            </Typography>
                             <Typography
                                 className={element('user-name')}
                                 variant={typographyVariant.medium16}

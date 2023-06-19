@@ -31,7 +31,9 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
                 >
                     <div className={element('star')}>
                         <StarIcon className={element('star-icon')} />
-                        <span className={element('name')}>{star.name}</span>
+                        <span className={element('name')}>
+                            {star.name}
+                        </span>
                     </div>
                     <div className={element('info')}>
                         <div className={element('button')}>

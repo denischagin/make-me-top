@@ -4,7 +4,8 @@ import { PortalInterface } from './interfaces';
 
 export const Portal = (props: PortalInterface) => {
     const {
-        children, target,
+        children,
+        target,
     } = props;
 
     return createPortal(children, target);

@@ -45,14 +45,15 @@ export const ExplorerCardList = (props: ExplorerCardListInterface) => {
                         avatar={item.avatar}
                     />
                 ))}
-                {explorers.length > 9 && (
+                {
+                    (explorers.length) > 9 &&
                     <div className={element('button', 'mt-3')}>
                         <Button
                             title={'Все ученики'}
                             size={buttonSize.large}
                         />
                     </div>
-                )}
+                }
             </Card>
         </div>
     );

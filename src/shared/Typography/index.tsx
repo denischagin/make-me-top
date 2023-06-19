@@ -23,7 +23,9 @@ export const Typography = (props: TypographyInterface) => {
                 variant,
             })}
         >
-            <div className={className}>{children}</div>
+            <div className={className}>
+                {children}
+            </div>
         </div>
     );
 };

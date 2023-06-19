@@ -36,7 +36,9 @@ export const UsersList = (props: UserListInterface) => {
                             size={avatarSize.small}
                             image={user.avatar}
                         />
-                        <span className={element('name')}>{user.name}</span>
+                        <span className={element('name')}>
+                            {user.name}
+                        </span>
                     </div>
                     <div className={element('info')}>
                         <Rating

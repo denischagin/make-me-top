@@ -1,6 +1,6 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-
 import { FETCH_GALAXY } from '@entities/galaxy/model/actions';
+
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 interface IFetchGalaxy {
     galaxy?: number;

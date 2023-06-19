@@ -25,7 +25,11 @@ import './styles.scss';
 export const ReviewCard = (props: ReviewCardInterface) => {
     const {
         review: {
-            planet, rating, name, avatar, comment,
+            planet,
+            rating,
+            name,
+            avatar,
+            comment,
         },
     } = props;
 
@@ -57,7 +61,9 @@ export const ReviewCard = (props: ReviewCardInterface) => {
                             size={avatarSize.small}
                             image={avatar}
                         />
-                        <Typography variant={typographyVariant.regular16}>{name}</Typography>
+                        <Typography variant={typographyVariant.regular16}>
+                            {name}
+                        </Typography>
                     </div>
                     {
                         <ShowMoreTextModal

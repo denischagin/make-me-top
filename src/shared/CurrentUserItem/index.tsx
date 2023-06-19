@@ -19,7 +19,9 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
     const {
         badgeTitle,
         user: {
-            name, avatar, rating,
+            name,
+            avatar,
+            rating,
         },
     } = props;
 
@@ -33,11 +35,15 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
                         size={avatarSize.small}
                         image={avatar}
                     />
-                    <span className={element('my-name')}>{name}</span>
+                    <span className={element('my-name')}>
+                        {name}
+                    </span>
                 </div>
                 <div className={element('info')}>
                     <span className={element('badge')}>
-                        <Badge color={badgeColor.primary500}>{badgeTitle}</Badge>
+                        <Badge color={badgeColor.primary500}>
+                            {badgeTitle}
+                        </Badge>
                     </span>
                     <Rating
                         starColor={ratingStarColor.primary500}

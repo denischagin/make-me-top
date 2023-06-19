@@ -6,14 +6,17 @@ import './styles.scss';
 
 export const ModalAlert = (props: ModalAlertInterface) => {
     const {
-        title, children,
+        title,
+        children,
     } = props;
 
     const [block, element] = bem('modal-alert');
 
     return (
         <div className={block()}>
-            <div className={element('title')}>{title}</div>
+            <div className={element('title')}>
+                {title}
+            </div>
             {children}
         </div>
     );

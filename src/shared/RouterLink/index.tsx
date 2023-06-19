@@ -8,7 +8,8 @@ import './styles.scss';
 
 export const RouterLink = (props: LinkInterface) => {
     const {
-        to, children,
+        to,
+        children,
     } = props;
     const [block, element] = bem('link');
 

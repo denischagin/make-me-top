@@ -6,7 +6,8 @@ import './styles.scss';
 
 export const Badge = (props: BadgeInterface) => {
     const {
-        color, children,
+        color,
+        children,
     } = props;
 
     const [block, element] = bem('badge');

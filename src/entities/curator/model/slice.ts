@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
-
 import { CuratorState } from './types/interfaces';
 
 import { REVIEW_LIST } from './mocks';
+
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: CuratorState = {
     isCurator: false,

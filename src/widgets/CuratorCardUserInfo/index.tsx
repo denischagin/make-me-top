@@ -41,7 +41,9 @@ export const CuratorCardUserInfo = () => {
             />
             <div className={element('description')}>
                 <div className={element('description-name', 'mb-4')}>
-                    <Typography variant={typographyVariant.h1}>{name}</Typography>
+                    <Typography variant={typographyVariant.h1}>
+                        {name}
+                    </Typography>
                 </div>
                 <div className={element('cards')}>
                     <InfoCard

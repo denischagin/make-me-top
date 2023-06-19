@@ -6,7 +6,8 @@ import './styles.scss';
 
 export const Input = (props: InputInterface) => {
     const {
-        placeholder, type,
+        placeholder,
+        type,
     } = props;
 
     const [block, element] = bem('input');

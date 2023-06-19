@@ -1,13 +1,13 @@
 import {
-    Route,
     createBrowserRouter,
     createRoutesFromElements,
+    Route,
 } from 'react-router-dom';
 
 import {
     URL_CURATOR,
-    URL_CURATORS,
     URL_CURATOR_CARD,
+    URL_CURATORS,
     URL_DEFAULT,
     URL_EXPLORER,
     URL_EXPLORERS,
