@@ -14,11 +14,15 @@
   background: transparent;
 }
 
+html {
+  overflow-x: hidden;
+  overflow-y: overlay;
+  width: 100vw;
+}
+
 body {
   margin: 0;
   background-color: $dark;
-  overflow-x: hidden;
-  overflow-y: overlay;
   font-family: $font-text-regular;
   background-image: url("../../shared/images/noice.png");
   background-repeat: repeat;
