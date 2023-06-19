@@ -13,6 +13,7 @@
         "@types/node": "^16.18.21",
         "@types/react": "^18.0.29",
         "@types/react-dom": "^18.0.11",
+        "eslint-plugin-newline-destructuring": "^1.2.1",
         "framer-motion": "^10.9.2",
         "node-sass": "^8.0.0",
         "react": "^18.2.0",
@@ -53,25 +54,19 @@
         ]
     },
     "devDependencies": {
-        "@trivago/prettier-plugin-sort-imports": "^4.1.1",
         "@types/redux-logger": "^3.0.9",
         "eslint": "^8.43.0",
-        "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-css-modules": "^2.11.0",
-        "eslint-plugin-destructuring-newline": "^0.1.1",
-        "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-putout": "^17.7.0",
         "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-simple-import-sort": "^10.0.0",
         "husky": "^8.0.3",
         "lint-staged": "^13.2.2",
-        "prettier": "2.8.8",
-        "prettier-eslint": "^15.0.1",
         "putout": "^29.15.0",
         "react-error-overlay": "^6.0.9"
     },
     "lint-staged": {
         "*.{ts,tsx}": [
-            "prettier --write",
             "eslint --fix",
             "git add"
         ]
