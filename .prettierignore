@@ -1,8 +1,0 @@
-package-lock.json
-node_modules
-tsconfig.json
-public
-
-# Ignore artifacts:
-build
-coverage
