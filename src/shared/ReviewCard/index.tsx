@@ -1,14 +1,10 @@
-import { useState } from 'react';
-
 import { Avatar } from '@shared/Avatar';
 import { Card } from '@shared/Card';
-import { Modal } from '@shared/Modal';
 import { Rating } from '@shared/Rating';
-import { ShowMoreText } from '@shared/ShowMoreText';
+import { ShowMoreTextModal } from '@shared/ShowMoreTextModal';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
-import { sliceString } from '@shared/utils/sliceString';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import { cardSize } from '@shared/Card/interfaces';
@@ -34,54 +30,14 @@ export const ReviewCard = (props: ReviewCardInterface) => {
     } = props;
 
     const [block, element] = bem('review-card');
-    const [isExpanded, setIsExpanded] = useState(false);
 
     return (
-        <>
-            {isExpanded && (
-                <Modal onClose={() => setIsExpanded(false)}>
-                    <div className={element('user')}>
-                        <Avatar
-                            size={avatarSize.large}
-                            image={avatar}
-                        />
-                        <div className={element('user-info')}>
-                            <Typography
-                                variant={typographyVariant.regular14}
-                                color={typographyColor.black}
-                                className={element('planet-name')}
-                            >
-                                {planet}
-                            </Typography>
-                            <Typography
-                                variant={typographyVariant.h1}
-                                color={typographyColor.black}
-                                className={element('user-name')}
-                            >
-                                {name}
-                            </Typography>
-                            <Rating
-                                scoreColor={ratingScoreColor.black}
-                                starColor={ratingStarColor.primary500}
-                                size={ratingSize.medium}
-                                rating={rating}
-                            />
-                        </div>
-                    </div>
-                    <Typography
-                        variant={typographyVariant.medium16}
-                        color={typographyColor.black}
-                        className={element('review-text')}
-                    >
-                        {comment}
-                    </Typography>
-                </Modal>
-            )}
-            <div className={block()}>
-                <Card
-                    size={cardSize.medium}
-                    glow
-                >
+        <div className={block()}>
+            <Card
+                size={cardSize.medium}
+                glow
+            >
+                <div className={element('content')}>
                     <div className={element('heading')}>
                         <Typography
                             className={element('planet-name')}
@@ -103,17 +59,53 @@ export const ReviewCard = (props: ReviewCardInterface) => {
                         />
                         <Typography variant={typographyVariant.regular16}>{name}</Typography>
                     </div>
-                    <div className={element('review')}>
-                        <Typography
-                            className={element('review-text')}
-                            variant={typographyVariant.regular14}
+                    {
+                        <ShowMoreTextModal
+                            text={comment}
+                            maxLength={180}
+                            typographySettings={{
+                                variant: typographyVariant.regular14,
+                            }}
                         >
-                            {sliceString(comment, 180)}
-                        </Typography>
-                        {comment.length > 180 && <ShowMoreText onClick={() => setIsExpanded(true)} />}
-                    </div>
-                </Card>
-            </div>
-        </>
+                            <div className={element('user')}>
+                                <Avatar
+                                    size={avatarSize.large}
+                                    image={avatar}
+                                />
+                                <div className={element('user-info')}>
+                                    <Typography
+                                        variant={typographyVariant.regular14}
+                                        color={typographyColor.black}
+                                        className={element('planet-name')}
+                                    >
+                                        {planet}
+                                    </Typography>
+                                    <Typography
+                                        variant={typographyVariant.h1}
+                                        color={typographyColor.black}
+                                        className={element('user-name')}
+                                    >
+                                        {name}
+                                    </Typography>
+                                    <Rating
+                                        scoreColor={ratingScoreColor.black}
+                                        starColor={ratingStarColor.primary500}
+                                        size={ratingSize.medium}
+                                        rating={rating}
+                                    />
+                                </div>
+                            </div>
+                            <Typography
+                                variant={typographyVariant.medium16}
+                                color={typographyColor.black}
+                                className={element('review-text')}
+                            >
+                                {comment}
+                            </Typography>
+                        </ShowMoreTextModal>
+                    }
+                </div>
+            </Card>
+        </div>
     );
 };
