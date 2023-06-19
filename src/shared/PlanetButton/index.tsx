@@ -1,18 +1,23 @@
-import { bem } from "@shared/utils/bem";
+import { bem } from '@shared/utils/bem';
 
-import { PlanetButtonInterface } from "./interfaces";
+import { PlanetButtonInterface } from './interfaces';
 
-import "./styles.scss";
+import './styles.scss';
 
 export const PlanetButton = (props: PlanetButtonInterface) => {
-  const [block, element] = bem("planet-button");
+    const {
+        title,
+        onClick,
+    } = props;
 
-  return (
-    <div
-      onClick={props.action}
-      className={block()}
-    >
-      {props.title}
-    </div>
-  );
+    const [block, element] = bem('planet-button');
+
+    return (
+        <div
+            onClick={onClick}
+            className={block()}
+        >
+            {title}
+        </div>
+    );
 };

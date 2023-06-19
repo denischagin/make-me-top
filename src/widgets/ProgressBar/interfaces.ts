@@ -1,3 +1,3 @@
 export interface ProgressInterface {
-  progress: number
+    progress: number;
 }

@@ -1,59 +1,32 @@
-import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
+import { Portal } from '@shared/Portal';
 
-import { showModal } from "@entities/user/model/slice";
+import { ReactComponent as CloseIcon } from '@shared/images/close.svg';
 
-import { Portal } from "@shared/Portal";
-import { Typography } from "@shared/Typography";
+import { bem } from '@shared/utils/bem';
 
-import { ReactComponent as CloseIcon } from "@shared/images/close.svg";
-import { ReactComponent as LockIcon } from "@shared/images/lock-big.svg";
+import { ReviewModalInterface } from '@shared/types/common';
 
-import { bem } from "@shared/utils/bem";
+import './styles.scss';
 
-import { ModalInterface } from "./interfaces";
-import {
-  typographyColor,
-  typographyVariant,
-} from "@shared/Typography/interfaces";
+export const Modal = (props: ReviewModalInterface) => {
+    const {
+        children,
+        onClose,
+    } = props;
 
-import "./styles.scss";
+    const [block, element] = bem('modal');
 
-export const Modal = (props: ModalInterface) => {
-  const {
-    name,
-    locked,
-    children
-  } = props;
-
-  const [block, element] = bem("modal");
-
-  const isModalOpen = useAppSelector((state) => state.user.isModalOpen);
-  const dispatch = useAppDispatch();
-
-  const lockIcon = locked && <LockIcon className={element("lock-icon")} />;
-
-  return (
-    <Portal target={document.body}>
-      <div className={block({ closed: !isModalOpen })}>
-        <div className={element("content")}>
-          <div className={element("header")}>
-            <Typography
-              variant={typographyVariant.h2}
-              color={typographyColor.black}
-            >
-              <p className={element("name")}>
-                {lockIcon}
-                {name}
-              </p>
-            </Typography>
-            <CloseIcon
-              className={element("close-icon")}
-              onClick={() => dispatch(showModal())}
-            />
-          </div>
-          <div className={element("item-list")}>{children}</div>
-        </div>
-      </div>
-    </Portal>
-  );
+    return (
+        <Portal target={document.body}>
+            <div className={block()}>
+                <div className={element('content')}>
+                    <CloseIcon
+                        className={element('close-icon')}
+                        onClick={onClose}
+                    />
+                    {children}
+                </div>
+            </div>
+        </Portal>
+    );
 };

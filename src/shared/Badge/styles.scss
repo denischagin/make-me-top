@@ -1,25 +1,25 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .badge {
-  color: $white;
-  font-size: 14px;
-  border-radius: 50px;
-  padding: 4px 10px;
+    color: $white;
+    font-size: 14px;
+    border-radius: 50px;
+    padding: 4px 10px;
 
-  &--color-primary-500 {
-    background-color: $primary-500;
-  }
+    &--color-primary-500 {
+        background-color: $primary-500;
+    }
 
-  &--color-secondary-500 {
-    background-color: $secondary-500;
-  }
+    &--color-secondary-500 {
+        background-color: $secondary-500;
+    }
 
-  &--color-white {
-    color: $black;
-    background-color: $white;
-  }
+    &--color-white {
+        color: $black;
+        background-color: $white;
+    }
 
-  &--color-black {
-    background-color: $black;
-  }
+    &--color-black {
+        background-color: $black;
+    }
 }

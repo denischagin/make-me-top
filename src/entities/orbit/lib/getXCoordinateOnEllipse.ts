@@ -1,8 +1,8 @@
 interface IGetXCoordinateOnEllipse {
-    ellipseHalfWidth: number,
-    radius: number,
-    digitalAngle: number,
-    elementWidth: number
+    ellipseHalfWidth: number;
+    radius: number;
+    digitalAngle: number;
+    elementWidth: number;
 }
 
 //расчет координаты X для элемента на границе эллипса
@@ -12,12 +12,7 @@ export const getXCoordinateOnEllipse = (params: IGetXCoordinateOnEllipse): numbe
         radius,
         digitalAngle,
         elementWidth,
-    } = params
+    } = params;
 
-    return Math.round(
-        ellipseHalfWidth -
-        radius *
-        Math.cos(digitalAngle) -
-        elementWidth / 2
-    )
-}
+    return Math.round(ellipseHalfWidth - radius * Math.cos(digitalAngle) - elementWidth / 2);
+};

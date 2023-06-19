@@ -1,21 +1,28 @@
-import { bem } from "@shared/utils/bem";
+import { bem } from '@shared/utils/bem';
 
-import { ButtonInterface } from "./interfaces";
+import { ButtonInterface } from './interfaces';
 
-import "./styles.scss";
+import './styles.scss';
 
 export const Button = (props: ButtonInterface) => {
-  const [block, element] = bem("button");
+    const {
+        color,
+        size,
+        title,
+        onClick,
+    } = props;
 
-  return (
-    <div
-      onClick={props.action}
-      className={block({
-        color: props.color,
-        size: props.size,
-      })}
-    >
-      {props.title}
-    </div>
-  );
+    const [block, element] = bem('button');
+
+    return (
+        <div
+            onClick={onClick}
+            className={block({
+                color,
+                size,
+            })}
+        >
+            {title}
+        </div>
+    );
 };

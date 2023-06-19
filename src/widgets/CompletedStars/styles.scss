@@ -1,23 +1,23 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .completed-stars {
-  color: $white;
-  display: flex;
-  gap: 24px;
-  font-size: 12px;
-
-  &__label {
-    margin-top: 2px;
-    margin-bottom: 8px;
-  }
-
-  &__star-rating {
+    color: $white;
     display: flex;
-    align-items: center;
-  }
+    gap: 24px;
+    font-size: 12px;
 
-  &__star-rating-score {
-    font-size: 10px;
-    margin: 0 2px 0 4px;
-  }
+    &__label {
+        margin-top: 2px;
+        margin-bottom: 8px;
+    }
+
+    &__star-rating {
+        display: flex;
+        align-items: center;
+    }
+
+    &__star-rating-score {
+        font-size: 10px;
+        margin: 0 2px 0 4px;
+    }
 }

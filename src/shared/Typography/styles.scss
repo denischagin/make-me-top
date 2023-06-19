@@ -1,44 +1,44 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .typography {
-  color: $white;
-  font-family: $font-text-regular;
-  font-style: normal;
-  font-feature-settings: "tnum" on, "lnum" on;
+    color: $white;
+    font-family: $font-text-regular;
+    font-style: normal;
+    font-feature-settings: 'tnum' on, 'lnum' on;
 
-  &--color-primary-500 {
-    color: $primary-500;
-  }
+    &--color-primary-500 {
+        color: $primary-500;
+    }
 
-  &--color-black {
-    color: $black;
-  }
+    &--color-black {
+        color: $black;
+    }
 
-  &--variant-h1 {
-    font-family: $font-heading;
-    font-size: 35px;
-  }
+    &--variant-h1 {
+        font-family: $font-heading;
+        font-size: 35px;
+    }
 
-  &--variant-h2 {
-    font-family: $font-heading;
-    font-size: 26px;
-  }
+    &--variant-h2 {
+        font-family: $font-heading;
+        font-size: 26px;
+    }
 
-  &--variant-medium16 {
-    font-family: $font-text-medium;
-    font-size: 16px;
-  }
+    &--variant-medium16 {
+        font-family: $font-text-medium;
+        font-size: 16px;
+    }
 
-  &--variant-medium14 {
-    font-family: $font-text-medium;
-    font-size: 14px;
-  }
+    &--variant-medium14 {
+        font-family: $font-text-medium;
+        font-size: 14px;
+    }
 
-  &--variant-regular16 {
-    font-size: 16px;
-  }
+    &--variant-regular16 {
+        font-size: 16px;
+    }
 
-  &--variant-regular14 {
-    font-size: 14px;
-  }
+    &--variant-regular14 {
+        font-size: 14px;
+    }
 }

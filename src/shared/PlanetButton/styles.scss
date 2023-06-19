@@ -1,21 +1,21 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .planet-button {
-  cursor: pointer;
-  text-align: center;
-  margin-top: 16px;
-  padding: 16px 24px;
-  width: 340px;
-  color: $white;
-  background-color: transparent;
-  border: 1px solid $white;
-  border-radius: 56px;
-  transition: 0.4s;
-
-  &:hover {
+    cursor: pointer;
+    text-align: center;
+    margin-top: 16px;
+    padding: 16px 24px;
+    width: 340px;
+    color: $white;
+    background-color: transparent;
+    border: 1px solid $white;
+    border-radius: 56px;
     transition: 0.4s;
-    transform: scale(0.998);
-    color: rgb(0, 0, 0);
-    background-color: $white;
-  }
+
+    &:hover {
+        transition: 0.4s;
+        transform: scale(0.998);
+        color: rgb(0, 0, 0);
+        background-color: $white;
+    }
 }

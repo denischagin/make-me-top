@@ -1,21 +1,29 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .card {
-  display: flex;
-  flex-direction: column;
-  background: $black;
-  min-width: 118px;
-  border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    background: $black;
+    min-width: 118px;
+    border-radius: 8px;
+    transition: 0.2s;
+    outline: 1px solid transparent;
 
-  &--size-large {
-    padding: 24px 24px;
-  }
+    &--size-large {
+        padding: 24px 24px;
+    }
 
-  &--size-medium {
-    padding: 16px 24px;
-  }
+    &--size-medium {
+        padding: 16px 24px;
+    }
 
-  &--size-small {
-    padding: 8px 16px;
-  }
+    &--size-small {
+        padding: 8px 16px;
+    }
+
+    &--glow {
+        &:hover {
+            outline: 1px solid $primary-500;
+        }
+    }
 }

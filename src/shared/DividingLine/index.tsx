@@ -1,11 +1,17 @@
-import { bem } from "@shared/utils/bem";
+import { bem } from '@shared/utils/bem';
 
-import { DividingLineInterface } from "./interfaces";
+import { DividingLineInterface } from './interfaces';
 
-import "./styles.scss";
+import './styles.scss';
 
 export const DividingLine = (props: DividingLineInterface) => {
-  const [block, element] = bem("dividing-line");
+    const [block, element] = bem('dividing-line');
 
-  return <hr className={block({ color: props.color })} />;
+    return (
+        <hr
+            className={block({
+                color: props.color,
+            })}
+        />
+    );
 };

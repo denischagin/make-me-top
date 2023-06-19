@@ -1,70 +1,68 @@
-import { Avatar } from "@shared/Avatar";
-import { Card } from "@shared/Card";
-import { Rating } from "@shared/Rating";
-import { Typography } from "@shared/Typography";
+import { useAppSelector } from '@app/providers/store/hooks';
 
-import { bem } from "@shared/utils/bem";
+import { userInfoSelector } from '@entities/user/model/selectors';
 
-import { ExplorerUserInfoInterface } from "./interfaces";
-import { avatarSize } from "@shared/Avatar/interfaces";
-import { cardSize } from "@shared/Card/interfaces";
+import { Avatar } from '@shared/Avatar';
+import { InfoCard } from '@shared/InfoCard';
+import { Rating } from '@shared/Rating';
+import { Typography } from '@shared/Typography';
+
+import { bem } from '@shared/utils/bem';
+
+import { avatarSize } from '@shared/Avatar/interfaces';
 import {
-  ratingScoreColor,
-  ratingSize,
-  ratingStarColor,
-} from "@shared/Rating/interfaces";
-import { typographyVariant } from "@shared/Typography/interfaces";
+    ratingScoreColor,
+    ratingSize,
+    ratingStarColor,
+} from '@shared/Rating/interfaces';
+import { typographyVariant } from '@shared/Typography/interfaces';
 
-import "./styles.scss";
+import './styles.scss';
 
-export const ExplorerUserInfo = (props: ExplorerUserInfoInterface) => {
-  const {
-    user: {
-      name,
-      avatar,
-      rating
-    },
-  } = props;
+export const ExplorerUserInfo = () => {
+    const [block, element] = bem('explorer-user-info');
 
-  const [block, element] = bem("profile-info");
+    const userInfo = useAppSelector(userInfoSelector);
 
-  return (
-    <div className={block()}>
-      <Avatar
-        size={avatarSize.large}
-        image={avatar}
-        orbit
-      />
-      <div className={element("description")}>
-        <div className={element("description-name", "mb-4")}>
-          <Typography variant={typographyVariant.h1}>{name}</Typography>
-        </div>
-        <div className={element("rating")}>
-          <Card size={cardSize.small}>
-            <div className={element("heading")}>
-              <Typography variant={typographyVariant.regular16}>
-                Рейтинг
-              </Typography>
+    const {
+        name = '',
+        avatar = '',
+        rating,
+        stars = 0,
+    } = userInfo;
+
+    return (
+        <div className={block()}>
+            <Avatar
+                size={avatarSize.large}
+                image={avatar}
+                orbit
+            />
+            <div className={element('description')}>
+                <Typography
+                    variant={typographyVariant.h1}
+                    className={element('description-name', 'mb-4')}
+                >
+                    {name}
+                </Typography>
+                <div className={element('cards')}>
+                    <InfoCard
+                        title="Рейтинг"
+                        value={
+                            <Rating
+                                scoreColor={ratingScoreColor.white}
+                                rating={rating}
+                                size={ratingSize.large}
+                                starColor={ratingStarColor.primary500}
+                            />
+                        }
+                    />
+                    <InfoCard
+                        title="Кол-во освоенных звёзд"
+                        value={stars}
+                    />
+                </div>
             </div>
-            <span className={element("current-rating")}>
-              <Rating
-                scoreColor={ratingScoreColor.white}
-                rating={rating}
-                size={ratingSize.large}
-                starColor={ratingStarColor.primary500}
-              />
-            </span>
-          </Card>
-          <Card size={cardSize.small}>
-            <div className={element("heading")}>
-              <Typography variant={typographyVariant.regular16}>
-                Кол-во освоенных звезд
-              </Typography>
-            </div>
-            <span className={element("completed-stars")}>11</span>
-          </Card>
         </div>
-      </div>
-    </div>
-  );
+    );
 };

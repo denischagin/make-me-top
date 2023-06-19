@@ -1,50 +1,50 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .select-list {
-  margin: 24px auto;
+    margin: 24px auto;
 
-  &__item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: default;
-    border-radius: 8px;
-    padding: 8px 16px;
-    transition: 0.2s;
-
-    &:hover {
-      background-color: $gray-400;
-
-      .select-list__name {
-        font-family: $font-text-medium;
-      }
-
-      .select-list__button {
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: default;
+        border-radius: 8px;
+        padding: 8px 16px;
         transition: 0.2s;
-        opacity: 1;
-      }
+
+        &:hover {
+            background-color: $gray-400;
+
+            .select-list__name {
+                font-family: $font-text-medium;
+            }
+
+            .select-list__button {
+                transition: 0.2s;
+                opacity: 1;
+            }
+        }
     }
-  }
 
-  &__user,
-  &__info {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  &__rating {
-    &--hide {
-      display: none;
+    &__user,
+    &__info {
+        display: flex;
+        align-items: center;
+        gap: 16px;
     }
-  }
 
-  &__button {
-    opacity: 0;
-    transition: 0.3s;
-
-    &--visible {
-      opacity: 1;
+    &__rating {
+        &--hide {
+            display: none;
+        }
     }
-  }
+
+    &__button {
+        opacity: 0;
+        transition: 0.3s;
+
+        &--visible {
+            opacity: 1;
+        }
+    }
 }

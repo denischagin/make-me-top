@@ -1,18 +1,18 @@
-import {isConnectionOverlapped} from "@entities/galaxy/lib/isConnectionOverlapped";
+import { isConnectionOverlapped } from '@entities/galaxy/lib/isConnectionOverlapped';
 
 interface IGetCoordsForConnection {
     currentTarget: {
-        top: number,
-        left: number
-    },
+        top: number;
+        left: number;
+    };
     elementToConnect: {
-        top: number,
-        left: number
-    },
-    svgContainer: SVGSVGElement | null,
-    viewBoxOffsetY: number,
-    viewBoxOffsetX: number,
-    swingCountProp?: number,
+        top: number;
+        left: number;
+    };
+    svgContainer: SVGSVGElement | null;
+    viewBoxOffsetY: number;
+    viewBoxOffsetX: number;
+    swingCountProp?: number;
 }
 
 //рекурсивная функция получения координат между элементами
@@ -25,8 +25,8 @@ export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoo
         svgContainer,
         viewBoxOffsetY,
         viewBoxOffsetX,
-        swingCountProp
-    } = params
+        swingCountProp,
+    } = params;
 
     //swingCount: количество изменений направления при наложении
     //swingDirection: множитель направления для следующей связи (1 или -1)
@@ -44,19 +44,19 @@ export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoo
         elementToConnectCoords: elementToConnect,
         viewBoxOffsetY,
         viewBoxOffsetX,
-        svgContainer: svgContainer,
-        svgLineClass: ".galaxy__connection-line"
+        svgContainer,
+        svgLineClass: '.galaxy__connection-line',
     });
 
     //чередование направления в зависимости от их количества
-    swingCount % 2 === 0 ? swingDirection = -1 : swingDirection = 1;
+    swingCount % 2 === 0 ? (swingDirection = -1) : (swingDirection = 1);
 
     //если было наложение(место занято) - поиск следующего места
     if (isOverlapped) {
         return getCoordsForConnection({
             currentTarget: {
                 top: currentTarget.top + offset * swingDirection,
-                left: currentTarget.left + offset * swingDirection
+                left: currentTarget.left + offset * swingDirection,
             },
             elementToConnect: {
                 top: elementToConnect.top + offset * swingDirection,
@@ -71,11 +71,11 @@ export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoo
 
     //если не было наложения(место свободно) - вернуть координаты места
     return {
-        currentTarget: currentTarget,
-        elementToConnect: elementToConnect,
+        currentTarget,
+        elementToConnect,
         swingCountProp: swingCount,
         svgContainer,
         viewBoxOffsetX,
         viewBoxOffsetY,
-    }
-}
+    };
+};

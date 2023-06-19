@@ -1,14 +1,17 @@
-import {getElemCoords} from "@entities/galaxy/lib/getElemCoords";
-import {ACTIVE_PLANET, HTML_ELEMENT} from "@entities/galaxy/model/constants";
+import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
+import {
+    ACTIVE_PLANET,
+    HTML_ELEMENT,
+} from '@entities/galaxy/model/constants';
 
 interface IShowChildren {
-    childrenList: string | null,
-    currentTarget: HTMLDivElement,
-    planetWidth: number,
-    planetHeight: number,
-    viewBoxOffsetX: number,
-    viewBoxOffsetY: number,
-    svgContainer: SVGSVGElement | null,
+    childrenList: string | null;
+    currentTarget: HTMLDivElement;
+    planetWidth: number;
+    planetHeight: number;
+    viewBoxOffsetX: number;
+    viewBoxOffsetY: number;
+    svgContainer: SVGSVGElement | null;
 }
 
 //функция создания svg линий связи между текущей планетой и всеми ее child зависимостями
@@ -22,31 +25,31 @@ export const showPlanetsChildren = (params: IShowChildren) => {
         viewBoxOffsetX,
         viewBoxOffsetY,
         svgContainer,
-    } = params
+    } = params;
 
     const currentTargetCoords = getElemCoords({
         elem: currentTarget,
         type: HTML_ELEMENT,
         planetWidth,
-        planetHeight
+        planetHeight,
     });
 
     if (childrenList === null) {
         return;
     }
 
-    const childrenListArray = childrenList.split(",");
+    const childrenListArray = childrenList.split(',');
 
     //для каждой child зависимости построение связи
-    childrenListArray.forEach(child => {
-        const elementData = child.split(":");
+    childrenListArray.forEach((child) => {
+        const elementData = child.split(':');
         const [elementId, isAlternative] = elementData;
 
         const numberElementId = Number(elementId);
-        const booleanIsAlternative = isAlternative === "true";
+        const booleanIsAlternative = isAlternative === 'true';
 
         if (isNaN(numberElementId)) {
-            return
+            return;
         }
 
         const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
@@ -55,12 +58,12 @@ export const showPlanetsChildren = (params: IShowChildren) => {
             elem: childElement,
             type: HTML_ELEMENT,
             planetWidth,
-            planetHeight
+            planetHeight,
         });
 
         const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
 
-        childElement?.setAttribute("data-is-active", ACTIVE_PLANET);
+        childElement?.setAttribute('data-is-active', ACTIVE_PLANET);
 
         //позиционирование и стилизация линии
         if (currentTargetCoords && childElementCoords) {
@@ -73,9 +76,9 @@ export const showPlanetsChildren = (params: IShowChildren) => {
 
         //установка атрибута пунктира, если путь альтернативен
         if (booleanIsAlternative) {
-            svgLine.setAttribute('stroke-dasharray', "10 5");
+            svgLine.setAttribute('stroke-dasharray', '10 5');
         }
 
         svgContainer?.append(svgLine);
-    })
-}
+    });
+};

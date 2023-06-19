@@ -1,64 +1,64 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .button {
-  color: $white;
-  cursor: pointer;
-  text-align: center;
-  font-family: $font-montserrat;
-  border-radius: 56px;
-  transition: 0.3s;
-  background-color: transparent;
-  border: 1px solid $white;
-
-  &:hover {
+    color: $white;
+    cursor: pointer;
+    text-align: center;
+    font-family: $font-text-medium;
+    border-radius: 56px;
     transition: 0.3s;
-    color: $black;
-    background-color: $white;
-  }
-
-  &--color-filled {
-    background-color: $primary-500;
-    border: 1px solid $primary-500;
-
-    &:hover {
-      color: $white;
-      border: 1px solid $primary-600;
-      background-color: $primary-600;
-    }
-  }
-
-  &--color-primary-500 {
     background-color: transparent;
-    border: 1px solid $primary-500;
-    color: $primary-500;
+    border: 1px solid $white;
 
     &:hover {
-      color: $white;
-      border: 1px solid $primary-500;
-      background-color: $primary-500;
+        transition: 0.3s;
+        color: $black;
+        background-color: $white;
     }
-  }
 
-  &--color-black {
-    color: $black;
-    background-color: transparent;
-    border: 1px solid $black;
+    &--color-filled {
+        background-color: $primary-500;
+        border: 1px solid $primary-500;
 
-    &:hover {
-      color: $white;
-      background-color: $black;
+        &:hover {
+            color: $white;
+            border: 1px solid $primary-600;
+            background-color: $primary-600;
+        }
     }
-  }
 
-  &--size-small {
-    display: inline-block;
-    font-size: 14px;
-    padding: 10px 16px;
-  }
+    &--color-primary-500 {
+        background-color: transparent;
+        border: 1px solid $primary-500;
+        color: $primary-500;
 
-  &--size-large {
-    display: inline-block;
-    font-size: 16px;
-    padding: 16px 40px;
-  }
+        &:hover {
+            color: $white;
+            border: 1px solid $primary-500;
+            background-color: $primary-500;
+        }
+    }
+
+    &--color-black {
+        color: $black;
+        background-color: transparent;
+        border: 1px solid $black;
+
+        &:hover {
+            color: $white;
+            background-color: $black;
+        }
+    }
+
+    &--size-small {
+        display: inline-block;
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+
+    &--size-large {
+        display: inline-block;
+        font-size: 16px;
+        padding: 16px 40px;
+    }
 }

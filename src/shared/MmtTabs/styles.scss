@@ -1,46 +1,46 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .react-tabs {
-  &__tab-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    justify-content: flex-start;
-    border-bottom: 1px solid $gray-500;
-  }
-
-  &__tab {
-    cursor: pointer;
-    transition: 0.2s;
-    color: $gray-500;
-    font-size: 14px;
-    border-bottom: 2px solid transparent;
-    margin-right: 16px;
-    padding-bottom: 12px;
-
-    &:focus-visible {
-      outline: none;
+    &__tab-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        justify-content: flex-start;
+        border-bottom: 1px solid $gray-500;
     }
 
-    &--selected {
-      border-bottom: 2px solid $primary-500;
-      color: $primary-500;
-      animation-duration: 0.2s;
-      animation-name: click;
+    &__tab {
+        cursor: pointer;
+        transition: 0.2s;
+        color: $gray-500;
+        font-size: 14px;
+        border-bottom: 2px solid transparent;
+        margin-right: 16px;
+        padding-bottom: 12px;
 
-      @keyframes click {
-        from {
-          color: $gray-500;
-          border-bottom: 2px solid transparent;
+        &:focus-visible {
+            outline: none;
         }
-      }
-    }
 
-    &:hover {
-      transition: 0.2s;
-      border-bottom: 2px solid $primary-500;
-      color: $primary-500;
+        &--selected {
+            border-bottom: 2px solid $primary-500;
+            color: $primary-500;
+            animation-duration: 0.2s;
+            animation-name: click;
+
+            @keyframes click {
+                from {
+                    color: $gray-500;
+                    border-bottom: 2px solid transparent;
+                }
+            }
+        }
+
+        &:hover {
+            transition: 0.2s;
+            border-bottom: 2px solid $primary-500;
+            color: $primary-500;
+        }
     }
-  }
 }

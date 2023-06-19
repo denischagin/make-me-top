@@ -1,12 +1,14 @@
-import {HTML_ELEMENT, SVG_ELEMENT} from "@entities/galaxy/model/constants";
+import {
+    HTML_ELEMENT,
+    SVG_ELEMENT,
+} from '@entities/galaxy/model/constants';
 
 interface IGetElemCoords {
-    elem: HTMLElement | SVGSVGElement | null,
-    type: "HTMLElement" | "SVGSVGElement",
-    planetWidth?: number,
-    planetHeight?: number
+    elem: HTMLElement | SVGSVGElement | null;
+    type: 'HTMLElement' | 'SVGSVGElement';
+    planetWidth?: number;
+    planetHeight?: number;
 }
-
 
 //получение координат SVGSVGElement элемента или середины HTMLElement элемента
 export const getElemCoords = (params: IGetElemCoords) => {
@@ -15,10 +17,10 @@ export const getElemCoords = (params: IGetElemCoords) => {
         type,
         planetWidth,
         planetHeight,
-    } = params
+    } = params;
 
     if (!elem) {
-        return
+        return;
     }
 
     const box = elem.getBoundingClientRect();
@@ -26,20 +28,12 @@ export const getElemCoords = (params: IGetElemCoords) => {
     const body = document.body;
     const documentElement = document.documentElement;
 
-    const scrollTop = window.scrollY
-        || documentElement.scrollTop
-        || body.scrollTop;
+    const scrollTop = window.scrollY || documentElement.scrollTop || body.scrollTop;
 
-    const scrollLeft = window.scrollX
-        || documentElement.scrollLeft
-        || body.scrollLeft;
+    const scrollLeft = window.scrollX || documentElement.scrollLeft || body.scrollLeft;
 
-    const clientTop = documentElement.clientTop
-        || body.clientTop
-        || 0;
-    const clientLeft = documentElement.clientLeft
-        || body.clientLeft
-        || 0;
+    const clientTop = documentElement.clientTop || body.clientTop || 0;
+    const clientLeft = documentElement.clientLeft || body.clientLeft || 0;
 
     let top = 0;
     let left = 0;
@@ -47,20 +41,24 @@ export const getElemCoords = (params: IGetElemCoords) => {
     switch (type) {
         case HTML_ELEMENT: {
             if (planetWidth !== undefined && planetHeight !== undefined) {
-                top  = box.top + scrollTop - clientTop + planetHeight / 2;
+                top = box.top + scrollTop - clientTop + planetHeight / 2;
                 left = box.left + scrollLeft - clientLeft + planetWidth / 2;
             }
 
             break;
         }
         case SVG_ELEMENT: {
-            top  = box.top +  scrollTop - clientTop;
+            top = box.top + scrollTop - clientTop;
             left = box.left + scrollLeft - clientLeft;
 
             break;
         }
-        default: break;
+        default:
+            break;
     }
 
-    return { top: Math.round(top), left: Math.round(left) };
-}
+    return {
+        top: Math.round(top),
+        left: Math.round(left),
+    };
+};

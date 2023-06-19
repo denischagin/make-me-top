@@ -1,8 +1,8 @@
 export interface HeaderLinkInterface {
-  link: string
-  text: string
+    link: string;
+    text: string;
 }
 
 export interface HeaderInterface {
-  links?: Array<HeaderLinkInterface>;
+    links?: Array<HeaderLinkInterface>;
 }
