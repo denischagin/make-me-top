@@ -1,65 +1,135 @@
 {
-  "root": true,
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+    "root": true,
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     },
-    "ecmaVersion": 12
-  },
-  "plugins": ["react", "@typescript-eslint"],
-  "rules": {
-    "react/react-in-jsx-scope": 0,
-    "strict": 0,
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:css-modules/recommended",
+        "plugin:putout/jsx",
+        "prettier"
     ],
-    "comma-spacing": [
-      "error",
-      {
-        "before": false,
-        "after": true
-      }
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "css-modules",
+        "putout",
+        "destructuring-newline",
+        "prettier"
     ],
-    "semi": ["error", "always"],
-    "no-empty": "warn",
-    "no-cond-assign": ["error", "always"],
-    "quotes": [2, "double"],
-    "no-trailing-spaces": "error",
-    "object-property-newline": ["error"],
-    "react/no-array-index-key": 2,
-    "space-infix-ops": [
-      "error",
-      {
-        "int32Hint": false
-      }
-    ],
-    "object-curly-spacing": ["error", "always"],
-    "no-unused-vars": "off",
-    "no-undef": "warn",
-    "key-spacing": [
-      "error",
-      {
-        "afterColon": true,
-        "mode": "strict"
-      }
-    ],
-    "newline-before-return": "error",
-    "react/jsx-max-props-per-line": [
-      "error",
-      {
-        "maximum": 1,
-        "when": "always"
-      }
-    ]
-  }
+    "rules": {
+        "putout/multiple-properties-destructuring": 1,
+        "putout/long-properties-destructuring": 1,
+        "putout/object-property-newline": 1,
+        "putout/add-newlines-between-specifiers": 1,
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "@typescript-eslint/no-non-null-assertion": "warn",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-non-null-asserted-optional-chain": "warn",
+        "react/react-in-jsx-scope": 0,
+        "strict": 0,
+        "object-shorthand": [
+            "error",
+            "always",
+            {
+                "avoidQuotes": true
+            }
+        ],
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "comma-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "object-curly-newline": [
+            "error",
+            {
+                "ObjectExpression": {
+                    "consistent": true,
+                    "multiline": true,
+                    "minProperties": 1
+                },
+                "ObjectPattern": {
+                    "consistent": true,
+                    "multiline": true,
+                    "minProperties": 1
+                }
+            }
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 150
+            }
+        ],
+        "no-empty": "warn",
+        "no-cond-assign": [
+            "error",
+            "always"
+        ],
+        "no-trailing-spaces": "error",
+        "object-property-newline": "error",
+        "react/no-array-index-key": 2,
+        "space-infix-ops": [
+            "error",
+            {
+                "int32Hint": false
+            }
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "no-unused-vars": 0,
+        "no-undef": "warn",
+        "key-spacing": [
+            "error",
+            {
+                "afterColon": true,
+                "mode": "strict"
+            }
+        ],
+        "newline-before-return": "error",
+        "react/jsx-max-props-per-line": [
+            "error",
+            {
+                "maximum": 1,
+                "when": "always"
+            }
+        ]
+    }
 }
