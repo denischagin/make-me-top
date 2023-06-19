@@ -14,8 +14,7 @@
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:css-modules/recommended",
-        "plugin:putout/jsx",
-        "prettier"
+        "plugin:putout/jsx"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -29,14 +28,85 @@
         "@typescript-eslint",
         "css-modules",
         "putout",
-        "destructuring-newline",
-        "prettier"
+        "simple-import-sort",
+        "newline-destructuring"
     ],
     "rules": {
         "putout/multiple-properties-destructuring": 1,
         "putout/long-properties-destructuring": 1,
         "putout/object-property-newline": 1,
         "putout/add-newlines-between-specifiers": 1,
+        "simple-import-sort/imports": [
+            "error",
+            {
+                "groups": [
+                    [
+                        "^react(.*)"
+                    ],
+                    [
+                        "^<THIRD_PARTY_MODULES>"
+                    ],
+                    [
+                        "^@app/[a-zA-Z]+$"
+                    ],
+                    [
+                        "^@app/providers/(.*)$"
+                    ],
+                    [
+                        "^@app/styles/(.*)$"
+                    ],
+                    [
+                        "^@entities/[a-zA-Z]+$"
+                    ],
+                    [
+                        "^@entities/user/(.*)$"
+                    ],
+                    [
+                        "^@entities/explorer/(.*)$"
+                    ],
+                    [
+                        "^@entities/curator/(.*)$"
+                    ],
+                    [
+                        "^@entities/galaxy/(.*)$"
+                    ],
+                    [
+                        "^@shared/[a-zA-Z]+$"
+                    ],
+                    [
+                        "^@shared/images/(.*)$"
+                    ],
+                    [
+                        "^@shared/utils/(.*)$"
+                    ],
+                    [
+                        "^@shared/constants/(.*)$"
+                    ],
+                    [
+                        "^@widgets/(.*)$"
+                    ],
+                    [
+                        "^@pages/(.*)$"
+                    ],
+                    [
+                        "^(@shared/(.*)/interfaces$)|(./interfaces)$"
+                    ],
+                    [
+                        "^@shared/types/(.*)$"
+                    ],
+                    [
+                        "./model"
+                    ],
+                    [
+                        "^[./]"
+                    ],
+                    [
+                        "./styles.scss"
+                    ]
+                ]
+            }
+        ],
+        "simple-import-sort/exports": "error",
         "quotes": [
             "error",
             "single"
@@ -46,6 +116,12 @@
         "@typescript-eslint/no-non-null-asserted-optional-chain": "warn",
         "react/react-in-jsx-scope": 0,
         "strict": 0,
+        "newline-destructuring/newline": [
+            "error",
+            {
+                "items": 1
+            }
+        ],
         "object-shorthand": [
             "error",
             "always",
