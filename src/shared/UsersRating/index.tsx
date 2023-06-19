@@ -19,9 +19,9 @@ import './styles.scss';
 export const UsersRating = (props: UserInfoInterface) => {
     const {
         user: {
-            name,
-            avatar,
-            rating,
+            name = '',
+            avatar = '',
+            rating = 0,
         },
     } = props;
 

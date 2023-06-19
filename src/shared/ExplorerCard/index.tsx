@@ -14,8 +14,8 @@ import './styles.scss';
 
 export const ExplorerCard = (props: ExplorerCardInterface) => {
     const {
-        name,
-        avatar,
+        name = '',
+        avatar = '',
     } = props;
     const [block, element] = bem('explorer-card');
 

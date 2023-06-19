@@ -17,11 +17,11 @@ import './styles.scss';
 
 export const CurrentUserItem = (props: CurrentUserItemInterface) => {
     const {
-        badgeTitle,
+        badgeTitle = '',
         user: {
-            name,
-            avatar,
-            rating,
+            name = '',
+            avatar = '',
+            rating = 0,
         },
     } = props;
 

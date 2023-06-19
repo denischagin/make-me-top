@@ -17,7 +17,7 @@ import './styles.scss';
 
 export const RequiredStarsList = (props: RequiredStarsListInterface) => {
     const {
-        list,
+        list = [],
     } = props;
 
     const [block, element] = bem('required-list');

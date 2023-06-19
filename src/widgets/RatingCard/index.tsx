@@ -16,7 +16,7 @@ import './styles.scss';
 
 export const RatingCard = (props: RatingCardInterface) => {
     const {
-        list,
+        list = [],
         user,
     } = props;
 
@@ -39,12 +39,14 @@ export const RatingCard = (props: RatingCardInterface) => {
                 >
                     Общий рейтинг
                 </Typography>
-                {list.map((user: UserInterface) => (
-                    <UsersRating
-                        key={user.id}
-                        user={user}
-                    />
-                ))}
+                {
+                    list.map((user: UserInterface) => (
+                        <UsersRating
+                            key={user.id}
+                            user={user}
+                        />
+                    ))
+                }
             </div>
         </Card>
     );

@@ -17,7 +17,7 @@ export const ShowMoreTextModal = (props: ShowMoreTextModalInterface) => {
         maxLength,
         children,
         typographySettings: {
-            variant,
+            variant = typographyVariant.regular14,
             color,
         },
     } = props;
@@ -37,7 +37,7 @@ export const ShowMoreTextModal = (props: ShowMoreTextModalInterface) => {
                 <div className={element('content')}>
                     <Typography
                         className={element('text')}
-                        variant={variant || typographyVariant.regular14}
+                        variant={variant}
                         color={color}
                     >
                         {sliceString(text, maxLength)}

@@ -47,15 +47,15 @@ const CURRENT_PLANET = 'SQL';
 
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     const {
-        tabsList,
+        tabsList = [],
         starInfo: {
             planet: {
-                name,
-                id,
+                name = '',
+                id = 0,
             },
-            star,
-            curator,
-            progress,
+            star = '',
+            curator = '',
+            progress = 0,
         },
     } = props;
 

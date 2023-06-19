@@ -12,7 +12,7 @@ import './styles.scss';
 
 export const MmtTabs = (props: TabsListInterface) => {
     const {
-        list,
+        list = [],
         children,
     } = props;
 

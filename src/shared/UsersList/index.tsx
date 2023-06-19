@@ -19,7 +19,7 @@ import './styles.scss';
 
 export const UsersList = (props: UserListInterface) => {
     const {
-        list,
+        list = [],
     } = props;
 
     const [block, element] = bem('users-list');

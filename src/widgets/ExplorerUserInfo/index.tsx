@@ -25,10 +25,10 @@ export const ExplorerUserInfo = () => {
     const userInfo = useAppSelector(userInfoSelector);
 
     const {
-        name,
-        avatar,
+        name = '',
+        avatar = '',
         rating,
-        stars,
+        stars = 0,
     } = userInfo;
 
     return (
@@ -59,7 +59,7 @@ export const ExplorerUserInfo = () => {
                     />
                     <InfoCard
                         title="Кол-во освоенных звёзд"
-                        value={stars || 0}
+                        value={stars}
                     />
                 </div>
             </div>

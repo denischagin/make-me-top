@@ -26,7 +26,7 @@ import './styles.scss';
 
 export const SelectUsersList = (props: UserListInterface) => {
     const {
-        list,
+        list = [],
     } = props;
 
     const [block, element] = bem('select-list');

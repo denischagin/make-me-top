@@ -25,11 +25,11 @@ export const CuratorUserInfo = () => {
     const userInfo = useAppSelector(userInfoSelector);
 
     const {
-        name,
-        avatar,
-        rating,
-        planets,
-        explorers,
+        name = '',
+        avatar = '',
+        rating = 0,
+        planets = 0,
+        explorers = 0,
     } = userInfo;
 
     return (
@@ -60,11 +60,11 @@ export const CuratorUserInfo = () => {
                     />
                     <InfoCard
                         title="Кол-во планет"
-                        value={planets || 0}
+                        value={planets}
                     />
                     <InfoCard
                         title="Кол-во исследователей"
-                        value={explorers || 0}
+                        value={explorers}
                     />
                 </div>
             </div>
