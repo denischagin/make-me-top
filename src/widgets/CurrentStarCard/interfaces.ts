@@ -1,16 +1,16 @@
-import { TabInterface } from "@shared/types/common";
+import { TabInterface } from '@shared/types/common';
 
 export interface CurrentStarCardInterface {
-  starInfo: CurrentStarItemInterface;
-  tabsList: Array<TabInterface>;
+    starInfo: CurrentStarItemInterface;
+    tabsList: Array<TabInterface>;
 }
 
 interface CurrentStarItemInterface {
-  planet: {
-    id: number;
-    name: string;
-  };
-  star: string;
-  curator: string;
-  progress: number;
+    planet: {
+        id: number;
+        name: string;
+    };
+    star: string;
+    curator: string;
+    progress: number;
 }

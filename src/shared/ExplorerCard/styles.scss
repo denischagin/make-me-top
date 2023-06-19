@@ -1,30 +1,30 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .explorer-card {
-  display: flex;
-  align-items: center;
-  padding: 12px 8px;
-  border-radius: 8px;
-  gap: 16px;
-  transition: 0.2s;
-  position: relative;
-  margin-bottom: 8px;
-
-  &:hover {
-    cursor: pointer;
-    background-color: $gray-500;
-
-    .explorer-card__name {
-      color: $black;
-    }
-  }
-
-  &__icon {
-    position: absolute;
-    right: 16px;
-  }
-
-  &__name {
+    display: flex;
+    align-items: center;
+    padding: 12px 8px;
+    border-radius: 8px;
+    gap: 16px;
     transition: 0.2s;
-  }
+    position: relative;
+    margin-bottom: 8px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $gray-500;
+
+        .explorer-card__name {
+            color: $black;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        right: 16px;
+    }
+
+    &__name {
+        transition: 0.2s;
+    }
 }

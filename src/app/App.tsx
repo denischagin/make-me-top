@@ -1,11 +1,7 @@
-import { bem } from "@shared/utils/bem";
+import { bem } from '@shared/utils/bem';
 
 export const App = () => {
-  const [block, element] = bem("App");
+    const [block, element] = bem('App');
 
-  return (
-    <div className={block()}>
-
-    </div>
-  );
+    return <div className={block()}></div>;
 };

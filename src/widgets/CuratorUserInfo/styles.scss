@@ -1,15 +1,15 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .curator-user-info {
-  display: flex;
-
-  &__description {
-    margin-left: 40px;
-    margin-top: 4px;
-  }
-
-  &__cards {
     display: flex;
-    gap: 16px;
-  }
+
+    &__description {
+        margin-left: 40px;
+        margin-top: 4px;
+    }
+
+    &__cards {
+        display: flex;
+        gap: 16px;
+    }
 }

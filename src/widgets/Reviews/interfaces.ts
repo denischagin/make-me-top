@@ -1,5 +1,5 @@
-import { ReviewCardInterface } from "@shared/types/common";
+import { ReviewCardInterface } from '@shared/types/common';
 
 export interface ReviewsInterface {
-  reviews: Array<ReviewCardInterface>
+    reviews: Array<ReviewCardInterface>;
 }

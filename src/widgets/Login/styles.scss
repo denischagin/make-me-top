@@ -1,13 +1,13 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .login {
-  cursor: default;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    cursor: default;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  &__heading {
-    margin-bottom: 30px;
-  }
+    &__heading {
+        margin-bottom: 30px;
+    }
 }

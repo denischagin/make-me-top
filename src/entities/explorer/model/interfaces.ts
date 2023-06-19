@@ -1,3 +1,3 @@
 export interface ExplorerState {
-  isExplorer: boolean;
+    isExplorer: boolean;
 }

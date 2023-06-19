@@ -1,49 +1,52 @@
-import { useAppSelector } from "@app/providers/store/hooks";
+import { useAppSelector } from '@app/providers/store/hooks';
 
-import { explorerIsExplorerSelector } from "@entities/explorer/model/selectors";
+import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
-import { Input } from "@shared/Input";
-import { Typography } from "@shared/Typography";
-import { RouterLink } from "@shared/RouterLink";
-import { PlanetButton } from "@shared/PlanetButton";
+import { Input } from '@shared/Input';
+import { PlanetButton } from '@shared/PlanetButton';
+import { RouterLink } from '@shared/RouterLink';
+import { Typography } from '@shared/Typography';
 
-import { bem } from "@shared/utils/bem";
+import { bem } from '@shared/utils/bem';
 
-import { URL_CURATOR, URL_EXPLORER } from "@shared/constants/links";
+import {
+    URL_CURATOR,
+    URL_EXPLORER,
+} from '@shared/constants/links';
 
-import { typographyVariant } from "@shared/Typography/interfaces";
+import { typographyVariant } from '@shared/Typography/interfaces';
 
-import "./styles.scss";
+import './styles.scss';
 
 export const Login = () => {
-  const [block, element] = bem("login");
+    const [block, element] = bem('login');
 
-  const isExplorer = useAppSelector(explorerIsExplorerSelector);
+    const isExplorer = useAppSelector(explorerIsExplorerSelector);
 
-  return (
-    <>
-      <div className={block()}>
-        <Typography
-          className={element("heading")}
-          variant={typographyVariant.h2}
-        >
-          Вход
-        </Typography>
-        <Input
-          placeholder="Номер телефона"
-          type="tel"
-        />
-        <Input
-          placeholder="Пароль"
-          type="password"
-        />
-        <RouterLink to={isExplorer ? URL_EXPLORER : URL_CURATOR}>
-          <PlanetButton
-            onClick={() => console.log("logged")}
-            title="Войти"
-          />
-        </RouterLink>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className={block()}>
+                <Typography
+                    className={element('heading')}
+                    variant={typographyVariant.h2}
+                >
+                    Вход
+                </Typography>
+                <Input
+                    placeholder="Номер телефона"
+                    type="tel"
+                />
+                <Input
+                    placeholder="Пароль"
+                    type="password"
+                />
+                <RouterLink to={isExplorer ? URL_EXPLORER : URL_CURATOR}>
+                    <PlanetButton
+                        onClick={() => console.log('logged')}
+                        title="Войти"
+                    />
+                </RouterLink>
+            </div>
+        </>
+    );
 };

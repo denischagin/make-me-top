@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export interface PortalInterface {
-  children: ReactNode;
-  target: HTMLElement | DocumentFragment;
+    children: ReactNode;
+    target: HTMLElement | DocumentFragment;
 }

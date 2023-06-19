@@ -1,5 +1,5 @@
-import { GradeApplicationInterface } from "@shared/types/common";
+import { GradeApplicationInterface } from '@shared/types/common';
 
 export interface GradeApplicationCardInterface {
-  user: GradeApplicationInterface;
+    user: GradeApplicationInterface;
 }

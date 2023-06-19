@@ -1,22 +1,21 @@
-import { bem } from "@shared/utils/bem";
+import { bem } from '@shared/utils/bem';
 
-import { InputInterface } from "./interfaces";
+import { InputInterface } from './interfaces';
 
-import "./styles.scss";
+import './styles.scss';
 
 export const Input = (props: InputInterface) => {
-  const {
-    placeholder,
-    type
-  } = props;
+    const {
+        placeholder, type,
+    } = props;
 
-  const [block, element] = bem("input");
+    const [block, element] = bem('input');
 
-  return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className={block()}
-    />
-  );
+    return (
+        <input
+            type={type}
+            placeholder={placeholder}
+            className={block()}
+        />
+    );
 };

@@ -1,3 +1,3 @@
 export interface ShowMoreTextInterface {
-  onClick: () => void
+    onClick: () => void;
 }

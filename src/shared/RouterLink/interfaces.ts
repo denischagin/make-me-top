@@ -1,5 +1,3 @@
-import { LinkProps } from "react-router-dom";
+import { LinkProps } from 'react-router-dom';
 
-export interface LinkInterface extends LinkProps {
-
-}
+export interface LinkInterface extends LinkProps {}

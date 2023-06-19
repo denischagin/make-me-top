@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export interface ModalInterface {
-  header: string;
-  isLocked?: boolean;
-  children: ReactNode;
-  onClose: (dispatch: any) => any
+    header: string;
+    isLocked?: boolean;
+    children: ReactNode;
+    onClose: (dispatch: any) => any;
 }

@@ -1,7 +1,7 @@
-import {INACTIVE_PLANET} from "@entities/galaxy/model/constants";
+import { INACTIVE_PLANET } from '@entities/galaxy/model/constants';
 
 interface IHidePlanetsParents {
-    parentsList: string | null
+    parentsList: string | null;
 }
 
 //рекурсивная функция изменения dataset атрбута для всех parent зависимостей планеты
@@ -9,7 +9,7 @@ interface IHidePlanetsParents {
 //(атрибут активности при наведении)
 export const hidePlanetsParents = (params: IHidePlanetsParents) => {
     const {
-        parentsList
+        parentsList,
     } = params;
 
     if (parentsList === null) {
@@ -17,25 +17,25 @@ export const hidePlanetsParents = (params: IHidePlanetsParents) => {
     }
 
     //преобразование строки в массив формата ["КодПланеты:ТипСвязи",...]
-    const parentsListArray = parentsList.split(",");
+    const parentsListArray = parentsList.split(',');
 
-    parentsListArray.forEach(parent => {
+    parentsListArray.forEach((parent) => {
         //преобразование строки в массив формата [КодПланеты, ТипСвязи]
-        const elementData = parent.split(":");
+        const elementData = parent.split(':');
 
         const [elementId, isAlternative] = elementData;
         const numberElementId = Number(elementId);
 
         if (isNaN(numberElementId)) {
-            return
+            return;
         }
 
         //массив parent зависимостей текущего parent элемента
         const parentElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
-        const parentsListOfCurrentParent = parentElement?.getAttribute("data-planet-parent-list");
+        const parentsListOfCurrentParent = parentElement?.getAttribute('data-planet-parent-list');
 
         //изменение атрибута
-        parentElement?.setAttribute("data-is-active", INACTIVE_PLANET);
+        parentElement?.setAttribute('data-is-active', INACTIVE_PLANET);
 
         //если у текущего parent элемента есть parent зависимости
         if (parentsListOfCurrentParent) {
@@ -43,5 +43,5 @@ export const hidePlanetsParents = (params: IHidePlanetsParents) => {
                 parentsList: parentsListOfCurrentParent,
             });
         }
-    })
-}
+    });
+};

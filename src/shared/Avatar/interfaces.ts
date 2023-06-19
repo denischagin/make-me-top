@@ -1,11 +1,11 @@
 export interface AvatarInterface {
-  image: string;
-  size: avatarSize;
-  orbit?: boolean;
+    image: string;
+    size: avatarSize;
+    orbit?: boolean;
 }
 
 export enum avatarSize {
-  small = "small",
-  medium = "medium",
-  large = "large",
+    small = 'small',
+    medium = 'medium',
+    large = 'large',
 }

@@ -1,18 +1,18 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .curator-card {
-  color: $white;
+    color: $white;
 
-  &__container {
-    margin: 40px auto 40px auto;
-  }
+    &__container {
+        margin: 40px auto 40px auto;
+    }
 
-  &__back-arrow {
-    margin-top: -5px;
-    margin-right: 12px;
-  }
+    &__back-arrow {
+        margin-top: -5px;
+        margin-right: 12px;
+    }
 
-  &__profile {
-    display: flex;
-  }
+    &__profile {
+        display: flex;
+    }
 }

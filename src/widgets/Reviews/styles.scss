@@ -1,9 +1,9 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .reviews {
-  &__cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
-  }
+    &__cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 24px;
+    }
 }
