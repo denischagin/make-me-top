@@ -62,6 +62,7 @@ function getAdditionalClasses(
  *
  * @example
  * const [block, element] = useBem('block-name')
+ *
  * return (
  *     <div className={block({modA: true, modD: 42})}>
  *         <p className={element('element-name', {modA: true, modD: 42})} >
@@ -70,11 +71,24 @@ function getAdditionalClasses(
  *     </div>
  * )
  *
- * @param {string} blockName - имя блока
+ * @param {string} blockName имя блока
  *
- * @return {[Function, Function]} - [block, element]
+ * @return {[Function, Function]} [block, element]
  */
 export function bem(blockName: string): UseBemMethods {
+
+  /**
+   * передача blockName в className и добавление к нему модифкаторов
+   *
+   * @example
+   *     <div className={block({modA: true})}>
+   * ...
+   *
+   * @param {string} block имя блока
+   *
+   * @return {[Function, Function]} block-name block-name--modA
+   */
+
   const block: GetClassBlock = useCallback(
     (
       blockModifiersAndClasses: ModifiersHash | string | Array<string> = {},
@@ -108,6 +122,18 @@ export function bem(blockName: string): UseBemMethods {
     },
     [blockName]
   );
+
+  /**
+ * добавление элементов и модификаторов к ним
+ *
+ * @example
+ *     <p className={element('element-name', {modD: 42})}>
+ * ...
+ *
+ * @param {string} element имя блока
+ *
+ * @return {[Function, Function]} block-name__element-name block-name__element-name--modD-42
+ */
 
   const element: GetClassElement = useCallback(
     (
