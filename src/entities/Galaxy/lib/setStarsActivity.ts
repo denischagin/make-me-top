@@ -1,24 +1,24 @@
 import { DATA_PLANET_ID } from "@entities/Orbit/model/types";
 
 interface SetStarsActivity {
-  planetsChild: NodeListOf<HTMLDivElement>;
-  activePlanetsId: Array<number>;
+  stars: NodeListOf<HTMLDivElement>;
+  activeSystemsId: Array<number>;
 }
 
 export const setStarsActivity = (params: SetStarsActivity) => {
-  const { planetsChild, activePlanetsId } = params;
+  const { stars, activeSystemsId } = params;
 
   //для каждой звезды:
-  planetsChild.forEach((planet) => {
+  stars.forEach((planet) => {
     //если активных планет нет, то применяем модификатор inactive
-    if (activePlanetsId.length === 0) {
+    if (activeSystemsId.length === 0) {
       planet.setAttribute(
         "class",
         "star__orbit star__orbit--activity-inactive"
       );
     } else {
       //иначе проходимся по массиву с id всех активных планет и находим элементы по id-атрибуту
-      activePlanetsId.forEach((planetId) => {
+      activeSystemsId.forEach((planetId) => {
         const planet = document.querySelector<HTMLElement>(
           `[${DATA_PLANET_ID}="${planetId}"]`
         );

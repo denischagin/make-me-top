@@ -58,8 +58,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   const [block, element] = bem("galaxy");
 
   const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
-  const [activePlanetsId, setActivePlanetsId] = useState<Array<number>>([]);
-  const [star, setStar] = useState<NodeListOf<HTMLDivElement>>(
+  const [activeSystemsId, setActiveSystemsId] = useState<Array<number>>([]);
+  const [stars, setStars] = useState<NodeListOf<HTMLDivElement>>(
     document.querySelectorAll(".star__orbit.star__orbit--activity-inactive")
   );
   const [lastChosenStar, setLastChosenStar] = useState<SystemType>({
@@ -97,19 +97,19 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
   }, [galaxyPage]);
 
   useEffect(() => {
-    setStar(
+    setStars(
       document.querySelectorAll(
         ".star__orbit.star__orbit--activity-inactive , .star__orbit.star__orbit--activity-active"
       )
     );
-  }, [activePlanetsId]);
+  }, [activeSystemsId]);
 
   useEffect(() => {
     setStarsActivity({
-      planetsChild: star,
-      activePlanetsId,
+      stars,
+      activeSystemsId,
     });
-  }, [star, activePlanetsId]);
+  }, [stars, activeSystemsId]);
 
   useEffect(() => {
     setUserProgressOnLastChosenStar(
@@ -132,7 +132,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     addActivePlanet({
       activePlanetId: targetId,
-      setActivePlanets: setActivePlanetsId,
+      setActivePlanets: setActiveSystemsId,
     });
 
     if (
@@ -145,7 +145,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         planetWidth: galaxyOrbitSettings.planetWidth,
         planetHeight: galaxyOrbitSettings.planetHeight,
         svgContainer,
-        setActivePlanets: setActivePlanetsId,
+        setActivePlanets: setActiveSystemsId,
       });
     }
 
@@ -156,7 +156,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         planetWidth: galaxyOrbitSettings.planetWidth,
         planetHeight: galaxyOrbitSettings.planetHeight,
         svgContainer,
-        setActivePlanets: setActivePlanetsId,
+        setActivePlanets: setActiveSystemsId,
       });
     }
   };
@@ -167,7 +167,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const childrenList = currentTarget.getAttribute(DATA_PLANET_CHILDREN_LIST);
     const parentsList = currentTarget.getAttribute(DATA_PLANET_PARENT_LIST);
 
-    setActivePlanetsId([]);
+    setActiveSystemsId([]);
 
     hidePlanetsChildren({
       childrenList,
