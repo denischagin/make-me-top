@@ -11,12 +11,11 @@
   overflow: hidden;
   border-radius: 50%;
 
-  &__svg {
+  &__circle {
     position: absolute;
-
-    &-path {
-      fill: #7c7abd;
-      stroke: $white;
-    }
+    width: 120%;
+    height: 120%;
+    background: $white;
+    border-radius: 50%;
   }
 }

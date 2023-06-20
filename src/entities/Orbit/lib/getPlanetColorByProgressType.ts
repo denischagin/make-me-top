@@ -18,7 +18,7 @@ export const getPlanetColorByProgressType = (
       return starColor.black;
     }
     case PlanetProgressTypes.SYSTEM_EDUCATION: {
-      return starColor.white;
+      return starColor.primary500;
     }
     case PlanetProgressTypes.PROGRESS_NOT_FOUND: {
       return starColor.black;
