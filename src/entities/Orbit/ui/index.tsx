@@ -116,7 +116,6 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
               data-planet-parent-list={getPlanetParentData(planet)}
               data-planet-children-list={getPlanetChildData(planet)}
               data-planet-progress-type={planetProgressType}
-              data-is-active="0"
             >
               <Star
                 percentageProgress={planetPercentageProgress}

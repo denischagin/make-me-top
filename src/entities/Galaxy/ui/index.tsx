@@ -17,7 +17,7 @@ import { showPlanetsChildren } from "@entities/Galaxy/lib/showPlanetsChildren";
 import { showPlanetsParents } from "@entities/Galaxy/lib/showPlanetsParents";
 
 import { OrbitType, SystemType } from "@entities/Galaxy/model/types";
-import { FetchSystemById } from "@entities/Orbit/api/getSystemById";
+import { getSystemById } from "@entities/Orbit/api/getSystemById";
 import { DATA_PLANET_CHILDREN_LIST, DATA_PLANET_ID, DATA_PLANET_PARENT_LIST, DATA_PLANET_PROGRESS_TYPE } from "@entities/Orbit/model/types";
 import Orbit from "@entities/Orbit/ui";
 import { UserProgress } from "@entities/user/model/types";
@@ -187,9 +187,15 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     const targetId = Number(currentTarget.getAttribute(DATA_PLANET_ID));
 
-    FetchSystemById({
+    getSystemById({
       id: targetId,
-    }).then((data) => setLastChosenStar(data));
+    }).then((response) => {
+      if (response.data === undefined) {
+        return;
+      }
+
+      setLastChosenStar(response);
+    });
   };
 
   return (
