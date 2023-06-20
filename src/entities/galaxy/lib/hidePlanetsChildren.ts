@@ -1,4 +1,4 @@
-import { INACTIVE_PLANET } from "@entities/galaxy/model/constants";
+import { INACTIVE_PLANET } from '@entities/galaxy/model/constants';
 
 interface IHidePlanetsChildren {
   childrenList: string | null;
@@ -7,25 +7,27 @@ interface IHidePlanetsChildren {
 //функция изменения dataset атрбута для всех child зависимостей планеты
 //(атрибут активности при наведении)
 export const hidePlanetsChildren = (params: IHidePlanetsChildren) => {
-  const { childrenList } = params;
+    const {
+        childrenList,
+    } = params;
 
-  if (childrenList === null) {
-    return;
-  }
-
-  const childrenListArray = childrenList.split(",");
-
-  childrenListArray.forEach((elementId) => {
-    if (elementId === "") {
-      return;
+    if (childrenList === null) {
+        return;
     }
 
-    const numberElementId = Number(elementId);
+    const childrenListArray = childrenList.split(',');
 
-    const childElement = document.querySelector<HTMLElement>(
-      `[data-planet-id="${numberElementId}"]`
-    );
+    childrenListArray.forEach((elementId) => {
+        if (elementId === '') {
+            return;
+        }
 
-    childElement?.setAttribute("data-is-active", INACTIVE_PLANET);
-  });
+        const numberElementId = Number(elementId);
+
+        const childElement = document.querySelector<HTMLElement>(
+            `[data-planet-id="${numberElementId}"]`,
+        );
+
+        childElement?.setAttribute('data-is-active', INACTIVE_PLANET);
+    });
 };

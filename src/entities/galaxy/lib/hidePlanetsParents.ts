@@ -1,4 +1,4 @@
-import { INACTIVE_PLANET } from "@entities/galaxy/model/constants";
+import { INACTIVE_PLANET } from '@entities/galaxy/model/constants';
 
 interface IHidePlanetsParents {
   parentsList: string | null;
@@ -8,42 +8,44 @@ interface IHidePlanetsParents {
 //атрибут будет изменен у всех зависимых элементов вплоть до крайнего parent элемента без зависимостей
 //(атрибут активности при наведении)
 export const hidePlanetsParents = (params: IHidePlanetsParents) => {
-  const { parentsList } = params;
+    const {
+        parentsList,
+    } = params;
 
-  if (parentsList === null) {
-    return;
-  }
+    if (parentsList === null) {
+        return;
+    }
 
-  //преобразование строки в массив формата ["КодПланеты:ТипСвязи",...]
-  const parentsListArray = parentsList.split(",");
+    //преобразование строки в массив формата ["КодПланеты:ТипСвязи",...]
+    const parentsListArray = parentsList.split(',');
 
-  parentsListArray.forEach((parent) => {
+    parentsListArray.forEach((parent) => {
     //преобразование строки в массив формата [КодПланеты, ТипСвязи]
-    const elementData = parent.split(":");
+        const elementData = parent.split(':');
 
-    const [elementId, isAlternative] = elementData;
-    const numberElementId = Number(elementId);
+        const [elementId, isAlternative] = elementData;
+        const numberElementId = Number(elementId);
 
-    if (isNaN(numberElementId)) {
-      return;
-    }
+        if (isNaN(numberElementId)) {
+            return;
+        }
 
-    //массив parent зависимостей текущего parent элемента
-    const parentElement = document.querySelector<HTMLElement>(
-      `[data-planet-id="${numberElementId}"]`
-    );
-    const parentsListOfCurrentParent = parentElement?.getAttribute(
-      "data-planet-parent-list"
-    );
+        //массив parent зависимостей текущего parent элемента
+        const parentElement = document.querySelector<HTMLElement>(
+            `[data-planet-id="${numberElementId}"]`,
+        );
+        const parentsListOfCurrentParent = parentElement?.getAttribute(
+            'data-planet-parent-list',
+        );
 
-    //изменение атрибута
-    parentElement?.setAttribute("data-is-active", INACTIVE_PLANET);
+        //изменение атрибута
+        parentElement?.setAttribute('data-is-active', INACTIVE_PLANET);
 
-    //если у текущего parent элемента есть parent зависимости
-    if (parentsListOfCurrentParent) {
-      hidePlanetsParents({
-        parentsList: parentsListOfCurrentParent,
-      });
-    }
-  });
+        //если у текущего parent элемента есть parent зависимости
+        if (parentsListOfCurrentParent) {
+            hidePlanetsParents({
+                parentsList: parentsListOfCurrentParent,
+            });
+        }
+    });
 };

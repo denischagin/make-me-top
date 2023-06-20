@@ -9,41 +9,41 @@ interface IIsConnectionOverlapped {
 
 //проверка наличия связи между планетами
 export const isConnectionOverlapped = (params: IIsConnectionOverlapped) => {
-  const {
-    currentTargetCoords,
-    elementToConnectCoords,
-    viewBoxOffsetX,
-    viewBoxOffsetY,
-    svgContainer,
-    svgLineClass,
-  } = params;
+    const {
+        currentTargetCoords,
+        elementToConnectCoords,
+        viewBoxOffsetX,
+        viewBoxOffsetY,
+        svgContainer,
+        svgLineClass,
+    } = params;
 
-  //остановка если ref на контейнер еще не был создан
-  if (!svgContainer) {
-    return;
-  }
+    //остановка если ref на контейнер еще не был создан
+    if (!svgContainer) {
+        return;
+    }
 
-  //создание массива HTML элементов
-  //каждый элемент является svg линией связи
-  const elementsFromSvgContainer = Array.from(svgContainer.children || []);
-  const allConnectionLines = elementsFromSvgContainer.filter((element) =>
-    element.matches(svgLineClass)
-  );
-
-  //проверка наличия связи между планетами по точным координатам
-  const checkResult = allConnectionLines.findIndex((line) => {
-    return (
-      line.getAttribute("x1") ===
-        String(currentTargetCoords.left - viewBoxOffsetX) &&
-      line.getAttribute("y1") ===
-        String(currentTargetCoords.top - viewBoxOffsetY) &&
-      line.getAttribute("x2") ===
-        String(elementToConnectCoords.left - viewBoxOffsetX) &&
-      line.getAttribute("y2") ===
-        String(elementToConnectCoords.top - viewBoxOffsetY)
+    //создание массива HTML элементов
+    //каждый элемент является svg линией связи
+    const elementsFromSvgContainer = Array.from(svgContainer.children || []);
+    const allConnectionLines = elementsFromSvgContainer.filter((element) =>
+        element.matches(svgLineClass),
     );
-  });
 
-  //если элемент был найден, то возвращает true, иначе false
-  return checkResult > -1;
+    //проверка наличия связи между планетами по точным координатам
+    const checkResult = allConnectionLines.findIndex((line) => {
+        return (
+            line.getAttribute('x1') ===
+        String(currentTargetCoords.left - viewBoxOffsetX) &&
+      line.getAttribute('y1') ===
+        String(currentTargetCoords.top - viewBoxOffsetY) &&
+      line.getAttribute('x2') ===
+        String(elementToConnectCoords.left - viewBoxOffsetX) &&
+      line.getAttribute('y2') ===
+        String(elementToConnectCoords.top - viewBoxOffsetY)
+        );
+    });
+
+    //если элемент был найден, то возвращает true, иначе false
+    return checkResult > -1;
 };
