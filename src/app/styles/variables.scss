@@ -24,29 +24,14 @@ $nebula-blue: #448ea680;
 $shine: #fdff94;
 
 // gradients
-$planet-gradient: radial-gradient(
-  110.46% 110.46% at 100% 1.64%,
-  #f8b07d 12.44%,
-  #e74e11 39.62%,
-  #b50d02 60.27%,
-  #8b0e05 75.93%,
-  #5e0d02 95.93%
-);
+$planet-gradient: radial-gradient(110.46% 110.46% at 100% 1.64%, #f8b07d 12.44%, #e74e11 39.62%, #b50d02 60.27%, #8b0e05 75.93%, #5e0d02 95.93%);
 
-$progress-bar-progress: linear-gradient(
-  90deg,
-  $primary-500 50%,
-  $black 50%,
-);
+$progress-bar-progress: linear-gradient(90deg, $primary-500 50%, $black 50%);
 
-$progress-bar-line: linear-gradient(
-  90deg,
-  $opacity-white 50%,
-  $black 50%,
-);
+$progress-bar-line: linear-gradient(90deg, $opacity-white 50%, $black 50%);
 
 // fonts
-$font-montserrat: "Montserrat";
-$font-heading: "Wattauchimma";
-$font-text-regular: "Feature-Mono-regular";
-$font-text-medium: "Feature-Mono-medium";
+$font-montserrat: 'Montserrat';
+$font-heading: 'Wattauchimma';
+$font-text-regular: 'Feature-Mono-regular';
+$font-text-medium: 'Feature-Mono-medium';

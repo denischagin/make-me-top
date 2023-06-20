@@ -1,48 +1,52 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { getModalPlanets } from '../thunks/getModalPlanets';
+import {
+    CURATORS_LIST,
+    EXPLORERS_LIST,
+    USER_INFO,
+} from './mocks';
+import { UserState } from './types/index';
 
-import { getModalPlanets } from "../thunks/getModalPlanets";
-import { CURATORS_LIST, EXPLORERS_LIST, USER_INFO } from "./mocks";
-import { UserState } from "./types/index";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: UserState = {
-  isRegistered: true,
-  isModalOpen: false,
-  planetList: [],
-  explorersList: EXPLORERS_LIST,
-  curatorsList: CURATORS_LIST,
-  userInfo: USER_INFO,
+    isRegistered: true,
+    isModalOpen: false,
+    planetList: [],
+    explorersList: EXPLORERS_LIST,
+    curatorsList: CURATORS_LIST,
+    userInfo: USER_INFO,
 };
 
 export const userSlice = createSlice({
-  name: "user",
-  initialState,
-  reducers: {
-    selectIsUserRegistered: (state) => {
-      state.isRegistered = !state.isRegistered;
+    name: 'user',
+    initialState,
+    reducers: {
+        selectIsUserRegistered: (state) => {
+            state.isRegistered = !state.isRegistered;
+        },
+        logOut: (state) => {
+            state.isRegistered = true;
+        },
+        showModal: (state) => {
+            state.isModalOpen = !state.isModalOpen;
+        },
     },
-    logOut: (state) => {
-      state.isRegistered = true;
+    extraReducers: (builder) => {
+        builder
+            .addCase(getModalPlanets.fulfilled, (state: UserState, action) => {
+                state.planetList = action.payload;
+            })
+            .addCase(getModalPlanets.rejected, (state) => {
+                state.planetList = [];
+            });
     },
-    showModal: (state) => {
-      state.isModalOpen = !state.isModalOpen;
-    },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getModalPlanets.fulfilled, (state: UserState, action) => {
-        state.planetList = action.payload;
-      })
-      .addCase(getModalPlanets.rejected, (state) => {
-        state.planetList = [];
-      });
-  },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-  selectIsUserRegistered,
-  logOut,
-  showModal
+    selectIsUserRegistered,
+    logOut,
+    showModal,
 } = userSlice.actions;
 
 export default userSlice.reducer;

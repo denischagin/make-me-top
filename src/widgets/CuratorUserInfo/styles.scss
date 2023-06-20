@@ -1,38 +1,15 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
-.curator-info {
-  display: flex;
-
-  &__description {
-    margin-left: 40px;
-  }
-
-  &__description-name {
-    margin-top: 4px;
-  }
-
-  &__rating {
+.curator-user-info {
     display: flex;
-    gap: 16px;
-  }
 
-  &__heading {
-    margin-bottom: 4px;
-  }
+    &__description {
+        margin-left: 40px;
+        margin-top: 4px;
+    }
 
-  &__current-rating {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  &__current-score {
-    align-items: center;
-    gap: 6px;
-  }
-
-  &__current-score,
-  &__completed-stars {
-    margin: 0;
-  }
+    &__cards {
+        display: flex;
+        gap: 16px;
+    }
 }

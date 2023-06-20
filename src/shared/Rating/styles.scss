@@ -1,51 +1,51 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .rating {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 
-  &__score {
-    margin: 0;
+    &__score {
+        margin: 0;
 
-    &--size-large {
-      font-size: 16px;
+        &--size-large {
+            font-size: 16px;
+        }
+
+        &--size-medium {
+            font-size: 14px;
+        }
+
+        &--size-small {
+            font-size: 10px;
+        }
+
+        &--color-black {
+            color: $black;
+        }
+
+        &--color-white {
+            color: $white;
+        }
     }
 
-    &--size-medium {
-      font-size: 14px;
-    }
+    &__star {
+        &--size-small,
+        &--size-medium {
+            transform: scale(1);
+        }
 
-    &--size-small {
-      font-size: 10px;
-    }
+        &--size-large {
+            transform: scale(1.5);
+            margin: 0px 4px;
+        }
 
-    &--color-black {
-      color: $black;
-    }
+        &--color-primary-500 {
+            color: $primary-500;
+        }
 
-    &--color-white {
-      color: $white;
+        &--color-white {
+            color: $white;
+        }
     }
-  }
-
-  &__star {
-    &--size-small,
-    &--size-medium {
-      transform: scale(1);
-    }
-
-    &--size-large {
-      transform: scale(1.5);
-      margin: 0px 4px;
-    }
-
-    &--color-primary-500 {
-      color: $primary-500;
-    }
-
-    &--color-white {
-      color: $white;
-    }
-  }
 }

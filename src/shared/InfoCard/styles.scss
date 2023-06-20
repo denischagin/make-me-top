@@ -1,0 +1,9 @@
+@import '@app/styles/variables.scss';
+
+.info-сard {
+    display: flex;
+
+    &__value {
+        margin-top: 4px;
+    }
+}

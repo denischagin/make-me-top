@@ -1,20 +1,31 @@
-import { bem } from "@shared/utils/bem";
+import { bem } from '@shared/utils/bem';
 
-import { TypographyInterface } from "./interfaces";
+import { TypographyInterface } from './interfaces';
 
-import "./styles.scss";
+import './styles.scss';
 
 export const Typography = (props: TypographyInterface) => {
-  const [block, element] = bem("typography");
+    const {
+        className,
+        color,
+        variant,
+        children,
+        onClick,
+    } = props;
 
-  return (
-    <div
-      className={block({
-        color: props.color,
-        variant: props.variant,
-      })}
-    >
-      {props.children}
-    </div>
-  );
+    const [block, element] = bem('typography');
+
+    return (
+        <div
+            onClick={onClick}
+            className={block({
+                color,
+                variant,
+            })}
+        >
+            <div className={className}>
+                {children}
+            </div>
+        </div>
+    );
 };

@@ -1,4 +1,4 @@
 export interface PlanetButtonInterface {
-  title: string;
-  action?: () => void;
+    title: string;
+    onClick?: () => void;
 }

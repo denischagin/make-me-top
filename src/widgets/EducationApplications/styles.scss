@@ -1,13 +1,13 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .education-application {
-  &__cards {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+    &__cards {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
 
-  &__heading {
-    margin-top: 2px;
-  }
+    &__heading {
+        margin-top: 2px;
+    }
 }

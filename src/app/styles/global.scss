@@ -1,32 +1,36 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+    width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: rgb(80, 80, 80);
+    border-radius: 10px;
+    background: rgb(80, 80, 80);
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+    background: transparent;
+}
+
+html {
+    overflow-x: hidden;
+    overflow-y: overlay;
+    width: 100vw;
 }
 
 body {
-  margin: 0;
-  background-color: $dark;
-  overflow-x: hidden;
-  overflow-y: overlay;
-  font-family: $font-text-regular;
-  background-image: url("../../shared/images/noice.png");
-  background-repeat: repeat;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    background-color: $dark;
+    font-family: $font-text-regular;
+    background-image: url('../../shared/images/noice.png');
+    background-repeat: repeat;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  text-decoration: none;
-  color: $white;
+    text-decoration: none;
+    color: $white;
 }

@@ -1,80 +1,73 @@
-import { Avatar } from "@shared/Avatar";
-import { Card } from "@shared/Card";
-import { Rating } from "@shared/Rating";
-import { Typography } from "@shared/Typography";
+import { useAppSelector } from '@app/providers/store/hooks';
 
-import { bem } from "@shared/utils/bem";
+import { userInfoSelector } from '@entities/user/model/selectors';
 
-import { CuratorInterface } from "./interfaces";
-import { avatarSize } from "@shared/Avatar/interfaces";
-import { cardSize } from "@shared/Card/interfaces";
+import { Avatar } from '@shared/Avatar';
+import { InfoCard } from '@shared/InfoCard';
+import { Rating } from '@shared/Rating';
+import { Typography } from '@shared/Typography';
+
+import { bem } from '@shared/utils/bem';
+
+import { avatarSize } from '@shared/Avatar/interfaces';
 import {
-  ratingScoreColor,
-  ratingSize,
-  ratingStarColor,
-} from "@shared/Rating/interfaces";
-import { typographyVariant } from "@shared/Typography/interfaces";
+    ratingScoreColor,
+    ratingSize,
+    ratingStarColor,
+} from '@shared/Rating/interfaces';
+import { typographyVariant } from '@shared/Typography/interfaces';
 
-import "./styles.scss";
+import './styles.scss';
 
-export const CuratorUserInfo = (props: CuratorInterface) => {
-  const {
-    curator: {
-      name,
-      avatar,
-      rating,
-      explorers,
-      planets
-    },
-  } = props;
+export const CuratorUserInfo = () => {
+    const [block, element] = bem('curator-user-info');
 
-  const [block, element] = bem("curator-info");
+    const userInfo = useAppSelector(userInfoSelector);
 
-  return (
-    <div className={block()}>
-      <Avatar
-        size={avatarSize.large}
-        image={avatar}
-        orbit
-      />
-      <div className={element("description")}>
-        <div className={element("description-name", "mb-4")}>
-          <Typography variant={typographyVariant.h1}>{name}</Typography>
+    const {
+        name = '',
+        avatar = '',
+        rating = 0,
+        planets = 0,
+        explorers = 0,
+    } = userInfo;
+
+    return (
+        <div className={block()}>
+            <Avatar
+                size={avatarSize.large}
+                image={avatar}
+                orbit
+            />
+            <div className={element('description')}>
+                <Typography
+                    className={element('description-name', 'mb-4')}
+                    variant={typographyVariant.h1}
+                >
+                    {name}
+                </Typography>
+                <div className={element('cards')}>
+                    <InfoCard
+                        title="Рейтинг"
+                        value={
+                            <Rating
+                                scoreColor={ratingScoreColor.white}
+                                rating={rating}
+                                size={ratingSize.large}
+                                starColor={ratingStarColor.primary500}
+                            />
+                        }
+                    />
+                    <InfoCard
+                        title="Кол-во планет"
+                        value={planets}
+                    />
+                    <InfoCard
+                        title="Кол-во исследователей"
+                        value={explorers}
+                    />
+                </div>
+            </div>
         </div>
-        <div className={element("rating")}>
-          <Card size={cardSize.small}>
-            <div className={element("heading")}>
-              <Typography variant={typographyVariant.regular16}>
-                Рейтинг
-              </Typography>
-            </div>
-            <span className={element("current-rating")}>
-              <Rating
-                scoreColor={ratingScoreColor.white}
-                rating={rating}
-                size={ratingSize.large}
-                starColor={ratingStarColor.primary500}
-              />
-            </span>
-          </Card>
-          <Card size={cardSize.small}>
-            <div className={element("heading")}>
-              <Typography variant={typographyVariant.regular16}>
-                Кол-во планет
-              </Typography>
-            </div>
-            <span className={element("completed-stars")}>{planets}</span>
-          </Card>
-          <Card size={cardSize.small}>
-            <div className={element("heading")}>
-              <Typography variant={typographyVariant.regular16}>
-                Кол-во исследователей
-              </Typography>
-            </div>
-            <span className={element("explorers-count")}>{explorers}</span>
-          </Card>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };

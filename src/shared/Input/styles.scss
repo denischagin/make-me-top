@@ -1,24 +1,24 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .input {
-  font-size: 16px;
-  font-family: $font-text-regular;
-  cursor: text;
-  text-align: left;
-  margin-bottom: 16px;
-  padding: 16px 24px;
-  width: 340px;
-  background-color: $white;
-  border: 1px solid transparent;
-  border-radius: 56px;
-  outline: none;
-  transition: 0.2s;
-
-  &:hover {
-    border: 1px solid $black;
-  }
-
-  &:focus {
+    font-size: 16px;
+    font-family: $font-text-regular;
+    cursor: text;
+    text-align: left;
+    margin-bottom: 16px;
+    padding: 16px 24px;
+    width: 340px;
+    background-color: $white;
+    border: 1px solid transparent;
+    border-radius: 56px;
     outline: none;
-  }
+    transition: 0.2s;
+
+    &:hover {
+        border: 1px solid $black;
+    }
+
+    &:focus {
+        outline: none;
+    }
 }

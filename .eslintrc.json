@@ -111,8 +111,9 @@
             "error",
             "single"
         ],
-        "@typescript-eslint/no-non-null-assertion": "warn",
-        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "react/no-children-prop": 0,
+        "@typescript-eslint/no-unused-vars": 0,
         "@typescript-eslint/no-non-null-asserted-optional-chain": "warn",
         "react/react-in-jsx-scope": 0,
         "strict": 0,
@@ -166,12 +167,7 @@
                 }
             }
         ],
-        "max-len": [
-            "error",
-            {
-                "code": 150
-            }
-        ],
+        "max-len": 0,
         "no-empty": "warn",
         "no-cond-assign": [
             "error",

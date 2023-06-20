@@ -1,0 +1,17 @@
+@import '@app/styles/variables.scss';
+
+.show-more-text {
+    &__expand {
+        transition: 0.2s;
+        cursor: pointer;
+        padding-top: 10px;
+
+        &:hover {
+            color: $primary-500;
+        }
+    }
+
+    &__text {
+        margin: 0;
+    }
+}

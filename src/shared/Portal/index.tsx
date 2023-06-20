@@ -1,7 +1,12 @@
-import { createPortal } from "react-dom";
+import { createPortal } from 'react-dom';
 
-import { PortalInterface } from "./interfaces";
+import { PortalInterface } from './interfaces';
 
-export const Portal = ({ children, target }: PortalInterface) => {
-  return createPortal(children, target);
+export const Portal = (props: PortalInterface) => {
+    const {
+        children,
+        target,
+    } = props;
+
+    return createPortal(children, target);
 };
