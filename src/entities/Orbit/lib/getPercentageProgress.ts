@@ -6,26 +6,19 @@ interface IGetPercentageProgress {
   userProgress: UserProgress;
 }
 
+//функция получения значния из поля обьекта по индексу
 export const getPercentageProgress = (
   params: IGetPercentageProgress
 ): number => {
   const { planet, userProgress } = params;
 
-  const isSystemEducation = userProgress.educationSystemList.findIndex(
-    (educationSystemId) => {
-      return educationSystemId.systemId === planet.systemId;
+  //получение прогресса определенной системы
+  const educationSystem = userProgress.educationSystemList.find(
+    (educationSystem) => {
+      return educationSystem.systemId === planet.systemId;
     }
   );
 
-  if (isSystemEducation > -1) {
-    const educationSystem = userProgress.educationSystemList.find(
-      (educationSystem) => {
-        return educationSystem.systemId === planet.systemId;
-      }
-    );
-
-    return educationSystem?.completed || 0;
-  }
-
-  return 0;
+  //прогресс найденной системы
+  return educationSystem?.completed || 0;
 };
