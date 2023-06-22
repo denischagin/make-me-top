@@ -26,10 +26,9 @@ export const showPlanetsChildren = (params: IShowChildren) => {
   } = params;
 
   const currentTargetCoords = getElemCoords({
-    elem: currentTarget,
-    type: "HTMLElement",
-    planetWidth,
-    planetHeight,
+    element: currentTarget,
+    elementWidth: planetWidth,
+    elementHeight: planetHeight,
   });
 
   const childrenListArray = childrenList!.split(",");
@@ -56,10 +55,9 @@ export const showPlanetsChildren = (params: IShowChildren) => {
     );
 
     const childElementCoords = getElemCoords({
-      elem: childElement,
-      type: "HTMLElement",
-      planetWidth,
-      planetHeight,
+      element: childElement,
+      elementWidth: planetWidth,
+      elementHeight: planetHeight,
     });
 
     const svgLine = document.createElementNS(

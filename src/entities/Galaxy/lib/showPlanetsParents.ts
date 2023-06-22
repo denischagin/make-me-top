@@ -36,10 +36,9 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
   } = params;
 
   const currentTargetCoords = getElemCoords({
-    elem: currentTarget,
-    type: "HTMLElement",
-    planetWidth,
-    planetHeight,
+    element: currentTarget,
+    elementWidth: planetWidth,
+    elementHeight: planetHeight,
   });
 
   const parentsListArray = parentsList?.split(",");
@@ -67,10 +66,9 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
     );
 
     const parentElementCoords = getElemCoords({
-      elem: parentElement,
-      type: "HTMLElement",
-      planetWidth,
-      planetHeight,
+      element: parentElement,
+      elementWidth: planetWidth,
+      elementHeight: planetHeight,
     });
 
     const parentsListOfCurrentParent = parentElement?.getAttribute(

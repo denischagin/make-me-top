@@ -1,19 +1,22 @@
 interface IGetElemCoords {
-  elem: HTMLElement | SVGSVGElement | null;
-  type: "HTMLElement" | "SVGSVGElement";
-  planetWidth?: number;
-  planetHeight?: number;
+  element: HTMLElement | SVGSVGElement | null;
+  elementWidth: number;
+  elementHeight: number;
 }
 
-//получение координат SVGSVGElement элемента или середины HTMLElement элемента
+//получение координат середины элемента
 export const getElemCoords = (params: IGetElemCoords) => {
-  const { elem, type, planetWidth, planetHeight } = params;
+  const {
+    element,
+    elementWidth,
+    elementHeight
+  } = params;
 
-  if (!elem) {
+  if (!element) {
     return;
   }
 
-  const box = elem.getBoundingClientRect();
+  const box = element.getBoundingClientRect();
 
   const body = document.body;
   const docEl = document.documentElement;
@@ -24,27 +27,8 @@ export const getElemCoords = (params: IGetElemCoords) => {
   const clientTop = docEl.clientTop || body.clientTop;
   const clientLeft = docEl.clientLeft || body.clientLeft;
 
-  let top = 0;
-  let left = 0;
-
-  switch (type) {
-    case "HTMLElement": {
-      if (planetWidth !== undefined && planetHeight !== undefined) {
-        top = box.top + scrollTop - clientTop + planetHeight / 2;
-        left = box.left + scrollLeft - clientLeft + planetWidth / 2;
-      }
-
-      break;
-    }
-    case "SVGSVGElement": {
-      top = box.top + scrollTop + -clientTop;
-      left = box.left + scrollLeft - clientLeft;
-
-      break;
-    }
-    default:
-      break;
-  }
+  const top = box.top + scrollTop - clientTop + elementHeight / 2;
+  const left = box.left + scrollLeft - clientLeft + elementWidth / 2;
 
   return {
     top: Math.round(top),
