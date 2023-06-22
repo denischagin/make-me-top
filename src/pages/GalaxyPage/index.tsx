@@ -71,6 +71,8 @@ export const GalaxyPage: React.FC = () => {
       <Header />
       <GalaxyPageName galaxyName={galaxyName} />
       <Galaxy
+        width={1920}
+        height={910}
         galaxyPage={galaxyPageRef.current}
         svgContainerClass={element("svg-container")}
         userProgress={testUserProgress}

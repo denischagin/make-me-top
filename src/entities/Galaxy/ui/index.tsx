@@ -37,8 +37,8 @@ interface IGalaxyProps {
   userProgress: UserProgress;
   orbitList: Array<OrbitType>;
   svgContainerClass: string;
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
   planetWidth?: number;
   planetHeight?: number;
 }
@@ -53,7 +53,14 @@ interface IGalaxyOrbitSettings {
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
-  const { svgContainerClass, galaxyPage, userProgress, orbitList } = props;
+  const {
+    svgContainerClass,
+    galaxyPage,
+    userProgress,
+    orbitList,
+    width,
+    height,
+  } = props;
 
   const [block, element] = bem("galaxy");
 
@@ -68,9 +75,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     useState<SystemType>(DEFAULT_CHOSEN_STAR);
   const [userProgressOnLastChosenStar, setUserProgressOnLastChosenStar] =
     useState<boolean>(true);
-
-  const width = props.width || 1920; // TODO деф присваивание
-  const height = props.height || 910;
 
   const orbitWidthStep = width / (orbitList.length + 1);
   const orbitHeightStep = height / (orbitList.length + 1);
@@ -160,7 +164,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
   const handlePlanetMouseLeave = () => {
     setActiveSystemsId([]);
-    
+
     deleteAllConnectionLines({
       svgContainer,
     });
