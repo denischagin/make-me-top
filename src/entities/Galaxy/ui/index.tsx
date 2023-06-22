@@ -5,7 +5,7 @@ import { useAppDispatch } from "@app/providers/store/hooks";
 
 import { MmtTabs } from "@shared/MmtTabs";
 import { Modal } from "@shared/Modal";
-import { PlanetProgressTypes } from "@shared/types/common";
+import { SystemProgressTypes } from "@shared/types/common";
 import { bem } from "@shared/utils/bem";
 
 import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
@@ -137,8 +137,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     });
 
     if (
-      planetProgressType === PlanetProgressTypes.SYSTEM_OPEN ||
-      planetProgressType === PlanetProgressTypes.SYSTEM_EDUCATION
+      planetProgressType === SystemProgressTypes.SYSTEM_OPEN ||
+      planetProgressType === SystemProgressTypes.SYSTEM_EDUCATION
     ) {
       showPlanetsChildren({
         childrenList,
@@ -150,7 +150,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
       });
     }
 
-    if (planetProgressType === PlanetProgressTypes.SYSTEM_CLOSE) {
+    if (planetProgressType === SystemProgressTypes.SYSTEM_CLOSE) {
       showPlanetsParents({
         parentsList,
         currentTarget,

@@ -2,15 +2,15 @@ import React from "react";
 
 import { Star } from "@shared/Star";
 import { ReactComponent as LockIcon } from "@shared/images/lock.svg";
-import { PlanetProgressTypes } from "@shared/types/common";
+import { SystemProgressTypes } from "@shared/types/common";
 
 import { SystemType } from "@entities/Galaxy/model/types";
 import { getDigitalAngle } from "@entities/Orbit/lib/getDigitalAngle";
 import { getPercentageProgress } from "@entities/Orbit/lib/getPercentageProgress";
 import { getPlanetChildData } from "@entities/Orbit/lib/getPlanetChildData";
-import { getPlanetColorByProgressType } from "@entities/Orbit/lib/getPlanetColorByProgressType";
+import { getSystemColorByProgressType } from "@entities/Orbit/lib/getSystemColorByProgressType";
 import { getPlanetParentData } from "@entities/Orbit/lib/getPlanetParentData";
-import { getPlanetProgressType } from "@entities/Orbit/lib/getPlanetProgressType";
+import { getSystemProgressType } from "@entities/Orbit/lib/getSystemProgressType";
 import { getRadius } from "@entities/Orbit/lib/getRadius";
 import { getXCoordinateOnEllipse } from "@entities/Orbit/lib/getXCoordinateOnEllipse";
 import { getYCoordinateOnEllipse } from "@entities/Orbit/lib/getYCoordinateOnEllipse";
@@ -57,13 +57,13 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
         }}
       >
         {systemList.map((planet) => {
-          const planetProgressType = getPlanetProgressType({
-            planet,
+          const planetProgressType = getSystemProgressType({
+            system: planet,
             userProgress,
           });
 
-          const planetColor = getPlanetColorByProgressType({
-            planetProgressType,
+          const planetColor = getSystemColorByProgressType({
+            systemProgressType: planetProgressType,
           });
 
           const planetPercentageProgress = getPercentageProgress({
@@ -114,7 +114,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                 percentageProgress={planetPercentageProgress}
                 color={planetColor}
               >
-                {planetProgressType === PlanetProgressTypes.SYSTEM_CLOSE && (
+                {planetProgressType === SystemProgressTypes.SYSTEM_CLOSE && (
                   <LockIcon />
                 )}
                 <p className="orbit__content_planet-name">

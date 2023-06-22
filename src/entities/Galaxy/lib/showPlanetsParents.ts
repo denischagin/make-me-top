@@ -1,6 +1,6 @@
 import React from "react";
 
-import { PlanetProgressTypes } from "@shared/types/common";
+import { SystemProgressTypes } from "@shared/types/common";
 
 import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
 import { getColorFromShelf } from "@entities/Galaxy/lib/colorShelf";
@@ -134,8 +134,8 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
     );
 
     if (
-      parentElementProgressType === PlanetProgressTypes.SYSTEM_OPEN ||
-      parentElementProgressType === PlanetProgressTypes.SYSTEM_EDUCATION
+      parentElementProgressType === SystemProgressTypes.SYSTEM_OPEN ||
+      parentElementProgressType === SystemProgressTypes.SYSTEM_EDUCATION
     ) {
       return;
     }

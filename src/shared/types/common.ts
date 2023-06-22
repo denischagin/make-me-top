@@ -18,7 +18,7 @@ export interface UserInterface {
   id?: number
 }
 
-export enum PlanetProgressTypes {
+export enum SystemProgressTypes {
   SYSTEM_CLOSE = "systemClose",
   SYSTEM_OPEN = "systemOpen",
   SYSTEM_EDUCATION = "systemEducation",
