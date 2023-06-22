@@ -5,20 +5,27 @@ interface IAddActivePlanet {
   setActivePlanets: React.Dispatch<React.SetStateAction<Array<number>>>;
 }
 
+
+//функция добавления числа в массив, являющийся состоянием компонента
 export const addActivePlanet = (params: IAddActivePlanet) => {
-  const { setActivePlanets } = params;
+  const {
+    activePlanetId,
+    setActivePlanets,
+  } = params;
 
-  const activePlanet = Number(params.activePlanetId);
+  const activePlanet = Number(activePlanetId);
 
-  if (params.activePlanetId === null) {
+  if (activePlanetId === null) {
     return;
   }
 
   setActivePlanets((prevState) => {
+    //ничего не изменяем, если в состоянии уже есть такой же in
     if (prevState.includes(activePlanet)) {
       return [...prevState];
     }
 
+    //добавление id с сортировкой по наростанию значений
     return [...prevState, activePlanet].sort((a, b) => a - b);
   });
 };
