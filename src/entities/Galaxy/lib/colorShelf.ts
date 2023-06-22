@@ -8,12 +8,12 @@ const colorModificationArray: Array<string> = [
 //полка
 let colorShelf: Array<string> = colorModificationArray.slice();
 
-//функция восстановнения "полки", полка
+//функция восстановнения "полки"
 export const restoreColorShelf = (): void => {
   colorShelf = colorModificationArray.slice();
 };
 
-//функция получения значения с "полки", забирается и удаляется только первое значние
+//функция получения значения с "полки",из массива забирается и удаляется только первое значние
 export const getColorFromShelf = (): string => {
   let colorModification = colorShelf.shift();
 

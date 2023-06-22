@@ -20,9 +20,9 @@ export const addActivePlanet = (params: IAddActivePlanet) => {
   }
 
   setActivePlanets((prevState) => {
-    //ничего не изменяем, если в состоянии уже есть такой же in
+    //ничего не изменяем, если в состоянии уже есть такой же id
     if (prevState.includes(activePlanet)) {
-      return [...prevState];
+      return prevState;
     }
 
     //добавление id с сортировкой по наростанию значений
