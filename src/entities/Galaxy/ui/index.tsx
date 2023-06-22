@@ -11,8 +11,6 @@ import { bem } from "@shared/utils/bem";
 import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
 import { createSvgContainer } from "@entities/Galaxy/lib/createSvgContainer";
 import { deleteAllConnectionLines } from "@entities/Galaxy/lib/deleteAllConnectionLines";
-import { hidePlanetsChildren } from "@entities/Galaxy/lib/hidePlanetsChildren";
-import { hidePlanetsParents } from "@entities/Galaxy/lib/hidePlanetsParents";
 import { isChosenStarClosed } from "@entities/Galaxy/lib/isChosenStarClosed";
 import { setStarsActivity } from "@entities/Galaxy/lib/setStarsActivity";
 import { showPlanetsChildren } from "@entities/Galaxy/lib/showPlanetsChildren";
@@ -160,22 +158,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     }
   };
 
-  const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
-    const currentTarget = event.currentTarget;
-
-    const childrenList = currentTarget.getAttribute(DATA_PLANET_CHILDREN_LIST);
-    const parentsList = currentTarget.getAttribute(DATA_PLANET_PARENT_LIST);
-
+  const handlePlanetMouseLeave = () => {
     setActiveSystemsId([]);
-
-    hidePlanetsChildren({
-      childrenList,
-    });
-
-    hidePlanetsParents({
-      parentsList,
-    });
-
+    
     deleteAllConnectionLines({
       svgContainer,
     });
