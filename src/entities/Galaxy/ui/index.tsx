@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { TabPanel } from "react-tabs";
 
+import { useAppDispatch } from "@app/providers/store/hooks";
+
 import { MmtTabs } from "@shared/MmtTabs";
 import { Modal } from "@shared/Modal";
 import { PlanetProgressTypes } from "@shared/types/common";
@@ -15,17 +17,22 @@ import { isChosenStarClosed } from "@entities/Galaxy/lib/isChosenStarClosed";
 import { setStarsActivity } from "@entities/Galaxy/lib/setStarsActivity";
 import { showPlanetsChildren } from "@entities/Galaxy/lib/showPlanetsChildren";
 import { showPlanetsParents } from "@entities/Galaxy/lib/showPlanetsParents";
-
+import { DEFAULT_CHOSEN_STAR } from "@entities/Galaxy/model/constants";
 import { OrbitType, SystemType } from "@entities/Galaxy/model/types";
-import { getSystemById } from "@entities/Orbit/api/getSystemById";
-import { DATA_PLANET_CHILDREN_LIST, DATA_PLANET_ID, DATA_PLANET_PARENT_LIST, DATA_PLANET_PROGRESS_TYPE } from "@entities/Orbit/model/types";
+import { fetchSystemById } from "@entities/Orbit/api/fetchSystemById";
+import {
+  DATA_PLANET_CHILDREN_LIST,
+  DATA_PLANET_ID,
+  DATA_PLANET_PARENT_LIST,
+  DATA_PLANET_PROGRESS_TYPE,
+} from "@entities/Orbit/model/types";
 import Orbit from "@entities/Orbit/ui";
+import { showModal } from "@entities/user/model/slice";
 import { UserProgress } from "@entities/user/model/types";
 
 import { TABS_LIST } from "@pages/Explorer/model";
 
 import "./style.scss";
-
 
 interface IGalaxyProps {
   galaxyPage: HTMLDivElement | null;
@@ -48,27 +55,19 @@ interface IGalaxyOrbitSettings {
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
-  const {
-    svgContainerClass,
-    galaxyPage,
-    userProgress,
-    orbitList
-  } = props;
+  const { svgContainerClass, galaxyPage, userProgress, orbitList } = props;
 
   const [block, element] = bem("galaxy");
+
+  const dispatch = useAppDispatch();
 
   const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
   const [activeSystemsId, setActiveSystemsId] = useState<Array<number>>([]);
   const [stars, setStars] = useState<NodeListOf<HTMLDivElement>>(
     document.querySelectorAll(".star__orbit.star__orbit--activity-inactive")
   );
-  const [lastChosenStar, setLastChosenStar] = useState<SystemType>({
-    systemId: 0,
-    systemName: "Выбирете звезду",
-    systemLevel: 0,
-    positionSystem: 0,
-    systemDependencyList: [],
-  });
+  const [lastChosenStar, setLastChosenStar] =
+    useState<SystemType>(DEFAULT_CHOSEN_STAR);
   const [userProgressOnLastChosenStar, setUserProgressOnLastChosenStar] =
     useState<boolean>(true);
 
@@ -187,14 +186,21 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     const targetId = Number(currentTarget.getAttribute(DATA_PLANET_ID));
 
-    getSystemById({
+    setLastChosenStar(DEFAULT_CHOSEN_STAR);
+
+    dispatch(showModal());
+
+    fetchSystemById({
       id: targetId,
     }).then((response) => {
-      if (response.data === undefined) {
-        return;
+      if (response === undefined) {
+        return setLastChosenStar({
+          ...DEFAULT_CHOSEN_STAR,
+          systemName: "Not found.",
+        });
       }
 
-      setLastChosenStar(response);
+      setLastChosenStar(response.data);
     });
   };
 
