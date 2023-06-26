@@ -4,10 +4,10 @@ import {
 } from '@entities/galaxy/model/constants';
 
 interface IGetElemCoords {
-    elem: HTMLElement | SVGSVGElement | null;
-    type: 'HTMLElement' | 'SVGSVGElement';
-    planetWidth?: number;
-    planetHeight?: number;
+  elem: HTMLElement | SVGSVGElement | null;
+  type: 'HTMLElement' | 'SVGSVGElement';
+  planetWidth?: number;
+  planetHeight?: number;
 }
 
 //получение координат SVGSVGElement элемента или середины HTMLElement элемента
@@ -28,9 +28,11 @@ export const getElemCoords = (params: IGetElemCoords) => {
     const body = document.body;
     const documentElement = document.documentElement;
 
-    const scrollTop = window.scrollY || documentElement.scrollTop || body.scrollTop;
+    const scrollTop =
+    window.scrollY || documentElement.scrollTop || body.scrollTop;
 
-    const scrollLeft = window.scrollX || documentElement.scrollLeft || body.scrollLeft;
+    const scrollLeft =
+    window.scrollX || documentElement.scrollLeft || body.scrollLeft;
 
     const clientTop = documentElement.clientTop || body.clientTop || 0;
     const clientLeft = documentElement.clientLeft || body.clientLeft || 0;

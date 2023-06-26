@@ -7,12 +7,12 @@
     align-items: center;
     justify-content: center;
 
-    &__title {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 80px 0 40px 0;
+  &__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0 40px 0;
 
         &_context-title {
             color: $white;
@@ -31,20 +31,37 @@
         }
     }
 
-    &__background {
-        filter: blur(50px);
-        background: radial-gradient(50% 50% at 50% 50%, #090909 13.02%, #3c0b2c 39.58%, #2c0356 66.67%, #08213a 98.5%, transparent);
+  &__background {
+    filter: blur(50px);
+    background: radial-gradient(50% 50% at 50% 50%,
+            #090909 13.02%,
+            #3C0B2C 39.58%,
+            #2C0356 66.67%,
+            #08213A 98.5%,
+            transparent
+    );
+  }
+
+  &__svg-container {
+    align-self: self-start;
+    justify-self: self-start;
+    position: absolute;
+    width: 100%;
+  }
+
+  &__connection-line {
+    stroke-width: 1px;
+
+    &_blue-stroke-color {
+      stroke: $secondary-500;
     }
 
-    &__svg-container {
-        align-self: self-start;
-        justify-self: self-start;
-        position: absolute;
-        width: 100%;
+    &_orange-stroke-color {
+      stroke: $primary-500;
     }
 
-    &__connection-line {
-        stroke: $white;
-        stroke-width: 1px;
+    &_white-stroke-color {
+      stroke: $white;
     }
+  }
 }

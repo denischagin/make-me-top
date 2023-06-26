@@ -5,13 +5,13 @@ import {
 } from '@entities/galaxy/model/constants';
 
 interface IShowChildren {
-    childrenList: string | null;
-    currentTarget: HTMLDivElement;
-    planetWidth: number;
-    planetHeight: number;
-    viewBoxOffsetX: number;
-    viewBoxOffsetY: number;
-    svgContainer: SVGSVGElement | null;
+  childrenList: string | null;
+  currentTarget: HTMLDivElement;
+  planetWidth: number;
+  planetHeight: number;
+  viewBoxOffsetX: number;
+  viewBoxOffsetY: number;
+  svgContainer: SVGSVGElement | null;
 }
 
 //функция создания svg линий связи между текущей планетой и всеми ее child зависимостями
@@ -52,7 +52,9 @@ export const showPlanetsChildren = (params: IShowChildren) => {
             return;
         }
 
-        const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
+        const childElement = document.querySelector<HTMLElement>(
+            `[data-planet-id="${numberElementId}"]`,
+        );
 
         const childElementCoords = getElemCoords({
             elem: childElement,
@@ -61,17 +63,32 @@ export const showPlanetsChildren = (params: IShowChildren) => {
             planetHeight,
         });
 
-        const svgLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        const svgLine = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'line',
+        );
 
         childElement?.setAttribute('data-is-active', ACTIVE_PLANET);
 
         //позиционирование и стилизация линии
         if (currentTargetCoords && childElementCoords) {
             svgLine.setAttribute('class', 'galaxy__connection-line');
-            svgLine.setAttribute('x1', String(currentTargetCoords?.left - viewBoxOffsetX));
-            svgLine.setAttribute('y1', String(currentTargetCoords?.top - viewBoxOffsetY));
-            svgLine.setAttribute('x2', String(childElementCoords?.left - viewBoxOffsetX));
-            svgLine.setAttribute('y2', String(childElementCoords?.top - viewBoxOffsetY));
+            svgLine.setAttribute(
+                'x1',
+                String(currentTargetCoords?.left - viewBoxOffsetX),
+            );
+            svgLine.setAttribute(
+                'y1',
+                String(currentTargetCoords?.top - viewBoxOffsetY),
+            );
+            svgLine.setAttribute(
+                'x2',
+                String(childElementCoords?.left - viewBoxOffsetX),
+            );
+            svgLine.setAttribute(
+                'y2',
+                String(childElementCoords?.top - viewBoxOffsetY),
+            );
         }
 
         //установка атрибута пунктира, если путь альтернативен

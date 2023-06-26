@@ -1,24 +1,26 @@
 import { isConnectionOverlapped } from '@entities/galaxy/lib/isConnectionOverlapped';
 
 interface IGetCoordsForConnection {
-    currentTarget: {
-        top: number;
-        left: number;
-    };
-    elementToConnect: {
-        top: number;
-        left: number;
-    };
-    svgContainer: SVGSVGElement | null;
-    viewBoxOffsetY: number;
-    viewBoxOffsetX: number;
-    swingCountProp?: number;
+  currentTarget: {
+    top: number;
+    left: number;
+  };
+  elementToConnect: {
+    top: number;
+    left: number;
+  };
+  svgContainer: SVGSVGElement | null;
+  viewBoxOffsetY: number;
+  viewBoxOffsetX: number;
+  swingCountProp?: number;
 }
 
 //рекурсивная функция получения координат между элементами
 //при наложении линии выбирается новое место, места выбираются то с одного края, то с другого от построенных связей
 //после выбора нового места проходит проверка на наложение
-export const getCoordsForConnection = (params: IGetCoordsForConnection): IGetCoordsForConnection => {
+export const getCoordsForConnection = (
+    params: IGetCoordsForConnection,
+): IGetCoordsForConnection => {
     const {
         currentTarget,
         elementToConnect,

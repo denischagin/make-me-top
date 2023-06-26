@@ -1,7 +1,7 @@
 import { INACTIVE_PLANET } from '@entities/galaxy/model/constants';
 
 interface IHidePlanetsChildren {
-    childrenList: string | null;
+  childrenList: string | null;
 }
 
 //функция изменения dataset атрбута для всех child зависимостей планеты
@@ -24,7 +24,9 @@ export const hidePlanetsChildren = (params: IHidePlanetsChildren) => {
 
         const numberElementId = Number(elementId);
 
-        const childElement = document.querySelector<HTMLElement>(`[data-planet-id="${numberElementId}"]`);
+        const childElement = document.querySelector<HTMLElement>(
+            `[data-planet-id="${numberElementId}"]`,
+        );
 
         childElement?.setAttribute('data-is-active', INACTIVE_PLANET);
     });

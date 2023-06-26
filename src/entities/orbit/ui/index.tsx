@@ -17,12 +17,12 @@ import { getXCoordinateOnEllipse } from '@entities/orbit/lib/getXCoordinateOnEll
 import { getYCoordinateOnEllipse } from '@entities/orbit/lib/getYCoordinateOnEllipse';
 
 interface IOrbitProps {
-    systemList: Array<SystemType>;
-    orbitWidth: number;
-    orbitHeight: number;
-    planetStyle?: React.CSSProperties;
-    handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
-    handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
+  systemList: Array<SystemType>;
+  orbitWidth: number;
+  orbitHeight: number;
+  planetStyle?: React.CSSProperties;
+  handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
+  handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const Orbit: React.FC<IOrbitProps> = (props) => {
@@ -91,11 +91,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                         >
                             <Star
                                 color={starColor.white}
-                                children={
-                                    <div>
-                                        {planet.systemName}
-                                    </div>
-                                }
+                                children={<div>{planet.systemName}</div>}
                             />
                         </div>
                     );

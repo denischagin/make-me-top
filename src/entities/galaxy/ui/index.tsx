@@ -23,15 +23,15 @@ import './style.scss';
 import Orbit from '@entities/orbit/ui';
 
 interface IGalaxyProps {
-    orbitList: Array<OrbitType>;
-    width: number;
-    height: number;
-    planetWidth: number;
-    planetHeight: number;
+  orbitList: Array<OrbitType>,
+  width: number,
+  height: number,
+  planetWidth: number,
+  planetHeight: number,
 }
 
 interface IGalaxyOrbitSettings {
-    viewBox: string;
+  viewBox: string;
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
@@ -59,24 +59,26 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     useEffect(() => {
         setViewBoxOffsetX(
-            getElemCoords({
-                elem: svgContainerRef.current,
-                type: SVG_ELEMENT,
-            })!.left,
+      getElemCoords({
+          elem: svgContainerRef.current,
+          type: SVG_ELEMENT,
+      })!.left,
         );
 
         setViewBoxOffsetY(
-            getElemCoords({
-                elem: svgContainerRef.current,
-                type: SVG_ELEMENT,
-            })!.top,
+      getElemCoords({
+          elem: svgContainerRef.current,
+          type: SVG_ELEMENT,
+      })!.top,
         );
     }, []);
 
     const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
 
-        const childrenList = currentTarget.getAttribute('data-planet-children-list');
+        const childrenList = currentTarget.getAttribute(
+            'data-planet-children-list',
+        );
         const parentsList = currentTarget.getAttribute('data-planet-parent-list');
 
         event.currentTarget.setAttribute('data-is-active', ACTIVE_PLANET);
@@ -105,7 +107,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
 
-        const childrenList = currentTarget.getAttribute('data-planet-children-list');
+        const childrenList = currentTarget.getAttribute(
+            'data-planet-children-list',
+        );
         const parentsList = currentTarget.getAttribute('data-planet-parent-list');
 
         event.currentTarget.setAttribute('data-is-active', INACTIVE_PLANET);
