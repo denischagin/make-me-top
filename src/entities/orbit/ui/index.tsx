@@ -8,6 +8,8 @@ import { Star } from '@shared/Star';
 
 import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 
+import { bem } from '@shared/utils/bem';
+
 import { SystemProgressTypes } from '@shared/types/common';
 
 import './styles.scss';
@@ -23,14 +25,14 @@ import { getXCoordinateOnEllipse } from '@entities/orbit/lib/getXCoordinateOnEll
 import { getYCoordinateOnEllipse } from '@entities/orbit/lib/getYCoordinateOnEllipse';
 
 interface IOrbitProps {
-  userProgress: UserProgress;
-  systemList: Array<SystemType>;
-  orbitWidth: number;
-  orbitHeight: number;
-  planetStyle?: React.CSSProperties;
-  handlePlanetClick: (event: React.MouseEvent<HTMLDivElement>) => void;
-  handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
-  handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
+    userProgress: UserProgress;
+    systemList: Array<SystemType>;
+    orbitWidth: number;
+    orbitHeight: number;
+    planetStyle?: React.CSSProperties;
+    handlePlanetClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+    handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
+    handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const Orbit: React.FC<IOrbitProps> = (props) => {
@@ -45,6 +47,8 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
         handlePlanetMouseLeave,
     } = props;
 
+    const [block, element] = bem('orbit');
+
     const orbitHalfWidth = orbitWidth / 2;
     const orbitHalfHeight = orbitHeight / 2;
 
@@ -52,9 +56,9 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
     const defaultElementHeight = 80;
 
     return (
-        <div className="orbit">
+        <div className={block()}>
             <div
-                className="orbit__content"
+                className={element('content')}
                 style={{
                     width: orbitWidth + 'px',
                     height: orbitHeight + 'px',
@@ -100,7 +104,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                     return (
                         <div
                             key={planet.systemId}
-                            className="orbit__content_planet"
+                            className={element('content-system')}
                             onClick={handlePlanetClick}
                             onMouseEnter={handlePlanetMouseEnter}
                             onMouseLeave={handlePlanetMouseLeave}
@@ -119,9 +123,9 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                                 color={planetColor}
                             >
                                 {planetProgressType === SystemProgressTypes.SYSTEM_CLOSE && (
-                                    <LockIcon />
+                                    <LockIcon/>
                                 )}
-                                <p className="orbit__content_planet-name">
+                                <p className={element('content-system--name')}>
                                     {planet.systemName}
                                 </p>
                             </Star>

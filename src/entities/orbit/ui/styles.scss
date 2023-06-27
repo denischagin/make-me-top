@@ -9,7 +9,7 @@
     position: relative;
     border-radius: 50%;
 
-    &_planet {
+    &-system {
       position: absolute;
       display: flex;
       justify-content: center;
@@ -17,12 +17,12 @@
       border-radius: 50%;
       overflow: unset;
       text-align: center;
-    }
 
-    &_planet-name {
-      z-index: 0;
-      font-weight: bold;
-      font-size: 10px;
+      &--name {
+        z-index: 0;
+        font-weight: bold;
+        font-size: 10px;
+      }
     }
   }
 }

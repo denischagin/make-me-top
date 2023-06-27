@@ -3,7 +3,6 @@ import React,
     useEffect,
     useState,
 } from 'react';
-import { TabPanel } from 'react-tabs';
 
 import {
     useAppDispatch,
@@ -17,7 +16,6 @@ import { UserProgress } from '@entities/user/model/types';
 import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { createSvgContainer } from '@entities/galaxy/lib/createSvgContainer';
 import { deleteAllConnectionLines } from '@entities/galaxy/lib/deleteAllConnectionLines';
-import { isChosenStarClosed } from '@entities/galaxy/lib/isChosenStarClosed';
 import { setStarsActivity } from '@entities/galaxy/lib/setStarsActivity';
 import { showPlanetsChildren } from '@entities/galaxy/lib/showPlanetsChildren';
 import { showPlanetsParents } from '@entities/galaxy/lib/showPlanetsParents';
@@ -28,8 +26,6 @@ import {
 } from '@entities/galaxy/model/types';
 
 import { CircleModal } from '@shared/CircleModal';
-import { MmtTabs } from '@shared/MmtTabs';
-import { Modal } from '@shared/Modal';
 
 import { bem } from '@shared/utils/bem';
 
