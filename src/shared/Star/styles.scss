@@ -11,6 +11,7 @@
   font-family: $font-montserrat;
   transition: 0.3s;
   background: $primary-500;
+  position: relative;
 
   &--color-black {
     outline: 1px solid $white;
