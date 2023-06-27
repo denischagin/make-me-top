@@ -1,4 +1,4 @@
-import { SystemType } from "@entities/Galaxy/model/types";
+import { SystemType } from "@entities/galaxy/model/types";
 import { UserProgress } from "@entities/user/model/types";
 
 interface IsChosenStarClosed {

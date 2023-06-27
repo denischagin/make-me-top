@@ -1,8 +1,8 @@
 import React from "react";
 
-import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
-import { getElemCoords } from "@entities/Galaxy/lib/getElemCoords";
-import { DATA_PLANET_ID } from "@entities/Orbit/model/types";
+import { addActivePlanet } from "@entities/galaxy/lib/addActivePlanet";
+import { getElemCoords } from "@entities/galaxy/lib/getElemCoords";
+import { DATA_PLANET_ID } from "@entities/orbit/model/types";
 
 interface IShowChildren {
   childrenList: string | null;

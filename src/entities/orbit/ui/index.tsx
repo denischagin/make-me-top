@@ -4,16 +4,16 @@ import { Star } from "@shared/Star";
 import { ReactComponent as LockIcon } from "@shared/images/lock.svg";
 import { SystemProgressTypes } from "@shared/types/common";
 
-import { SystemType } from "@entities/Galaxy/model/types";
-import { getDigitalAngle } from "@entities/Orbit/lib/getDigitalAngle";
-import { getPercentageProgress } from "@entities/Orbit/lib/getPercentageProgress";
-import { getPlanetChildData } from "@entities/Orbit/lib/getPlanetChildData";
-import { getSystemColorByProgressType } from "@entities/Orbit/lib/getSystemColorByProgressType";
-import { getPlanetParentData } from "@entities/Orbit/lib/getPlanetParentData";
-import { getSystemProgressType } from "@entities/Orbit/lib/getSystemProgressType";
-import { getRadius } from "@entities/Orbit/lib/getRadius";
-import { getXCoordinateOnEllipse } from "@entities/Orbit/lib/getXCoordinateOnEllipse";
-import { getYCoordinateOnEllipse } from "@entities/Orbit/lib/getYCoordinateOnEllipse";
+import { SystemType } from "@entities/galaxy/model/types";
+import { getDigitalAngle } from "@entities/orbit/lib/getDigitalAngle";
+import { getPercentageProgress } from "@entities/orbit/lib/getPercentageProgress";
+import { getPlanetChildData } from "@entities/orbit/lib/getPlanetChildData";
+import { getSystemColorByProgressType } from "@entities/orbit/lib/getSystemColorByProgressType";
+import { getPlanetParentData } from "@entities/orbit/lib/getPlanetParentData";
+import { getSystemProgressType } from "@entities/orbit/lib/getSystemProgressType";
+import { getRadius } from "@entities/orbit/lib/getRadius";
+import { getXCoordinateOnEllipse } from "@entities/orbit/lib/getXCoordinateOnEllipse";
+import { getYCoordinateOnEllipse } from "@entities/orbit/lib/getYCoordinateOnEllipse";
 import { UserProgress } from "@entities/user/model/types";
 
 import "./styles.scss";

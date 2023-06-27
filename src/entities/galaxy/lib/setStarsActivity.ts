@@ -1,4 +1,4 @@
-import { DATA_PLANET_ID } from "@entities/Orbit/model/types";
+import { DATA_PLANET_ID } from "@entities/orbit/model/types";
 
 interface SetStarsActivity {
   stars: NodeListOf<HTMLDivElement>;

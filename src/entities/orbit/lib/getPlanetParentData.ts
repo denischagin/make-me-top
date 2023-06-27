@@ -1,4 +1,4 @@
-import { SystemType } from "@entities/Galaxy/model/types";
+import { SystemType } from "@entities/galaxy/model/types";
 
 //получение parent зависимостей планеты в определенном формате
 export const getPlanetParentData = (planet: SystemType): Array<string> => {

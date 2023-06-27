@@ -1,4 +1,4 @@
-import { isConnectionOverlapped } from "@entities/Galaxy/lib/isConnectionOverlapped";
+import { isConnectionOverlapped } from "@entities/galaxy/lib/isConnectionOverlapped";
 
 interface IGetCoordsForConnection {
   currentTarget: {

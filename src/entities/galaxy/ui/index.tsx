@@ -8,23 +8,23 @@ import { Modal } from "@shared/Modal";
 import { SystemProgressTypes } from "@shared/types/common";
 import { bem } from "@shared/utils/bem";
 
-import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
-import { createSvgContainer } from "@entities/Galaxy/lib/createSvgContainer";
-import { deleteAllConnectionLines } from "@entities/Galaxy/lib/deleteAllConnectionLines";
-import { isChosenStarClosed } from "@entities/Galaxy/lib/isChosenStarClosed";
-import { setStarsActivity } from "@entities/Galaxy/lib/setStarsActivity";
-import { showPlanetsChildren } from "@entities/Galaxy/lib/showPlanetsChildren";
-import { showPlanetsParents } from "@entities/Galaxy/lib/showPlanetsParents";
-import { DEFAULT_CHOSEN_STAR } from "@entities/Galaxy/model/constants";
-import { OrbitType, SystemType } from "@entities/Galaxy/model/types";
-import { fetchSystemById } from "@entities/Orbit/api/fetchSystemById";
+import { addActivePlanet } from "@entities/galaxy/lib/addActivePlanet";
+import { createSvgContainer } from "@entities/galaxy/lib/createSvgContainer";
+import { deleteAllConnectionLines } from "@entities/galaxy/lib/deleteAllConnectionLines";
+import { isChosenStarClosed } from "@entities/galaxy/lib/isChosenStarClosed";
+import { setStarsActivity } from "@entities/galaxy/lib/setStarsActivity";
+import { showPlanetsChildren } from "@entities/galaxy/lib/showPlanetsChildren";
+import { showPlanetsParents } from "@entities/galaxy/lib/showPlanetsParents";
+import { DEFAULT_CHOSEN_STAR } from "@entities/galaxy/model/constants";
+import { OrbitType, SystemType } from "@entities/galaxy/model/types";
+import { fetchSystemById } from "@entities/orbit/api/fetchSystemById";
 import {
   DATA_PLANET_CHILDREN_LIST,
   DATA_PLANET_ID,
   DATA_PLANET_PARENT_LIST,
   DATA_PLANET_PROGRESS_TYPE,
-} from "@entities/Orbit/model/types";
-import Orbit from "@entities/Orbit/ui";
+} from "@entities/orbit/model/types";
+import Orbit from "@entities/orbit/ui";
 import { showModal } from "@entities/user/model/slice";
 import { UserProgress } from "@entities/user/model/types";
 

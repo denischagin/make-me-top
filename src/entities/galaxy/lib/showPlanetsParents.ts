@@ -2,15 +2,15 @@ import React from "react";
 
 import { SystemProgressTypes } from "@shared/types/common";
 
-import { addActivePlanet } from "@entities/Galaxy/lib/addActivePlanet";
-import { getColorFromShelf } from "@entities/Galaxy/lib/colorShelf";
-import { getCoordsForConnection } from "@entities/Galaxy/lib/getCoordsForConnection";
-import { getElemCoords } from "@entities/Galaxy/lib/getElemCoords";
+import { addActivePlanet } from "@entities/galaxy/lib/addActivePlanet";
+import { getColorFromShelf } from "@entities/galaxy/lib/colorShelf";
+import { getCoordsForConnection } from "@entities/galaxy/lib/getCoordsForConnection";
+import { getElemCoords } from "@entities/galaxy/lib/getElemCoords";
 import {
   DATA_PLANET_ID,
   DATA_PLANET_PARENT_LIST,
   DATA_PLANET_PROGRESS_TYPE,
-} from "@entities/Orbit/model/types";
+} from "@entities/orbit/model/types";
 
 interface IShowPlanetsParents {
   parentsList: string | null;

@@ -6,8 +6,8 @@ import { BackgroundGalaxyPage } from "@shared/BackgroundGalaxyPage";
 import { GalaxyPageName } from "@shared/GalaxyPageName";
 import { bem } from "@shared/utils/bem";
 
-import { getGalaxy } from "@entities/Galaxy/api/getGalaxy";
-import Galaxy from "@entities/Galaxy/ui";
+import { getGalaxy } from "@entities/galaxy/api/getGalaxy";
+import Galaxy from "@entities/galaxy/ui";
 import { getUser } from "@entities/user/api/getUser";
 
 import { Header } from "@widgets/Header";

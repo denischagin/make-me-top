@@ -1,4 +1,4 @@
-import { restoreColorShelf } from "@entities/Galaxy/lib/colorShelf";
+import { restoreColorShelf } from "@entities/galaxy/lib/colorShelf";
 
 interface IDeleteAllConnectionLines {
   svgContainer: SVGElement | null;
