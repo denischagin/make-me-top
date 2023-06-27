@@ -1,29 +1,13 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .login {
-  cursor: default;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    cursor: default;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  &__heading {
-    margin-bottom: 30px;
-  }
-
-  &__hint {
-    margin-top: 24px;
-    cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-underline-offset: 5px;
-    transition: 0.5s;
-
-    &:hover {
-      transition: 0.5s;
-      text-decoration: underline 2px;
-      text-decoration-color: $white;
-      text-underline-offset: 5px;
+    &__heading {
+        margin-bottom: 30px;
     }
-  }
 }

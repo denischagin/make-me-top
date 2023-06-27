@@ -7,11 +7,16 @@ interface IGetYCoordinateOnEllipse {
 
 //расчет координаты Y для элемента на границе эллипса
 export const getYCoordinateOnEllipse = (
-  params: IGetYCoordinateOnEllipse
+    params: IGetYCoordinateOnEllipse,
 ): number => {
-  const { ellipseHalfHeight, radius, digitalAngle, elementHeight } = params;
+    const {
+        ellipseHalfHeight,
+        radius,
+        digitalAngle,
+        elementHeight,
+    } = params;
 
-  return Math.round(
-    ellipseHalfHeight - radius * Math.sin(digitalAngle) - elementHeight / 2
-  );
+    return Math.round(
+        ellipseHalfHeight - radius * Math.sin(digitalAngle) - elementHeight / 2,
+    );
 };

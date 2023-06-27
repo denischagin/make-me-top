@@ -1,4 +1,4 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .shining-star {
     color: $white;
@@ -9,16 +9,16 @@
     animation-duration: 1s;
 
     @keyframes shine {
-      from {
-        transform: scale(1);
-      }
-      10% {
-        color: $shine;
-        transform: scale(1.35);
-      }
-      25% {
-        color: $white;
-        transform: scale(1);
-      }
+        from {
+            transform: scale(1);
+        }
+        10% {
+            color: $shine;
+            transform: scale(1.35);
+        }
+        25% {
+            color: $white;
+            transform: scale(1);
+        }
     }
 }

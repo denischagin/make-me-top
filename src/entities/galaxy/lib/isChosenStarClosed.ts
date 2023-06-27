@@ -1,5 +1,6 @@
-import { SystemType } from "@entities/galaxy/model/types";
-import { UserProgress } from "@entities/user/model/types";
+import { UserProgress } from '@entities/user/model/types';
+
+import { SystemType } from '@entities/galaxy/model/types';
 
 interface IsChosenStarClosed {
   userProgress: UserProgress;
@@ -7,9 +8,12 @@ interface IsChosenStarClosed {
 }
 
 export const isChosenStarClosed = (params: IsChosenStarClosed): boolean => {
-  const { userProgress, lastChosenStar } = params;
+    const {
+        userProgress,
+        lastChosenStar,
+    } = params;
 
-  return userProgress.closeSystemList.some(
-    (closeSystemId) => closeSystemId === lastChosenStar.systemId
-  );
+    return userProgress.closeSystemList.some(
+        (closeSystemId) => closeSystemId === lastChosenStar.systemId,
+    );
 };

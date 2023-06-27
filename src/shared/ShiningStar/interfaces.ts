@@ -1,3 +1,3 @@
 export interface ShiningStarProps {
-  size?: "small"
+    size?: 'small';
 }

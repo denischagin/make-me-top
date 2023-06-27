@@ -1,19 +1,30 @@
-@import "@app/styles/variables.scss";
+@import '@app/styles/variables.scss';
 
 .header {
-  background: $opacity-dark;
-  height: 100px;
-  width: 100%;
-  z-index: 1;
-
-  &__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100px;
-  }
 
-  &__logo {
-    color: $white;
-  }
+    &__links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 32px;
+    }
+
+    &__logo {
+        color: $white;
+    }
+
+    &__link {
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__icon {
+        margin-left: 10px;
+        margin-right: 2px;
+    }
 }

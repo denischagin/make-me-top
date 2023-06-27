@@ -1,14 +1,5 @@
-export type UserStateType = {
-    isRegistered: boolean,
-    isModalOpen: boolean,
-    userData: UserProgress,
-}
+import { UserInterface } from '@shared/types/common';
 
-export type UserProgress = {
-    openSystemList: Array<number>,
-    closeSystemList: Array<number>,
-    educationSystemList: Array<EducationSystemType>,
-}
 
 export type EducationSystemType = {
     systemId: number,
@@ -17,4 +8,26 @@ export type EducationSystemType = {
 
 export type PostUser = {
     username: string
+}
+
+export interface UserState {
+    isRegistered: boolean;
+    isModalOpen: boolean;
+    planetList: Array<ModalPlanetInterface>;
+    explorersList: Array<UserInterface>;
+    curatorsList: Array<UserInterface>;
+    userInfo: UserInterface;
+    userData: UserProgress;
+}
+
+export type UserProgress = {
+    openSystemList: Array<number>,
+    closeSystemList: Array<number>,
+    educationSystemList: Array<EducationSystemType>,
+}
+
+export interface ModalPlanetInterface {
+    planetId: number;
+    planetName: string;
+    systemId: number;
 }
