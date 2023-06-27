@@ -89,8 +89,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     );
     const [lastChosenStar, setLastChosenStar] =
     useState<SystemType>(DEFAULT_CHOSEN_STAR);
-    const [userProgressOnLastChosenStar, setUserProgressOnLastChosenStar] =
-    useState<boolean>(true);
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
 
     //что бы последняя орбита с планетами не была 0x0, уменьшаем шаг между орбитами,
@@ -108,6 +106,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     };
 
     useEffect(() => {
+        //создание контейнера под линии связи,
+        //контейнер создается в корне страницы, для соответствия ее размерам
         setSvgContainer(
             createSvgContainer({
                 galaxyPage,
@@ -130,15 +130,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             activeSystemsId,
         });
     }, [stars, activeSystemsId]);
-
-    useEffect(() => {
-        setUserProgressOnLastChosenStar(
-            isChosenStarClosed({
-                userProgress,
-                lastChosenStar,
-            }),
-        );
-    }, [lastChosenStar.systemId]);
 
     const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
