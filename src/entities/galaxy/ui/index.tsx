@@ -123,7 +123,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         });
     }, [stars, activeSystems]);
 
-    const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
+    const handleSystemMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
 
         const targetId = currentTarget.getAttribute(DATA_PLANET_ID);
@@ -162,7 +162,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         }
     };
 
-    const handlePlanetMouseLeave = () => {
+    const handleSystemMouseLeave = () => {
         setActiveSystems([]);
 
         deleteAllConnectionLines({
@@ -170,7 +170,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         });
     };
 
-    const handlePlanetClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const handleSystemClick = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
 
         const targetId = Number(currentTarget.getAttribute(DATA_PLANET_ID));
@@ -230,9 +230,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                             width: orbitSettings.systemWidth + 'px',
                             height: orbitSettings.systemHeight + 'px',
                         }}
-                        handlePlanetClick={handlePlanetClick}
-                        handlePlanetMouseEnter={handlePlanetMouseEnter}
-                        handlePlanetMouseLeave={handlePlanetMouseLeave}
+                        handleSystemClick={handleSystemClick}
+                        handleSystemMouseEnter={handleSystemMouseEnter}
+                        handleSystemMouseLeave={handleSystemMouseLeave}
                     />
                 );
             })}

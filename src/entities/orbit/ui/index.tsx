@@ -30,9 +30,9 @@ interface IOrbitProps {
     orbitWidth: number;
     orbitHeight: number;
     planetStyle?: React.CSSProperties;
-    handlePlanetClick: (event: React.MouseEvent<HTMLDivElement>) => void;
-    handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
-    handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
+    handleSystemClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+    handleSystemMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
+    handleSystemMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const Orbit: React.FC<IOrbitProps> = (props) => {
@@ -42,9 +42,9 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
         orbitWidth,
         orbitHeight,
         planetStyle,
-        handlePlanetClick,
-        handlePlanetMouseEnter,
-        handlePlanetMouseLeave,
+        handleSystemClick,
+        handleSystemMouseEnter,
+        handleSystemMouseLeave,
     } = props;
 
     const [block, element] = bem('orbit');
@@ -105,9 +105,9 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                         <div
                             key={planet.systemId}
                             className={element('content-system')}
-                            onClick={handlePlanetClick}
-                            onMouseEnter={handlePlanetMouseEnter}
-                            onMouseLeave={handlePlanetMouseLeave}
+                            onClick={handleSystemClick}
+                            onMouseEnter={handleSystemMouseEnter}
+                            onMouseLeave={handleSystemMouseLeave}
                             style={{
                                 ...planetStyle,
                                 left: x + 'px',
