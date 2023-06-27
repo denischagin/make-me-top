@@ -15,7 +15,7 @@ import { getGalaxy } from '@entities/galaxy/api/getGalaxy';
 import Galaxy from '@entities/galaxy/ui';
 
 import { BackgroundGalaxyPage } from '@shared/BackgroundGalaxyPage';
-import { GalaxyPageName } from '@shared/GalaxyPageName';
+import { TitleGalaxyPage } from '@shared/TitleGalaxyPage';
 
 import { bem } from '@shared/utils/bem';
 
@@ -78,7 +78,7 @@ export const GalaxyPage: React.FC = () => {
         >
             <BackgroundGalaxyPage />
             <Header />
-            <GalaxyPageName galaxyName={galaxyName} />
+            <TitleGalaxyPage galaxyName={galaxyName} />
             <Galaxy
                 width={1920}
                 height={910}

@@ -4,11 +4,11 @@ import { bem } from '@shared/utils/bem';
 
 import './styles.scss';
 
-interface IGalaxyPageName {
+interface ITitleGalaxyPage {
   galaxyName: string;
 }
 
-export const GalaxyPageName: React.FC<IGalaxyPageName> = (props) => {
+export const TitleGalaxyPage: React.FC<ITitleGalaxyPage> = (props) => {
     const {
         galaxyName,
     } = props;
