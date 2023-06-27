@@ -1,31 +1,31 @@
 import React from 'react';
 
 interface IAddActivePlanet {
-  activePlanetId: number | string | null;
-  setActivePlanets: React.Dispatch<React.SetStateAction<Array<number>>>;
+  activeSystemId: number | string | null;
+  setActiveSystems: React.Dispatch<React.SetStateAction<Array<number>>>;
 }
 
 
 //функция добавления числа в массив, являющийся состоянием компонента
 export const addActivePlanet = (params: IAddActivePlanet) => {
     const {
-        activePlanetId,
-        setActivePlanets,
+        activeSystemId,
+        setActiveSystems,
     } = params;
 
-    const activePlanet = Number(activePlanetId);
+    const activeSystem = Number(activeSystemId);
 
-    if (activePlanetId === null) {
+    if (activeSystemId === null) {
         return;
     }
 
-    setActivePlanets((prevState) => {
+    setActiveSystems((prevState) => {
     //ничего не изменяем, если в состоянии уже есть такой же id
-        if (prevState.includes(activePlanet)) {
+        if (prevState.includes(activeSystem)) {
             return prevState;
         }
 
         //добавление id с сортировкой по наростанию значений
-        return [...prevState, activePlanet].sort((a, b) => a - b);
+        return [...prevState, activeSystem].sort((a, b) => a - b);
     });
 };

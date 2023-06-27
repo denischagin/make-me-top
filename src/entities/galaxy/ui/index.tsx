@@ -29,8 +29,6 @@ import { CircleModal } from '@shared/CircleModal';
 
 import { bem } from '@shared/utils/bem';
 
-import { TABS_LIST } from '@pages/Explorer/model';
-
 import { SystemProgressTypes } from '@shared/types/common';
 
 import {
@@ -51,16 +49,16 @@ interface IGalaxyProps {
   svgContainerClass: string;
   width: number;
   height: number;
-  planetWidth?: number;
-  planetHeight?: number;
+  systemWidth?: number;
+  systemHeight?: number;
 }
 
-interface IGalaxyOrbitSettings {
+interface IOrbitSettings {
   width: number;
-  planetWidth: number;
+  systemWidth: number;
   backgroundWidth: number;
   height: number;
-  planetHeight: number;
+  systemHeight: number;
   backgroundHeight: number;
 }
 
@@ -79,9 +77,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const dispatch = useAppDispatch();
 
     const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
-    const [activeSystemsId, setActiveSystemsId] = useState<Array<number>>([]);
+    const [activeSystems, setActiveSystems] = useState<Array<number>>([]);
     const [stars, setStars] = useState<NodeListOf<HTMLDivElement>>(
-        document.querySelectorAll('.star__orbit.star__orbit--activity-inactive'),
+        document.querySelectorAll('.star__orbit'),
     );
     const [lastChosenStar, setLastChosenStar] =
     useState<SystemType>(DEFAULT_CHOSEN_STAR);
@@ -92,12 +90,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const orbitWidthStep = width / (orbitList.length + 1);
     const orbitHeightStep = height / (orbitList.length + 1);
 
-    const galaxyOrbitSettings: IGalaxyOrbitSettings = {
+    const orbitSettings: IOrbitSettings = {
         width,
-        planetWidth: props.planetWidth || 80,
+        systemWidth: props.systemWidth || 80,
         backgroundWidth: width + orbitWidthStep / 2,
         height,
-        planetHeight: props.planetWidth || 80,
+        systemHeight: props.systemWidth || 80,
         backgroundHeight: height + orbitHeightStep / 2,
     };
 
@@ -114,18 +112,16 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     useEffect(() => {
         setStars(
-            document.querySelectorAll(
-                '.star__orbit.star__orbit--activity-inactive , .star__orbit.star__orbit--activity-active',
-            ),
+            document.querySelectorAll('.star__orbit'),
         );
-    }, [activeSystemsId]);
+    }, [activeSystems]);
 
     useEffect(() => {
         setStarsActivity({
             stars,
-            activeSystemsId,
+            activeSystemsId: activeSystems,
         });
-    }, [stars, activeSystemsId]);
+    }, [stars, activeSystems]);
 
     const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
@@ -133,43 +129,41 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         const targetId = currentTarget.getAttribute(DATA_PLANET_ID);
         const childrenList = currentTarget.getAttribute(DATA_PLANET_CHILDREN_LIST);
         const parentsList = currentTarget.getAttribute(DATA_PLANET_PARENT_LIST);
-        const planetProgressType = currentTarget.getAttribute(
-            DATA_PLANET_PROGRESS_TYPE,
-        );
+        const systemProgressType = currentTarget.getAttribute(DATA_PLANET_PROGRESS_TYPE);
 
         addActivePlanet({
-            activePlanetId: targetId,
-            setActivePlanets: setActiveSystemsId,
+            activeSystemId: targetId,
+            setActiveSystems,
         });
 
         if (
-            planetProgressType === SystemProgressTypes.SYSTEM_OPEN ||
-      planetProgressType === SystemProgressTypes.SYSTEM_EDUCATION
+            systemProgressType === SystemProgressTypes.SYSTEM_OPEN ||
+            systemProgressType === SystemProgressTypes.SYSTEM_EDUCATION
         ) {
             showPlanetsChildren({
                 childrenList,
                 currentTarget,
-                planetWidth: galaxyOrbitSettings.planetWidth,
-                planetHeight: galaxyOrbitSettings.planetHeight,
+                systemWidth: orbitSettings.systemWidth,
+                systemHeight: orbitSettings.systemHeight,
                 svgContainer,
-                setActivePlanets: setActiveSystemsId,
+                setActiveSystems,
             });
         }
 
-        if (planetProgressType === SystemProgressTypes.SYSTEM_CLOSE) {
+        if (systemProgressType === SystemProgressTypes.SYSTEM_CLOSE) {
             showPlanetsParents({
                 parentsList,
                 currentTarget,
-                planetWidth: galaxyOrbitSettings.planetWidth,
-                planetHeight: galaxyOrbitSettings.planetHeight,
+                systemWidth: orbitSettings.systemWidth,
+                systemHeight: orbitSettings.systemHeight,
                 svgContainer,
-                setActivePlanets: setActiveSystemsId,
+                setActiveSystems,
             });
         }
     };
 
     const handlePlanetMouseLeave = () => {
-        setActiveSystemsId([]);
+        setActiveSystems([]);
 
         deleteAllConnectionLines({
             svgContainer,
@@ -217,24 +211,24 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             <div
                 className={element('background')}
                 style={{
-                    width: galaxyOrbitSettings.width,
-                    height: galaxyOrbitSettings.height,
+                    width: orbitSettings.width,
+                    height: orbitSettings.height,
                 }}
             />
             {orbitList.map((orbits) => {
-                galaxyOrbitSettings.width -= orbitWidthStep;
-                galaxyOrbitSettings.height -= orbitHeightStep;
+                orbitSettings.width -= orbitWidthStep;
+                orbitSettings.height -= orbitHeightStep;
 
                 return (
                     <Orbit
                         key={orbits.orbitId}
                         userProgress={userProgress}
                         systemList={orbits.systemList}
-                        orbitWidth={galaxyOrbitSettings.width}
-                        orbitHeight={galaxyOrbitSettings.height}
+                        orbitWidth={orbitSettings.width}
+                        orbitHeight={orbitSettings.height}
                         planetStyle={{
-                            width: galaxyOrbitSettings.planetWidth + 'px',
-                            height: galaxyOrbitSettings.planetHeight + 'px',
+                            width: orbitSettings.systemWidth + 'px',
+                            height: orbitSettings.systemHeight + 'px',
                         }}
                         handlePlanetClick={handlePlanetClick}
                         handlePlanetMouseEnter={handlePlanetMouseEnter}

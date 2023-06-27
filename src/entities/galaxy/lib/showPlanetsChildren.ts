@@ -8,10 +8,10 @@ import { DATA_PLANET_ID } from '@entities/orbit/model/types';
 interface IShowChildren {
   childrenList: string | null;
   currentTarget: HTMLDivElement;
-  planetWidth: number;
-  planetHeight: number;
+  systemWidth: number;
+  systemHeight: number;
   svgContainer: SVGElement | null;
-  setActivePlanets: React.Dispatch<React.SetStateAction<Array<number>>>;
+  setActiveSystems: React.Dispatch<React.SetStateAction<Array<number>>>;
 }
 
 //функция создания svg линий связи между текущей планетой и всеми ее child зависимостями
@@ -20,16 +20,16 @@ export const showPlanetsChildren = (params: IShowChildren) => {
     const {
         childrenList,
         currentTarget,
-        planetHeight,
-        planetWidth,
+        systemHeight,
+        systemWidth,
         svgContainer,
-        setActivePlanets,
+        setActiveSystems,
     } = params;
 
     const currentTargetCoords = getElemCoords({
         element: currentTarget,
-        elementWidth: planetWidth,
-        elementHeight: planetHeight,
+        elementWidth: systemWidth,
+        elementHeight: systemHeight,
     });
 
     const childrenListArray = childrenList!.split(',');
@@ -47,8 +47,8 @@ export const showPlanetsChildren = (params: IShowChildren) => {
         }
 
         addActivePlanet({
-            activePlanetId: numberElementId,
-            setActivePlanets,
+            activeSystemId: numberElementId,
+            setActiveSystems,
         });
 
         const childElement = document.querySelector<HTMLElement>(
@@ -57,8 +57,8 @@ export const showPlanetsChildren = (params: IShowChildren) => {
 
         const childElementCoords = getElemCoords({
             element: childElement,
-            elementWidth: planetWidth,
-            elementHeight: planetHeight,
+            elementWidth: systemWidth,
+            elementHeight: systemHeight,
         });
 
         const svgLine = document.createElementNS(

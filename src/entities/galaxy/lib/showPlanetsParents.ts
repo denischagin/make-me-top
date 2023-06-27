@@ -16,10 +16,10 @@ import {
 interface IShowPlanetsParents {
   parentsList: string | null;
   currentTarget: HTMLDivElement;
-  planetWidth: number;
-  planetHeight: number;
+  systemWidth: number;
+  systemHeight: number;
   svgContainer: SVGElement | null;
-  setActivePlanets: React.Dispatch<React.SetStateAction<Array<number>>>;
+  setActiveSystems: React.Dispatch<React.SetStateAction<Array<number>>>;
   color?: string | null;
 }
 
@@ -30,16 +30,16 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
     const {
         parentsList,
         currentTarget,
-        planetWidth,
-        planetHeight,
+        systemWidth,
+        systemHeight,
         svgContainer,
-        setActivePlanets,
+        setActiveSystems,
     } = params;
 
     const currentTargetCoords = getElemCoords({
         element: currentTarget,
-        elementWidth: planetWidth,
-        elementHeight: planetHeight,
+        elementWidth: systemWidth,
+        elementHeight: systemHeight,
     });
 
     const parentsListArray = parentsList?.split(',');
@@ -58,8 +58,8 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         }
 
         addActivePlanet({
-            activePlanetId: numberElementId,
-            setActivePlanets,
+            activeSystemId: numberElementId,
+            setActiveSystems,
         });
 
         const parentElement = document.querySelector<HTMLDivElement>(
@@ -68,8 +68,8 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
 
         const parentElementCoords = getElemCoords({
             element: parentElement,
-            elementWidth: planetWidth,
-            elementHeight: planetHeight,
+            elementWidth: systemWidth,
+            elementHeight: systemHeight,
         });
 
         const parentsListOfCurrentParent = parentElement?.getAttribute(
@@ -139,7 +139,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
 
         if (
             parentElementProgressType === SystemProgressTypes.SYSTEM_OPEN ||
-      parentElementProgressType === SystemProgressTypes.SYSTEM_EDUCATION
+            parentElementProgressType === SystemProgressTypes.SYSTEM_EDUCATION
         ) {
             return;
         }
@@ -149,10 +149,10 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
             showPlanetsParents({
                 parentsList: parentsListOfCurrentParent,
                 currentTarget: parentElement,
-                planetWidth,
-                planetHeight,
+                systemWidth,
+                systemHeight,
                 svgContainer,
-                setActivePlanets,
+                setActiveSystems,
                 color,
             });
         }
