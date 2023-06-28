@@ -3,7 +3,7 @@ import React from 'react';
 import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
 
-import { DATA_PLANET_ID } from '@entities/orbit/model/types';
+import { DATA_SYSTEM_ID } from '@entities/orbit/model/types';
 
 interface IShowChildren {
   childrenList: string | null;
@@ -52,7 +52,7 @@ export const showPlanetsChildren = (params: IShowChildren) => {
         });
 
         const childElement = document.querySelector<HTMLElement>(
-            `[${DATA_PLANET_ID}="${numberElementId}"]`,
+            `[${DATA_SYSTEM_ID}="${numberElementId}"]`,
         );
 
         const childElementCoords = getElemCoords({

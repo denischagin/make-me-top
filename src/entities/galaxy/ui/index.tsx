@@ -32,10 +32,10 @@ import { bem } from '@shared/utils/bem';
 import { SystemProgressTypes } from '@shared/types/common';
 
 import {
-    DATA_PLANET_CHILDREN_LIST,
-    DATA_PLANET_ID,
-    DATA_PLANET_PARENT_LIST,
-    DATA_PLANET_PROGRESS_TYPE,
+    DATA_SYSTEM_CHILDREN_LIST,
+    DATA_SYSTEM_ID,
+    DATA_SYSTEM_PARENT_LIST,
+    DATA_SYSTEM_PROGRESS_TYPE,
 } from '@entities/orbit/model/types';
 
 import './style.scss';
@@ -81,8 +81,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const [stars, setStars] = useState<NodeListOf<HTMLDivElement>>(
         document.querySelectorAll('.star__orbit'),
     );
-    const [lastChosenStar, setLastChosenStar] =
-    useState<SystemType>(DEFAULT_CHOSEN_STAR);
+    const [lastChosenStar, setLastChosenStar] = useState<SystemType>(DEFAULT_CHOSEN_STAR);
+
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
 
     //что бы последняя орбита с планетами не была 0x0, уменьшаем шаг между орбитами,
@@ -126,10 +126,10 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const handleSystemMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
 
-        const targetId = currentTarget.getAttribute(DATA_PLANET_ID);
-        const childrenList = currentTarget.getAttribute(DATA_PLANET_CHILDREN_LIST);
-        const parentsList = currentTarget.getAttribute(DATA_PLANET_PARENT_LIST);
-        const systemProgressType = currentTarget.getAttribute(DATA_PLANET_PROGRESS_TYPE);
+        const targetId = currentTarget.getAttribute(DATA_SYSTEM_ID);
+        const childrenList = currentTarget.getAttribute(DATA_SYSTEM_CHILDREN_LIST);
+        const parentsList = currentTarget.getAttribute(DATA_SYSTEM_PARENT_LIST);
+        const systemProgressType = currentTarget.getAttribute(DATA_SYSTEM_PROGRESS_TYPE);
 
         addActivePlanet({
             activeSystemId: targetId,
@@ -173,7 +173,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const handleSystemClick = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
 
-        const targetId = Number(currentTarget.getAttribute(DATA_PLANET_ID));
+        const targetId = Number(currentTarget.getAttribute(DATA_SYSTEM_ID));
 
         setLastChosenStar(DEFAULT_CHOSEN_STAR);
 
@@ -226,7 +226,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                         systemList={orbits.systemList}
                         orbitWidth={orbitSettings.width}
                         orbitHeight={orbitSettings.height}
-                        planetStyle={{
+                        systemStyle={{
                             width: orbitSettings.systemWidth + 'px',
                             height: orbitSettings.systemHeight + 'px',
                         }}

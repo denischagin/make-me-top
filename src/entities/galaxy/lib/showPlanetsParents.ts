@@ -8,9 +8,9 @@ import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
 import { SystemProgressTypes } from '@shared/types/common';
 
 import {
-    DATA_PLANET_ID,
-    DATA_PLANET_PARENT_LIST,
-    DATA_PLANET_PROGRESS_TYPE,
+    DATA_SYSTEM_ID,
+    DATA_SYSTEM_PARENT_LIST,
+    DATA_SYSTEM_PROGRESS_TYPE,
 } from '@entities/orbit/model/types';
 
 interface IShowPlanetsParents {
@@ -63,7 +63,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         });
 
         const parentElement = document.querySelector<HTMLDivElement>(
-            `[${DATA_PLANET_ID}="${numberElementId}"]`,
+            `[${DATA_SYSTEM_ID}="${numberElementId}"]`,
         );
 
         const parentElementCoords = getElemCoords({
@@ -73,7 +73,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         });
 
         const parentsListOfCurrentParent = parentElement?.getAttribute(
-            DATA_PLANET_PARENT_LIST,
+            DATA_SYSTEM_PARENT_LIST,
         );
 
         const svgLine = document.createElementNS(
@@ -134,7 +134,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         //если планета, к которой будем строить связь,
         //открыта или в процессе изучения, то дальше связи не строим
         const parentElementProgressType = parentElement?.getAttribute(
-            DATA_PLANET_PROGRESS_TYPE,
+            DATA_SYSTEM_PROGRESS_TYPE,
         );
 
         if (

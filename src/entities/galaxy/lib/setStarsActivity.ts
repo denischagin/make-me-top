@@ -1,4 +1,4 @@
-import { DATA_PLANET_ID } from '@entities/orbit/model/types';
+import { DATA_SYSTEM_ID } from '@entities/orbit/model/types';
 
 interface SetStarsActivity {
   stars: NodeListOf<HTMLDivElement>;
@@ -23,7 +23,7 @@ export const setStarsActivity = (params: SetStarsActivity) => {
             //иначе проходимся по массиву с id всех активных планет и находим элементы по id-атрибуту
             activeSystemsId.forEach((planetId) => {
                 const planet = document.querySelector<HTMLElement>(
-                    `[${DATA_PLANET_ID}="${planetId}"]`,
+                    `[${DATA_SYSTEM_ID}="${planetId}"]`,
                 );
 
                 //если не был найден

@@ -29,7 +29,7 @@ interface IOrbitProps {
     systemList: Array<SystemType>;
     orbitWidth: number;
     orbitHeight: number;
-    planetStyle?: React.CSSProperties;
+    systemStyle?: React.CSSProperties;
     handleSystemClick: (event: React.MouseEvent<HTMLDivElement>) => void;
     handleSystemMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
     handleSystemMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
@@ -41,7 +41,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
         systemList,
         orbitWidth,
         orbitHeight,
-        planetStyle,
+        systemStyle,
         handleSystemClick,
         handleSystemMouseEnter,
         handleSystemMouseLeave,
@@ -109,14 +109,14 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                             onMouseEnter={handleSystemMouseEnter}
                             onMouseLeave={handleSystemMouseLeave}
                             style={{
-                                ...planetStyle,
+                                ...systemStyle,
                                 left: x + 'px',
                                 top: y + 'px',
                             }}
-                            data-planet-id={planet.systemId}
-                            data-planet-parent-list={getPlanetParentData(planet)}
-                            data-planet-children-list={getPlanetChildData(planet)}
-                            data-planet-progress-type={planetProgressType}
+                            data-system-id={planet.systemId}
+                            data-system-parent-list={getPlanetParentData(planet)}
+                            data-system-children-list={getPlanetChildData(planet)}
+                            data-system-progress-type={planetProgressType}
                         >
                             <Star
                                 percentageProgress={planetPercentageProgress}

@@ -25,7 +25,7 @@ export const addActivePlanet = (params: IAddActivePlanet) => {
             return prevState;
         }
 
-        //добавление id с сортировкой по наростанию значений
+        //добавление id с сортировкой по нарастанию значений
         return [...prevState, activeSystem].sort((a, b) => a - b);
     });
 };
