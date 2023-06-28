@@ -16,7 +16,8 @@ import { UserProgress } from '@entities/user/model/types';
 import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { createSvgContainer } from '@entities/galaxy/lib/createSvgContainer';
 import { deleteAllConnectionLines } from '@entities/galaxy/lib/deleteAllConnectionLines';
-import { setStarsActivity } from '@entities/galaxy/lib/setStarsActivity';
+import { setStarsActivityToActive } from '@entities/galaxy/lib/setStarsActivityToActive';
+import { setStarsActivityToInactive } from '@entities/galaxy/lib/setStarsActivityToInactive';
 import { showPlanetsChildren } from '@entities/galaxy/lib/showPlanetsChildren';
 import { showPlanetsParents } from '@entities/galaxy/lib/showPlanetsParents';
 import { DEFAULT_CHOSEN_STAR } from '@entities/galaxy/model/constants';
@@ -114,14 +115,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         setStars(
             document.querySelectorAll('.star__orbit'),
         );
-    }, [activeSystems]);
 
-    useEffect(() => {
-        setStarsActivity({
-            stars,
+        setStarsActivityToActive({
             activeSystemsId: activeSystems,
         });
-    }, [stars, activeSystems]);
+    }, [activeSystems]);
 
     const handleSystemMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
@@ -164,6 +162,10 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     const handleSystemMouseLeave = () => {
         setActiveSystems([]);
+
+        setStarsActivityToInactive({
+            stars,
+        });
 
         deleteAllConnectionLines({
             svgContainer,
