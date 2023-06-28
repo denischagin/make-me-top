@@ -16,10 +16,10 @@ import './styles.scss';
 
 import { getDigitalAngle } from '@entities/orbit/lib/getDigitalAngle';
 import { getPercentageProgress } from '@entities/orbit/lib/getPercentageProgress';
-import { getPlanetChildData } from '@entities/orbit/lib/getPlanetChildData';
-import { getPlanetParentData } from '@entities/orbit/lib/getPlanetParentData';
 import { getRadius } from '@entities/orbit/lib/getRadius';
+import { getSystemChildData } from '@entities/orbit/lib/getSystemChildData';
 import { getSystemColorByProgressType } from '@entities/orbit/lib/getSystemColorByProgressType';
+import { getSystemParentData } from '@entities/orbit/lib/getSystemParentData';
 import { getSystemProgressType } from '@entities/orbit/lib/getSystemProgressType';
 import { getXCoordinateOnEllipse } from '@entities/orbit/lib/getXCoordinateOnEllipse';
 import { getYCoordinateOnEllipse } from '@entities/orbit/lib/getYCoordinateOnEllipse';
@@ -64,22 +64,22 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                     height: orbitHeight + 'px',
                 }}
             >
-                {systemList.map((planet) => {
-                    const planetProgressType = getSystemProgressType({
-                        system: planet,
+                {systemList.map((system) => {
+                    const systemProgressType = getSystemProgressType({
+                        system,
                         userProgress,
                     });
 
-                    const planetColor = getSystemColorByProgressType({
-                        systemProgressType: planetProgressType,
+                    const systemColor = getSystemColorByProgressType({
+                        systemProgressType,
                     });
 
-                    const planetPercentageProgress = getPercentageProgress({
-                        planet,
+                    const systemPercentageProgress = getPercentageProgress({
+                        system,
                         userProgress,
                     });
 
-                    const digitalAngle = getDigitalAngle(planet.positionSystem);
+                    const digitalAngle = getDigitalAngle(system.positionSystem);
 
                     const radius = getRadius({
                         digitalAngle,
@@ -103,7 +103,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
 
                     return (
                         <div
-                            key={planet.systemId}
+                            key={system.systemId}
                             className={element('content-system')}
                             onClick={handleSystemClick}
                             onMouseEnter={handleSystemMouseEnter}
@@ -113,20 +113,20 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                                 left: x + 'px',
                                 top: y + 'px',
                             }}
-                            data-system-id={planet.systemId}
-                            data-system-parent-list={getPlanetParentData(planet)}
-                            data-system-children-list={getPlanetChildData(planet)}
-                            data-system-progress-type={planetProgressType}
+                            data-system-id={system.systemId}
+                            data-system-parent-list={getSystemParentData(system)}
+                            data-system-children-list={getSystemChildData(system)}
+                            data-system-progress-type={systemProgressType}
                         >
                             <Star
-                                percentageProgress={planetPercentageProgress}
-                                color={planetColor}
+                                percentageProgress={systemPercentageProgress}
+                                color={systemColor}
                             >
-                                {planetProgressType === SystemProgressTypes.SYSTEM_CLOSE && (
+                                {systemProgressType === SystemProgressTypes.SYSTEM_CLOSE && (
                                     <LockIcon/>
                                 )}
                                 <p className={element('content-system--name')}>
-                                    {planet.systemName}
+                                    {system.systemName}
                                 </p>
                             </Star>
                         </div>
