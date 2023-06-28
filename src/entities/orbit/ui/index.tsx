@@ -9,6 +9,7 @@ import { Star } from '@shared/Star';
 import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 
 import { bem } from '@shared/utils/bem';
+import { stringToNumber } from '@shared/utils/stringToNumber';
 
 import { SystemProgressTypes } from '@shared/types/common';
 
@@ -23,6 +24,7 @@ import { getSystemParentData } from '@entities/orbit/lib/getSystemParentData';
 import { getSystemProgressType } from '@entities/orbit/lib/getSystemProgressType';
 import { getXCoordinateOnEllipse } from '@entities/orbit/lib/getXCoordinateOnEllipse';
 import { getYCoordinateOnEllipse } from '@entities/orbit/lib/getYCoordinateOnEllipse';
+import { type } from '@testing-library/user-event/dist/type';
 
 interface IOrbitProps {
     userProgress: UserProgress;
@@ -52,8 +54,8 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
     const orbitHalfWidth = orbitWidth / 2;
     const orbitHalfHeight = orbitHeight / 2;
 
-    const defaultElementWidth = 80;
-    const defaultElementHeight = 80;
+    const elementWidth = stringToNumber(systemStyle?.width) | 80;
+    const elementHeight = stringToNumber(systemStyle?.height) | 80;
 
     return (
         <div className={block()}>
@@ -91,14 +93,14 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                         ellipseHalfWidth: orbitHalfWidth,
                         radius,
                         digitalAngle,
-                        elementWidth: defaultElementWidth,
+                        elementWidth,
                     });
 
                     const y = getYCoordinateOnEllipse({
                         ellipseHalfHeight: orbitHalfHeight,
                         radius,
                         digitalAngle,
-                        elementHeight: defaultElementHeight,
+                        elementHeight,
                     });
 
                     return (
