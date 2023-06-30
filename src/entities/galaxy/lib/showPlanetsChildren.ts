@@ -70,7 +70,7 @@ export const showPlanetsChildren = (params: IShowChildren) => {
         if (currentTargetCoords && childElementCoords) {
             svgLine.setAttribute(
                 'class',
-                'galaxy-page__svg-container--connection-line',
+                'galaxy-page__svg-container--connection-line', //TODO вынести в константы (*)
             );
             svgLine.setAttribute('x1', String(currentTargetCoords?.left));
             svgLine.setAttribute('y1', String(currentTargetCoords?.top));

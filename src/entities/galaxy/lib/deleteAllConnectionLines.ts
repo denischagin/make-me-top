@@ -19,7 +19,7 @@ export const deleteAllConnectionLines = (params: IDeleteAllConnectionLines) => {
     //каждый элемент является svg линией связи
     const elementsFromSvgContainer = Array.from(svgContainer.children || []);
     const allConnectionLines = elementsFromSvgContainer.filter((element) =>
-        element.matches('.galaxy-page__svg-container--connection-line'),
+        element.matches('.galaxy-page__svg-container--connection-line'), //TODO вынести в константы (*)
     ); // TODO избавиться от создания массива элементов, удалять сразу
 
     //удаление каждой линии

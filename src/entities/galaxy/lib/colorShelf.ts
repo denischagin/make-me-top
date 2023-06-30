@@ -1,5 +1,5 @@
 //модификаторы, которые используются на "полке"
-const colorModificationArray: Array<string> = [
+const colorModificationArray: Array<string> = [ //TODO вынести в константы (**)
     'orange-stroke-color',
     'green-stroke-color',
     'pink-stroke-color',
@@ -19,7 +19,7 @@ export const getColorFromShelf = (): string => {
 
     //если все значения на полке были использованы
     if (colorModification === undefined) {
-        colorModification = 'white-stroke-color';
+        colorModification = 'white-stroke-color'; //TODO вынести в константы (**)
     }
 
     return colorModification;

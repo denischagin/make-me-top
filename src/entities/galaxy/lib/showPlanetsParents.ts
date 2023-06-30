@@ -107,7 +107,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
             );
             svgLine.setAttribute(
                 'class',
-                'galaxy-page__svg-container--connection-line',
+                'galaxy-page__svg-container--connection-line', //TODO вынести в константы (*)
             );
             svgLine.setAttribute('stroke', 'white');
         }
@@ -125,7 +125,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
                 'class',
                 `${svgLine?.getAttribute(
                     'class',
-                )} galaxy-page__svg-container--connection-line--${color}`,
+                )} galaxy-page__svg-container--connection-line--${color}`, //TODO вынести в константы (*)
             );
         }
 

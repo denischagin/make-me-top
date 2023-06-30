@@ -195,6 +195,17 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         });
     };
 
+    const handleViewportChange = () => {
+        console.log(window.innerWidth, window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleViewportChange);
+    /**
+     * TODO WIP обработка кейса с поломанным положением связей при изменении размеров окна
+     * добавить размеры в состояние, удалять связи и активность при изменении состояния
+     * https://stackoverflow.com/questions/19014250/rerender-view-on-browser-resize-with-react
+     */
+
     return (
         <div
             className={block()}

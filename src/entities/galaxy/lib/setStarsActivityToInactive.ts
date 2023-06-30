@@ -11,7 +11,7 @@ export const setStarsActivityToInactive = (params: SetStarsActivityToInactive) =
     stars.forEach((star) => {
         star.setAttribute(
             'class',
-            'star__orbit star__orbit--activity-inactive',
+            'star__orbit star__orbit--activity-inactive', //TODO вынести в константы (***)
         );
     });
 };

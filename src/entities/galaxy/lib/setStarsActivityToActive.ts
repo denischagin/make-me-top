@@ -33,7 +33,7 @@ export const setStarsActivityToActive = (params: SetStarsActivityToActive) => {
         //заменяем модификатор
         systemChild.setAttribute(
             'class',
-            'star__orbit star__orbit--activity-active',
+            'star__orbit star__orbit--activity-active', //TODO вынести в константы (***)
         );
     });
 };
