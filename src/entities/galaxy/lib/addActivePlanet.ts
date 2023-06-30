@@ -6,7 +6,7 @@ interface IAddActivePlanet {
 }
 
 
-//функция добавления числа в массив, являющийся состоянием компонента
+//функция добавления id системы в массив, описывающий активные элементы галактики
 export const addActivePlanet = (params: IAddActivePlanet) => {
     const {
         activeSystemId,

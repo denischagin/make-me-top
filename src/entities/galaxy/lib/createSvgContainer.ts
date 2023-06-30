@@ -4,9 +4,7 @@ interface ICreateSvgContainer {
 }
 
 //функция создания контейнера svg элементов (для связей между элементами)
-export const createSvgContainer = (
-    params: ICreateSvgContainer,
-): SVGElement | null => {
+export const createSvgContainer = (params: ICreateSvgContainer): SVGElement | null => {
     const {
         galaxyPage,
         svgContainerClass,
@@ -20,6 +18,7 @@ export const createSvgContainer = (
         'http://www.w3.org/2000/svg',
         'svg',
     );
+
     svgContainer.setAttribute('class', svgContainerClass);
 
     galaxyPage.append(svgContainer);

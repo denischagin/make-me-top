@@ -6,8 +6,7 @@ interface getPlanetColorByProgress {
   systemProgressType: string;
 }
 
-
-//функция получения параметра цвета для компонета Star по переданному типу прогресса системы
+//функция получения цвета для компонета Star по переданному типу прогресса системы
 export const getSystemColorByProgressType = (
     params: getPlanetColorByProgress,
 ) => {

@@ -9,8 +9,7 @@ interface IGetPlanetProgress {
   userProgress: UserProgress;
 }
 
-
-//функция получения типа прогресса системы по переданной системе и прогрессу пользоватея
+//функция получения типа прогресса системы по прогрессу пользоватея
 export const getSystemProgressType = (params: IGetPlanetProgress) => {
     const {
         system,

@@ -2,6 +2,7 @@ interface SetStarsActivityToInactive {
     stars: NodeListOf<HTMLDivElement>;
 }
 
+//функция изменения модификаторов активности на "Не активный" всех систем галактики
 export const setStarsActivityToInactive = (params: SetStarsActivityToInactive) => {
     const {
         stars,

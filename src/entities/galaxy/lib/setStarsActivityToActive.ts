@@ -4,6 +4,7 @@ interface SetStarsActivityToActive {
     activeSystemsId: Array<number>,
 }
 
+//функция изменения модификаторов активности на "Активный" определенных систем в галактике
 export const setStarsActivityToActive = (params: SetStarsActivityToActive) => {
     const {
         activeSystemsId,
@@ -20,7 +21,8 @@ export const setStarsActivityToActive = (params: SetStarsActivityToActive) => {
             return;
         }
 
-        //спускаемся на несколько уровней ниже, что бы в нужном месте заменить модификатор
+        //спускаемся на несколько узлов ниже (из элемента с data атрибутами к компоненту Star),
+        //что бы заменить там модификатор
         const systemChild = system.querySelector('.star__orbit');
 
         //если не был найден

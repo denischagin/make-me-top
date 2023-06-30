@@ -9,8 +9,6 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { getUser } from '@entities/user/api/getUser';
-
 import { getGalaxy } from '@entities/galaxy/api/getGalaxy';
 import Galaxy from '@entities/galaxy/ui';
 
@@ -59,13 +57,7 @@ export const GalaxyPage: React.FC = () => {
 
     useEffect(() => {
         dispatch(getGalaxy({}));
-
-    // dispatch(getUser({
-    //     username: "test"
-    // }));
     }, []);
-
-    const user = useAppSelector((state) => state.user.userData);
 
     const galaxyName = useAppSelector((state) => state.galaxies.galaxyName);
 
