@@ -1,6 +1,5 @@
 import { Rating } from '@shared/Rating';
 import { Star } from '@shared/Star';
-import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
@@ -10,7 +9,6 @@ import {
     ratingStarColor,
 } from '@shared/Rating/interfaces';
 import { starColor } from '@shared/Star/interfaces';
-import { typographyVariant } from '@shared/Typography/interfaces';
 
 import { arrayOfStars } from './model';
 
@@ -21,12 +19,6 @@ export const CuratorStars = () => {
 
     return (
         <div className={block()}>
-            <Typography
-                variant={typographyVariant.h2}
-                className={element('heading', 'mb-4 mt-5')}
-            >
-                Звезды исследователя
-            </Typography>
             <div className={element('stars', 'mb-4')}>
                 {
                     arrayOfStars.map((item) => (

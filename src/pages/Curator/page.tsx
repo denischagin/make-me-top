@@ -6,7 +6,7 @@ import { bem } from '@shared/utils/bem';
 
 import { CuratorUserInfo } from '@widgets/CuratorUserInfo';
 import { EducationApplications } from '@widgets/EducationApplications';
-import { ExplorerCardList } from '@widgets/ExplorerCardList';
+import { ExplorerCardList } from '@widgets/ExplorerItemList';
 import { GradeApplications } from '@widgets/GradeApplications';
 import { Header } from '@widgets/Header';
 

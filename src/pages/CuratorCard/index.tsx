@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 
 import { ArrowButton } from '@shared/ArrowButton';
 import { BackgroundProfile } from '@shared/BackgroundProfile';
+import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
@@ -12,6 +13,7 @@ import { Header } from '@widgets/Header';
 import { Reviews } from '@widgets/Reviews';
 
 import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
+import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
@@ -38,7 +40,15 @@ export const CuratorCard = () => {
                     </div>
                     <CuratorCardUserInfo />
                 </div>
-                <CuratorStars />
+                <div className={element('stars')}>
+                    <Typography
+                        variant={typographyVariant.h2}
+                        className={element('heading', 'mb-4 mt-5')}
+                    >
+                        Звезды исследователя
+                    </Typography>
+                    <CuratorStars />
+                </div>
                 <Reviews />
             </div>
         </div>

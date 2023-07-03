@@ -7,6 +7,7 @@ export const URL_CURATORS = '/curators';
 export const URL_EXPLORERS = '/explorers';
 
 export const URL_CURATOR_CARD = '/curator/:curatorId';
+export const URL_EXPLORER_CARD = '/explorer/:explorerId';
 
 // header links
 export const HEADER_LINKS = [

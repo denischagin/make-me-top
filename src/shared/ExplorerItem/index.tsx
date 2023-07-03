@@ -8,11 +8,11 @@ import { bem } from '@shared/utils/bem';
 import { avatarSize } from '@shared/Avatar/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
 
-import { ExplorerCardInterface } from '@shared/types/common';
+import { ExplorerItemInterface } from '@shared/types/common';
 
 import './styles.scss';
 
-export const ExplorerCard = (props: ExplorerCardInterface) => {
+export const ExplorerItem = (props: ExplorerItemInterface) => {
     const {
         name = '',
         avatar = '',

@@ -1,9 +1,12 @@
 import { ExplorerState } from './interfaces';
 
+import { APPLICATION_CARD } from './mocks';
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: ExplorerState = {
     isExplorer: false,
+    applicationCard: APPLICATION_CARD,
 };
 
 export const explorerSlice = createSlice({
