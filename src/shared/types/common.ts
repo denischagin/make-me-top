@@ -63,3 +63,9 @@ export interface ReviewModalInterface {
     children: ReactNode;
     onClose: () => void;
 }
+
+export interface ErrorInterface {
+    timestamp: string
+    code: string
+    message: string
+}

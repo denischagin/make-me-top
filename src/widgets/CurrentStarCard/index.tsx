@@ -140,7 +140,9 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                         color={buttonColor.filled}
                         title="Продолжить"
                         onClick={() => {
-                            dispatch(getModalPlanets(id));
+                            dispatch(getModalPlanets({
+                                planetId: id,
+                            }));
                             dispatch(showModal());
                         }}
                     />

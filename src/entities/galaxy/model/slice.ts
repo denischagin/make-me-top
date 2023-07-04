@@ -1,6 +1,8 @@
-import { getGalaxy } from '../api/getGalaxy';
-
 import { createSlice } from '@reduxjs/toolkit';
+
+import { getGalaxy } from '../thunks/getGalaxy';
+
+import { GalaxyType } from './types';
 
 const galaxySlice = createSlice({
     name: 'galaxy',
@@ -8,7 +10,7 @@ const galaxySlice = createSlice({
         galaxyId: 0,
         galaxyName: '',
         orbitList: [],
-    },
+    } as GalaxyType,
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(getGalaxy.fulfilled, (state, action) => {
