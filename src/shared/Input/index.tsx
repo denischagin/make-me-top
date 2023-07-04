@@ -8,14 +8,18 @@ export const Input = (props: InputInterface) => {
     const {
         placeholder,
         type,
+        value,
+        onChange,
     } = props;
 
     const [block, element] = bem('input');
 
     return (
         <input
+            value={value}
             type={type}
             placeholder={placeholder}
+            onChange={onChange}
             className={block()}
         />
     );

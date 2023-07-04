@@ -1,5 +1,6 @@
 import { useAppSelector } from '@app/providers/store/hooks';
 
+import { DEFAULT_PLANET_ID } from '@entities/user/model/constants';
 import { userPlanetListSelector } from '@entities/user/model/selectors';
 import { ModalPlanetInterface } from '@entities/user/model/types';
 
@@ -22,7 +23,9 @@ export const PlanetList = (props: PlanetListInterface) => {
 
     const planetList = useAppSelector(userPlanetListSelector);
 
-    const currentPlanet = planetList.find((item: ModalPlanetInterface) => item.planetName === props.currentPlanet);
+    const currentPlanet = planetList?.find((item: ModalPlanetInterface) => item.planetName === props.currentPlanet) || {
+        planetId: DEFAULT_PLANET_ID,
+    };
 
     return (
         <div className={block()}>
@@ -30,7 +33,7 @@ export const PlanetList = (props: PlanetListInterface) => {
                 <div
                     key={planet.planetId}
                     className={element('item', {
-                        active: planet.planetId < currentPlanet?.planetId!,
+                        active: planet.planetId < currentPlanet.planetId,
                         current: planet.planetName === props.currentPlanet,
                     })}
                 >
@@ -38,7 +41,7 @@ export const PlanetList = (props: PlanetListInterface) => {
                         {++index}. {planet.planetName}
                     </span>
                     {
-                        (planet.planetId > currentPlanet?.planetId!) &&
+                        (planet.planetId > currentPlanet.planetId) &&
                         <LockIcon className={element('lock-icon')} />
                     }
                     {
