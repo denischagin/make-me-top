@@ -2,6 +2,7 @@ import React from 'react';
 
 import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
+import { CONNECTION_LINE_CLASS } from '@entities/galaxy/model/constants';
 
 import { DATA_SYSTEM_ID } from '@entities/orbit/model/types';
 
@@ -70,7 +71,7 @@ export const showPlanetsChildren = (params: IShowChildren) => {
         if (currentTargetCoords && childElementCoords) {
             svgLine.setAttribute(
                 'class',
-                'galaxy-page__svg-container--connection-line', //TODO вынести в константы (*)
+                `${CONNECTION_LINE_CLASS}`,
             );
             svgLine.setAttribute('x1', String(currentTargetCoords?.left));
             svgLine.setAttribute('y1', String(currentTargetCoords?.top));

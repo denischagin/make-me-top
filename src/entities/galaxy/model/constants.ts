@@ -5,3 +5,5 @@ export const DEFAULT_CHOSEN_STAR = {
     positionSystem: 0,
     systemDependencyList: [],
 };
+
+export const CONNECTION_LINE_CLASS = 'galaxy-page__svg-container--connection-line';

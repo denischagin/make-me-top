@@ -4,6 +4,7 @@ import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { getColorFromShelf } from '@entities/galaxy/lib/colorShelf';
 import { getCoordsForConnection } from '@entities/galaxy/lib/getCoordsForConnection';
 import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
+import { CONNECTION_LINE_CLASS } from '@entities/galaxy/model/constants';
 
 import { SystemProgressTypes } from '@shared/types/common';
 
@@ -107,7 +108,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
             );
             svgLine.setAttribute(
                 'class',
-                'galaxy-page__svg-container--connection-line', //TODO вынести в константы (*)
+                `${CONNECTION_LINE_CLASS}`,
             );
             svgLine.setAttribute('stroke', 'white');
         }
@@ -125,7 +126,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
                 'class',
                 `${svgLine?.getAttribute(
                     'class',
-                )} galaxy-page__svg-container--connection-line--${color}`, //TODO вынести в константы (*)
+                )} ${CONNECTION_LINE_CLASS}--${color}`,
             );
         }
 
