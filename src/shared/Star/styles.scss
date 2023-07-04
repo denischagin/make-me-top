@@ -58,12 +58,6 @@
     transition: 0.3s;
     transform: scale(0.75);
 
-    &:hover {
-      filter: opacity(1);
-      transition: 0.3s;
-      transform: scale(1);
-    }
-
     &--activity-active {
       filter: opacity(1);
       transition: 0.3s;

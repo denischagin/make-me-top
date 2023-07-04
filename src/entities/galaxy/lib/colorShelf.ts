@@ -6,7 +6,7 @@ import {
 } from '@shared/constants/colorModificators';
 
 //модификаторы, которые используются на "полке"
-const colorModificationArray: Array<string> = [ //TODO вынести в константы (**)
+const colorModificationArray: Array<string> = [
     ORANGE_STROKE_MOD,
     GREEN_STROKE_MOD,
     PINK_STROKE_MOD,
@@ -26,7 +26,7 @@ export const getColorFromShelf = (): string => {
 
     //если все значения на полке были использованы
     if (colorModification === undefined) {
-        colorModification = WHITE_STROKE_MOD; //TODO вынести в константы (**)
+        colorModification = WHITE_STROKE_MOD;
     }
 
     return colorModification;

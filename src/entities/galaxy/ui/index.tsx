@@ -83,6 +83,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         document.querySelectorAll('.star__orbit'),
     );
     const [lastChosenStar, setLastChosenStar] = useState<SystemType>(DEFAULT_CHOSEN_STAR);
+    const [windowSize, setWindowSize] = useState([0, 0]);
 
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
 
@@ -101,6 +102,18 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     };
 
     useEffect(() => {
+        //функции реагирования на обновление размеров окна приложения
+        const updateSize = () => {
+            setWindowSize([window.innerWidth, window.innerHeight]);
+        };
+
+        window.addEventListener('resize', updateSize);
+        updateSize();
+
+        return () => window.removeEventListener('resize', updateSize);
+    }, []);
+
+    useEffect(() => {
         //создание контейнера под линии связи,
         //контейнер создается в корне страницы, для соответствия ее размерам
         setSvgContainer(
@@ -112,6 +125,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     }, [galaxyPage]);
 
     useEffect(() => {
+        //реагирование на изменение масштаба окна приложения
+        handleSystemMouseLeave();
+    }, [windowSize]);
+
+    useEffect(() => {
+        //поиск на странице и изменение модификаторов элементов в соответствии с состоянием
         setStars(
             document.querySelectorAll('.star__orbit'),
         );
@@ -194,17 +213,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             setLastChosenStar(response.data);
         });
     };
-
-    const handleViewportChange = () => {
-        console.log(window.innerWidth, window.innerHeight);
-    };
-
-    window.addEventListener('resize', handleViewportChange);
-    /**
-     * TODO WIP обработка кейса с поломанным положением связей при изменении размеров окна
-     * добавить размеры в состояние, удалять связи и активность при изменении состояния
-     * https://stackoverflow.com/questions/19014250/rerender-view-on-browser-resize-with-react
-     */
 
     return (
         <div
