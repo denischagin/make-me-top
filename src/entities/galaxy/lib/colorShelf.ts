@@ -1,8 +1,15 @@
+import {
+    GREEN_STROKE_MOD,
+    ORANGE_STROKE_MOD,
+    PINK_STROKE_MOD,
+    WHITE_STROKE_MOD,
+} from '@shared/constants/colorModificators';
+
 //модификаторы, которые используются на "полке"
 const colorModificationArray: Array<string> = [ //TODO вынести в константы (**)
-    'orange-stroke-color',
-    'green-stroke-color',
-    'pink-stroke-color',
+    ORANGE_STROKE_MOD,
+    GREEN_STROKE_MOD,
+    PINK_STROKE_MOD,
 ];
 
 //полка
@@ -19,7 +26,7 @@ export const getColorFromShelf = (): string => {
 
     //если все значения на полке были использованы
     if (colorModification === undefined) {
-        colorModification = 'white-stroke-color'; //TODO вынести в константы (**)
+        colorModification = WHITE_STROKE_MOD; //TODO вынести в константы (**)
     }
 
     return colorModification;
