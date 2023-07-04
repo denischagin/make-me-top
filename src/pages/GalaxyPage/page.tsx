@@ -5,7 +5,8 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { getGalaxy } from '@entities/galaxy/api/getGalaxy';
+import { DEFAULT_GALAXY_ID } from '@entities/galaxy/model/constants';
+import { getGalaxy } from '@entities/galaxy/thunks/getGalaxy';
 import Galaxy from '@entities/galaxy/ui';
 
 import './styles.scss';
@@ -14,7 +15,9 @@ export const GalaxyPage: React.FC = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(getGalaxy({}));
+        dispatch(getGalaxy({
+            galaxyId: DEFAULT_GALAXY_ID,
+        }));
     }, [dispatch]);
 
     const orbitList = useAppSelector((state) => state.galaxies.orbitList);
