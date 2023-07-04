@@ -7,3 +7,6 @@ export const DEFAULT_CHOSEN_STAR = {
 };
 
 export const CONNECTION_LINE_CLASS = 'galaxy-page__svg-container--connection-line';
+
+export const ACTIVE_STAR_CLASS = 'star__orbit star__orbit--activity-active';
+export const INACTIVE_STAR_CLASS = 'star__orbit star__orbit--activity-inactive';

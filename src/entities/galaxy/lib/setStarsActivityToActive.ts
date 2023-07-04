@@ -1,3 +1,5 @@
+import { ACTIVE_STAR_CLASS } from '@entities/galaxy/model/constants';
+
 import { DATA_SYSTEM_ID } from '@entities/orbit/model/types';
 
 interface SetStarsActivityToActive {
@@ -33,7 +35,7 @@ export const setStarsActivityToActive = (params: SetStarsActivityToActive) => {
         //заменяем модификатор
         systemChild.setAttribute(
             'class',
-            'star__orbit star__orbit--activity-active', //TODO вынести в константы (***)
+            ACTIVE_STAR_CLASS,
         );
     });
 };

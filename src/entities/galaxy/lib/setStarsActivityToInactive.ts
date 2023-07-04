@@ -1,3 +1,5 @@
+import { INACTIVE_STAR_CLASS } from '@entities/galaxy/model/constants';
+
 interface SetStarsActivityToInactive {
     stars: NodeListOf<HTMLDivElement>;
 }
@@ -11,7 +13,7 @@ export const setStarsActivityToInactive = (params: SetStarsActivityToInactive) =
     stars.forEach((star) => {
         star.setAttribute(
             'class',
-            'star__orbit star__orbit--activity-inactive', //TODO вынести в константы (***)
+            INACTIVE_STAR_CLASS,
         );
     });
 };
