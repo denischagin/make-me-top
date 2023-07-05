@@ -124,9 +124,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                                 percentageProgress={systemPercentageProgress}
                                 color={systemColor}
                             >
-                                {systemProgressType === SystemProgressTypes.SYSTEM_CLOSE && (
-                                    <LockIcon/>
-                                )}
+                                {(systemProgressType === SystemProgressTypes.SYSTEM_CLOSE) && <LockIcon/>}
                                 <p className={element('content-system--name')}>
                                     {system.systemName}
                                 </p>
