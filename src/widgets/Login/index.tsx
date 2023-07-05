@@ -2,6 +2,7 @@ import {
     useEffect,
     useState,
 } from 'react';
+import { useNavigate } from 'react-router';
 
 import {
     useAppDispatch,
@@ -32,14 +33,28 @@ import './styles.scss';
 
 export const Login = () => {
     const [block, element] = bem('login');
-    const [token, setToken] = useState<string | null>(null);
     const [inputLogin, setInputLogin] = useState<string>('');
     const [inputPassword, setInputPassword] = useState<string>('');
 
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
+
     const isExplorer = useAppSelector(explorerIsExplorerSelector);
 
     const pathByUserRole = isExplorer ? URL_EXPLORER : URL_CURATOR;
+
+    function callback() {
+        if (!localStorage.getItem(storageKeys.tokenAuth)) {
+            return navigate(URL_DEFAULT);
+        }
+
+        return navigate(pathByUserRole);
+    }
+
+    const payload = {
+        login: inputLogin,
+        password: inputPassword,
+    };
 
     return (
         <>
@@ -62,15 +77,15 @@ export const Login = () => {
                     onChange={(e) => setInputPassword(e.target.value)}
                     value={inputPassword}
                 />
-                <RouterLink to={pathByUserRole}>
-                    <PlanetButton
-                        onClick={() => dispatch(authLogin({
-                            login: inputLogin,
-                            password: inputPassword,
-                        }))}
-                        title="Войти"
-                    />
-                </RouterLink>
+                <PlanetButton
+                    onClick={() => {
+                        dispatch(authLogin({
+                            payload,
+                            callback,
+                        }));
+                    }}
+                    title="Войти"
+                />
             </div>
         </>
     );

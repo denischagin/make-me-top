@@ -9,15 +9,14 @@ import { ErrorInterface } from '@shared/types/common';
 
 import { FETCH_AUTH } from '../model/actions';
 import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
-
-interface AuthLoginInterface {
-    login: string
-    password: string
-}
+import { AuthLoginInterface } from '../model/types';
 
 export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface, { rejectValue: ErrorInterface }>(
     FETCH_AUTH,
-    async (payload, {
+    async ({
+        payload,
+        callback,
+    }, {
         rejectWithValue,
     }) => {
         try {
@@ -32,6 +31,7 @@ export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface, { 
             }
 
             localStorage.setItem(storageKeys.tokenAuth, JSON.stringify(data));
+            callback();
 
             return data;
         }
