@@ -1,28 +1,52 @@
+import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { AxiosError } from 'axios';
 
 import { FETCH_USER } from '@entities/user/model/actions';
-import { PostUser } from '@entities/user/model/types';
+import {
+    PostUser,
+    UserProgress,
+} from '@entities/user/model/types';
 
-import { URL_MMT_USER } from '@shared/constants/urls';
+import { DEFAULT_ERROR_MESSAGE } from '@entities/galaxy/model/constants';
+
+import { instance } from '@shared/api/instances';
+
+import { URL_MMT_URL_MMT_STAND_USER } from '@shared/constants/urls';
+
+import { ErrorInterface } from '@shared/types/common';
+
+
+export interface UserResponseInterface extends UserProgress, ErrorInterface {
+
+}
 
 
 export const getUser = createAsyncThunk(
     FETCH_USER,
-    async (payload: PostUser) => {
+    async (payload: PostUser, {
+        rejectWithValue,
+    }) => {
         try {
-            // const postman = axios.create({
-            //     baseURL: `http://10.254.7.171:8101/user`,
-            //     headers: {'username': 'foobar'}
-            // })
-            const response = await axios.post(
-                URL_MMT_USER,
-                payload,
-            );
+            const {
+                username,
+            } = payload;
 
-            return response.data;
+            const {
+                data,
+            } = await instance.get<UserResponseInterface>(`${URL_MMT_URL_MMT_STAND_USER}user`);
+
+            if (data.message) {
+                toast.error(data.message);
+
+                return rejectWithValue(data);
+            }
+
+            return data;
         } catch (err) {
-            console.error(err);
+            const error: AxiosError<ErrorInterface> = err as any;
+
+            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
         }
     },
 );
