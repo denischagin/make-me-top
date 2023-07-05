@@ -68,13 +68,13 @@ export const Login = () => {
                 <Input
                     placeholder="Номер телефона"
                     type="tel"
-                    onChange={(e) => setInputLogin(e.target.value)}
+                    setStateOnChange={setInputLogin}
                     value={inputLogin}
                 />
                 <Input
                     placeholder="Пароль"
                     type="password"
-                    onChange={(e) => setInputPassword(e.target.value)}
+                    setStateOnChange={setInputPassword}
                     value={inputPassword}
                 />
                 <PlanetButton

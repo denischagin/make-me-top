@@ -9,7 +9,7 @@ export const Input = (props: InputInterface) => {
         placeholder,
         type,
         value,
-        onChange,
+        setStateOnChange,
     } = props;
 
     const [block, element] = bem('input');
@@ -19,7 +19,7 @@ export const Input = (props: InputInterface) => {
             value={value}
             type={type}
             placeholder={placeholder}
-            onChange={onChange}
+            onChange={(event) => setStateOnChange(event.target.value)}
             className={block()}
         />
     );
