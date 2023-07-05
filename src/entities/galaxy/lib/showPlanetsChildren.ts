@@ -27,13 +27,17 @@ export const showPlanetsChildren = (params: IShowChildren) => {
         setActiveSystems,
     } = params;
 
+    if (!childrenList || !svgContainer) {
+        return;
+    }
+
     const currentTargetCoords = getElemCoords({
         element: currentTarget,
         elementWidth: systemWidth,
         elementHeight: systemHeight,
     });
 
-    const childrenListArray = childrenList!.split(',');
+    const childrenListArray = childrenList.split(',');
 
     //для каждой child зависимости построение связи
     childrenListArray.forEach((child) => {
@@ -84,6 +88,6 @@ export const showPlanetsChildren = (params: IShowChildren) => {
             svgLine.setAttribute('stroke-dasharray', '10 5');
         }
 
-        svgContainer?.append(svgLine);
+        svgContainer.append(svgLine);
     });
 };
