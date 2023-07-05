@@ -1,8 +1,8 @@
+import { createSlice } from '@reduxjs/toolkit';
+
 import { ExplorerState } from './interfaces';
 
 import { APPLICATION_CARD } from './mocks';
-
-import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: ExplorerState = {
     isExplorer: false,

@@ -1,6 +1,6 @@
 export const STAR_INFO = {
     planet: {
-        id: 10,
+        id: 1,
         name: 'SQL',
     },
     star: 'Groovy',

@@ -1,12 +1,13 @@
+import { createSlice } from '@reduxjs/toolkit';
+
 import { getModalPlanets } from '../thunks/getModalPlanets';
+
+import { UserState } from './types/index';
 import {
     CURATORS_LIST,
     EXPLORERS_LIST,
     USER_INFO,
 } from './mocks';
-import { UserState } from './types/index';
-
-import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: UserState = {
     isRegistered: true,

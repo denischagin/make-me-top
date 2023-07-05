@@ -11,6 +11,7 @@ export const RouterLink = (props: LinkInterface) => {
         to,
         children,
     } = props;
+
     const [block, element] = bem('link');
 
     return (
