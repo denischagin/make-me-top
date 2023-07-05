@@ -19,7 +19,7 @@ export const setStarsActivityToActive = (params: SetStarsActivityToActive) => {
         );
 
         //если не был найден
-        if (system === null) {
+        if (!system) {
             return;
         }
 
@@ -28,7 +28,7 @@ export const setStarsActivityToActive = (params: SetStarsActivityToActive) => {
         const systemChild = system.querySelector('.star__orbit');
 
         //если не был найден
-        if (systemChild === null) {
+        if (!systemChild) {
             return;
         }
 
