@@ -12,7 +12,7 @@ import { DEFAULT_ERROR_MESSAGE } from '@entities/galaxy/model/constants';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_URL_MMT_STAND_USER } from '@shared/constants/urls';
+import { URL_MMT_STAND_USER } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
@@ -34,7 +34,7 @@ export const getUser = createAsyncThunk(
 
             const {
                 data,
-            } = await instance.get<UserResponseInterface>(`${URL_MMT_URL_MMT_STAND_USER}user`);
+            } = await instance.get<UserResponseInterface>(`${URL_MMT_STAND_USER}user`);
 
             if (data.message) {
                 toast.error(data.message);
