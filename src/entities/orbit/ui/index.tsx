@@ -81,7 +81,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                         userProgress,
                     });
 
-                    const digitalAngle = getDigitalAngle(system.positionSystem);
+                    const digitalAngle = getDigitalAngle(system.systemPosition);
 
                     const radius = getRadius({
                         digitalAngle,
