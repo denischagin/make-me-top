@@ -1,8 +1,19 @@
 import React from 'react';
+import { type } from '@testing-library/user-event/dist/type';
 
 import { UserProgress } from '@entities/user/model/types';
 
 import { SystemType } from '@entities/galaxy/model/types';
+
+import { getDigitalAngle } from '@entities/orbit/lib/getDigitalAngle';
+import { getPercentageProgress } from '@entities/orbit/lib/getPercentageProgress';
+import { getRadius } from '@entities/orbit/lib/getRadius';
+import { getSystemChildData } from '@entities/orbit/lib/getSystemChildData';
+import { getSystemColorByProgressType } from '@entities/orbit/lib/getSystemColorByProgressType';
+import { getSystemParentData } from '@entities/orbit/lib/getSystemParentData';
+import { getSystemProgressType } from '@entities/orbit/lib/getSystemProgressType';
+import { getXCoordinateOnEllipse } from '@entities/orbit/lib/getXCoordinateOnEllipse';
+import { getYCoordinateOnEllipse } from '@entities/orbit/lib/getYCoordinateOnEllipse';
 
 import { Star } from '@shared/Star';
 
@@ -14,17 +25,6 @@ import { elementToNumber } from '@shared/utils/elementToNumber';
 import { SystemProgressTypes } from '@shared/types/common';
 
 import './styles.scss';
-
-import { getDigitalAngle } from '@entities/orbit/lib/getDigitalAngle';
-import { getPercentageProgress } from '@entities/orbit/lib/getPercentageProgress';
-import { getRadius } from '@entities/orbit/lib/getRadius';
-import { getSystemChildData } from '@entities/orbit/lib/getSystemChildData';
-import { getSystemColorByProgressType } from '@entities/orbit/lib/getSystemColorByProgressType';
-import { getSystemParentData } from '@entities/orbit/lib/getSystemParentData';
-import { getSystemProgressType } from '@entities/orbit/lib/getSystemProgressType';
-import { getXCoordinateOnEllipse } from '@entities/orbit/lib/getXCoordinateOnEllipse';
-import { getYCoordinateOnEllipse } from '@entities/orbit/lib/getYCoordinateOnEllipse';
-import { type } from '@testing-library/user-event/dist/type';
 
 interface IOrbitProps {
     userProgress: UserProgress;

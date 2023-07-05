@@ -1,10 +1,10 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
 import { FETCH_USER } from '@entities/user/model/actions';
 import { PostUser } from '@entities/user/model/types';
 
 import { URL_MMT_USER } from '@shared/constants/urls';
-
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 
 export const getUser = createAsyncThunk(

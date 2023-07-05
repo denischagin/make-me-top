@@ -9,13 +9,13 @@ import {
     SVG_NAMESPACE_URL,
 } from '@entities/galaxy/model/constants';
 
-import { SystemProgressTypes } from '@shared/types/common';
-
 import {
     DATA_SYSTEM_ID,
     DATA_SYSTEM_PARENT_LIST,
     DATA_SYSTEM_PROGRESS_TYPE,
 } from '@entities/orbit/model/types';
+
+import { SystemProgressTypes } from '@shared/types/common';
 
 interface IShowPlanetsParents {
   parentsList: string | null;

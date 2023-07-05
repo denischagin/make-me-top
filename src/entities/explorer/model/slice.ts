@@ -1,6 +1,6 @@
-import { ExplorerState } from './interfaces';
-
 import { createSlice } from '@reduxjs/toolkit';
+
+import { ExplorerState } from './interfaces';
 
 const initialState: ExplorerState = {
     isExplorer: false,

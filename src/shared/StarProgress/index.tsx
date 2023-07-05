@@ -1,10 +1,9 @@
 import React from 'react';
+import { IStarProgressProps } from '@shared/StarProgress/interface';
 
 import { bem } from '@shared/utils/bem';
 
 import './styles.scss';
-
-import { IStarProgressProps } from '@shared/StarProgress/interface';
 
 const StarProgress: React.FC<IStarProgressProps> = (props) => {
     const {

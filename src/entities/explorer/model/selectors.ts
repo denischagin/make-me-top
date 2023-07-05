@@ -1,6 +1,6 @@
-import { RootState } from '@app/providers/store';
-
 import { createSelector } from '@reduxjs/toolkit';
+
+import { RootState } from '@app/providers/store';
 
 const userState = (state: RootState) => state.explorer;
 
