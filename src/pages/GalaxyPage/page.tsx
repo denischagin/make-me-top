@@ -9,7 +9,8 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { getGalaxy } from '@entities/galaxy/api/getGalaxy';
+import { DEFAULT_GALAXY_ID } from '@entities/galaxy/model/constants';
+import { getGalaxy } from '@entities/galaxy/thunks/getGalaxy';
 import Galaxy from '@entities/galaxy/ui';
 
 import { BackgroundGalaxyPage } from '@shared/BackgroundGalaxyPage';
@@ -56,8 +57,10 @@ export const GalaxyPage: React.FC = () => {
     };
 
     useEffect(() => {
-        dispatch(getGalaxy({}));
-    }, []);
+        dispatch(getGalaxy({
+            galaxyId: DEFAULT_GALAXY_ID,
+        }));
+    }, [dispatch]);
 
     const galaxyName = useAppSelector((state) => state.galaxies.galaxyName);
 

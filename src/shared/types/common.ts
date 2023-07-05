@@ -64,6 +64,12 @@ export interface ReviewModalInterface {
     onClose: () => void;
 }
 
+export interface ErrorInterface {
+    timestamp: string
+    code: string
+    message: string
+}
+
 export enum SystemProgressTypes {
   SYSTEM_CLOSE = 'systemClose',
   SYSTEM_OPEN = 'systemOpen',

@@ -1,7 +1,8 @@
-import { getGalaxy } from '@entities/galaxy/api/getGalaxy';
+import { createSlice } from '@reduxjs/toolkit';
+
 import { GalaxyType } from '@entities/galaxy/model/types';
 
-import { createSlice } from '@reduxjs/toolkit';
+import { getGalaxy } from '../thunks/getGalaxy';
 
 const galaxySlice = createSlice({
     name: 'galaxy',

@@ -12,5 +12,10 @@ export const STAR_CLASS = 'star__orbit';
 export const ACTIVE_STAR_MODIFIER = 'star__orbit--activity-active';
 export const INACTIVE_STAR_MODIFIER = 'star__orbit--activity-inactive';
 
-
 export const SVG_NAMESPACE_URL = 'http://www.w3.org/2000/svg';
+
+//дефолтное присваивание id
+export const DEFAULT_GALAXY_ID = 1;
+
+//дефолтная строка ошибки
+export const DEFAULT_ERROR_MESSAGE = 'Ошибка получения списка галактик с сервера';

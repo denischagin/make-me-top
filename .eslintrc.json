@@ -41,10 +41,11 @@
             {
                 "groups": [
                     [
-                        "^react(.*)"
+                        "^react",
+                        "^@?\\w"
                     ],
                     [
-                        "^<THIRD_PARTY_MODULES>"
+                        "^\\u0000"
                     ],
                     [
                         "^@app/[a-zA-Z]+$"
@@ -71,6 +72,9 @@
                         "^@entities/galaxy/(.*)$"
                     ],
                     [
+                        "^@entities/orbit/(.*)$"
+                    ],
+                    [
                         "^@shared/[a-zA-Z]+$"
                     ],
                     [
@@ -78,6 +82,9 @@
                     ],
                     [
                         "^@shared/utils/(.*)$"
+                    ],
+                    [
+                        "^@shared/api/(.*)$"
                     ],
                     [
                         "^@shared/constants/(.*)$"
@@ -95,13 +102,16 @@
                         "^@shared/types/(.*)$"
                     ],
                     [
-                        "./model"
+                        "^\\.\\.(?!/?$)",
+                        "^\\.\\./?$"
                     ],
                     [
-                        "^[./]"
+                        "^\\./(?=.*/)(?!/?$)",
+                        "^\\.(?!/?$)",
+                        "^\\./?$"
                     ],
                     [
-                        "./styles.scss"
+                        "^.+\\.?(scss)$"
                     ]
                 ]
             }
@@ -196,12 +206,16 @@
             }
         ],
         "newline-before-return": "error",
+        "react/jsx-first-prop-new-line": [
+            "error",
+            "multiline"
+        ],
         "react/jsx-max-props-per-line": [
             "error",
             {
-                "maximum": 1,
-                "when": "always"
+                "maximum": 1
             }
-        ]
+        ],
+        "react/jsx-closing-bracket-location": "error"
     }
 }
