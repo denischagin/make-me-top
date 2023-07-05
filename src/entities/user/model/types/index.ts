@@ -31,3 +31,13 @@ export interface ModalPlanetInterface {
     planetName: string;
     systemId: number;
 }
+
+export interface userDataInterface {
+    login: string
+    password: string
+}
+
+export interface AuthLoginInterface {
+    payload: userDataInterface
+    callback: () => void
+}

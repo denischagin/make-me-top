@@ -9,25 +9,30 @@ import { StarInterface } from './interfaces';
 import './styles.scss';
 
 export const Star = (props: StarInterface) => {
+    const {
+        color,
+        children,
+    } = props;
+
     const [block, element] = bem('star');
 
     return (
         <div
             className={block({
-                color: props.color,
+                color,
             })}
         >
             <div
                 className={element('info', {
-                    color: props.color,
+                    color,
                 })}
             >
                 <StarProgress percentageProgress={props.percentageProgress}/>
-                {props.children}
+                {children}
                 <div className={element('orbit')}>
                     <OrbitIcon
                         className={element('orbit-icon', {
-                            color: props.color,
+                            color,
                         })}
                     />
                 </div>

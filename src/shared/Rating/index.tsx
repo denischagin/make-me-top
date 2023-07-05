@@ -12,6 +12,7 @@ export const Rating = (props: RatingInterface) => {
         scoreColor,
         size,
         rating,
+        reflect,
     } = props;
 
     const [block, element] = bem('rating');
@@ -21,7 +22,7 @@ export const Rating = (props: RatingInterface) => {
     return (
         <div className={block()}>
             {
-                !props.reflect &&
+                !reflect &&
                 <StarIcon
                     className={element('star', {
                         color: starColor,
@@ -38,7 +39,7 @@ export const Rating = (props: RatingInterface) => {
                 {score}
             </span>
             {
-                props.reflect &&
+                reflect &&
                 <StarIcon
                     className={element('star', {
                         color: starColor,

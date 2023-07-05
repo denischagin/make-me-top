@@ -1,4 +1,15 @@
-import { useAppSelector } from '@app/providers/store/hooks';
+import {
+    useEffect,
+    useState,
+} from 'react';
+import { useNavigate } from 'react-router';
+
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
+
+import { authLogin } from '@entities/user/thunks/authLogin';
 
 import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
@@ -11,8 +22,10 @@ import { bem } from '@shared/utils/bem';
 
 import {
     URL_CURATOR,
+    URL_DEFAULT,
     URL_EXPLORER,
 } from '@shared/constants/links';
+import { storageKeys } from '@shared/constants/storageKeys';
 
 import { typographyVariant } from '@shared/Typography/interfaces';
 
@@ -20,8 +33,28 @@ import './styles.scss';
 
 export const Login = () => {
     const [block, element] = bem('login');
+    const [inputLogin, setInputLogin] = useState<string>('');
+    const [inputPassword, setInputPassword] = useState<string>('');
+
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const isExplorer = useAppSelector(explorerIsExplorerSelector);
+
+    const pathByUserRole = isExplorer ? URL_EXPLORER : URL_CURATOR;
+
+    function callback() {
+        if (!localStorage.getItem(storageKeys.tokenAuth)) {
+            return navigate(URL_DEFAULT);
+        }
+
+        return navigate(pathByUserRole);
+    }
+
+    const payload = {
+        login: inputLogin,
+        password: inputPassword,
+    };
 
     return (
         <>
@@ -35,17 +68,24 @@ export const Login = () => {
                 <Input
                     placeholder="Номер телефона"
                     type="tel"
+                    setStateOnChange={setInputLogin}
+                    value={inputLogin}
                 />
                 <Input
                     placeholder="Пароль"
                     type="password"
+                    setStateOnChange={setInputPassword}
+                    value={inputPassword}
                 />
-                <RouterLink to={isExplorer ? URL_EXPLORER : URL_CURATOR}>
-                    <PlanetButton
-                        onClick={() => console.log('logged')}
-                        title="Войти"
-                    />
-                </RouterLink>
+                <PlanetButton
+                    onClick={() => {
+                        dispatch(authLogin({
+                            payload,
+                            callback,
+                        }));
+                    }}
+                    title="Войти"
+                />
             </div>
         </>
     );
