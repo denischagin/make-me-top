@@ -19,8 +19,9 @@ import {
 } from '@entities/galaxy/model/constants';
 import { OrbitType } from '@entities/galaxy/model/types';
 
-import './style.scss';
 import Orbit from '@entities/orbit/ui';
+
+import './style.scss';
 
 interface IGalaxyProps {
   orbitList: Array<OrbitType>,

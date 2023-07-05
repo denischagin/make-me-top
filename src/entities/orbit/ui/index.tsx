@@ -3,18 +3,18 @@ import React from 'react';
 import { INACTIVE_PLANET } from '@entities/galaxy/model/constants';
 import { SystemType } from '@entities/galaxy/model/types';
 
-import { Star } from '@shared/Star';
-
-import { starColor } from '@shared/Star/interfaces';
-
-import '@entities/orbit/ui/styles.scss';
-
 import { getDigitalAngle } from '@entities/orbit/lib/getDigitalAngle';
 import { getPlanetChildData } from '@entities/orbit/lib/getPlanetChildData';
 import { getPlanetParentData } from '@entities/orbit/lib/getPlanetParentData';
 import { getRadius } from '@entities/orbit/lib/getRadius';
 import { getXCoordinateOnEllipse } from '@entities/orbit/lib/getXCoordinateOnEllipse';
 import { getYCoordinateOnEllipse } from '@entities/orbit/lib/getYCoordinateOnEllipse';
+
+import { Star } from '@shared/Star';
+
+import { starColor } from '@shared/Star/interfaces';
+
+import '@entities/orbit/ui/styles.scss';
 
 interface IOrbitProps {
   systemList: Array<SystemType>;

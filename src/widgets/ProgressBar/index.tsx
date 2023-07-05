@@ -7,10 +7,14 @@ import { ProgressInterface } from './interfaces';
 import './styles.scss';
 
 export const ProgressBar = (props: ProgressInterface) => {
+    const {
+        progress,
+    } = props;
+
     const [block, element] = bem('progress-bar');
 
     const progressStyle = {
-        width: `${props.progress}%`,
+        width: `${progress}%`,
     };
 
     return (

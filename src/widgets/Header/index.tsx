@@ -9,6 +9,7 @@ import {
     HEADER_LINKS,
     URL_DEFAULT,
 } from '@shared/constants/links';
+import { storageKeys } from '@shared/constants/storageKeys';
 
 import {
     HeaderInterface,
@@ -29,15 +30,20 @@ export const Header = (props: HeaderInterface) => {
             <Logo className={element('logo')} />
             <div className={element('links')}>
                 {links.map((item: HeaderLinkInterface) => (
-                    <RouterLink
-                        to={item.link}
+                    <span
+                        className=""
                         key={item.text}
+                        onClick={() => {
+                            (item.link === URL_DEFAULT) && localStorage.removeItem(storageKeys.tokenAuth);
+                        }}
                     >
-                        <span className={element('link')}>
-                            {item.text}
-                            {item.link === URL_DEFAULT && <ExitIcon className={element('icon')} />}
-                        </span>
-                    </RouterLink>
+                        <RouterLink to={item.link}>
+                            <span className={element('link')}>
+                                {item.text}
+                                {item.link === URL_DEFAULT && <ExitIcon className={element('icon')} />}
+                            </span>
+                        </RouterLink>
+                    </span>
                 ))}
             </div>
         </div>
