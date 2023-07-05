@@ -9,7 +9,7 @@ import { Star } from '@shared/Star';
 import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 
 import { bem } from '@shared/utils/bem';
-import { stringToNumber } from '@shared/utils/stringToNumber';
+import { elementToNumber } from '@shared/utils/elementToNumber';
 
 import { SystemProgressTypes } from '@shared/types/common';
 
@@ -54,8 +54,8 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
     const orbitHalfWidth = orbitWidth / 2;
     const orbitHalfHeight = orbitHeight / 2;
 
-    const elementWidth = stringToNumber(systemStyle?.width) | 80;
-    const elementHeight = stringToNumber(systemStyle?.height) | 80;
+    const elementWidth = elementToNumber(systemStyle?.width) | 80;
+    const elementHeight = elementToNumber(systemStyle?.height) | 80;
 
     return (
         <div className={block()}>

@@ -22,12 +22,12 @@
  *
  * @return { number } 1
  */
-export function stringToNumber(param: string | number | bigint | boolean | undefined | null): number {
-    if (typeof param === 'boolean') {
-        return Number(param);
-    }
-
-    if (typeof param === 'bigint') {
+export function elementToNumber(param: string | number | bigint | boolean | undefined | null): number {
+    if (
+        (typeof param === 'boolean') ||
+        (typeof param === 'bigint')
+    )
+    {
         return Number(param);
     }
 
