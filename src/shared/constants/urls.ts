@@ -6,5 +6,6 @@
 
 export const URL_MMT_STAND = 'http://10.254.7.187:8102/';
 
+export const URL_MMT_USER = 'http://10.254.7.187:8084/user'; //получение данных пользователя
 export const URL_MMT_PLANET = 'http://10.254.7.187:8102/planet-app/planet/'; // получение списка планет у системы
 export const URL_MMT_GALAXY = 'http://10.254.7.187:8102/galaxy-app/galaxy/'; // получение json для отрисовки галактики

@@ -1,11 +1,14 @@
 import { FETCH_USER } from '@entities/user/model/actions';
 import { PostUser } from '@entities/user/model/types';
 
+import { URL_MMT_USER } from '@shared/constants/urls';
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+
 export const getUser = createAsyncThunk(
-    `${FETCH_USER}`,
+    FETCH_USER,
     async (payload: PostUser) => {
         try {
             // const postman = axios.create({
@@ -13,7 +16,7 @@ export const getUser = createAsyncThunk(
             //     headers: {'username': 'foobar'}
             // })
             const response = await axios.post(
-                'http://10.254.7.187:8084/user',
+                URL_MMT_USER,
                 payload,
             );
 
