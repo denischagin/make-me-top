@@ -142,8 +142,8 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         );
 
         if (
-            parentElementProgressType === SystemProgressTypes.SYSTEM_OPEN ||
-            parentElementProgressType === SystemProgressTypes.SYSTEM_EDUCATION
+            (parentElementProgressType === SystemProgressTypes.SYSTEM_OPEN) ||
+            (parentElementProgressType === SystemProgressTypes.SYSTEM_EDUCATION)
         ) {
             return;
         }
