@@ -2,7 +2,10 @@ import React from 'react';
 
 import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
-import { CONNECTION_LINE_CLASS } from '@entities/galaxy/model/constants';
+import {
+    CONNECTION_LINE_CLASS,
+    SVG_NAMESPACE_URL,
+} from '@entities/galaxy/model/constants';
 
 import { DATA_SYSTEM_ID } from '@entities/orbit/model/types';
 
@@ -67,7 +70,7 @@ export const showPlanetsChildren = (params: IShowChildren) => {
         });
 
         const svgLine = document.createElementNS(
-            'http://www.w3.org/2000/svg',
+            SVG_NAMESPACE_URL,
             'line',
         );
 

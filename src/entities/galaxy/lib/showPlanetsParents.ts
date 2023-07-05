@@ -4,7 +4,10 @@ import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { getColorFromShelf } from '@entities/galaxy/lib/colorShelf';
 import { getCoordsForConnection } from '@entities/galaxy/lib/getCoordsForConnection';
 import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
-import { CONNECTION_LINE_CLASS } from '@entities/galaxy/model/constants';
+import {
+    CONNECTION_LINE_CLASS,
+    SVG_NAMESPACE_URL,
+} from '@entities/galaxy/model/constants';
 
 import { SystemProgressTypes } from '@shared/types/common';
 
@@ -78,7 +81,7 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         );
 
         const svgLine = document.createElementNS(
-            'http://www.w3.org/2000/svg',
+            SVG_NAMESPACE_URL,
             'line',
         );
 

@@ -1,3 +1,5 @@
+import { SVG_NAMESPACE_URL } from '@entities/galaxy/model/constants';
+
 interface ICreateSvgContainer {
   galaxyPage: HTMLElement | null;
   svgContainerClass: string;
@@ -15,7 +17,7 @@ export const createSvgContainer = (params: ICreateSvgContainer): SVGElement | nu
     }
 
     const svgContainer = document.createElementNS(
-        'http://www.w3.org/2000/svg',
+        SVG_NAMESPACE_URL,
         'svg',
     );
 

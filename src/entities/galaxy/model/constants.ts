@@ -10,3 +10,5 @@ export const CONNECTION_LINE_CLASS = 'galaxy-page__svg-container--connection-lin
 
 export const ACTIVE_STAR_CLASS = 'star__orbit star__orbit--activity-active';
 export const INACTIVE_STAR_CLASS = 'star__orbit star__orbit--activity-inactive';
+
+export const SVG_NAMESPACE_URL = 'http://www.w3.org/2000/svg';
