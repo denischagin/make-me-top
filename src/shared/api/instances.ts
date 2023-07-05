@@ -8,9 +8,7 @@ export const authToken = () => {
     return token ? JSON.parse(token) : null;
 };
 
-export const instance = axios.create({
-
-});
+export const instance = axios.create();
 
 instance.interceptors.request.use(
     config => {

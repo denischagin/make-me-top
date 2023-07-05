@@ -17,6 +17,7 @@ export const ExplorerCard = (props: ExplorerCardInterface) => {
         name = '',
         avatar = '',
     } = props;
+
     const [block, element] = bem('explorer-card');
 
     return (

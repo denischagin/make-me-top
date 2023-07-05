@@ -19,11 +19,15 @@ import {
 import './styles.scss';
 
 export const PlanetList = (props: PlanetListInterface) => {
+    const {
+        currentPlanet,
+    } = props;
+
     const [block, element] = bem('planet-list');
 
     const planetList = useAppSelector(userPlanetListSelector);
 
-    const currentPlanet = planetList?.find((item: ModalPlanetInterface) => item.planetName === props.currentPlanet) || {
+    const currentPlanetFromList = planetList?.find((item: ModalPlanetInterface) => item.planetName === currentPlanet) || {
         planetId: DEFAULT_PLANET_ID,
     };
 
@@ -33,19 +37,19 @@ export const PlanetList = (props: PlanetListInterface) => {
                 <div
                     key={planet.planetId}
                     className={element('item', {
-                        active: planet.planetId < currentPlanet.planetId,
-                        current: planet.planetName === props.currentPlanet,
+                        active: planet.planetId < currentPlanetFromList.planetId,
+                        current: planet.planetName === currentPlanet,
                     })}
                 >
                     <span className={element('name')}>
                         {++index}. {planet.planetName}
                     </span>
                     {
-                        (planet.planetId > currentPlanet.planetId) &&
+                        (planet.planetId > currentPlanetFromList.planetId) &&
                         <LockIcon className={element('lock-icon')} />
                     }
                     {
-                        planet.planetName === props.currentPlanet &&
+                        planet.planetName === currentPlanet &&
                         <div className={element('info')}>
                             <span className={element('item-text')}>Текущая планета</span>
                             <Button

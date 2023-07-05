@@ -16,12 +16,10 @@ export const App = () => {
 
     return (
         <div className={block()}>
-            <React.StrictMode>
-                <Provider store={store}>
-                    <Toaster position='top-center' />
-                    <RouterProvider router={router} />
-                </Provider>
-            </React.StrictMode>,
+            <Provider store={store}>
+                <Toaster position='top-center' />
+                <RouterProvider router={router} />
+            </Provider>
         </div>
     );
 };
