@@ -5,5 +5,5 @@ import {
 } from 'react';
 
 export interface InputInterface extends InputHTMLAttributes<HTMLInputElement> {
-    setStateOnChange: Dispatch<SetStateAction<string>>
+    setStateOnChange?: Dispatch<SetStateAction<string>>
 }

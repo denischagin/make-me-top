@@ -19,7 +19,13 @@ export const Input = (props: InputInterface) => {
             value={value}
             type={type}
             placeholder={placeholder}
-            onChange={(event) => setStateOnChange(event.target.value)}
+            onChange={(event) => {
+                if (setStateOnChange) {
+                    return setStateOnChange(event.target.value);
+                }
+
+                return;
+            }}
             className={block()}
         />
     );
