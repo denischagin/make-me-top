@@ -1,4 +1,7 @@
-import { ACTIVE_STAR_CLASS } from '@entities/galaxy/model/constants';
+import {
+    ACTIVE_STAR_MODIFIER,
+    STAR_CLASS,
+} from '@entities/galaxy/model/constants';
 
 import { DATA_SYSTEM_ID } from '@entities/orbit/model/types';
 
@@ -25,7 +28,7 @@ export const setStarsActivityToActive = (params: SetStarsActivityToActive) => {
 
         //спускаемся на несколько узлов ниже (из элемента с data атрибутами к компоненту Star),
         //что бы заменить там модификатор
-        const systemChild = system.querySelector('.star__orbit');
+        const systemChild = system.querySelector(`.${STAR_CLASS}`);
 
         //если не был найден
         if (!systemChild) {
@@ -35,7 +38,7 @@ export const setStarsActivityToActive = (params: SetStarsActivityToActive) => {
         //заменяем модификатор
         systemChild.setAttribute(
             'class',
-            ACTIVE_STAR_CLASS,
+            `${STAR_CLASS} ${ACTIVE_STAR_MODIFIER}`,
         );
     });
 };

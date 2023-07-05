@@ -8,7 +8,9 @@ export const DEFAULT_CHOSEN_STAR = {
 
 export const CONNECTION_LINE_CLASS = 'galaxy-page__svg-container--connection-line';
 
-export const ACTIVE_STAR_CLASS = 'star__orbit star__orbit--activity-active';
-export const INACTIVE_STAR_CLASS = 'star__orbit star__orbit--activity-inactive';
+export const STAR_CLASS = 'star__orbit';
+export const ACTIVE_STAR_MODIFIER = 'star__orbit--activity-active';
+export const INACTIVE_STAR_MODIFIER = 'star__orbit--activity-inactive';
+
 
 export const SVG_NAMESPACE_URL = 'http://www.w3.org/2000/svg';

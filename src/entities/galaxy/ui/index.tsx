@@ -20,7 +20,10 @@ import { setStarsActivityToActive } from '@entities/galaxy/lib/setStarsActivityT
 import { setStarsActivityToInactive } from '@entities/galaxy/lib/setStarsActivityToInactive';
 import { showPlanetsChildren } from '@entities/galaxy/lib/showPlanetsChildren';
 import { showPlanetsParents } from '@entities/galaxy/lib/showPlanetsParents';
-import { DEFAULT_CHOSEN_STAR } from '@entities/galaxy/model/constants';
+import {
+    DEFAULT_CHOSEN_STAR,
+    STAR_CLASS,
+} from '@entities/galaxy/model/constants';
 import {
     OrbitType,
     SystemType,
@@ -80,7 +83,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
     const [activeSystems, setActiveSystems] = useState<Array<number>>([]);
     const [stars, setStars] = useState<NodeListOf<HTMLDivElement>>(
-        document.querySelectorAll('.star__orbit'),
+        document.querySelectorAll(`.${STAR_CLASS}`),
     );
     const [lastChosenStar, setLastChosenStar] = useState<SystemType>(DEFAULT_CHOSEN_STAR);
     const [windowSize, setWindowSize] = useState([0, 0]);
@@ -132,7 +135,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     useEffect(() => {
         //поиск на странице и изменение модификаторов элементов в соответствии с состоянием
         setStars(
-            document.querySelectorAll('.star__orbit'),
+            document.querySelectorAll(`.${STAR_CLASS}`),
         );
 
         setStarsActivityToActive({
