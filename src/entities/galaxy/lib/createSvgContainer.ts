@@ -12,7 +12,7 @@ export const createSvgContainer = (params: ICreateSvgContainer): SVGElement | nu
         svgContainerClass,
     } = params;
 
-    if (galaxyPage === null) {
+    if (!galaxyPage) {
         return null;
     }
 

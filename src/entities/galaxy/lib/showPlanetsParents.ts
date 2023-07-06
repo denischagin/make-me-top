@@ -40,15 +40,23 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         setActiveSystems,
     } = params;
 
+    if (!parentsList || !svgContainer) {
+        return;
+    }
+
     const currentTargetCoords = getElemCoords({
         element: currentTarget,
         elementWidth: systemWidth,
         elementHeight: systemHeight,
     });
 
-    const parentsListArray = parentsList?.split(',');
+    const parentsListArray = parentsList.split(',');
 
-    parentsListArray?.forEach((parent) => {
+    if (!parentsListArray) {
+        return;
+    }
+
+    parentsListArray.forEach((parent) => {
         let color = params.color || null;
 
         const elementData = parent.split(':');
@@ -70,13 +78,17 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
             `[${DATA_SYSTEM_ID}="${numberElementId}"]`,
         );
 
+        if (!parentElement) {
+            return;
+        }
+
         const parentElementCoords = getElemCoords({
             element: parentElement,
             elementWidth: systemWidth,
             elementHeight: systemHeight,
         });
 
-        const parentsListOfCurrentParent = parentElement?.getAttribute(
+        const parentsListOfCurrentParent = parentElement.getAttribute(
             DATA_SYSTEM_PARENT_LIST,
         );
 
@@ -93,21 +105,25 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
                 svgContainer,
             });
 
+            if (!lineCoordsWithoutOverlaps) {
+                return;
+            }
+
             svgLine.setAttribute(
                 'x1',
-                String(lineCoordsWithoutOverlaps?.currentTarget.left),
+                String(lineCoordsWithoutOverlaps.currentTarget.left),
             );
             svgLine.setAttribute(
                 'y1',
-                String(lineCoordsWithoutOverlaps?.currentTarget.top),
+                String(lineCoordsWithoutOverlaps.currentTarget.top),
             );
             svgLine.setAttribute(
                 'x2',
-                String(lineCoordsWithoutOverlaps?.elementToConnect.left),
+                String(lineCoordsWithoutOverlaps.elementToConnect.left),
             );
             svgLine.setAttribute(
                 'y2',
-                String(lineCoordsWithoutOverlaps?.elementToConnect.top),
+                String(lineCoordsWithoutOverlaps.elementToConnect.top),
             );
             svgLine.setAttribute(
                 'class',
@@ -127,17 +143,17 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         if (color) {
             svgLine.setAttribute(
                 'class',
-                `${svgLine?.getAttribute(
+                `${svgLine.getAttribute(
                     'class',
                 )} ${CONNECTION_LINE_CLASS}--${color}`,
             );
         }
 
-        svgContainer?.append(svgLine);
+        svgContainer.append(svgLine);
 
         //если планета, к которой будем строить связь,
         //открыта или в процессе изучения, то дальше связи не строим
-        const parentElementProgressType = parentElement?.getAttribute(
+        const parentElementProgressType = parentElement.getAttribute(
             DATA_SYSTEM_PROGRESS_TYPE,
         );
 

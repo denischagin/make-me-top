@@ -21,6 +21,10 @@ export const getPercentageProgress = (params: IGetPercentageProgress): number =>
         },
     );
 
+    if (!educationSystem) {
+        return 0;
+    }
+
     //прогресс найденной системы
-    return educationSystem?.completed || 0;
+    return educationSystem.completed;
 };

@@ -15,7 +15,7 @@ export const addActivePlanet = (params: IAddActivePlanet) => {
 
     const activeSystem = Number(activeSystemId);
 
-    if (activeSystemId === null) {
+    if (!activeSystemId) {
         return;
     }
 

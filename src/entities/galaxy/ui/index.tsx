@@ -206,14 +206,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         fetchSystemById({
             id: targetId,
         }).then((response) => {
-            if (response === undefined) {
-                return setLastChosenStar({
-                    ...DEFAULT_CHOSEN_STAR,
-                    systemName: 'Not found.',
-                });
-            }
-
-            setLastChosenStar(response.data);
+            setLastChosenStar(response);
         });
     };
 

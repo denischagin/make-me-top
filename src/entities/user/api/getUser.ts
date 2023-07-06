@@ -17,10 +17,7 @@ import { URL_MMT_STAND_USER } from '@shared/constants/urls';
 import { ErrorInterface } from '@shared/types/common';
 
 
-export interface UserResponseInterface extends UserProgress, ErrorInterface {
-
-}
-
+export interface UserResponseInterface extends UserProgress, ErrorInterface {}
 
 export const getUser = createAsyncThunk(
     FETCH_USER,
