@@ -22,14 +22,22 @@
  *
  * @return { number } 1
  */
-export function elementToNumber(param: string | number | bigint | boolean | undefined | null): number {
+interface ElementToNumber {
+    element: string | number | bigint | boolean | undefined | null;
+}
+
+export function elementToNumber(params: ElementToNumber): number {
+    const {
+        element,
+    } = params;
+
     if (
-        (typeof param === 'boolean') ||
-        (typeof param === 'bigint')
+        (typeof element === 'boolean') ||
+        (typeof element === 'bigint')
     )
     {
-        return Number(param);
+        return Number(element);
     }
 
-    return parseInt(String(param));
+    return parseInt(String(element));
 }

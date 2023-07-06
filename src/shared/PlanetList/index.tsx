@@ -27,7 +27,7 @@ export const PlanetList = (props: PlanetListInterface) => {
 
     const planetList = useAppSelector(userPlanetListSelector);
 
-    const currentPlanetFromList = planetList.find((item: ModalPlanetInterface) => item.planetName === currentPlanet) || {
+    const currentPlanetFromList = planetList?.find((item: ModalPlanetInterface) => item.planetName === currentPlanet) || {
         planetId: DEFAULT_PLANET_ID,
     };
 
