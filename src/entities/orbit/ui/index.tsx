@@ -54,8 +54,13 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
     const orbitHalfWidth = orbitWidth / 2;
     const orbitHalfHeight = orbitHeight / 2;
 
-    const elementWidth = elementToNumber(systemStyle?.width) | 80;
-    const elementHeight = elementToNumber(systemStyle?.height) | 80;
+    const elementWidth = elementToNumber({
+        element: systemStyle?.width,
+    });
+
+    const elementHeight = elementToNumber({
+        element: systemStyle?.height,
+    });
 
     return (
         <div className={block()}>
