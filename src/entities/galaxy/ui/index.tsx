@@ -22,6 +22,7 @@ import { showPlanetsChildren } from '@entities/galaxy/lib/showPlanetsChildren';
 import { showPlanetsParents } from '@entities/galaxy/lib/showPlanetsParents';
 import {
     DEFAULT_CHOSEN_STAR,
+    DEFAULT_SYSTEM_RESPONSE_MESSAGE,
     STAR_CLASS,
 } from '@entities/galaxy/model/constants';
 import {
@@ -29,7 +30,10 @@ import {
     SystemType,
 } from '@entities/galaxy/model/types';
 
-import { fetchSystemById } from '@entities/orbit/api/fetchSystemById';
+import {
+    fetchSystemById,
+    SystemResponseInterface,
+} from '@entities/orbit/api/fetchSystemById';
 import {
     DATA_SYSTEM_CHILDREN_LIST,
     DATA_SYSTEM_ID,
@@ -66,6 +70,12 @@ interface IOrbitSettings {
   backgroundHeight: number;
 }
 
+interface ErrorInterface {
+    errorMessage: string;
+}
+
+interface SystemTypeWithError extends SystemType, ErrorInterface {}
+
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const {
         svgContainerClass,
@@ -80,12 +90,17 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     const dispatch = useAppDispatch();
 
+
+
     const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
     const [activeSystems, setActiveSystems] = useState<Array<number>>([]);
     const [stars, setStars] = useState<NodeListOf<HTMLDivElement>>(
         document.querySelectorAll(`.${STAR_CLASS}`),
     );
-    const [lastChosenStar, setLastChosenStar] = useState<SystemType>(DEFAULT_CHOSEN_STAR);
+    const [lastChosenStar, setLastChosenStar] = useState<SystemResponseInterface>({
+        ...DEFAULT_CHOSEN_STAR,
+        ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
+    });
     const [windowSize, setWindowSize] = useState([0, 0]);
 
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
@@ -199,7 +214,10 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
         const targetId = Number(currentTarget.getAttribute(DATA_SYSTEM_ID));
 
-        setLastChosenStar(DEFAULT_CHOSEN_STAR);
+        setLastChosenStar({
+            ...DEFAULT_CHOSEN_STAR,
+            ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
+        });
 
         dispatch(showModal());
 

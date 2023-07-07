@@ -8,6 +8,10 @@ import axios,
 import { DEFAULT_ERROR_MESSAGE } from '@entities/galaxy/model/constants';
 import { SystemType } from '@entities/galaxy/model/types';
 
+import { instance } from '@shared/api/instances';
+
+import { URL_MMT_STAND_PLANET } from '@shared/constants/urls';
+
 import { ErrorInterface } from '@shared/types/common';
 
 interface FetchSystemById {
@@ -24,12 +28,16 @@ export const fetchSystemById = async (payload: FetchSystemById) => {
 
         const {
             data,
-        } = await axios.get<SystemResponseInterface>(`${process.env.REACT_APP_FETCH_URL}/galaxy-app/system/${id}`);
+        } = await instance.get<SystemResponseInterface>(`${URL_MMT_STAND_PLANET}/galaxy-app/system/${id}`);
 
         if (data.message) {
             toast.error(data.message);
 
-            // return data.message; // todo использование без createAsyncThunk не позволяет вернуть rejectWithValue(data)
+            return {
+                ...data,
+                message: data.message,
+            };
+            // todo использование без createAsyncThunk не позволяет вернуть rejectWithValue(data)
         }
 
         return data;

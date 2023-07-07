@@ -6,6 +6,12 @@ export const DEFAULT_CHOSEN_STAR = {
     systemDependencyList: [],
 };
 
+export const DEFAULT_SYSTEM_RESPONSE_MESSAGE = {
+    timestamp: '',
+    code: '',
+    message: '',
+};
+
 export const CONNECTION_LINE_CLASS = 'galaxy-page__svg-container--connection-line';
 
 export const STAR_CLASS = 'star__orbit';
