@@ -225,6 +225,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             id: targetId,
         }).then((response) => {
             setLastChosenStar(response);
+        }).catch((reason) => {
+            setLastChosenStar({
+                ...DEFAULT_CHOSEN_STAR,
+                ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
+                systemName: 'Fetch error.',
+            });
         });
     };
 
