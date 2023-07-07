@@ -18,10 +18,7 @@ export const deleteAllConnectionLines = (params: IDeleteAllConnectionLines) => {
 
     //создание массива найденных HTML элементов
     //каждый элемент является svg линией связи
-    const elementsFromSvgContainer = Array.from(svgContainer.children || []);
-    const allConnectionLines = elementsFromSvgContainer.filter((element) =>
-        element.matches(`.${CONNECTION_LINE_CLASS}`),
-    ); // TODO избавиться от создания массива элементов, удалять сразу
+    const allConnectionLines = document.querySelectorAll(`.${CONNECTION_LINE_CLASS}`);
 
     //удаление каждой линии
     allConnectionLines.forEach((line) => {
