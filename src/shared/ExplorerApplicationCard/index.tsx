@@ -24,6 +24,12 @@ export const ExplorerApplicationCard = () => {
 
     return (
         <div className={block()}>
+            <Typography
+                className={element('heading', 'mb-4')}
+                variant={typographyVariant.h2}
+            >
+                Текущая звезда:
+            </Typography>
             <Card
                 size={cardSize.large}
                 glow

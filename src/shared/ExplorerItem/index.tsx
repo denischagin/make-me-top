@@ -18,7 +18,7 @@ export const ExplorerItem = (props: ExplorerItemInterface) => {
         avatar = '',
     } = props;
 
-    const [block, element] = bem('explorer-card');
+    const [block, element] = bem('explorer-item');
 
     return (
         <div className={block()}>

@@ -8,9 +8,9 @@ import { Typography } from '@shared/Typography';
 import { bem } from '@shared/utils/bem';
 
 import { CuratorCardUserInfo } from '@widgets/CuratorCardUserInfo';
-import { CuratorStars } from '@widgets/CuratorStars';
 import { Header } from '@widgets/Header';
 import { Reviews } from '@widgets/Reviews';
+import { StarsList } from '@widgets/StarsList';
 
 import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
@@ -40,15 +40,7 @@ export const CuratorCard = () => {
                     </div>
                     <CuratorCardUserInfo />
                 </div>
-                <div className={element('stars')}>
-                    <Typography
-                        variant={typographyVariant.h2}
-                        className={element('heading', 'mb-4 mt-5')}
-                    >
-                        Звезды исследователя
-                    </Typography>
-                    <CuratorStars />
-                </div>
+                <StarsList heading='Звезды исследователя' />
                 <Reviews />
             </div>
         </div>

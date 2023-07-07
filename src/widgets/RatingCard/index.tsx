@@ -23,31 +23,39 @@ export const RatingCard = (props: RatingCardInterface) => {
     const [block, element] = bem('rating-card');
 
     return (
-        <Card size={cardSize.large}>
-            <div className={block()}>
-                <Typography
-                    variant={typographyVariant.medium16}
-                    className={element('heading', 'mb-4')}
-                >
-                    Мой рейтинг
-                </Typography>
-                <UsersRating user={user} />
-                <DividingLine color={DividingLineColor.opacitygray} />
-                <Typography
-                    variant={typographyVariant.medium16}
-                    className={element('heading', 'mb-4')}
-                >
-                    Общий рейтинг
-                </Typography>
-                {
-                    list.map((user: UserInterface) => (
-                        <UsersRating
-                            key={user.id}
-                            user={user}
-                        />
-                    ))
-                }
-            </div>
-        </Card>
+        <div className={block()}>
+            <Typography
+                variant={typographyVariant.h2}
+                className={element('rating-heading', 'mt-1 mb-4')}
+            >
+                Рейтинг
+            </Typography>
+            <Card size={cardSize.large}>
+                <div className={element('content')}>
+                    <Typography
+                        variant={typographyVariant.medium16}
+                        className={element('heading', 'mb-4')}
+                    >
+                        Мой рейтинг
+                    </Typography>
+                    <UsersRating user={user} />
+                    <DividingLine color={DividingLineColor.opacitygray} />
+                    <Typography
+                        variant={typographyVariant.medium16}
+                        className={element('heading', 'mb-4')}
+                    >
+                        Общий рейтинг
+                    </Typography>
+                    {
+                        list.map((user: UserInterface) => (
+                            <UsersRating
+                                key={user.id}
+                                user={user}
+                            />
+                        ))
+                    }
+                </div>
+            </Card>
+        </div>
     );
 };

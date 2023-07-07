@@ -8,10 +8,10 @@ import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
-import { CuratorStars } from '@widgets/CuratorStars';
 import { ExplorerCardUserInfo } from '@widgets/ExplorerCardUserInfo';
 import { Header } from '@widgets/Header';
 import { Reviews } from '@widgets/Reviews';
+import { StarsList } from '@widgets/StarsList';
 
 import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
@@ -42,24 +42,8 @@ export const ExplorerCard = () => {
                     <ExplorerCardUserInfo />
                 </div>
                 <div className={element('content', 'mt-5')}>
-                    <div className={element('application')}>
-                        <Typography
-                            className={element('heading', 'mb-4')}
-                            variant={typographyVariant.h2}
-                        >
-                            Текущая звезда:
-                        </Typography>
-                        <ExplorerApplicationCard />
-                    </div>
-                    <div className={element('stars')}>
-                        <Typography
-                            className={element('heading', 'mt-5 mb-4')}
-                            variant={typographyVariant.h2}
-                        >
-                            Освоенные звёзды
-                        </Typography>
-                        <CuratorStars />
-                    </div>
+                    <ExplorerApplicationCard />
+                    <StarsList heading='Освоенные звёзды' />
                     <Reviews />
                 </div>
             </div>

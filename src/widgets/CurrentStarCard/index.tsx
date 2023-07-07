@@ -69,6 +69,12 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
     return (
         <div className={block()}>
+            <Typography
+                className={element('current-star-heading', 'mb-4 mt-5')}
+                variant={typographyVariant.h2}
+            >
+                Текущая звезда
+            </Typography>
             {
                 isModalOpen &&
                 <CircleModal
@@ -103,49 +109,51 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                 size={cardSize.large}
                 glow
             >
-                <Typography
-                    variant={typographyVariant.h2}
-                    className={element('heading')}
-                >
-                    {`Планета: ${id}. ${name}`}
-                </Typography>
-                <Typography
-                    variant={typographyVariant.regular14}
-                    className={element('current-star')}
-                >
-                    {`Звезда: ${star}`}
-                </Typography>
-                <Typography
-                    variant={typographyVariant.regular14}
-                    className={element('current-curator', 'mb-4')}
-                >
-                    {`Преподаватель: ${curator}`}
-                </Typography>
-                <span className={element('progress')}>
+                <div className={element('content')}>
                     <Typography
-                        variant={typographyVariant.medium16}
-                        color={typographyColor.primary500}
+                        variant={typographyVariant.h2}
+                        className={element('heading')}
                     >
-                        {`Освоено ${progress}%`}
+                        {`Планета: ${id}. ${name}`}
                     </Typography>
-                    <ProgressBar progress={progress} />
-                </span>
-                <div className={element('buttons')}>
-                    <Button
-                        size={buttonSize.large}
-                        title="Отменить"
-                    />
-                    <Button
-                        size={buttonSize.large}
-                        color={buttonColor.filled}
-                        title="Продолжить"
-                        onClick={() => {
-                            dispatch(getModalPlanets({
-                                planetId: id,
-                            }));
-                            dispatch(showModal());
-                        }}
-                    />
+                    <Typography
+                        variant={typographyVariant.regular14}
+                        className={element('current-star')}
+                    >
+                        {`Звезда: ${star}`}
+                    </Typography>
+                    <Typography
+                        variant={typographyVariant.regular14}
+                        className={element('current-curator', 'mb-4')}
+                    >
+                        {`Преподаватель: ${curator}`}
+                    </Typography>
+                    <span className={element('progress')}>
+                        <Typography
+                            variant={typographyVariant.medium16}
+                            color={typographyColor.primary500}
+                        >
+                            {`Освоено ${progress}%`}
+                        </Typography>
+                        <ProgressBar progress={progress} />
+                    </span>
+                    <div className={element('buttons')}>
+                        <Button
+                            size={buttonSize.large}
+                            title="Отменить"
+                        />
+                        <Button
+                            size={buttonSize.large}
+                            color={buttonColor.filled}
+                            title="Продолжить"
+                            onClick={() => {
+                                dispatch(getModalPlanets({
+                                    planetId: id,
+                                }));
+                                dispatch(showModal());
+                            }}
+                        />
+                    </div>
                 </div>
             </Card>
         </div>

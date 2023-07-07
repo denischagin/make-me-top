@@ -12,6 +12,7 @@ import { CurrentStarCard } from '@widgets/CurrentStarCard';
 import { ExplorerUserInfo } from '@widgets/ExplorerUserInfo';
 import { Header } from '@widgets/Header';
 import { RatingCard } from '@widgets/RatingCard';
+import { StarsList } from '@widgets/StarsList';
 
 import { typographyVariant } from '@shared/Typography/interfaces';
 
@@ -37,35 +38,13 @@ export const Explorer = () => {
                     <div className={element('row', 'row')}>
                         <div className={element('profile', 'col-xxl-9')}>
                             <ExplorerUserInfo />
-                            <div className={element('current-star')}>
-                                <Typography
-                                    className={element('current-star-heading', 'mb-4')}
-                                    variant={typographyVariant.h2}
-                                >
-                                    Текущая звезда
-                                </Typography>
-                                <CurrentStarCard
-                                    starInfo={STAR_INFO}
-                                    tabsList={TABS_LIST}
-                                />
-                            </div>
-                            <div className={element('completed-stars')}>
-                                <Typography
-                                    className={element('completed-stars-heading', 'mb-4 mt-1')}
-                                    variant={typographyVariant.h2}
-                                >
-                                    Освоенные звёзды
-                                </Typography>
-                                <CompletedStars />
-                            </div>
+                            <CurrentStarCard
+                                starInfo={STAR_INFO}
+                                tabsList={TABS_LIST}
+                            />
+                            <StarsList heading='Освоенные звёзды' />
                         </div>
                         <div className={element('rating', 'col-xxl-3')}>
-                            <Typography
-                                variant={typographyVariant.h2}
-                                className={element('rating-heading', 'mt-1 mb-4')}
-                            >
-                                Рейтинг
-                            </Typography>
                             <RatingCard
                                 list={USERS_LIST}
                                 user={userInfo}

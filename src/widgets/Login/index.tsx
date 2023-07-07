@@ -1,7 +1,4 @@
-import {
-    useEffect,
-    useState,
-} from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import {
@@ -56,6 +53,14 @@ export const Login = () => {
         password: inputPassword,
     };
 
+    const handleLoginInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputLogin(event.target.value);
+    };
+
+    const handlePasswordInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputPassword(event.target.value);
+    };
+
     return (
         <>
             <div className={block()}>
@@ -68,13 +73,13 @@ export const Login = () => {
                 <Input
                     placeholder="Номер телефона"
                     type="tel"
-                    setStateOnChange={setInputLogin}
+                    onChange={handleLoginInputChange}
                     value={inputLogin}
                 />
                 <Input
                     placeholder="Пароль"
                     type="password"
-                    setStateOnChange={setInputPassword}
+                    onChange={handlePasswordInputChange}
                     value={inputPassword}
                 />
                 <PlanetButton
