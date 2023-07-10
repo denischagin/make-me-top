@@ -1,3 +1,5 @@
+import StarProgress from '@shared/StarProgress';
+
 import { ReactComponent as OrbitIcon } from '@shared/images/orbit.svg';
 
 import { bem } from '@shared/utils/bem';
@@ -25,6 +27,7 @@ export const Star = (props: StarInterface) => {
                     color,
                 })}
             >
+                <StarProgress percentageProgress={props.percentageProgress}/>
                 {children}
                 <div className={element('orbit')}>
                     <OrbitIcon

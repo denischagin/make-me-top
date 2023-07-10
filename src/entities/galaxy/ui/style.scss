@@ -1,37 +1,15 @@
-@import '@app/styles/variables.scss';
+@import "@app/styles/variables.scss";
 
 .galaxy {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-  &__title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 80px 0 40px 0;
-
-        &_context-title {
-            color: $white;
-            font-size: 16px;
-            line-height: 24px;
-            font-weight: 400;
-            font: $font-text-regular;
-        }
-
-        &_galaxy-name {
-            color: $white;
-            font-size: 26px;
-            line-height: 32px;
-            font-weight: 400;
-            font: $font-heading;
-        }
-    }
+  box-sizing: content-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   &__background {
+    z-index: -1;
     filter: blur(50px);
     background: radial-gradient(50% 50% at 50% 50%,
             #090909 13.02%,
@@ -40,28 +18,5 @@
             #08213A 98.5%,
             transparent
     );
-  }
-
-  &__svg-container {
-    align-self: self-start;
-    justify-self: self-start;
-    position: absolute;
-    width: 100%;
-  }
-
-  &__connection-line {
-    stroke-width: 1px;
-
-    &_blue-stroke-color {
-      stroke: $secondary-500;
-    }
-
-    &_orange-stroke-color {
-      stroke: $primary-500;
-    }
-
-    &_white-stroke-color {
-      stroke: $white;
-    }
   }
 }

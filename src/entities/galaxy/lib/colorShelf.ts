@@ -1,25 +1,32 @@
-//массив css модификаторов
+import {
+    GREEN_STROKE_MOD,
+    ORANGE_STROKE_MOD,
+    PINK_STROKE_MOD,
+    WHITE_STROKE_MOD,
+} from '@shared/constants/colorModificators';
+
+//модификаторы, которые используются на "полке"
 const colorModificationArray: Array<string> = [
-    'blue-stroke-color',
-    'orange-stroke-color',
+    ORANGE_STROKE_MOD,
+    GREEN_STROKE_MOD,
+    PINK_STROKE_MOD,
 ];
-//скопированный массив: полка с которой очередно будут снимать цвета
+
+//полка
 let colorShelf: Array<string> = colorModificationArray.slice();
 
-//метод восстановления скопированного массива
-//используется при удалении всех линий
+//функция восстановнения "полки"
 export const restoreColorShelf = (): void => {
     colorShelf = colorModificationArray.slice();
 };
 
-//метод, возвращающий последний модификатор и удаляющий его из скопированного массива
-//позволяет последовательно получать элементы не используя индексы или поиск по совпадению
+//функция получения значения с "полки",из массива забирается и удаляется только первое значние
 export const getColorFromShelf = (): string => {
     let colorModification = colorShelf.shift();
 
-    //если все цвета были использованы будет использоватся модификатор с белым цветом
-    if (colorModification === undefined) {
-        colorModification = 'white-stroke-color';
+    //если все значения на полке были использованы
+    if (!colorModification) {
+        colorModification = WHITE_STROKE_MOD;
     }
 
     return colorModification;

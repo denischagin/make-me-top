@@ -1,0 +1,44 @@
+@import "@app/styles/variables.scss";
+
+.background-galaxy-page {
+  align-self: stretch;
+  background: transparent;
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  top:0;
+
+  &__star-first,
+  &__star-second,
+  &__star-third,
+  &__star-fourth,
+  &__star-fifth {
+    position: absolute;
+  }
+
+  &__star-first {
+    left: calc(65% - 15px/2);
+    top: calc(10% - 18px/2);
+  }
+
+  &__star-second {
+    left: calc(85% - 15px/2);
+    top: calc(15% - 18px/2);
+  }
+
+  &__star-third {
+    left: calc(90% - 15px/2);
+    top: calc(25% - 18px/2 );
+  }
+  
+  &__star-fourth {
+    left: calc(15% - 20px/2);
+    top: calc(20% - 24px/2);
+  }
+
+  &__star-fifth {
+    left: calc(10% - 20px/2);
+    top: calc(90% - 24px/2);
+  }
+}

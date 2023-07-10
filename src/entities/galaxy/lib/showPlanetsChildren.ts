@@ -1,17 +1,21 @@
+import React from 'react';
+
+import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
 import {
-    ACTIVE_PLANET,
-    HTML_ELEMENT,
+    CONNECTION_LINE_CLASS,
+    SVG_NAMESPACE_URL,
 } from '@entities/galaxy/model/constants';
+
+import { DATA_SYSTEM_ID } from '@entities/orbit/model/types';
 
 interface IShowChildren {
   childrenList: string | null;
   currentTarget: HTMLDivElement;
-  planetWidth: number;
-  planetHeight: number;
-  viewBoxOffsetX: number;
-  viewBoxOffsetY: number;
-  svgContainer: SVGSVGElement | null;
+  systemWidth: number;
+  systemHeight: number;
+  svgContainer: SVGElement | null;
+  setActiveSystems: React.Dispatch<React.SetStateAction<Array<number>>>;
 }
 
 //функция создания svg линий связи между текущей планетой и всеми ее child зависимостями
@@ -20,23 +24,21 @@ export const showPlanetsChildren = (params: IShowChildren) => {
     const {
         childrenList,
         currentTarget,
-        planetHeight,
-        planetWidth,
-        viewBoxOffsetX,
-        viewBoxOffsetY,
+        systemHeight,
+        systemWidth,
         svgContainer,
+        setActiveSystems,
     } = params;
 
-    const currentTargetCoords = getElemCoords({
-        elem: currentTarget,
-        type: HTML_ELEMENT,
-        planetWidth,
-        planetHeight,
-    });
-
-    if (childrenList === null) {
+    if (!childrenList || !svgContainer) {
         return;
     }
+
+    const currentTargetCoords = getElemCoords({
+        element: currentTarget,
+        elementWidth: systemWidth,
+        elementHeight: systemHeight,
+    });
 
     const childrenListArray = childrenList.split(',');
 
@@ -52,43 +54,36 @@ export const showPlanetsChildren = (params: IShowChildren) => {
             return;
         }
 
+        addActivePlanet({
+            activeSystemId: numberElementId,
+            setActiveSystems,
+        });
+
         const childElement = document.querySelector<HTMLElement>(
-            `[data-planet-id="${numberElementId}"]`,
+            `[${DATA_SYSTEM_ID}="${numberElementId}"]`,
         );
 
         const childElementCoords = getElemCoords({
-            elem: childElement,
-            type: HTML_ELEMENT,
-            planetWidth,
-            planetHeight,
+            element: childElement,
+            elementWidth: systemWidth,
+            elementHeight: systemHeight,
         });
 
         const svgLine = document.createElementNS(
-            'http://www.w3.org/2000/svg',
+            SVG_NAMESPACE_URL,
             'line',
         );
 
-        childElement?.setAttribute('data-is-active', ACTIVE_PLANET);
-
         //позиционирование и стилизация линии
         if (currentTargetCoords && childElementCoords) {
-            svgLine.setAttribute('class', 'galaxy__connection-line');
             svgLine.setAttribute(
-                'x1',
-                String(currentTargetCoords?.left - viewBoxOffsetX),
+                'class',
+                `${CONNECTION_LINE_CLASS}`,
             );
-            svgLine.setAttribute(
-                'y1',
-                String(currentTargetCoords?.top - viewBoxOffsetY),
-            );
-            svgLine.setAttribute(
-                'x2',
-                String(childElementCoords?.left - viewBoxOffsetX),
-            );
-            svgLine.setAttribute(
-                'y2',
-                String(childElementCoords?.top - viewBoxOffsetY),
-            );
+            svgLine.setAttribute('x1', String(currentTargetCoords?.left));
+            svgLine.setAttribute('y1', String(currentTargetCoords?.top));
+            svgLine.setAttribute('x2', String(childElementCoords?.left));
+            svgLine.setAttribute('y2', String(childElementCoords?.top));
         }
 
         //установка атрибута пунктира, если путь альтернативен
@@ -96,6 +91,6 @@ export const showPlanetsChildren = (params: IShowChildren) => {
             svgLine.setAttribute('stroke-dasharray', '10 5');
         }
 
-        svgContainer?.append(svgLine);
+        svgContainer.append(svgLine);
     });
 };

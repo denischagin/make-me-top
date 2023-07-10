@@ -69,3 +69,10 @@ export interface ErrorInterface {
     code: string
     message: string
 }
+
+export enum SystemProgressTypes {
+  SYSTEM_CLOSE = 'systemClose',
+  SYSTEM_OPEN = 'systemOpen',
+  SYSTEM_EDUCATION = 'systemEducation',
+  PROGRESS_NOT_FOUND = 'progressNotFound'
+}

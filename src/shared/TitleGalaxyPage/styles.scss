@@ -1,0 +1,32 @@
+@import "@app/styles/variables.scss";
+
+.galaxy-page-name {
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: -40px;
+  padding-bottom: 40px;
+  z-index: 0;
+
+  &__page-context {
+    color: $white;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    font: $font-text-regular;
+    padding-bottom: 16px;
+  }
+
+  &__galaxy-name {
+    color: $white;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 32px;
+    height: 32px;
+    font: $font-heading;
+  }
+}

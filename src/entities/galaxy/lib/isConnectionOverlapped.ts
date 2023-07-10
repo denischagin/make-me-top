@@ -1,9 +1,7 @@
 interface IIsConnectionOverlapped {
   currentTargetCoords: { top: number; left: number };
   elementToConnectCoords: { top: number; left: number };
-  viewBoxOffsetX: number;
-  viewBoxOffsetY: number;
-  svgContainer: SVGSVGElement | null;
+  svgContainer: SVGElement | null;
   svgLineClass: string;
 }
 
@@ -12,8 +10,6 @@ export const isConnectionOverlapped = (params: IIsConnectionOverlapped) => {
     const {
         currentTargetCoords,
         elementToConnectCoords,
-        viewBoxOffsetX,
-        viewBoxOffsetY,
         svgContainer,
         svgLineClass,
     } = params;
@@ -33,14 +29,10 @@ export const isConnectionOverlapped = (params: IIsConnectionOverlapped) => {
     //проверка наличия связи между планетами по точным координатам
     const checkResult = allConnectionLines.findIndex((line) => {
         return (
-            line.getAttribute('x1') ===
-        String(currentTargetCoords.left - viewBoxOffsetX) &&
-      line.getAttribute('y1') ===
-        String(currentTargetCoords.top - viewBoxOffsetY) &&
-      line.getAttribute('x2') ===
-        String(elementToConnectCoords.left - viewBoxOffsetX) &&
-      line.getAttribute('y2') ===
-        String(elementToConnectCoords.top - viewBoxOffsetY)
+            line.getAttribute('x1') === String(currentTargetCoords.left) &&
+      line.getAttribute('y1') === String(currentTargetCoords.top) &&
+      line.getAttribute('x2') === String(elementToConnectCoords.left) &&
+      line.getAttribute('y2') === String(elementToConnectCoords.top)
         );
     });
 

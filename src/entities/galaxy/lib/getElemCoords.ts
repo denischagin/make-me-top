@@ -1,63 +1,34 @@
-import {
-    HTML_ELEMENT,
-    SVG_ELEMENT,
-} from '@entities/galaxy/model/constants';
-
 interface IGetElemCoords {
-  elem: HTMLElement | SVGSVGElement | null;
-  type: 'HTMLElement' | 'SVGSVGElement';
-  planetWidth?: number;
-  planetHeight?: number;
+  element: HTMLElement | SVGSVGElement | null;
+  elementWidth: number;
+  elementHeight: number;
 }
 
-//получение координат SVGSVGElement элемента или середины HTMLElement элемента
+//получение координат середины элемента
 export const getElemCoords = (params: IGetElemCoords) => {
     const {
-        elem,
-        type,
-        planetWidth,
-        planetHeight,
+        element,
+        elementWidth,
+        elementHeight,
     } = params;
 
-    if (!elem) {
+    if (!element) {
         return;
     }
 
-    const box = elem.getBoundingClientRect();
+    const box = element.getBoundingClientRect();
 
     const body = document.body;
-    const documentElement = document.documentElement;
+    const docEl = document.documentElement;
 
-    const scrollTop =
-    window.scrollY || documentElement.scrollTop || body.scrollTop;
+    const scrollTop = window.scrollY || docEl.scrollTop || body.scrollTop;
+    const scrollLeft = window.scrollX || docEl.scrollLeft || body.scrollLeft;
 
-    const scrollLeft =
-    window.scrollX || documentElement.scrollLeft || body.scrollLeft;
+    const clientTop = docEl.clientTop || body.clientTop;
+    const clientLeft = docEl.clientLeft || body.clientLeft;
 
-    const clientTop = documentElement.clientTop || body.clientTop || 0;
-    const clientLeft = documentElement.clientLeft || body.clientLeft || 0;
-
-    let top = 0;
-    let left = 0;
-
-    switch (type) {
-        case HTML_ELEMENT: {
-            if (planetWidth !== undefined && planetHeight !== undefined) {
-                top = box.top + scrollTop - clientTop + planetHeight / 2;
-                left = box.left + scrollLeft - clientLeft + planetWidth / 2;
-            }
-
-            break;
-        }
-        case SVG_ELEMENT: {
-            top = box.top + scrollTop - clientTop;
-            left = box.left + scrollLeft - clientLeft;
-
-            break;
-        }
-        default:
-            break;
-    }
+    const top = box.top + scrollTop - clientTop + elementHeight / 2;
+    const left = box.left + scrollLeft - clientLeft + elementWidth / 2;
 
     return {
         top: Math.round(top),

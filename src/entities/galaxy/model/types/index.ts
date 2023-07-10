@@ -6,7 +6,7 @@ export type SystemDependencyType = {
 
 export type SystemType = {
     systemId: number;
-    positionSystem: number;
+    systemPosition: number;
     systemName: string;
     systemLevel: number;
     systemDependencyList: Array<SystemDependencyType>;
@@ -15,7 +15,7 @@ export type SystemType = {
 export type OrbitType = {
     orbitId: number;
     orbitLevel: number;
-    positionCount: number;
+    systemCount: number;
     systemList: Array<SystemType>;
 };
 

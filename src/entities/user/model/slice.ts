@@ -16,6 +16,12 @@ const initialState: UserState = {
     explorersList: EXPLORERS_LIST,
     curatorsList: CURATORS_LIST,
     userInfo: USER_INFO,
+    userData: {
+        openSystemList: [],
+        closeSystemList: [],
+        educationSystemList: [],
+    },
+
 };
 
 export const userSlice = createSlice({
