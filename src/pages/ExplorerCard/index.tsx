@@ -4,7 +4,6 @@ import { useParams } from 'react-router';
 import { ArrowButton } from '@shared/ArrowButton';
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 import { ExplorerApplicationCard } from '@shared/ExplorerApplicationCard';
-import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
@@ -14,7 +13,6 @@ import { Reviews } from '@widgets/Reviews';
 import { StarsList } from '@widgets/StarsList';
 
 import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
-import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
