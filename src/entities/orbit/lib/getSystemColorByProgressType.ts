@@ -7,7 +7,7 @@ interface getPlanetColorByProgress {
 }
 
 //функция получения цвета для компонета Star по переданному типу прогресса системы
-export const getSystemColorByProgressType = (//TODO избавиться от лишних методов получения цвета звезды по прогрессу (сократить логику)
+export const getSystemColorByProgressType = (
     params: getPlanetColorByProgress,
 ) => {
     const {
