@@ -13,6 +13,7 @@ import {
 } from '@entities/user/model/selectors';
 import { showModal } from '@entities/user/model/slice';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
+import { getUserData } from '@entities/user/thunks/getUserData';
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';

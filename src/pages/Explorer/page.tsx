@@ -1,6 +1,12 @@
-import { useAppSelector } from '@app/providers/store/hooks';
+import { useEffect } from 'react';
+
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
 import { userInfoSelector } from '@entities/user/model/selectors';
+import { getUserData } from '@entities/user/thunks/getUserData';
 
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 import { Typography } from '@shared/Typography';
@@ -26,7 +32,12 @@ import './styles.scss';
 export const Explorer = () => {
     const [block, element] = bem('explorer');
 
+    const dispatch = useAppDispatch();
     const userInfo = useAppSelector(userInfoSelector);
+
+    useEffect(() => {
+        dispatch(getUserData({}));
+    }, []);
 
     return (
         <>

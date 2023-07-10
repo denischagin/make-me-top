@@ -1,3 +1,9 @@
+import { useEffect } from 'react';
+
+import { useAppDispatch } from '@app/providers/store/hooks';
+
+import { getUserData } from '@entities/user/thunks/getUserData';
+
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 import { GradeApplicationCard } from '@shared/GradeApplicationCard';
 import { Typography } from '@shared/Typography';
@@ -22,6 +28,12 @@ import './styles.scss';
 
 export const Curator = () => {
     const [block, element] = bem('curator');
+
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(getUserData({}));
+    }, []);
 
     return (
         <>
