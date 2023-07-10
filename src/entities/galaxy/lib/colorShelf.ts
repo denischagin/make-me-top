@@ -25,7 +25,7 @@ export const getColorFromShelf = (): string => {
     let colorModification = colorShelf.shift();
 
     //если все значения на полке были использованы
-    if (colorModification === undefined) {
+    if (!colorModification) {
         colorModification = WHITE_STROKE_MOD;
     }
 

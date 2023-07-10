@@ -12,8 +12,7 @@ const StarProgress: React.FC<IStarProgressProps> = (props) => {
 
     const [block, element] = bem('star-progress');
 
-    const isProgress = !(props.percentageProgress === 0 ||
-        props.percentageProgress === undefined);
+    const isProgress = !percentageProgress;
 
     return (
         <div className={block()}>

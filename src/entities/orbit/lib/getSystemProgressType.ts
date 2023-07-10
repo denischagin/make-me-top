@@ -10,7 +10,7 @@ interface IGetPlanetProgress {
 }
 
 //функция получения типа прогресса системы по прогрессу пользоватея
-export const getSystemProgressType = (params: IGetPlanetProgress) => {
+export const getSystemProgressType = (params: IGetPlanetProgress) => { //TODO избавиться от лишних методов получения цвета звезды по прогрессу (сократить логику)
     const {
         system,
         userProgress,
