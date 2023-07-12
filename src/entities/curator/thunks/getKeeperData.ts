@@ -2,8 +2,6 @@ import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { DEFAULT_ERROR_MESSAGE } from '@entities/user/model/constants';
-
 import { instance } from '@shared/api/instances';
 
 import { URL_MMT_STAND_USER } from '@shared/constants/urls';
@@ -13,6 +11,7 @@ import { KeeperInfoInterface } from '../model/types/interfaces';
 import { ErrorInterface } from '@shared/types/common';
 
 import { FETCH_KEEPER } from '../model/actions';
+import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 
 export interface KeeperInfoResponseInterface extends KeeperInfoInterface, ErrorInterface {
 

@@ -1,0 +1,1 @@
+export const DEFAULT_ERROR_MESSAGE = 'Ошибка получения информации об исследователе';
