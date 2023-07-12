@@ -13,21 +13,21 @@ import explorerReducer from '@entities/explorer/model/slice';
 import curatorReducer from '@entities/curator/model/slice';
 import { CuratorState } from '@entities/curator/model/types/interfaces';
 
-import galaxySlice from '@entities/galaxy/model/slice';
-import { GalaxyType } from '@entities/galaxy/model/types';
+import galaxyReducer from '@entities/galaxy/model/slice';
+import { GalaxyState } from '@entities/galaxy/model/types';
 
 export type RootState = {
     explorer: ExplorerState;
     curator: CuratorState;
     user: UserState;
-    galaxies: GalaxyType;
+    galaxies: GalaxyState;
 };
 
 const rootReducer = combineReducers({
     explorer: explorerReducer,
     curator: curatorReducer,
     user: userReducer,
-    galaxies: galaxySlice,
+    galaxies: galaxyReducer,
 });
 
 export type AppDispatch = typeof store.dispatch;

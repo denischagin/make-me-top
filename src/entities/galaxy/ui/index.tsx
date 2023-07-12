@@ -70,12 +70,6 @@ interface IOrbitSettings {
   backgroundHeight: number;
 }
 
-interface ErrorInterface {
-    errorMessage: string;
-}
-
-interface SystemTypeWithError extends SystemType, ErrorInterface {}
-
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const {
         svgContainerClass,
@@ -89,8 +83,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const [block, element] = bem('galaxy');
 
     const dispatch = useAppDispatch();
-
-
 
     const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
     const [activeSystems, setActiveSystems] = useState<Array<number>>([]);

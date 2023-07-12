@@ -19,7 +19,7 @@ export type OrbitType = {
     systemList: Array<SystemType>;
 };
 
-export type GalaxyType = {
+export type GalaxyState = {
     galaxyId: number;
     galaxyName: string;
     orbitList: Array<OrbitType>;
