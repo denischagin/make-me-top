@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
 
-import { useAppDispatch } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
-import { getUserData } from '@entities/user/thunks/getUserData';
+import { curatorInfoSelector } from '@entities/curator/model/selectors';
+import { getKeeperData } from '@entities/curator/thunks/getKeeperData';
 
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 import { GradeApplicationCard } from '@shared/GradeApplicationCard';
@@ -18,21 +22,23 @@ import { Header } from '@widgets/Header';
 
 import { typographyVariant } from '@shared/Typography/interfaces';
 
-import {
-    APPLICATIONS_LIST,
-    GRADE_APPLICATIONS_LIST,
-    MY_EXPLORERS,
-} from './model';
-
 import './styles.scss';
 
 export const Curator = () => {
     const [block, element] = bem('curator');
 
     const dispatch = useAppDispatch();
+    const userInfo = useAppSelector(curatorInfoSelector);
+
+    const {
+        studyingExplorers,
+        studyRequests,
+        reviewRequests,
+        finalAssessments,
+    } = userInfo;
 
     useEffect(() => {
-        dispatch(getUserData({}));
+        dispatch(getKeeperData({}));
     }, []);
 
     return (
@@ -44,7 +50,7 @@ export const Curator = () => {
                     <div className={element('row', 'row')}>
                         <div className={element('profile', 'col-xxl-9')}>
                             <CuratorUserInfo />
-                            <EducationApplications applications={APPLICATIONS_LIST} />
+                            <EducationApplications applications={studyRequests} />
                             <div className={element('final-grade-cards')}>
                                 <Typography
                                     className={element('final-grade-heading', 'mb-4 mt-1')}
@@ -52,12 +58,19 @@ export const Curator = () => {
                                 >
                                     Итоговая оценка
                                 </Typography>
-                                <GradeApplicationCard user={GRADE_APPLICATIONS_LIST[0]} />
+                                {
+                                    finalAssessments?.map((asset) => (
+                                        <GradeApplicationCard
+                                            key={asset.explorerId}
+                                            finalAssesment={asset}
+                                        />
+                                    ))
+                                }
                             </div>
-                            <GradeApplications applications={GRADE_APPLICATIONS_LIST} />
+                            <GradeApplications reviewRequest={reviewRequests} />
                         </div>
                         <div className={element('explorers-list', 'col-xxl-3')}>
-                            <ExplorerCardList explorers={MY_EXPLORERS} />
+                            <ExplorerCardList explorers={studyingExplorers} />
                         </div>
                     </div>
                 </div>

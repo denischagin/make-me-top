@@ -13,7 +13,8 @@ import {
 } from '@entities/user/model/selectors';
 import { showModal } from '@entities/user/model/slice';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
-import { getUserData } from '@entities/user/thunks/getUserData';
+
+import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
@@ -49,24 +50,31 @@ const CURRENT_PLANET = 'SQL';
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     const {
         tabsList = [],
-        starInfo: {
-            planet: {
-                name = '',
-                id = 0,
-            },
-            star = '',
-            curator = '',
-            progress = 0,
-        },
     } = props;
 
     const [block, element] = bem('current-star-card');
 
     const dispatch = useAppDispatch();
-    const userInfo = useAppSelector(userInfoSelector);
     const explorersList = useAppSelector(userExplorersListSelector);
     const curatorsList = useAppSelector(userCuratorsListSelector);
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
+    const userInfo = useAppSelector(explorerInfoSelector);
+
+    const {
+        currentSystem: {
+            keeper: {
+                firstName,
+                lastName,
+                patronymic,
+            },
+            courseThemeTitle,
+            courseId,
+            courseTitle,
+            progress,
+        },
+    } = userInfo;
+
+    const userFullName = `${lastName} ${firstName} ${patronymic}`;
 
     return (
         <div className={block()}>
@@ -108,19 +116,19 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     variant={typographyVariant.h2}
                     className={element('heading')}
                 >
-                    {`Планета: ${id}. ${name}`}
+                    {`Планета: ${courseId}. ${courseTitle}`}
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}
                     className={element('current-star')}
                 >
-                    {`Звезда: ${star}`}
+                    {`Звезда: ${courseThemeTitle}`}
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}
                     className={element('current-curator', 'mb-4')}
                 >
-                    {`Преподаватель: ${curator}`}
+                    {`Преподаватель: ${userFullName}`}
                 </Typography>
                 <span className={element('progress')}>
                     <Typography
@@ -142,7 +150,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                         title="Продолжить"
                         onClick={() => {
                             dispatch(getModalPlanets({
-                                planetId: id,
+                                planetId: courseId,
                             }));
                             dispatch(showModal());
                         }}

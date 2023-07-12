@@ -24,16 +24,18 @@ export const EducationApplications = (props: EducationApplicationsInterface) => 
                 Заявки на обучение
             </Typography>
             <div className={element('cards')}>
-                {applications.length !== 0 ? (
-                    applications.map((application) => (
-                        <EducationApplicationCard
-                            key={application.id}
-                            user={application}
-                        />
-                    ))
-                ) : (
-                    <Typography variant={typographyVariant.medium16}>Заявки отсутствуют</Typography>
-                )}
+                {
+                    (applications?.length !== 0)
+                        ? applications?.map((application) => (
+                            <EducationApplicationCard
+                                key={application.requestId}
+                                user={application}
+                            />
+                        ))
+                        : <Typography variant={typographyVariant.medium16}>
+                            Заявки отсутствуют
+                        </Typography>
+                }
             </div>
         </div>
     );

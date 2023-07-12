@@ -21,7 +21,7 @@ export const ExplorerCardList = (props: ExplorerCardListInterface) => {
 
     const [block, element] = bem('explorer-card-list');
 
-    const totalExplorers = explorers.length;
+    const totalExplorers = explorers?.length || 0;
 
     return (
         <div className={block()}>
@@ -38,15 +38,15 @@ export const ExplorerCardList = (props: ExplorerCardListInterface) => {
                 >
                     {`Всего учеников: ${totalExplorers}`}
                 </Typography>
-                {explorers.slice(0, 9).map((item: ExplorerCardInterface) => (
+                {explorers?.slice(0, 9).map((user) => (
                     <ExplorerCard
-                        key={item.id}
-                        name={item.name}
-                        avatar={item.avatar}
+                        key={user.courseId}
+                        name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
+                        avatar=''
                     />
                 ))}
                 {
-                    (explorers.length) > 9 &&
+                    (totalExplorers > 9) &&
                     <div className={element('button', 'mt-3')}>
                         <Button
                             title={'Все ученики'}

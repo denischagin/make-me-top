@@ -8,7 +8,7 @@ export const Avatar = (props: AvatarInterface) => {
     const {
         size,
         orbit,
-        image,
+        image = 'https://incrussia.ru/wp-content/uploads/2019/03/iStock-918704584-1.jpg',
     } = props;
 
     const [block, element] = bem('avatar');

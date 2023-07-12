@@ -15,17 +15,13 @@ import './styles.scss';
 export const ExplorerCard = (props: ExplorerCardInterface) => {
     const {
         name = '',
-        avatar = '',
     } = props;
 
     const [block, element] = bem('explorer-card');
 
     return (
         <div className={block()}>
-            <Avatar
-                size={avatarSize.small}
-                image={avatar}
-            />
+            <Avatar size={avatarSize.small} />
             <Typography
                 className={element('name')}
                 variant={typographyVariant.regular14}

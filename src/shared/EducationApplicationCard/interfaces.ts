@@ -1,5 +1,5 @@
-import { EducationApplicationInterface } from '@shared/types/common';
+import { StudyRequestsEntity } from '@entities/curator/model/types/interfaces';
 
 export interface EducationApplicationCardInterface {
-    user: EducationApplicationInterface;
+    user: StudyRequestsEntity
 }

@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { getModalPlanets } from '../thunks/getModalPlanets';
-import { getUserData } from '../thunks/getUserData';
 
 import { UserState } from './types/index';
 import {
@@ -17,22 +16,6 @@ const initialState: UserState = {
     explorersList: EXPLORERS_LIST,
     curatorsList: CURATORS_LIST,
     userInfo: USER_INFO,
-    userInfoData: {
-        person: {
-            personId: 0,
-            firstName: '',
-            lastName: '',
-            patronymic: '',
-            registrationDate: '',
-        },
-        rating: null,
-        totalSystems: 0,
-        totalExplorers: 0,
-        studyingExplorers: [],
-        studyRequests: [],
-        finalAssessments: [],
-        reviewRequests: [],
-    },
     userData: {
         openSystemList: [],
         closeSystemList: [],
@@ -57,16 +40,11 @@ export const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            // получение списка планет
             .addCase(getModalPlanets.fulfilled, (state: UserState, action) => {
                 state.planetList = action.payload;
             })
             .addCase(getModalPlanets.rejected, (state) => {
                 state.planetList = [];
-            })
-            // получение информации о пользователе
-            .addCase(getUserData.fulfilled, (state: UserState, action) => {
-                state.userInfoData = action.payload;
             });
     },
 });

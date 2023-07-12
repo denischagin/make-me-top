@@ -1,6 +1,8 @@
+import { ExplorerInfoInterface } from '@entities/explorer/model/types/interfaces';
+
 import { UserInterface } from '@shared/types/common';
 
 export interface CurrentUserItemInterface {
-    user: UserInterface;
+    user: ExplorerInfoInterface;
     badgeTitle: string;
 }

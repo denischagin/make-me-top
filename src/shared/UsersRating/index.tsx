@@ -1,3 +1,7 @@
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { explorerInfoSelector } from '@entities/explorer/model/selectors';
+
 import { Avatar } from '@shared/Avatar';
 import { Rating } from '@shared/Rating';
 import { Typography } from '@shared/Typography';
@@ -19,25 +23,27 @@ import './styles.scss';
 export const UsersRating = (props: UserInfoInterface) => {
     const {
         user: {
-            name = '',
-            avatar = '',
-            rating = 0,
+            person: {
+                firstName,
+                lastName,
+                patronymic,
+            },
+            rating,
         },
     } = props;
+
+    const userFullName = `${lastName} ${firstName} ${patronymic}`;
 
     const [block, element] = bem('rating-info');
 
     return (
         <div className={block()}>
-            <Avatar
-                size={avatarSize.small}
-                image={avatar}
-            />
+            <Avatar size={avatarSize.small} />
             <Typography
                 variant={typographyVariant.regular14}
                 className={element('user-name')}
             >
-                {name}
+                {userFullName}
             </Typography>
             <span className={element('user-score')}>
                 <Rating

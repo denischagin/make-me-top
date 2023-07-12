@@ -17,26 +17,28 @@ import './styles.scss';
 
 export const CurrentUserItem = (props: CurrentUserItemInterface) => {
     const {
-        badgeTitle = '',
+        badgeTitle,
         user: {
-            name = '',
-            avatar = '',
-            rating = 0,
+            person: {
+                firstName,
+                lastName,
+                patronymic,
+            },
+            rating,
         },
     } = props;
 
     const [block, element] = bem('current-user');
 
+    const userFullName = `${lastName} ${firstName} ${patronymic}`;
+
     return (
         <div className={block()}>
             <div className={element('item')}>
                 <div className={element('user')}>
-                    <Avatar
-                        size={avatarSize.small}
-                        image={avatar}
-                    />
+                    <Avatar size={avatarSize.small} />
                     <span className={element('my-name')}>
-                        {name}
+                        {userFullName}
                     </span>
                 </div>
                 <div className={element('info')}>

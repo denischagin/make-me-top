@@ -1,5 +1,5 @@
-import { ExplorerCardInterface } from '@shared/types/common';
+import { StudyingExplorersEntity } from '@entities/curator/model/types/interfaces';
 
 export interface ExplorerCardListInterface {
-    explorers: Array<ExplorerCardInterface>;
+    explorers: Array<StudyingExplorersEntity> | null | undefined;
 }

@@ -54,7 +54,7 @@ export const Login = () => {
     const payload = {
         login: inputLogin,
         password: inputPassword,
-        role: isExplorer ? 'KEEPER' : 'EXPLORER',
+        role: isExplorer ? 'EXPLORER' : 'KEEPER',
     };
 
     return (

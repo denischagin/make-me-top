@@ -24,8 +24,15 @@ import './styles.scss';
 
 export const EducationApplicationCard = (props: EducationApplicationCardInterface) => {
     const {
-        user,
+        user: {
+            firstName,
+            lastName,
+            patronymic,
+            courseTitle,
+        },
     } = props;
+
+    const userFullName = `${lastName} ${firstName} ${patronymic}`;
 
     const [block, element] = bem('application-education-card');
 
@@ -37,19 +44,16 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
             >
                 <div className={element('content')}>
                     <div className={element('info')}>
-                        <Avatar
-                            image={user.avatar}
-                            size={avatarSize.medium}
-                        />
+                        <Avatar size={avatarSize.medium} />
                         <div className={element('about')}>
                             <Typography variant={typographyVariant.regular14}>
-                                {`Звезда: ${user.planet}`}
+                                {`Звезда: ${courseTitle}`}
                             </Typography>
                             <Typography
                                 className={element('user-name')}
                                 variant={typographyVariant.medium16}
                             >
-                                {user.name}
+                                {userFullName}
                             </Typography>
                         </div>
                     </div>
@@ -59,7 +63,7 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                                 starColor={ratingStarColor.primary500}
                                 size={ratingSize.large}
                                 scoreColor={ratingScoreColor.white}
-                                rating={user.rating}
+                                rating={0}
                                 reflect
                             />
                         </div>

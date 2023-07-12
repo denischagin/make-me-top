@@ -10,10 +10,13 @@ import './styles.scss';
 
 export const GradeApplications = (props: GradeApplicationsInterface) => {
     const {
-        applications,
+        finalAssesment,
+        reviewRequest,
     } = props;
 
     const [block, element] = bem('grade-application');
+
+    const totalLength = finalAssesment?.length && reviewRequest?.length;
 
     return (
         <div className={block()}>
@@ -24,16 +27,27 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
                 Запрос на проверку
             </Typography>
             <div className={element('cards')}>
-                {applications.length !== 0 ? (
-                    applications.map((application) => (
-                        <GradeApplicationCard
-                            key={application.id}
-                            user={application}
-                        />
-                    ))
-                ) : (
-                    <Typography variant={typographyVariant.medium16}>Заявки отсутствуют</Typography>
-                )}
+                {
+                    finalAssesment
+                        ? finalAssesment?.map((application) => (
+                            <GradeApplicationCard
+                                key={application.explorerId}
+                                finalAssesment={application}
+                            />
+                        ))
+                        : reviewRequest?.map((application) => (
+                            <GradeApplicationCard
+                                key={application.explorerId}
+                                reviewRequest={application}
+                            />
+                        ))
+                }
+                {
+                    totalLength === 0 &&
+                    <Typography variant={typographyVariant.medium16}>
+                        Заявки отсутствуют
+                    </Typography>
+                }
             </div>
         </div>
     );

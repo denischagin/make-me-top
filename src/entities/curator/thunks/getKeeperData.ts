@@ -2,22 +2,24 @@ import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import { DEFAULT_ERROR_MESSAGE } from '@entities/user/model/constants';
+
 import { instance } from '@shared/api/instances';
 
 import { URL_MMT_STAND_USER } from '@shared/constants/urls';
 
+import { KeeperInfoInterface } from '../model/types/interfaces';
+
 import { ErrorInterface } from '@shared/types/common';
 
-import { FETCH_USER_INFO } from '../model/actions';
-import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
-import { UserDataInterface } from '../model/types';
+import { FETCH_KEEPER } from '../model/actions';
 
-export interface UserDataResponseInterface extends UserDataInterface, ErrorInterface {
+export interface KeeperInfoResponseInterface extends KeeperInfoInterface, ErrorInterface {
 
 }
 
-export const getUserData = createAsyncThunk<UserDataResponseInterface, any, { rejectValue: ErrorInterface }>(
-    FETCH_USER_INFO,
+export const getKeeperData = createAsyncThunk<KeeperInfoResponseInterface, any, { rejectValue: ErrorInterface }>(
+    FETCH_KEEPER,
     async (payload, {
         rejectWithValue,
     }) => {
@@ -25,7 +27,7 @@ export const getUserData = createAsyncThunk<UserDataResponseInterface, any, { re
 
             const {
                 data,
-            } = await instance.get<UserDataResponseInterface>(`${URL_MMT_STAND_USER}info/`);
+            } = await instance.get<KeeperInfoResponseInterface>(`${URL_MMT_STAND_USER}info/`);
 
             if (data.message) {
                 toast.error(data.message);

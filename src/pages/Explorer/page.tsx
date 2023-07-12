@@ -5,8 +5,7 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { userInfoSelector } from '@entities/user/model/selectors';
-import { getUserData } from '@entities/user/thunks/getUserData';
+import { getExplorerData } from '@entities/explorer/thunks/getExplorerData';
 
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 import { Typography } from '@shared/Typography';
@@ -21,11 +20,7 @@ import { RatingCard } from '@widgets/RatingCard';
 
 import { typographyVariant } from '@shared/Typography/interfaces';
 
-import {
-    STAR_INFO,
-    TABS_LIST,
-    USERS_LIST,
-} from './model';
+import { TABS_LIST } from './model';
 
 import './styles.scss';
 
@@ -33,10 +28,9 @@ export const Explorer = () => {
     const [block, element] = bem('explorer');
 
     const dispatch = useAppDispatch();
-    const userInfo = useAppSelector(userInfoSelector);
 
     useEffect(() => {
-        dispatch(getUserData({}));
+        dispatch(getExplorerData({}));
     }, []);
 
     return (
@@ -55,10 +49,7 @@ export const Explorer = () => {
                                 >
                                     Текущая звезда
                                 </Typography>
-                                <CurrentStarCard
-                                    starInfo={STAR_INFO}
-                                    tabsList={TABS_LIST}
-                                />
+                                <CurrentStarCard tabsList={TABS_LIST} />
                             </div>
                             <div className={element('completed-stars')}>
                                 <Typography
@@ -77,10 +68,7 @@ export const Explorer = () => {
                             >
                                 Рейтинг
                             </Typography>
-                            <RatingCard
-                                list={USERS_LIST}
-                                user={userInfo}
-                            />
+                            <RatingCard />
                         </div>
                     </div>
                 </div>

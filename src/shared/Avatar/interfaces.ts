@@ -1,5 +1,5 @@
 export interface AvatarInterface {
-    image: string;
+    image?: string;
     size: avatarSize;
     orbit?: boolean;
 }

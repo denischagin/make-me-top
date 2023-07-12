@@ -1,6 +1,6 @@
 import { useAppSelector } from '@app/providers/store/hooks';
 
-import { userInfoSelector } from '@entities/user/model/selectors';
+import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 
 import { Avatar } from '@shared/Avatar';
 import { InfoCard } from '@shared/InfoCard';
@@ -22,20 +22,24 @@ import './styles.scss';
 export const ExplorerUserInfo = () => {
     const [block, element] = bem('explorer-user-info');
 
-    const userInfo = useAppSelector(userInfoSelector);
+    const userInfo = useAppSelector(explorerInfoSelector);
 
     const {
-        name = '',
-        avatar = '',
+        person: {
+            firstName,
+            lastName,
+            patronymic,
+        },
         rating,
-        stars = 0,
+        totalSystems,
     } = userInfo;
+
+    const userFullName = `${lastName} ${firstName} ${patronymic}`;
 
     return (
         <div className={block()}>
             <Avatar
                 size={avatarSize.large}
-                image={avatar}
                 orbit
             />
             <div className={element('description')}>
@@ -43,7 +47,7 @@ export const ExplorerUserInfo = () => {
                     variant={typographyVariant.h1}
                     className={element('description-name', 'mb-4')}
                 >
-                    {name}
+                    {userFullName}
                 </Typography>
                 <div className={element('cards')}>
                     <InfoCard
@@ -59,7 +63,7 @@ export const ExplorerUserInfo = () => {
                     />
                     <InfoCard
                         title="Кол-во освоенных звёзд"
-                        value={stars}
+                        value={totalSystems}
                     />
                 </div>
             </div>

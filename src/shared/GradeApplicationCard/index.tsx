@@ -18,8 +18,17 @@ import './styles.scss';
 
 export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
     const {
-        user,
+        finalAssesment,
+        reviewRequest,
     } = props;
+
+    function getUserFullName() {
+        if (finalAssesment) {
+            return `${finalAssesment.lastName} ${finalAssesment.firstName} ${finalAssesment.patronymic}`;
+        }
+
+        return `${reviewRequest?.lastName} ${reviewRequest?.firstName} ${reviewRequest?.patronymic}`;
+    }
 
     const [block, element] = bem('grade-application-card');
 
@@ -31,29 +40,28 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
             >
                 <div className={element('content')}>
                     <div className={element('info')}>
-                        <Avatar
-                            image={user.avatar}
-                            size={avatarSize.medium}
-                        />
+                        <Avatar size={avatarSize.medium} />
                         <div className={element('about')}>
                             <Typography
                                 className={element('name')}
                                 variant={typographyVariant.regular14}
                             >
-                                {user.name}
+                                {getUserFullName()}
                             </Typography>
                             <Typography
                                 className={element('star-title')}
                                 variant={typographyVariant.regular14}
                             >
-                                {`Звезда: ${user.star}`}
+                                {`Звезда: ${finalAssesment?.courseTitle || reviewRequest?.courseTitle}`}
                             </Typography>
-                            <Typography
-                                className={element('planet')}
-                                variant={typographyVariant.medium16}
-                            >
-                                {`Планета: ${user.planet}`}
-                            </Typography>
+                            {!finalAssesment &&
+                                <Typography
+                                    className={element('planet')}
+                                    variant={typographyVariant.medium16}
+                                >
+                                    {`Планета: ${reviewRequest?.courseThemeTitle}`}
+                                </Typography>
+                            }
                         </div>
                     </div>
                     <div className={element('button')}>
