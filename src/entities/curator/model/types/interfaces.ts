@@ -18,10 +18,10 @@ export interface KeeperInfoInterface {
     rating?: null;
     totalSystems: number;
     totalExplorers: number;
-    studyingExplorers?: Array<StudyingExplorersEntity> | null;
-    studyRequests?: Array<StudyRequestsEntity> | null;
-    finalAssessments?: Array<FinalAssessmentsEntity> | null;
-    reviewRequests?: Array<ReviewRequestsEntity> | null;
+    studyingExplorers?: Array<StudyingExplorersInterface> | null;
+    studyRequests?: Array<StudyRequestsInterface> | null;
+    finalAssessments?: Array<FinalAssessmentsInterface> | null;
+    reviewRequests?: Array<ReviewRequestsInterface> | null;
 }
 
 export interface Person {
@@ -32,7 +32,7 @@ export interface Person {
     registrationDate: string;
 }
 
-export interface StudyingExplorersEntity {
+export interface StudyingExplorersInterface {
     personId: number;
     firstName: string;
     lastName: string;
@@ -41,7 +41,7 @@ export interface StudyingExplorersEntity {
     courseId: number;
 }
 
-export interface StudyRequestsEntity {
+export interface StudyRequestsInterface {
     personId: number;
     firstName: string;
     lastName: string;
@@ -51,7 +51,7 @@ export interface StudyRequestsEntity {
     requestId: number;
 }
 
-export interface FinalAssessmentsEntity {
+export interface FinalAssessmentsInterface {
     personId: number;
     firstName: string;
     lastName: string;
@@ -61,7 +61,7 @@ export interface FinalAssessmentsEntity {
     explorerId: number;
 }
 
-export interface ReviewRequestsEntity {
+export interface ReviewRequestsInterface {
     personId: number;
     firstName: string;
     lastName: string;

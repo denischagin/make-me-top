@@ -1,9 +1,9 @@
 import {
-    FinalAssessmentsEntity,
-    ReviewRequestsEntity,
+    FinalAssessmentsInterface,
+    ReviewRequestsInterface,
 } from '@entities/curator/model/types/interfaces';
 
 export interface GradeApplicationsInterface {
-    finalAssesment?: Array<FinalAssessmentsEntity> | null;
-    reviewRequest?: Array<ReviewRequestsEntity> | null;
+    finalAssesment?: Array<FinalAssessmentsInterface> | null;
+    reviewRequest?: Array<ReviewRequestsInterface> | null;
 }

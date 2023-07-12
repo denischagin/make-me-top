@@ -8,7 +8,7 @@ export interface ExplorerInfoInterface {
     rating?: null;
     totalSystems: number;
     currentSystem: CurrentSystem;
-    investigatedSystems?: Array<InvestigatedSystemsEntity> | null;
+    investigatedSystems?: Array<InvestigatedSystemsInterface> | null;
     ratingTable?: Array<null> | null;
 }
 
@@ -37,7 +37,7 @@ export interface Keeper {
     keeperId: number;
 }
 
-export interface InvestigatedSystemsEntity {
+export interface InvestigatedSystemsInterface {
     courseId: number;
     title: string;
     value: number;
