@@ -28,6 +28,7 @@ import { Typography } from '@shared/Typography';
 import { UsersList } from '@shared/UsersList';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { ProgressBar } from '@widgets/ProgressBar';
 
@@ -62,19 +63,13 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
     const {
         currentSystem: {
-            keeper: {
-                firstName,
-                lastName,
-                patronymic,
-            },
+            keeper,
             courseThemeTitle,
             courseId,
             courseTitle,
             progress,
         },
     } = userInfo;
-
-    const userFullName = `${lastName} ${firstName} ${patronymic}`;
 
     return (
         <div className={block()}>
@@ -128,7 +123,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     variant={typographyVariant.regular14}
                     className={element('current-curator', 'mb-4')}
                 >
-                    {`Преподаватель: ${userFullName}`}
+                    {`Преподаватель: ${getUserFullName(keeper)}`}
                 </Typography>
                 <span className={element('progress')}>
                     <Typography

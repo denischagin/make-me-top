@@ -5,6 +5,7 @@ import { Rating } from '@shared/Rating';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
@@ -24,15 +25,8 @@ import './styles.scss';
 
 export const EducationApplicationCard = (props: EducationApplicationCardInterface) => {
     const {
-        user: {
-            firstName,
-            lastName,
-            patronymic,
-            courseTitle,
-        },
+        user,
     } = props;
-
-    const userFullName = `${lastName} ${firstName} ${patronymic}`;
 
     const [block, element] = bem('application-education-card');
 
@@ -47,13 +41,13 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                         <Avatar size={avatarSize.medium} />
                         <div className={element('about')}>
                             <Typography variant={typographyVariant.regular14}>
-                                {`Звезда: ${courseTitle}`}
+                                {`Звезда: ${user.courseTitle}`}
                             </Typography>
                             <Typography
                                 className={element('user-name')}
                                 variant={typographyVariant.medium16}
                             >
-                                {userFullName}
+                                {getUserFullName(user)}
                             </Typography>
                         </div>
                     </div>

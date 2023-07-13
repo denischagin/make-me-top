@@ -8,6 +8,7 @@ import { Rating } from '@shared/Rating';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -25,17 +26,11 @@ export const CuratorUserInfo = () => {
     const userInfo = useAppSelector(curatorInfoSelector);
 
     const {
-        person: {
-            firstName,
-            lastName,
-            patronymic,
-        },
+        person,
         rating,
         totalExplorers,
         totalSystems,
     } = userInfo;
-
-    const userFullName = `${lastName} ${firstName} ${patronymic}`;
 
     return (
         <div className={block()}>
@@ -48,7 +43,7 @@ export const CuratorUserInfo = () => {
                     className={element('description-name', 'mb-4')}
                     variant={typographyVariant.h1}
                 >
-                    {userFullName}
+                    {getUserFullName(person)}
                 </Typography>
                 <div className={element('cards')}>
                     <InfoCard

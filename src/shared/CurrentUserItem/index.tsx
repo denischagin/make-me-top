@@ -3,6 +3,7 @@ import { Badge } from '@shared/Badge';
 import { Rating } from '@shared/Rating';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { CurrentUserItemInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
@@ -19,18 +20,12 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
     const {
         badgeTitle,
         user: {
-            person: {
-                firstName,
-                lastName,
-                patronymic,
-            },
+            person,
             rating,
         },
     } = props;
 
     const [block, element] = bem('current-user');
-
-    const userFullName = `${lastName} ${firstName} ${patronymic}`;
 
     return (
         <div className={block()}>
@@ -38,7 +33,7 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
                 <div className={element('user')}>
                     <Avatar size={avatarSize.small} />
                     <span className={element('my-name')}>
-                        {userFullName}
+                        {getUserFullName(person)}
                     </span>
                 </div>
                 <div className={element('info')}>

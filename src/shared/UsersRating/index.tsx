@@ -7,6 +7,7 @@ import { Rating } from '@shared/Rating';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -23,16 +24,10 @@ import './styles.scss';
 export const UsersRating = (props: UserInfoInterface) => {
     const {
         user: {
-            person: {
-                firstName,
-                lastName,
-                patronymic,
-            },
+            person,
             rating,
         },
     } = props;
-
-    const userFullName = `${lastName} ${firstName} ${patronymic}`;
 
     const [block, element] = bem('rating-info');
 
@@ -43,7 +38,7 @@ export const UsersRating = (props: UserInfoInterface) => {
                 variant={typographyVariant.regular14}
                 className={element('user-name')}
             >
-                {userFullName}
+                {getUserFullName(person)}
             </Typography>
             <span className={element('user-score')}>
                 <Rating

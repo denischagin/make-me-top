@@ -4,6 +4,7 @@ import { Card } from '@shared/Card';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { GradeApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
@@ -22,14 +23,6 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
         reviewRequest,
     } = props;
 
-    function getUserFullName() {
-        if (finalAssesment) {
-            return `${finalAssesment.lastName} ${finalAssesment.firstName} ${finalAssesment.patronymic}`;
-        }
-
-        return `${reviewRequest?.lastName} ${reviewRequest?.firstName} ${reviewRequest?.patronymic}`;
-    }
-
     const [block, element] = bem('grade-application-card');
 
     return (
@@ -46,7 +39,10 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                                 className={element('name')}
                                 variant={typographyVariant.regular14}
                             >
-                                {getUserFullName()}
+                                {
+                                    (finalAssesment && getUserFullName(finalAssesment)) ||
+                                    (reviewRequest && getUserFullName(reviewRequest))
+                                }
                             </Typography>
                             <Typography
                                 className={element('star-title')}
