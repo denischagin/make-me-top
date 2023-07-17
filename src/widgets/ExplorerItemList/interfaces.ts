@@ -1,5 +1,5 @@
-import { ExplorerItemInterface } from '@shared/types/common';
+import { StudyingExplorersInterface } from '@entities/curator/model/types/interfaces';
 
 export interface ExplorerItemListInterface {
-    explorers: Array<ExplorerItemInterface>;
+    explorers: Array<StudyingExplorersInterface> | null | undefined;
 }

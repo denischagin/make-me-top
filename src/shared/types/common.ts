@@ -25,6 +25,7 @@ export interface UserInterface {
 export interface UserListInterface {
     list: Array<UserInterface>;
 }
+
 export interface ExplorerItemInterface {
     name: string;
     avatar: string;

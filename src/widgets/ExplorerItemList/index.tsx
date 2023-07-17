@@ -10,8 +10,6 @@ import { buttonSize } from '@shared/Button/interfaces';
 import { cardSize } from '@shared/Card/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
 
-import { ExplorerItemInterface } from '@shared/types/common';
-
 import './styles.scss';
 
 export const ExplorerItemList = (props: ExplorerItemListInterface) => {
