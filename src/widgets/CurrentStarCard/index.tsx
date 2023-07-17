@@ -14,6 +14,8 @@ import {
 import { showModal } from '@entities/user/model/slice';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
+import { explorerInfoSelector } from '@entities/explorer/model/selectors';
+
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
 import { CircleModal } from '@shared/CircleModal';
@@ -26,6 +28,7 @@ import { Typography } from '@shared/Typography';
 import { UsersList } from '@shared/UsersList';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { ProgressBar } from '@widgets/ProgressBar';
 
@@ -48,24 +51,25 @@ const CURRENT_PLANET = 'SQL';
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     const {
         tabsList = [],
-        starInfo: {
-            planet: {
-                name = '',
-                id = 0,
-            },
-            star = '',
-            curator = '',
-            progress = 0,
-        },
     } = props;
 
     const [block, element] = bem('current-star-card');
 
     const dispatch = useAppDispatch();
-    const userInfo = useAppSelector(userInfoSelector);
     const explorersList = useAppSelector(userExplorersListSelector);
     const curatorsList = useAppSelector(userCuratorsListSelector);
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
+    const userInfo = useAppSelector(explorerInfoSelector);
+
+    const {
+        currentSystem: {
+            keeper,
+            courseThemeTitle,
+            courseId,
+            courseTitle,
+            progress,
+        },
+    } = userInfo;
 
     return (
         <div className={block()}>
@@ -109,51 +113,44 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                 size={cardSize.large}
                 glow
             >
-                <div className={element('content')}>
-                    <Typography
-                        variant={typographyVariant.h2}
-                        className={element('heading')}
-                    >
-                        {`Планета: ${id}. ${name}`}
-                    </Typography>
-                    <Typography
-                        variant={typographyVariant.regular14}
-                        className={element('current-star')}
-                    >
-                        {`Звезда: ${star}`}
-                    </Typography>
-                    <Typography
-                        variant={typographyVariant.regular14}
-                        className={element('current-curator', 'mb-4')}
-                    >
-                        {`Преподаватель: ${curator}`}
-                    </Typography>
-                    <span className={element('progress')}>
-                        <Typography
-                            variant={typographyVariant.medium16}
-                            color={typographyColor.primary500}
-                        >
-                            {`Освоено ${progress}%`}
-                        </Typography>
-                        <ProgressBar progress={progress} />
-                    </span>
-                    <div className={element('buttons')}>
-                        <Button
-                            size={buttonSize.large}
-                            title="Отменить"
-                        />
-                        <Button
-                            size={buttonSize.large}
-                            color={buttonColor.filled}
-                            title="Продолжить"
-                            onClick={() => {
-                                dispatch(getModalPlanets({
-                                    planetId: id,
-                                }));
-                                dispatch(showModal());
-                            }}
-                        />
-                    </div>
+                <Typography
+                    variant={typographyVariant.h2}
+                    className={element('heading')}
+                >
+                    {`Планета: ${courseId}. ${courseTitle}`}
+                </Typography>
+                <Typography
+                    variant={typographyVariant.regular14}
+                    className={element('current-star')}
+                >
+                    {`Звезда: ${courseThemeTitle}`}
+                </Typography>
+                <Typography
+                    variant={typographyVariant.regular14}
+                    className={element('current-curator', 'mb-4')}
+                >
+                    {`Преподаватель: ${getUserFullName(keeper)}`}
+                </Typography>
+                <span className={element('progress')}>
+
+                    <ProgressBar progress={progress} />
+                </span>
+                <div className={element('buttons')}>
+                    <Button
+                        size={buttonSize.large}
+                        title="Отменить"
+                    />
+                    <Button
+                        size={buttonSize.large}
+                        color={buttonColor.filled}
+                        title="Продолжить"
+                        onClick={() => {
+                            dispatch(getModalPlanets({
+                                planetId: courseId,
+                            }));
+                            dispatch(showModal());
+                        }}
+                    />
                 </div>
             </Card>
         </div>

@@ -1,5 +1,5 @@
-import { EducationApplicationInterface } from '@shared/types/common';
+import { StudyRequestsInterface } from '@entities/curator/model/types/interfaces';
 
 export interface EducationApplicationsInterface {
-    applications: Array<EducationApplicationInterface>;
+    applications: Array<StudyRequestsInterface> | null | undefined;
 }

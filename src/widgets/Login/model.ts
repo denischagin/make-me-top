@@ -1,0 +1,2 @@
+export const EXPLORER_ROLE_STRING = 'EXPLORER';
+export const CURATOR_ROLE_STRING = 'KEEPER';

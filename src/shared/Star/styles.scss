@@ -1,114 +1,91 @@
-@import '@app/styles/variables.scss';
+@import "@app/styles/variables.scss";
 
 .star {
-    cursor: pointer;
-    border-radius: 99px;
-    height: 80px;
-    font-family: $font-montserrat;
-    width: 80px;
-    transition: 0.3s;
+  z-index: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  height: 80px;
+  width: 100%;
+  max-height: 80px;
+  max-width: 80px;
+  font-family: $font-montserrat;
+  transition: 0.3s;
+  background: $primary-500;
+  position: relative;
+
+  &--color-black {
+    outline: 1px solid $white;
+    background: $dark;
+  }
+
+  &--color-white {
+    outline: 1px solid $white;
+    background: $white;
+  }
+
+  &--color-primary-500 {
+    outline: 1px solid $white;
     background: $primary-500;
+  }
 
-    &:hover {
-        animation-name: star;
-        animation-duration: 0.3s;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-in-out;
-
-        @keyframes star {
-            from {
-                background: $opacity-primary-500;
-            }
-            to {
-                background: $primary-500;
-            }
-        }
-    }
+  &__info {
+    z-index: 0;
+    color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
 
     &--color-black {
-        outline: 1px solid $white;
-        background: $dark;
-
-        &:hover {
-            animation-name: star_black;
-            animation-duration: 0.3s;
-            animation-iteration-count: 1;
-            animation-timing-function: ease-in-out;
-
-            @keyframes star_black {
-                from {
-                    background: $opacity-dark;
-                }
-                to {
-                    background: $dark;
-                }
-            }
-        }
+      color: $white;
     }
 
     &--color-white {
-        background: $white;
-
-        &:hover {
-            animation-name: star_white;
-            animation-duration: 0.3s;
-            animation-iteration-count: 1;
-            animation-timing-function: ease-in-out;
-
-            @keyframes star_white {
-                from {
-                    background: $opacity-white;
-                }
-                to {
-                    background: $white;
-                }
-            }
-        }
+      color: $black;
     }
 
-    &__info {
-        color: $white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 100%;
+    &--color-primary-500 {
+      color: $black;
+    }
+  }
 
-        &--color-black {
-            color: $white;
-        }
+  &__orbit {
+    margin-top: 5px;
+    margin-right: 2px;
+    filter: opacity(0);
+    position: absolute;
+    transition: 0.3s;
+    transform: scale(0.75);
 
-        &--color-white {
-            color: $black;
-        }
+    &:hover {
+      filter: opacity(1);
+      transition: 0.3s;
+      transform: scale(1);
     }
 
-    &__orbit {
-        padding: 5px;
-        filter: opacity(0);
-        margin-top: 5px;
-        margin-right: 2px;
-        position: absolute;
-        transition: 0.3s;
-        transform: scale(0.75);
-
-        &:hover {
-            filter: opacity(1);
-            padding: 0px;
-            transition: 0.3s;
-            transform: scale(1);
-        }
+    &--activity-active {
+      filter: opacity(1);
+      transition: 0.3s;
+      transform: scale(1);
     }
 
-    &__orbit-icon {
-        color: $primary-500;
-
-        &--color-white {
-            color: $white;
-        }
-
-        &--color-black {
-            color: $white;
-        }
+    &--activity-inactive {
+      filter: opacity(0);
+      transition: 0.3s;
+      transform: scale(0.75);
     }
+  }
+
+  &__orbit-icon {
+    color: $white;
+
+    &--color-white {
+      color: $white;
+    }
+
+    &--color-black {
+      color: $white;
+    }
+  }
 }

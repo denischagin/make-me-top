@@ -14,14 +14,15 @@ import { ExplorerItemInterface } from '@shared/types/common';
 
 import './styles.scss';
 
-export const ExplorerCardList = (props: ExplorerItemListInterface) => {
+export const ExplorerItemList = (props: ExplorerItemListInterface) => {
     const {
         explorers,
     } = props;
 
     const [block, element] = bem('explorer-card-list');
 
-    const totalExplorers = explorers.length;
+    const totalExplorers = explorers?.length || 0;
+    const limitItems = 9;
 
     return (
         <div className={block()}>
@@ -38,15 +39,15 @@ export const ExplorerCardList = (props: ExplorerItemListInterface) => {
                 >
                     {`Всего учеников: ${totalExplorers}`}
                 </Typography>
-                {explorers.slice(0, 9).map((item: ExplorerItemInterface) => (
+                {explorers?.slice(0, limitItems).map((user) => (
                     <ExplorerItem
-                        key={item.id}
-                        name={item.name}
-                        avatar={item.avatar}
+                        key={user.courseId}
+                        name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
+                        avatar=''
                     />
                 ))}
                 {
-                    (explorers.length) > 9 &&
+                    (totalExplorers > 9) &&
                     <div className={element('button', 'mt-3')}>
                         <Button
                             title={'Все ученики'}

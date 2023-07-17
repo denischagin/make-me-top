@@ -1,12 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ExplorerState } from './interfaces';
+import { ExplorerState } from './types/interfaces';
 
+import { getExplorerData } from '../thunks/getExplorerData';
+
+import { initialExplorerInfo } from './constants';
 import { APPLICATION_CARD } from './mocks';
 
 const initialState: ExplorerState = {
     isExplorer: false,
-    applicationCard: APPLICATION_CARD,
+    explorerInfo: initialExplorerInfo,
 };
 
 export const explorerSlice = createSlice({
@@ -16,6 +19,15 @@ export const explorerSlice = createSlice({
         selectRoleAsExplorer: (state) => {
             state.isExplorer = !state.isExplorer;
         },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getExplorerData.fulfilled, (state: ExplorerState, action) => {
+                state.explorerInfo = action.payload;
+            })
+            .addCase(getExplorerData.rejected, (state: ExplorerState) => {
+                state.explorerInfo = initialExplorerInfo;
+            });
     },
 });
 

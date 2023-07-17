@@ -1,6 +1,11 @@
-import { useAppSelector } from '@app/providers/store/hooks';
+import { useEffect } from 'react';
 
-import { userInfoSelector } from '@entities/user/model/selectors';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
+
+import { getExplorerData } from '@entities/explorer/thunks/getExplorerData';
 
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 import { Typography } from '@shared/Typography';
@@ -16,18 +21,18 @@ import { StarsList } from '@widgets/StarsList';
 
 import { typographyVariant } from '@shared/Typography/interfaces';
 
-import {
-    STAR_INFO,
-    TABS_LIST,
-    USERS_LIST,
-} from './model';
+import { TABS_LIST } from './model';
 
 import './styles.scss';
 
 export const Explorer = () => {
     const [block, element] = bem('explorer');
 
-    const userInfo = useAppSelector(userInfoSelector);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(getExplorerData({}));
+    }, []);
 
     return (
         <>
@@ -38,17 +43,33 @@ export const Explorer = () => {
                     <div className={element('row', 'row')}>
                         <div className={element('profile', 'col-xxl-9')}>
                             <ExplorerUserInfo />
-                            <CurrentStarCard
-                                starInfo={STAR_INFO}
-                                tabsList={TABS_LIST}
-                            />
-                            <StarsList heading='Освоенные звёзды' />
+                            <div className={element('current-star')}>
+                                <Typography
+                                    className={element('current-star-heading', 'mb-4')}
+                                    variant={typographyVariant.h2}
+                                >
+                                    Текущая звезда
+                                </Typography>
+                                <CurrentStarCard tabsList={TABS_LIST} />
+                            </div>
+                            <div className={element('completed-stars')}>
+                                <Typography
+                                    className={element('completed-stars-heading', 'mb-4 mt-1')}
+                                    variant={typographyVariant.h2}
+                                >
+                                    Освоенные звёзды
+                                </Typography>
+                                <CompletedStars />
+                            </div>
                         </div>
                         <div className={element('rating', 'col-xxl-3')}>
-                            <RatingCard
-                                list={USERS_LIST}
-                                user={userInfo}
-                            />
+                            <Typography
+                                variant={typographyVariant.h2}
+                                className={element('rating-heading', 'mt-1 mb-4')}
+                            >
+                                Рейтинг
+                            </Typography>
+                            <RatingCard />
                         </div>
                     </div>
                 </div>

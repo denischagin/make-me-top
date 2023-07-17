@@ -5,6 +5,7 @@ import { Rating } from '@shared/Rating';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
@@ -37,19 +38,16 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
             >
                 <div className={element('content')}>
                     <div className={element('info')}>
-                        <Avatar
-                            image={user.avatar}
-                            size={avatarSize.medium}
-                        />
+                        <Avatar size={avatarSize.medium} />
                         <div className={element('about')}>
                             <Typography variant={typographyVariant.regular14}>
-                                {`Звезда: ${user.planet}`}
+                                {`Звезда: ${user.courseTitle}`}
                             </Typography>
                             <Typography
                                 className={element('user-name')}
                                 variant={typographyVariant.medium16}
                             >
-                                {user.name}
+                                {getUserFullName(user)}
                             </Typography>
                         </div>
                     </div>
@@ -59,7 +57,7 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                                 starColor={ratingStarColor.primary500}
                                 size={ratingSize.large}
                                 scoreColor={ratingScoreColor.white}
-                                rating={user.rating}
+                                rating={0}
                                 reflect
                             />
                         </div>

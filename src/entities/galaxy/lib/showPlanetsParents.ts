@@ -1,51 +1,62 @@
+import React from 'react';
+
+import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { getColorFromShelf } from '@entities/galaxy/lib/colorShelf';
 import { getCoordsForConnection } from '@entities/galaxy/lib/getCoordsForConnection';
 import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
 import {
-    ACTIVE_PLANET,
-    HTML_ELEMENT,
+    CONNECTION_LINE_CLASS,
+    SVG_NAMESPACE_URL,
 } from '@entities/galaxy/model/constants';
+
+import {
+    DATA_SYSTEM_ID,
+    DATA_SYSTEM_PARENT_LIST,
+    DATA_SYSTEM_PROGRESS_TYPE,
+} from '@entities/orbit/model/types';
+
+import { SystemProgressTypes } from '@shared/types/common';
 
 interface IShowPlanetsParents {
   parentsList: string | null;
   currentTarget: HTMLDivElement;
-  planetWidth: number;
-  planetHeight: number;
-  viewBoxOffsetX: number;
-  viewBoxOffsetY: number;
-  svgContainer: SVGSVGElement | null;
+  systemWidth: number;
+  systemHeight: number;
+  svgContainer: SVGElement | null;
+  setActiveSystems: React.Dispatch<React.SetStateAction<Array<number>>>;
   color?: string | null;
 }
 
-//рекурсивная функция изменения создания связей между текущей и всеми ее parent зависимостями
-//так же изменения dataset атрбута для всех parent зависимостей планеты
+//рекурсивная функция создания связей между текущей и всеми ее parent зависимостями
 //связи и атрибуты будут настроены у всех зависимых элементов вплоть до крайнего parent элемента без зависимостей
 //(атрибут активности при наведении)
 export const showPlanetsParents = (params: IShowPlanetsParents) => {
     const {
         parentsList,
         currentTarget,
-        planetWidth,
-        planetHeight,
-        viewBoxOffsetX,
-        viewBoxOffsetY,
+        systemWidth,
+        systemHeight,
         svgContainer,
+        setActiveSystems,
     } = params;
 
-    const currentTargetCoords = getElemCoords({
-        elem: currentTarget,
-        type: HTML_ELEMENT,
-        planetWidth,
-        planetHeight,
-    });
-
-    if (parentsList === null) {
+    if (!parentsList || !svgContainer) {
         return;
     }
 
+    const currentTargetCoords = getElemCoords({
+        element: currentTarget,
+        elementWidth: systemWidth,
+        elementHeight: systemHeight,
+    });
+
     const parentsListArray = parentsList.split(',');
 
-    parentsListArray?.forEach((parent) => {
+    if (!parentsListArray) {
+        return;
+    }
+
+    parentsListArray.forEach((parent) => {
         let color = params.color || null;
 
         const elementData = parent.split(':');
@@ -58,24 +69,31 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
             return;
         }
 
-        const parentElement = document.querySelector<HTMLDivElement>(
-            `[data-planet-id="${numberElementId}"]`,
-        );
-
-        const parentElementCoords = getElemCoords({
-            elem: parentElement,
-            type: HTML_ELEMENT,
-            planetWidth,
-            planetHeight,
+        addActivePlanet({
+            activeSystemId: numberElementId,
+            setActiveSystems,
         });
 
-        const parentsListOfCurrentParent = parentElement?.getAttribute(
-            'data-planet-parent-list',
+        const parentElement = document.querySelector<HTMLDivElement>(
+            `[${DATA_SYSTEM_ID}="${numberElementId}"]`,
         );
-        parentElement?.setAttribute('data-is-active', ACTIVE_PLANET);
+
+        if (!parentElement) {
+            return;
+        }
+
+        const parentElementCoords = getElemCoords({
+            element: parentElement,
+            elementWidth: systemWidth,
+            elementHeight: systemHeight,
+        });
+
+        const parentsListOfCurrentParent = parentElement.getAttribute(
+            DATA_SYSTEM_PARENT_LIST,
+        );
 
         const svgLine = document.createElementNS(
-            'http://www.w3.org/2000/svg',
+            SVG_NAMESPACE_URL,
             'line',
         );
 
@@ -85,29 +103,32 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
                 currentTarget: currentTargetCoords,
                 elementToConnect: parentElementCoords,
                 svgContainer,
-                viewBoxOffsetX,
-                viewBoxOffsetY,
             });
+
+            if (!lineCoordsWithoutOverlaps) {
+                return;
+            }
 
             svgLine.setAttribute(
                 'x1',
-                String(lineCoordsWithoutOverlaps?.currentTarget.left - viewBoxOffsetX),
+                String(lineCoordsWithoutOverlaps.currentTarget.left),
             );
             svgLine.setAttribute(
                 'y1',
-                String(lineCoordsWithoutOverlaps?.currentTarget.top - viewBoxOffsetY),
+                String(lineCoordsWithoutOverlaps.currentTarget.top),
             );
             svgLine.setAttribute(
                 'x2',
-                String(
-                    lineCoordsWithoutOverlaps?.elementToConnect.left - viewBoxOffsetX,
-                ),
+                String(lineCoordsWithoutOverlaps.elementToConnect.left),
             );
             svgLine.setAttribute(
                 'y2',
-                String(lineCoordsWithoutOverlaps?.elementToConnect.top - viewBoxOffsetY),
+                String(lineCoordsWithoutOverlaps.elementToConnect.top),
             );
-            svgLine.setAttribute('class', 'galaxy__connection-line');
+            svgLine.setAttribute(
+                'class',
+                `${CONNECTION_LINE_CLASS}`,
+            );
             svgLine.setAttribute('stroke', 'white');
         }
 
@@ -122,22 +143,36 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
         if (color) {
             svgLine.setAttribute(
                 'class',
-                `${svgLine?.getAttribute('class')} galaxy__connection-line_${color}`,
+                `${svgLine.getAttribute(
+                    'class',
+                )} ${CONNECTION_LINE_CLASS}--${color}`,
             );
         }
 
-        svgContainer?.append(svgLine);
+        svgContainer.append(svgLine);
+
+        //если планета, к которой будем строить связь,
+        //открыта или в процессе изучения, то дальше связи не строим
+        const parentElementProgressType = parentElement.getAttribute(
+            DATA_SYSTEM_PROGRESS_TYPE,
+        );
+
+        if (
+            (parentElementProgressType === SystemProgressTypes.SYSTEM_OPEN) ||
+            (parentElementProgressType === SystemProgressTypes.SYSTEM_EDUCATION)
+        ) {
+            return;
+        }
 
         //если у текущего parent элемента есть parent зависимости
         if (parentElement && parentsListOfCurrentParent) {
             showPlanetsParents({
                 parentsList: parentsListOfCurrentParent,
                 currentTarget: parentElement,
-                planetWidth,
-                planetHeight,
-                viewBoxOffsetX,
-                viewBoxOffsetY,
+                systemWidth,
+                systemHeight,
                 svgContainer,
+                setActiveSystems,
                 color,
             });
         }

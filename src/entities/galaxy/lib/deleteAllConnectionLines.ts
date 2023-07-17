@@ -1,7 +1,8 @@
 import { restoreColorShelf } from '@entities/galaxy/lib/colorShelf';
+import { CONNECTION_LINE_CLASS } from '@entities/galaxy/model/constants';
 
 interface IDeleteAllConnectionLines {
-  svgContainer: SVGSVGElement | null;
+  svgContainer: SVGElement | null;
 }
 
 //функция удаления всех элементов определенного класса в заданном svg контейнере
@@ -15,12 +16,9 @@ export const deleteAllConnectionLines = (params: IDeleteAllConnectionLines) => {
         return;
     }
 
-    //создание массива HTML элементов
+    //создание массива найденных HTML элементов
     //каждый элемент является svg линией связи
-    const elementsFromSvgContainer = Array.from(svgContainer.children || []);
-    const allConnectionLines = elementsFromSvgContainer.filter((element) =>
-        element.matches('.galaxy__connection-line'),
-    );
+    const allConnectionLines = document.querySelectorAll(`.${CONNECTION_LINE_CLASS}`);
 
     //удаление каждой линии
     allConnectionLines.forEach((line) => {

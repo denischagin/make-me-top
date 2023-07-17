@@ -16,6 +16,12 @@ const initialState: UserState = {
     explorersList: EXPLORERS_LIST,
     curatorsList: CURATORS_LIST,
     userInfo: USER_INFO,
+    userData: {
+        openSystemList: [],
+        closeSystemList: [],
+        educationSystemList: [],
+    },
+
 };
 
 export const userSlice = createSlice({
@@ -37,13 +43,12 @@ export const userSlice = createSlice({
             .addCase(getModalPlanets.fulfilled, (state: UserState, action) => {
                 state.planetList = action.payload;
             })
-            .addCase(getModalPlanets.rejected, (state) => {
+            .addCase(getModalPlanets.rejected, (state: UserState) => {
                 state.planetList = [];
             });
     },
 });
 
-// Action creators are generated for each case reducer function
 export const {
     selectIsUserRegistered,
     logOut,

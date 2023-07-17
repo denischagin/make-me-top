@@ -1,57 +1,92 @@
 import React from 'react';
+import { type } from '@testing-library/user-event/dist/type';
 
-import { INACTIVE_PLANET } from '@entities/galaxy/model/constants';
+import { UserProgress } from '@entities/user/model/types';
+
 import { SystemType } from '@entities/galaxy/model/types';
 
 import { getDigitalAngle } from '@entities/orbit/lib/getDigitalAngle';
-import { getPlanetChildData } from '@entities/orbit/lib/getPlanetChildData';
-import { getPlanetParentData } from '@entities/orbit/lib/getPlanetParentData';
+import { getPercentageProgress } from '@entities/orbit/lib/getPercentageProgress';
 import { getRadius } from '@entities/orbit/lib/getRadius';
+import { getSystemChildData } from '@entities/orbit/lib/getSystemChildData';
+import { getSystemColorByProgressType } from '@entities/orbit/lib/getSystemColorByProgressType';
+import { getSystemParentData } from '@entities/orbit/lib/getSystemParentData';
+import { getSystemProgressType } from '@entities/orbit/lib/getSystemProgressType';
 import { getXCoordinateOnEllipse } from '@entities/orbit/lib/getXCoordinateOnEllipse';
 import { getYCoordinateOnEllipse } from '@entities/orbit/lib/getYCoordinateOnEllipse';
 
 import { Star } from '@shared/Star';
 
-import { starColor } from '@shared/Star/interfaces';
+import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 
-import '@entities/orbit/ui/styles.scss';
+import { bem } from '@shared/utils/bem';
+import { elementToNumber } from '@shared/utils/elementToNumber';
+
+import { SystemProgressTypes } from '@shared/types/common';
+
+import './styles.scss';
 
 interface IOrbitProps {
-  systemList: Array<SystemType>;
-  orbitWidth: number;
-  orbitHeight: number;
-  planetStyle?: React.CSSProperties;
-  handlePlanetMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
-  handlePlanetMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
+    userProgress: UserProgress;
+    systemList: Array<SystemType>;
+    orbitWidth: number;
+    orbitHeight: number;
+    systemStyle?: React.CSSProperties;
+    handleSystemClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+    handleSystemMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
+    handleSystemMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const Orbit: React.FC<IOrbitProps> = (props) => {
     const {
+        userProgress,
         systemList,
         orbitWidth,
         orbitHeight,
-        planetStyle,
-        handlePlanetMouseEnter,
-        handlePlanetMouseLeave,
+        systemStyle,
+        handleSystemClick,
+        handleSystemMouseEnter,
+        handleSystemMouseLeave,
     } = props;
+
+    const [block, element] = bem('orbit');
 
     const orbitHalfWidth = orbitWidth / 2;
     const orbitHalfHeight = orbitHeight / 2;
 
-    const defaultElementWidth = 80;
-    const defaultElementHeight = 80;
+    const elementWidth = elementToNumber({
+        element: systemStyle?.width,
+    });
+
+    const elementHeight = elementToNumber({
+        element: systemStyle?.height,
+    });
 
     return (
-        <div className="orbit">
+        <div className={block()}>
             <div
-                className="orbit__content"
+                className={element('content')}
                 style={{
                     width: orbitWidth + 'px',
                     height: orbitHeight + 'px',
                 }}
             >
-                {systemList.map((planet, index) => {
-                    const digitalAngle = getDigitalAngle(planet.positionSystem);
+                {systemList.map((system) => {
+                    const systemProgressType = getSystemProgressType({
+                        system,
+                        userProgress,
+                    });
+
+                    const systemColor = getSystemColorByProgressType({
+                        systemProgressType,
+                    });
+
+                    const systemPercentageProgress = getPercentageProgress({
+                        system,
+                        userProgress,
+                    });
+
+                    const digitalAngle = getDigitalAngle(system.systemPosition);
 
                     const radius = getRadius({
                         digitalAngle,
@@ -63,36 +98,42 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                         ellipseHalfWidth: orbitHalfWidth,
                         radius,
                         digitalAngle,
-                        elementWidth: defaultElementWidth,
+                        elementWidth,
                     });
 
                     const y = getYCoordinateOnEllipse({
                         ellipseHalfHeight: orbitHalfHeight,
                         radius,
                         digitalAngle,
-                        elementHeight: defaultElementHeight,
+                        elementHeight,
                     });
 
                     return (
                         <div
-                            key={planet.systemId}
-                            className="orbit__content_planet"
-                            onMouseEnter={handlePlanetMouseEnter}
-                            onMouseLeave={handlePlanetMouseLeave}
+                            key={system.systemId}
+                            className={element('content-system')}
+                            onClick={handleSystemClick}
+                            onMouseEnter={handleSystemMouseEnter}
+                            onMouseLeave={handleSystemMouseLeave}
                             style={{
-                                ...planetStyle,
+                                ...systemStyle,
                                 left: x + 'px',
                                 top: y + 'px',
                             }}
-                            data-planet-id={planet.systemId}
-                            data-planet-parent-list={getPlanetParentData(planet)}
-                            data-planet-children-list={getPlanetChildData(planet)}
-                            data-is-active={INACTIVE_PLANET}
+                            data-system-id={system.systemId}
+                            data-system-parent-list={getSystemParentData(system)}
+                            data-system-children-list={getSystemChildData(system)}
+                            data-system-progress-type={systemProgressType}
                         >
                             <Star
-                                color={starColor.white}
-                                children={<div>{planet.systemName}</div>}
-                            />
+                                percentageProgress={systemPercentageProgress}
+                                color={systemColor}
+                            >
+                                {(systemProgressType === SystemProgressTypes.SYSTEM_CLOSE) && <LockIcon/>}
+                                <p className={element('content-system--name')}>
+                                    {system.systemName}
+                                </p>
+                            </Star>
                         </div>
                     );
                 })}

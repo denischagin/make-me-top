@@ -1,11 +1,43 @@
-@import '@app/styles/variables.scss';
+@import "@app/styles/variables.scss";
 
 .galaxy-page {
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+
+  &__svg-container {
+    position: absolute;
     width: 100%;
-    align-items: center;
-    justify-content: center;
-    background: $dark;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    &--connection-line {
+      stroke: $white;
+      stroke-width: 1px;
+
+      &--orange-stroke-color {
+        stroke: $primary-500;
+      }
+
+      &--green-stroke-color {
+        stroke: #1A9234;
+      }
+
+      &--pink-stroke-color {
+        stroke: #9D2892;
+      }
+
+      &--white-stroke-color {
+        stroke: $white;
+      }
+    }
+  }
 }

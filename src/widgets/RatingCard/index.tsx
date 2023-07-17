@@ -1,3 +1,7 @@
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { explorerInfoSelector } from '@entities/explorer/model/selectors';
+
 import { Card } from '@shared/Card';
 import { DividingLine } from '@shared/DividingLine';
 import { Typography } from '@shared/Typography';
@@ -5,57 +9,47 @@ import { UsersRating } from '@shared/UsersRating';
 
 import { bem } from '@shared/utils/bem';
 
-import { RatingCardInterface } from './interfaces';
 import { cardSize } from '@shared/Card/interfaces';
 import { DividingLineColor } from '@shared/DividingLine/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
 
-import { UserInterface } from '@shared/types/common';
-
 import './styles.scss';
 
-export const RatingCard = (props: RatingCardInterface) => {
+export const RatingCard = () => {
+    const userInfo = useAppSelector(explorerInfoSelector);
+
     const {
-        list = [],
-        user,
-    } = props;
+        ratingTable,
+    } = userInfo;
 
     const [block, element] = bem('rating-card');
 
     return (
-        <div className={block()}>
-            <Typography
-                variant={typographyVariant.h2}
-                className={element('rating-heading', 'mt-1 mb-4')}
-            >
-                Рейтинг
-            </Typography>
-            <Card size={cardSize.large}>
-                <div className={element('content')}>
-                    <Typography
-                        variant={typographyVariant.medium16}
-                        className={element('heading', 'mb-4')}
-                    >
-                        Мой рейтинг
-                    </Typography>
-                    <UsersRating user={user} />
-                    <DividingLine color={DividingLineColor.opacitygray} />
-                    <Typography
-                        variant={typographyVariant.medium16}
-                        className={element('heading', 'mb-4')}
-                    >
-                        Общий рейтинг
-                    </Typography>
-                    {
-                        list.map((user: UserInterface) => (
-                            <UsersRating
-                                key={user.id}
-                                user={user}
-                            />
-                        ))
-                    }
-                </div>
-            </Card>
-        </div>
+        <Card size={cardSize.large}>
+            <div className={block()}>
+                <Typography
+                    variant={typographyVariant.medium16}
+                    className={element('heading', 'mb-4')}
+                >
+                    Мой рейтинг
+                </Typography>
+                <UsersRating user={userInfo} />
+                <DividingLine color={DividingLineColor.opacitygray} />
+                <Typography
+                    variant={typographyVariant.medium16}
+                    className={element('heading', 'mb-4')}
+                >
+                    Общий рейтинг
+                </Typography>
+                {
+                    ratingTable?.map((user) => (
+                        <UsersRating
+                            key={user}
+                            user={userInfo}
+                        />
+                    ))
+                }
+            </div>
+        </Card>
     );
 };

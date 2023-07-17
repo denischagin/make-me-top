@@ -1,170 +1,279 @@
 import React,
 {
-    createRef,
     useEffect,
-    useRef,
     useState,
 } from 'react';
 
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
+
+import { userIsModalOpenSelector } from '@entities/user/model/selectors';
+import { showModal } from '@entities/user/model/slice';
+import { UserProgress } from '@entities/user/model/types';
+
+import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
+import { createSvgContainer } from '@entities/galaxy/lib/createSvgContainer';
 import { deleteAllConnectionLines } from '@entities/galaxy/lib/deleteAllConnectionLines';
-import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
-import { hidePlanetsChildren } from '@entities/galaxy/lib/hidePlanetsChildren';
-import { hidePlanetsParents } from '@entities/galaxy/lib/hidePlanetsParents';
+import { setStarsActivityToActive } from '@entities/galaxy/lib/setStarsActivityToActive';
+import { setStarsActivityToInactive } from '@entities/galaxy/lib/setStarsActivityToInactive';
 import { showPlanetsChildren } from '@entities/galaxy/lib/showPlanetsChildren';
 import { showPlanetsParents } from '@entities/galaxy/lib/showPlanetsParents';
 import {
-    ACTIVE_PLANET,
-    INACTIVE_PLANET,
-    SVG_ELEMENT,
+    DEFAULT_CHOSEN_STAR,
+    DEFAULT_SYSTEM_RESPONSE_MESSAGE,
+    STAR_CLASS,
 } from '@entities/galaxy/model/constants';
-import { OrbitType } from '@entities/galaxy/model/types';
+import {
+    OrbitType,
+    SystemType,
+} from '@entities/galaxy/model/types';
 
+import {
+    fetchSystemById,
+    SystemResponseInterface,
+} from '@entities/orbit/api/fetchSystemById';
+import {
+    DATA_SYSTEM_CHILDREN_LIST,
+    DATA_SYSTEM_ID,
+    DATA_SYSTEM_PARENT_LIST,
+    DATA_SYSTEM_PROGRESS_TYPE,
+} from '@entities/orbit/model/types';
 import Orbit from '@entities/orbit/ui';
+
+import { CircleModal } from '@shared/CircleModal';
+
+import { bem } from '@shared/utils/bem';
+
+import { SystemProgressTypes } from '@shared/types/common';
 
 import './style.scss';
 
 interface IGalaxyProps {
-  orbitList: Array<OrbitType>,
-  width: number,
-  height: number,
-  planetWidth: number,
-  planetHeight: number,
+  galaxyPage: HTMLDivElement | null;
+  userProgress: UserProgress;
+  orbitList: Array<OrbitType>;
+  svgContainerClass: string;
+  width: number;
+  height: number;
+  systemWidth?: number;
+  systemHeight?: number;
 }
 
-interface IGalaxyOrbitSettings {
-  viewBox: string;
+interface IOrbitSettings {
+  width: number;
+  systemWidth: number;
+  backgroundWidth: number;
+  height: number;
+  systemHeight: number;
+  backgroundHeight: number;
 }
+
+interface ErrorInterface {
+    errorMessage: string;
+}
+
+interface SystemTypeWithError extends SystemType, ErrorInterface {}
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const {
+        svgContainerClass,
+        galaxyPage,
+        userProgress,
         orbitList,
         width,
         height,
-        planetWidth,
-        planetHeight,
     } = props;
 
-    const svgContainerRef = createRef<SVGSVGElement>();
+    const [block, element] = bem('galaxy');
 
-    const [viewBoxOffsetX, setViewBoxOffsetX] = useState<number>(0);
-    const [viewBoxOffsetY, setViewBoxOffsetY] = useState<number>(0);
+    const dispatch = useAppDispatch();
+
+
+
+    const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
+    const [activeSystems, setActiveSystems] = useState<Array<number>>([]);
+    const [stars, setStars] = useState<NodeListOf<HTMLDivElement>>(
+        document.querySelectorAll(`.${STAR_CLASS}`),
+    );
+    const [lastChosenStar, setLastChosenStar] = useState<SystemResponseInterface>({
+        ...DEFAULT_CHOSEN_STAR,
+        ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
+    });
+    const [windowSize, setWindowSize] = useState([0, 0]);
+
+    const isModalOpen = useAppSelector(userIsModalOpenSelector);
 
     //что бы последняя орбита с планетами не была 0x0, уменьшаем шаг между орбитами,
     //увеличив кол-во орбит в подсчетах на 1
     const orbitWidthStep = width / (orbitList.length + 1);
     const orbitHeightStep = height / (orbitList.length + 1);
 
-    const galaxyOrbitSettingsRef = useRef<IGalaxyOrbitSettings>({
-        viewBox: `0 0 ${width} ${height}`,
-    });
-
-    useEffect(() => {
-        setViewBoxOffsetX(
-      getElemCoords({
-          elem: svgContainerRef.current,
-          type: SVG_ELEMENT,
-      })!.left,
-        );
-
-        setViewBoxOffsetY(
-      getElemCoords({
-          elem: svgContainerRef.current,
-          type: SVG_ELEMENT,
-      })!.top,
-        );
-    }, []);
-
-    const handlePlanetMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
-        const currentTarget = event.currentTarget;
-
-        const childrenList = currentTarget.getAttribute(
-            'data-planet-children-list',
-        );
-        const parentsList = currentTarget.getAttribute('data-planet-parent-list');
-
-        event.currentTarget.setAttribute('data-is-active', ACTIVE_PLANET);
-
-        showPlanetsChildren({
-            childrenList,
-            currentTarget,
-            planetWidth,
-            planetHeight,
-            viewBoxOffsetX,
-            viewBoxOffsetY,
-            svgContainer: svgContainerRef.current,
-        });
-
-        showPlanetsParents({
-            parentsList,
-            currentTarget,
-            planetWidth,
-            planetHeight,
-            viewBoxOffsetX,
-            viewBoxOffsetY,
-            svgContainer: svgContainerRef.current,
-        });
+    const orbitSettings: IOrbitSettings = {
+        width,
+        systemWidth: props.systemWidth || 80,
+        backgroundWidth: width + orbitWidthStep / 2,
+        height,
+        systemHeight: props.systemWidth || 80,
+        backgroundHeight: height + orbitHeightStep / 2,
     };
 
-    const handlePlanetMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
+    useEffect(() => {
+        //функции реагирования на обновление размеров окна приложения
+        const updateSize = () => {
+            setWindowSize([window.innerWidth, window.innerHeight]);
+        };
+
+        window.addEventListener('resize', updateSize);
+        updateSize();
+
+        return () => window.removeEventListener('resize', updateSize);
+    }, []);
+
+    useEffect(() => {
+        //создание контейнера под линии связи,
+        //контейнер создается в корне страницы, для соответствия ее размерам
+        setSvgContainer(
+            createSvgContainer({
+                galaxyPage,
+                svgContainerClass,
+            }),
+        );
+    }, [galaxyPage]);
+
+    useEffect(() => {
+        //реагирование на изменение масштаба окна приложения
+        handleSystemMouseLeave();
+    }, [windowSize]);
+
+    useEffect(() => {
+        //поиск на странице и изменение модификаторов элементов в соответствии с состоянием
+        setStars(
+            document.querySelectorAll(`.${STAR_CLASS}`),
+        );
+
+        setStarsActivityToActive({
+            activeSystemsId: activeSystems,
+        });
+    }, [activeSystems]);
+
+    const handleSystemMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
 
-        const childrenList = currentTarget.getAttribute(
-            'data-planet-children-list',
-        );
-        const parentsList = currentTarget.getAttribute('data-planet-parent-list');
+        const targetId = currentTarget.getAttribute(DATA_SYSTEM_ID);
+        const childrenList = currentTarget.getAttribute(DATA_SYSTEM_CHILDREN_LIST);
+        const parentsList = currentTarget.getAttribute(DATA_SYSTEM_PARENT_LIST);
+        const systemProgressType = currentTarget.getAttribute(DATA_SYSTEM_PROGRESS_TYPE);
 
-        event.currentTarget.setAttribute('data-is-active', INACTIVE_PLANET);
-
-        hidePlanetsChildren({
-            childrenList,
+        addActivePlanet({
+            activeSystemId: targetId,
+            setActiveSystems,
         });
 
-        hidePlanetsParents({
-            parentsList,
+        if (
+            systemProgressType === SystemProgressTypes.SYSTEM_OPEN ||
+            systemProgressType === SystemProgressTypes.SYSTEM_EDUCATION
+        ) {
+            showPlanetsChildren({
+                childrenList,
+                currentTarget,
+                systemWidth: orbitSettings.systemWidth,
+                systemHeight: orbitSettings.systemHeight,
+                svgContainer,
+                setActiveSystems,
+            });
+        }
+
+        if (systemProgressType === SystemProgressTypes.SYSTEM_CLOSE) {
+            showPlanetsParents({
+                parentsList,
+                currentTarget,
+                systemWidth: orbitSettings.systemWidth,
+                systemHeight: orbitSettings.systemHeight,
+                svgContainer,
+                setActiveSystems,
+            });
+        }
+    };
+
+    const handleSystemMouseLeave = () => {
+        setActiveSystems([]);
+
+        setStarsActivityToInactive({
+            stars,
         });
 
         deleteAllConnectionLines({
-            svgContainer: svgContainerRef.current,
+            svgContainer,
+        });
+    };
+
+    const handleSystemClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        const currentTarget = event.currentTarget;
+
+        const targetId = Number(currentTarget.getAttribute(DATA_SYSTEM_ID));
+
+        setLastChosenStar({
+            ...DEFAULT_CHOSEN_STAR,
+            ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
+        });
+
+        dispatch(showModal());
+
+        fetchSystemById({
+            id: targetId,
+        }).then((response) => {
+            setLastChosenStar(response);
+        }).catch((reason) => {
+            setLastChosenStar({
+                ...DEFAULT_CHOSEN_STAR,
+                ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
+                systemName: 'Fetch error.',
+            });
         });
     };
 
     return (
         <div
-            className="galaxy"
+            className={block()}
             style={{
                 width,
                 height,
             }}
         >
+            {isModalOpen &&
+            <CircleModal
+                header={lastChosenStar.systemName}
+                onClose={() => dispatch(showModal())}
+            >
+                {<div></div>}
+            </CircleModal>}
             <div
-                className="galaxy__background"
+                className={element('background')}
                 style={{
-                    width,
-                    height,
+                    width: orbitSettings.width,
+                    height: orbitSettings.height,
                 }}
             />
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="galaxy__svg-container"
-                viewBox={galaxyOrbitSettingsRef.current.viewBox}
-                width={width}
-                height={height}
-                ref={svgContainerRef}
-            />
             {orbitList.map((orbits) => {
+                orbitSettings.width -= orbitWidthStep;
+                orbitSettings.height -= orbitHeightStep;
+
                 return (
                     <Orbit
                         key={orbits.orbitId}
+                        userProgress={userProgress}
                         systemList={orbits.systemList}
-                        orbitWidth={width - orbitWidthStep * orbits.orbitId}
-                        orbitHeight={height - orbitHeightStep * orbits.orbitId}
-                        planetStyle={{
-                            color: 'white',
-                            width: planetWidth + 'px',
-                            height: planetHeight + 'px',
+                        orbitWidth={orbitSettings.width}
+                        orbitHeight={orbitSettings.height}
+                        systemStyle={{
+                            width: orbitSettings.systemWidth + 'px',
+                            height: orbitSettings.systemHeight + 'px',
                         }}
-                        handlePlanetMouseEnter={handlePlanetMouseEnter}
-                        handlePlanetMouseLeave={handlePlanetMouseLeave}
+                        handleSystemClick={handleSystemClick}
+                        handleSystemMouseEnter={handleSystemMouseEnter}
+                        handleSystemMouseLeave={handleSystemMouseLeave}
                     />
                 );
             })}
