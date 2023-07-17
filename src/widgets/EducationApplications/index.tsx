@@ -25,7 +25,7 @@ export const EducationApplications = (props: EducationApplicationsInterface) => 
             </Typography>
             <div className={element('cards')}>
                 {
-                    (applications?.length !== 0)
+                    (applications?.length)
                         ? applications?.map((application) => (
                             <EducationApplicationCard
                                 key={application.requestId}

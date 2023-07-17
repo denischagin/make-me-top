@@ -29,6 +29,11 @@ import { storageKeys } from '@shared/constants/storageKeys';
 
 import { typographyVariant } from '@shared/Typography/interfaces';
 
+import {
+    CURATOR_ROLE_STRING,
+    EXPLORER_ROLE_STRING,
+} from './model';
+
 import './styles.scss';
 
 export const Login = () => {
@@ -51,10 +56,12 @@ export const Login = () => {
         return navigate(pathByUserRole);
     }
 
+    const selectedRole = isExplorer ? EXPLORER_ROLE_STRING : CURATOR_ROLE_STRING;
+
     const payload = {
         login: inputLogin,
         password: inputPassword,
-        role: isExplorer ? 'EXPLORER' : 'KEEPER',
+        role: selectedRole,
     };
 
     return (

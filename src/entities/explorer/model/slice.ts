@@ -4,35 +4,11 @@ import { ExplorerState } from './types/interfaces';
 
 import { getExplorerData } from '../thunks/getExplorerData';
 
+import { initialExplorerInfo } from './constants';
+
 const initialState: ExplorerState = {
     isExplorer: false,
-    explorerInfo: {
-        person: {
-            personId: 0,
-            firstName: '',
-            lastName: '',
-            patronymic: '',
-            registrationDate: '',
-        },
-        currentSystem: {
-            keeper: {
-                personId: 0,
-                firstName: '',
-                lastName: '',
-                patronymic: '',
-                keeperId: 0,
-            },
-            courseThemeId: 0,
-            courseThemeTitle: '',
-            courseId: 0,
-            courseTitle: '',
-            progress: 0,
-        },
-        rating: null,
-        totalSystems: 0,
-        investigatedSystems: [],
-        ratingTable: [],
-    },
+    explorerInfo: initialExplorerInfo,
 };
 
 export const explorerSlice = createSlice({
@@ -47,6 +23,9 @@ export const explorerSlice = createSlice({
         builder
             .addCase(getExplorerData.fulfilled, (state: ExplorerState, action) => {
                 state.explorerInfo = action.payload;
+            })
+            .addCase(getExplorerData.rejected, (state: ExplorerState) => {
+                state.explorerInfo = initialExplorerInfo;
             });
     },
 });

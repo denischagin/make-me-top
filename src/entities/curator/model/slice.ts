@@ -4,27 +4,13 @@ import { CuratorState } from './types/interfaces';
 
 import { getKeeperData } from '../thunks/getKeeperData';
 
+import { initialCuratorInfo } from './constants';
 import { REVIEW_LIST } from './mocks';
 
 const initialState: CuratorState = {
     isCurator: false,
     reviews: REVIEW_LIST,
-    curatorInfo: {
-        person: {
-            personId: 0,
-            firstName: '',
-            lastName: '',
-            patronymic: '',
-            registrationDate: '',
-        },
-        rating: null,
-        totalSystems: 0,
-        totalExplorers: 0,
-        studyingExplorers: [],
-        studyRequests: [],
-        finalAssessments: [],
-        reviewRequests: [],
-    },
+    curatorInfo: initialCuratorInfo,
 };
 
 export const curatorSlice = createSlice({
@@ -39,11 +25,13 @@ export const curatorSlice = createSlice({
         builder
             .addCase(getKeeperData.fulfilled, (state: CuratorState, action) => {
                 state.curatorInfo = action.payload;
+            })
+            .addCase(getKeeperData.rejected, (state: CuratorState) => {
+                state.curatorInfo = initialCuratorInfo;
             });
     },
 });
 
-// Action creators are generated for each case reducer function
 export const {
     selectRoleAsCurator,
 } = curatorSlice.actions;

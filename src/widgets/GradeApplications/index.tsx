@@ -43,7 +43,7 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
                         ))
                 }
                 {
-                    totalLength === 0 &&
+                    !totalLength &&
                     <Typography variant={typographyVariant.medium16}>
                         Заявки отсутствуют
                     </Typography>
