@@ -35,6 +35,7 @@ export interface ModalPlanetInterface {
 export interface userDataInterface {
     login: string
     password: string
+    role: string
 }
 
 export interface AuthLoginInterface {

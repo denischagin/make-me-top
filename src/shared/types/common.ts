@@ -1,12 +1,14 @@
 import { ReactNode } from 'react';
 
+import { ExplorerInfoInterface } from '@entities/explorer/model/types/interfaces';
+
 export interface TabInterface {
     name: string;
     id: number;
 }
 
 export interface UserInfoInterface {
-    user: UserInterface;
+    user: ExplorerInfoInterface;
 }
 
 export interface UserInterface {
@@ -71,8 +73,8 @@ export interface ErrorInterface {
 }
 
 export enum SystemProgressTypes {
-  SYSTEM_CLOSE = 'systemClose',
-  SYSTEM_OPEN = 'systemOpen',
-  SYSTEM_EDUCATION = 'systemEducation',
-  PROGRESS_NOT_FOUND = 'progressNotFound'
+    SYSTEM_CLOSE = 'systemClose',
+    SYSTEM_OPEN = 'systemOpen',
+    SYSTEM_EDUCATION = 'systemEducation',
+    PROGRESS_NOT_FOUND = 'progressNotFound'
 }

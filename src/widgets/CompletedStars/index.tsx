@@ -1,3 +1,7 @@
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { explorerInfoSelector } from '@entities/explorer/model/selectors';
+
 import { Rating } from '@shared/Rating';
 import { Star } from '@shared/Star';
 
@@ -17,22 +21,28 @@ import './styles.scss';
 export const CompletedStars = () => {
     const [block, element] = bem('completed-stars');
 
+    const userInfo = useAppSelector(explorerInfoSelector);
+
+    const {
+        investigatedSystems,
+    } = userInfo;
+
     return (
         <div className={block()}>
-            {COMPLETED_STARS_LIST.map((item) => (
+            {investigatedSystems?.map((item) => (
                 <Star
                     color={starColor.primary500}
-                    key={item.name}
+                    key={item.courseId}
                 >
                     <p className={element('label')}>
-                        {item.name}
+                        {item.title}
                     </p>
                     <div className={element('star-rating')}>
                         <Rating
-                            scoreColor={ratingScoreColor.white}
-                            rating={item.rate}
+                            scoreColor={ratingScoreColor.black}
+                            rating={item.value}
                             size={ratingSize.small}
-                            starColor={ratingStarColor.white}
+                            starColor={ratingStarColor.primary500}
                         />
                     </div>
                 </Star>
