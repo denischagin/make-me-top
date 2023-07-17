@@ -1,6 +1,12 @@
 export interface ExplorerState {
     isExplorer: boolean;
+    explorerApplicationCard: ExplorerApplicationCardInterface
     explorerInfo: ExplorerInfoInterface
+}
+
+export interface ExplorerApplicationCardInterface {
+    star: string
+    planet: string
 }
 
 export interface ExplorerInfoInterface {

@@ -9,6 +9,7 @@ import { APPLICATION_CARD } from './mocks';
 
 const initialState: ExplorerState = {
     isExplorer: false,
+    explorerApplicationCard: APPLICATION_CARD,
     explorerInfo: initialExplorerInfo,
 };
 

@@ -73,12 +73,6 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
     return (
         <div className={block()}>
-            <Typography
-                className={element('current-star-heading', 'mb-4 mt-5')}
-                variant={typographyVariant.h2}
-            >
-                Текущая звезда
-            </Typography>
             {
                 isModalOpen &&
                 <CircleModal
@@ -132,7 +126,12 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     {`Преподаватель: ${getUserFullName(keeper)}`}
                 </Typography>
                 <span className={element('progress')}>
-
+                    <Typography
+                        variant={typographyVariant.medium16}
+                        color={typographyColor.primary500}
+                    >
+                        {`Освоено ${progress}%`}
+                    </Typography>
                     <ProgressBar progress={progress} />
                 </span>
                 <div className={element('buttons')}>

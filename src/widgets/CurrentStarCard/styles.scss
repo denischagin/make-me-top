@@ -3,18 +3,11 @@
 .current-star-card {
     color: $white;
     border-radius: 8px;
-
-    &__content {
-        position: relative;
-    }
+    position: relative;
 
     &__heading {
         margin-top: 2px;
-        margin-bottom: 8px;
-    }
-
-    &__current-star {
-        margin: 4px 0;
+        margin-bottom: 10px;
     }
 
     &__current-curator {
@@ -32,8 +25,7 @@
     &__buttons {
         position: absolute;
         display: flex;
-        top: 0;
-        right: 0;
+        right: 24px;
         gap: 16px;
     }
 }

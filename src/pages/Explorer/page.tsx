@@ -12,7 +12,6 @@ import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
-import { CompletedStars } from '@widgets/CompletedStars';
 import { CurrentStarCard } from '@widgets/CurrentStarCard';
 import { ExplorerUserInfo } from '@widgets/ExplorerUserInfo';
 import { Header } from '@widgets/Header';
@@ -45,7 +44,7 @@ export const Explorer = () => {
                             <ExplorerUserInfo />
                             <div className={element('current-star')}>
                                 <Typography
-                                    className={element('current-star-heading', 'mb-4')}
+                                    className={element('current-star-heading', 'mb-4 mt-5')}
                                     variant={typographyVariant.h2}
                                 >
                                     Текущая звезда
@@ -53,13 +52,7 @@ export const Explorer = () => {
                                 <CurrentStarCard tabsList={TABS_LIST} />
                             </div>
                             <div className={element('completed-stars')}>
-                                <Typography
-                                    className={element('completed-stars-heading', 'mb-4 mt-1')}
-                                    variant={typographyVariant.h2}
-                                >
-                                    Освоенные звёзды
-                                </Typography>
-                                <CompletedStars />
+                                <StarsList heading='Освоенные звёзды' />
                             </div>
                         </div>
                         <div className={element('rating', 'col-xxl-3')}>
