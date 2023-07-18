@@ -1,16 +1,16 @@
 import { isConnectionOverlapped } from '@entities/galaxy/lib/isConnectionOverlapped';
 
 interface IGetCoordsForConnection {
-  currentTarget: {
-    top: number;
-    left: number;
-  };
-  elementToConnect: {
-    top: number;
-    left: number;
-  };
-  svgContainer: SVGElement | null;
-  swingCountProp?: number;
+    currentTarget: {
+        top: number;
+        left: number;
+    };
+    elementToConnect: {
+        top: number;
+        left: number;
+    };
+    svgContainer: SVGElement | null;
+    swingCountProp?: number;
 }
 
 //рекурсивная функция получения координат между элементами
@@ -25,7 +25,7 @@ export const getCoordsForConnection = (
         svgContainer,
         swingCountProp,
     } =
-    params;
+        params;
 
     //swingCount: количество изменений направления при наложении
     //swingDirection: множитель направления для следующей связи (1 или -1)

@@ -1,6 +1,6 @@
 import { useAppSelector } from '@app/providers/store/hooks';
 
-import { userInfoSelector } from '@entities/user/model/selectors';
+import { curatorInfoSelector } from '@entities/curator/model/selectors';
 
 import { Avatar } from '@shared/Avatar';
 import { InfoCard } from '@shared/InfoCard';
@@ -8,6 +8,7 @@ import { Rating } from '@shared/Rating';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -22,27 +23,25 @@ import './styles.scss';
 export const CuratorCardUserInfo = () => {
     const [block, element] = bem('curator-card-user-info');
 
-    const userInfo = useAppSelector(userInfoSelector);
+    const userInfo = useAppSelector(curatorInfoSelector);
 
     const {
-        name = '',
-        avatar = '',
-        rating = 0,
-        stars = 0,
-        explorers = 0,
+        person,
+        rating,
+        totalExplorers,
+        totalSystems,
     } = userInfo;
 
     return (
         <div className={block()}>
             <Avatar
                 size={avatarSize.large}
-                image={avatar}
                 orbit
             />
             <div className={element('description')}>
                 <div className={element('description-name', 'mb-4')}>
                     <Typography variant={typographyVariant.h1}>
-                        {name}
+                        {getUserFullName(person)}
                     </Typography>
                 </div>
                 <div className={element('cards')}>
@@ -59,11 +58,11 @@ export const CuratorCardUserInfo = () => {
                     />
                     <InfoCard
                         title="Кол-во звёзд"
-                        value={stars}
+                        value={totalSystems}
                     />
                     <InfoCard
                         title="Кол-во исследователей"
-                        value={explorers}
+                        value={totalExplorers}
                     />
                 </div>
             </div>

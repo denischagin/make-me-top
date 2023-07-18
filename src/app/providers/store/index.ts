@@ -7,8 +7,8 @@ import logger from 'redux-logger';
 import userReducer from '@entities/user/model/slice';
 import { UserState } from '@entities/user/model/types';
 
-import { ExplorerState } from '@entities/explorer/model/interfaces';
 import explorerReducer from '@entities/explorer/model/slice';
+import { ExplorerState } from '@entities/explorer/model/types/interfaces';
 
 import curatorReducer from '@entities/curator/model/slice';
 import { CuratorState } from '@entities/curator/model/types/interfaces';

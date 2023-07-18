@@ -2,11 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { CuratorState } from './types/interfaces';
 
+import { getKeeperData } from '../thunks/getKeeperData';
+
+import { initialCuratorInfo } from './constants';
 import { REVIEW_LIST } from './mocks';
 
 const initialState: CuratorState = {
     isCurator: false,
     reviews: REVIEW_LIST,
+    curatorInfo: initialCuratorInfo,
 };
 
 export const curatorSlice = createSlice({
@@ -17,9 +21,17 @@ export const curatorSlice = createSlice({
             state.isCurator = true;
         },
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(getKeeperData.fulfilled, (state: CuratorState, action) => {
+                state.curatorInfo = action.payload;
+            })
+            .addCase(getKeeperData.rejected, (state: CuratorState) => {
+                state.curatorInfo = initialCuratorInfo;
+            });
+    },
 });
 
-// Action creators are generated for each case reducer function
 export const {
     selectRoleAsCurator,
 } = curatorSlice.actions;

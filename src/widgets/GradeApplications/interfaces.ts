@@ -1,5 +1,9 @@
-import { GradeApplicationInterface } from '@shared/types/common';
+import {
+    FinalAssessmentsInterface,
+    ReviewRequestsInterface,
+} from '@entities/curator/model/types/interfaces';
 
 export interface GradeApplicationsInterface {
-    applications: Array<GradeApplicationInterface>;
+    finalAssesment?: Array<FinalAssessmentsInterface> | null;
+    reviewRequest?: Array<ReviewRequestsInterface> | null;
 }
