@@ -12,7 +12,7 @@ const StarProgress: React.FC<IStarProgressProps> = (props) => {
 
     const [block, element] = bem('star-progress');
 
-    const isProgress = !percentageProgress;
+    const isProgress = !!percentageProgress;
 
     return (
         <div className={block()}>

@@ -46,7 +46,7 @@ export const getCoordsForConnection = (
     });
 
     //чередование места создания связи в зависимости от количества связей
-    swingCount % 2 === 0 ? (swingDirection = -1) : (swingDirection = 1);
+    !(swingCount % 2) ? (swingDirection = -1) : (swingDirection = 1);
 
     //если было наложение(место занято) - поиск следующего места
     if (isOverlapped) {
