@@ -43,24 +43,33 @@ export const StarsList = (props: StarsListInterface) => {
                 {heading}
             </Typography>
             <div className={element('stars', 'mb-4')}>
-                {investigatedSystems?.map((item) => (
-                    <Star
-                        color={starColor.primary500}
-                        key={item.courseId}
-                    >
-                        <p className={element('label')}>
-                            {item.title}
-                        </p>
-                        <div className={element('star-rating')}>
-                            <Rating
-                                scoreColor={ratingScoreColor.white}
-                                rating={item.value}
-                                size={ratingSize.small}
-                                starColor={ratingStarColor.white}
-                            />
-                        </div>
-                    </Star>
-                ))}
+                {
+                    investigatedSystems?.length ?
+                        investigatedSystems?.map((item) => (
+                            <Star
+                                color={starColor.primary500}
+                                key={item.courseId}
+                            >
+                                <p className={element('label')}>
+                                    {item.title}
+                                </p>
+                                <div className={element('star-rating')}>
+                                    <Rating
+                                        scoreColor={ratingScoreColor.white}
+                                        rating={item.value}
+                                        size={ratingSize.small}
+                                        starColor={ratingStarColor.white}
+                                    />
+                                </div>
+                            </Star>
+                        )) :
+                        <Typography
+                            className={element('heading')}
+                            variant={typographyVariant.regular16}
+                        >
+                            Нет звёзд
+                        </Typography>
+                }
             </div>
         </div>
     );
