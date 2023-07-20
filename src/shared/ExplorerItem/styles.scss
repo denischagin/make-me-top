@@ -1,6 +1,6 @@
 @import '@app/styles/variables.scss';
 
-.explorer-card {
+.explorer-item {
     display: flex;
     align-items: center;
     padding: 12px 8px;
@@ -14,7 +14,7 @@
         cursor: pointer;
         background-color: $gray-500;
 
-        .explorer-card__name {
+        .explorer-item__name {
             color: $black;
         }
     }

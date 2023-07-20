@@ -1,18 +1,18 @@
 @import '@app/styles/variables.scss';
 
-.explorer {
+.explorer-card {
     color: $white;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    height: 100%;
 
     &__container {
         margin: 40px auto 40px auto;
     }
 
+    &__back-arrow {
+        margin-top: -5px;
+        margin-right: 12px;
+    }
+
     &__profile {
         display: flex;
-        flex-direction: column;
     }
 }

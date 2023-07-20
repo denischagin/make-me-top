@@ -37,13 +37,10 @@
         gap: 24px;
     }
 
-    &__star-title {
-        margin: 7px 0;
-    }
-
-    &__planet {
-        transition: 0.2s;
-        margin: 0;
+    &__about {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
     }
 
     &__extra-content {

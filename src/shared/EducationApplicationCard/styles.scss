@@ -41,10 +41,15 @@
         gap: 24px;
     }
 
+    &__about {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
     &__user-name {
         transition: 0.2s;
         margin: 0;
-        padding-top: 8px;
     }
 
     &__extra-content {

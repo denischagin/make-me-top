@@ -15,13 +15,13 @@ export interface CuratorState {
 
 export interface KeeperInfoInterface {
     person: Person;
-    rating?: null;
+    rating?: number | null;
     totalSystems: number;
     totalExplorers: number;
-    studyingExplorers?: Array<StudyingExplorersInterface> | null;
-    studyRequests?: Array<StudyRequestsInterface> | null;
-    finalAssessments?: Array<FinalAssessmentsInterface> | null;
-    reviewRequests?: Array<ReviewRequestsInterface> | null;
+    studyingExplorers: Array<StudyingExplorersInterface>;
+    studyRequests: Array<StudyRequestsInterface>;
+    finalAssessments: Array<FinalAssessmentsInterface>;
+    reviewRequests: Array<ReviewRequestsInterface>;
 }
 
 export interface Person {

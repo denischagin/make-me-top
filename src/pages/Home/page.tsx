@@ -36,7 +36,11 @@ export const Home = () => {
                     <p className={element('heading')}>
                         <MakeMeTopIcon />
                     </p>
-                    {!isRoleSelected ? <SelectRole /> : <Login />}
+                    {
+                        !isRoleSelected
+                            ? <SelectRole />
+                            : <Login />
+                    }
                 </div>
             </div>
         </>

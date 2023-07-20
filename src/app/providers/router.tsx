@@ -10,6 +10,7 @@ import {
     URL_CURATORS,
     URL_DEFAULT,
     URL_EXPLORER,
+    URL_EXPLORER_CARD,
     URL_EXPLORERS,
     URL_GALAXY,
 } from '@shared/constants/links';
@@ -18,6 +19,7 @@ import { Curator } from '@pages/Curator/page';
 import { CuratorCard } from '@pages/CuratorCard';
 import { Curators } from '@pages/Curators/page';
 import { Explorer } from '@pages/Explorer/page';
+import { ExplorerCard } from '@pages/ExplorerCard';
 import { Explorers } from '@pages/Explorers/page';
 import { GalaxyPage } from '@pages/GalaxyPage/page';
 import { Home } from '@pages/Home/page';
@@ -36,6 +38,10 @@ export const router = createBrowserRouter(
             <Route
                 path={URL_CURATOR_CARD}
                 element={<CuratorCard />}
+            />
+            <Route
+                path={URL_EXPLORER_CARD}
+                element={<ExplorerCard />}
             />
             <Route
                 path={URL_EXPLORER}

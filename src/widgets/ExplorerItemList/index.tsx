@@ -1,20 +1,18 @@
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
-import { ExplorerCard } from '@shared/ExplorerCard';
+import { ExplorerItem } from '@shared/ExplorerItem';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
-import { ExplorerCardListInterface } from './interfaces';
+import { ExplorerItemListInterface } from './interfaces';
 import { buttonSize } from '@shared/Button/interfaces';
 import { cardSize } from '@shared/Card/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
 
-import { ExplorerCardInterface } from '@shared/types/common';
-
 import './styles.scss';
 
-export const ExplorerCardList = (props: ExplorerCardListInterface) => {
+export const ExplorerItemList = (props: ExplorerItemListInterface) => {
     const {
         explorers,
     } = props;
@@ -40,7 +38,7 @@ export const ExplorerCardList = (props: ExplorerCardListInterface) => {
                     {`Всего учеников: ${totalExplorers}`}
                 </Typography>
                 {explorers?.slice(0, limitItems).map((user) => (
-                    <ExplorerCard
+                    <ExplorerItem
                         key={user.courseId}
                         name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
                         avatar=''
