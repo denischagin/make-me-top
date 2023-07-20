@@ -25,7 +25,8 @@ export interface UserInterface {
 export interface UserListInterface {
     list: Array<UserInterface>;
 }
-export interface ExplorerCardInterface {
+
+export interface ExplorerItemInterface {
     name: string;
     avatar: string;
     id?: number;

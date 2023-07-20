@@ -3,10 +3,11 @@ import { useParams } from 'react-router';
 
 import { ArrowButton } from '@shared/ArrowButton';
 import { BackgroundProfile } from '@shared/BackgroundProfile';
+import { ExplorerApplicationCard } from '@shared/ExplorerApplicationCard';
 
 import { bem } from '@shared/utils/bem';
 
-import { CuratorCardUserInfo } from '@widgets/CuratorCardUserInfo';
+import { ExplorerCardUserInfo } from '@widgets/ExplorerCardUserInfo';
 import { Header } from '@widgets/Header';
 import { Reviews } from '@widgets/Reviews';
 import { StarsList } from '@widgets/StarsList';
@@ -15,17 +16,17 @@ import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
 
 import './styles.scss';
 
-export const CuratorCard = () => {
-    const [block, element] = bem('curator-card');
+export const ExplorerCard = () => {
+    const [block, element] = bem('explorer-card');
 
     const {
-        curatorId,
+        explorerId,
     } = useParams();
 
     useEffect(() => {
         // Тут будет вызываться метод запроса
         // getCuratorData(curatorId);
-    }, [curatorId]);
+    }, [explorerId]);
 
     return (
         <div className={block()}>
@@ -36,10 +37,13 @@ export const CuratorCard = () => {
                     <div className={element('back-arrow')}>
                         <ArrowButton direction={arrowButtonDirection.left} />
                     </div>
-                    <CuratorCardUserInfo />
+                    <ExplorerCardUserInfo />
                 </div>
-                <StarsList heading='Звезды исследователя' />
-                <Reviews />
+                <div className={element('content', 'mt-5')}>
+                    <ExplorerApplicationCard />
+                    <StarsList heading='Освоенные звёзды' />
+                    <Reviews />
+                </div>
             </div>
         </div>
     );

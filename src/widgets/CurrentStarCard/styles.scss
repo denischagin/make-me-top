@@ -1,18 +1,23 @@
 @import '@app/styles/variables.scss';
 
 .current-star-card {
-    position: relative;
     color: $white;
     border-radius: 8px;
+    position: relative;
+
+    &:hover {
+        .current-star-card__buttons {
+            opacity: 1;
+        }
+    }
 
     &__heading {
         margin-top: 2px;
-        margin-bottom: 4px;
+        margin-bottom: 10px;
     }
 
-    &__current-star,
     &__current-curator {
-        margin: 4px 0;
+        margin: 8px 0;
     }
 
     &__progress {
@@ -24,9 +29,10 @@
     }
 
     &__buttons {
+        transition: 0.3s;
+        opacity: 0;
         position: absolute;
         display: flex;
-        top: 24px;
         right: 24px;
         gap: 16px;
     }

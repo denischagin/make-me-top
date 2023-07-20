@@ -11,25 +11,17 @@ export const Input = (props: InputInterface) => {
         placeholder,
         type,
         value,
-        setStateOnChange,
+        onChange,
     } = props;
 
     const [block, element] = bem('input');
-
-    function handleOnInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-        if (setStateOnChange) {
-            return setStateOnChange(event.target.value);
-        }
-
-        return;
-    }
 
     return (
         <input
             value={value}
             type={type}
             placeholder={placeholder}
-            onChange={handleOnInputChange}
+            onChange={onChange}
             className={block()}
         />
     );

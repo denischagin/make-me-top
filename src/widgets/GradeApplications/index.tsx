@@ -16,8 +16,6 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
 
     const [block, element] = bem('grade-application');
 
-    const totalLength = finalAssesment?.length && reviewRequest?.length;
-
     return (
         <div className={block()}>
             <Typography
@@ -41,12 +39,6 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
                                 reviewRequest={application}
                             />
                         ))
-                }
-                {
-                    !totalLength &&
-                    <Typography variant={typographyVariant.medium16}>
-                        Заявки отсутствуют
-                    </Typography>
                 }
             </div>
         </div>

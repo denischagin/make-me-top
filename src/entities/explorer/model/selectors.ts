@@ -6,4 +6,6 @@ const userState = (state: RootState) => state.explorer;
 
 export const explorerIsExplorerSelector = createSelector(userState, (userState) => userState.isExplorer);
 
+export const explorerApplicationCardSelector = createSelector(userState, (userState) => userState.explorerApplicationCard);
+
 export const explorerInfoSelector = createSelector(userState, (userState) => userState.explorerInfo);

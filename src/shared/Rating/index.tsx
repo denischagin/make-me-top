@@ -17,7 +17,8 @@ export const Rating = (props: RatingInterface) => {
 
     const [block, element] = bem('rating');
 
-    const score = rating ? rating.toFixed(1) : '—';
+    const emptyRating = '—';
+    const score = rating ? rating.toFixed(1) : emptyRating;
 
     return (
         <div className={block()}>

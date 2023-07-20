@@ -5,9 +5,11 @@ import { ExplorerState } from './types/interfaces';
 import { getExplorerData } from '../thunks/getExplorerData';
 
 import { initialExplorerInfo } from './constants';
+import { APPLICATION_CARD } from './mocks';
 
 const initialState: ExplorerState = {
     isExplorer: false,
+    explorerApplicationCard: APPLICATION_CARD,
     explorerInfo: initialExplorerInfo,
 };
 
