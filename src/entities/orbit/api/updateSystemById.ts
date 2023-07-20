@@ -27,6 +27,7 @@ export const updateSystem = async (params: UpdateSystemParams, payload: UpdateSy
             systemId,
             galaxyId,
         } = params;
+
         const {
             data,
         } = await instance.put<ErrorInterface>(`${URL_MMT_STAND_GALAXY}/galaxy-ap/${galaxyId}/system/${systemId}`, payload);

@@ -26,6 +26,7 @@ export const createSystem = async (params: CreateSystemParams, payload: CreateSy
         const {
             galaxyId,
         } = params;
+
         const {
             data,
         } = await instance.post<ErrorInterface>(`${URL_MMT_STAND_GALAXY}/galaxy-ap/${galaxyId}/system`, payload);
