@@ -21,7 +21,7 @@ export const deleteSystemById = async (payload: DeleteSystemById) => {
 
         const {
             data,
-        } = await instance.delete<ErrorInterface>(`${URL_MMT_STAND_GALAXY}/galaxy-app/system/${systemId}`);
+        } = await instance.delete<ErrorInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/system/${systemId}`);
 
         if (data.message) {
             toast.error(data.message);

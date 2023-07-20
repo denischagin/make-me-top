@@ -24,7 +24,7 @@ export const fetchSystemById = async (payload: FetchSystemById) => {
 
         const {
             data,
-        } = await instance.get<SystemResponseInterface>(`${URL_MMT_STAND_GALAXY}/galaxy-app/system/${id}`);
+        } = await instance.get<SystemResponseInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/system/${id}`);
 
         if (data.message) {
             toast.error(data.message);

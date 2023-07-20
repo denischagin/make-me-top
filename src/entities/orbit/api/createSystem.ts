@@ -29,7 +29,7 @@ export const createSystem = async (params: CreateSystemParams, payload: CreateSy
 
         const {
             data,
-        } = await instance.post<ErrorInterface>(`${URL_MMT_STAND_GALAXY}/galaxy-ap/${galaxyId}/system`, payload);
+        } = await instance.post<ErrorInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/${galaxyId}/system`, payload);
 
         if (data.message) {
             toast.error(data.message);
