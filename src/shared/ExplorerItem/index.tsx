@@ -14,7 +14,7 @@ import './styles.scss';
 
 export const ExplorerItem = (props: ExplorerItemInterface) => {
     const {
-        name = '',
+        name,
     } = props;
 
     const [block, element] = bem('explorer-item');

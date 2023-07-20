@@ -17,8 +17,6 @@ import {
 import { starColor } from '@shared/Star/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
 
-import { arrayOfStars } from './model';
-
 import './styles.scss';
 
 export const StarsList = (props: StarsListInterface) => {
@@ -44,8 +42,8 @@ export const StarsList = (props: StarsListInterface) => {
             </Typography>
             <div className={element('stars', 'mb-4')}>
                 {
-                    investigatedSystems?.length ?
-                        investigatedSystems?.map((item) => (
+                    investigatedSystems.length ?
+                        investigatedSystems.map((item) => (
                             <Star
                                 color={starColor.primary500}
                                 key={item.courseId}

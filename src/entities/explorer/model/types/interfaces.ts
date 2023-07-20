@@ -11,11 +11,11 @@ export interface ExplorerApplicationCardInterface {
 
 export interface ExplorerInfoInterface {
     person: Person;
-    rating?: null;
+    rating?: number | null;
     totalSystems: number;
     currentSystem: CurrentSystem;
-    investigatedSystems?: Array<InvestigatedSystemsInterface> | null;
-    ratingTable?: Array<null> | null;
+    investigatedSystems: Array<InvestigatedSystemsInterface>;
+    ratingTable: Array<null>;
 }
 
 export interface Person {

@@ -25,11 +25,11 @@ export const ExplorerCardUserInfo = () => {
     const userInfo = useAppSelector(userInfoSelector);
 
     const {
-        name = '',
-        avatar = '',
-        rating = 0,
-        stars = 0,
-        reviews = 0,
+        name,
+        avatar,
+        rating,
+        stars,
+        reviews,
     } = userInfo;
 
     return (

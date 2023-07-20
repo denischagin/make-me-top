@@ -25,11 +25,11 @@ import './styles.scss';
 export const ReviewCard = (props: ReviewCardInterface) => {
     const {
         review: {
-            planet = '',
-            rating = 0,
-            name = '',
-            avatar = '',
-            comment = '',
+            planet,
+            rating,
+            name,
+            avatar,
+            comment,
         },
     } = props;
 
