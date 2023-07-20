@@ -14,13 +14,13 @@ import {
     DEFAULT_ERROR_MESSAGE,
     DEFAULT_GALAXY_ID,
 } from '../model/constants';
-import { GalaxyType } from '../model/types';
+import { GalaxyState } from '../model/types';
 
 interface GetGalaxyInterface {
     galaxyId: number
 }
 
-export interface GalaxyResponseInterface extends GalaxyType, ErrorInterface {}
+export interface GalaxyResponseInterface extends GalaxyState, ErrorInterface {}
 
 export const getGalaxy = createAsyncThunk<GalaxyResponseInterface, GetGalaxyInterface, { rejectValue: ErrorInterface }>(
     FETCH_GALAXY,

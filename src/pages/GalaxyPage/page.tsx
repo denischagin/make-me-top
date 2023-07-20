@@ -20,6 +20,11 @@ import { bem } from '@shared/utils/bem';
 
 import { Header } from '@widgets/Header';
 
+import {
+    galaxyNameSelector,
+    orbitListSelector,
+} from '@pages/GalaxyPage/model';
+
 import './styles.scss';
 
 export const GalaxyPage: React.FC = () => {
@@ -62,9 +67,9 @@ export const GalaxyPage: React.FC = () => {
         }));
     }, [dispatch]);
 
-    const galaxyName = useAppSelector((state) => state.galaxies.galaxyName);
+    const galaxyName = useAppSelector(galaxyNameSelector);
 
-    const orbitList = useAppSelector((state) => state.galaxies.orbitList);
+    const orbitList = useAppSelector(orbitListSelector);
 
     return (
         <div
