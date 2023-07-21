@@ -46,6 +46,6 @@ export interface Keeper {
 export interface InvestigatedSystemsInterface {
     courseId: number;
     title: string;
-    value: number;
+    rating: number | null;
     keeperId: number;
 }

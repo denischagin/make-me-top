@@ -54,7 +54,7 @@ export const StarsList = (props: StarsListInterface) => {
                                 <div className={element('star-rating')}>
                                     <Rating
                                         scoreColor={ratingScoreColor.white}
-                                        rating={item.value}
+                                        rating={item.rating}
                                         size={ratingSize.small}
                                         starColor={ratingStarColor.white}
                                     />
