@@ -5,6 +5,7 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
+import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 import { getExplorerInfo } from '@entities/explorer/thunks/getExplorerInfo';
 
 import { BackgroundProfile } from '@shared/BackgroundProfile';
@@ -28,6 +29,11 @@ export const Explorer = () => {
     const [block, element] = bem('explorer');
 
     const dispatch = useAppDispatch();
+    const userInfo = useAppSelector(explorerInfoSelector);
+
+    const {
+        investigatedSystems,
+    } = userInfo;
 
     useEffect(() => {
         dispatch(getExplorerInfo({}));
@@ -52,7 +58,10 @@ export const Explorer = () => {
                                 <CurrentStarCard tabsList={TABS_LIST} />
                             </div>
                             <div className={element('completed-stars')}>
-                                <StarsList heading='Освоенные звёзды' />
+                                <StarsList
+                                    heading='Освоенные звёзды'
+                                    stars={investigatedSystems}
+                                />
                             </div>
                         </div>
                         <div className={element('rating', 'col-xxl-3')}>

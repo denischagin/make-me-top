@@ -22,15 +22,10 @@ import './styles.scss';
 export const StarsList = (props: StarsListInterface) => {
     const {
         heading,
+        stars,
     } = props;
 
     const [block, element] = bem('stars-list');
-
-    const userInfo = useAppSelector(explorerInfoSelector);
-
-    const {
-        investigatedSystems,
-    } = userInfo;
 
     return (
         <div className={block()}>
@@ -42,19 +37,19 @@ export const StarsList = (props: StarsListInterface) => {
             </Typography>
             <div className={element('stars', 'mb-4')}>
                 {
-                    investigatedSystems.length ?
-                        investigatedSystems.map((item) => (
+                    stars.length ?
+                        stars.map((star) => (
                             <Star
                                 color={starColor.primary500}
-                                key={item.courseId}
+                                key={star.courseId}
                             >
                                 <p className={element('label')}>
-                                    {item.title}
+                                    {star.title}
                                 </p>
                                 <div className={element('star-rating')}>
                                     <Rating
                                         scoreColor={ratingScoreColor.white}
-                                        rating={item.rating}
+                                        rating={star.rating}
                                         size={ratingSize.small}
                                         starColor={ratingStarColor.white}
                                     />

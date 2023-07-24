@@ -1,6 +1,9 @@
 import { useAppSelector } from '@app/providers/store/hooks';
 
-import { explorerApplicationCardSelector } from '@entities/explorer/model/selectors';
+import {
+    explorerApplicationCardSelector,
+    explorerCardInfoSelector,
+} from '@entities/explorer/model/selectors';
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
@@ -18,7 +21,11 @@ import { typographyVariant } from '@shared/Typography/interfaces';
 import './styles.scss';
 
 export const ExplorerApplicationCard = () => {
-    const applicationCard = useAppSelector(explorerApplicationCardSelector);
+    const userInfo = useAppSelector(explorerCardInfoSelector);
+
+    const {
+        currentSystem,
+    } = userInfo;
 
     const [block, element] = bem('explorer-application-card');
 
@@ -40,13 +47,13 @@ export const ExplorerApplicationCard = () => {
                             className={element('planet')}
                             variant={typographyVariant.h2}
                         >
-                            {applicationCard.planet}
+                            {`Планета: ${currentSystem?.courseId}. ${currentSystem?.courseTitle}`}
                         </Typography>
                         <Typography
                             className={element('star')}
                             variant={typographyVariant.regular14}
                         >
-                            {`Звезда: ${applicationCard.star}`}
+                            {`Звезда: ${currentSystem?.courseThemeTitle}`}
                         </Typography>
                     </div>
                     <div className={element('buttons')}>

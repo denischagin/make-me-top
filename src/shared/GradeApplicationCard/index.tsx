@@ -1,10 +1,16 @@
 import { Avatar } from '@shared/Avatar';
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
+import { RouterLink } from '@shared/RouterLink';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
+
+import {
+    URL_EXPLORER,
+    URL_EXPLORER_CARD,
+} from '@shared/constants/links';
 
 import { GradeApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
@@ -22,6 +28,8 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
         finalAssesment,
         reviewRequest,
     } = props;
+
+    const explorerId = finalAssesment ? finalAssesment?.explorerId : reviewRequest?.explorerId;
 
     const [block, element] = bem('grade-application-card');
 
@@ -61,11 +69,13 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                         </div>
                     </div>
                     <div className={element('button')}>
-                        <Button
-                            title={'Оценить'}
-                            color={buttonColor.filled}
-                            size={buttonSize.large}
-                        />
+                        <RouterLink to={`${URL_EXPLORER}/${explorerId}`}>
+                            <Button
+                                title={'Оценить'}
+                                color={buttonColor.filled}
+                                size={buttonSize.large}
+                            />
+                        </RouterLink>
                     </div>
                 </div>
             </Card>

@@ -57,15 +57,8 @@ export interface ExplorerCardInfoInterface {
     totalFeedback: number
     totalSystems: number
     currentSystem: CurrentSystem
-    investigatedSystems: Array<InvestigatedSystem>
+    investigatedSystems: Array<InvestigatedSystemsInterface>
     feedback: Array<Feedback>
-}
-
-export interface InvestigatedSystem {
-    courseId: number
-    title: string
-    rating: number | null
-    keeperId: number
 }
 
 export interface Feedback {

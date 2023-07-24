@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
-import { useAppDispatch } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
+import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
 import { getExplorerCardInfo } from '@entities/explorer/thunks/getExplorerCardInfo';
 
 import { ArrowButton } from '@shared/ArrowButton';
@@ -24,6 +28,11 @@ export const ExplorerCard = () => {
     const [block, element] = bem('explorer-card');
 
     const dispatch = useAppDispatch();
+    const userInfo = useAppSelector(explorerCardInfoSelector);
+
+    const {
+        investigatedSystems,
+    } = userInfo;
 
     const {
         explorerId,
@@ -48,7 +57,10 @@ export const ExplorerCard = () => {
                 </div>
                 <div className={element('content', 'mt-5')}>
                     <ExplorerApplicationCard />
-                    <StarsList heading='Освоенные звёзды' />
+                    <StarsList
+                        heading='Освоенные звёзды'
+                        stars={investigatedSystems}
+                    />
                     <Reviews />
                 </div>
             </div>

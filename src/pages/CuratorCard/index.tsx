@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
-import { useAppDispatch } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
+import { keeperCardInfoSelector } from '@entities/curator/model/selectors';
 import { getKeeperCardInfo } from '@entities/curator/thunks/getKeeperCardInfo';
 
 import { ArrowButton } from '@shared/ArrowButton';
@@ -23,6 +27,11 @@ export const CuratorCard = () => {
     const [block, element] = bem('curator-card');
 
     const dispatch = useAppDispatch();
+    const userInfo = useAppSelector(keeperCardInfoSelector);
+
+    const {
+        systems,
+    } = userInfo;
 
     const {
         keeperId,
@@ -45,7 +54,10 @@ export const CuratorCard = () => {
                     </div>
                     <CuratorCardUserInfo />
                 </div>
-                <StarsList heading='Звезды исследователя' />
+                <StarsList
+                    heading='Звезды исследователя'
+                    stars={systems}
+                />
                 <Reviews />
             </div>
         </div>
