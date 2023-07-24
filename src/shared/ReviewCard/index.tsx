@@ -5,6 +5,7 @@ import { ShowMoreTextModal } from '@shared/ShowMoreTextModal';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import { cardSize } from '@shared/Card/interfaces';
@@ -24,11 +25,10 @@ import './styles.scss';
 
 export const ReviewCard = (props: ReviewCardInterface) => {
     const {
+        review,
         review: {
-            planet,
+            courseTitle,
             rating,
-            name,
-            avatar,
             comment,
         },
     } = props;
@@ -47,7 +47,7 @@ export const ReviewCard = (props: ReviewCardInterface) => {
                             className={element('planet-name')}
                             variant={typographyVariant.regular14}
                         >
-                            {planet}
+                            {courseTitle}
                         </Typography>
                         <Rating
                             scoreColor={ratingScoreColor.white}
@@ -57,12 +57,9 @@ export const ReviewCard = (props: ReviewCardInterface) => {
                         />
                     </div>
                     <div className={element('user')}>
-                        <Avatar
-                            size={avatarSize.small}
-                            image={avatar}
-                        />
+                        <Avatar size={avatarSize.small} />
                         <Typography variant={typographyVariant.regular16}>
-                            {name}
+                            {getUserFullName(review)}
                         </Typography>
                     </div>
                     {
@@ -74,24 +71,21 @@ export const ReviewCard = (props: ReviewCardInterface) => {
                             }}
                         >
                             <div className={element('user')}>
-                                <Avatar
-                                    size={avatarSize.large}
-                                    image={avatar}
-                                />
+                                <Avatar size={avatarSize.large} />
                                 <div className={element('user-info')}>
                                     <Typography
                                         variant={typographyVariant.regular14}
                                         color={typographyColor.black}
                                         className={element('planet-name')}
                                     >
-                                        {planet}
+                                        {courseTitle}
                                     </Typography>
                                     <Typography
                                         variant={typographyVariant.h1}
                                         color={typographyColor.black}
                                         className={element('user-name')}
                                     >
-                                        {name}
+                                        {getUserFullName(review)}
                                     </Typography>
                                     <Rating
                                         scoreColor={ratingScoreColor.black}

@@ -1,39 +1,48 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { CuratorState } from './types/interfaces';
+import { KeeperState } from './types/interfaces';
 
-import { getKeeperData } from '../thunks/getKeeperData';
+import { getKeeperCardInfo } from '../thunks/getKeeperCardInfo';
+import { getKeeperInfo } from '../thunks/getKeeperInfo';
 
-import { initialCuratorInfo } from './constants';
-import { REVIEW_LIST } from './mocks';
+import {
+    initialKeeperCardInfo,
+    initialKeeperInfo,
+} from './constants';
 
-const initialState: CuratorState = {
-    isCurator: false,
-    reviews: REVIEW_LIST,
-    curatorInfo: initialCuratorInfo,
+const initialState: KeeperState = {
+    isKeeper: false,
+    keeperInfo: initialKeeperInfo,
+    keeperCardInfo: initialKeeperCardInfo,
 };
 
-export const curatorSlice = createSlice({
+export const keeperSlice = createSlice({
     name: 'curator',
     initialState,
     reducers: {
-        selectRoleAsCurator: (state) => {
-            state.isCurator = true;
+        selectRoleAsKeeper: (state) => {
+            state.isKeeper = true;
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getKeeperData.fulfilled, (state: CuratorState, action) => {
-                state.curatorInfo = action.payload;
-            })
-            .addCase(getKeeperData.rejected, (state: CuratorState) => {
-                state.curatorInfo = initialCuratorInfo;
-            });
+            .addMatcher(
+                (action) => action.type === getKeeperInfo.fulfilled.type || action.type === getKeeperInfo.rejected.type,
+                (state: KeeperState, action) => {
+                    state.keeperInfo = action.payload ?? initialKeeperInfo;
+                },
+            )
+            .addMatcher(
+                (action) => action.type === getKeeperCardInfo.fulfilled.type || action.type === getKeeperCardInfo.rejected.type,
+                (state: KeeperState, action) => {
+                    state.keeperCardInfo = action.payload ?? initialKeeperCardInfo;
+                },
+            );
     },
 });
 
 export const {
-    selectRoleAsCurator,
-} = curatorSlice.actions;
+    selectRoleAsKeeper,
+} = keeperSlice.actions;
 
-export default curatorSlice.reducer;
+export default keeperSlice.reducer;

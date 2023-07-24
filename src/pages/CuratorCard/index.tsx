@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
+import { useAppDispatch } from '@app/providers/store/hooks';
+
+import { getKeeperCardInfo } from '@entities/curator/thunks/getKeeperCardInfo';
+
 import { ArrowButton } from '@shared/ArrowButton';
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 
@@ -18,14 +22,17 @@ import './styles.scss';
 export const CuratorCard = () => {
     const [block, element] = bem('curator-card');
 
+    const dispatch = useAppDispatch();
+
     const {
-        curatorId,
+        keeperId,
     } = useParams();
 
     useEffect(() => {
-        // Тут будет вызываться метод запроса
-        // getCuratorData(curatorId);
-    }, [curatorId]);
+        dispatch(getKeeperCardInfo({
+            keeperId: Number(keeperId),
+        }));
+    }, [keeperId]);
 
     return (
         <div className={block()}>

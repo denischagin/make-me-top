@@ -2,15 +2,20 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { ExplorerState } from './types/interfaces';
 
-import { getExplorerData } from '../thunks/getExplorerData';
+import { getExplorerCardInfo } from '../thunks/getExplorerCardInfo';
+import { getExplorerInfo } from '../thunks/getExplorerInfo';
 
-import { initialExplorerInfo } from './constants';
+import {
+    initialExplorerCardInfo,
+    initialExplorerInfo,
+} from './constants';
 import { APPLICATION_CARD } from './mocks';
 
 const initialState: ExplorerState = {
     isExplorer: false,
     explorerApplicationCard: APPLICATION_CARD,
     explorerInfo: initialExplorerInfo,
+    explorerCardInfo: initialExplorerCardInfo,
 };
 
 export const explorerSlice = createSlice({
@@ -23,12 +28,18 @@ export const explorerSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getExplorerData.fulfilled, (state: ExplorerState, action) => {
-                state.explorerInfo = action.payload;
-            })
-            .addCase(getExplorerData.rejected, (state: ExplorerState) => {
-                state.explorerInfo = initialExplorerInfo;
-            });
+            .addMatcher(
+                (action) => action.type === getExplorerInfo.fulfilled.type || action.type === getExplorerInfo.rejected.type,
+                (state: ExplorerState, action) => {
+                    state.explorerInfo = action.payload ?? initialExplorerInfo;
+                },
+            )
+            .addMatcher(
+                (action) => action.type === getExplorerCardInfo.fulfilled.type || action.type === getExplorerCardInfo.rejected.type,
+                (state: ExplorerState, action) => {
+                    state.explorerCardInfo = action.payload ?? initialExplorerCardInfo;
+                },
+            );
     },
 });
 

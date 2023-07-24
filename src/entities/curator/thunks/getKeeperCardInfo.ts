@@ -6,27 +6,34 @@ import { instance } from '@shared/api/instances';
 
 import { URL_MMT_STAND_USER } from '@shared/constants/urls';
 
-import { KeeperInfoInterface } from '../model/types/interfaces';
+import { KeeperCardInfoInterface } from '../model/types/interfaces';
 
 import { ErrorInterface } from '@shared/types/common';
 
 import { FETCH_KEEPER } from '../model/actions';
 import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 
-export interface KeeperInfoResponseInterface extends KeeperInfoInterface, ErrorInterface {
+export interface KeeperIdInterface {
+    keeperId: number
+}
+
+export interface KeeperCardInfoResponseInterface extends KeeperCardInfoInterface, ErrorInterface {
 
 }
 
-export const getKeeperData = createAsyncThunk<KeeperInfoResponseInterface, any, { rejectValue: ErrorInterface }>(
+export const getKeeperCardInfo = createAsyncThunk<KeeperCardInfoResponseInterface, KeeperIdInterface, { rejectValue: ErrorInterface }>(
     FETCH_KEEPER,
     async (payload, {
         rejectWithValue,
     }) => {
         try {
+            const {
+                keeperId,
+            } = payload;
 
             const {
                 data,
-            } = await instance.get<KeeperInfoResponseInterface>(`${URL_MMT_STAND_USER}info/`);
+            } = await instance.get<KeeperCardInfoResponseInterface>(`${URL_MMT_STAND_USER}info/keeper/${keeperId}`);
 
             if (data.message) {
                 toast.error(data.message);

@@ -2,7 +2,7 @@ import { useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
-import { curatorIsCuratorSelector } from '@entities/curator/model/selectors';
+import { keeperIsKeeperSelector } from '@entities/curator/model/selectors';
 
 import { ShiningStar } from '@shared/ShiningStar';
 
@@ -14,7 +14,7 @@ export const BackgroundHome = () => {
     const [block, element] = bem('background-home');
 
     const isExplorer = useAppSelector(explorerIsExplorerSelector);
-    const isCurator = useAppSelector(curatorIsCuratorSelector);
+    const isCurator = useAppSelector(keeperIsKeeperSelector);
 
     const isAuth = isCurator || isExplorer;
 

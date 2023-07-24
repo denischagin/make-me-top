@@ -1,6 +1,13 @@
+import { useLocation } from 'react-router-dom';
+
 import { useAppSelector } from '@app/providers/store/hooks';
 
-import { curatorReviewsSelector } from '@entities/curator/model/selectors';
+import {
+    explorerCardInfoSelector,
+    explorerIsExplorerSelector,
+} from '@entities/explorer/model/selectors';
+
+import { keeperCardInfoSelector } from '@entities/curator/model/selectors';
 
 import { Button } from '@shared/Button';
 import { ReviewCard } from '@shared/ReviewCard';
@@ -16,7 +23,14 @@ import './styles.scss';
 export const Reviews = () => {
     const [block, element] = bem('reviews');
 
-    const reviews = useAppSelector(curatorReviewsSelector);
+    const location = useLocation();
+
+    const regex = /\/explorer\/[0-9]+/i;
+    const reviews = regex.test(location.pathname) ? useAppSelector(explorerCardInfoSelector) : useAppSelector(keeperCardInfoSelector);
+
+    const {
+        feedback,
+    } = reviews;
 
     return (
         <div className={block()}>
@@ -27,12 +41,14 @@ export const Reviews = () => {
                 Отзывы
             </Typography>
             <div className={element('cards')}>
-                {reviews.map((item) => (
-                    <ReviewCard
-                        key={item.id}
-                        review={item}
-                    />
-                ))}
+                {
+                    feedback.map((item) => (
+                        <ReviewCard
+                            key={item.courseId}
+                            review={item}
+                        />
+                    ))
+                }
             </div>
             <div className={element('button', 'mt-5')}>
                 <Button

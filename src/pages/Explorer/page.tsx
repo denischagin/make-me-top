@@ -5,7 +5,7 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { getExplorerData } from '@entities/explorer/thunks/getExplorerData';
+import { getExplorerInfo } from '@entities/explorer/thunks/getExplorerInfo';
 
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 import { Typography } from '@shared/Typography';
@@ -30,7 +30,7 @@ export const Explorer = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(getExplorerData({}));
+        dispatch(getExplorerInfo({}));
     }, []);
 
     return (

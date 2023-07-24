@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
+import { useAppDispatch } from '@app/providers/store/hooks';
+
+import { getExplorerCardInfo } from '@entities/explorer/thunks/getExplorerCardInfo';
+
 import { ArrowButton } from '@shared/ArrowButton';
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 import { ExplorerApplicationCard } from '@shared/ExplorerApplicationCard';
@@ -19,13 +23,16 @@ import './styles.scss';
 export const ExplorerCard = () => {
     const [block, element] = bem('explorer-card');
 
+    const dispatch = useAppDispatch();
+
     const {
         explorerId,
     } = useParams();
 
     useEffect(() => {
-        // Тут будет вызываться метод запроса
-        // getCuratorData(curatorId);
+        dispatch(getExplorerCardInfo({
+            explorerId: Number(explorerId),
+        }));
     }, [explorerId]);
 
     return (

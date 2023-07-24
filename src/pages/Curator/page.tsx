@@ -5,8 +5,9 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { curatorInfoSelector } from '@entities/curator/model/selectors';
-import { getKeeperData } from '@entities/curator/thunks/getKeeperData';
+import { keeperInfoSelector } from '@entities/curator/model/selectors';
+import { FinalAssessmentsInterface } from '@entities/curator/model/types/interfaces';
+import { getKeeperInfo } from '@entities/curator/thunks/getKeeperInfo';
 
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 import { GradeApplicationCard } from '@shared/GradeApplicationCard';
@@ -28,7 +29,7 @@ export const Curator = () => {
     const [block, element] = bem('curator');
 
     const dispatch = useAppDispatch();
-    const userInfo = useAppSelector(curatorInfoSelector);
+    const userInfo = useAppSelector(keeperInfoSelector);
 
     const {
         studyingExplorers,
@@ -38,7 +39,7 @@ export const Curator = () => {
     } = userInfo;
 
     useEffect(() => {
-        dispatch(getKeeperData({}));
+        dispatch(getKeeperInfo({}));
     }, []);
 
     return (
@@ -59,7 +60,7 @@ export const Curator = () => {
                                     Итоговая оценка
                                 </Typography>
                                 {
-                                    finalAssessments?.map((asset) => (
+                                    finalAssessments?.map((asset: FinalAssessmentsInterface) => (
                                         <GradeApplicationCard
                                             key={asset.explorerId}
                                             finalAssesment={asset}
