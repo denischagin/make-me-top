@@ -37,8 +37,8 @@ export const StarsList = (props: StarsListInterface) => {
             </Typography>
             <div className={element('stars', 'mb-4')}>
                 {
-                    stars.length ?
-                        stars.map((star) => (
+                    stars?.length ?
+                        stars?.map((star) => (
                             <Star
                                 color={starColor.primary500}
                                 key={star.courseId}

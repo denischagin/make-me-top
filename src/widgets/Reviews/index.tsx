@@ -42,7 +42,7 @@ export const Reviews = () => {
             </Typography>
             <div className={element('cards')}>
                 {
-                    feedback.map((item) => (
+                    feedback?.map((item) => (
                         <ReviewCard
                             key={item.courseId}
                             review={item}

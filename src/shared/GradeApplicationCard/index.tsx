@@ -7,11 +7,6 @@ import { Typography } from '@shared/Typography';
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 
-import {
-    URL_EXPLORER,
-    URL_EXPLORER_CARD,
-} from '@shared/constants/links';
-
 import { GradeApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -29,7 +24,7 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
         reviewRequest,
     } = props;
 
-    const explorerId = finalAssesment ? finalAssesment?.explorerId : reviewRequest?.explorerId;
+    const reviewOrAssesment = finalAssesment || reviewRequest;
 
     const [block, element] = bem('grade-application-card');
 
@@ -47,16 +42,13 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                                 className={element('name')}
                                 variant={typographyVariant.regular14}
                             >
-                                {
-                                    (finalAssesment && getUserFullName(finalAssesment)) ||
-                                    (reviewRequest && getUserFullName(reviewRequest))
-                                }
+                                {getUserFullName(reviewOrAssesment!)}
                             </Typography>
                             <Typography
                                 className={element('star-title')}
                                 variant={typographyVariant.regular14}
                             >
-                                {`Звезда: ${finalAssesment?.courseTitle || reviewRequest?.courseTitle}`}
+                                {`Звезда: ${reviewOrAssesment?.courseTitle}`}
                             </Typography>
                             {!finalAssesment &&
                                 <Typography
@@ -69,7 +61,7 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                         </div>
                     </div>
                     <div className={element('button')}>
-                        <RouterLink to={`${URL_EXPLORER}/${explorerId}`}>
+                        <RouterLink to={`${reviewOrAssesment?.explorerId}`}>
                             <Button
                                 title={'Оценить'}
                                 color={buttonColor.filled}
