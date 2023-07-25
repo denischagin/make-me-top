@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import {
     useAppDispatch,
@@ -11,8 +12,11 @@ import { getKeeperCardInfo } from '@entities/curator/thunks/getKeeperCardInfo';
 
 import { ArrowButton } from '@shared/ArrowButton';
 import { BackgroundProfile } from '@shared/BackgroundProfile';
+import { RouterLink } from '@shared/RouterLink';
 
 import { bem } from '@shared/utils/bem';
+
+import { URL_CURATOR } from '@shared/constants/links';
 
 import { CuratorCardUserInfo } from '@widgets/CuratorCardUserInfo';
 import { Header } from '@widgets/Header';
@@ -26,6 +30,7 @@ import './styles.scss';
 export const CuratorCard = () => {
     const [block, element] = bem('curator-card');
 
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(keeperCardInfoSelector);
 
@@ -50,7 +55,10 @@ export const CuratorCard = () => {
             <div className={element('container', 'container p-0')}>
                 <div className={element('profile')}>
                     <div className={element('back-arrow')}>
-                        <ArrowButton direction={arrowButtonDirection.left} />
+                        <ArrowButton
+                            onClick={() => navigate(-1)}
+                            direction={arrowButtonDirection.left}
+                        />
                     </div>
                     <CuratorCardUserInfo />
                 </div>

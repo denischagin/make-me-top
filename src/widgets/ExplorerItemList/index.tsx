@@ -1,6 +1,7 @@
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
 import { ExplorerItem } from '@shared/ExplorerItem';
+import { RouterLink } from '@shared/RouterLink';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
@@ -38,11 +39,15 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                     {`Всего учеников: ${totalExplorers}`}
                 </Typography>
                 {explorers?.slice(0, limitItems).map((user) => (
-                    <ExplorerItem
+                    <RouterLink
+                        to={`${user.explorerId}`}
                         key={user.courseId}
-                        name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
-                        avatar=''
-                    />
+                    >
+                        <ExplorerItem
+                            name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
+                            avatar=''
+                        />
+                    </RouterLink>
                 ))}
                 {
                     (totalExplorers > 9) &&

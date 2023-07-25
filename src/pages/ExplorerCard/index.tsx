@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import {
     useAppDispatch,
@@ -27,6 +28,7 @@ import './styles.scss';
 export const ExplorerCard = () => {
     const [block, element] = bem('explorer-card');
 
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(explorerCardInfoSelector);
 
@@ -51,7 +53,10 @@ export const ExplorerCard = () => {
             <div className={element('container', 'container p-0')}>
                 <div className={element('profile')}>
                     <div className={element('back-arrow')}>
-                        <ArrowButton direction={arrowButtonDirection.left} />
+                        <ArrowButton
+                            onClick={() => navigate(-1)}
+                            direction={arrowButtonDirection.left}
+                        />
                     </div>
                     <ExplorerCardUserInfo />
                 </div>
