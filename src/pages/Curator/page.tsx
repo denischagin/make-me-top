@@ -52,22 +52,25 @@ export const Curator = () => {
                         <div className={element('profile', 'col-xxl-9')}>
                             <CuratorUserInfo />
                             <EducationApplications applications={studyRequests} />
-                            <div className={element('final-grade-cards')}>
-                                <Typography
-                                    className={element('final-grade-heading', 'mb-4 mt-1')}
-                                    variant={typographyVariant.h2}
-                                >
-                                    Итоговая оценка
-                                </Typography>
-                                {
-                                    finalAssessments?.map((asset: FinalAssessmentsInterface) => (
-                                        <GradeApplicationCard
-                                            key={asset.explorerId}
-                                            finalAssesment={asset}
-                                        />
-                                    ))
-                                }
-                            </div>
+                            {
+                                finalAssessments?.length > 0 &&
+                                <div className={element('final-grade-cards')}>
+                                    <Typography
+                                        className={element('final-grade-heading', 'mb-4 mt-1')}
+                                        variant={typographyVariant.h2}
+                                    >
+                                        Итоговая оценка
+                                    </Typography>
+                                    {
+                                        finalAssessments?.map((asset: FinalAssessmentsInterface) => (
+                                            <GradeApplicationCard
+                                                key={asset.explorerId}
+                                                finalAssesment={asset}
+                                            />
+                                        ))
+                                    }
+                                </div>
+                            }
                             <GradeApplications reviewRequest={reviewRequests} />
                         </div>
                         <div className={element('explorers-list', 'col-xxl-3')}>

@@ -33,29 +33,34 @@ export const Reviews = () => {
     } = reviews;
 
     return (
-        <div className={block()}>
-            <Typography
-                className={element('heading', 'mb-4 mt-5')}
-                variant={typographyVariant.h2}
-            >
-                Отзывы
-            </Typography>
-            <div className={element('cards')}>
-                {
-                    feedback?.map((item) => (
-                        <ReviewCard
-                            key={item.courseId}
-                            review={item}
+        <>
+            {
+                feedback?.length > 0 &&
+                <div className={block()}>
+                    <Typography
+                        className={element('heading', 'mb-4 mt-5')}
+                        variant={typographyVariant.h2}
+                    >
+                        Отзывы
+                    </Typography>
+                    <div className={element('cards')}>
+                        {
+                            feedback?.map((item) => (
+                                <ReviewCard
+                                    key={item.courseId}
+                                    review={item}
+                                />
+                            ))
+                        }
+                    </div>
+                    <div className={element('button', 'mt-5')}>
+                        <Button
+                            title="Показать ещё"
+                            size={buttonSize.large}
                         />
-                    ))
-                }
-            </div>
-            <div className={element('button', 'mt-5')}>
-                <Button
-                    title="Показать ещё"
-                    size={buttonSize.large}
-                />
-            </div>
-        </div>
+                    </div>
+                </div>
+            }
+        </>
     );
 };

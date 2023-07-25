@@ -28,17 +28,16 @@ export const StarsList = (props: StarsListInterface) => {
     const [block, element] = bem('stars-list');
 
     return (
-        <div className={block()}>
-            <Typography
-                className={element('heading', 'mt-5 mb-4')}
-                variant={typographyVariant.h2}
-            >
-                {heading}
-            </Typography>
-            <div className={element('stars', 'mb-4')}>
-                {
-                    stars?.length ?
-                        stars?.map((star) => (
+        <>
+            {stars?.length > 0 &&
+                <div className={block()}>
+                    <Typography
+                        className={element('heading', 'mt-5 mb-4')}
+                        variant={typographyVariant.h2}
+                    >
+                        {heading}
+                    </Typography><div className={element('stars', 'mb-4')}>
+                        {stars?.map((star) => (
                             <Star
                                 color={starColor.primary500}
                                 key={star.courseId}
@@ -55,15 +54,10 @@ export const StarsList = (props: StarsListInterface) => {
                                     />
                                 </div>
                             </Star>
-                        )) :
-                        <Typography
-                            className={element('heading')}
-                            variant={typographyVariant.regular16}
-                        >
-                            Нет звёзд
-                        </Typography>
-                }
-            </div>
-        </div>
+                        ))}
+                    </div>
+                </div>
+            }
+        </>
     );
 };
