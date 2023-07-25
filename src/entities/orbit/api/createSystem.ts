@@ -31,14 +31,10 @@ export const createSystem = async (params: CreateSystemParams, payload: CreateSy
             data,
         } = await instance.post<ErrorInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/${galaxyId}/system`, payload);
 
-        if (data.message) {
-            toast.error(data.message);
-        }
-
         return data;
     } catch (err) {
         const error: AxiosError<ErrorInterface> = err as AxiosError<ErrorInterface>;
 
-        throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+        throw toast.error(error.response?.data.errorMessage || DEFAULT_ERROR_MESSAGE);
     }
 };

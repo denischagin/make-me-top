@@ -69,8 +69,8 @@ export interface ReviewModalInterface {
 
 export interface ErrorInterface {
     timestamp: string
-    code: string
-    message: string
+    errorCode: string
+    errorMessage: string
 }
 
 export enum SystemProgressTypes {

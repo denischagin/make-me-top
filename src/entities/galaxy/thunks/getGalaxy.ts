@@ -20,7 +20,7 @@ interface GetGalaxyInterface {
     galaxyId: number
 }
 
-export interface GalaxyResponseInterface extends GalaxyState, ErrorInterface {}
+export interface GalaxyResponseInterface extends GalaxyState, ErrorInterface { }
 
 export const getGalaxy = createAsyncThunk<GalaxyResponseInterface, GetGalaxyInterface, { rejectValue: ErrorInterface }>(
     FETCH_GALAXY,
@@ -36,18 +36,20 @@ export const getGalaxy = createAsyncThunk<GalaxyResponseInterface, GetGalaxyInte
                 data,
             } = await instance.get<GalaxyResponseInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/galaxy/${galaxyId}`);
 
-            if (data.message) {
-                toast.error(data.message);
-
-                return rejectWithValue(data);
-            }
-
             return data;
         }
         catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
 
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+            if (error.response) {
+                toast.error(error.response.data.errorMessage);
+
+                return rejectWithValue(error.response.data);
+            }
+
+            toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+
+            throw error;
         }
     },
 );

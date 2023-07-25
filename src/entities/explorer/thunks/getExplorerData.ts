@@ -23,23 +23,24 @@ export const getExplorerData = createAsyncThunk<ExplorerInfoResponseInterface, a
         rejectWithValue,
     }) => {
         try {
-
             const {
                 data,
             } = await instance.get<ExplorerInfoResponseInterface>(`${URL_MMT_STAND_USER}info/`);
-
-            if (data.message) {
-                toast.error(data.message);
-
-                return rejectWithValue(data);
-            }
 
             return data;
         }
         catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
 
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+            if (error.response) {
+                toast.error(error.response.data.errorMessage);
+
+                return rejectWithValue(error.response.data);
+            }
+
+            toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+
+            throw error;
         }
     },
 );

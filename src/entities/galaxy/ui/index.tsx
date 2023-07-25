@@ -51,23 +51,23 @@ import { SystemProgressTypes } from '@shared/types/common';
 import './style.scss';
 
 interface IGalaxyProps {
-  galaxyPage: HTMLDivElement | null;
-  userProgress: UserProgress;
-  orbitList: Array<OrbitType>;
-  svgContainerClass: string;
-  width: number;
-  height: number;
-  systemWidth?: number;
-  systemHeight?: number;
+    galaxyPage: HTMLDivElement | null;
+    userProgress: UserProgress;
+    orbitList: Array<OrbitType>;
+    svgContainerClass: string;
+    width: number;
+    height: number;
+    systemWidth?: number;
+    systemHeight?: number;
 }
 
 interface IOrbitSettings {
-  width: number;
-  systemWidth: number;
-  backgroundWidth: number;
-  height: number;
-  systemHeight: number;
-  backgroundHeight: number;
+    width: number;
+    systemWidth: number;
+    backgroundWidth: number;
+    height: number;
+    systemHeight: number;
+    backgroundHeight: number;
 }
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
@@ -235,12 +235,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             }}
         >
             {isModalOpen &&
-            <CircleModal
-                header={lastChosenStar.systemName}
-                onClose={() => dispatch(showModal())}
-            >
-                {<div></div>}
-            </CircleModal>}
+                <CircleModal
+                    header={lastChosenStar.systemName}
+                    onClose={() => dispatch(showModal())}
+                >
+                    {<div></div>}
+                </CircleModal>}
             <div
                 className={element('background')}
                 style={{

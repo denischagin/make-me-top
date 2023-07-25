@@ -16,9 +16,9 @@ import { URL_MMT_STAND_USER } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
-export interface UserResponseInterface extends UserProgress, ErrorInterface {}
+export interface UserResponseInterface extends UserProgress, ErrorInterface { }
 
-export const getUser = createAsyncThunk(
+export const getUser = createAsyncThunk<UserResponseInterface, PostUser, { rejectValue: ErrorInterface }>(
     FETCH_USER,
     async (payload: PostUser, {
         rejectWithValue,
@@ -32,15 +32,13 @@ export const getUser = createAsyncThunk(
                 data,
             } = await instance.get<UserResponseInterface>(`${URL_MMT_STAND_USER}user`);
 
-            if (data.message) {
-                toast.error(data.message);
-
-                return rejectWithValue(data);
-            }
-
             return data;
         } catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
+
+            if (error.response) {
+                return rejectWithValue(error.response.data);
+            }
 
             throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
         }
