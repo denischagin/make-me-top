@@ -30,47 +30,52 @@ export const ExplorerApplicationCard = () => {
     const [block, element] = bem('explorer-application-card');
 
     return (
-        <div className={block()}>
-            <Typography
-                className={element('heading', 'mb-4')}
-                variant={typographyVariant.h2}
-            >
-                Текущая звезда:
-            </Typography>
-            <Card
-                size={cardSize.large}
-                glow
-            >
-                <div className={element('content')}>
-                    <div className={element('info')}>
-                        <Typography
-                            className={element('planet')}
-                            variant={typographyVariant.h2}
-                        >
-                            {`Планета: ${currentSystem?.courseId}. ${currentSystem?.courseTitle}`}
-                        </Typography>
-                        <Typography
-                            className={element('star')}
-                            variant={typographyVariant.regular14}
-                        >
-                            {`Звезда: ${currentSystem?.courseThemeTitle}`}
-                        </Typography>
-                    </div>
-                    <div className={element('buttons')}>
-                        <div className={element('hidden-button')}>
-                            <Button
-                                title={'Отклонить'}
-                                size={buttonSize.large}
-                            />
+        <>
+            {
+                currentSystem &&
+                <div className={block()}>
+                    <Typography
+                        className={element('heading', 'mb-4')}
+                        variant={typographyVariant.h2}
+                    >
+                        Текущая звезда:
+                    </Typography>
+                    <Card
+                        size={cardSize.large}
+                        glow
+                    >
+                        <div className={element('content')}>
+                            <div className={element('info')}>
+                                <Typography
+                                    className={element('planet')}
+                                    variant={typographyVariant.h2}
+                                >
+                                    {`Планета: ${currentSystem?.courseId}. ${currentSystem?.courseTitle}`}
+                                </Typography>
+                                <Typography
+                                    className={element('star')}
+                                    variant={typographyVariant.regular14}
+                                >
+                                    {`Звезда: ${currentSystem?.courseThemeTitle}`}
+                                </Typography>
+                            </div>
+                            <div className={element('buttons')}>
+                                <div className={element('hidden-button')}>
+                                    <Button
+                                        title={'Отклонить'}
+                                        size={buttonSize.large}
+                                    />
+                                </div>
+                                <Button
+                                    title={'Посмотреть'}
+                                    color={buttonColor.filled}
+                                    size={buttonSize.large}
+                                />
+                            </div>
                         </div>
-                        <Button
-                            title={'Посмотреть'}
-                            color={buttonColor.filled}
-                            size={buttonSize.large}
-                        />
-                    </div>
+                    </Card>
                 </div>
-            </Card>
-        </div>
+            }
+        </>
     );
 };

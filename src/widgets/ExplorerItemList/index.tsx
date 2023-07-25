@@ -6,6 +6,8 @@ import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
+import { URL_EXPLORER } from '@shared/constants/links';
+
 import { ExplorerItemListInterface } from './interfaces';
 import { buttonSize } from '@shared/Button/interfaces';
 import { cardSize } from '@shared/Card/interfaces';
@@ -38,17 +40,19 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                 >
                     {`Всего учеников: ${totalExplorers}`}
                 </Typography>
-                {explorers?.slice(0, limitItems).map((user) => (
-                    <RouterLink
-                        to={`${user.explorerId}`}
-                        key={user.courseId}
-                    >
-                        <ExplorerItem
-                            name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
-                            avatar=''
-                        />
-                    </RouterLink>
-                ))}
+                {
+                    explorers?.slice(0, limitItems).map((user) => (
+                        <RouterLink
+                            to={`${URL_EXPLORER}/${user.personId}`}
+                            key={user.courseId}
+                        >
+                            <ExplorerItem
+                                name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
+                                avatar=''
+                            />
+                        </RouterLink>
+                    ))
+                }
                 {
                     (totalExplorers > 9) &&
                     <div className={element('button', 'mt-3')}>

@@ -7,6 +7,8 @@ import { Typography } from '@shared/Typography';
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 
+import { URL_EXPLORER } from '@shared/constants/links';
+
 import { GradeApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -61,7 +63,7 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                         </div>
                     </div>
                     <div className={element('button')}>
-                        <RouterLink to={`${reviewOrAssesment?.explorerId}`}>
+                        <RouterLink to={`${URL_EXPLORER}/${reviewOrAssesment?.personId}`}>
                             <Button
                                 title={'Оценить'}
                                 color={buttonColor.filled}
