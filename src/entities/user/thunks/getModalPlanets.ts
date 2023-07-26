@@ -48,9 +48,7 @@ export const getModalPlanets = createAsyncThunk<PlanetsResponseInterface, GetMod
                 return rejectWithValue(error.response.data);
             }
 
-            toast.error(error.message || DEFAULT_ERROR_MESSAGE);
-
-            throw error;
+            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
         }
     },
 );
