@@ -16,7 +16,7 @@ export interface ExplorerInfoInterface {
     totalSystems: number;
     currentSystem: CurrentSystem;
     investigatedSystems: Array<InvestigatedSystemsInterface>;
-    ratingTable: Array<null>;
+    ratingTable: Array<PersonRating>;
 }
 
 export interface Person {
@@ -25,6 +25,14 @@ export interface Person {
     lastName: string;
     patronymic: string;
     registrationDate: string;
+}
+
+export interface PersonRating {
+    firstName: string
+    lastName: string
+    patronymic: string
+    personId: number
+    rating: number
 }
 
 export interface CurrentSystem {

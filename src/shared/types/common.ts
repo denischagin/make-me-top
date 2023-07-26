@@ -1,6 +1,9 @@
 import { ReactNode } from 'react';
 
-import { ExplorerInfoInterface } from '@entities/explorer/model/types/interfaces';
+import {
+    ExplorerInfoInterface,
+    PersonRating,
+} from '@entities/explorer/model/types/interfaces';
 
 import { Feedback } from '@entities/curator/model/types/interfaces';
 
@@ -10,7 +13,8 @@ export interface TabInterface {
 }
 
 export interface UserInfoInterface {
-    user: ExplorerInfoInterface;
+    fullname: string
+    rating?: number | null;
 }
 
 export interface UserInterface {
