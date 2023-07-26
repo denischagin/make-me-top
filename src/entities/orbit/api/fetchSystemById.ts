@@ -11,10 +11,12 @@ import { URL_MMT_STAND_GALAXY } from '@shared/constants/urls';
 import { ErrorInterface } from '@shared/types/common';
 
 interface FetchSystemById {
-  id: number;
+    id: number;
 }
 
-export interface SystemResponseInterface extends SystemType, ErrorInterface {}
+export interface SystemResponseInterface extends SystemType, ErrorInterface {
+
+}
 
 export const fetchSystemById = async (payload: FetchSystemById) => {
     try {
@@ -26,14 +28,14 @@ export const fetchSystemById = async (payload: FetchSystemById) => {
             data,
         } = await instance.get<SystemResponseInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/system/${id}`);
 
-        if (data.message) {
-            toast.error(data.message);
-            // использование без createAsyncThunk не позволяет вернуть rejectWithValue(data)
-        }
-
         return data;
-    } catch (err) {
+    }
+    catch (err) {
         const error: AxiosError<ErrorInterface> = err as AxiosError<ErrorInterface, any>;
+
+        if (error.response) {
+            toast.error(error.response.data.errorMessage);
+        }
 
         throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
     }
