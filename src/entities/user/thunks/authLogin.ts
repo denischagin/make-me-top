@@ -32,15 +32,7 @@ export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface, { 
         catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
 
-            if (error.response) {
-                toast.error(error.response.data.errorMessage);
-
-                return rejectWithValue(error.response.data);
-            }
-
-            toast.error(error.message || DEFAULT_ERROR_MESSAGE);
-
-            throw error;
+            throw toast.error(error.response?.data.errorMessage || DEFAULT_ERROR_MESSAGE);
         }
     },
 );
