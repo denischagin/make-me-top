@@ -27,7 +27,8 @@ export const fetchSystemById = async (payload: FetchSystemById) => {
         } = await instance.get<SystemResponseInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/system/${id}`);
 
         return data;
-    } catch (err) {
+    }
+    catch (err) {
         const error: AxiosError<ErrorInterface> = err as AxiosError<ErrorInterface, any>;
 
         throw toast.error(error.response?.data.errorMessage || DEFAULT_ERROR_MESSAGE);

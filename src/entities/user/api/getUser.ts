@@ -33,7 +33,8 @@ export const getUser = createAsyncThunk<UserResponseInterface, PostUser, { rejec
             } = await instance.get<UserResponseInterface>(`${URL_MMT_STAND_USER}user`);
 
             return data;
-        } catch (err) {
+        }
+        catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
 
             if (error.response) {

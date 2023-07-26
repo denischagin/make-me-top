@@ -33,7 +33,8 @@ export const updateSystem = async (params: UpdateSystemParams, payload: UpdateSy
         } = await instance.put<ErrorInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/${galaxyId}/system/${systemId}`, payload);
 
         return data;
-    } catch (err) {
+    }
+    catch (err) {
         const error: AxiosError<ErrorInterface> = err as AxiosError<ErrorInterface>;
 
         throw toast.error(error.response?.data.errorMessage || DEFAULT_ERROR_MESSAGE);
