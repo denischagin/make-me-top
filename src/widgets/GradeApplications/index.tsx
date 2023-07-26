@@ -32,13 +32,13 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
                             finalAssesment
                                 ? finalAssesment?.map((application) => (
                                     <GradeApplicationCard
-                                        key={application.explorerId}
+                                        key={application.personId}
                                         finalAssesment={application}
                                     />
                                 ))
                                 : reviewRequest?.map((application) => (
                                     <GradeApplicationCard
-                                        key={application.explorerId}
+                                        key={application.personId}
                                         reviewRequest={application}
                                     />
                                 ))

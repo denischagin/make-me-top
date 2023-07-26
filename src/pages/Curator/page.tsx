@@ -64,7 +64,7 @@ export const Curator = () => {
                                     {
                                         finalAssessments?.map((asset: FinalAssessmentsInterface) => (
                                             <GradeApplicationCard
-                                                key={asset.explorerId}
+                                                key={asset.personId}
                                                 finalAssesment={asset}
                                             />
                                         ))

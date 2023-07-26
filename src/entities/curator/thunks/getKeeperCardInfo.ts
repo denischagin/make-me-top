@@ -35,16 +35,16 @@ export const getKeeperCardInfo = createAsyncThunk<KeeperCardInfoResponseInterfac
                 data,
             } = await instance.get<KeeperCardInfoResponseInterface>(`${URL_MMT_STAND_USER}info/keeper/${keeperId}`);
 
-            if (data.message) {
-                toast.error(data.message);
-
-                return rejectWithValue(data);
-            }
-
             return data;
         }
         catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
+
+            if (error.response) {
+                toast.error(error.response.data.errorMessage);
+
+                return rejectWithValue(error.response.data);
+            }
 
             throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
         }

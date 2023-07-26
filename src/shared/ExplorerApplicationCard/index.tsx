@@ -35,7 +35,7 @@ export const ExplorerApplicationCard = () => {
                 currentSystem &&
                 <div className={block()}>
                     <Typography
-                        className={element('heading', 'mb-4')}
+                        className={element('heading', 'mb-4 mt-5')}
                         variant={typographyVariant.h2}
                     >
                         Текущая звезда:

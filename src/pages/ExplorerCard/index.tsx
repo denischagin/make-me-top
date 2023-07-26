@@ -13,6 +13,8 @@ import { getExplorerCardInfo } from '@entities/explorer/thunks/getExplorerCardIn
 import { ArrowButton } from '@shared/ArrowButton';
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 import { ExplorerApplicationCard } from '@shared/ExplorerApplicationCard';
+import { ReviewRequestCard } from '@shared/ReviewRequestCard';
+import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
@@ -22,6 +24,7 @@ import { Reviews } from '@widgets/Reviews';
 import { StarsList } from '@widgets/StarsList';
 
 import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
+import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
@@ -34,6 +37,7 @@ export const ExplorerCard = () => {
 
     const {
         investigatedSystems,
+        reviewRequests,
     } = userInfo;
 
     const {
@@ -61,6 +65,14 @@ export const ExplorerCard = () => {
                     <ExplorerCardUserInfo />
                 </div>
                 <div className={element('content', 'mt-5')}>
+                    {
+                        reviewRequests?.map((request) => (
+                            <ReviewRequestCard
+                                key={request.personId}
+                                reviewRequest={request}
+                            />
+                        ))
+                    }
                     <ExplorerApplicationCard />
                     <StarsList
                         heading='Освоенные звёзды'

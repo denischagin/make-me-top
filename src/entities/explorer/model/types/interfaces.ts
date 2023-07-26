@@ -1,3 +1,5 @@
+import { ReviewRequestsInterface } from '@entities/curator/model/types/interfaces';
+
 export interface ExplorerState {
     isExplorer: boolean;
     explorerApplicationCard: ExplorerApplicationCardInterface
@@ -67,6 +69,7 @@ export interface ExplorerCardInfoInterface {
     currentSystem: CurrentSystem
     investigatedSystems: Array<InvestigatedSystemsInterface>
     feedback: Array<Feedback>
+    reviewRequests?: Array<ReviewRequestsInterface>
 }
 
 export interface Feedback {
