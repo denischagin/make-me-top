@@ -20,7 +20,9 @@ interface GetGalaxyInterface {
     galaxyId: number
 }
 
-export interface GalaxyResponseInterface extends GalaxyState, ErrorInterface { }
+export interface GalaxyResponseInterface extends GalaxyState, ErrorInterface {
+
+}
 
 export const getGalaxy = createAsyncThunk<GalaxyResponseInterface, GetGalaxyInterface, { rejectValue: ErrorInterface }>(
     FETCH_GALAXY,

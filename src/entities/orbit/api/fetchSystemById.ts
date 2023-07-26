@@ -14,7 +14,9 @@ interface FetchSystemById {
     id: number;
 }
 
-export interface SystemResponseInterface extends SystemType, ErrorInterface { }
+export interface SystemResponseInterface extends SystemType, ErrorInterface {
+
+}
 
 export const fetchSystemById = async (payload: FetchSystemById) => {
     try {
@@ -31,6 +33,10 @@ export const fetchSystemById = async (payload: FetchSystemById) => {
     catch (err) {
         const error: AxiosError<ErrorInterface> = err as AxiosError<ErrorInterface, any>;
 
-        throw toast.error(error.response?.data.errorMessage || DEFAULT_ERROR_MESSAGE);
+        if (error.response) {
+            toast.error(error.response.data.errorMessage);
+        }
+
+        throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
     }
 };
