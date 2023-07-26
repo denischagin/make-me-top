@@ -24,12 +24,6 @@ export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface, { 
                 data,
             } = await axios.post<ErrorInterface>(`${URL_MMT_STAND_AUTHORIZATION}auth/login`, payload);
 
-            if (data.message) {
-                toast.error(data.message);
-
-                return rejectWithValue(data);
-            }
-
             localStorage.setItem(storageKeys.tokenAuth, JSON.stringify(data));
             callback();
 
@@ -37,6 +31,10 @@ export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface, { 
         }
         catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
+
+            if (error.response) {
+                toast.error(error.response.data.errorMessage);
+            }
 
             throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
         }

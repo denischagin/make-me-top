@@ -8,8 +8,8 @@ export const DEFAULT_CHOSEN_STAR = {
 
 export const DEFAULT_SYSTEM_RESPONSE_MESSAGE = {
     timestamp: '',
-    code: '',
-    message: '',
+    errorCode: '',
+    errorMessage: '',
 };
 
 export const CONNECTION_LINE_CLASS = 'galaxy-page__svg-container--connection-line';
