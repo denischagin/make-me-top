@@ -17,7 +17,7 @@ const initialState: KeeperState = {
 };
 
 export const keeperSlice = createSlice({
-    name: 'curator',
+    name: 'keeper',
     initialState,
     reducers: {
         selectRoleAsKeeper: (state) => {

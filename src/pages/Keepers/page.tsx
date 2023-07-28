@@ -6,8 +6,8 @@ import { Header } from '@widgets/Header';
 
 import './styles.scss';
 
-export const Curators = () => {
-    const [block, element] = bem('curators');
+export const Keepers = () => {
+    const [block, element] = bem('keepers');
 
     return (
         <div className={block()}>

@@ -5,7 +5,7 @@ import {
     PersonRating,
 } from '@entities/explorer/model/types/interfaces';
 
-import { Feedback } from '@entities/curator/model/types/interfaces';
+import { Feedback } from '@entities/keeper/model/types/interfaces';
 
 export interface TabInterface {
     name: string;

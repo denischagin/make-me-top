@@ -7,19 +7,16 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { keeperCardInfoSelector } from '@entities/curator/model/selectors';
-import { getKeeperCardInfo } from '@entities/curator/thunks/getKeeperCardInfo';
+import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
+import { getKeeperCardInfo } from '@entities/keeper/thunks/getKeeperCardInfo';
 
 import { ArrowButton } from '@shared/ArrowButton';
 import { BackgroundProfile } from '@shared/BackgroundProfile';
-import { RouterLink } from '@shared/RouterLink';
 
 import { bem } from '@shared/utils/bem';
 
-import { URL_CURATOR } from '@shared/constants/links';
-
-import { CuratorCardUserInfo } from '@widgets/CuratorCardUserInfo';
 import { Header } from '@widgets/Header';
+import { KeeperCardUserInfo } from '@widgets/KeeperCardUserInfo';
 import { Reviews } from '@widgets/Reviews';
 import { StarsList } from '@widgets/StarsList';
 
@@ -27,8 +24,8 @@ import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
 
 import './styles.scss';
 
-export const CuratorCard = () => {
-    const [block, element] = bem('curator-card');
+export const KeeperCard = () => {
+    const [block, element] = bem('keeper-card');
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -60,7 +57,7 @@ export const CuratorCard = () => {
                             direction={arrowButtonDirection.left}
                         />
                     </div>
-                    <CuratorCardUserInfo />
+                    <KeeperCardUserInfo />
                 </div>
                 <StarsList
                     heading='Звезды исследователя'

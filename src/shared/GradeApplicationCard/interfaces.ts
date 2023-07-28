@@ -1,7 +1,7 @@
 import {
     FinalAssessmentsInterface,
     ReviewRequestsInterface,
-} from '@entities/curator/model/types/interfaces';
+} from '@entities/keeper/model/types/interfaces';
 
 export interface GradeApplicationCardInterface {
     finalAssesment?: FinalAssessmentsInterface;

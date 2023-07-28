@@ -121,7 +121,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}
-                    className={element('current-curator', 'mb-4')}
+                    className={element('current-keeper', 'mb-4')}
                 >
                     {`Преподаватель: ${getUserFullName(keeper)}`}
                 </Typography>
