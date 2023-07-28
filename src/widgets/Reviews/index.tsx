@@ -7,7 +7,7 @@ import {
     explorerIsExplorerSelector,
 } from '@entities/explorer/model/selectors';
 
-import { keeperCardInfoSelector } from '@entities/curator/model/selectors';
+import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 
 import { Button } from '@shared/Button';
 import { ReviewCard } from '@shared/ReviewCard';

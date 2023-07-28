@@ -18,17 +18,17 @@ import { Typography } from '@shared/Typography';
 import { bem } from '@shared/utils/bem';
 
 import {
-    URL_CURATOR,
     URL_DEFAULT,
     URL_EXPLORER,
+    URL_KEEPER,
 } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
 
 import { typographyVariant } from '@shared/Typography/interfaces';
 
 import {
-    CURATOR_ROLE_STRING,
     EXPLORER_ROLE_STRING,
+    KEEPER_ROLE_STRING,
 } from './model';
 
 import './styles.scss';
@@ -43,7 +43,7 @@ export const Login = () => {
 
     const isExplorer = useAppSelector(explorerIsExplorerSelector);
 
-    const pathByUserRole = isExplorer ? URL_EXPLORER : URL_CURATOR;
+    const pathByUserRole = isExplorer ? URL_EXPLORER : URL_KEEPER;
 
     function callback() {
         if (!localStorage.getItem(storageKeys.tokenAuth)) {
@@ -53,7 +53,7 @@ export const Login = () => {
         return navigate(pathByUserRole);
     }
 
-    const selectedRole = isExplorer ? EXPLORER_ROLE_STRING : CURATOR_ROLE_STRING;
+    const selectedRole = isExplorer ? EXPLORER_ROLE_STRING : KEEPER_ROLE_STRING;
 
     const payload = {
         login: inputLogin,

@@ -2,7 +2,7 @@ import { useAppDispatch } from '@app/providers/store/hooks';
 
 import { selectRoleAsExplorer } from '@entities/explorer/model/slice';
 
-import { selectRoleAsKeeper } from '@entities/curator/model/slice';
+import { selectRoleAsKeeper } from '@entities/keeper/model/slice';
 
 import { PlanetButton } from '@shared/PlanetButton';
 

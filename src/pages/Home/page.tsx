@@ -2,7 +2,7 @@ import { useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
-import { keeperIsKeeperSelector } from '@entities/curator/model/selectors';
+import { keeperIsKeeperSelector } from '@entities/keeper/model/selectors';
 
 import { BackgroundHome } from '@shared/BackgroundHome';
 

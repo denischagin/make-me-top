@@ -1,4 +1,4 @@
-import { ReviewRequestsInterface } from '@entities/curator/model/types/interfaces';
+import { ReviewRequestsInterface } from '@entities/keeper/model/types/interfaces';
 
 export interface ExplorerState {
     isExplorer: boolean;

@@ -1,6 +1,6 @@
 import { useAppSelector } from '@app/providers/store/hooks';
 
-import { keeperInfoSelector } from '@entities/curator/model/selectors';
+import { keeperInfoSelector } from '@entities/keeper/model/selectors';
 
 import { Avatar } from '@shared/Avatar';
 import { InfoCard } from '@shared/InfoCard';
@@ -20,8 +20,8 @@ import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
-export const CuratorUserInfo = () => {
-    const [block, element] = bem('curator-user-info');
+export const KeeperCardUserInfo = () => {
+    const [block, element] = bem('keeper-card-user-info');
 
     const userInfo = useAppSelector(keeperInfoSelector);
 
@@ -39,12 +39,11 @@ export const CuratorUserInfo = () => {
                 orbit
             />
             <div className={element('description')}>
-                <Typography
-                    className={element('description-name', 'mb-4')}
-                    variant={typographyVariant.h1}
-                >
-                    {getUserFullName(person)}
-                </Typography>
+                <div className={element('description-name', 'mb-4')}>
+                    <Typography variant={typographyVariant.h1}>
+                        {getUserFullName(person)}
+                    </Typography>
+                </div>
                 <div className={element('cards')}>
                     <InfoCard
                         title="Рейтинг"
@@ -58,7 +57,7 @@ export const CuratorUserInfo = () => {
                         }
                     />
                     <InfoCard
-                        title="Кол-во планет"
+                        title="Кол-во звёзд"
                         value={totalSystems}
                     />
                     <InfoCard
