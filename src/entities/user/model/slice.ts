@@ -4,8 +4,8 @@ import { getModalPlanets } from '../thunks/getModalPlanets';
 
 import { UserState } from './types/index';
 import {
-    CURATORS_LIST,
     EXPLORERS_LIST,
+    KEEPERS_LIST,
     USER_INFO,
 } from './mocks';
 
@@ -14,7 +14,7 @@ const initialState: UserState = {
     isModalOpen: false,
     planetList: [],
     explorersList: EXPLORERS_LIST,
-    curatorsList: CURATORS_LIST,
+    keepersList: KEEPERS_LIST,
     userInfo: USER_INFO,
     userData: {
         openSystemList: [],

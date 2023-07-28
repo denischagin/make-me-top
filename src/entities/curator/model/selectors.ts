@@ -4,8 +4,6 @@ import { RootState } from '@app/providers/store';
 
 const userState = (state: RootState) => state.curator;
 
-export const curatorIsCuratorSelector = createSelector(userState, (userState) => userState.isCurator);
-
-export const curatorInfoSelector = createSelector(userState, (userState) => userState.curatorInfo);
-
-export const curatorReviewsSelector = createSelector(userState, (userState) => userState.reviews);
+export const keeperIsKeeperSelector = createSelector(userState, (userState) => userState.isKeeper);
+export const keeperInfoSelector = createSelector(userState, (userState) => userState.keeperInfo);
+export const keeperCardInfoSelector = createSelector(userState, (userState) => userState.keeperCardInfo);

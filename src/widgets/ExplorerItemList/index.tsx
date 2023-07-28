@@ -1,9 +1,12 @@
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
 import { ExplorerItem } from '@shared/ExplorerItem';
+import { RouterLink } from '@shared/RouterLink';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
+
+import { URL_EXPLORER } from '@shared/constants/links';
 
 import { ExplorerItemListInterface } from './interfaces';
 import { buttonSize } from '@shared/Button/interfaces';
@@ -37,15 +40,21 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                 >
                     {`Всего учеников: ${totalExplorers}`}
                 </Typography>
-                {explorers?.slice(0, limitItems).map((user) => (
-                    <ExplorerItem
-                        key={user.courseId}
-                        name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
-                        avatar=''
-                    />
-                ))}
                 {
-                    (totalExplorers > 9) &&
+                    explorers?.slice(0, limitItems).map((user) => (
+                        <RouterLink
+                            to={`${URL_EXPLORER}/${user.personId}`}
+                            key={user.courseId}
+                        >
+                            <ExplorerItem
+                                name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
+                                avatar=''
+                            />
+                        </RouterLink>
+                    ))
+                }
+                {
+                    (totalExplorers > limitItems) &&
                     <div className={element('button', 'mt-3')}>
                         <Button
                             title={'Все ученики'}

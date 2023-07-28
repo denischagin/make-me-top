@@ -1,6 +1,11 @@
 import { ReactNode } from 'react';
 
-import { ExplorerInfoInterface } from '@entities/explorer/model/types/interfaces';
+import {
+    ExplorerInfoInterface,
+    PersonRating,
+} from '@entities/explorer/model/types/interfaces';
+
+import { Feedback } from '@entities/curator/model/types/interfaces';
 
 export interface TabInterface {
     name: string;
@@ -8,7 +13,8 @@ export interface TabInterface {
 }
 
 export interface UserInfoInterface {
-    user: ExplorerInfoInterface;
+    fullname: string
+    rating?: number | null;
 }
 
 export interface UserInterface {
@@ -54,12 +60,15 @@ export interface ReviewCardInterface {
 }
 
 export interface ReviewInterface {
-    planet: string;
-    rating: number;
-    name: string;
-    avatar: string;
-    comment: string;
-    id?: number;
+    personId: number
+    firstName: string
+    lastName: string
+    patronymic: string
+    explorerId?: number
+    courseId: number
+    courseTitle: string
+    rating: number | null
+    comment: string
 }
 
 export interface ReviewModalInterface {

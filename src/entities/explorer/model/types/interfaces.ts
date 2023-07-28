@@ -1,7 +1,10 @@
+import { ReviewRequestsInterface } from '@entities/curator/model/types/interfaces';
+
 export interface ExplorerState {
     isExplorer: boolean;
     explorerApplicationCard: ExplorerApplicationCardInterface
     explorerInfo: ExplorerInfoInterface
+    explorerCardInfo: ExplorerCardInfoInterface
 }
 
 export interface ExplorerApplicationCardInterface {
@@ -15,7 +18,7 @@ export interface ExplorerInfoInterface {
     totalSystems: number;
     currentSystem: CurrentSystem;
     investigatedSystems: Array<InvestigatedSystemsInterface>;
-    ratingTable: Array<null>;
+    ratingTable: Array<PersonRating>;
 }
 
 export interface Person {
@@ -24,6 +27,14 @@ export interface Person {
     lastName: string;
     patronymic: string;
     registrationDate: string;
+}
+
+export interface PersonRating {
+    firstName: string
+    lastName: string
+    patronymic: string
+    personId: number
+    rating: number
 }
 
 export interface CurrentSystem {
@@ -48,4 +59,27 @@ export interface InvestigatedSystemsInterface {
     title: string;
     rating: number | null;
     keeperId: number;
+}
+
+export interface ExplorerCardInfoInterface {
+    person: Person
+    rating: number | null
+    totalFeedback: number
+    totalSystems: number
+    currentSystem: CurrentSystem
+    investigatedSystems: Array<InvestigatedSystemsInterface>
+    feedback: Array<Feedback>
+    reviewRequest: ReviewRequestsInterface
+}
+
+export interface Feedback {
+    personId: number
+    firstName: string
+    lastName: string
+    patronymic: string
+    keeperId: number
+    courseId: number
+    courseTitle: string
+    rating: number | null
+    comment: string
 }

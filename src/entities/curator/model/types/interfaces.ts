@@ -1,16 +1,16 @@
 export interface ReviewInterface {
     planet: string;
-    rating: number;
+    rating: number | null;
     name: string;
     avatar: string;
     comment: string;
     id?: number;
 }
 
-export interface CuratorState {
-    isCurator: boolean;
-    reviews: Array<ReviewInterface>;
-    curatorInfo: KeeperInfoInterface
+export interface KeeperState {
+    isKeeper: boolean;
+    keeperInfo: KeeperInfoInterface
+    keeperCardInfo: KeeperCardInfoInterface
 }
 
 export interface KeeperInfoInterface {
@@ -72,4 +72,32 @@ export interface ReviewRequestsInterface {
     explorerId: number;
     courseThemeId: number;
     courseThemeTitle: string;
+}
+
+export interface KeeperCardInfoInterface {
+    person: Person
+    rating: number | null
+    totalSystems: number
+    totalExplorers: number
+    systems: Array<System>
+    feedback: Array<Feedback>
+}
+
+export interface System {
+    courseId: number
+    title: string
+    rating: number | null
+    keeperId: number
+}
+
+export interface Feedback {
+    personId: number
+    firstName: string
+    lastName: string
+    patronymic: string
+    explorerId: number
+    courseId: number
+    courseTitle: string
+    rating: number | null
+    comment: string
 }

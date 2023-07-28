@@ -9,3 +9,5 @@ export const explorerIsExplorerSelector = createSelector(userState, (userState) 
 export const explorerApplicationCardSelector = createSelector(userState, (userState) => userState.explorerApplicationCard);
 
 export const explorerInfoSelector = createSelector(userState, (userState) => userState.explorerInfo);
+
+export const explorerCardInfoSelector = createSelector(userState, (userState) => userState.explorerCardInfo);

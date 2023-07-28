@@ -2,7 +2,7 @@ import { useAppDispatch } from '@app/providers/store/hooks';
 
 import { selectRoleAsExplorer } from '@entities/explorer/model/slice';
 
-import { selectRoleAsCurator } from '@entities/curator/model/slice';
+import { selectRoleAsKeeper } from '@entities/curator/model/slice';
 
 import { PlanetButton } from '@shared/PlanetButton';
 
@@ -16,7 +16,7 @@ export const SelectRole = () => {
                 title="Я – исследователь"
             />
             <PlanetButton
-                onClick={() => dispatch(selectRoleAsCurator())}
+                onClick={() => dispatch(selectRoleAsKeeper())}
                 title="Я – хранитель"
             />
         </>

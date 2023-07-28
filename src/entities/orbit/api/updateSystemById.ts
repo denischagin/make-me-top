@@ -38,7 +38,7 @@ export const updateSystem = async (params: UpdateSystemParams, payload: UpdateSy
         const error: AxiosError<ErrorInterface> = err as AxiosError<ErrorInterface>;
 
         if (error.response) {
-            toast.error(error.response.data.errorMessage);
+            throw toast.error(error.response.data.errorMessage);
         }
 
         throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);

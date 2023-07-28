@@ -17,7 +17,7 @@ export interface ExplorerInfoResponseInterface extends ExplorerInfoInterface, Er
 
 }
 
-export const getExplorerData = createAsyncThunk<ExplorerInfoResponseInterface, any, { rejectValue: ErrorInterface }>(
+export const getExplorerInfo = createAsyncThunk<ExplorerInfoResponseInterface, any, { rejectValue: ErrorInterface }>(
     FETCH_EXPLORER,
     async (payload, {
         rejectWithValue,

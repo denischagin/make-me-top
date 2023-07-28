@@ -17,7 +17,7 @@ export interface KeeperInfoResponseInterface extends KeeperInfoInterface, ErrorI
 
 }
 
-export const getKeeperData = createAsyncThunk<KeeperInfoResponseInterface, any, { rejectValue: ErrorInterface }>(
+export const getKeeperInfo = createAsyncThunk<KeeperInfoResponseInterface, any, { rejectValue: ErrorInterface }>(
     FETCH_KEEPER,
     async (payload, {
         rejectWithValue,

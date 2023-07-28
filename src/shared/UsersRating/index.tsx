@@ -23,23 +23,23 @@ import './styles.scss';
 
 export const UsersRating = (props: UserInfoInterface) => {
     const {
-        user: {
-            person,
-            rating,
-        },
+        fullname,
+        rating,
     } = props;
 
     const [block, element] = bem('rating-info');
 
     return (
         <div className={block()}>
-            <Avatar size={avatarSize.small} />
-            <Typography
-                variant={typographyVariant.regular14}
-                className={element('user-name')}
-            >
-                {getUserFullName(person)}
-            </Typography>
+            <span className={element('user-info')}>
+                <Avatar size={avatarSize.small} />
+                <Typography
+                    variant={typographyVariant.regular14}
+                    className={element('user-name')}
+                >
+                    {fullname}
+                </Typography>
+            </span>
             <span className={element('user-score')}>
                 <Rating
                     rating={rating}

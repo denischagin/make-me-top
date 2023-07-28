@@ -11,14 +11,14 @@ import explorerReducer from '@entities/explorer/model/slice';
 import { ExplorerState } from '@entities/explorer/model/types/interfaces';
 
 import curatorReducer from '@entities/curator/model/slice';
-import { CuratorState } from '@entities/curator/model/types/interfaces';
+import { KeeperState } from '@entities/curator/model/types/interfaces';
 
 import galaxyReducer from '@entities/galaxy/model/slice';
 import { GalaxyState } from '@entities/galaxy/model/types';
 
 export type RootState = {
     explorer: ExplorerState;
-    curator: CuratorState;
+    curator: KeeperState;
     user: UserState;
     galaxies: GalaxyState;
 };
