@@ -18,7 +18,7 @@ export const EducationApplications = (props: EducationApplicationsInterface) => 
     return (
         <>
             {
-                applications?.length > 0 &&
+                !!applications?.length &&
                 <div className={block()}>
                     <Typography
                         className={element('heading', 'mb-4')}

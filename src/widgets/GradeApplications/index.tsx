@@ -19,7 +19,7 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
     return (
         <>
             {
-                ((finalAssesment?.length || 0) || (reviewRequest?.length || 0)) > 0 &&
+                (!!finalAssesment?.length || !!reviewRequest?.length) &&
                 <div className={block()}>
                     <Typography
                         className={element('heading', 'mb-4')}

@@ -1,10 +1,13 @@
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
+
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
-import { ReviewRequestCardInterface } from './interfaces';
 import {
     buttonColor,
     buttonSize,
@@ -14,12 +17,14 @@ import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
-export const ReviewRequestCard = (props: ReviewRequestCardInterface) => {
+export const ReviewRequestCard = () => {
+    const [block, element] = bem('review-request-card');
+
+    const userInfo = useAppSelector(explorerCardInfoSelector);
+
     const {
         reviewRequest,
-    } = props;
-
-    const [block, element] = bem('review-request-card');
+    } = userInfo;
 
     return (
         <>

@@ -15,7 +15,7 @@ export interface UserState {
     isModalOpen: boolean;
     planetList: Array<ModalPlanetInterface>;
     explorersList: Array<UserInterface>;
-    curatorsList: Array<UserInterface>;
+    keepersList: Array<UserInterface>;
     userInfo: UserInterface;
     userData: UserProgress;
 }

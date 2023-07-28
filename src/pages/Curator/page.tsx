@@ -53,7 +53,7 @@ export const Curator = () => {
                             <CuratorUserInfo />
                             <EducationApplications applications={studyRequests} />
                             {
-                                finalAssessments?.length > 0 &&
+                                !!finalAssessments?.length &&
                                 <div className={element('final-grade-cards')}>
                                     <Typography
                                         className={element('final-grade-heading', 'mb-4 mt-1')}

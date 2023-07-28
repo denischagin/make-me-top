@@ -69,7 +69,7 @@ export interface ExplorerCardInfoInterface {
     currentSystem: CurrentSystem
     investigatedSystems: Array<InvestigatedSystemsInterface>
     feedback: Array<Feedback>
-    reviewRequests?: Array<ReviewRequestsInterface>
+    reviewRequest: ReviewRequestsInterface
 }
 
 export interface Feedback {

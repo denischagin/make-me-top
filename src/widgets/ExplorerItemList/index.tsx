@@ -54,7 +54,7 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                     ))
                 }
                 {
-                    (totalExplorers > 9) &&
+                    (totalExplorers > limitItems) &&
                     <div className={element('button', 'mt-3')}>
                         <Button
                             title={'Все ученики'}

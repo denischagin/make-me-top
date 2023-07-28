@@ -19,9 +19,9 @@ export const Home = () => {
     const [block, element] = bem('home');
 
     const isExplorer = useAppSelector(explorerIsExplorerSelector);
-    const isCurator = useAppSelector(keeperIsKeeperSelector);
+    const isKeeper = useAppSelector(keeperIsKeeperSelector);
 
-    const isRoleSelected = isExplorer || isCurator;
+    const isRoleSelected = isExplorer || isKeeper;
 
     return (
         <>

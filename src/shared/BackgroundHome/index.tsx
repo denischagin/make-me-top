@@ -14,9 +14,9 @@ export const BackgroundHome = () => {
     const [block, element] = bem('background-home');
 
     const isExplorer = useAppSelector(explorerIsExplorerSelector);
-    const isCurator = useAppSelector(keeperIsKeeperSelector);
+    const isKeeper = useAppSelector(keeperIsKeeperSelector);
 
-    const isAuth = isCurator || isExplorer;
+    const isAuth = isKeeper || isExplorer;
 
     return (
         <div className={block()}>

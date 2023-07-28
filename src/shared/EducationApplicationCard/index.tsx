@@ -2,10 +2,13 @@ import { Avatar } from '@shared/Avatar';
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
 import { Rating } from '@shared/Rating';
+import { RouterLink } from '@shared/RouterLink';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
+
+import { URL_EXPLORER } from '@shared/constants/links';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
@@ -66,11 +69,13 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                                 title={'Отклонить'}
                                 size={buttonSize.large}
                             />
-                            <Button
-                                title={'Принять'}
-                                color={buttonColor.filled}
-                                size={buttonSize.large}
-                            />
+                            <RouterLink to={`${URL_EXPLORER}/${user?.personId}`}>
+                                <Button
+                                    title={'Принять'}
+                                    color={buttonColor.filled}
+                                    size={buttonSize.large}
+                                />
+                            </RouterLink>
                         </div>
                     </div>
                 </div>

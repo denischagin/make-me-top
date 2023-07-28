@@ -12,4 +12,4 @@ export const userPlanetListSelector = createSelector(userState, (userState) => u
 
 export const userExplorersListSelector = createSelector(userState, (userState) => userState.explorersList);
 
-export const userCuratorsListSelector = createSelector(userState, (userState) => userState.curatorsList);
+export const userKeepersListSelector = createSelector(userState, (userState) => userState.keepersList);

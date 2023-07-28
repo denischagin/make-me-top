@@ -37,7 +37,6 @@ export const ExplorerCard = () => {
 
     const {
         investigatedSystems,
-        reviewRequests,
     } = userInfo;
 
     const {
@@ -65,14 +64,7 @@ export const ExplorerCard = () => {
                     <ExplorerCardUserInfo />
                 </div>
                 <div className={element('content', 'mt-5')}>
-                    {
-                        reviewRequests?.map((request) => (
-                            <ReviewRequestCard
-                                key={request.personId}
-                                reviewRequest={request}
-                            />
-                        ))
-                    }
+                    <ReviewRequestCard />
                     <ExplorerApplicationCard />
                     <StarsList
                         heading='Освоенные звёзды'

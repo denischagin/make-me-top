@@ -29,7 +29,8 @@ export const StarsList = (props: StarsListInterface) => {
 
     return (
         <>
-            {stars?.length > 0 &&
+            {
+                !!stars?.length &&
                 <div className={block()}>
                     <Typography
                         className={element('heading', 'mt-5 mb-4')}

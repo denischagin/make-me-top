@@ -25,8 +25,11 @@ export const Reviews = () => {
 
     const location = useLocation();
 
-    const regex = /\/explorer\/[0-9]+/i;
-    const reviews = regex.test(location.pathname) ? useAppSelector(explorerCardInfoSelector) : useAppSelector(keeperCardInfoSelector);
+    const isExplorerRegex = /\/explorer\/[0-9]+/i;
+    const reviews = isExplorerRegex.test(location.pathname)
+        ? useAppSelector(explorerCardInfoSelector)
+        : useAppSelector(keeperCardInfoSelector);
+
 
     const {
         feedback,
@@ -35,7 +38,7 @@ export const Reviews = () => {
     return (
         <>
             {
-                feedback?.length > 0 &&
+                !!feedback?.length &&
                 <div className={block()}>
                     <Typography
                         className={element('heading', 'mb-4 mt-5')}
