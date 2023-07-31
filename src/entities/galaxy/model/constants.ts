@@ -16,8 +16,8 @@ export const DEFAULT_CHOSEN_SYSTEM: SystemType = {
 
 export const DEFAULT_SYSTEM_RESPONSE_MESSAGE: ErrorInterface = {
     timestamp: '',
-    code: '',
-    message: '',
+    errorCode: '',
+    errorMessage: '',
 };
 
 export const DEFAULT_STAR_PROGRESS: IStarProgress = {

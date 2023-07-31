@@ -2,41 +2,38 @@ import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { FETCH_GALAXY } from '@entities/galaxy/model/actions';
-
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_GALAXY } from '@shared/constants/urls';
+import { URL_MMT_STAND_USER } from '@shared/constants/urls';
+
+import { KeeperCardInfoInterface } from '../model/types/interfaces';
 
 import { ErrorInterface } from '@shared/types/common';
 
-import {
-    DEFAULT_ERROR_MESSAGE,
-    DEFAULT_GALAXY_ID,
-} from '../model/constants';
-import { GalaxyState } from '../model/types';
+import { FETCH_KEEPER } from '../model/actions';
+import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 
-interface GetGalaxyInterface {
-    galaxyId: number
+export interface KeeperIdInterface {
+    keeperId: number
 }
 
-export interface GalaxyResponseInterface extends GalaxyState, ErrorInterface {
+export interface KeeperCardInfoResponseInterface extends KeeperCardInfoInterface, ErrorInterface {
 
 }
 
-export const getGalaxy = createAsyncThunk<GalaxyResponseInterface, GetGalaxyInterface, { rejectValue: ErrorInterface }>(
-    FETCH_GALAXY,
+export const getKeeperCardInfo = createAsyncThunk<KeeperCardInfoResponseInterface, KeeperIdInterface, { rejectValue: ErrorInterface }>(
+    FETCH_KEEPER,
     async (payload, {
         rejectWithValue,
     }) => {
         try {
             const {
-                galaxyId = DEFAULT_GALAXY_ID,
+                keeperId,
             } = payload;
 
             const {
                 data,
-            } = await instance.get<GalaxyResponseInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/galaxy/${galaxyId}`);
+            } = await instance.get<KeeperCardInfoResponseInterface>(`${URL_MMT_STAND_USER}info/keeper/${keeperId}`);
 
             return data;
         }

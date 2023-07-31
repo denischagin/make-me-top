@@ -8,6 +8,7 @@ import { Typography } from '@shared/Typography';
 import { UsersRating } from '@shared/UsersRating';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { cardSize } from '@shared/Card/interfaces';
 import { DividingLineColor } from '@shared/DividingLine/interfaces';
@@ -33,7 +34,10 @@ export const RatingCard = () => {
                 >
                     Мой рейтинг
                 </Typography>
-                <UsersRating user={userInfo} />
+                <UsersRating
+                    fullname={getUserFullName(userInfo.person)}
+                    rating={userInfo.rating}
+                />
                 <DividingLine color={DividingLineColor.opacitygray} />
                 <Typography
                     variant={typographyVariant.medium16}
@@ -44,8 +48,9 @@ export const RatingCard = () => {
                 {
                     ratingTable?.map((user) => (
                         <UsersRating
-                            key={user}
-                            user={userInfo}
+                            key={user.personId}
+                            fullname={getUserFullName(user)}
+                            rating={user.rating}
                         />
                     ))
                 }

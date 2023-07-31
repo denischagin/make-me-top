@@ -1,6 +1,6 @@
 export const DEFAULT_ERROR_MESSAGE = 'Ошибка получения информации о хранителе';
 
-export const initialCuratorInfo = {
+export const initialKeeperInfo = {
     person: {
         personId: 0,
         firstName: '',
@@ -15,4 +15,19 @@ export const initialCuratorInfo = {
     studyRequests: [],
     finalAssessments: [],
     reviewRequests: [],
+};
+
+export const initialKeeperCardInfo = {
+    person: {
+        personId: 0,
+        firstName: '',
+        lastName: '',
+        patronymic: '',
+        registrationDate: '',
+    },
+    rating: 0,
+    totalSystems: 0,
+    totalExplorers: 0,
+    systems: [],
+    feedback: [],
 };

@@ -1,6 +1,6 @@
 import { useAppSelector } from '@app/providers/store/hooks';
 
-import { curatorInfoSelector } from '@entities/curator/model/selectors';
+import { keeperInfoSelector } from '@entities/keeper/model/selectors';
 
 import { Avatar } from '@shared/Avatar';
 import { InfoCard } from '@shared/InfoCard';
@@ -20,10 +20,10 @@ import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
-export const CuratorUserInfo = () => {
-    const [block, element] = bem('curator-user-info');
+export const KeeperUserInfo = () => {
+    const [block, element] = bem('keeper-user-info');
 
-    const userInfo = useAppSelector(curatorInfoSelector);
+    const userInfo = useAppSelector(keeperInfoSelector);
 
     const {
         person,

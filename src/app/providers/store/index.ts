@@ -10,22 +10,22 @@ import { UserState } from '@entities/user/model/types';
 import explorerReducer from '@entities/explorer/model/slice';
 import { ExplorerState } from '@entities/explorer/model/types/interfaces';
 
-import curatorReducer from '@entities/curator/model/slice';
-import { CuratorState } from '@entities/curator/model/types/interfaces';
+import keeperReducer from '@entities/keeper/model/slice';
+import { KeeperState } from '@entities/keeper/model/types/interfaces';
 
 import galaxyReducer from '@entities/galaxy/model/slice';
 import { GalaxyState } from '@entities/galaxy/model/types';
 
 export type RootState = {
     explorer: ExplorerState;
-    curator: CuratorState;
+    keeper: KeeperState;
     user: UserState;
     galaxies: GalaxyState;
 };
 
 const rootReducer = combineReducers({
     explorer: explorerReducer,
-    curator: curatorReducer,
+    keeper: keeperReducer,
     user: userReducer,
     galaxies: galaxyReducer,
 });

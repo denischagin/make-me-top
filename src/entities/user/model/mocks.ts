@@ -37,7 +37,7 @@ export const EXPLORERS_LIST = [
     },
 ];
 
-export const CURATORS_LIST = [
+export const KEEPERS_LIST = [
     {
         name: 'Фамилия Имя Отчество',
         avatar: 'https://img.freepik.com/free-photo/happy-smiling-businessman-in-eyeglasses-holding-folder_171337-18854.jpg',

@@ -1,9 +1,6 @@
 import { useAppSelector } from '@app/providers/store/hooks';
 
-import {
-    explorerApplicationCardSelector,
-    explorerCardInfoSelector,
-} from '@entities/explorer/model/selectors';
+import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
@@ -20,25 +17,24 @@ import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
-export const ExplorerApplicationCard = () => {
+export const ReviewRequestCard = () => {
+    const [block, element] = bem('review-request-card');
+
     const userInfo = useAppSelector(explorerCardInfoSelector);
 
     const {
-        currentSystem,
+        reviewRequest,
     } = userInfo;
-
-    const [block, element] = bem('explorer-application-card');
 
     return (
         <>
-            {
-                currentSystem &&
+            {reviewRequest &&
                 <div className={block()}>
                     <Typography
-                        className={element('heading', 'mb-4 mt-5')}
+                        className={element('heading', 'mb-4')}
                         variant={typographyVariant.h2}
                     >
-                        Текущая звезда:
+                        Запрос на проверку:
                     </Typography>
                     <Card
                         size={cardSize.large}
@@ -50,13 +46,13 @@ export const ExplorerApplicationCard = () => {
                                     className={element('planet')}
                                     variant={typographyVariant.h2}
                                 >
-                                    {`Планета: ${currentSystem?.courseId}. ${currentSystem?.courseTitle}`}
+                                    {`Планета: ${reviewRequest?.courseId}. ${reviewRequest?.courseTitle}`}
                                 </Typography>
                                 <Typography
                                     className={element('star')}
                                     variant={typographyVariant.regular14}
                                 >
-                                    {`Звезда: ${currentSystem?.courseThemeTitle}`}
+                                    {`Звезда: ${reviewRequest?.courseThemeTitle}`}
                                 </Typography>
                             </div>
                             <div className={element('buttons')}>
@@ -67,7 +63,7 @@ export const ExplorerApplicationCard = () => {
                                     />
                                 </div>
                                 <Button
-                                    title={'Посмотреть'}
+                                    title={'Оценить'}
                                     color={buttonColor.filled}
                                     size={buttonSize.large}
                                 />

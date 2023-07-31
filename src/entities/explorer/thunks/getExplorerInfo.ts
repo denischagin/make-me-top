@@ -6,38 +6,37 @@ import { instance } from '@shared/api/instances';
 
 import { URL_MMT_STAND_USER } from '@shared/constants/urls';
 
-import { KeeperInfoInterface } from '../model/types/interfaces';
+import { ExplorerInfoInterface } from '../model/types/interfaces';
 
 import { ErrorInterface } from '@shared/types/common';
 
-import { FETCH_KEEPER } from '../model/actions';
+import { FETCH_EXPLORER } from '../model/actions';
 import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 
-export interface KeeperInfoResponseInterface extends KeeperInfoInterface, ErrorInterface {
+export interface ExplorerInfoResponseInterface extends ExplorerInfoInterface, ErrorInterface {
 
 }
 
-export const getKeeperData = createAsyncThunk<KeeperInfoResponseInterface, any, { rejectValue: ErrorInterface }>(
-    FETCH_KEEPER,
+export const getExplorerInfo = createAsyncThunk<ExplorerInfoResponseInterface, any, { rejectValue: ErrorInterface }>(
+    FETCH_EXPLORER,
     async (payload, {
         rejectWithValue,
     }) => {
         try {
-
             const {
                 data,
-            } = await instance.get<KeeperInfoResponseInterface>(`${URL_MMT_STAND_USER}info/`);
-
-            if (data.message) {
-                toast.error(data.message);
-
-                return rejectWithValue(data);
-            }
+            } = await instance.get<ExplorerInfoResponseInterface>(`${URL_MMT_STAND_USER}info/`);
 
             return data;
         }
         catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
+
+            if (error.response) {
+                toast.error(error.response.data.errorMessage);
+
+                return rejectWithValue(error.response.data);
+            }
 
             throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
         }

@@ -5,8 +5,9 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { curatorInfoSelector } from '@entities/curator/model/selectors';
-import { getKeeperData } from '@entities/curator/thunks/getKeeperData';
+import { keeperInfoSelector } from '@entities/keeper/model/selectors';
+import { FinalAssessmentsInterface } from '@entities/keeper/model/types/interfaces';
+import { getKeeperInfo } from '@entities/keeper/thunks/getKeeperInfo';
 
 import { BackgroundProfile } from '@shared/BackgroundProfile';
 import { GradeApplicationCard } from '@shared/GradeApplicationCard';
@@ -14,21 +15,21 @@ import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
-import { CuratorUserInfo } from '@widgets/CuratorUserInfo';
 import { EducationApplications } from '@widgets/EducationApplications';
 import { ExplorerItemList } from '@widgets/ExplorerItemList';
 import { GradeApplications } from '@widgets/GradeApplications';
 import { Header } from '@widgets/Header';
+import { KeeperUserInfo } from '@widgets/KeeperUserInfo';
 
 import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
-export const Curator = () => {
-    const [block, element] = bem('curator');
+export const Keeper = () => {
+    const [block, element] = bem('keeper');
 
     const dispatch = useAppDispatch();
-    const userInfo = useAppSelector(curatorInfoSelector);
+    const userInfo = useAppSelector(keeperInfoSelector);
 
     const {
         studyingExplorers,
@@ -38,7 +39,7 @@ export const Curator = () => {
     } = userInfo;
 
     useEffect(() => {
-        dispatch(getKeeperData({}));
+        dispatch(getKeeperInfo({}));
     }, []);
 
     return (
@@ -49,24 +50,27 @@ export const Curator = () => {
                 <div className={element('container', 'container p-0')}>
                     <div className={element('row', 'row')}>
                         <div className={element('profile', 'col-xxl-9')}>
-                            <CuratorUserInfo />
+                            <KeeperUserInfo />
                             <EducationApplications applications={studyRequests} />
-                            <div className={element('final-grade-cards')}>
-                                <Typography
-                                    className={element('final-grade-heading', 'mb-4 mt-1')}
-                                    variant={typographyVariant.h2}
-                                >
-                                    Итоговая оценка
-                                </Typography>
-                                {
-                                    finalAssessments?.map((asset) => (
-                                        <GradeApplicationCard
-                                            key={asset.explorerId}
-                                            finalAssesment={asset}
-                                        />
-                                    ))
-                                }
-                            </div>
+                            {
+                                !!finalAssessments?.length &&
+                                <div className={element('final-grade-cards')}>
+                                    <Typography
+                                        className={element('final-grade-heading', 'mb-4 mt-1')}
+                                        variant={typographyVariant.h2}
+                                    >
+                                        Итоговая оценка
+                                    </Typography>
+                                    {
+                                        finalAssessments?.map((asset: FinalAssessmentsInterface) => (
+                                            <GradeApplicationCard
+                                                key={asset.personId}
+                                                finalAssesment={asset}
+                                            />
+                                        ))
+                                    }
+                                </div>
+                            }
                             <GradeApplications reviewRequest={reviewRequests} />
                         </div>
                         <div className={element('explorers-list', 'col-xxl-3')}>

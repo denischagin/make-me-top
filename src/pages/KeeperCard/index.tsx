@@ -7,47 +7,43 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
-import { getExplorerCardInfo } from '@entities/explorer/thunks/getExplorerCardInfo';
+import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
+import { getKeeperCardInfo } from '@entities/keeper/thunks/getKeeperCardInfo';
 
 import { ArrowButton } from '@shared/ArrowButton';
 import { BackgroundProfile } from '@shared/BackgroundProfile';
-import { ExplorerApplicationCard } from '@shared/ExplorerApplicationCard';
-import { ReviewRequestCard } from '@shared/ReviewRequestCard';
-import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
-import { ExplorerCardUserInfo } from '@widgets/ExplorerCardUserInfo';
 import { Header } from '@widgets/Header';
+import { KeeperCardUserInfo } from '@widgets/KeeperCardUserInfo';
 import { Reviews } from '@widgets/Reviews';
 import { StarsList } from '@widgets/StarsList';
 
 import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
-import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
-export const ExplorerCard = () => {
-    const [block, element] = bem('explorer-card');
+export const KeeperCard = () => {
+    const [block, element] = bem('keeper-card');
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const userInfo = useAppSelector(explorerCardInfoSelector);
+    const userInfo = useAppSelector(keeperCardInfoSelector);
 
     const {
-        investigatedSystems,
+        systems,
     } = userInfo;
 
     const {
-        explorerId,
+        keeperId,
     } = useParams();
 
     useEffect(() => {
-        dispatch(getExplorerCardInfo({
-            explorerId: Number(explorerId),
+        dispatch(getKeeperCardInfo({
+            keeperId: Number(keeperId),
         }));
-    }, [explorerId]);
+    }, [keeperId]);
 
     return (
         <div className={block()}>
@@ -61,17 +57,13 @@ export const ExplorerCard = () => {
                             direction={arrowButtonDirection.left}
                         />
                     </div>
-                    <ExplorerCardUserInfo />
+                    <KeeperCardUserInfo />
                 </div>
-                <div className={element('content', 'mt-5')}>
-                    <ReviewRequestCard />
-                    <ExplorerApplicationCard />
-                    <StarsList
-                        heading='Освоенные звёзды'
-                        stars={investigatedSystems}
-                    />
-                    <Reviews />
-                </div>
+                <StarsList
+                    heading='Звезды исследователя'
+                    stars={systems}
+                />
+                <Reviews />
             </div>
         </div>
     );

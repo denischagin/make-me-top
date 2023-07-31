@@ -1,12 +1,12 @@
 // urls
 export const URL_DEFAULT = '/';
-export const URL_CURATOR = '/curator';
+export const URL_KEEPER = '/keeper';
 export const URL_EXPLORER = '/explorer';
 export const URL_GALAXY = '/galaxy';
-export const URL_CURATORS = '/curators';
+export const URL_KEEPERS = '/keepers';
 export const URL_EXPLORERS = '/explorers';
 
-export const URL_CURATOR_CARD = '/curator/:curatorId';
+export const URL_KEEPER_CARD = '/keeper/:keeperId';
 export const URL_EXPLORER_CARD = '/explorer/:explorerId';
 
 // header links
@@ -20,7 +20,7 @@ export const HEADER_LINKS = [
         text: 'Исследователи',
     },
     {
-        link: URL_CURATORS,
+        link: URL_KEEPERS,
         text: 'Хранители',
     },
     {

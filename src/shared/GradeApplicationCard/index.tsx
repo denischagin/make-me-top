@@ -1,10 +1,13 @@
 import { Avatar } from '@shared/Avatar';
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
+import { RouterLink } from '@shared/RouterLink';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
+
+import { URL_EXPLORER } from '@shared/constants/links';
 
 import { GradeApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
@@ -23,6 +26,8 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
         reviewRequest,
     } = props;
 
+    const reviewOrAssesment = finalAssesment || reviewRequest;
+
     const [block, element] = bem('grade-application-card');
 
     return (
@@ -39,18 +44,16 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                                 className={element('name')}
                                 variant={typographyVariant.regular14}
                             >
-                                {
-                                    (finalAssesment && getUserFullName(finalAssesment)) ||
-                                    (reviewRequest && getUserFullName(reviewRequest))
-                                }
+                                {getUserFullName(reviewOrAssesment!)}
                             </Typography>
                             <Typography
                                 className={element('star-title')}
                                 variant={typographyVariant.regular14}
                             >
-                                {`Звезда: ${finalAssesment?.courseTitle || reviewRequest?.courseTitle}`}
+                                {`Звезда: ${reviewOrAssesment?.courseTitle}`}
                             </Typography>
-                            {!finalAssesment &&
+                            {
+                                !finalAssesment &&
                                 <Typography
                                     className={element('planet')}
                                     variant={typographyVariant.medium16}
@@ -61,11 +64,13 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                         </div>
                     </div>
                     <div className={element('button')}>
-                        <Button
-                            title={'Оценить'}
-                            color={buttonColor.filled}
-                            size={buttonSize.large}
-                        />
+                        <RouterLink to={`${URL_EXPLORER}/${reviewOrAssesment?.personId}`}>
+                            <Button
+                                title={'Оценить'}
+                                color={buttonColor.filled}
+                                size={buttonSize.large}
+                            />
+                        </RouterLink>
                     </div>
                 </div>
             </Card>

@@ -6,10 +6,10 @@ import {
 } from '@app/providers/store/hooks';
 
 import {
-    userCuratorsListSelector,
     userExplorersListSelector,
     userInfoSelector,
     userIsModalOpenSelector,
+    userKeepersListSelector,
 } from '@entities/user/model/selectors';
 import { showModal } from '@entities/user/model/slice';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
@@ -57,7 +57,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
     const dispatch = useAppDispatch();
     const explorersList = useAppSelector(userExplorersListSelector);
-    const curatorsList = useAppSelector(userCuratorsListSelector);
+    const keepersList = useAppSelector(userKeepersListSelector);
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
     const userInfo = useAppSelector(explorerInfoSelector);
 
@@ -98,7 +98,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                                 badgeTitle="Мой хранитель"
                             />
                             <DividingLine color={DividingLineColor.gray500} />
-                            <UsersList list={curatorsList} />
+                            <UsersList list={keepersList} />
                         </TabPanel>
                     </MmtTabs>
                 </CircleModal>
@@ -121,7 +121,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}
-                    className={element('current-curator', 'mb-4')}
+                    className={element('current-keeper', 'mb-4')}
                 >
                     {`Преподаватель: ${getUserFullName(keeper)}`}
                 </Typography>

@@ -2,41 +2,38 @@ import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { FETCH_GALAXY } from '@entities/galaxy/model/actions';
-
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_GALAXY } from '@shared/constants/urls';
+import { URL_MMT_STAND_USER } from '@shared/constants/urls';
+
+import { ExplorerCardInfoInterface } from '../model/types/interfaces';
 
 import { ErrorInterface } from '@shared/types/common';
 
-import {
-    DEFAULT_ERROR_MESSAGE,
-    DEFAULT_GALAXY_ID,
-} from '../model/constants';
-import { GalaxyState } from '../model/types';
+import { FETCH_EXPLORER } from '../model/actions';
+import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 
-interface GetGalaxyInterface {
-    galaxyId: number
+export interface ExplorerIdInterface {
+    explorerId: number
 }
 
-export interface GalaxyResponseInterface extends GalaxyState, ErrorInterface {
+export interface ExplorerCardInfoResponseInterface extends ExplorerCardInfoInterface, ErrorInterface {
 
 }
 
-export const getGalaxy = createAsyncThunk<GalaxyResponseInterface, GetGalaxyInterface, { rejectValue: ErrorInterface }>(
-    FETCH_GALAXY,
+export const getExplorerCardInfo = createAsyncThunk<ExplorerCardInfoResponseInterface, ExplorerIdInterface, { rejectValue: ErrorInterface }>(
+    FETCH_EXPLORER,
     async (payload, {
         rejectWithValue,
     }) => {
         try {
             const {
-                galaxyId = DEFAULT_GALAXY_ID,
+                explorerId,
             } = payload;
 
             const {
                 data,
-            } = await instance.get<GalaxyResponseInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/galaxy/${galaxyId}`);
+            } = await instance.get<ExplorerCardInfoResponseInterface>(`${URL_MMT_STAND_USER}info/explorer/${explorerId}`);
 
             return data;
         }
