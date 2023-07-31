@@ -11,28 +11,27 @@ import {
 
 import { userIsModalOpenSelector } from '@entities/user/model/selectors';
 import { showModal } from '@entities/user/model/slice';
-import { UserProgress } from '@entities/user/model/types';
 
 import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { createSvgContainer } from '@entities/galaxy/lib/createSvgContainer';
 import { deleteAllConnectionLines } from '@entities/galaxy/lib/deleteAllConnectionLines';
+import { getStarStatus } from '@entities/galaxy/lib/getStarStatus';
 import { setStarsActivityToActive } from '@entities/galaxy/lib/setStarsActivityToActive';
 import { setStarsActivityToInactive } from '@entities/galaxy/lib/setStarsActivityToInactive';
 import { showPlanetsChildren } from '@entities/galaxy/lib/showPlanetsChildren';
 import { showPlanetsParents } from '@entities/galaxy/lib/showPlanetsParents';
 import {
     DEFAULT_CHOSEN_STAR,
-    DEFAULT_SYSTEM_RESPONSE_MESSAGE,
     STAR_CLASS,
 } from '@entities/galaxy/model/constants';
 import {
-    OrbitType,
-    SystemType,
+    IGalaxyProps,
+    ILastChosenStar,
+    IOrbitSettings,
 } from '@entities/galaxy/model/types';
 
 import {
     fetchSystemById,
-    SystemResponseInterface,
 } from '@entities/orbit/api/fetchSystemById';
 import {
     DATA_SYSTEM_CHILDREN_LIST,
@@ -46,29 +45,11 @@ import { CircleModal } from '@shared/CircleModal';
 
 import { bem } from '@shared/utils/bem';
 
+import { ModalAlertVariants } from '@shared/ModalAlert/interfaces';
+
 import { SystemProgressTypes } from '@shared/types/common';
 
 import './style.scss';
-
-interface IGalaxyProps {
-  galaxyPage: HTMLDivElement | null;
-  userProgress: UserProgress;
-  orbitList: Array<OrbitType>;
-  svgContainerClass: string;
-  width: number;
-  height: number;
-  systemWidth?: number;
-  systemHeight?: number;
-}
-
-interface IOrbitSettings {
-  width: number;
-  systemWidth: number;
-  backgroundWidth: number;
-  height: number;
-  systemHeight: number;
-  backgroundHeight: number;
-}
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const {
@@ -89,9 +70,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const [stars, setStars] = useState<NodeListOf<HTMLDivElement>>(
         document.querySelectorAll(`.${STAR_CLASS}`),
     );
-    const [lastChosenStar, setLastChosenStar] = useState<SystemResponseInterface>({
+    const [lastChosenStar, setLastChosenStar] = useState<ILastChosenStar>({
         ...DEFAULT_CHOSEN_STAR,
-        ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
     });
     const [windowSize, setWindowSize] = useState([0, 0]);
 
@@ -149,6 +129,15 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             activeSystemsId: activeSystems,
         });
     }, [activeSystems]);
+
+
+    useEffect(() => {
+        setLastChosenStar({
+            ...lastChosenStar,
+            isLocked: getStarStatus(userProgress, lastChosenStar),
+        });
+
+    }, [lastChosenStar.systemId]);
 
     const handleSystemMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
@@ -208,20 +197,22 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
         setLastChosenStar({
             ...DEFAULT_CHOSEN_STAR,
-            ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
         });
 
         dispatch(showModal());
 
         fetchSystemById({
             id: targetId,
+            withDependencies: true,
         }).then((response) => {
-            setLastChosenStar(response);
+            setLastChosenStar({
+                ...DEFAULT_CHOSEN_STAR,
+                ...response,
+            });
         }).catch((reason) => {
             setLastChosenStar({
                 ...DEFAULT_CHOSEN_STAR,
-                ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
-                systemName: 'Fetch error.',
+                systemName: `Fetch error. ${reason}`,
             });
         });
     };
@@ -237,7 +228,15 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             {isModalOpen &&
             <CircleModal
                 header={lastChosenStar.systemName}
-                onClose={() => dispatch(showModal())}
+                data={{
+                    lastChosenStar,
+                    userProgress,
+                }}
+                isLocked={lastChosenStar.isLocked}
+                onClose={() => {
+                    dispatch(showModal());
+                    setLastChosenStar(DEFAULT_CHOSEN_STAR);
+                }}
             >
                 {<div></div>}
             </CircleModal>}
