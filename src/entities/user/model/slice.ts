@@ -17,9 +17,9 @@ const initialState: UserState = {
     curatorsList: CURATORS_LIST,
     userInfo: USER_INFO,
     userData: {
-        openSystemList: [],
-        closeSystemList: [],
-        educationSystemList: [],
+        openedSystemList: [],
+        closedSystemList: [],
+        inProgressSystemList: [],
     },
 
 };
