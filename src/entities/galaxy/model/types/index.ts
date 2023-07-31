@@ -1,3 +1,7 @@
+import { UserProgress } from '@entities/user/model/types';
+
+import { ErrorInterface } from '@shared/types/common';
+
 export type SystemDependencyType = {
     systemId: number | null;
     type: 'child' | 'parent';
@@ -24,3 +28,29 @@ export type GalaxyState = {
     galaxyName: string;
     orbitList: Array<OrbitType>;
 };
+
+export interface IGalaxyProps {
+    galaxyPage: HTMLDivElement | null;
+    userProgress: UserProgress;
+    orbitList: Array<OrbitType>;
+    svgContainerClass: string;
+    width: number;
+    height: number;
+    systemWidth?: number;
+    systemHeight?: number;
+}
+
+export interface IOrbitSettings {
+    width: number;
+    systemWidth: number;
+    backgroundWidth: number;
+    height: number;
+    systemHeight: number;
+    backgroundHeight: number;
+}
+
+export interface IStarProgress {
+    isLocked: boolean,
+}
+
+export interface ILastChosenStar extends SystemType, IStarProgress, ErrorInterface {}
