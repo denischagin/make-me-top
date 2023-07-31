@@ -33,7 +33,7 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
                 <div className={element('user')}>
                     <Avatar size={avatarSize.small} />
                     <span className={element('my-name')}>
-                        {getUserFullName(keeperOrExplorer!)}
+                        {getUserFullName(keeperOrExplorer)}
                     </span>
                 </div>
                 <div className={element('info')}>
