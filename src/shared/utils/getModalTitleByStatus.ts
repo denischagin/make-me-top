@@ -1,11 +1,14 @@
 import { ModalAlertVariants } from '@shared/ModalAlert/interfaces';
 
-export function getModalTitleByVariant(param: ModalAlertVariants): string {
+export function getModalTitleByStatus(param: boolean): string {
     switch (param) {
-        case ModalAlertVariants.choseKeeper: {
+        // ModalAlertVariants.choseKeeper
+        case true: {
             return 'Для изучения данной звезды, выберите хранителя и отправьте заявку';
         }
-        case ModalAlertVariants.needAnotherSystem: {
+
+        //ModalAlertVariants.needAnotherSystem
+        case false: {
             return 'Для изучения данной звезды, необходимы знания о звездах:';
         }
         default: return 'Alert variant not found';
