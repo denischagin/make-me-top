@@ -38,49 +38,48 @@ export const Reviews = () => {
         feedback,
     } = reviews;
 
+    if (!feedback.length) {
+        return null;
+    }
+
     return (
-        <>
+        <div className={block()}>
+            <Typography
+                className={element('heading', 'mb-4 mt-5')}
+                variant={typographyVariant.h2}
+            >
+                Отзывы
+            </Typography>
+            <div className={element('cards')}>
+                {
+                    feedback.slice(0, limitEl)?.map((item) => (
+                        <ReviewCard
+                            key={item.courseId}
+                            review={item}
+                        />
+                    ))
+                }
+            </div>
             {
-                !!feedback?.length &&
-                <div className={block()}>
-                    <Typography
-                        className={element('heading', 'mb-4 mt-5')}
-                        variant={typographyVariant.h2}
-                    >
-                        Отзывы
-                    </Typography>
-                    <div className={element('cards')}>
-                        {
-                            feedback.slice(0, limitEl)?.map((item) => (
-                                <ReviewCard
-                                    key={item.courseId}
-                                    review={item}
-                                />
-                            ))
-                        }
+                (feedback.length >= limitEl) ?
+                    <div className={element('button', 'mt-5')}>
+                        <Button
+                            title="Показать ещё"
+                            size={buttonSize.large}
+                            onClick={() => {
+                                setLimitEl(limitEl + DEFAULT_EL_LIMIT);
+                            }}
+                        />
                     </div>
-                    {
-                        (feedback?.length > limitEl) &&
-                        <div className={element('button', 'mt-5')}>
-                            <Button
-                                title="Показать ещё"
-                                size={buttonSize.large}
-                                onClick={() => { setLimitEl(limitEl + DEFAULT_EL_LIMIT); }}
-                            />
-                        </div>
-                    }
-                    {
-                        (feedback?.length === limitEl) || (limitEl > feedback?.length) &&
-                        <div className={element('button', 'mt-5')}>
-                            <Button
-                                title="Скрыть"
-                                size={buttonSize.large}
-                                onClick={() => setLimitEl(DEFAULT_EL_LIMIT)}
-                            />
-                        </div>
-                    }
-                </div>
+                    : !(feedback.length < DEFAULT_EL_LIMIT) &&
+                    <div className={element('button', 'mt-5')}>
+                        <Button
+                            title="Скрыть"
+                            size={buttonSize.large}
+                            onClick={() => setLimitEl(DEFAULT_EL_LIMIT)}
+                        />
+                    </div>
             }
-        </>
+        </div>
     );
 };
