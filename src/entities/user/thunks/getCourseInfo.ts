@@ -4,38 +4,38 @@ import { AxiosError } from 'axios';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_PLANET } from '@shared/constants/urls';
+import { URL_MMT_STAND_COURSE } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
-import { FETCH_PLANETS } from '../model/actions';
+import { FETCH_COURSE } from '../model/actions';
 import {
     DEFAULT_ERROR_MESSAGE,
     DEFAULT_ID,
 } from '../model/constants';
-import { ModalPlanetInterface } from '../model/types';
+import { CourseInfoInterface } from '../model/types';
 
-interface GetModalPlanetsInterface {
-    planetId: number
+interface GetCourseInfoInterface {
+    courseId: number
 }
 
-export interface PlanetsResponseInterface extends Array<ModalPlanetInterface>, ErrorInterface {
+export interface CourseResponseInterface extends CourseInfoInterface, ErrorInterface {
 
 }
 
-export const getModalPlanets = createAsyncThunk<PlanetsResponseInterface, GetModalPlanetsInterface, { rejectValue: ErrorInterface }>(
-    FETCH_PLANETS,
+export const getCourseInfo = createAsyncThunk<CourseResponseInterface, GetCourseInfoInterface, { rejectValue: ErrorInterface }>(
+    FETCH_COURSE,
     async (payload, {
         rejectWithValue,
     }) => {
         try {
             const {
-                planetId = DEFAULT_ID,
+                courseId = DEFAULT_ID,
             } = payload;
 
             const {
                 data,
-            } = await instance.get<PlanetsResponseInterface>(`${URL_MMT_STAND_PLANET}planet-app/system/${planetId}/planet`);
+            } = await instance.get<CourseResponseInterface>(`${URL_MMT_STAND_COURSE}course-app/course/${courseId}`);
 
             return data;
         }

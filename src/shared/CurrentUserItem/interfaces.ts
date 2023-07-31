@@ -1,8 +1,10 @@
-import { ExplorerInfoInterface } from '@entities/explorer/model/types/interfaces';
-
-import { UserInterface } from '@shared/types/common';
+import {
+    CourseExplorer,
+    CourseKeeper,
+} from '@entities/user/model/types';
 
 export interface CurrentUserItemInterface {
-    user: ExplorerInfoInterface;
+    keeper?: CourseKeeper;
+    explorer?: CourseExplorer
     badgeTitle: string;
 }

@@ -5,6 +5,7 @@ import { Button } from '@shared/Button';
 import { Rating } from '@shared/Rating';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -17,17 +18,17 @@ import {
     ratingStarColor,
 } from '@shared/Rating/interfaces';
 
-import {
-    UserInterface,
-    UserListInterface,
-} from '@shared/types/common';
+import { UserListInterface } from '@shared/types/common';
 
 import './styles.scss';
 
 export const SelectUsersList = (props: UserListInterface) => {
     const {
-        list = [],
+        keeperslist,
+        explorersList,
     } = props;
+
+    const keepersOrExplorers = keeperslist || explorersList;
 
     const [block, element] = bem('select-list');
     const [selectedUserIds, setSelectedUserIds] = useState<Array<number>>([]);
@@ -42,47 +43,44 @@ export const SelectUsersList = (props: UserListInterface) => {
 
     return (
         <div className={block()}>
-            {list.map((user: UserInterface) => (
+            {keepersOrExplorers?.map((user, index) => (
                 <div
-                    key={user.id}
+                    key={user.personId}
                     className={element('item', {
-                        selected: selectedUserIds.includes(user.id),
+                        selected: selectedUserIds.includes(user.personId),
                     })}
                 >
                     <div className={element('user')}>
-                        <Avatar
-                            size={avatarSize.small}
-                            image={user.avatar}
-                        />
+                        <Avatar size={avatarSize.small} />
                         <span className={element('name')}>
-                            {user.name}
+                            {getUserFullName(keepersOrExplorers[index])}
                         </span>
                     </div>
                     <div className={element('info')}>
                         <div
                             className={element('button', {
-                                visible: selectedUserIds.includes(user.id),
+                                visible: selectedUserIds.includes(user.personId),
                             })}
                         >
-                            {!selectedUserIds.includes(user.id) ? (
-                                <Button
-                                    size={buttonSize.small}
-                                    color={buttonColor.filled}
-                                    onClick={() => getSelectedUser(user.id)}
-                                    title="Выбрать хранителя"
-                                />
-                            ) : (
-                                <Button
-                                    size={buttonSize.small}
-                                    color={buttonColor.primary500}
-                                    onClick={() => removeSelectedUser(user.id)}
-                                    title="Отменить выбор"
-                                />
-                            )}
+                            {
+                                !selectedUserIds.includes(user.personId) ?
+                                    <Button
+                                        size={buttonSize.small}
+                                        color={buttonColor.filled}
+                                        onClick={() => getSelectedUser(user.personId)}
+                                        title="Выбрать хранителя"
+                                    /> :
+                                    <Button
+                                        size={buttonSize.small}
+                                        color={buttonColor.primary500}
+                                        onClick={() => removeSelectedUser(user.personId)}
+                                        title="Отменить выбор"
+                                    />
+                            }
                         </div>
                         <div
                             className={element('rating', {
-                                hide: selectedUserIds.includes(user.id),
+                                hide: selectedUserIds.includes(user.personId),
                             })}
                         >
                             <Rating
