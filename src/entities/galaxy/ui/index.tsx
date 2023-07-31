@@ -45,8 +45,6 @@ import { CircleModal } from '@shared/CircleModal';
 
 import { bem } from '@shared/utils/bem';
 
-import { ModalAlertVariants } from '@shared/ModalAlert/interfaces';
-
 import { SystemProgressTypes } from '@shared/types/common';
 
 import './style.scss';

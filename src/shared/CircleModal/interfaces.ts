@@ -4,9 +4,6 @@ import { UserProgress } from '@entities/user/model/types';
 
 import { ILastChosenStar } from '@entities/galaxy/model/types';
 
-import { ModalAlertVariants } from '@shared/ModalAlert/interfaces';
-import { RequiredStarInterface } from '@shared/RequiredStarsList/interfaces';
-
 export interface ModalInterface {
     header: string;
     isLocked?: boolean;
@@ -16,11 +13,6 @@ export interface ModalInterface {
     };
     children: ReactNode;
     onClose: (dispatch: any) => any;
-}
-
-export interface ModalAlert {
-    variant: ModalAlertVariants;
-    systemList?: Array<RequiredStarInterface>;
 }
 
 export enum ModalAccessStatus {
