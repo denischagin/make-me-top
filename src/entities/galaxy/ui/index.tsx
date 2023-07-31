@@ -15,7 +15,7 @@ import { showModal } from '@entities/user/model/slice';
 import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { createSvgContainer } from '@entities/galaxy/lib/createSvgContainer';
 import { deleteAllConnectionLines } from '@entities/galaxy/lib/deleteAllConnectionLines';
-import { getStarStatus } from '@entities/galaxy/lib/getStarStatus';
+import { isStarLocked } from '@entities/galaxy/lib/isStarLocked';
 import { setStarsActivityToActive } from '@entities/galaxy/lib/setStarsActivityToActive';
 import { setStarsActivityToInactive } from '@entities/galaxy/lib/setStarsActivityToInactive';
 import { showPlanetsChildren } from '@entities/galaxy/lib/showPlanetsChildren';
@@ -132,9 +132,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
 
     useEffect(() => {
-        setLastChosenStar({
+        setLastChosenStar({ //переименовать в lastChosenSystem
             ...lastChosenStar,
-            isLocked: getStarStatus(userProgress, lastChosenStar),
+            isLocked: isStarLocked(userProgress, lastChosenStar),
         });
 
     }, [lastChosenStar.systemId]);
