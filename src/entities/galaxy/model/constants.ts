@@ -1,4 +1,12 @@
-export const DEFAULT_CHOSEN_STAR = {
+import {
+    ILastChosenStar,
+    IStarProgress,
+    SystemType,
+} from '@entities/galaxy/model/types';
+
+import { ErrorInterface } from '@shared/types/common';
+
+export const DEFAULT_CHOSEN_SYSTEM: SystemType = {
     systemId: 0,
     systemName: 'Loading...',
     systemLevel: 0,
@@ -6,11 +14,22 @@ export const DEFAULT_CHOSEN_STAR = {
     systemDependencyList: [],
 };
 
-export const DEFAULT_SYSTEM_RESPONSE_MESSAGE = {
+export const DEFAULT_SYSTEM_RESPONSE_MESSAGE: ErrorInterface = {
     timestamp: '',
     code: '',
     message: '',
 };
+
+export const DEFAULT_STAR_PROGRESS: IStarProgress = {
+    isLocked: false,
+};
+
+export const DEFAULT_CHOSEN_STAR: ILastChosenStar = {
+    ...DEFAULT_CHOSEN_SYSTEM,
+    ...DEFAULT_STAR_PROGRESS,
+    ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
+};
+
 
 export const CONNECTION_LINE_CLASS = 'galaxy-page__svg-container--connection-line';
 
