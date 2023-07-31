@@ -1,7 +1,7 @@
 import { UserInterface } from '@shared/types/common';
 
 
-export type EducationSystemType = {
+export type InProgressSystemType = {
     systemId: number,
     completed: number,
 }
@@ -21,9 +21,9 @@ export interface UserState {
 }
 
 export type UserProgress = {
-    openSystemList: Array<number>,
-    closeSystemList: Array<number>,
-    educationSystemList: Array<EducationSystemType>,
+    openedSystemList: Array<number>,
+    closedSystemList: Array<number>,
+    inProgressSystemList: Array<InProgressSystemType>,
 }
 
 export interface ModalPlanetInterface {
