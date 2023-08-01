@@ -19,13 +19,13 @@ import './styles.scss';
 export const CurrentUserItem = (props: CurrentUserItemInterface) => {
     const {
         badgeTitle,
-        user: {
-            person,
-            rating,
-        },
+        keeper,
+        explorer,
     } = props;
 
     const [block, element] = bem('current-user');
+
+    const keeperOrExplorer = keeper || explorer;
 
     return (
         <div className={block()}>
@@ -33,7 +33,7 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
                 <div className={element('user')}>
                     <Avatar size={avatarSize.small} />
                     <span className={element('my-name')}>
-                        {getUserFullName(person)}
+                        {getUserFullName(keeperOrExplorer)}
                     </span>
                 </div>
                 <div className={element('info')}>
@@ -46,7 +46,7 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
                         starColor={ratingStarColor.primary500}
                         size={ratingSize.medium}
                         scoreColor={ratingScoreColor.black}
-                        rating={rating}
+                        rating={keeperOrExplorer?.rating}
                     />
                 </div>
             </div>

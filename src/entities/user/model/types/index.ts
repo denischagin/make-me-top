@@ -14,9 +14,7 @@ export interface UserState {
     isRegistered: boolean;
     isModalOpen: boolean;
     planetList: Array<ModalPlanetInterface>;
-    explorersList: Array<UserInterface>;
-    keepersList: Array<UserInterface>;
-    userInfo: UserInterface;
+    courseInfo: CourseInfoInterface;
     userData: UserProgress;
 }
 
@@ -41,4 +39,38 @@ export interface userDataInterface {
 export interface AuthLoginInterface {
     payload: userDataInterface
     callback: () => void
+}
+
+export interface CourseInfoInterface {
+    course: Course;
+    you: CourseExplorer;
+    yourKeeper: CourseKeeper;
+    explorers: Array<CourseExplorer> | null;
+    keepers: Array<CourseKeeper> | null;
+}
+
+export interface Course {
+    courseId: number;
+    title: string;
+    creationDate: string;
+    lastModified: string;
+    description: string;
+}
+
+export interface CourseExplorer {
+    personId: number;
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+    explorerId: number;
+    rating: number;
+}
+
+export interface CourseKeeper {
+    personId: number;
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+    keeperId: number;
+    rating: number;
 }

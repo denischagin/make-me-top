@@ -38,7 +38,7 @@ export const Reviews = () => {
         feedback,
     } = reviews;
 
-    if (!feedback.length) {
+    if (!feedback?.length) {
         return null;
     }
 
@@ -61,7 +61,7 @@ export const Reviews = () => {
                 }
             </div>
             {
-                (feedback.length >= limitEl) ?
+                (feedback?.length >= limitEl) ?
                     <div className={element('button', 'mt-5')}>
                         <Button
                             title="Показать ещё"
@@ -71,7 +71,7 @@ export const Reviews = () => {
                             }}
                         />
                     </div>
-                    : !(feedback.length < DEFAULT_EL_LIMIT) &&
+                    : !(feedback?.length < DEFAULT_EL_LIMIT) &&
                     <div className={element('button', 'mt-5')}>
                         <Button
                             title="Скрыть"

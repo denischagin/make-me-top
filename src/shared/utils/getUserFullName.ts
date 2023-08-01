@@ -4,6 +4,6 @@ interface FullNameInterface {
     patronymic: string;
 }
 
-export function getUserFullName<D extends FullNameInterface>(data: D) {
+export function getUserFullName<D extends FullNameInterface | undefined>(data: D) {
     return `${data?.lastName} ${data?.firstName} ${data?.patronymic}`;
 }

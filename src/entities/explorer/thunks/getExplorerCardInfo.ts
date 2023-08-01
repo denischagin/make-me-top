@@ -10,7 +10,7 @@ import { ExplorerCardInfoInterface } from '../model/types/interfaces';
 
 import { ErrorInterface } from '@shared/types/common';
 
-import { FETCH_EXPLORER } from '../model/actions';
+import { FETCH_EXPLORER_CARD } from '../model/actions';
 import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 
 export interface ExplorerIdInterface {
@@ -22,7 +22,7 @@ export interface ExplorerCardInfoResponseInterface extends ExplorerCardInfoInter
 }
 
 export const getExplorerCardInfo = createAsyncThunk<ExplorerCardInfoResponseInterface, ExplorerIdInterface, { rejectValue: ErrorInterface }>(
-    FETCH_EXPLORER,
+    FETCH_EXPLORER_CARD,
     async (payload, {
         rejectWithValue,
     }) => {

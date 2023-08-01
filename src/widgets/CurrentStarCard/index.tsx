@@ -6,12 +6,11 @@ import {
 } from '@app/providers/store/hooks';
 
 import {
-    userExplorersListSelector,
-    userInfoSelector,
+    userCourseInfoSelector,
     userIsModalOpenSelector,
-    userKeepersListSelector,
 } from '@entities/user/model/selectors';
 import { showModal } from '@entities/user/model/slice';
+import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
 import { explorerInfoSelector } from '@entities/explorer/model/selectors';
@@ -46,7 +45,6 @@ import {
 
 import './styles.scss';
 
-const CURRENT_PLANET = 'SQL';
 
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     const {
@@ -56,9 +54,8 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     const [block, element] = bem('current-star-card');
 
     const dispatch = useAppDispatch();
-    const explorersList = useAppSelector(userExplorersListSelector);
-    const keepersList = useAppSelector(userKeepersListSelector);
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
+    const courseInfo = useAppSelector(userCourseInfoSelector);
     const userInfo = useAppSelector(explorerInfoSelector);
 
     const {
@@ -71,6 +68,14 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         },
     } = userInfo;
 
+    const {
+        course,
+        you,
+        yourKeeper,
+        explorers,
+        keepers,
+    } = courseInfo;
+
     return (
         <div className={block()}>
             {
@@ -81,24 +86,24 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                 >
                     <MmtTabs list={tabsList}>
                         <TabPanel>
-                            <PlanetList currentPlanet={CURRENT_PLANET} />
+                            <PlanetList currentPlanet={course.title} />
                             <FinalGrade />
                         </TabPanel>
                         <TabPanel>
                             <CurrentUserItem
-                                user={userInfo}
+                                explorer={you}
                                 badgeTitle="Мой рейтинг"
                             />
                             <DividingLine color={DividingLineColor.gray500} />
-                            <UsersList list={explorersList} />
+                            <UsersList explorersList={explorers} />
                         </TabPanel>
                         <TabPanel>
                             <CurrentUserItem
-                                user={userInfo}
+                                keeper={yourKeeper}
                                 badgeTitle="Мой хранитель"
                             />
                             <DividingLine color={DividingLineColor.gray500} />
-                            <UsersList list={keepersList} />
+                            <UsersList keeperslist={keepers} />
                         </TabPanel>
                     </MmtTabs>
                 </CircleModal>
@@ -146,6 +151,9 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                         onClick={() => {
                             dispatch(getModalPlanets({
                                 planetId: courseId,
+                            }));
+                            dispatch(getCourseInfo({
+                                courseId,
                             }));
                             dispatch(showModal());
                         }}
