@@ -16,36 +16,35 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
 
     const [block, element] = bem('grade-application');
 
+    if (!finalAssesment?.length && !reviewRequest?.length) {
+        return null;
+    }
+
     return (
-        <>
-            {
-                (!!finalAssesment?.length || !!reviewRequest?.length) &&
-                <div className={block()}>
-                    <Typography
-                        className={element('heading', 'mb-4')}
-                        variant={typographyVariant.h2}
-                    >
-                        Запрос на проверку
-                    </Typography>
-                    <div className={element('cards')}>
-                        {
-                            finalAssesment
-                                ? finalAssesment?.map((application) => (
-                                    <GradeApplicationCard
-                                        key={application.personId}
-                                        finalAssesment={application}
-                                    />
-                                ))
-                                : reviewRequest?.map((application) => (
-                                    <GradeApplicationCard
-                                        key={application.personId}
-                                        reviewRequest={application}
-                                    />
-                                ))
-                        }
-                    </div>
-                </div>
-            }
-        </>
+        <div className={block()}>
+            <Typography
+                className={element('heading', 'mb-4')}
+                variant={typographyVariant.h2}
+            >
+                Запрос на проверку
+            </Typography>
+            <div className={element('cards')}>
+                {
+                    finalAssesment
+                        ? finalAssesment?.map((application) => (
+                            <GradeApplicationCard
+                                key={application.personId}
+                                finalAssesment={application}
+                            />
+                        ))
+                        : reviewRequest?.map((application) => (
+                            <GradeApplicationCard
+                                key={application.personId}
+                                reviewRequest={application}
+                            />
+                        ))
+                }
+            </div>
+        </div>
     );
 };

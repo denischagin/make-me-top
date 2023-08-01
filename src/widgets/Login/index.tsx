@@ -70,36 +70,34 @@ export const Login = () => {
     };
 
     return (
-        <>
-            <div className={block()}>
-                <Typography
-                    className={element('heading')}
-                    variant={typographyVariant.h2}
-                >
-                    Вход
-                </Typography>
-                <Input
-                    placeholder="Номер телефона"
-                    type="tel"
-                    onChange={handleLoginInputChange}
-                    value={inputLogin}
-                />
-                <Input
-                    placeholder="Пароль"
-                    type="password"
-                    onChange={handlePasswordInputChange}
-                    value={inputPassword}
-                />
-                <PlanetButton
-                    onClick={() => {
-                        dispatch(authLogin({
-                            payload,
-                            callback,
-                        }));
-                    }}
-                    title="Войти"
-                />
-            </div>
-        </>
+        <div className={block()}>
+            <Typography
+                className={element('heading')}
+                variant={typographyVariant.h2}
+            >
+                Вход
+            </Typography>
+            <Input
+                placeholder="Номер телефона"
+                type="tel"
+                onChange={handleLoginInputChange}
+                value={inputLogin}
+            />
+            <Input
+                placeholder="Пароль"
+                type="password"
+                onChange={handlePasswordInputChange}
+                value={inputPassword}
+            />
+            <PlanetButton
+                onClick={() => {
+                    dispatch(authLogin({
+                        payload,
+                        callback,
+                    }));
+                }}
+                title="Войти"
+            />
+        </div>
     );
 };
