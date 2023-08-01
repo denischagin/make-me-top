@@ -26,52 +26,52 @@ export const ReviewRequestCard = () => {
         reviewRequest,
     } = userInfo;
 
+    if (!reviewRequest) {
+        return null;
+    }
+
     return (
-        <>
-            {reviewRequest &&
-                <div className={block()}>
-                    <Typography
-                        className={element('heading', 'mb-4')}
-                        variant={typographyVariant.h2}
-                    >
-                        Запрос на проверку:
-                    </Typography>
-                    <Card
-                        size={cardSize.large}
-                        glow
-                    >
-                        <div className={element('content')}>
-                            <div className={element('info')}>
-                                <Typography
-                                    className={element('planet')}
-                                    variant={typographyVariant.h2}
-                                >
-                                    {`Планета: ${reviewRequest?.courseId}. ${reviewRequest?.courseTitle}`}
-                                </Typography>
-                                <Typography
-                                    className={element('star')}
-                                    variant={typographyVariant.regular14}
-                                >
-                                    {`Звезда: ${reviewRequest?.courseThemeTitle}`}
-                                </Typography>
-                            </div>
-                            <div className={element('buttons')}>
-                                <div className={element('hidden-button')}>
-                                    <Button
-                                        title={'Отклонить'}
-                                        size={buttonSize.large}
-                                    />
-                                </div>
-                                <Button
-                                    title={'Оценить'}
-                                    color={buttonColor.filled}
-                                    size={buttonSize.large}
-                                />
-                            </div>
+        <div className={block()}>
+            <Typography
+                className={element('heading', 'mb-4')}
+                variant={typographyVariant.h2}
+            >
+                Запрос на проверку:
+            </Typography>
+            <Card
+                size={cardSize.large}
+                glow
+            >
+                <div className={element('content')}>
+                    <div className={element('info')}>
+                        <Typography
+                            className={element('planet')}
+                            variant={typographyVariant.h2}
+                        >
+                            {`Планета: ${reviewRequest?.courseId}. ${reviewRequest?.courseTitle}`}
+                        </Typography>
+                        <Typography
+                            className={element('star')}
+                            variant={typographyVariant.regular14}
+                        >
+                            {`Звезда: ${reviewRequest?.courseThemeTitle}`}
+                        </Typography>
+                    </div>
+                    <div className={element('buttons')}>
+                        <div className={element('hidden-button')}>
+                            <Button
+                                title={'Отклонить'}
+                                size={buttonSize.large}
+                            />
                         </div>
-                    </Card>
+                        <Button
+                            title={'Оценить'}
+                            color={buttonColor.filled}
+                            size={buttonSize.large}
+                        />
+                    </div>
                 </div>
-            }
-        </>
+            </Card>
+        </div>
     );
 };
