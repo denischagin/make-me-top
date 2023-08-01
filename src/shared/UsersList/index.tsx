@@ -8,6 +8,7 @@ import { Rating } from '@shared/Rating';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
+import { sortByRating } from '@shared/utils/sortByRating';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -32,7 +33,7 @@ export const UsersList = (props: UserListInterface) => {
 
     return (
         <div className={block()}>
-            {keepersOrExplorers?.map((user, index) => (
+            {sortByRating(keepersOrExplorers).map((user, index) => (
                 <div
                     key={user.personId}
                     className={element('item')}
@@ -40,7 +41,7 @@ export const UsersList = (props: UserListInterface) => {
                     <div className={element('user')}>
                         <Avatar size={avatarSize.small} />
                         <span className={element('name')}>
-                            {getUserFullName(keepersOrExplorers[index])}
+                            {getUserFullName(keepersOrExplorers![index])}
                         </span>
                     </div>
                     <div className={element('info')}>
