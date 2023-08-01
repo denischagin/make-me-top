@@ -10,7 +10,7 @@ import { ExplorerInfoInterface } from '../model/types/interfaces';
 
 import { ErrorInterface } from '@shared/types/common';
 
-import { FETCH_EXPLORER } from '../model/actions';
+import { FETCH_EXPLORER_INFO } from '../model/actions';
 import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 
 export interface ExplorerInfoResponseInterface extends ExplorerInfoInterface, ErrorInterface {
@@ -18,7 +18,7 @@ export interface ExplorerInfoResponseInterface extends ExplorerInfoInterface, Er
 }
 
 export const getExplorerInfo = createAsyncThunk<ExplorerInfoResponseInterface, any, { rejectValue: ErrorInterface }>(
-    FETCH_EXPLORER,
+    FETCH_EXPLORER_INFO,
     async (payload, {
         rejectWithValue,
     }) => {

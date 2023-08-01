@@ -1,4 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {
+    createSlice,
+    isAnyOf,
+} from '@reduxjs/toolkit';
 
 import { getCourseInfo } from '../thunks/getCourseInfo';
 import { getModalPlanets } from '../thunks/getModalPlanets';
@@ -35,18 +38,19 @@ export const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addMatcher(
-                (action) => action.type === getModalPlanets.fulfilled.type || action.type === getModalPlanets.rejected.type,
-                (state: UserState, action) => {
-                    state.planetList = action.payload ?? [];
-                },
-            )
-            .addMatcher(
-                (action) => action.type === getCourseInfo.fulfilled.type || action.type === getCourseInfo.rejected.type,
-                (state: UserState, action) => {
-                    state.courseInfo = action.payload ?? initialCourseInfo;
-                },
-            );
+            .addCase(getModalPlanets.fulfilled, (state: UserState, action) => {
+                state.planetList = action.payload;
+            })
+            .addCase(getModalPlanets.rejected, (state: UserState) => {
+                state.planetList = [];
+            })
+
+            .addCase(getCourseInfo.fulfilled, (state: UserState, action) => {
+                state.courseInfo = action.payload;
+            })
+            .addCase(getCourseInfo.rejected, (state: UserState) => {
+                state.courseInfo = initialCourseInfo;
+            });
     },
 });
 

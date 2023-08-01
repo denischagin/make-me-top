@@ -15,7 +15,7 @@ export const EducationApplications = (props: EducationApplicationsInterface) => 
 
     const [block, element] = bem('education-application');
 
-    if (!applications.length) {
+    if (!applications?.length) {
         return null;
     }
 

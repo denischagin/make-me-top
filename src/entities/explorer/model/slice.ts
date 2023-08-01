@@ -28,18 +28,19 @@ export const explorerSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addMatcher(
-                (action) => action.type === getExplorerInfo.fulfilled.type || action.type === getExplorerInfo.rejected.type,
-                (state: ExplorerState, action) => {
-                    state.explorerInfo = action.payload ?? initialExplorerInfo;
-                },
-            )
-            .addMatcher(
-                (action) => action.type === getExplorerCardInfo.fulfilled.type || action.type === getExplorerCardInfo.rejected.type,
-                (state: ExplorerState, action) => {
-                    state.explorerCardInfo = action.payload ?? initialExplorerCardInfo;
-                },
-            );
+            .addCase(getExplorerInfo.fulfilled, (state: ExplorerState, action) => {
+                state.explorerInfo = action.payload;
+            })
+            .addCase(getExplorerInfo.rejected, (state: ExplorerState) => {
+                state.explorerInfo = initialExplorerInfo;
+            })
+
+            .addCase(getExplorerCardInfo.fulfilled, (state: ExplorerState, action) => {
+                state.explorerCardInfo = action.payload;
+            })
+            .addCase(getExplorerCardInfo.rejected, (state: ExplorerState) => {
+                state.explorerCardInfo = initialExplorerCardInfo;
+            });
     },
 });
 
