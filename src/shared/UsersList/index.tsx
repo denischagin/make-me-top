@@ -41,7 +41,7 @@ export const UsersList = (props: UserListInterface) => {
                     <div className={element('user')}>
                         <Avatar size={avatarSize.small} />
                         <span className={element('name')}>
-                            {getUserFullName(keepersOrExplorers![index])}
+                            {keepersOrExplorers && getUserFullName(keepersOrExplorers[index])}
                         </span>
                     </div>
                     <div className={element('info')}>
