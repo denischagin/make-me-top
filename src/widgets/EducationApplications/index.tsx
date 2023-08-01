@@ -15,33 +15,32 @@ export const EducationApplications = (props: EducationApplicationsInterface) => 
 
     const [block, element] = bem('education-application');
 
+    if (!applications?.length) {
+        return null;
+    }
+
     return (
-        <>
-            {
-                !!applications?.length &&
-                <div className={block()}>
-                    <Typography
-                        className={element('heading', 'mb-4')}
-                        variant={typographyVariant.h2}
-                    >
-                        Заявки на обучение
-                    </Typography>
-                    <div className={element('cards')}>
-                        {
-                            (applications?.length)
-                                ? applications?.map((application) => (
-                                    <EducationApplicationCard
-                                        key={application.requestId}
-                                        user={application}
-                                    />
-                                ))
-                                : <Typography variant={typographyVariant.medium16}>
-                                    Заявки отсутствуют
-                                </Typography>
-                        }
-                    </div>
-                </div>
-            }
-        </>
+        <div className={block()}>
+            <Typography
+                className={element('heading', 'mb-4')}
+                variant={typographyVariant.h2}
+            >
+                Заявки на обучение
+            </Typography>
+            <div className={element('cards')}>
+                {
+                    (applications?.length)
+                        ? applications?.map((application) => (
+                            <EducationApplicationCard
+                                key={application.requestId}
+                                user={application}
+                            />
+                        ))
+                        : <Typography variant={typographyVariant.medium16}>
+                            Заявки отсутствуют
+                        </Typography>
+                }
+            </div>
+        </div>
     );
 };

@@ -43,7 +43,7 @@ export const ShowMoreTextModal = (props: ShowMoreTextModalInterface) => {
                         {sliceString(text, maxLength)}
                     </Typography>
                     {
-                        (text.length > maxLength) &&
+                        (text?.length > maxLength) &&
                         <Typography
                             className={element('expand')}
                             onClick={() => setIsExpanded(true)}

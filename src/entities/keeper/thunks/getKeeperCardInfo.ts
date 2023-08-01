@@ -10,7 +10,7 @@ import { KeeperCardInfoInterface } from '../model/types/interfaces';
 
 import { ErrorInterface } from '@shared/types/common';
 
-import { FETCH_KEEPER } from '../model/actions';
+import { FETCH_KEEPER_CARD } from '../model/actions';
 import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 
 export interface KeeperIdInterface {
@@ -22,7 +22,7 @@ export interface KeeperCardInfoResponseInterface extends KeeperCardInfoInterface
 }
 
 export const getKeeperCardInfo = createAsyncThunk<KeeperCardInfoResponseInterface, KeeperIdInterface, { rejectValue: ErrorInterface }>(
-    FETCH_KEEPER,
+    FETCH_KEEPER_CARD,
     async (payload, {
         rejectWithValue,
     }) => {

@@ -1,7 +1,5 @@
 import { useAppSelector } from '@app/providers/store/hooks';
 
-import { userInfoSelector } from '@entities/user/model/selectors';
-
 import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
 
 import { Avatar } from '@shared/Avatar';

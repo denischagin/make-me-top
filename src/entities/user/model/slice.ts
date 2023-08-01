@@ -1,21 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {
+    createSlice,
+    isAnyOf,
+} from '@reduxjs/toolkit';
 
+import { getCourseInfo } from '../thunks/getCourseInfo';
 import { getModalPlanets } from '../thunks/getModalPlanets';
 
 import { UserState } from './types/index';
-import {
-    EXPLORERS_LIST,
-    KEEPERS_LIST,
-    USER_INFO,
-} from './mocks';
+import { initialCourseInfo } from './constants';
 
 const initialState: UserState = {
     isRegistered: true,
     isModalOpen: false,
     planetList: [],
-    explorersList: EXPLORERS_LIST,
-    keepersList: KEEPERS_LIST,
-    userInfo: USER_INFO,
+    courseInfo: initialCourseInfo,
     userData: {
         openSystemList: [],
         closeSystemList: [],
@@ -45,6 +43,13 @@ export const userSlice = createSlice({
             })
             .addCase(getModalPlanets.rejected, (state: UserState) => {
                 state.planetList = [];
+            })
+
+            .addCase(getCourseInfo.fulfilled, (state: UserState, action) => {
+                state.courseInfo = action.payload;
+            })
+            .addCase(getCourseInfo.rejected, (state: UserState) => {
+                state.courseInfo = initialCourseInfo;
             });
     },
 });
