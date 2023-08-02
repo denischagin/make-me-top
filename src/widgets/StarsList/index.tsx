@@ -27,38 +27,37 @@ export const StarsList = (props: StarsListInterface) => {
 
     const [block, element] = bem('stars-list');
 
+    if (!stars.length) {
+        return null;
+    }
+
     return (
-        <>
-            {
-                !!stars?.length &&
-                <div className={block()}>
-                    <Typography
-                        className={element('heading', 'mt-5 mb-4')}
-                        variant={typographyVariant.h2}
+        <div className={block()}>
+            <Typography
+                className={element('heading', 'mt-5 mb-4')}
+                variant={typographyVariant.h2}
+            >
+                {heading}
+            </Typography><div className={element('stars', 'mb-4')}>
+                {stars?.map((star) => (
+                    <Star
+                        color={starColor.primary500}
+                        key={star.courseId}
                     >
-                        {heading}
-                    </Typography><div className={element('stars', 'mb-4')}>
-                        {stars?.map((star) => (
-                            <Star
-                                color={starColor.primary500}
-                                key={star.courseId}
-                            >
-                                <p className={element('label')}>
-                                    {star.title}
-                                </p>
-                                <div className={element('star-rating')}>
-                                    <Rating
-                                        scoreColor={ratingScoreColor.white}
-                                        rating={star.rating}
-                                        size={ratingSize.small}
-                                        starColor={ratingStarColor.white}
-                                    />
-                                </div>
-                            </Star>
-                        ))}
-                    </div>
-                </div>
-            }
-        </>
+                        <p className={element('label')}>
+                            {star.title}
+                        </p>
+                        <div className={element('star-rating')}>
+                            <Rating
+                                scoreColor={ratingScoreColor.white}
+                                rating={star.rating}
+                                size={ratingSize.small}
+                                starColor={ratingStarColor.white}
+                            />
+                        </div>
+                    </Star>
+                ))}
+            </div>
+        </div>
     );
 };

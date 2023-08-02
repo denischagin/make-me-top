@@ -10,7 +10,7 @@ import { KeeperInfoInterface } from '../model/types/interfaces';
 
 import { ErrorInterface } from '@shared/types/common';
 
-import { FETCH_KEEPER } from '../model/actions';
+import { FETCH_KEEPER_INFO } from '../model/actions';
 import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 
 export interface KeeperInfoResponseInterface extends KeeperInfoInterface, ErrorInterface {
@@ -18,7 +18,7 @@ export interface KeeperInfoResponseInterface extends KeeperInfoInterface, ErrorI
 }
 
 export const getKeeperInfo = createAsyncThunk<KeeperInfoResponseInterface, any, { rejectValue: ErrorInterface }>(
-    FETCH_KEEPER,
+    FETCH_KEEPER_INFO,
     async (payload, {
         rejectWithValue,
     }) => {

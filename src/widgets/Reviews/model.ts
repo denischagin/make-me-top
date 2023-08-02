@@ -1,0 +1,1 @@
+export const DEFAULT_EL_LIMIT = 6;

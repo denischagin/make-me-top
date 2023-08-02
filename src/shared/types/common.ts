@@ -1,11 +1,9 @@
 import { ReactNode } from 'react';
 
 import {
-    ExplorerInfoInterface,
-    PersonRating,
-} from '@entities/explorer/model/types/interfaces';
-
-import { Feedback } from '@entities/keeper/model/types/interfaces';
+    CourseExplorer,
+    CourseKeeper,
+} from '@entities/user/model/types';
 
 export interface TabInterface {
     name: string;
@@ -29,7 +27,8 @@ export interface UserInterface {
 }
 
 export interface UserListInterface {
-    list: Array<UserInterface>;
+    keeperslist?: Array<CourseKeeper> | null;
+    explorersList?: Array<CourseExplorer> | null;
 }
 
 export interface ExplorerItemInterface {

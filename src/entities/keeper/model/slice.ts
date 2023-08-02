@@ -26,18 +26,19 @@ export const keeperSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addMatcher(
-                (action) => action.type === getKeeperInfo.fulfilled.type || action.type === getKeeperInfo.rejected.type,
-                (state: KeeperState, action) => {
-                    state.keeperInfo = action.payload ?? initialKeeperInfo;
-                },
-            )
-            .addMatcher(
-                (action) => action.type === getKeeperCardInfo.fulfilled.type || action.type === getKeeperCardInfo.rejected.type,
-                (state: KeeperState, action) => {
-                    state.keeperCardInfo = action.payload ?? initialKeeperCardInfo;
-                },
-            );
+            .addCase(getKeeperInfo.fulfilled, (state: KeeperState, action) => {
+                state.keeperInfo = action.payload;
+            })
+            .addCase(getKeeperInfo.rejected, (state: KeeperState) => {
+                state.keeperInfo = initialKeeperInfo;
+            })
+
+            .addCase(getKeeperCardInfo.fulfilled, (state: KeeperState, action) => {
+                state.keeperCardInfo = action.payload;
+            })
+            .addCase(getKeeperCardInfo.rejected, (state: KeeperState) => {
+                state.keeperCardInfo = initialKeeperCardInfo;
+            });
     },
 });
 

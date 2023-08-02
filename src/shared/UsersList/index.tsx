@@ -1,7 +1,13 @@
+import {
+    CourseExplorer,
+    CourseKeeper,
+} from '@entities/user/model/types';
+
 import { Avatar } from '@shared/Avatar';
 import { Rating } from '@shared/Rating';
 
 import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -10,34 +16,31 @@ import {
     ratingStarColor,
 } from '@shared/Rating/interfaces';
 
-import {
-    UserInterface,
-    UserListInterface,
-} from '@shared/types/common';
+import { UserListInterface } from '@shared/types/common';
 
 import './styles.scss';
 
 export const UsersList = (props: UserListInterface) => {
     const {
-        list = [],
+        keeperslist,
+        explorersList,
     } = props;
 
     const [block, element] = bem('users-list');
 
+    const keepersOrExplorers = explorersList || keeperslist;
+
     return (
         <div className={block()}>
-            {list.map((user: UserInterface) => (
+            {keepersOrExplorers?.map((user, index) => (
                 <div
-                    key={user.id}
+                    key={user.personId}
                     className={element('item')}
                 >
                     <div className={element('user')}>
-                        <Avatar
-                            size={avatarSize.small}
-                            image={user.avatar}
-                        />
+                        <Avatar size={avatarSize.small} />
                         <span className={element('name')}>
-                            {user.name}
+                            {getUserFullName(keepersOrExplorers[index])}
                         </span>
                     </div>
                     <div className={element('info')}>
