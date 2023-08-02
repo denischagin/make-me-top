@@ -7,7 +7,7 @@ import { ReactComponent as LockIcon } from '@shared/images/lock-big.svg';
 
 import { bem } from '@shared/utils/bem';
 import { getModalStatus } from '@shared/utils/getModalStatus';
-import { getRequiredStars } from '@shared/utils/getRequiredStars';
+import { getNotStudiedParentDependencies } from '@shared/utils/getNotStudiedParentDependencies';
 
 import {
     ModalAccessStatus,
@@ -65,7 +65,7 @@ export const CircleModal = (props: ModalInterface) => {
                                     lastChosenStar: data.lastChosenStar,
                                     userProgress: data.userProgress,
                                 })}
-                                dependencies={getRequiredStars({
+                                dependencies={getNotStudiedParentDependencies({
                                     lastChosenStar: data.lastChosenStar,
                                     userProgress: data.userProgress,
                                 })}

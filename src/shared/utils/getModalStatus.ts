@@ -2,7 +2,7 @@ import { UserProgress } from '@entities/user/model/types';
 
 import { ILastChosenStar } from '@entities/galaxy/model/types';
 
-import { getRequiredStars } from '@shared/utils/getRequiredStars';
+import { getNotStudiedParentDependencies } from '@shared/utils/getNotStudiedParentDependencies';
 
 import { ModalAccessStatus } from '@shared/CircleModal/interfaces';
 
@@ -18,7 +18,7 @@ export function getModalStatus(params: GetModalStatus): ModalAccessStatus {
         userProgress,
     } = params;
 
-    const notStudiedParentDependencies = getRequiredStars({
+    const notStudiedParentDependencies = getNotStudiedParentDependencies({
         lastChosenStar,
         userProgress,
     });

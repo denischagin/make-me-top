@@ -5,7 +5,7 @@ import {
     SystemDependencyType,
 } from '@entities/galaxy/model/types';
 
-interface GetRequiredStars {
+interface GetNotStudiedParentDependencies {
     lastChosenStar: ILastChosenStar,
     userProgress: UserProgress,
 }
@@ -13,7 +13,7 @@ interface GetRequiredStars {
 //фукнция фильтрации списка зависимотей системы
 //будут исключены все элементы с прогрессом 100%
 //и типом зависимости - parent
-export function getRequiredStars(params: GetRequiredStars): Array<SystemDependencyType> {
+export function getNotStudiedParentDependencies(params: GetNotStudiedParentDependencies): Array<SystemDependencyType> {
     const {
         lastChosenStar,
         userProgress,
