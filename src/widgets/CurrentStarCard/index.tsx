@@ -103,7 +103,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                                 badgeTitle="Мой хранитель"
                             />
                             <DividingLine color={DividingLineColor.gray500} />
-                            <UsersList keeperslist={keepers} />
+                            <UsersList keepersList={keepers} />
                         </TabPanel>
                     </MmtTabs>
                 </CircleModal>

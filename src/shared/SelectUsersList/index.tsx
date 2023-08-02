@@ -25,11 +25,11 @@ import './styles.scss';
 
 export const SelectUsersList = (props: UserListInterface) => {
     const {
-        keeperslist,
+        keepersList,
         explorersList,
     } = props;
 
-    const keepersOrExplorers = keeperslist || explorersList;
+    const keepersOrExplorers = keepersList || explorersList || [];
 
     const [block, element] = bem('select-list');
     const [selectedUserIds, setSelectedUserIds] = useState<Array<number>>([]);
@@ -54,7 +54,7 @@ export const SelectUsersList = (props: UserListInterface) => {
                     <div className={element('user')}>
                         <Avatar size={avatarSize.small} />
                         <span className={element('name')}>
-                            {keepersOrExplorers && getUserFullName(keepersOrExplorers[index])}
+                            {getUserFullName(keepersOrExplorers[index])}
                         </span>
                     </div>
                     <div className={element('info')}>

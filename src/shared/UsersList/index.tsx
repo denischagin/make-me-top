@@ -23,13 +23,13 @@ import './styles.scss';
 
 export const UsersList = (props: UserListInterface) => {
     const {
-        keeperslist,
+        keepersList,
         explorersList,
     } = props;
 
     const [block, element] = bem('users-list');
 
-    const keepersOrExplorers = explorersList || keeperslist;
+    const keepersOrExplorers = keepersList || explorersList || [];
 
     return (
         <div className={block()}>
@@ -41,7 +41,7 @@ export const UsersList = (props: UserListInterface) => {
                     <div className={element('user')}>
                         <Avatar size={avatarSize.small} />
                         <span className={element('name')}>
-                            {keepersOrExplorers && getUserFullName(keepersOrExplorers[index])}
+                            {getUserFullName(keepersOrExplorers[index])}
                         </span>
                     </div>
                     <div className={element('info')}>
