@@ -3,7 +3,10 @@ import {
     useState,
 } from 'react';
 
-import { fetchSystemById } from '@entities/orbit/api/fetchSystemById';
+import {
+    fetchSystemById,
+    SystemResponseInterface,
+} from '@entities/orbit/api/fetchSystemById';
 
 import { Button } from '@shared/Button';
 
@@ -12,6 +15,7 @@ import { ReactComponent as StarIcon } from '@shared/images/star.svg';
 import { bem } from '@shared/utils/bem';
 
 import {
+    DEFAULT_LAST_FETCHED_SYSTEM,
     RequiredStarInterface,
     RequiredStarsListInterface,
 } from './interfaces';
@@ -30,57 +34,29 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
     const [block, element] = bem('required-list');
 
     const [resultStarsList, setResultStarsList] = useState<Array<RequiredStarInterface>>([]);
-
-    // useEffect(() => {
-    //     let result: Array<RequiredStarInterface> = [];
-    //     list.forEach((item) => {
-    //         fetchSystemById({
-    //             id: item.systemId,
-    //         }).then((response) => {
-    //             result.push({
-    //                 id: item.systemId,
-    //                 name: response.systemName,
-    //             });
-    //         });
-    //     });
-    //     setResultStarsList(result);
-    // }, []);
+    const [lastFetchedSystem, setLastFetchedSystem] = useState<SystemResponseInterface>(DEFAULT_LAST_FETCHED_SYSTEM);
 
     useEffect(() => {
-        const test = Promise.all(
-            list.map((item) => {
-                fetchSystemById({
-                    id: item.systemId,
-                }).then((response) => {
-                    return {
-                        id: item.systemId,
-                        name: response.systemName,
-                    };
-                });
-            }),
-        );
+        setResultStarsList([]);
 
-        console.log();
-
-        test.then((response) => {
-            console.log(response);
+        list.map((item) => {
+            fetchSystemById({
+                id: item.systemId,
+            }).then((response) => {
+                setLastFetchedSystem(response);
+            }); // todo https://stackoverflow.com/questions/66505445/how-to-make-api-calls-for-each-element-in-array
         });
-
-        // setResultStarsList(
-        //     list.map((item) => {
-        //         fetchSystemById({
-        //             id: item.systemId,
-        //         }).then((response) => {
-        //
-        //         });
-        //
-        //         return {
-        //             id: item.systemId,
-        //             name: String(item.systemId),
-        //         }; // todo https://stackoverflow.com/questions/66505445/how-to-make-api-calls-for-each-element-in-array
-        //     }),
-        // );
     }, []);
+
+    useEffect(() => {
+        setResultStarsList([
+            ...resultStarsList,
+            {
+                id: lastFetchedSystem.systemId,
+                name: lastFetchedSystem.systemName,
+            },
+        ]);
+    }, [lastFetchedSystem]);
 
     return (
         <div className={block()}>

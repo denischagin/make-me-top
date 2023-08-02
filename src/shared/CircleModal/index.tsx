@@ -52,7 +52,7 @@ export const CircleModal = (props: ModalInterface) => {
                     </div>
                     {
                         data ?
-                            <ModalAlert
+                            <ModalAlert //todo передавать lastChosenStar, userProgress и вычислять внутри
                                 starStatus={getModalStatus({
                                     lastChosenStar: data.lastChosenStar,
                                     userProgress: data.userProgress,

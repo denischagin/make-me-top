@@ -9,7 +9,7 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { getExplorerData } from '@entities/explorer/thunks/getExplorerData';
+import { getExplorerInfo } from '@entities/explorer/thunks/getExplorerInfo';
 
 import { DEFAULT_GALAXY_ID } from '@entities/galaxy/model/constants';
 import { getGalaxy } from '@entities/galaxy/thunks/getGalaxy';
@@ -67,7 +67,7 @@ export const GalaxyPage: React.FC = () => {
         dispatch(getGalaxy({
             galaxyId: DEFAULT_GALAXY_ID,
         }));
-        dispatch(getExplorerData({}));
+        dispatch(getExplorerInfo({}));
     }, []);
 
     const galaxyName = useAppSelector(galaxyNameSelector);
