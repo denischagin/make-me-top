@@ -130,7 +130,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
 
     useEffect(() => {
-        setLastChosenStar({ //переименовать в lastChosenSystem
+        setLastChosenStar({ //todo путаница понятий, переименовать в lastChosenSystem
             ...lastChosenStar,
             isLocked: isStarLocked(userProgress, lastChosenStar),
         });

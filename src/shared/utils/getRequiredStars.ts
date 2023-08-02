@@ -9,6 +9,10 @@ interface GetRequiredStars {
     lastChosenStar: ILastChosenStar,
     userProgress: UserProgress,
 }
+
+//фукнция фильтрации списка зависимотей системы
+//будут исключены все элементы с прогрессом 100%
+//и типом зависимости - parent
 export function getRequiredStars(params: GetRequiredStars): Array<SystemDependencyType> {
     const {
         lastChosenStar,
@@ -17,8 +21,6 @@ export function getRequiredStars(params: GetRequiredStars): Array<SystemDependen
 
     //все зависимости с типом parent
     const parentDependencies = lastChosenStar.systemDependencyList.filter((dependency) => dependency.type === 'parent');
-
-    //console.log(lastChosenStar.systemDependencyList);
 
     //зависимости с типом parent, у которых прогресс не 100%
     const notStudiedParentDependencies = parentDependencies.filter((dependency) => {
@@ -34,14 +36,3 @@ export function getRequiredStars(params: GetRequiredStars): Array<SystemDependen
 
     return notStudiedParentDependencies;
 }
-
-// создать массив обьектов {id, name}
-// id забрать из lastChosenStar.systemDependencyList[].systemId
-// name забрать с метода fetchSystemById().systemName
-// каждый обект должен соотв условиям:
-//      зависимость child,
-//      наличие id в одном из массивов userProgress, кроме массива InProgressSystemType с полем completed === 100.
-//      не должен быть undefined
-
-// замапить с id = 0, убрать некоторые элементы позже
-// работраться с промисами, нужна data
