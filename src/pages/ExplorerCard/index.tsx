@@ -66,13 +66,18 @@ export const ExplorerCard = () => {
                     <ExplorerCardUserInfo />
                 </div>
                 <div className={element('content', 'mt-5')}>
-                    <Typography
-                        className={element('heading', 'mb-4')}
-                        variant={typographyVariant.h2}
-                    >
-                        Заявки на обучение
-                    </Typography>
-                    <EducationApplicationCard user={studyRequest} />
+                    {
+                        studyRequest &&
+                        <>
+                            <Typography
+                                className={element('heading', 'mb-4')}
+                                variant={typographyVariant.h2}
+                            >
+                                Заявки на обучение
+                            </Typography>
+                            <EducationApplicationCard user={studyRequest} />
+                        </>
+                    }
                     <ReviewRequestCard />
                     <ExplorerApplicationCard />
                     <StarsList
