@@ -26,7 +26,9 @@ export function getModalStatus(params: GetModalStatus): ModalAccessStatus {
         return ModalAccessStatus.closed_needStars;
     }
 
-    if (!notStudiedParentDependencies.length && lastChosenStar.isLocked) {
+    const isSystemInStudy = userProgress.inProgressSystemList.some(system => system.systemId === lastChosenStar.systemId);
+
+    if (!isSystemInStudy) {
         return ModalAccessStatus.closed_choseKeeper;
     }
 
