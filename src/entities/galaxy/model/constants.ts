@@ -8,7 +8,7 @@ import { ErrorInterface } from '@shared/types/common';
 
 export const DEFAULT_CHOSEN_SYSTEM: SystemType = {
     systemId: 0,
-    systemName: 'Loading...',
+    systemName: '',
     systemLevel: 0,
     systemPosition: 0,
     systemDependencyList: [],

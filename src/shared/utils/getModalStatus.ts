@@ -1,5 +1,6 @@
 import { UserProgress } from '@entities/user/model/types';
 
+import { DEFAULT_CHOSEN_STAR } from '@entities/galaxy/model/constants';
 import { ILastChosenStar } from '@entities/galaxy/model/types';
 
 import { getNotStudiedParentDependencies } from '@shared/utils/getNotStudiedParentDependencies';
@@ -17,6 +18,10 @@ export function getModalStatus(params: GetModalStatus): ModalAccessStatus {
         lastChosenStar,
         userProgress,
     } = params;
+
+    if (lastChosenStar.systemId === DEFAULT_CHOSEN_STAR.systemId) {
+        return ModalAccessStatus.opened;
+    }
 
     const notStudiedParentDependencies = getNotStudiedParentDependencies({
         lastChosenStar,
