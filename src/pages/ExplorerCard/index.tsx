@@ -73,7 +73,7 @@ export const ExplorerCard = () => {
                                 className={element('heading', 'mb-4')}
                                 variant={typographyVariant.h2}
                             >
-                                Заявки на обучение
+                                Заявка на обучение
                             </Typography>
                             <EducationApplicationCard user={studyRequest} />
                         </>
