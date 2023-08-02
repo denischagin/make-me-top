@@ -18,7 +18,7 @@ interface FetchSystemById {
 export interface SystemResponseInterface extends SystemType, ErrorInterface {
 }
 
-export const fetchSystemById = async (payload: FetchSystemById) => {
+export const fetchSystemById = async (payload: FetchSystemById) => { //todo переделать с использованием callback
     try {
         const {
             id,
