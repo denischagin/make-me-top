@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { ModalAlert } from '@shared/ModalAlert';
 import { Portal } from '@shared/Portal';
 import { Typography } from '@shared/Typography';
@@ -11,7 +9,10 @@ import { bem } from '@shared/utils/bem';
 import { getModalStatus } from '@shared/utils/getModalStatus';
 import { getRequiredStars } from '@shared/utils/getRequiredStars';
 
-import { ModalInterface } from './interfaces';
+import {
+    ModalAccessStatus,
+    ModalInterface,
+} from './interfaces';
 import {
     typographyColor,
     typographyVariant,
@@ -29,6 +30,13 @@ export const CircleModal = (props: ModalInterface) => {
     } = props;
 
     const [block, element] = bem('circle-modal');
+
+    const modalStatus = data ?
+        getModalStatus({
+            lastChosenStar: data.lastChosenStar,
+            userProgress: data.userProgress,
+        })
+        : null;
 
     const lockIcon = isLocked && <LockIcon className={element('lock-icon')} />;
 
@@ -51,7 +59,7 @@ export const CircleModal = (props: ModalInterface) => {
                         />
                     </div>
                     {
-                        data ?
+                        (data && modalStatus !== ModalAccessStatus.opened) ?
                             <ModalAlert //todo передавать lastChosenStar, userProgress и вычислять внутри
                                 starStatus={getModalStatus({
                                     lastChosenStar: data.lastChosenStar,
