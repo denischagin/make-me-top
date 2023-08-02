@@ -27,7 +27,7 @@ export interface UserInterface {
 }
 
 export interface UserListInterface {
-    keeperslist?: Array<CourseKeeper> | null;
+    keepersList?: Array<CourseKeeper> | null;
     explorersList?: Array<CourseExplorer> | null;
 }
 

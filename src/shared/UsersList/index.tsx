@@ -8,6 +8,7 @@ import { Rating } from '@shared/Rating';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
+import { sortByRating } from '@shared/utils/sortByRating';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -22,17 +23,17 @@ import './styles.scss';
 
 export const UsersList = (props: UserListInterface) => {
     const {
-        keeperslist,
+        keepersList,
         explorersList,
     } = props;
 
     const [block, element] = bem('users-list');
 
-    const keepersOrExplorers = explorersList || keeperslist;
+    const keepersOrExplorers = keepersList || explorersList || [];
 
     return (
         <div className={block()}>
-            {keepersOrExplorers?.map((user, index) => (
+            {sortByRating(keepersOrExplorers).map((user, index) => (
                 <div
                     key={user.personId}
                     className={element('item')}

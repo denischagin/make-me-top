@@ -12,6 +12,7 @@ import { getExplorerCardInfo } from '@entities/explorer/thunks/getExplorerCardIn
 
 import { ArrowButton } from '@shared/ArrowButton';
 import { BackgroundProfile } from '@shared/BackgroundProfile';
+import { EducationApplicationCard } from '@shared/EducationApplicationCard';
 import { ExplorerApplicationCard } from '@shared/ExplorerApplicationCard';
 import { ReviewRequestCard } from '@shared/ReviewRequestCard';
 import { Typography } from '@shared/Typography';
@@ -37,6 +38,7 @@ export const ExplorerCard = () => {
 
     const {
         investigatedSystems,
+        studyRequest,
     } = userInfo;
 
     const {
@@ -64,6 +66,18 @@ export const ExplorerCard = () => {
                     <ExplorerCardUserInfo />
                 </div>
                 <div className={element('content', 'mt-5')}>
+                    {
+                        studyRequest &&
+                        <>
+                            <Typography
+                                className={element('heading', 'mb-4')}
+                                variant={typographyVariant.h2}
+                            >
+                                Заявка на обучение
+                            </Typography>
+                            <EducationApplicationCard user={studyRequest} />
+                        </>
+                    }
                     <ReviewRequestCard />
                     <ExplorerApplicationCard />
                     <StarsList
