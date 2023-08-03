@@ -25,7 +25,7 @@ export const ModalAlert = (props: ModalAlertInterface) => {
                 {title}
             </div>
             {
-                title === ModalAccessStatus.closed_needStars &&
+                (title === ModalAccessStatus.closed_needStars) &&
                 <RequiredStarsList
                     list={dependencies}
                 />

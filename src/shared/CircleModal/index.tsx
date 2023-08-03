@@ -65,7 +65,7 @@ export const CircleModal = (props: ModalInterface) => {
                         />
                     </div>
                     {
-                        modalStatus !== ModalAccessStatus.opened &&
+                        (modalStatus !== ModalAccessStatus.opened) &&
                         <ModalAlert
                             title={modalStatus}
                             dependencies={notStudiedParentDependencies}
