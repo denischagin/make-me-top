@@ -36,7 +36,13 @@ export const CircleModal = (props: ModalInterface) => {
             lastChosenStar: data.lastChosenStar,
             userProgress: data.userProgress,
         })
-        : null;
+        : ModalAccessStatus.opened;
+    const notStudiedParentDependencies = data ?
+        getNotStudiedParentDependencies({
+            lastChosenStar: data.lastChosenStar,
+            userProgress: data.userProgress,
+        })
+        : [];
 
     const lockIcon = isLocked && <LockIcon className={element('lock-icon')} />;
 
@@ -59,16 +65,10 @@ export const CircleModal = (props: ModalInterface) => {
                         />
                     </div>
                     {
-                        (data && modalStatus !== ModalAccessStatus.opened) ?
-                            <ModalAlert //todo передавать lastChosenStar, userProgress и вычислять внутри
-                                starStatus={getModalStatus({
-                                    lastChosenStar: data.lastChosenStar,
-                                    userProgress: data.userProgress,
-                                })}
-                                dependencies={getNotStudiedParentDependencies({
-                                    lastChosenStar: data.lastChosenStar,
-                                    userProgress: data.userProgress,
-                                })}
+                        (modalStatus !== ModalAccessStatus.opened) ?
+                            <ModalAlert
+                                title={modalStatus}
+                                dependencies={notStudiedParentDependencies}
                             />
                             : null
                     }

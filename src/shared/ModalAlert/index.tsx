@@ -12,7 +12,6 @@ import './styles.scss';
 
 export const ModalAlert = (props: ModalAlertInterface) => {
     const {
-        starStatus,
         dependencies,
         title,
         children,
@@ -23,13 +22,9 @@ export const ModalAlert = (props: ModalAlertInterface) => {
     return (
         <div className={block()}>
             <div className={element('title')}>
-                {
-                    title
-                        ? title
-                        : starStatus
-                }
+                {title}
             </div>
-            {starStatus === ModalAccessStatus.closed_needStars ?
+            {title === ModalAccessStatus.closed_needStars ?
                 <RequiredStarsList
                     list={dependencies}
                 />
