@@ -2,34 +2,34 @@ import { UserProgress } from '@entities/user/model/types';
 
 import { ErrorInterface } from '@shared/types/common';
 
-export type SystemDependencyType = {
+export interface SystemDependencyType {
     systemId: number | null;
     type: 'child' | 'parent';
     isAlternative: boolean;
-};
+}
 
-export type SystemType = {
+export interface SystemType {
     systemId: number;
     systemPosition: number;
     systemName: string;
     systemLevel: number;
     systemDependencyList: Array<SystemDependencyType>;
-};
+}
 
-export type OrbitType = {
+export interface OrbitType {
     orbitId: number;
     orbitLevel: number;
     systemCount: number;
     systemList: Array<SystemType>;
-};
+}
 
-export type GalaxyState = {
+export interface GalaxyState {
     galaxyId: number;
     galaxyName: string;
     orbitList: Array<OrbitType>;
-};
+}
 
-export type IGalaxyProps = {
+export interface IGalaxyProps {
     galaxyPage: HTMLDivElement | null;
     userProgress: UserProgress;
     orbitList: Array<OrbitType>;

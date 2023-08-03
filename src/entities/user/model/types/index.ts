@@ -1,12 +1,9 @@
-import { UserInterface } from '@shared/types/common';
-
-
-export type InProgressSystemType = {
+export interface InProgressSystemType {
     systemId: number,
     completed: number,
 }
 
-export type PostUser = {
+export interface PostUser {
     username: string
 }
 
@@ -18,7 +15,7 @@ export interface UserState {
     userData: UserProgress;
 }
 
-export type UserProgress = {
+export interface UserProgress {
     openedSystemList: Array<number>,
     closedSystemList: Array<number>,
     inProgressSystemList: Array<InProgressSystemType>,
