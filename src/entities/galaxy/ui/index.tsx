@@ -37,14 +37,14 @@ import {
 } from '@entities/galaxy/model/types';
 
 import {
-    fetchSystemById,
-} from '@entities/orbit/api/fetchSystemById';
-import {
     DATA_SYSTEM_CHILDREN_LIST,
     DATA_SYSTEM_ID,
     DATA_SYSTEM_PARENT_LIST,
     DATA_SYSTEM_PROGRESS_TYPE,
 } from '@entities/orbit/model/types';
+import {
+    fetchSystemById,
+} from '@entities/orbit/thunks/fetchSystemById';
 import Orbit from '@entities/orbit/ui';
 
 import { CircleModal } from '@shared/CircleModal';
