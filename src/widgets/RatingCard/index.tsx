@@ -9,6 +9,7 @@ import { UsersRating } from '@shared/UsersRating';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
+import { sortByRating } from '@shared/utils/sortByRating';
 
 import { cardSize } from '@shared/Card/interfaces';
 import { DividingLineColor } from '@shared/DividingLine/interfaces';
@@ -46,7 +47,7 @@ export const RatingCard = () => {
                     Общий рейтинг
                 </Typography>
                 {
-                    ratingTable?.map((user) => (
+                    sortByRating(ratingTable)?.map((user) => (
                         <UsersRating
                             key={user.personId}
                             fullname={getUserFullName(user)}

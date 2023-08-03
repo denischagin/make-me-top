@@ -22,6 +22,7 @@
  *
  * @return { number } 1
  */
+
 interface ElementToNumber {
     element: string | number | bigint | boolean | undefined | null;
 }
@@ -34,8 +35,7 @@ export function elementToNumber(params: ElementToNumber): number {
     if (
         (typeof element === 'boolean') ||
         (typeof element === 'bigint')
-    )
-    {
+    ) {
         return Number(element);
     }
 

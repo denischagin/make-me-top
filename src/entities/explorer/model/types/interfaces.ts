@@ -1,4 +1,7 @@
-import { ReviewRequestsInterface } from '@entities/keeper/model/types/interfaces';
+import {
+    ReviewRequestsInterface,
+    StudyRequestsInterface,
+} from '@entities/keeper/model/types/interfaces';
 
 export interface ExplorerState {
     isExplorer: boolean;
@@ -68,6 +71,7 @@ export interface ExplorerCardInfoInterface {
     totalSystems: number
     currentSystem: CurrentSystem
     investigatedSystems: Array<InvestigatedSystemsInterface>
+    studyRequest: StudyRequestsInterface
     feedback: Array<Feedback>
     reviewRequest: ReviewRequestsInterface
 }

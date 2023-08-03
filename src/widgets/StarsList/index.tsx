@@ -27,7 +27,7 @@ export const StarsList = (props: StarsListInterface) => {
 
     const [block, element] = bem('stars-list');
 
-    if (!stars.length) {
+    if (!stars?.length) {
         return null;
     }
 

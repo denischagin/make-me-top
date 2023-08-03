@@ -33,7 +33,7 @@ export const ReviewRequestCard = () => {
     return (
         <div className={block()}>
             <Typography
-                className={element('heading', 'mb-4')}
+                className={element('heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
             >
                 Запрос на проверку:
