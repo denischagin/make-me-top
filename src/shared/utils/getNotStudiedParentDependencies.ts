@@ -5,6 +5,8 @@ import {
     SystemDependencyType,
 } from '@entities/galaxy/model/types';
 
+import { MAX_STUDYING_PROGRESS } from '@shared/types/common';
+
 interface GetNotStudiedParentDependencies {
     lastChosenStar: ILastChosenStar,
     userProgress: UserProgress,
@@ -27,7 +29,7 @@ export function getNotStudiedParentDependencies(params: GetNotStudiedParentDepen
         const isCurrentDependencyStudied = userProgress.inProgressSystemList.some((system) =>
             (
                 (system.systemId === dependency.systemId) &&
-                (system.completed === 100)
+                (system.completed === MAX_STUDYING_PROGRESS)
             ),
         );
 

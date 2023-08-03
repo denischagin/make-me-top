@@ -87,3 +87,5 @@ export enum SystemProgressTypes {
     SYSTEM_EDUCATION = 'systemEducation',
     PROGRESS_NOT_FOUND = 'progressNotFound'
 }
+
+export const MAX_STUDYING_PROGRESS = 100;

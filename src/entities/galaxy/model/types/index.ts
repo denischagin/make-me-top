@@ -29,7 +29,7 @@ export type GalaxyState = {
     orbitList: Array<OrbitType>;
 };
 
-export interface IGalaxyProps {
+export type IGalaxyProps = {
     galaxyPage: HTMLDivElement | null;
     userProgress: UserProgress;
     orbitList: Array<OrbitType>;

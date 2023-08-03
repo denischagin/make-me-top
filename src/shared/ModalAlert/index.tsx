@@ -24,11 +24,12 @@ export const ModalAlert = (props: ModalAlertInterface) => {
             <div className={element('title')}>
                 {title}
             </div>
-            {title === ModalAccessStatus.closed_needStars ?
+            {
+                title === ModalAccessStatus.closed_needStars &&
                 <RequiredStarsList
                     list={dependencies}
                 />
-                : null}
+            }
             {children}
         </div>
     );
