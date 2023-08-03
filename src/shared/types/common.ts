@@ -87,3 +87,12 @@ export enum SystemProgressTypes {
     SYSTEM_EDUCATION = 'systemEducation',
     PROGRESS_NOT_FOUND = 'progressNotFound'
 }
+
+export interface PostCourseInterface {
+    payload: PostCourseRequest
+    callback: () => void
+}
+export interface PostCourseRequest {
+    courseId: number,
+    keeperId: number,
+}
