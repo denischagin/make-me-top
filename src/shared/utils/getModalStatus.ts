@@ -12,7 +12,7 @@ interface GetModalStatus {
     userProgress: UserProgress,
 }
 
-//функция получения статуса модального окна в зависимоти от данных пользователя и последней выбранной системе
+//функция получения статуса модального окна в зависимоти от данных пользователя и последней выбранной системы
 export function getModalStatus(params: GetModalStatus): ModalAccessStatus {
     const {
         lastChosenStar,

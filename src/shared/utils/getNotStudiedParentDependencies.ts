@@ -12,7 +12,7 @@ interface GetNotStudiedParentDependencies {
 
 //фукнция фильтрации списка зависимотей системы
 //будут исключены все элементы с прогрессом 100%
-//и типом зависимости - parent
+//и типом зависимости - не parent
 export function getNotStudiedParentDependencies(params: GetNotStudiedParentDependencies): Array<SystemDependencyType> {
     const {
         lastChosenStar,
