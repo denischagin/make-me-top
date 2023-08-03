@@ -74,8 +74,6 @@ export const GalaxyPage: React.FC = () => {
 
     const orbitList = useAppSelector(orbitListSelector);
 
-    const userProgress = useAppSelector(state => state.explorer.explorerInfo);
-
     return (
         <div
             className={block()}

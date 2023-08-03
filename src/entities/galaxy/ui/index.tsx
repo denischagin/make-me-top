@@ -3,14 +3,20 @@ import React,
     useEffect,
     useState,
 } from 'react';
+import { TabPanel } from 'react-tabs';
 
 import {
     useAppDispatch,
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { userIsModalOpenSelector } from '@entities/user/model/selectors';
+import {
+    userCourseInfoSelector,
+    userIsModalOpenSelector,
+} from '@entities/user/model/selectors';
 import { showModal } from '@entities/user/model/slice';
+import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
+import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
 import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { createSvgContainer } from '@entities/galaxy/lib/createSvgContainer';
@@ -42,8 +48,18 @@ import {
 import Orbit from '@entities/orbit/ui';
 
 import { CircleModal } from '@shared/CircleModal';
+import { CurrentUserItem } from '@shared/CurrentUserItem';
+import { DividingLine } from '@shared/DividingLine';
+import { FinalGrade } from '@shared/FinalGrade';
+import { MmtTabs } from '@shared/MmtTabs';
+import { PlanetList } from '@shared/PlanetList';
+import { UsersList } from '@shared/UsersList';
 
 import { bem } from '@shared/utils/bem';
+
+import { TABS_LIST } from '@pages/Explorer/model';
+
+import { DividingLineColor } from '@shared/DividingLine/interfaces';
 
 import { SystemProgressTypes } from '@shared/types/common';
 
@@ -62,6 +78,16 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const [block, element] = bem('galaxy');
 
     const dispatch = useAppDispatch();
+    const courseInfo = useAppSelector(userCourseInfoSelector);
+    const isModalOpen = useAppSelector(userIsModalOpenSelector);
+
+    const {
+        course,
+        you,
+        yourKeeper,
+        explorers,
+        keepers,
+    } = courseInfo;
 
     const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
     const [activeSystems, setActiveSystems] = useState<Array<number>>([]);
@@ -72,8 +98,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         ...DEFAULT_CHOSEN_STAR,
     });
     const [windowSize, setWindowSize] = useState([0, 0]);
-
-    const isModalOpen = useAppSelector(userIsModalOpenSelector);
 
     //что бы последняя орбита с планетами не была 0x0, уменьшаем шаг между орбитами,
     //увеличив кол-во орбит в подсчетах на 1
@@ -198,6 +222,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         });
 
         dispatch(showModal());
+        dispatch(getModalPlanets({
+            planetId: targetId,
+        }));
+        dispatch(getCourseInfo({
+            courseId: targetId,
+        }));
 
         fetchSystemById({
             id: targetId,
@@ -236,7 +266,28 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                     setLastChosenStar(DEFAULT_CHOSEN_STAR);
                 }}
             >
-                {<div></div>}
+                {<MmtTabs list={TABS_LIST}>
+                    <TabPanel>
+                        <PlanetList currentPlanet={course.title} />
+                        <FinalGrade />
+                    </TabPanel>
+                    <TabPanel>
+                        <CurrentUserItem
+                            explorer={you}
+                            badgeTitle="Мой рейтинг"
+                        />
+                        <DividingLine color={DividingLineColor.gray500} />
+                        <UsersList explorersList={explorers} />
+                    </TabPanel>
+                    <TabPanel>
+                        <CurrentUserItem
+                            keeper={yourKeeper}
+                            badgeTitle="Мой хранитель"
+                        />
+                        <DividingLine color={DividingLineColor.gray500} />
+                        <UsersList keepersList={keepers} />
+                    </TabPanel>
+                </MmtTabs>}
             </CircleModal>}
             <div
                 className={element('background')}
