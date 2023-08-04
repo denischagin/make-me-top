@@ -272,23 +272,33 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                         <FinalGrade />
                     </TabPanel>
                     <TabPanel>
-                        <CurrentUserItem
-                            explorer={you}
-                            badgeTitle="Мой рейтинг"
-                        />
-                        <DividingLine color={DividingLineColor.gray500} />
+                        {
+                            !!you &&
+                            <>
+                                <CurrentUserItem
+                                    explorer={you}
+                                    badgeTitle="Мой рейтинг"
+                                />
+                                <DividingLine color={DividingLineColor.gray500} />
+                            </>
+                        }
                         <UsersList explorersList={explorers} />
                     </TabPanel>
                     <TabPanel>
-                        <CurrentUserItem
-                            keeper={yourKeeper}
-                            badgeTitle="Мой хранитель"
-                        />
-                        <DividingLine color={DividingLineColor.gray500} />
+                        {
+                            !!yourKeeper &&
+                            <>
+                                <CurrentUserItem
+                                    keeper={yourKeeper}
+                                    badgeTitle="Мой хранитель"
+                                />
+                                <DividingLine color={DividingLineColor.gray500} />
+                            </>
+                        }
                         {
                             (
                                 yourKeeper &&
-                                yourKeeper.personId //initialState id = 0
+                                !yourKeeper.personId //initialState id = 0
                             ) ?
                                 <SelectUsersList
                                     keepersList={keepers}
