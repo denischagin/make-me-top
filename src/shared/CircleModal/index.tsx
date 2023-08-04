@@ -31,14 +31,14 @@ export const CircleModal = (props: ModalInterface) => {
 
     const [block, element] = bem('circle-modal');
 
-    const modalStatus = data ?
-        getModalStatus({
+    const modalStatus = data
+        ? getModalStatus({
             lastChosenStar: data.lastChosenStar,
             userProgress: data.userProgress,
         })
         : ModalAccessStatus.opened;
-    const notStudiedParentDependencies = data ?
-        getNotStudiedParentDependencies({
+    const notStudiedParentDependencies = data
+        ? getNotStudiedParentDependencies({
             lastChosenStar: data.lastChosenStar,
             userProgress: data.userProgress,
         })
@@ -65,12 +65,11 @@ export const CircleModal = (props: ModalInterface) => {
                         />
                     </div>
                     {
-                        (modalStatus !== ModalAccessStatus.opened) ?
-                            <ModalAlert
-                                title={modalStatus}
-                                dependencies={notStudiedParentDependencies}
-                            />
-                            : null
+                        (modalStatus !== ModalAccessStatus.opened) &&
+                        <ModalAlert
+                            title={modalStatus}
+                            dependencies={notStudiedParentDependencies}
+                        />
                     }
                     <div className={element('item-list')}>
                         {children}
