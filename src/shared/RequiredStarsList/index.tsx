@@ -1,3 +1,13 @@
+import {
+    useEffect,
+    useState,
+} from 'react';
+
+import {
+    fetchSystemById,
+    SystemResponseInterface,
+} from '@entities/orbit/api/fetchSystemById';
+
 import { Button } from '@shared/Button';
 
 import { ReactComponent as StarIcon } from '@shared/images/star.svg';
@@ -5,7 +15,6 @@ import { ReactComponent as StarIcon } from '@shared/images/star.svg';
 import { bem } from '@shared/utils/bem';
 
 import {
-    RequiredStarInterface,
     RequiredStarsListInterface,
 } from './interfaces';
 import {
@@ -22,17 +31,34 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
 
     const [block, element] = bem('required-list');
 
+    const [fetchedSystemList, setFetchedSystemList] = useState<Array<SystemResponseInterface>>([]);
+
+    useEffect(() => {
+        list.forEach((item) => {
+            fetchSystemById({
+                id: item.systemId,
+            }).then((response) => {
+                setFetchedSystemList((prevState) => {
+                    return [
+                        ...prevState,
+                        response,
+                    ];
+                });
+            });
+        });
+    }, []);
+
     return (
         <div className={block()}>
-            {list.map((star: RequiredStarInterface) => (
+            {fetchedSystemList.map((system) => (
                 <div
-                    key={star.id}
+                    key={system.systemId}
                     className={element('item')}
                 >
                     <div className={element('star')}>
                         <StarIcon className={element('star-icon')} />
                         <span className={element('name')}>
-                            {star.name}
+                            {system.systemName}
                         </span>
                     </div>
                     <div className={element('info')}>

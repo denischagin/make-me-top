@@ -1,3 +1,4 @@
+import { ModalAlert } from '@shared/ModalAlert';
 import { Portal } from '@shared/Portal';
 import { Typography } from '@shared/Typography';
 
@@ -5,8 +6,13 @@ import { ReactComponent as CloseIcon } from '@shared/images/close.svg';
 import { ReactComponent as LockIcon } from '@shared/images/lock-big.svg';
 
 import { bem } from '@shared/utils/bem';
+import { getModalStatus } from '@shared/utils/getModalStatus';
+import { getNotStudiedParentDependencies } from '@shared/utils/getNotStudiedParentDependencies';
 
-import { ModalInterface } from './interfaces';
+import {
+    ModalAccessStatus,
+    ModalInterface,
+} from './interfaces';
 import {
     typographyColor,
     typographyVariant,
@@ -18,11 +24,25 @@ export const CircleModal = (props: ModalInterface) => {
     const {
         header,
         isLocked,
+        data,
         children,
         onClose,
     } = props;
 
     const [block, element] = bem('circle-modal');
+
+    const modalStatus = data
+        ? getModalStatus({
+            lastChosenStar: data.lastChosenStar,
+            userProgress: data.userProgress,
+        })
+        : ModalAccessStatus.opened;
+    const notStudiedParentDependencies = data
+        ? getNotStudiedParentDependencies({
+            lastChosenStar: data.lastChosenStar,
+            userProgress: data.userProgress,
+        })
+        : [];
 
     const lockIcon = isLocked && <LockIcon className={element('lock-icon')} />;
 
@@ -44,6 +64,13 @@ export const CircleModal = (props: ModalInterface) => {
                             onClick={onClose}
                         />
                     </div>
+                    {
+                        (modalStatus !== ModalAccessStatus.opened) &&
+                        <ModalAlert
+                            title={modalStatus}
+                            dependencies={notStudiedParentDependencies}
+                        />
+                    }
                     <div className={element('item-list')}>
                         {children}
                     </div>

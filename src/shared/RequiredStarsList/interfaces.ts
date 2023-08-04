@@ -1,8 +1,7 @@
-export interface RequiredStarInterface {
-    name: string;
-    id: number;
-}
+import {
+    SystemDependencyType,
+} from '@entities/galaxy/model/types';
 
 export interface RequiredStarsListInterface {
-    list: Array<RequiredStarInterface>;
+    list: Array<SystemDependencyType> | undefined;
 }

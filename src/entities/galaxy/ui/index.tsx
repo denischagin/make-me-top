@@ -3,36 +3,41 @@ import React,
     useEffect,
     useState,
 } from 'react';
+import { TabPanel } from 'react-tabs';
 
 import {
     useAppDispatch,
     useAppSelector,
 } from '@app/providers/store/hooks';
 
-import { userIsModalOpenSelector } from '@entities/user/model/selectors';
+import {
+    userCourseInfoSelector,
+    userIsModalOpenSelector,
+} from '@entities/user/model/selectors';
 import { showModal } from '@entities/user/model/slice';
-import { UserProgress } from '@entities/user/model/types';
+import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
+import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
 import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { createSvgContainer } from '@entities/galaxy/lib/createSvgContainer';
 import { deleteAllConnectionLines } from '@entities/galaxy/lib/deleteAllConnectionLines';
+import { isStarLocked } from '@entities/galaxy/lib/isStarLocked';
 import { setStarsActivityToActive } from '@entities/galaxy/lib/setStarsActivityToActive';
 import { setStarsActivityToInactive } from '@entities/galaxy/lib/setStarsActivityToInactive';
 import { showPlanetsChildren } from '@entities/galaxy/lib/showPlanetsChildren';
 import { showPlanetsParents } from '@entities/galaxy/lib/showPlanetsParents';
 import {
     DEFAULT_CHOSEN_STAR,
-    DEFAULT_SYSTEM_RESPONSE_MESSAGE,
     STAR_CLASS,
 } from '@entities/galaxy/model/constants';
 import {
-    OrbitType,
-    SystemType,
+    IGalaxyProps,
+    ILastChosenStar,
+    IOrbitSettings,
 } from '@entities/galaxy/model/types';
 
 import {
     fetchSystemById,
-    SystemResponseInterface,
 } from '@entities/orbit/api/fetchSystemById';
 import {
     DATA_SYSTEM_CHILDREN_LIST,
@@ -43,32 +48,22 @@ import {
 import Orbit from '@entities/orbit/ui';
 
 import { CircleModal } from '@shared/CircleModal';
+import { CurrentUserItem } from '@shared/CurrentUserItem';
+import { DividingLine } from '@shared/DividingLine';
+import { FinalGrade } from '@shared/FinalGrade';
+import { MmtTabs } from '@shared/MmtTabs';
+import { PlanetList } from '@shared/PlanetList';
+import { UsersList } from '@shared/UsersList';
 
 import { bem } from '@shared/utils/bem';
+
+import { TABS_LIST } from '@pages/Explorer/model';
+
+import { DividingLineColor } from '@shared/DividingLine/interfaces';
 
 import { SystemProgressTypes } from '@shared/types/common';
 
 import './style.scss';
-
-interface IGalaxyProps {
-    galaxyPage: HTMLDivElement | null;
-    userProgress: UserProgress;
-    orbitList: Array<OrbitType>;
-    svgContainerClass: string;
-    width: number;
-    height: number;
-    systemWidth?: number;
-    systemHeight?: number;
-}
-
-interface IOrbitSettings {
-    width: number;
-    systemWidth: number;
-    backgroundWidth: number;
-    height: number;
-    systemHeight: number;
-    backgroundHeight: number;
-}
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const {
@@ -83,19 +78,26 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const [block, element] = bem('galaxy');
 
     const dispatch = useAppDispatch();
+    const courseInfo = useAppSelector(userCourseInfoSelector);
+    const isModalOpen = useAppSelector(userIsModalOpenSelector);
+
+    const {
+        course,
+        you,
+        yourKeeper,
+        explorers,
+        keepers,
+    } = courseInfo;
 
     const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
     const [activeSystems, setActiveSystems] = useState<Array<number>>([]);
     const [stars, setStars] = useState<NodeListOf<HTMLDivElement>>(
         document.querySelectorAll(`.${STAR_CLASS}`),
     );
-    const [lastChosenStar, setLastChosenStar] = useState<SystemResponseInterface>({
+    const [lastChosenStar, setLastChosenStar] = useState<ILastChosenStar>({
         ...DEFAULT_CHOSEN_STAR,
-        ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
     });
     const [windowSize, setWindowSize] = useState([0, 0]);
-
-    const isModalOpen = useAppSelector(userIsModalOpenSelector);
 
     //что бы последняя орбита с планетами не была 0x0, уменьшаем шаг между орбитами,
     //увеличив кол-во орбит в подсчетах на 1
@@ -149,6 +151,15 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             activeSystemsId: activeSystems,
         });
     }, [activeSystems]);
+
+
+    useEffect(() => {
+        setLastChosenStar({ //todo путаница понятий, переименовать в lastChosenSystem
+            ...lastChosenStar,
+            isLocked: isStarLocked(userProgress, lastChosenStar),
+        });
+
+    }, [lastChosenStar.systemId]);
 
     const handleSystemMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
@@ -208,20 +219,28 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
         setLastChosenStar({
             ...DEFAULT_CHOSEN_STAR,
-            ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
         });
 
         dispatch(showModal());
+        dispatch(getModalPlanets({
+            planetId: targetId,
+        }));
+        dispatch(getCourseInfo({
+            courseId: targetId,
+        }));
 
         fetchSystemById({
             id: targetId,
+            withDependencies: true,
         }).then((response) => {
-            setLastChosenStar(response);
+            setLastChosenStar({
+                ...DEFAULT_CHOSEN_STAR,
+                ...response,
+            });
         }).catch((reason) => {
             setLastChosenStar({
                 ...DEFAULT_CHOSEN_STAR,
-                ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
-                systemName: 'Fetch error.',
+                systemName: `Fetch error. ${reason}`,
             });
         });
     };
@@ -235,12 +254,41 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             }}
         >
             {isModalOpen &&
-                <CircleModal
-                    header={lastChosenStar.systemName}
-                    onClose={() => dispatch(showModal())}
-                >
-                    {<div></div>}
-                </CircleModal>}
+            <CircleModal
+                header={lastChosenStar.systemName}
+                data={{
+                    lastChosenStar,
+                    userProgress,
+                }}
+                isLocked={lastChosenStar.isLocked}
+                onClose={() => {
+                    dispatch(showModal());
+                    setLastChosenStar(DEFAULT_CHOSEN_STAR);
+                }}
+            >
+                {<MmtTabs list={TABS_LIST}>
+                    <TabPanel>
+                        <PlanetList currentPlanet={course.title} />
+                        <FinalGrade />
+                    </TabPanel>
+                    <TabPanel>
+                        <CurrentUserItem
+                            explorer={you}
+                            badgeTitle="Мой рейтинг"
+                        />
+                        <DividingLine color={DividingLineColor.gray500} />
+                        <UsersList explorersList={explorers} />
+                    </TabPanel>
+                    <TabPanel>
+                        <CurrentUserItem
+                            keeper={yourKeeper}
+                            badgeTitle="Мой хранитель"
+                        />
+                        <DividingLine color={DividingLineColor.gray500} />
+                        <UsersList keepersList={keepers} />
+                    </TabPanel>
+                </MmtTabs>}
+            </CircleModal>}
             <div
                 className={element('background')}
                 style={{

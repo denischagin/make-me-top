@@ -9,6 +9,8 @@ import {
     useAppSelector,
 } from '@app/providers/store/hooks';
 
+import { getExplorerInfo } from '@entities/explorer/thunks/getExplorerInfo';
+
 import { DEFAULT_GALAXY_ID } from '@entities/galaxy/model/constants';
 import { getGalaxy } from '@entities/galaxy/thunks/getGalaxy';
 import Galaxy from '@entities/galaxy/ui';
@@ -35,9 +37,9 @@ export const GalaxyPage: React.FC = () => {
     const galaxyPageRef = useRef<HTMLDivElement | null>(null);
 
     const testUserProgress = {
-        openSystemList: [4, 7, 8, 9, 10, 13, 17],
-        closeSystemList: [11, 12, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24],
-        educationSystemList: [
+        openedSystemList: [4, 7, 8, 9, 10, 13],
+        closedSystemList: [11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+        inProgressSystemList: [
             {
                 systemId: 1,
                 completed: 25,
@@ -65,7 +67,8 @@ export const GalaxyPage: React.FC = () => {
         dispatch(getGalaxy({
             galaxyId: DEFAULT_GALAXY_ID,
         }));
-    }, [dispatch]);
+        dispatch(getExplorerInfo({}));
+    }, []);
 
     const galaxyName = useAppSelector(galaxyNameSelector);
 

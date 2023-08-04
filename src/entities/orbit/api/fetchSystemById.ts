@@ -11,22 +11,27 @@ import { URL_MMT_STAND_GALAXY } from '@shared/constants/urls';
 import { ErrorInterface } from '@shared/types/common';
 
 interface FetchSystemById {
-    id: number;
+  id: number | null;
+  withDependencies?: boolean;
 }
 
 export interface SystemResponseInterface extends SystemType, ErrorInterface {
-
 }
 
-export const fetchSystemById = async (payload: FetchSystemById) => {
+export const fetchSystemById = async (payload: FetchSystemById) => { //todo переделать с использованием callback
     try {
         const {
             id,
+            withDependencies,
         } = payload;
+
+        const fetchUrl = withDependencies
+            ? `${URL_MMT_STAND_GALAXY}galaxy-app/system/${id}?withDependencies=true`
+            : `${URL_MMT_STAND_GALAXY}galaxy-app/system/${id}`;
 
         const {
             data,
-        } = await instance.get<SystemResponseInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/system/${id}`);
+        } = await instance.get<SystemResponseInterface>(fetchUrl);
 
         return data;
     }

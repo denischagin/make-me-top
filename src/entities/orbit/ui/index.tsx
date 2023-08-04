@@ -1,5 +1,4 @@
 import React from 'react';
-import { type } from '@testing-library/user-event/dist/type';
 
 import { UserProgress } from '@entities/user/model/types';
 

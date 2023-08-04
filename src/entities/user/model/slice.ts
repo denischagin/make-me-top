@@ -15,9 +15,9 @@ const initialState: UserState = {
     planetList: [],
     courseInfo: initialCourseInfo,
     userData: {
-        openSystemList: [],
-        closeSystemList: [],
-        educationSystemList: [],
+        openedSystemList: [],
+        closedSystemList: [],
+        inProgressSystemList: [],
     },
 
 };

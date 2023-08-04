@@ -14,9 +14,9 @@ export const getSystemProgressType = (params: IGetPlanetProgress) => {
     const {
         system,
         userProgress,
-    } = params;
+    } = params; //todo срабатывает 48 раз при наведеии/анфокусе
 
-    const isSystemOpen = userProgress.openSystemList.some(
+    const isSystemOpen = userProgress.openedSystemList.some(
         (openSystemId) => openSystemId === system.systemId,
     );
 
@@ -24,7 +24,7 @@ export const getSystemProgressType = (params: IGetPlanetProgress) => {
         return SystemProgressTypes.SYSTEM_OPEN;
     }
 
-    const isSystemClose = userProgress.closeSystemList.some(
+    const isSystemClose = userProgress.closedSystemList.some(
         (closeSystemId) => closeSystemId === system.systemId,
     );
 
@@ -32,7 +32,7 @@ export const getSystemProgressType = (params: IGetPlanetProgress) => {
         return SystemProgressTypes.SYSTEM_CLOSE;
     }
 
-    const isSystemEducation = userProgress.educationSystemList.some(
+    const isSystemEducation = userProgress.inProgressSystemList.some(
         (educationSystemId) => educationSystemId.systemId === system.systemId,
     );
 
