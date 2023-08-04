@@ -116,10 +116,7 @@ export const SelectUsersList = (props: UserListInterface) => {
                             })}
                         >
                             {
-                                (
-                                    !selectedUserIds.includes(user.personId)
-                                    && (selectedUserIds.length < 2)
-                                ) ?
+                                !selectedUserIds.includes(user.personId) ?
                                     <Button
                                         size={buttonSize.small}
                                         color={buttonColor.filled}
