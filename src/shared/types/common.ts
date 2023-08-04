@@ -29,6 +29,7 @@ export interface UserInterface {
 export interface UserListInterface {
     keepersList?: Array<CourseKeeper> | null;
     explorersList?: Array<CourseExplorer> | null;
+    courseId?: number;
 }
 
 export interface ExplorerItemInterface {
@@ -88,4 +89,11 @@ export enum SystemProgressTypes {
     PROGRESS_NOT_FOUND = 'progressNotFound'
 }
 
+export interface PostCourseInterface {
+    payload: PostCourseRequest
+}
+export interface PostCourseRequest {
+    courseId: number,
+    keeperId: number,
+}
 export const MAX_STUDYING_PROGRESS = 100;

@@ -6,7 +6,7 @@ import {
 import {
     fetchSystemById,
     SystemResponseInterface,
-} from '@entities/orbit/api/fetchSystemById';
+} from '@entities/orbit/thunks/fetchSystemById';
 
 import { Button } from '@shared/Button';
 

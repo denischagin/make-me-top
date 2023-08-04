@@ -36,7 +36,7 @@ export const GalaxyPage: React.FC = () => {
 
     const galaxyPageRef = useRef<HTMLDivElement | null>(null);
 
-    const testUserProgress = {
+    const testUserProgress = { //todo подготовить апишку под прогресс пользователя
         openedSystemList: [4, 7, 8, 9, 10, 13],
         closedSystemList: [11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
         inProgressSystemList: [

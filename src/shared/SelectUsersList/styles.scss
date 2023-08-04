@@ -1,6 +1,8 @@
 @import '@app/styles/variables.scss';
 
 .select-list {
+    display: flex;
+    flex-direction: column;
     margin: 24px auto;
 
     &__item {
@@ -47,4 +49,10 @@
             opacity: 1;
         }
     }
+
+    &__submit-selected {
+        margin-top: 16px;
+        align-self: center;
+    }
+
 }

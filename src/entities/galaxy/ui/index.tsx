@@ -37,14 +37,12 @@ import {
 } from '@entities/galaxy/model/types';
 
 import {
-    fetchSystemById,
-} from '@entities/orbit/api/fetchSystemById';
-import {
     DATA_SYSTEM_CHILDREN_LIST,
     DATA_SYSTEM_ID,
     DATA_SYSTEM_PARENT_LIST,
     DATA_SYSTEM_PROGRESS_TYPE,
 } from '@entities/orbit/model/types';
+import { fetchSystemById } from '@entities/orbit/thunks/fetchSystemById';
 import Orbit from '@entities/orbit/ui';
 
 import { CircleModal } from '@shared/CircleModal';
@@ -53,6 +51,7 @@ import { DividingLine } from '@shared/DividingLine';
 import { FinalGrade } from '@shared/FinalGrade';
 import { MmtTabs } from '@shared/MmtTabs';
 import { PlanetList } from '@shared/PlanetList';
+import { SelectUsersList } from '@shared/SelectUsersList';
 import { UsersList } from '@shared/UsersList';
 
 import { bem } from '@shared/utils/bem';
@@ -151,7 +150,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             activeSystemsId: activeSystems,
         });
     }, [activeSystems]);
-
 
     useEffect(() => {
         setLastChosenStar({ //todo путаница понятий, переименовать в lastChosenSystem
@@ -272,20 +270,39 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                         <FinalGrade />
                     </TabPanel>
                     <TabPanel>
-                        <CurrentUserItem
-                            explorer={you}
-                            badgeTitle="Мой рейтинг"
-                        />
-                        <DividingLine color={DividingLineColor.gray500} />
+                        {
+                            !!you &&
+                            <>
+                                <CurrentUserItem
+                                    explorer={you}
+                                    badgeTitle="Мой рейтинг"
+                                />
+                                <DividingLine color={DividingLineColor.gray500} />
+                            </>
+                        }
                         <UsersList explorersList={explorers} />
                     </TabPanel>
                     <TabPanel>
-                        <CurrentUserItem
-                            keeper={yourKeeper}
-                            badgeTitle="Мой хранитель"
-                        />
-                        <DividingLine color={DividingLineColor.gray500} />
-                        <UsersList keepersList={keepers} />
+                        {
+                            !!yourKeeper &&
+                            <>
+                                <CurrentUserItem
+                                    keeper={yourKeeper}
+                                    badgeTitle="Мой хранитель"
+                                />
+                                <DividingLine color={DividingLineColor.gray500} />
+                            </>
+                        }
+                        {
+                            (yourKeeper && !yourKeeper.personId) ?
+                                <SelectUsersList
+                                    keepersList={keepers}
+                                    courseId={lastChosenStar.systemId}
+                                /> :
+                                <UsersList
+                                    keepersList={keepers}
+                                />
+                        }
                     </TabPanel>
                 </MmtTabs>}
             </CircleModal>}

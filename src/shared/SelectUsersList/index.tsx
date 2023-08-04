@@ -1,4 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router';
+
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { userCourseInfoSelector } from '@entities/user/model/selectors';
+import { postCourseRequest } from '@entities/user/thunks/postCourseRequest';
+
+import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
 import { Avatar } from '@shared/Avatar';
 import { Button } from '@shared/Button';
@@ -7,6 +16,11 @@ import { Rating } from '@shared/Rating';
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 import { sortByRating } from '@shared/utils/sortByRating';
+
+import {
+    URL_EXPLORER,
+    URL_KEEPER,
+} from '@shared/constants/links';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -18,6 +32,13 @@ import {
     ratingSize,
     ratingStarColor,
 } from '@shared/Rating/interfaces';
+import {
+    TOAST_ERROR_CHOOSE_KEEPER,
+    TOAST_ERROR_KEEPER_ALREADY_CHOSEN,
+    TOAST_ERROR_NOT_FOUND,
+    TOAST_ERROR_ONLY_ONE_KEEPER,
+    TOAST_REQUEST_SENT,
+} from '@shared/SelectUsersList/interfaces';
 
 import { UserListInterface } from '@shared/types/common';
 
@@ -27,15 +48,65 @@ export const SelectUsersList = (props: UserListInterface) => {
     const {
         keepersList,
         explorersList,
+        courseId,
     } = props;
 
+    const navigate = useNavigate();
+
+    const isExplorer = useAppSelector(explorerIsExplorerSelector);
+    const courseInfo = useAppSelector(userCourseInfoSelector);
+
     const keepersOrExplorers = keepersList || explorersList || [];
+    const pathByUserRole = isExplorer ? URL_EXPLORER : URL_KEEPER;
 
     const [block, element] = bem('select-list');
     const [selectedUserIds, setSelectedUserIds] = useState<Array<number>>([]);
 
+    const {
+        yourKeeper,
+    } = courseInfo;
+
+    function onSubmitClick() {
+        if (!courseId) {
+            return toast.error(TOAST_ERROR_NOT_FOUND);
+        }
+
+        const isKeeperNotChosen = !selectedUserIds.length;
+
+        if (isKeeperNotChosen) {
+            return toast.error(TOAST_ERROR_CHOOSE_KEEPER);
+        }
+
+        const isSeveralKeepers = selectedUserIds.length !== 1;
+
+        if (isSeveralKeepers) {
+            return toast.error(TOAST_ERROR_ONLY_ONE_KEEPER);
+        }
+
+        const isKeeperAlreadyChosen = selectedUserIds.includes(yourKeeper.personId);
+
+        if (isKeeperAlreadyChosen) {
+            return toast.error(TOAST_ERROR_KEEPER_ALREADY_CHOSEN);
+        }
+
+        selectedUserIds.forEach((userId) => {
+            postCourseRequest({
+                payload: {
+                    courseId,
+                    keeperId: userId,
+                },
+            });
+        });
+        toast(TOAST_REQUEST_SENT);
+        navigate(pathByUserRole);
+    }
+
     function getSelectedUser(userId: number) {
-        setSelectedUserIds([...selectedUserIds, userId]);
+        if (!selectedUserIds.length) {
+            return setSelectedUserIds([...selectedUserIds, userId]);
+        }
+
+        toast.error(TOAST_ERROR_ONLY_ONE_KEEPER);
     }
 
     function removeSelectedUser(userId: number) {
@@ -94,6 +165,17 @@ export const SelectUsersList = (props: UserListInterface) => {
                     </div>
                 </div>
             ))}
+            {
+                !!keepersOrExplorers.length &&
+                <div className={element('submit-selected')}>
+                    <Button
+                        size={buttonSize.large}
+                        color={buttonColor.primary500}
+                        onClick={() => onSubmitClick()}
+                        title='Отправить заявку'
+                    />
+                </div>
+            }
         </div>
     );
 };
