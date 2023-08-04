@@ -37,10 +37,7 @@ export function getModalStatus(params: GetModalStatus): ModalAccessStatus {
         return ModalAccessStatus.closed_needStars;
     }
 
-    if (
-        courseInfo.yourKeeper &&
-        courseInfo.yourKeeper.keeperId
-    ) {
+    if (courseInfo.yourKeeper && courseInfo.yourKeeper.keeperId) {
         return ModalAccessStatus.opened;
     }
 
