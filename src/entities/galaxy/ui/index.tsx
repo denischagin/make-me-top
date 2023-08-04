@@ -53,6 +53,7 @@ import { DividingLine } from '@shared/DividingLine';
 import { FinalGrade } from '@shared/FinalGrade';
 import { MmtTabs } from '@shared/MmtTabs';
 import { PlanetList } from '@shared/PlanetList';
+import { SelectUsersList } from '@shared/SelectUsersList';
 import { UsersList } from '@shared/UsersList';
 
 import { bem } from '@shared/utils/bem';
@@ -151,7 +152,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             activeSystemsId: activeSystems,
         });
     }, [activeSystems]);
-
 
     useEffect(() => {
         setLastChosenStar({ //todo путаница понятий, переименовать в lastChosenSystem
@@ -285,7 +285,10 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                             badgeTitle="Мой хранитель"
                         />
                         <DividingLine color={DividingLineColor.gray500} />
-                        <UsersList keepersList={keepers} />
+                        <SelectUsersList
+                            keepersList={keepers}
+                            courseId={lastChosenStar.systemId}
+                        />
                     </TabPanel>
                 </MmtTabs>}
             </CircleModal>}

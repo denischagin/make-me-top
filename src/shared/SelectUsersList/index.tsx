@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+
+import { postCourseRequest } from '@entities/user/thunks/postCourseRequest';
 
 import { Avatar } from '@shared/Avatar';
 import { Button } from '@shared/Button';
@@ -27,6 +30,7 @@ export const SelectUsersList = (props: UserListInterface) => {
     const {
         keepersList,
         explorersList,
+        courseId,
     } = props;
 
     const keepersOrExplorers = keepersList || explorersList || [];
@@ -34,8 +38,31 @@ export const SelectUsersList = (props: UserListInterface) => {
     const [block, element] = bem('select-list');
     const [selectedUserIds, setSelectedUserIds] = useState<Array<number>>([]);
 
+    function onSubmitClick() {
+        if (!courseId) {
+            toast.error('Course nor found');
+        } else if (!selectedUserIds.length) {
+            toast.error('Необходимо выбрать хранителя');
+        } else if (selectedUserIds.length !== 1) {
+            toast.error('Выбирите только одного хранителя');
+        } else {
+            selectedUserIds.forEach((userId) => {
+                postCourseRequest({
+                    payload: {
+                        courseId,
+                        keeperId: userId,
+                    },
+                });
+            });
+        }
+    }
+
     function getSelectedUser(userId: number) {
-        setSelectedUserIds([...selectedUserIds, userId]);
+        if (!selectedUserIds.length) {
+            setSelectedUserIds([...selectedUserIds, userId]);
+        } else {
+            toast.error('Можно выбрать только одного хранителя');
+        }
     }
 
     function removeSelectedUser(userId: number) {
@@ -64,7 +91,10 @@ export const SelectUsersList = (props: UserListInterface) => {
                             })}
                         >
                             {
-                                !selectedUserIds.includes(user.personId) ?
+                                (
+                                    !selectedUserIds.includes(user.personId)
+                                    && (selectedUserIds.length < 2)
+                                ) ?
                                     <Button
                                         size={buttonSize.small}
                                         color={buttonColor.filled}
@@ -94,6 +124,17 @@ export const SelectUsersList = (props: UserListInterface) => {
                     </div>
                 </div>
             ))}
+            {
+                !!keepersOrExplorers.length &&
+                <div className={element('submit-selected')}>
+                    <Button
+                        size={buttonSize.large}
+                        color={buttonColor.primary500}
+                        onClick={() => onSubmitClick()}
+                        title='Отправить заявку'
+                    />
+                </div>
+            }
         </div>
     );
 };

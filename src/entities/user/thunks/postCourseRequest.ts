@@ -19,7 +19,6 @@ export const postCourseRequest = createAsyncThunk<ErrorInterface, PostCourseInte
     FETCH_AUTH,
     async ({
         payload,
-        callback,
     }, {
         rejectWithValue,
     }) => {
@@ -27,8 +26,6 @@ export const postCourseRequest = createAsyncThunk<ErrorInterface, PostCourseInte
             const {
                 data,
             } = await axios.post<ErrorInterface>(`${URL_MMT_STAND_USER_PROGRESS}explorer-cabinet/course-request`, payload);
-
-            callback();
 
             return data;
         }

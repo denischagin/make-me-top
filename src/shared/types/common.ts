@@ -29,6 +29,7 @@ export interface UserInterface {
 export interface UserListInterface {
     keepersList?: Array<CourseKeeper> | null;
     explorersList?: Array<CourseExplorer> | null;
+    courseId?: number;
 }
 
 export interface ExplorerItemInterface {
@@ -90,7 +91,6 @@ export enum SystemProgressTypes {
 
 export interface PostCourseInterface {
     payload: PostCourseRequest
-    callback: () => void
 }
 export interface PostCourseRequest {
     courseId: number,
