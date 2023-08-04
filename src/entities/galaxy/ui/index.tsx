@@ -286,7 +286,10 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                         />
                         <DividingLine color={DividingLineColor.gray500} />
                         {
-                            !yourKeeper.personId ? //initialState id = 0
+                            (
+                                yourKeeper &&
+                                yourKeeper.personId //initialState id = 0
+                            ) ?
                                 <SelectUsersList
                                     keepersList={keepers}
                                     courseId={lastChosenStar.systemId}
