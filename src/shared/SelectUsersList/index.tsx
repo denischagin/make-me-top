@@ -37,7 +37,7 @@ import {
     TOAST_ERROR_KEEPER_ALREADY_CHOSEN,
     TOAST_ERROR_NOT_FOUND,
     TOAST_ERROR_ONLY_ONE_KEEPER,
-    TOAST_REQUEST_SANDED,
+    TOAST_REQUEST_SENT,
 } from '@shared/SelectUsersList/interfaces';
 
 import { UserListInterface } from '@shared/types/common';
@@ -68,33 +68,45 @@ export const SelectUsersList = (props: UserListInterface) => {
 
     function onSubmitClick() {
         if (!courseId) {
-            toast.error(TOAST_ERROR_NOT_FOUND);
-        } else if (!selectedUserIds.length) {
-            toast.error(TOAST_ERROR_CHOOSE_KEEPER);
-        } else if (selectedUserIds.length !== 1) {
-            toast.error(TOAST_ERROR_ONLY_ONE_KEEPER);
-        } else if (selectedUserIds.includes(yourKeeper.personId)) {
-            toast.error(TOAST_ERROR_KEEPER_ALREADY_CHOSEN);
-        } else {
-            selectedUserIds.forEach((userId) => {
-                postCourseRequest({
-                    payload: {
-                        courseId,
-                        keeperId: userId,
-                    },
-                });
-            });
-            toast(TOAST_REQUEST_SANDED);
-            navigate(pathByUserRole);
+            return toast.error(TOAST_ERROR_NOT_FOUND);
         }
+
+        const isKeeperNotChosen = !selectedUserIds.length;
+
+        if (isKeeperNotChosen) {
+            return toast.error(TOAST_ERROR_CHOOSE_KEEPER);
+        }
+
+        const isSeveralKeepers = selectedUserIds.length !== 1;
+
+        if (isSeveralKeepers) {
+            return toast.error(TOAST_ERROR_ONLY_ONE_KEEPER);
+        }
+
+        const isKeeperAlreadyChosen = selectedUserIds.includes(yourKeeper.personId);
+
+        if (isKeeperAlreadyChosen) {
+            return toast.error(TOAST_ERROR_KEEPER_ALREADY_CHOSEN);
+        }
+
+        selectedUserIds.forEach((userId) => {
+            postCourseRequest({
+                payload: {
+                    courseId,
+                    keeperId: userId,
+                },
+            });
+        });
+        toast(TOAST_REQUEST_SENT);
+        navigate(pathByUserRole);
     }
 
     function getSelectedUser(userId: number) {
         if (!selectedUserIds.length) {
-            setSelectedUserIds([...selectedUserIds, userId]);
-        } else {
-            toast.error(TOAST_ERROR_ONLY_ONE_KEEPER);
+            return setSelectedUserIds([...selectedUserIds, userId]);
         }
+
+        toast.error(TOAST_ERROR_ONLY_ONE_KEEPER);
     }
 
     function removeSelectedUser(userId: number) {

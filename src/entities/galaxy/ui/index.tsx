@@ -42,9 +42,7 @@ import {
     DATA_SYSTEM_PARENT_LIST,
     DATA_SYSTEM_PROGRESS_TYPE,
 } from '@entities/orbit/model/types';
-import {
-    fetchSystemById,
-} from '@entities/orbit/thunks/fetchSystemById';
+import { fetchSystemById } from '@entities/orbit/thunks/fetchSystemById';
 import Orbit from '@entities/orbit/ui';
 
 import { CircleModal } from '@shared/CircleModal';
@@ -296,10 +294,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                             </>
                         }
                         {
-                            (
-                                yourKeeper &&
-                                !yourKeeper.personId //initialState id = 0
-                            ) ?
+                            (yourKeeper && !yourKeeper.personId) ?
                                 <SelectUsersList
                                     keepersList={keepers}
                                     courseId={lastChosenStar.systemId}
