@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 
 import { useAppSelector } from '@app/providers/store/hooks';
 
+import { userCourseInfoSelector } from '@entities/user/model/selectors';
 import { postCourseRequest } from '@entities/user/thunks/postCourseRequest';
 
 import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
@@ -46,12 +47,17 @@ export const SelectUsersList = (props: UserListInterface) => {
     const navigate = useNavigate();
 
     const isExplorer = useAppSelector(explorerIsExplorerSelector);
+    const courseInfo = useAppSelector(userCourseInfoSelector);
 
     const keepersOrExplorers = keepersList || explorersList || [];
     const pathByUserRole = isExplorer ? URL_EXPLORER : URL_KEEPER;
 
     const [block, element] = bem('select-list');
     const [selectedUserIds, setSelectedUserIds] = useState<Array<number>>([]);
+
+    const {
+        yourKeeper,
+    } = courseInfo;
 
     function onSubmitClick() {
         if (!courseId) {
@@ -60,6 +66,8 @@ export const SelectUsersList = (props: UserListInterface) => {
             toast.error('Необходимо выбрать хранителя');
         } else if (selectedUserIds.length !== 1) {
             toast.error('Выбирите только одного хранителя');
+        } else if (selectedUserIds.includes(yourKeeper.personId)) {
+            toast.error('Вас уже обучает этот хранитель');
         } else {
             selectedUserIds.forEach((userId) => {
                 postCourseRequest({
