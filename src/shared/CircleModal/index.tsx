@@ -1,3 +1,7 @@
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { userCourseInfoSelector } from '@entities/user/model/selectors';
+
 import { ModalAlert } from '@shared/ModalAlert';
 import { Portal } from '@shared/Portal';
 import { Typography } from '@shared/Typography';
@@ -31,10 +35,13 @@ export const CircleModal = (props: ModalInterface) => {
 
     const [block, element] = bem('circle-modal');
 
+    const courseInfo = useAppSelector(userCourseInfoSelector);
+
     const modalStatus = data
         ? getModalStatus({
             lastChosenStar: data.lastChosenStar,
             userProgress: data.userProgress,
+            courseInfo,
         })
         : ModalAccessStatus.opened;
     const notStudiedParentDependencies = data

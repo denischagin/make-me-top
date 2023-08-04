@@ -1,4 +1,7 @@
-import { UserProgress } from '@entities/user/model/types';
+import {
+    CourseInfoInterface,
+    UserProgress,
+} from '@entities/user/model/types';
 
 import { DEFAULT_CHOSEN_STAR } from '@entities/galaxy/model/constants';
 import { ILastChosenStar } from '@entities/galaxy/model/types';
@@ -10,6 +13,7 @@ import { ModalAccessStatus } from '@shared/CircleModal/interfaces';
 interface GetModalStatus {
     lastChosenStar: ILastChosenStar,
     userProgress: UserProgress,
+    courseInfo: CourseInfoInterface,
 }
 
 //функция получения статуса модального окна в зависимоти от данных пользователя и последней выбранной системы
@@ -17,6 +21,7 @@ export function getModalStatus(params: GetModalStatus): ModalAccessStatus {
     const {
         lastChosenStar,
         userProgress,
+        courseInfo,
     } = params;
 
     if (lastChosenStar.systemId === DEFAULT_CHOSEN_STAR.systemId) {
@@ -30,6 +35,13 @@ export function getModalStatus(params: GetModalStatus): ModalAccessStatus {
 
     if (notStudiedParentDependencies.length) {
         return ModalAccessStatus.closed_needStars;
+    }
+
+    if (
+        courseInfo.yourKeeper &&
+        courseInfo.yourKeeper.keeperId
+    ) {
+        return ModalAccessStatus.opened;
     }
 
     const isSystemInStudy = userProgress.inProgressSystemList.some(system => system.systemId === lastChosenStar.systemId);
