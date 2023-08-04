@@ -285,10 +285,16 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                             badgeTitle="Мой хранитель"
                         />
                         <DividingLine color={DividingLineColor.gray500} />
-                        <SelectUsersList
-                            keepersList={keepers}
-                            courseId={lastChosenStar.systemId}
-                        />
+                        {
+                            !yourKeeper.personId ? //initialState id = 0
+                                <SelectUsersList
+                                    keepersList={keepers}
+                                    courseId={lastChosenStar.systemId}
+                                /> :
+                                <UsersList
+                                    keepersList={keepers}
+                                />
+                        }
                     </TabPanel>
                 </MmtTabs>}
             </CircleModal>}
