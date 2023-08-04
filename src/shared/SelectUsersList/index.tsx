@@ -32,6 +32,13 @@ import {
     ratingSize,
     ratingStarColor,
 } from '@shared/Rating/interfaces';
+import {
+    TOAST_ERROR_CHOOSE_KEEPER,
+    TOAST_ERROR_KEEPER_ALREADY_CHOSEN,
+    TOAST_ERROR_NOT_FOUND,
+    TOAST_ERROR_ONLY_ONE_KEEPER,
+    TOAST_REQUEST_SANDED,
+} from '@shared/SelectUsersList/interfaces';
 
 import { UserListInterface } from '@shared/types/common';
 
@@ -61,13 +68,13 @@ export const SelectUsersList = (props: UserListInterface) => {
 
     function onSubmitClick() {
         if (!courseId) {
-            toast.error('Course nor found');
+            toast.error(TOAST_ERROR_NOT_FOUND);
         } else if (!selectedUserIds.length) {
-            toast.error('Необходимо выбрать хранителя');
+            toast.error(TOAST_ERROR_CHOOSE_KEEPER);
         } else if (selectedUserIds.length !== 1) {
-            toast.error('Выбирите только одного хранителя');
+            toast.error(TOAST_ERROR_ONLY_ONE_KEEPER);
         } else if (selectedUserIds.includes(yourKeeper.personId)) {
-            toast.error('Вас уже обучает этот хранитель');
+            toast.error(TOAST_ERROR_KEEPER_ALREADY_CHOSEN);
         } else {
             selectedUserIds.forEach((userId) => {
                 postCourseRequest({
@@ -77,7 +84,7 @@ export const SelectUsersList = (props: UserListInterface) => {
                     },
                 });
             });
-            toast('Заявка отправлена');
+            toast(TOAST_REQUEST_SANDED);
             navigate(pathByUserRole);
         }
     }
@@ -86,7 +93,7 @@ export const SelectUsersList = (props: UserListInterface) => {
         if (!selectedUserIds.length) {
             setSelectedUserIds([...selectedUserIds, userId]);
         } else {
-            toast.error('Можно выбрать только одного хранителя');
+            toast.error(TOAST_ERROR_ONLY_ONE_KEEPER);
         }
     }
 
