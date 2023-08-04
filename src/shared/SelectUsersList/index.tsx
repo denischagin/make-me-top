@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router';
+
+import { useAppSelector } from '@app/providers/store/hooks';
 
 import { postCourseRequest } from '@entities/user/thunks/postCourseRequest';
+
+import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
 import { Avatar } from '@shared/Avatar';
 import { Button } from '@shared/Button';
@@ -10,6 +15,11 @@ import { Rating } from '@shared/Rating';
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 import { sortByRating } from '@shared/utils/sortByRating';
+
+import {
+    URL_EXPLORER,
+    URL_KEEPER,
+} from '@shared/constants/links';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -33,7 +43,12 @@ export const SelectUsersList = (props: UserListInterface) => {
         courseId,
     } = props;
 
+    const navigate = useNavigate();
+
+    const isExplorer = useAppSelector(explorerIsExplorerSelector);
+
     const keepersOrExplorers = keepersList || explorersList || [];
+    const pathByUserRole = isExplorer ? URL_EXPLORER : URL_KEEPER;
 
     const [block, element] = bem('select-list');
     const [selectedUserIds, setSelectedUserIds] = useState<Array<number>>([]);
@@ -54,6 +69,8 @@ export const SelectUsersList = (props: UserListInterface) => {
                     },
                 });
             });
+            toast('Заявка отправлена');
+            navigate(pathByUserRole);
         }
     }
 
