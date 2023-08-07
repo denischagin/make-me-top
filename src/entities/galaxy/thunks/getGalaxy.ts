@@ -6,7 +6,7 @@ import { FETCH_GALAXY } from '@entities/galaxy/model/actions';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_GALAXY } from '@shared/constants/urls';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
@@ -36,7 +36,7 @@ export const getGalaxy = createAsyncThunk<GalaxyResponseInterface, GetGalaxyInte
 
             const {
                 data,
-            } = await instance.get<GalaxyResponseInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/galaxy/${galaxyId}`);
+            } = await instance.get<GalaxyResponseInterface>(`${URL_MMT_STAND}galaxy-app/galaxy/${galaxyId}`);
 
             return data;
         }

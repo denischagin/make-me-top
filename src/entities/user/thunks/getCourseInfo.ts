@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_COURSE } from '@shared/constants/urls';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
@@ -35,7 +35,7 @@ export const getCourseInfo = createAsyncThunk<CourseResponseInterface, GetCourse
 
             const {
                 data,
-            } = await instance.get<CourseResponseInterface>(`${URL_MMT_STAND_COURSE}course-app/course/${courseId}`);
+            } = await instance.get<CourseResponseInterface>(`${URL_MMT_STAND}course-app/course/${courseId}`);
 
             return data;
         }
