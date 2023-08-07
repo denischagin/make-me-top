@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_USER } from '@shared/constants/urls';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ExplorerCardInfoInterface } from '../model/types/interfaces';
 
@@ -33,7 +33,7 @@ export const getExplorerCardInfo = createAsyncThunk<ExplorerCardInfoResponseInte
 
             const {
                 data,
-            } = await instance.get<ExplorerCardInfoResponseInterface>(`${URL_MMT_STAND_USER}info/explorer/${explorerId}`);
+            } = await instance.get<ExplorerCardInfoResponseInterface>(`${URL_MMT_STAND}info/explorer/${explorerId}`);
 
             return data;
         }

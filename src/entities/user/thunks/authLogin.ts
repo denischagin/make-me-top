@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
 import { storageKeys } from '@shared/constants/storageKeys';
-import { URL_MMT_STAND_AUTHORIZATION } from '@shared/constants/urls';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
@@ -22,7 +22,7 @@ export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface, { 
         try {
             const {
                 data,
-            } = await axios.post<ErrorInterface>(`${URL_MMT_STAND_AUTHORIZATION}auth/login`, payload);
+            } = await axios.post<ErrorInterface>(`${URL_MMT_STAND}auth/login`, payload);
 
             localStorage.setItem(storageKeys.tokenAuth, JSON.stringify(data));
             callback();

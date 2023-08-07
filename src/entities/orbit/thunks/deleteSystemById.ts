@@ -5,7 +5,7 @@ import { DEFAULT_ERROR_MESSAGE } from '@entities/galaxy/model/constants';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_GALAXY } from '@shared/constants/urls';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
@@ -21,7 +21,7 @@ export const deleteSystemById = async (payload: DeleteSystemById) => {
 
         const {
             data,
-        } = await instance.delete<ErrorInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/system/${systemId}`);
+        } = await instance.delete<ErrorInterface>(`${URL_MMT_STAND}galaxy-app/system/${systemId}`);
 
         return data;
     }

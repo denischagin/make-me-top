@@ -9,7 +9,7 @@ import { DEFAULT_ERROR_MESSAGE } from '@entities/user/model/constants';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_USER_PROGRESS } from '@shared/constants/urls';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import {
     ErrorInterface,
@@ -26,7 +26,7 @@ export const postCourseRequest = createAsyncThunk<ErrorInterface, PostCourseInte
         try {
             const {
                 data,
-            } = await instance.post<ErrorInterface>(`${URL_MMT_STAND_USER_PROGRESS}explorer-cabinet/course-request`, payload);
+            } = await instance.post<ErrorInterface>(`${URL_MMT_STAND}explorer-cabinet/course-request`, payload);
 
             return data;
         }

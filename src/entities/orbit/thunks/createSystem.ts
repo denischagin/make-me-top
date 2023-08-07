@@ -5,7 +5,7 @@ import { DEFAULT_ERROR_MESSAGE } from '@entities/galaxy/model/constants';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_GALAXY } from '@shared/constants/urls';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
@@ -29,7 +29,7 @@ export const createSystem = async (params: CreateSystemParams, payload: CreateSy
 
         const {
             data,
-        } = await instance.post<ErrorInterface>(`${URL_MMT_STAND_GALAXY}galaxy-app/${galaxyId}/system`, payload);
+        } = await instance.post<ErrorInterface>(`${URL_MMT_STAND}galaxy-app/${galaxyId}/system`, payload);
 
         return data;
     }

@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_USER } from '@shared/constants/urls';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ExplorerInfoInterface } from '../model/types/interfaces';
 
@@ -25,7 +25,7 @@ export const getExplorerInfo = createAsyncThunk<ExplorerInfoResponseInterface, a
         try {
             const {
                 data,
-            } = await instance.get<ExplorerInfoResponseInterface>(`${URL_MMT_STAND_USER}info/`);
+            } = await instance.get<ExplorerInfoResponseInterface>(`${URL_MMT_STAND}explorer-cabinet/info/`);
 
             return data;
         }
