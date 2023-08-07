@@ -82,14 +82,22 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
     if (!currentSystem || !systemState) {
         return (
-            <Button
-                size={buttonSize.large}
-                title="Выбрать звезду"
-                color={buttonColor.filled}
-                onClick={() => {
-                    return navigate(URL_GALAXY);
-                }}
-            />
+            <>
+                <Typography
+                    className={element('current-star-heading', 'mb-4 mt-5')}
+                    variant={typographyVariant.h2}
+                >
+                    Текущая звезда
+                </Typography>
+                <Button
+                    size={buttonSize.large}
+                    title="Выбрать звезду"
+                    color={buttonColor.filled}
+                    onClick={() => {
+                        return navigate(URL_GALAXY);
+                    }}
+                />
+            </>
         );
     }
 
@@ -125,6 +133,12 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     </MmtTabs>
                 </CircleModal>
             }
+            <Typography
+                className={element('current-star-heading', 'mb-4 mt-5')}
+                variant={typographyVariant.h2}
+            >
+                Текущая звезда
+            </Typography>
             <Card
                 size={cardSize.large}
                 glow

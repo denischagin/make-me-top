@@ -22,6 +22,7 @@ export interface ExplorerInfoInterface {
     totalSystems: number;
     currentSystem: CurrentSystem;
     investigatedSystems: Array<InvestigatedSystemsInterface>;
+    studyRequest: StudyRequestCabinetInterface
     ratingTable: Array<PersonRating>;
 }
 
@@ -75,6 +76,19 @@ export interface ExplorerCardInfoInterface {
     studyRequest: StudyRequestsInterface
     feedback: Array<Feedback>
     reviewRequest: ReviewRequestsInterface
+}
+
+export interface StudyRequestCabinetInterface {
+    courseId: string
+    courseTitle: string
+    galaxyId: string
+    galaxyName: string
+    keeperFirstName: string
+    keeperId: number
+    keeperLastName: string
+    keeperPatronymic: string
+    keeperPersonId: number
+    requestId: number
 }
 
 export interface Feedback {
