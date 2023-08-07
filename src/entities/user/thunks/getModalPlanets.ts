@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_PLANET } from '@shared/constants/urls';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
@@ -35,7 +35,7 @@ export const getModalPlanets = createAsyncThunk<PlanetsResponseInterface, GetMod
 
             const {
                 data,
-            } = await instance.get<PlanetsResponseInterface>(`${URL_MMT_STAND_PLANET}planet-app/system/${planetId}/planet`);
+            } = await instance.get<PlanetsResponseInterface>(`${URL_MMT_STAND}planet-app/system/${planetId}/planet`);
 
             return data;
         }

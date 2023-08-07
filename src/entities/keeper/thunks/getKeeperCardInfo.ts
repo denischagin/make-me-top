@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_USER } from '@shared/constants/urls';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { KeeperCardInfoInterface } from '../model/types/interfaces';
 
@@ -33,7 +33,7 @@ export const getKeeperCardInfo = createAsyncThunk<KeeperCardInfoResponseInterfac
 
             const {
                 data,
-            } = await instance.get<KeeperCardInfoResponseInterface>(`${URL_MMT_STAND_USER}info/keeper/${keeperId}`);
+            } = await instance.get<KeeperCardInfoResponseInterface>(`${URL_MMT_STAND}info/keeper/${keeperId}`);
 
             return data;
         }

@@ -6,13 +6,13 @@ import { SystemType } from '@entities/galaxy/model/types';
 
 import { instance } from '@shared/api/instances';
 
-import { URL_MMT_STAND_GALAXY } from '@shared/constants/urls';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
 interface FetchSystemById {
-  id: number | null;
-  withDependencies?: boolean;
+    id: number | null;
+    withDependencies?: boolean;
 }
 
 export interface SystemResponseInterface extends SystemType, ErrorInterface {
@@ -26,8 +26,8 @@ export const fetchSystemById = async (payload: FetchSystemById) => { //todo пе
         } = payload;
 
         const fetchUrl = withDependencies
-            ? `${URL_MMT_STAND_GALAXY}galaxy-app/system/${id}?withDependencies=true`
-            : `${URL_MMT_STAND_GALAXY}galaxy-app/system/${id}`;
+            ? `${URL_MMT_STAND}galaxy-app/system/${id}?withDependencies=true`
+            : `${URL_MMT_STAND}galaxy-app/system/${id}`;
 
         const {
             data,
