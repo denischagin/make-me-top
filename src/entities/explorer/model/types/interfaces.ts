@@ -5,6 +5,7 @@ import {
 
 export interface ExplorerState {
     isExplorer: boolean;
+    isSystemActive: boolean
     explorerApplicationCard: ExplorerApplicationCardInterface
     explorerInfo: ExplorerInfoInterface
     explorerCardInfo: ExplorerCardInfoInterface

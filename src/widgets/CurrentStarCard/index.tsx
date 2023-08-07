@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import { TabPanel } from 'react-tabs';
 
 import {
@@ -13,7 +14,11 @@ import { showModal } from '@entities/user/model/slice';
 import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
-import { explorerInfoSelector } from '@entities/explorer/model/selectors';
+import {
+    explorerInfoSelector,
+    explorerIsSystemActiveSelector,
+} from '@entities/explorer/model/selectors';
+import { declineCurrentSystem } from '@entities/explorer/model/slice';
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
@@ -28,6 +33,8 @@ import { UsersList } from '@shared/UsersList';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
+
+import { URL_GALAXY } from '@shared/constants/links';
 
 import { ProgressBar } from '@widgets/ProgressBar';
 
@@ -56,9 +63,11 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     const dispatch = useAppDispatch();
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
     const courseInfo = useAppSelector(userCourseInfoSelector);
+    const systemState = useAppSelector(explorerIsSystemActiveSelector);
     const userInfo = useAppSelector(explorerInfoSelector);
 
     const {
+        currentSystem,
         currentSystem: {
             keeper,
             courseThemeTitle,
@@ -75,6 +84,21 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         explorers,
         keepers,
     } = courseInfo;
+
+    const navigate = useNavigate();
+
+    if (!currentSystem || !systemState) {
+        return (
+            <Button
+                size={buttonSize.large}
+                title="Выбрать звезду"
+                color={buttonColor.filled}
+                onClick={() => {
+                    return navigate(URL_GALAXY);
+                }}
+            />
+        );
+    }
 
     return (
         <div className={block()}>
@@ -143,6 +167,9 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     <Button
                         size={buttonSize.large}
                         title="Отменить"
+                        onClick={() => {
+                            dispatch(declineCurrentSystem());
+                        }}
                     />
                     <Button
                         size={buttonSize.large}
