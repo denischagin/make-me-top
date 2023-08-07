@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 
-import { useAppSelector } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
-import { userCourseInfoSelector } from '@entities/user/model/selectors';
+import { CourseKeeper } from '@entities/user/model/types';
 import { postCourseRequest } from '@entities/user/thunks/postCourseRequest';
 
 import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
@@ -34,9 +37,6 @@ import {
 } from '@shared/Rating/interfaces';
 import {
     TOAST_ERROR_CHOOSE_KEEPER,
-    TOAST_ERROR_KEEPER_ALREADY_CHOSEN,
-    TOAST_ERROR_NOT_FOUND,
-    TOAST_ERROR_ONLY_ONE_KEEPER,
     TOAST_REQUEST_SENT,
 } from '@shared/SelectUsersList/interfaces';
 
@@ -47,112 +47,77 @@ import './styles.scss';
 export const SelectUsersList = (props: UserListInterface) => {
     const {
         keepersList,
-        explorersList,
         courseId,
     } = props;
 
-    const navigate = useNavigate();
-
+    const dispatch = useAppDispatch();
     const isExplorer = useAppSelector(explorerIsExplorerSelector);
-    const courseInfo = useAppSelector(userCourseInfoSelector);
 
-    const keepersOrExplorers = keepersList || explorersList || [];
     const pathByUserRole = isExplorer ? URL_EXPLORER : URL_KEEPER;
 
     const [block, element] = bem('select-list');
-    const [selectedUserIds, setSelectedUserIds] = useState<Array<number>>([]);
+    const [selectedUser, setSelectedUser] = useState<CourseKeeper>({
+        personId: 0,
+        firstName: '',
+        lastName: '',
+        patronymic: '',
+        keeperId: 0,
+        rating: 0,
+    });
 
-    const {
-        yourKeeper,
-    } = courseInfo;
-
-    function onSubmitClick() {
-        if (!courseId) {
-            return toast.error(TOAST_ERROR_NOT_FOUND);
-        }
-
-        const isKeeperNotChosen = !selectedUserIds.length;
-
-        if (isKeeperNotChosen) {
-            return toast.error(TOAST_ERROR_CHOOSE_KEEPER);
-        }
-
-        const isSeveralKeepers = selectedUserIds.length !== 1;
-
-        if (isSeveralKeepers) {
-            return toast.error(TOAST_ERROR_ONLY_ONE_KEEPER);
-        }
-
-        const isKeeperAlreadyChosen = selectedUserIds.includes(yourKeeper.personId);
-
-        if (isKeeperAlreadyChosen) {
-            return toast.error(TOAST_ERROR_KEEPER_ALREADY_CHOSEN);
-        }
-
-        selectedUserIds.forEach((userId) => {
-            postCourseRequest({
-                payload: {
-                    courseId,
-                    keeperId: userId,
-                },
-            });
+    function removeUser() {
+        setSelectedUser({
+            personId: 0,
+            firstName: '',
+            lastName: '',
+            patronymic: '',
+            keeperId: 0,
+            rating: 0,
         });
-        toast(TOAST_REQUEST_SENT);
-        navigate(pathByUserRole);
     }
 
-    function getSelectedUser(userId: number) {
-        if (!selectedUserIds.length) {
-            return setSelectedUserIds([...selectedUserIds, userId]);
-        }
-
-        toast.error(TOAST_ERROR_ONLY_ONE_KEEPER);
-    }
-
-    function removeSelectedUser(userId: number) {
-        setSelectedUserIds(selectedUserIds.filter((id) => id !== userId));
-    }
+    const navigate = useNavigate();
 
     return (
         <div className={block()}>
-            {sortByRating(keepersOrExplorers)?.map((user, index) => (
+            {sortByRating(keepersList)?.map((user) => (
                 <div
                     key={user.personId}
                     className={element('item', {
-                        selected: selectedUserIds.includes(user.personId),
+                        selected: selectedUser.keeperId,
                     })}
                 >
                     <div className={element('user')}>
                         <Avatar size={avatarSize.small} />
                         <span className={element('name')}>
-                            {getUserFullName(keepersOrExplorers[index])}
+                            {getUserFullName(user)}
                         </span>
                     </div>
                     <div className={element('info')}>
                         <div
                             className={element('button', {
-                                visible: selectedUserIds.includes(user.personId),
+                                visible: selectedUser.keeperId,
                             })}
                         >
                             {
-                                !selectedUserIds.includes(user.personId) ?
+                                !selectedUser.personId ?
                                     <Button
                                         size={buttonSize.small}
                                         color={buttonColor.filled}
-                                        onClick={() => getSelectedUser(user.personId)}
+                                        onClick={() => setSelectedUser(user)}
                                         title="Выбрать хранителя"
                                     /> :
                                     <Button
                                         size={buttonSize.small}
                                         color={buttonColor.primary500}
-                                        onClick={() => removeSelectedUser(user.personId)}
+                                        onClick={() => removeUser()}
                                         title="Отменить выбор"
                                     />
                             }
                         </div>
                         <div
                             className={element('rating', {
-                                hide: selectedUserIds.includes(user.personId),
+                                hide: selectedUser.keeperId,
                             })}
                         >
                             <Rating
@@ -166,12 +131,26 @@ export const SelectUsersList = (props: UserListInterface) => {
                 </div>
             ))}
             {
-                !!keepersOrExplorers.length &&
+                !!keepersList?.length &&
                 <div className={element('submit-selected')}>
                     <Button
                         size={buttonSize.large}
                         color={buttonColor.primary500}
-                        onClick={() => onSubmitClick()}
+                        onClick={() => {
+                            if (selectedUser.keeperId) {
+                                dispatch(postCourseRequest({
+                                    payload: {
+                                        courseId: courseId!,
+                                        keeperId: selectedUser.keeperId,
+                                    },
+                                }));
+                                toast.success(TOAST_REQUEST_SENT);
+
+                                return navigate(pathByUserRole);
+                            }
+
+                            return toast.error(TOAST_ERROR_CHOOSE_KEEPER);
+                        }}
                         title='Отправить заявку'
                     />
                 </div>

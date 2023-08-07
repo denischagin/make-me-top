@@ -243,6 +243,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         });
     };
 
+    const courseId = lastChosenStar.systemId;
+
     return (
         <div
             className={block()}
@@ -252,60 +254,58 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             }}
         >
             {isModalOpen &&
-            <CircleModal
-                header={lastChosenStar.systemName}
-                data={{
-                    lastChosenStar,
-                    userProgress,
-                }}
-                isLocked={lastChosenStar.isLocked}
-                onClose={() => {
-                    dispatch(showModal());
-                    setLastChosenStar(DEFAULT_CHOSEN_STAR);
-                }}
-            >
-                {<MmtTabs list={TABS_LIST}>
-                    <TabPanel>
-                        <PlanetList currentPlanet={course.title} />
-                        <FinalGrade />
-                    </TabPanel>
-                    <TabPanel>
-                        {
-                            !!you &&
-                            <>
-                                <CurrentUserItem
-                                    explorer={you}
-                                    badgeTitle="Мой рейтинг"
-                                />
-                                <DividingLine color={DividingLineColor.gray500} />
-                            </>
-                        }
-                        <UsersList explorersList={explorers} />
-                    </TabPanel>
-                    <TabPanel>
-                        {
-                            !!yourKeeper &&
-                            <>
-                                <CurrentUserItem
-                                    keeper={yourKeeper}
-                                    badgeTitle="Мой хранитель"
-                                />
-                                <DividingLine color={DividingLineColor.gray500} />
-                            </>
-                        }
-                        {
-                            (yourKeeper && !yourKeeper.personId) ?
-                                <SelectUsersList
-                                    keepersList={keepers}
-                                    courseId={lastChosenStar.systemId}
-                                /> :
-                                <UsersList
-                                    keepersList={keepers}
-                                />
-                        }
-                    </TabPanel>
-                </MmtTabs>}
-            </CircleModal>}
+                <CircleModal
+                    header={lastChosenStar.systemName}
+                    data={{
+                        lastChosenStar,
+                        userProgress,
+                    }}
+                    isLocked={lastChosenStar.isLocked}
+                    onClose={() => {
+                        dispatch(showModal());
+                        setLastChosenStar(DEFAULT_CHOSEN_STAR);
+                    }}
+                >
+                    {<MmtTabs list={TABS_LIST}>
+                        <TabPanel>
+                            <PlanetList currentPlanet={course.title} />
+                            <FinalGrade />
+                        </TabPanel>
+                        <TabPanel>
+                            {
+                                !!you &&
+                                <>
+                                    <CurrentUserItem
+                                        explorer={you}
+                                        badgeTitle="Мой рейтинг"
+                                    />
+                                    <DividingLine color={DividingLineColor.gray500} />
+                                </>
+                            }
+                            <UsersList explorersList={explorers} />
+                        </TabPanel>
+                        <TabPanel>
+                            {
+                                !!yourKeeper &&
+                                <>
+                                    <CurrentUserItem
+                                        keeper={yourKeeper}
+                                        badgeTitle="Мой хранитель"
+                                    />
+                                    <DividingLine color={DividingLineColor.gray500} />
+                                </>
+                            }
+                            {
+                                (!yourKeeper?.personId) ?
+                                    <SelectUsersList
+                                        keepersList={keepers}
+                                        courseId={courseId}
+                                    /> :
+                                    <UsersList keepersList={keepers} />
+                            }
+                        </TabPanel>
+                    </MmtTabs>}
+                </CircleModal>}
             <div
                 className={element('background')}
                 style={{

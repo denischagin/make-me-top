@@ -68,13 +68,6 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
     const {
         currentSystem,
-        currentSystem: {
-            keeper,
-            courseThemeTitle,
-            courseId,
-            courseTitle,
-            progress,
-        },
     } = userInfo;
 
     const {
@@ -140,28 +133,28 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     variant={typographyVariant.h2}
                     className={element('heading')}
                 >
-                    {`Планета: ${courseId}. ${courseTitle}`}
+                    {`Планета: ${currentSystem?.courseId}. ${currentSystem?.courseTitle}`}
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}
                     className={element('current-star')}
                 >
-                    {`Звезда: ${courseThemeTitle}`}
+                    {`Звезда: ${currentSystem?.courseThemeTitle}`}
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}
                     className={element('current-keeper', 'mb-4')}
                 >
-                    {`Преподаватель: ${getUserFullName(keeper)}`}
+                    {`Преподаватель: ${getUserFullName(currentSystem?.keeper)}`}
                 </Typography>
                 <span className={element('progress')}>
                     <Typography
                         variant={typographyVariant.medium16}
                         color={typographyColor.primary500}
                     >
-                        {`Освоено ${progress}%`}
+                        {`Освоено ${currentSystem?.progress}%`}
                     </Typography>
-                    <ProgressBar progress={progress} />
+                    <ProgressBar progress={currentSystem?.progress} />
                 </span>
                 <div className={element('buttons')}>
                     <Button
@@ -177,10 +170,10 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                         title="Продолжить"
                         onClick={() => {
                             dispatch(getModalPlanets({
-                                planetId: courseId,
+                                planetId: currentSystem?.courseId,
                             }));
                             dispatch(getCourseInfo({
-                                courseId,
+                                courseId: currentSystem?.courseId,
                             }));
                             dispatch(showModal());
                         }}
