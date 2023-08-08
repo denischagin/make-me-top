@@ -24,12 +24,10 @@ export interface CancelCourseInterface {
     payload: CancelCoursePayloadInterface
 }
 
-export const closeCourseRequest = createAsyncThunk<ErrorInterface, CancelCourseInterface, { rejectValue: ErrorInterface }>(
+export const closeCourseRequest = createAsyncThunk<ErrorInterface, CancelCourseInterface>(
     POST_COURSE_REQUEST,
     async ({
         payload,
-    }, {
-        rejectWithValue,
     }) => {
         try {
             const {

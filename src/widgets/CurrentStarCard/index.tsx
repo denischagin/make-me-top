@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router';
+import toast from 'react-hot-toast';
 import { TabPanel } from 'react-tabs';
 
 import {
@@ -19,6 +19,7 @@ import {
     explorerIsSystemActiveSelector,
 } from '@entities/explorer/model/selectors';
 import { declineCurrentSystem } from '@entities/explorer/model/slice';
+import { leaveCourseRequest } from '@entities/explorer/thunks/leaveCourseRequest';
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
@@ -34,9 +35,8 @@ import { UsersList } from '@shared/UsersList';
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 
-import { URL_GALAXY } from '@shared/constants/links';
-
 import { ProgressBar } from '@widgets/ProgressBar';
+import { SelectStar } from '@widgets/SelectStar';
 
 import { CurrentStarCardInterface } from './interfaces';
 import {
@@ -52,7 +52,6 @@ import {
 
 import './styles.scss';
 
-
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     const {
         tabsList = [],
@@ -66,7 +65,10 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     const systemState = useAppSelector(explorerIsSystemActiveSelector);
     const userInfo = useAppSelector(explorerInfoSelector);
 
+    const TOAST_SUCCES_REJECTED = 'Заявка на обучение отклонена';
+
     const {
+        studyRequest,
         currentSystem,
     } = userInfo;
 
@@ -78,27 +80,12 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         keepers,
     } = courseInfo;
 
-    const navigate = useNavigate();
+    if ((!currentSystem && !studyRequest) || !systemState) {
+        return <SelectStar />;
+    }
 
-    if (!currentSystem || !systemState) {
-        return (
-            <>
-                <Typography
-                    className={element('current-star-heading', 'mb-4 mt-5')}
-                    variant={typographyVariant.h2}
-                >
-                    Текущая звезда
-                </Typography>
-                <Button
-                    size={buttonSize.large}
-                    title="Выбрать звезду"
-                    color={buttonColor.filled}
-                    onClick={() => {
-                        return navigate(URL_GALAXY);
-                    }}
-                />
-            </>
-        );
+    if (studyRequest) {
+        return null;
     }
 
     return (
@@ -176,6 +163,14 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                         title="Отменить"
                         onClick={() => {
                             dispatch(declineCurrentSystem());
+                            dispatch(leaveCourseRequest({
+                                payload: {
+                                    courseId: currentSystem?.courseId,
+                                },
+                            }));
+                            toast(TOAST_SUCCES_REJECTED, {
+                                icon: '😔',
+                            });
                         }}
                     />
                     <Button

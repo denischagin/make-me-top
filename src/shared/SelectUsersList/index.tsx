@@ -10,8 +10,6 @@ import {
 import { CourseKeeper } from '@entities/user/model/types';
 import { postCourseRequest } from '@entities/user/thunks/postCourseRequest';
 
-import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
-
 import { Avatar } from '@shared/Avatar';
 import { Button } from '@shared/Button';
 import { Rating } from '@shared/Rating';
@@ -20,10 +18,7 @@ import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 import { sortByRating } from '@shared/utils/sortByRating';
 
-import {
-    URL_EXPLORER,
-    URL_KEEPER,
-} from '@shared/constants/links';
+import { URL_EXPLORER } from '@shared/constants/links';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -35,12 +30,13 @@ import {
     ratingSize,
     ratingStarColor,
 } from '@shared/Rating/interfaces';
+
+import { UserListInterface } from '@shared/types/common';
+
 import {
     TOAST_ERROR_CHOOSE_KEEPER,
     TOAST_REQUEST_SENT,
-} from '@shared/SelectUsersList/interfaces';
-
-import { UserListInterface } from '@shared/types/common';
+} from './model';
 
 import './styles.scss';
 
@@ -51,9 +47,6 @@ export const SelectUsersList = (props: UserListInterface) => {
     } = props;
 
     const dispatch = useAppDispatch();
-    const isExplorer = useAppSelector(explorerIsExplorerSelector);
-
-    const pathByUserRole = isExplorer ? URL_EXPLORER : URL_KEEPER;
 
     const [block, element] = bem('select-list');
     const [selectedUser, setSelectedUser] = useState<CourseKeeper>({
@@ -146,7 +139,7 @@ export const SelectUsersList = (props: UserListInterface) => {
                                 }));
                                 toast.success(TOAST_REQUEST_SENT);
 
-                                return navigate(pathByUserRole);
+                                return navigate(URL_EXPLORER);
                             }
 
                             return toast.error(TOAST_ERROR_CHOOSE_KEEPER);

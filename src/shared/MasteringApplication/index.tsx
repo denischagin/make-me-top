@@ -1,3 +1,5 @@
+import { toast } from 'react-hot-toast';
+
 import {
     useAppDispatch,
     useAppSelector,
@@ -28,6 +30,8 @@ export const MasteringApplication = () => {
 
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(explorerInfoSelector);
+
+    const TOAST_SUCCES_REJECTED = 'Заявка на обучение отклонена';
 
     const {
         studyRequest,
@@ -77,6 +81,9 @@ export const MasteringApplication = () => {
                                     requestId: studyRequest.requestId,
                                 },
                             }));
+                            toast(TOAST_SUCCES_REJECTED, {
+                                icon: '😔',
+                            });
                         }}
                     />
                     <Button
