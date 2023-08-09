@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
+import { addActiveSystem } from '@entities/galaxy/lib/addActiveSystem';
 import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
 import {
     CONNECTION_LINE_CLASS,
@@ -15,19 +15,19 @@ interface IShowChildren {
   systemWidth: number;
   systemHeight: number;
   svgContainer: SVGElement | null;
-  setActiveSystems: React.Dispatch<React.SetStateAction<Array<number>>>;
+  setActiveSystemsIds: React.Dispatch<React.SetStateAction<Array<number>>>;
 }
 
 //функция создания svg линий связи между текущей планетой и всеми ее child зависимостями
 //изменения dataset атрбута (атрибут активности при наведении)
-export const showPlanetsChildren = (params: IShowChildren) => {
+export const showSystemChildren = (params: IShowChildren) => {
     const {
         childrenList,
         currentTarget,
         systemHeight,
         systemWidth,
         svgContainer,
-        setActiveSystems,
+        setActiveSystemsIds,
     } = params;
 
     if (!childrenList || !svgContainer) {
@@ -54,9 +54,9 @@ export const showPlanetsChildren = (params: IShowChildren) => {
             return;
         }
 
-        addActivePlanet({
+        addActiveSystem({
             activeSystemId: numberElementId,
-            setActiveSystems,
+            setActiveSystemsIds,
         });
 
         const childElement = document.querySelector<HTMLElement>(

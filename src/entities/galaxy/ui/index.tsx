@@ -19,23 +19,23 @@ import { showModal } from '@entities/user/model/slice';
 import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
-import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
+import { addActiveSystem } from '@entities/galaxy/lib/addActiveSystem';
 import { createSvgContainer } from '@entities/galaxy/lib/createSvgContainer';
 import { deleteAllConnectionLines } from '@entities/galaxy/lib/deleteAllConnectionLines';
-import { fetchAndSetLastChosenStar } from '@entities/galaxy/lib/fetchAndSetLastChosenStar';
-import { isStarLocked } from '@entities/galaxy/lib/isStarLocked';
-import { setStarsActivityToActive } from '@entities/galaxy/lib/setStarsActivityToActive';
-import { setStarsActivityToInactive } from '@entities/galaxy/lib/setStarsActivityToInactive';
-import { showPlanetsChildren } from '@entities/galaxy/lib/showPlanetsChildren';
-import { showPlanetsParents } from '@entities/galaxy/lib/showPlanetsParents';
+import { fetchAndSetLastChosenSystem } from '@entities/galaxy/lib/fetchAndSetLastChosenSystem';
+import { isSystemLocked } from '@entities/galaxy/lib/isSystemLocked';
+import { setStarsActivityToActive } from '@entities/galaxy/lib/setSystemActivityToActive';
+import { setStarsActivityToInactive } from '@entities/galaxy/lib/setSystemActivityToInactive';
+import { showSystemChildren } from '@entities/galaxy/lib/showSystemChildren';
+import { showSystemParents } from '@entities/galaxy/lib/showSystemParents';
 import {
-    DEFAULT_CHOSEN_STAR,
+    DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
     STAR_CLASS,
 } from '@entities/galaxy/model/constants';
 import {
     IGalaxyProps,
-    ILastChosenStar,
     IOrbitSettings,
+    LastChosenSystem,
 } from '@entities/galaxy/model/types';
 
 import {
@@ -90,15 +90,15 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         keepers,
     } = courseInfo;
 
+    const [windowSize, setWindowSize] = useState([0, 0]);
     const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
-    const [activeSystems, setActiveSystems] = useState<Array<number>>([]);
-    const [stars, setStars] = useState<NodeListOf<HTMLDivElement>>(
+    const [systems, setSystems] = useState<NodeListOf<HTMLDivElement>>(
         document.querySelectorAll(`.${STAR_CLASS}`),
     );
-    const [lastChosenStar, setLastChosenStar] = useState<ILastChosenStar>({
-        ...DEFAULT_CHOSEN_STAR,
+    const [activeSystemsIds, setActiveSystemsIds] = useState<Array<number>>([]);
+    const [lastChosenSystem, setLastChosenSystem] = useState<LastChosenSystem>({
+        ...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
     });
-    const [windowSize, setWindowSize] = useState([0, 0]);
 
     //что бы последняя орбита с планетами не была 0x0, уменьшаем шаг между орбитами,
     //увеличив кол-во орбит в подсчетах на 1
@@ -144,24 +144,24 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     useEffect(() => {
         //поиск на странице и изменение модификаторов элементов в соответствии с состоянием
-        setStars(
+        setSystems(
             document.querySelectorAll(`.${STAR_CLASS}`),
         );
 
         setStarsActivityToActive({
-            activeSystemsId: activeSystems,
+            activeSystemsId: activeSystemsIds,
         });
-    }, [activeSystems]);
+    }, [activeSystemsIds]);
 
     useEffect(() => {
-        setLastChosenStar({ //todo путаница понятий, переименовать в lastChosenSystem
-            ...lastChosenStar,
-            isLocked: isStarLocked(userProgress, lastChosenStar),
+        setLastChosenSystem({ //todo путаница понятий, переименовать в lastChosenSystem
+            ...lastChosenSystem,
+            isLocked: isSystemLocked(userProgress, lastChosenSystem),
         });
 
-        console.log(lastChosenStar);
+        console.log(lastChosenSystem);
 
-    }, [lastChosenStar.systemId]);
+    }, [lastChosenSystem.systemId]);
 
     const handleSystemMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
         const currentTarget = event.currentTarget;
@@ -171,42 +171,42 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         const parentsList = currentTarget.getAttribute(DATA_SYSTEM_PARENT_LIST);
         const systemProgressType = currentTarget.getAttribute(DATA_SYSTEM_PROGRESS_TYPE);
 
-        addActivePlanet({
+        addActiveSystem({
             activeSystemId: targetId,
-            setActiveSystems,
+            setActiveSystemsIds,
         });
 
         if (
             systemProgressType === SystemProgressTypes.SYSTEM_OPEN ||
             systemProgressType === SystemProgressTypes.SYSTEM_EDUCATION
         ) {
-            showPlanetsChildren({
+            showSystemChildren({
                 childrenList,
                 currentTarget,
                 systemWidth: orbitSettings.systemWidth,
                 systemHeight: orbitSettings.systemHeight,
                 svgContainer,
-                setActiveSystems,
+                setActiveSystemsIds,
             });
         }
 
         if (systemProgressType === SystemProgressTypes.SYSTEM_CLOSE) {
-            showPlanetsParents({
+            showSystemParents({
                 parentsList,
                 currentTarget,
                 systemWidth: orbitSettings.systemWidth,
                 systemHeight: orbitSettings.systemHeight,
                 svgContainer,
-                setActiveSystems,
+                setActiveSystemsIds,
             });
         }
     };
 
     const handleSystemMouseLeave = () => {
-        setActiveSystems([]);
+        setActiveSystemsIds([]);
 
         setStarsActivityToInactive({
-            stars,
+            stars: systems,
         });
 
         deleteAllConnectionLines({
@@ -219,8 +219,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
         const targetId = Number(currentTarget.getAttribute(DATA_SYSTEM_ID));
 
-        setLastChosenStar({
-            ...DEFAULT_CHOSEN_STAR,
+        setLastChosenSystem({
+            ...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
         });
 
         dispatch(showModal());
@@ -231,14 +231,14 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             courseId: targetId,
         }));
 
-        fetchAndSetLastChosenStar({
+        fetchAndSetLastChosenSystem({
             id: targetId,
             withDependencies: true,
-            setState: setLastChosenStar,
+            setState: setLastChosenSystem,
         }).catch(toast.error);
     };
 
-    const courseId = lastChosenStar.systemId;
+    const courseId = lastChosenSystem.systemId;
 
     return (
         <div
@@ -250,15 +250,15 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         >
             {isModalOpen &&
                 <CircleModal
-                    header={lastChosenStar.systemName}
+                    header={lastChosenSystem.systemName}
                     data={{
-                        lastChosenStar,
+                        lastChosenStar: lastChosenSystem,
                         userProgress,
                     }}
-                    isLocked={lastChosenStar.isLocked}
+                    isLocked={lastChosenSystem.isLocked}
                     onClose={() => {
                         dispatch(showModal());
-                        setLastChosenStar(DEFAULT_CHOSEN_STAR);
+                        setLastChosenSystem(DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE);
                     }}
                 >
                     {<MmtTabs list={TABS_LIST}>

@@ -1,6 +1,6 @@
 import {
-    ILastChosenStar,
-    IStarProgress,
+    LastChosenSystem,
+    SystemProgress,
     SystemType,
 } from '@entities/galaxy/model/types';
 
@@ -20,11 +20,11 @@ export const DEFAULT_SYSTEM_RESPONSE_MESSAGE: ErrorInterface = {
     errorMessage: '',
 };
 
-export const DEFAULT_STAR_PROGRESS: IStarProgress = {
+export const DEFAULT_STAR_PROGRESS: SystemProgress = {
     isLocked: false,
 };
 
-export const DEFAULT_CHOSEN_STAR: ILastChosenStar = {
+export const DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE: LastChosenSystem = {
     ...DEFAULT_CHOSEN_SYSTEM,
     ...DEFAULT_STAR_PROGRESS,
     ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,

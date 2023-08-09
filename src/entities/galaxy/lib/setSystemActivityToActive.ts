@@ -5,12 +5,12 @@ import {
 
 import { DATA_SYSTEM_ID } from '@entities/orbit/model/types';
 
-interface SetStarsActivityToActive {
+interface SetSystemActivityToActive {
     activeSystemsId: Array<number>,
 }
 
 //функция изменения модификаторов активности на "Активный" определенных систем в галактике
-export const setStarsActivityToActive = (params: SetStarsActivityToActive) => {
+export const setStarsActivityToActive = (params: SetSystemActivityToActive) => {
     const {
         activeSystemsId,
     } = params;

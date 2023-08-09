@@ -49,8 +49,8 @@ export interface IOrbitSettings {
     backgroundHeight: number;
 }
 
-export interface IStarProgress {
+export interface SystemProgress {
     isLocked: boolean,
 }
 
-export interface ILastChosenStar extends SystemType, IStarProgress, ErrorInterface {}
+export interface LastChosenSystem extends SystemType, SystemProgress, ErrorInterface {}
