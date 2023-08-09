@@ -11,13 +11,11 @@ import { FETCH_AUTH } from '../model/actions';
 import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 import { AuthLoginInterface } from '../model/types';
 
-export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface, { rejectValue: ErrorInterface }>(
+export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface>(
     FETCH_AUTH,
     async ({
         payload,
         callback,
-    }, {
-        rejectWithValue,
     }) => {
         try {
             const {

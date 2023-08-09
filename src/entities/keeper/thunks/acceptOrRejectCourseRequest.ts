@@ -5,27 +5,40 @@ import { AxiosError } from 'axios';
 import {
     POST_COURSE_REQUEST,
 } from '@entities/user/model/actions';
-import { DEFAULT_ERROR_MESSAGE } from '@entities/user/model/constants';
+import {
+    DEFAULT_ERROR_MESSAGE,
+    DEFAULT_ID,
+} from '@entities/user/model/constants';
 
 import { instance } from '@shared/api/instances';
 
 import { URL_MMT_STAND } from '@shared/constants/urls';
 
-import {
-    ErrorInterface,
-    PostCourseInterface,
-} from '@shared/types/common';
+import { ErrorInterface } from '@shared/types/common';
 
-// вынести в сущность explorer, т.к. запрос не общий, а связан с конкретной сущностью
-export const postCourseRequest = createAsyncThunk<ErrorInterface, PostCourseInterface>(
+export interface RejectCoursePayloadInterface {
+    approved: boolean,
+}
+
+export interface RejectCourseInterface {
+    requestId: number,
+    rejection: RejectCoursePayloadInterface
+}
+
+export const acceptOrRejectCourseRequest = createAsyncThunk<ErrorInterface, RejectCourseInterface>(
     POST_COURSE_REQUEST,
-    async ({
+    async (
         payload,
-    }) => {
+    ) => {
         try {
             const {
+                requestId = DEFAULT_ID,
+                rejection,
+            } = payload;
+
+            const {
                 data,
-            } = await instance.post<ErrorInterface>(`${URL_MMT_STAND}explorer-cabinet/course-request`, payload);
+            } = await instance.patch<ErrorInterface>(`${URL_MMT_STAND}keeper-cabinet/course-request/${requestId}`, rejection);
 
             return data;
         }

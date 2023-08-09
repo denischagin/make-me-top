@@ -13,6 +13,7 @@ import { APPLICATION_CARD } from './mocks';
 
 const initialState: ExplorerState = {
     isExplorer: false,
+    isSystemActive: true,
     explorerApplicationCard: APPLICATION_CARD,
     explorerInfo: initialExplorerInfo,
     explorerCardInfo: initialExplorerCardInfo,
@@ -24,6 +25,9 @@ export const explorerSlice = createSlice({
     reducers: {
         selectRoleAsExplorer: (state) => {
             state.isExplorer = !state.isExplorer;
+        },
+        declineCurrentSystem: (state) => {
+            state.isSystemActive = !state.isSystemActive;
         },
     },
     extraReducers: (builder) => {
@@ -46,6 +50,7 @@ export const explorerSlice = createSlice({
 
 export const {
     selectRoleAsExplorer,
+    declineCurrentSystem,
 } = explorerSlice.actions;
 
 export default explorerSlice.reducer;

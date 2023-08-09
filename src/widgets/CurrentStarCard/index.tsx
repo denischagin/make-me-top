@@ -1,4 +1,6 @@
+
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { TabPanel } from 'react-tabs';
 
 import {
@@ -14,7 +16,12 @@ import { showModal } from '@entities/user/model/slice';
 import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
-import { explorerInfoSelector } from '@entities/explorer/model/selectors';
+import {
+    explorerInfoSelector,
+    explorerIsSystemActiveSelector,
+} from '@entities/explorer/model/selectors';
+import { declineCurrentSystem } from '@entities/explorer/model/slice';
+import { leaveCourseRequest } from '@entities/explorer/thunks/leaveCourseRequest';
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
@@ -34,6 +41,7 @@ import { getUserFullName } from '@shared/utils/getUserFullName';
 import { CONFIRM_CANCEL_LEARNING } from '@shared/constants/modalTitles';
 
 import { ProgressBar } from '@widgets/ProgressBar';
+import { SelectStar } from '@widgets/SelectStar';
 
 import { CurrentStarCardInterface } from './interfaces';
 import {
@@ -49,7 +57,6 @@ import {
 
 import './styles.scss';
 
-
 export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     const {
         tabsList = [],
@@ -61,16 +68,14 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     const dispatch = useAppDispatch();
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
     const courseInfo = useAppSelector(userCourseInfoSelector);
+    const systemState = useAppSelector(explorerIsSystemActiveSelector);
     const userInfo = useAppSelector(explorerInfoSelector);
 
+    const TOAST_SUCCES_REJECTED = 'Заявка на обучение отклонена';
+
     const {
-        currentSystem: {
-            keeper,
-            courseThemeTitle,
-            courseId,
-            courseTitle,
-            progress,
-        },
+        studyRequest,
+        currentSystem,
     } = userInfo;
 
     const {
@@ -80,6 +85,14 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         explorers,
         keepers,
     } = courseInfo;
+
+    if ((!currentSystem && !studyRequest) || !systemState) {
+        return <SelectStar />;
+    }
+
+    if (studyRequest) {
+        return null;
+    }
 
     return (
         <div className={block()}>
@@ -122,6 +135,12 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     onClose={() => setIsAcceptModalOpen(false)}
                 />
             }
+            <Typography
+                className={element('current-star-heading', 'mb-4 mt-5')}
+                variant={typographyVariant.h2}
+            >
+                Текущая звезда
+            </Typography>
             <Card
                 size={cardSize.large}
                 glow
@@ -130,34 +149,45 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     variant={typographyVariant.h2}
                     className={element('heading')}
                 >
-                    {`Планета: ${courseId}. ${courseTitle}`}
+                    {`Планета: ${currentSystem?.courseId}. ${currentSystem?.courseTitle}`}
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}
                     className={element('current-star')}
                 >
-                    {`Звезда: ${courseThemeTitle}`}
+                    {`Звезда: ${currentSystem?.courseThemeTitle}`}
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}
                     className={element('current-keeper', 'mb-4')}
                 >
-                    {`Преподаватель: ${getUserFullName(keeper)}`}
+                    {`Преподаватель: ${getUserFullName(currentSystem?.keeper)}`}
                 </Typography>
                 <span className={element('progress')}>
                     <Typography
                         variant={typographyVariant.medium16}
                         color={typographyColor.primary500}
                     >
-                        {`Освоено ${progress}%`}
+                        {`Освоено ${currentSystem?.progress}%`}
                     </Typography>
-                    <ProgressBar progress={progress} />
+                    <ProgressBar progress={currentSystem?.progress} />
                 </span>
                 <div className={element('buttons')}>
                     <Button
                         size={buttonSize.large}
                         title="Отменить"
-                        onClick={() => setIsAcceptModalOpen(true)}
+                        onClick={() => {
+                            dispatch(declineCurrentSystem());
+                            dispatch(leaveCourseRequest({
+                                payload: {
+                                    courseId: currentSystem?.courseId,
+                                },
+                            }));
+                            setIsAcceptModalOpen(true);
+                            toast(TOAST_SUCCES_REJECTED, {
+                                icon: '😔',
+                            });
+                        }}
                     />
                     <Button
                         size={buttonSize.large}
@@ -165,16 +195,16 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                         title="Продолжить"
                         onClick={() => {
                             dispatch(getModalPlanets({
-                                planetId: courseId,
+                                planetId: currentSystem?.courseId,
                             }));
                             dispatch(getCourseInfo({
-                                courseId,
+                                courseId: currentSystem?.courseId,
                             }));
                             dispatch(showModal());
                         }}
                     />
                 </div>
             </Card>
-        </div>
+        </div >
     );
 };

@@ -9,6 +9,7 @@ import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 import { getExplorerInfo } from '@entities/explorer/thunks/getExplorerInfo';
 
 import { BackgroundProfile } from '@shared/BackgroundProfile';
+import { MasteringApplication } from '@shared/MasteringApplication';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
@@ -32,6 +33,7 @@ export const Explorer = () => {
     const userInfo = useAppSelector(explorerInfoSelector);
 
     const {
+        currentSystem,
         investigatedSystems,
     } = userInfo;
 
@@ -49,13 +51,8 @@ export const Explorer = () => {
                         <div className={element('profile', 'col-xxl-9')}>
                             <ExplorerUserInfo />
                             <div className={element('current-star')}>
-                                <Typography
-                                    className={element('current-star-heading', 'mb-4 mt-5')}
-                                    variant={typographyVariant.h2}
-                                >
-                                    Текущая звезда
-                                </Typography>
                                 <CurrentStarCard tabsList={TABS_LIST} />
+                                <MasteringApplication />
                             </div>
                             <div className={element('completed-stars')}>
                                 <StarsList
