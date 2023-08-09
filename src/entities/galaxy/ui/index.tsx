@@ -3,6 +3,7 @@ import React,
     useEffect,
     useState,
 } from 'react';
+import toast from 'react-hot-toast';
 import { TabPanel } from 'react-tabs';
 
 import {
@@ -21,6 +22,7 @@ import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
 import { createSvgContainer } from '@entities/galaxy/lib/createSvgContainer';
 import { deleteAllConnectionLines } from '@entities/galaxy/lib/deleteAllConnectionLines';
+import { fetchAndSetLastChosenStar } from '@entities/galaxy/lib/fetchAndSetLastChosenStar';
 import { isStarLocked } from '@entities/galaxy/lib/isStarLocked';
 import { setStarsActivityToActive } from '@entities/galaxy/lib/setStarsActivityToActive';
 import { setStarsActivityToInactive } from '@entities/galaxy/lib/setStarsActivityToInactive';
@@ -229,13 +231,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             courseId: targetId,
         }));
 
-        dispatch(fetchSystemById({
-            payload: {
-                id: targetId,
-                withDependencies: true,
-            },
+        fetchAndSetLastChosenStar({
+            id: targetId,
+            withDependencies: true,
             setState: setLastChosenStar,
-        }));
+        }).catch(toast.error);
     };
 
     const courseId = lastChosenStar.systemId;

@@ -2,13 +2,9 @@ import {
     useEffect,
     useState,
 } from 'react';
-
-import { useAppDispatch } from '@app/providers/store/hooks';
-
-import { DEFAULT_CHOSEN_STAR } from '@entities/galaxy/model/constants';
+import toast from 'react-hot-toast';
 
 import {
-    fetchSystemById,
     SystemResponseInterface,
 } from '@entities/orbit/thunks/fetchSystemById';
 
@@ -17,6 +13,7 @@ import { Button } from '@shared/Button';
 import { ReactComponent as StarIcon } from '@shared/images/star.svg';
 
 import { bem } from '@shared/utils/bem';
+import { fetchAndSetAllDependencies } from '@shared/utils/fetchAndSetAllDependencies';
 
 import {
     RequiredStarsListInterface,
@@ -34,37 +31,14 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
     } = props;
 
     const [block, element] = bem('required-list');
-    const dispatch = useAppDispatch();
 
-    const [fetchedSystem, setFetchedSystem] = useState<SystemResponseInterface>(DEFAULT_CHOSEN_STAR);
     const [fetchedSystemList, setFetchedSystemList] = useState<Array<SystemResponseInterface>>([]);
 
     useEffect(() => {
-        setFetchedSystemList((prevState) => {
-            console.log(fetchedSystem);
-            if (!fetchedSystem.systemId) {
-                return [
-                    ...prevState,
-                ];
-            }
-
-            return [
-                ...prevState,
-                fetchedSystem,
-            ];
-        });
-    }, [fetchedSystem]);
-
-    useEffect(() => {
-        list.forEach((item) => {
-            console.log(true);
-            dispatch(fetchSystemById({
-                payload: {
-                    id: item.systemId,
-                },
-                setState: setFetchedSystem,
-            }));
-        });
+        fetchAndSetAllDependencies({
+            list,
+            setStateList: setFetchedSystemList,
+        }).catch(toast.error);
     }, []);
 
     return (
