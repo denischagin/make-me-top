@@ -44,7 +44,7 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
             console.log(fetchedSystem);
             if (!fetchedSystem.systemId) {
                 return [
-                    fetchedSystem,
+                    ...prevState,
                 ];
             }
 
@@ -57,6 +57,7 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
 
     useEffect(() => {
         list.forEach((item) => {
+            console.log(true);
             dispatch(fetchSystemById({
                 payload: {
                     id: item.systemId,

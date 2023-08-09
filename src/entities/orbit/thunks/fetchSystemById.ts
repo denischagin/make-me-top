@@ -55,8 +55,6 @@ export const fetchSystemById = createAsyncThunk<ErrorInterface, FetchSystemById>
                 setState(data);
             }
 
-            console.log(data);
-
             return data;
         }
         catch (err) {
