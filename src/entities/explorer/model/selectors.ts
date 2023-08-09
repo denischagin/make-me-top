@@ -11,3 +11,5 @@ export const explorerApplicationCardSelector = createSelector(userState, (userSt
 export const explorerInfoSelector = createSelector(userState, (userState) => userState.explorerInfo);
 
 export const explorerCardInfoSelector = createSelector(userState, (userState) => userState.explorerCardInfo);
+
+export const explorerIsSystemActiveSelector = createSelector(userState, (userState) => userState.isSystemActive);

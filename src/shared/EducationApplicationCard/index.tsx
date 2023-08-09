@@ -1,3 +1,9 @@
+import toast from 'react-hot-toast';
+
+import { useAppDispatch } from '@app/providers/store/hooks';
+
+import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
+
 import { Avatar } from '@shared/Avatar';
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
@@ -32,6 +38,11 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
     } = props;
 
     const [block, element] = bem('application-education-card');
+
+    const dispatch = useAppDispatch();
+
+    const TOAST_SUCCES_REJECTED = 'Заявка на обучение отклонена';
+    const TOAST_SUCCES_APPROVED = 'Заявка на обучение подтверждена';
 
     return (
         <div className={block()}>
@@ -68,12 +79,36 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                             <Button
                                 title={'Отклонить'}
                                 size={buttonSize.large}
+                                onClick={() => {
+                                    dispatch(acceptOrRejectCourseRequest({
+                                        requestId: user.requestId,
+                                        rejection: {
+                                            approved: false,
+                                        },
+                                    },
+                                    ));
+                                    toast(TOAST_SUCCES_REJECTED, {
+                                        icon: '😔',
+                                    });
+                                }}
                             />
                             <RouterLink to={`${URL_EXPLORER}/${user?.personId}`}>
                                 <Button
                                     title={'Принять'}
                                     color={buttonColor.filled}
                                     size={buttonSize.large}
+                                    onClick={() => {
+                                        dispatch(acceptOrRejectCourseRequest({
+                                            requestId: user.requestId,
+                                            rejection: {
+                                                approved: true,
+                                            },
+                                        },
+                                        ));
+                                        toast(TOAST_SUCCES_APPROVED, {
+                                            icon: '🤩',
+                                        });
+                                    }}
                                 />
                             </RouterLink>
                         </div>
