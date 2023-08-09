@@ -77,7 +77,7 @@ export const SelectUsersList = (props: UserListInterface) => {
                 <div
                     key={user.personId}
                     className={element('item', {
-                        selected: selectedUser.keeperId,
+                        selected: selectedUser.personId === user.personId,
                     })}
                 >
                     <div className={element('user')}>
@@ -89,7 +89,7 @@ export const SelectUsersList = (props: UserListInterface) => {
                     <div className={element('info')}>
                         <div
                             className={element('button', {
-                                visible: selectedUser.keeperId,
+                                visible: selectedUser.personId === user.personId,
                             })}
                         >
                             {
@@ -100,6 +100,7 @@ export const SelectUsersList = (props: UserListInterface) => {
                                         onClick={() => setSelectedUser(user)}
                                         title="Выбрать хранителя"
                                     /> :
+                                    (selectedUser.personId === user.personId) &&
                                     <Button
                                         size={buttonSize.small}
                                         color={buttonColor.primary500}
@@ -110,7 +111,7 @@ export const SelectUsersList = (props: UserListInterface) => {
                         </div>
                         <div
                             className={element('rating', {
-                                hide: selectedUser.keeperId,
+                                hide: selectedUser.personId === user.personId,
                             })}
                         >
                             <Rating
