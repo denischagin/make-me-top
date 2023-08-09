@@ -157,6 +157,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             isLocked: isStarLocked(userProgress, lastChosenStar),
         });
 
+        console.log(lastChosenStar);
+
     }, [lastChosenStar.systemId]);
 
     const handleSystemMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -227,20 +229,13 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             courseId: targetId,
         }));
 
-        fetchSystemById({
-            id: targetId,
-            withDependencies: true,
-        }).then((response) => {
-            setLastChosenStar({
-                ...DEFAULT_CHOSEN_STAR,
-                ...response,
-            });
-        }).catch((reason) => {
-            setLastChosenStar({
-                ...DEFAULT_CHOSEN_STAR,
-                systemName: `Fetch error. ${reason}`,
-            });
-        });
+        dispatch(fetchSystemById({
+            payload: {
+                id: targetId,
+                withDependencies: true,
+            },
+            setState: setLastChosenStar,
+        }));
     };
 
     const courseId = lastChosenStar.systemId;

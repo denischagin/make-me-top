@@ -3,6 +3,10 @@ import {
     useState,
 } from 'react';
 
+import { useAppDispatch } from '@app/providers/store/hooks';
+
+import { DEFAULT_CHOSEN_STAR } from '@entities/galaxy/model/constants';
+
 import {
     fetchSystemById,
     SystemResponseInterface,
@@ -30,21 +34,35 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
     } = props;
 
     const [block, element] = bem('required-list');
+    const dispatch = useAppDispatch();
 
+    const [fetchedSystem, setFetchedSystem] = useState<SystemResponseInterface>(DEFAULT_CHOSEN_STAR);
     const [fetchedSystemList, setFetchedSystemList] = useState<Array<SystemResponseInterface>>([]);
 
     useEffect(() => {
+        setFetchedSystemList((prevState) => {
+            console.log(fetchedSystem);
+            if (!fetchedSystem.systemId) {
+                return [
+                    fetchedSystem,
+                ];
+            }
+
+            return [
+                ...prevState,
+                fetchedSystem,
+            ];
+        });
+    }, [fetchedSystem]);
+
+    useEffect(() => {
         list.forEach((item) => {
-            fetchSystemById({
-                id: item.systemId,
-            }).then((response) => {
-                setFetchedSystemList((prevState) => {
-                    return [
-                        ...prevState,
-                        response,
-                    ];
-                });
-            });
+            dispatch(fetchSystemById({
+                payload: {
+                    id: item.systemId,
+                },
+                setState: setFetchedSystem,
+            }));
         });
     }, []);
 
