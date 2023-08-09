@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { TabPanel } from 'react-tabs';
 
 import {
@@ -18,6 +19,7 @@ import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
 import { CircleModal } from '@shared/CircleModal';
+import { ConfirmModal } from '@shared/ConfirmModal';
 import { CurrentUserItem } from '@shared/CurrentUserItem';
 import { DividingLine } from '@shared/DividingLine';
 import { FinalGrade } from '@shared/FinalGrade';
@@ -28,6 +30,8 @@ import { UsersList } from '@shared/UsersList';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
+
+import { CONFIRM_CANCEL_LEARNING } from '@shared/constants/modalTitles';
 
 import { ProgressBar } from '@widgets/ProgressBar';
 
@@ -52,6 +56,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     } = props;
 
     const [block, element] = bem('current-star-card');
+    const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
 
     const dispatch = useAppDispatch();
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
@@ -108,6 +113,15 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     </MmtTabs>
                 </CircleModal>
             }
+            {
+                isAcceptModalOpen &&
+                <ConfirmModal
+                    confitmTitle={CONFIRM_CANCEL_LEARNING}
+                    confirmButtonTitle='Нет, хочу продолжить'
+                    declineButtonTitle='Да, я уверен'
+                    onClose={() => setIsAcceptModalOpen(false)}
+                />
+            }
             <Card
                 size={cardSize.large}
                 glow
@@ -143,6 +157,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     <Button
                         size={buttonSize.large}
                         title="Отменить"
+                        onClick={() => setIsAcceptModalOpen(true)}
                     />
                     <Button
                         size={buttonSize.large}

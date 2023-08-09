@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { useAppSelector } from '@app/providers/store/hooks';
 
 import {
@@ -7,9 +9,12 @@ import {
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
+import { ConfirmModal } from '@shared/ConfirmModal';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
+
+import { CONFIRM_CANCEL_TEACHING } from '@shared/constants/modalTitles';
 
 import {
     buttonColor,
@@ -21,13 +26,14 @@ import { typographyVariant } from '@shared/Typography/interfaces';
 import './styles.scss';
 
 export const ExplorerApplicationCard = () => {
+    const [block, element] = bem('explorer-application-card');
+    const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
+
     const userInfo = useAppSelector(explorerCardInfoSelector);
 
     const {
         currentSystem,
     } = userInfo;
-
-    const [block, element] = bem('explorer-application-card');
 
     if (!currentSystem) {
         return null;
@@ -35,6 +41,15 @@ export const ExplorerApplicationCard = () => {
 
     return (
         <div className={block()}>
+            {
+                isAcceptModalOpen &&
+                <ConfirmModal
+                    confitmTitle={CONFIRM_CANCEL_TEACHING}
+                    confirmButtonTitle='Нет, хочу продолжить'
+                    declineButtonTitle='Да, я уверен'
+                    onClose={() => setIsAcceptModalOpen(false)}
+                />
+            }
             <Typography
                 className={element('heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
@@ -65,6 +80,7 @@ export const ExplorerApplicationCard = () => {
                             <Button
                                 title={'Отклонить'}
                                 size={buttonSize.large}
+                                onClick={() => setIsAcceptModalOpen(true)}
                             />
                         </div>
                         <Button

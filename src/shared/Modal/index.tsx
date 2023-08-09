@@ -19,12 +19,14 @@ export const Modal = (props: ReviewModalInterface) => {
     return (
         <Portal target={document.body}>
             <div className={block()}>
-                <div className={element('content')}>
-                    <CloseIcon
-                        className={element('close-icon')}
-                        onClick={onClose}
-                    />
-                    {children}
+                <div className={element('container')}>
+                    <div className={element('content')}>
+                        <CloseIcon
+                            className={element('close-icon')}
+                            onClick={onClose}
+                        />
+                        {children}
+                    </div>
                 </div>
             </div>
         </Portal>
