@@ -1,11 +1,15 @@
 import { useState } from 'react';
-
-import { useAppSelector } from '@app/providers/store/hooks';
+import toast from 'react-hot-toast';
 
 import {
-    explorerApplicationCardSelector,
-    explorerCardInfoSelector,
-} from '@entities/explorer/model/selectors';
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
+
+import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
+import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest';
+
+import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
@@ -15,6 +19,10 @@ import { Typography } from '@shared/Typography';
 import { bem } from '@shared/utils/bem';
 
 import { CONFIRM_CANCEL_TEACHING } from '@shared/constants/modalTitles';
+import {
+    TOAST_SUCCES_APPROVED,
+    TOAST_SUCCES_REJECTED,
+} from '@shared/constants/toastTitles';
 
 import {
     buttonColor,
@@ -29,15 +37,20 @@ export const ExplorerApplicationCard = () => {
     const [block, element] = bem('explorer-application-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
 
+    const dispatch = useAppDispatch();
     const userInfo = useAppSelector(explorerCardInfoSelector);
 
     const {
+        studyRequest,
+        reviewRequest,
         currentSystem,
     } = userInfo;
 
-    if (!currentSystem) {
+    if (!currentSystem && !studyRequest) {
         return null;
     }
+
+    const studyRequestOrcurrentSystem = currentSystem || studyRequest;
 
     return (
         <div className={block()}>
@@ -45,16 +58,28 @@ export const ExplorerApplicationCard = () => {
                 isAcceptModalOpen &&
                 <ConfirmModal
                     confitmTitle={CONFIRM_CANCEL_TEACHING}
-                    confirmButtonTitle='Нет, хочу продолжить'
-                    declineButtonTitle='Да, я уверен'
+                    rejectButtonTitle='Нет, хочу продолжить'
+                    submitButtonTitle='Да, я уверен'
                     onClose={() => setIsAcceptModalOpen(false)}
+                    onSubmit={() => {
+                        dispatch(acceptOrRejectCourseRequest({
+                            requestId: reviewRequest.requestId,
+                            rejection: {
+                                approved: false,
+                            },
+                        }));
+                        toast(TOAST_SUCCES_REJECTED, {
+                            icon: '😔',
+                        });
+                        setIsAcceptModalOpen(false);
+                    }}
                 />
             }
             <Typography
                 className={element('heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
             >
-                Текущая звезда:
+                {currentSystem ? 'Текущая звезда:' : 'Заявка на обучение:'}
             </Typography>
             <Card
                 size={cardSize.large}
@@ -66,13 +91,13 @@ export const ExplorerApplicationCard = () => {
                             className={element('planet')}
                             variant={typographyVariant.h2}
                         >
-                            {`Планета: ${currentSystem?.courseId}. ${currentSystem?.courseTitle}`}
+                            {`Планета: ${studyRequestOrcurrentSystem?.courseId}. ${studyRequestOrcurrentSystem?.courseTitle}`}
                         </Typography>
                         <Typography
                             className={element('star')}
                             variant={typographyVariant.regular14}
                         >
-                            {`Звезда: ${currentSystem?.courseThemeTitle}`}
+                            {`Звезда: ${studyRequestOrcurrentSystem?.courseThemeTitle}`}
                         </Typography>
                     </div>
                     <div className={element('buttons')}>
@@ -83,11 +108,31 @@ export const ExplorerApplicationCard = () => {
                                 onClick={() => setIsAcceptModalOpen(true)}
                             />
                         </div>
-                        <Button
-                            title={'Посмотреть'}
-                            color={buttonColor.filled}
-                            size={buttonSize.large}
-                        />
+                        {
+                            currentSystem ?
+                                <Button
+                                    title={'Посмотреть'}
+                                    color={buttonColor.filled}
+                                    size={buttonSize.large}
+                                /> :
+                                <Button
+                                    title={'Принять'}
+                                    color={buttonColor.filled}
+                                    size={buttonSize.large}
+                                    onClick={() => {
+                                        dispatch(acceptOrRejectCourseRequest({
+                                            requestId: studyRequest.requestId,
+                                            rejection: {
+                                                approved: true,
+                                            },
+                                        },
+                                        ));
+                                        toast(TOAST_SUCCES_APPROVED, {
+                                            icon: '🤩',
+                                        });
+                                    }}
+                                />
+                        }
                     </div>
                 </div>
             </Card>

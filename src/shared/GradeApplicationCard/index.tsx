@@ -1,3 +1,7 @@
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { keeperInfoSelector } from '@entities/keeper/model/selectors';
+
 import { Avatar } from '@shared/Avatar';
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
@@ -26,9 +30,16 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
         reviewRequest,
     } = props;
 
-    const reviewOrAssesment = finalAssesment || reviewRequest;
-
     const [block, element] = bem('grade-application-card');
+
+    const userInfo = useAppSelector(keeperInfoSelector);
+
+    const {
+        studyingExplorers,
+    } = userInfo;
+
+    const reviewOrAssesment = finalAssesment || reviewRequest;
+    const isExplorerObeyToKeeper = studyingExplorers.find((item) => item.personId === reviewOrAssesment?.personId);
 
     return (
         <div className={block()}>
@@ -63,15 +74,18 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                             }
                         </div>
                     </div>
-                    <div className={element('button')}>
-                        <RouterLink to={`${URL_EXPLORER}/${reviewOrAssesment?.personId}`}>
-                            <Button
-                                title={'Оценить'}
-                                color={buttonColor.filled}
-                                size={buttonSize.large}
-                            />
-                        </RouterLink>
-                    </div>
+                    {
+                        !isExplorerObeyToKeeper &&
+                        <div className={element('button')}>
+                            <RouterLink to={`${URL_EXPLORER}/${reviewOrAssesment?.personId}`}>
+                                <Button
+                                    title={'Оценить'}
+                                    color={buttonColor.filled}
+                                    size={buttonSize.large}
+                                />
+                            </RouterLink>
+                        </div>
+                    }
                 </div>
             </Card>
         </div>

@@ -1,6 +1,7 @@
 export interface ConfirmModalInterface {
     confitmTitle: string;
-    confirmButtonTitle: string;
-    declineButtonTitle: string;
+    rejectButtonTitle: string;
+    submitButtonTitle: string;
+    onSubmit: () => void;
     onClose: () => void;
 }

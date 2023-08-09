@@ -45,9 +45,10 @@ export const ReviewRequestCard = () => {
                 isAcceptModalOpen &&
                 <ConfirmModal
                     confitmTitle={CONFIRM_CANCEL_REVIEW}
-                    confirmButtonTitle='Нет, хочу продолжить'
-                    declineButtonTitle='Да, я уверен'
+                    rejectButtonTitle='Нет, хочу продолжить'
+                    submitButtonTitle='Да, я уверен'
                     onClose={() => setIsAcceptModalOpen(false)}
+                    onSubmit={() => setIsAcceptModalOpen(false)} // в будущем будет метод отмены оценивания
                 />
             }
             <Typography

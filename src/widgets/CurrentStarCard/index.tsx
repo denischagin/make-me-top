@@ -16,11 +16,7 @@ import { showModal } from '@entities/user/model/slice';
 import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
-import {
-    explorerInfoSelector,
-    explorerIsSystemActiveSelector,
-} from '@entities/explorer/model/selectors';
-import { declineCurrentSystem } from '@entities/explorer/model/slice';
+import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 import { leaveCourseRequest } from '@entities/explorer/thunks/leaveCourseRequest';
 
 import { Button } from '@shared/Button';
@@ -64,11 +60,11 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
 
     const [block, element] = bem('current-star-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
+    const [isStarClosed, setIsStarClosed] = useState(false);
 
     const dispatch = useAppDispatch();
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
     const courseInfo = useAppSelector(userCourseInfoSelector);
-    const systemState = useAppSelector(explorerIsSystemActiveSelector);
     const userInfo = useAppSelector(explorerInfoSelector);
 
     const TOAST_SUCCES_REJECTED = 'Заявка на обучение отклонена';
@@ -86,7 +82,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         keepers,
     } = courseInfo;
 
-    if ((!currentSystem && !studyRequest) || !systemState) {
+    if ((!currentSystem && !studyRequest) || isStarClosed) {
         return <SelectStar />;
     }
 
@@ -130,9 +126,21 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                 isAcceptModalOpen &&
                 <ConfirmModal
                     confitmTitle={CONFIRM_CANCEL_LEARNING}
-                    confirmButtonTitle='Нет, хочу продолжить'
-                    declineButtonTitle='Да, я уверен'
+                    rejectButtonTitle='Нет, хочу продолжить'
+                    submitButtonTitle='Да, я уверен'
                     onClose={() => setIsAcceptModalOpen(false)}
+                    onSubmit={() => {
+                        setIsStarClosed(true);
+                        dispatch(leaveCourseRequest({
+                            payload: {
+                                courseId: currentSystem?.courseId,
+                            },
+                        }));
+                        toast(TOAST_SUCCES_REJECTED, {
+                            icon: '😔',
+                        });
+                        setIsAcceptModalOpen(false);
+                    }}
                 />
             }
             <Typography
@@ -176,18 +184,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     <Button
                         size={buttonSize.large}
                         title="Отменить"
-                        onClick={() => {
-                            dispatch(declineCurrentSystem());
-                            dispatch(leaveCourseRequest({
-                                payload: {
-                                    courseId: currentSystem?.courseId,
-                                },
-                            }));
-                            setIsAcceptModalOpen(true);
-                            toast(TOAST_SUCCES_REJECTED, {
-                                icon: '😔',
-                            });
-                        }}
+                        onClick={() => setIsAcceptModalOpen(true)}
                     />
                     <Button
                         size={buttonSize.large}

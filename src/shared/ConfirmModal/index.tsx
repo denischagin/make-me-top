@@ -23,8 +23,9 @@ import './styles.scss';
 export const ConfirmModal = (props: ConfirmModalInterface) => {
     const {
         confitmTitle,
-        confirmButtonTitle,
-        declineButtonTitle,
+        rejectButtonTitle,
+        submitButtonTitle,
+        onSubmit,
         onClose,
     } = props;
 
@@ -43,15 +44,15 @@ export const ConfirmModal = (props: ConfirmModalInterface) => {
                 <div className={element('modal-buttons')}>
                     <Button
                         size={buttonSize.large}
-                        color={buttonColor.black}
-                        title={declineButtonTitle}
+                        color={buttonColor.filled}
+                        title={rejectButtonTitle}
                         onClick={onClose}
                     />
                     <Button
                         size={buttonSize.large}
-                        color={buttonColor.filled}
-                        title={confirmButtonTitle}
-                        onClick={onClose}
+                        color={buttonColor.black}
+                        title={submitButtonTitle}
+                        onClick={onSubmit}
                     />
                 </div>
             </Modal>
