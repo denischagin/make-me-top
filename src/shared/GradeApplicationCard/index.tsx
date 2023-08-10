@@ -32,14 +32,7 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
 
     const [block, element] = bem('grade-application-card');
 
-    const userInfo = useAppSelector(keeperInfoSelector);
-
-    const {
-        studyingExplorers,
-    } = userInfo;
-
     const reviewOrAssesment = finalAssesment || reviewRequest;
-    const isExplorerObeyToKeeper = studyingExplorers.find((item) => item.personId === reviewOrAssesment?.personId);
 
     return (
         <div className={block()}>
@@ -74,18 +67,15 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                             }
                         </div>
                     </div>
-                    {
-                        isExplorerObeyToKeeper &&
-                        <div className={element('button')}>
-                            <RouterLink to={`${URL_EXPLORER}/${reviewOrAssesment?.personId}`}>
-                                <Button
-                                    title={'Оценить'}
-                                    color={buttonColor.filled}
-                                    size={buttonSize.large}
-                                />
-                            </RouterLink>
-                        </div>
-                    }
+                    <div className={element('button')}>
+                        <RouterLink to={`${URL_EXPLORER}/${reviewOrAssesment?.personId}`}>
+                            <Button
+                                title={'Оценить'}
+                                color={buttonColor.filled}
+                                size={buttonSize.large}
+                            />
+                        </RouterLink>
+                    </div>
                 </div>
             </Card>
         </div>
