@@ -1,12 +1,20 @@
+import { useState } from 'react';
+
 import { useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
+import { ConfirmModal } from '@shared/ConfirmModal';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
+
+import {
+    CONFIRM_CANCEL_LEARNING,
+    CONFIRM_CANCEL_REVIEW,
+} from '@shared/constants/modalTitles';
 
 import {
     buttonColor,
@@ -19,6 +27,7 @@ import './styles.scss';
 
 export const ReviewRequestCard = () => {
     const [block, element] = bem('review-request-card');
+    const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
 
     const userInfo = useAppSelector(explorerCardInfoSelector);
 
@@ -32,6 +41,16 @@ export const ReviewRequestCard = () => {
 
     return (
         <div className={block()}>
+            {
+                isAcceptModalOpen &&
+                <ConfirmModal
+                    confitmTitle={CONFIRM_CANCEL_REVIEW}
+                    rejectButtonTitle='Нет, хочу продолжить'
+                    submitButtonTitle='Да, я уверен'
+                    onClose={() => setIsAcceptModalOpen(false)}
+                    onSubmit={() => setIsAcceptModalOpen(false)} // в будущем будет метод отмены оценивания
+                />
+            }
             <Typography
                 className={element('heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
@@ -62,6 +81,7 @@ export const ReviewRequestCard = () => {
                             <Button
                                 title={'Отклонить'}
                                 size={buttonSize.large}
+                                onClick={() => setIsAcceptModalOpen(true)}
                             />
                         </div>
                         <Button

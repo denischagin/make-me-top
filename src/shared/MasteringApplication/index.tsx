@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 import {
@@ -10,9 +11,13 @@ import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
+import { ConfirmModal } from '@shared/ConfirmModal';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
+
+import { CONFIRM_CANCEL_LEARNING } from '@shared/constants/modalTitles';
+import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toastTitles';
 
 import {
     buttonColor,
@@ -25,13 +30,11 @@ import './styles.scss';
 
 
 export const MasteringApplication = () => {
-
     const [block, element] = bem('current-star-card');
+    const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
 
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(explorerInfoSelector);
-
-    const TOAST_SUCCES_REJECTED = 'Заявка на обучение отклонена';
 
     const {
         studyRequest,
@@ -43,6 +46,26 @@ export const MasteringApplication = () => {
 
     return (
         <div className={block()}>
+            {
+                isAcceptModalOpen &&
+                <ConfirmModal
+                    confitmTitle={CONFIRM_CANCEL_LEARNING}
+                    rejectButtonTitle='Нет, хочу продолжить'
+                    submitButtonTitle='Да, я уверен'
+                    onClose={() => setIsAcceptModalOpen(false)}
+                    onSubmit={() => {
+                        dispatch(closeCourseRequest({
+                            payload: {
+                                requestId: studyRequest.requestId,
+                            },
+                        }));
+                        toast(TOAST_SUCCESS_REJECTED, {
+                            icon: '😔',
+                        });
+                        setIsAcceptModalOpen(false);
+                    }}
+                />
+            }
             <Typography
                 className={element('current-star-heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
@@ -75,16 +98,7 @@ export const MasteringApplication = () => {
                     <Button
                         size={buttonSize.large}
                         title="Отменить заявку"
-                        onClick={() => {
-                            dispatch(closeCourseRequest({
-                                payload: {
-                                    requestId: studyRequest.requestId,
-                                },
-                            }));
-                            toast(TOAST_SUCCES_REJECTED, {
-                                icon: '😔',
-                            });
-                        }}
+                        onClick={() => setIsAcceptModalOpen(true)}
                     />
                     <Button
                         size={buttonSize.large}

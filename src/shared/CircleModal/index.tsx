@@ -56,30 +56,32 @@ export const CircleModal = (props: ModalInterface) => {
     return (
         <Portal target={document.body}>
             <div className={block()}>
-                <div className={element('content')}>
-                    <div className={element('header')}>
-                        <Typography
-                            variant={typographyVariant.h2}
-                            color={typographyColor.black}
-                            className={element('name')}
-                        >
-                            {lockIcon}
-                            {header}
-                        </Typography>
-                        <CloseIcon
-                            className={element('close-icon')}
-                            onClick={onClose}
-                        />
-                    </div>
-                    {
-                        (modalStatus !== ModalAccessStatus.opened) &&
-                        <ModalAlert
-                            title={modalStatus}
-                            dependencies={notStudiedParentDependencies}
-                        />
-                    }
-                    <div className={element('item-list')}>
-                        {children}
+                <div className={element('container')}>
+                    <div className={element('content')}>
+                        <div className={element('header')}>
+                            <Typography
+                                variant={typographyVariant.h2}
+                                color={typographyColor.black}
+                                className={element('name')}
+                            >
+                                {lockIcon}
+                                {header}
+                            </Typography>
+                            <CloseIcon
+                                className={element('close-icon')}
+                                onClick={onClose}
+                            />
+                        </div>
+                        {
+                            (modalStatus !== ModalAccessStatus.opened) &&
+                            <ModalAlert
+                                title={modalStatus}
+                                dependencies={notStudiedParentDependencies}
+                            />
+                        }
+                        <div className={element('item-list')}>
+                            {children}
+                        </div>
                     </div>
                 </div>
             </div>
