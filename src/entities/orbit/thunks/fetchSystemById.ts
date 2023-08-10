@@ -35,9 +35,7 @@ export const fetchSystemById = async (payload: FetchSystemById) => {
             data,
         } = await instance.get<SystemResponseInterface>(fetchUrl);
 
-        if (callback) {
-            callback();
-        }
+        callback && callback();
 
         return data;
     }

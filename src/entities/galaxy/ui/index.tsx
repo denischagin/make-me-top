@@ -158,9 +158,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             ...lastChosenSystem,
             isLocked: isSystemLocked(userProgress, lastChosenSystem),
         });
-
-        console.log(lastChosenSystem);
-
     }, [lastChosenSystem.systemId]);
 
     const handleSystemMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -231,13 +228,12 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             courseId: targetId,
         }));
 
-        fetchAndSetLastChosenSystem({
+        dispatch(fetchAndSetLastChosenSystem({
             id: targetId,
             withDependencies: true,
-            setState: setLastChosenSystem,
-        }).catch(toast.error);
+            setLastChosenSystem,
+        }));
     };
-
     const courseId = lastChosenSystem.systemId;
 
     return (
