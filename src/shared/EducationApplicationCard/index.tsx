@@ -20,10 +20,7 @@ import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { URL_EXPLORER } from '@shared/constants/links';
 import { CONFIRM_CANCEL_STUDYING_REQUEST } from '@shared/constants/modalTitles';
-import {
-    TOAST_SUCCES_APPROVED,
-    TOAST_SUCCES_REJECTED,
-} from '@shared/constants/toastTitles';
+import { TOAST_SUCCES_REJECTED } from '@shared/constants/toastTitles';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';

@@ -19,6 +19,10 @@ import { getUserFullName } from '@shared/utils/getUserFullName';
 import { sortByRating } from '@shared/utils/sortByRating';
 
 import { URL_EXPLORER } from '@shared/constants/links';
+import {
+    TOAST_ERROR_CHOOSE_KEEPER,
+    TOAST_REQUEST_SENT,
+} from '@shared/constants/toastTitles';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -32,11 +36,6 @@ import {
 } from '@shared/Rating/interfaces';
 
 import { UserListInterface } from '@shared/types/common';
-
-import {
-    TOAST_ERROR_CHOOSE_KEEPER,
-    TOAST_REQUEST_SENT,
-} from './model';
 
 import './styles.scss';
 

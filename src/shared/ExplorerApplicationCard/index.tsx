@@ -7,7 +7,6 @@ import {
 } from '@app/providers/store/hooks';
 
 import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
-import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest';
 
 import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
 
