@@ -2,7 +2,8 @@ import {
     useEffect,
     useState,
 } from 'react';
-import toast from 'react-hot-toast';
+
+import { useAppDispatch } from '@app/providers/store/hooks';
 
 import {
     SystemResponseInterface,
@@ -30,15 +31,17 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
         list = [],
     } = props;
 
+    const dispatch = useAppDispatch();
+
     const [block, element] = bem('required-list');
 
     const [fetchedSystemList, setFetchedSystemList] = useState<Array<SystemResponseInterface>>([]);
 
     useEffect(() => {
-        fetchAndSetAllDependencies({
+        dispatch(fetchAndSetAllDependencies({
             list,
-            setStateList: setFetchedSystemList,
-        }).catch(toast.error);
+            setFetchedSystemList,
+        }));
     }, []);
 
     return (

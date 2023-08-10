@@ -1,30 +1,42 @@
 import React from 'react';
+import toast from 'react-hot-toast';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { DEFAULT_ERROR_MESSAGE } from '@entities/user/model/constants';
 
 import { DEFAULT_CHOSEN_STAR } from '@entities/galaxy/model/constants';
 import { ILastChosenStar } from '@entities/galaxy/model/types';
 
 import { fetchSystemById } from '@entities/orbit/thunks/fetchSystemById';
 
-interface FetchAndSetLastChosenStar {
+import { FETCH_AND_SET_CHOSEN_STAR } from '@shared/constants/actions';
+
+interface FetchAndSetLastChosenStarInterface {
     id: number | null,
     withDependencies?: boolean,
-    setState: React.Dispatch<React.SetStateAction<ILastChosenStar>>;
+    setLastChosenStar: React.Dispatch<React.SetStateAction<ILastChosenStar>>;
 }
 
-export const fetchAndSetLastChosenStar = async (params: FetchAndSetLastChosenStar) => {
-    const {
+export const fetchAndSetLastChosenStar = createAsyncThunk<void, FetchAndSetLastChosenStarInterface>(
+    FETCH_AND_SET_CHOSEN_STAR,
+    async ({
         id,
         withDependencies,
-        setState,
-    } = params;
+        setLastChosenStar,
+    }) => {
+        try {
+            const data = await fetchSystemById({
+                id,
+                withDependencies,
+            });
 
-    const data = await fetchSystemById({
-        id,
-        withDependencies,
-    });
-
-    setState({
-        ...DEFAULT_CHOSEN_STAR,
-        ...data,
-    });
-};
+            setLastChosenStar({
+                ...DEFAULT_CHOSEN_STAR,
+                ...data,
+            });
+        }
+        catch (error: any) {
+            throw toast(error.message || DEFAULT_ERROR_MESSAGE);
+        }
+    },
+);
