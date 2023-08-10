@@ -137,7 +137,6 @@ export const SelectUsersList = (props: UserListInterface) => {
                                         keeperId: selectedUser.keeperId,
                                     },
                                 }));
-                                toast.success(TOAST_REQUEST_SENT);
 
                                 return navigate(URL_EXPLORER);
                             }
