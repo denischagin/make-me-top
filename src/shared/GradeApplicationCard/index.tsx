@@ -75,7 +75,7 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                         </div>
                     </div>
                     {
-                        !isExplorerObeyToKeeper &&
+                        isExplorerObeyToKeeper &&
                         <div className={element('button')}>
                             <RouterLink to={`${URL_EXPLORER}/${reviewOrAssesment?.personId}`}>
                                 <Button
