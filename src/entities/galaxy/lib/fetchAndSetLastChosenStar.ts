@@ -1,6 +1,7 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios/index';
 
 import { DEFAULT_ERROR_MESSAGE } from '@entities/user/model/constants';
 
@@ -10,6 +11,8 @@ import { ILastChosenStar } from '@entities/galaxy/model/types';
 import { fetchSystemById } from '@entities/orbit/thunks/fetchSystemById';
 
 import { FETCH_AND_SET_CHOSEN_STAR } from '@shared/constants/actions';
+
+import { ErrorInterface } from '@shared/types/common';
 
 interface FetchAndSetLastChosenStarInterface {
     id: number | null,
@@ -35,8 +38,10 @@ export const fetchAndSetLastChosenStar = createAsyncThunk<void, FetchAndSetLastC
                 ...data,
             });
         }
-        catch (error: any) {
-            throw toast(error.message || DEFAULT_ERROR_MESSAGE);
+        catch (err) {
+            const error: AxiosError<ErrorInterface> = err as any;
+
+            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
         }
     },
 );
