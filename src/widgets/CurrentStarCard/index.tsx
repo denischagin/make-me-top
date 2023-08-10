@@ -35,7 +35,7 @@ import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { CONFIRM_CANCEL_LEARNING } from '@shared/constants/modalTitles';
-import { TOAST_SUCCES_REJECTED } from '@shared/constants/toastTitles';
+import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toastTitles';
 
 import { ProgressBar } from '@widgets/ProgressBar';
 import { SelectStar } from '@widgets/SelectStar';
@@ -135,7 +135,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                                 courseId: currentSystem?.courseId,
                             },
                         }));
-                        toast(TOAST_SUCCES_REJECTED, {
+                        toast(TOAST_SUCCESS_REJECTED, {
                             icon: '😔',
                         });
                         setIsAcceptModalOpen(false);

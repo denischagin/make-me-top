@@ -4,6 +4,6 @@ import {
 } from '@entities/keeper/model/types/interfaces';
 
 export interface GradeApplicationsInterface {
-    finalAssesment?: Array<FinalAssessmentsInterface>;
+    finalAssessment?: Array<FinalAssessmentsInterface>;
     reviewRequest?: Array<ReviewRequestsInterface>;
 }

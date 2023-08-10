@@ -10,13 +10,13 @@ import './styles.scss';
 
 export const GradeApplications = (props: GradeApplicationsInterface) => {
     const {
-        finalAssesment,
+        finalAssessment,
         reviewRequest,
     } = props;
 
     const [block, element] = bem('grade-application');
 
-    if (!finalAssesment?.length && !reviewRequest?.length) {
+    if (!finalAssessment?.length && !reviewRequest?.length) {
         return null;
     }
 
@@ -30,11 +30,11 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
             </Typography>
             <div className={element('cards')}>
                 {
-                    finalAssesment
-                        ? finalAssesment?.map((application) => (
+                    finalAssessment
+                        ? finalAssessment?.map((application) => (
                             <GradeApplicationCard
                                 key={application.personId}
-                                finalAssesment={application}
+                                finalAssessment={application}
                             />
                         ))
                         : reviewRequest?.map((application) => (

@@ -20,7 +20,7 @@ import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { URL_EXPLORER } from '@shared/constants/links';
 import { CONFIRM_CANCEL_STUDYING_REQUEST } from '@shared/constants/modalTitles';
-import { TOAST_SUCCES_REJECTED } from '@shared/constants/toastTitles';
+import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toastTitles';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
@@ -64,7 +64,7 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                                 approved: false,
                             },
                         }));
-                        toast(TOAST_SUCCES_REJECTED, {
+                        toast(TOAST_SUCCESS_REJECTED, {
                             icon: '😔',
                         });
                         setIsAcceptModalOpen(false);

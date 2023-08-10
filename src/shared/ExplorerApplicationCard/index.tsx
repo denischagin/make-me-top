@@ -19,8 +19,8 @@ import { bem } from '@shared/utils/bem';
 
 import { CONFIRM_CANCEL_TEACHING } from '@shared/constants/modalTitles';
 import {
-    TOAST_SUCCES_APPROVED,
-    TOAST_SUCCES_REJECTED,
+    TOAST_SUCCESS_APPROVED,
+    TOAST_SUCCESS_REJECTED,
 } from '@shared/constants/toastTitles';
 
 import {
@@ -49,7 +49,7 @@ export const ExplorerApplicationCard = () => {
         return null;
     }
 
-    const studyRequestOrcurrentSystem = currentSystem || studyRequest;
+    const studyRequestOrСurrentSystem = currentSystem || studyRequest;
 
     return (
         <div className={block()}>
@@ -67,7 +67,7 @@ export const ExplorerApplicationCard = () => {
                                 approved: false,
                             },
                         }));
-                        toast(TOAST_SUCCES_REJECTED, {
+                        toast(TOAST_SUCCESS_REJECTED, {
                             icon: '😔',
                         });
                         setIsAcceptModalOpen(false);
@@ -90,13 +90,13 @@ export const ExplorerApplicationCard = () => {
                             className={element('planet')}
                             variant={typographyVariant.h2}
                         >
-                            {`Планета: ${studyRequestOrcurrentSystem?.courseId}. ${studyRequestOrcurrentSystem?.courseTitle}`}
+                            {`Планета: ${studyRequestOrСurrentSystem?.courseId}. ${studyRequestOrСurrentSystem?.courseTitle}`}
                         </Typography>
                         <Typography
                             className={element('star')}
                             variant={typographyVariant.regular14}
                         >
-                            {`Звезда: ${studyRequestOrcurrentSystem?.courseThemeTitle}`}
+                            {`Звезда: ${studyRequestOrСurrentSystem?.courseThemeTitle}`}
                         </Typography>
                     </div>
                     <div className={element('buttons')}>
@@ -126,7 +126,7 @@ export const ExplorerApplicationCard = () => {
                                             },
                                         },
                                         ));
-                                        toast(TOAST_SUCCES_APPROVED, {
+                                        toast(TOAST_SUCCESS_APPROVED, {
                                             icon: '🤩',
                                         });
                                     }}
