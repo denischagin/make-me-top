@@ -3,12 +3,12 @@ import {
     STAR_CLASS,
 } from '@entities/galaxy/model/constants';
 
-interface SetStarsActivityToInactive {
+interface SetSystemActivityToInactive {
     stars: NodeListOf<HTMLDivElement>;
 }
 
 //функция изменения модификаторов активности на "Не активный" всех систем галактики
-export const setStarsActivityToInactive = (params: SetStarsActivityToInactive) => {
+export const setStarsActivityToInactive = (params: SetSystemActivityToInactive) => {
     const {
         stars,
     } = params;

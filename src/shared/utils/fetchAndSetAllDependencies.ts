@@ -37,7 +37,7 @@ export const fetchAndSetAllDependencies = createAsyncThunk<void, FetchAndSetAllD
                 })),
             );
 
-            setFetchedSystemList(allData);
+            return setFetchedSystemList(allData);
         }
         catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;

@@ -3,15 +3,15 @@ import {
     UserProgress,
 } from '@entities/user/model/types';
 
-import { DEFAULT_CHOSEN_STAR } from '@entities/galaxy/model/constants';
-import { ILastChosenStar } from '@entities/galaxy/model/types';
+import { DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE } from '@entities/galaxy/model/constants';
+import { LastChosenSystem } from '@entities/galaxy/model/types';
 
 import { getNotStudiedParentDependencies } from '@shared/utils/getNotStudiedParentDependencies';
 
 import { ModalAccessStatus } from '@shared/CircleModal/interfaces';
 
 interface GetModalStatus {
-    lastChosenStar: ILastChosenStar,
+    lastChosenStar: LastChosenSystem,
     userProgress: UserProgress,
     courseInfo: CourseInfoInterface,
 }
@@ -24,7 +24,7 @@ export function getModalStatus(params: GetModalStatus): ModalAccessStatus {
         courseInfo,
     } = params;
 
-    if (lastChosenStar.systemId === DEFAULT_CHOSEN_STAR.systemId) {
+    if (lastChosenStar.systemId === DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE.systemId) {
         return ModalAccessStatus.opened;
     }
 

@@ -2,13 +2,13 @@ import { ReactNode } from 'react';
 
 import { UserProgress } from '@entities/user/model/types';
 
-import { ILastChosenStar } from '@entities/galaxy/model/types';
+import { LastChosenSystem } from '@entities/galaxy/model/types';
 
 export interface ModalInterface {
     header: string;
     isLocked?: boolean;
     data?: {
-        lastChosenStar: ILastChosenStar,
+        lastChosenStar: LastChosenSystem,
         userProgress: UserProgress,
     };
     children: ReactNode;

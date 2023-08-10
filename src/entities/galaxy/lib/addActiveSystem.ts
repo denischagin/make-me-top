@@ -2,15 +2,15 @@ import React from 'react';
 
 interface IAddActivePlanet {
   activeSystemId: number | string | null;
-  setActiveSystems: React.Dispatch<React.SetStateAction<Array<number>>>;
+  setActiveSystemsIds: React.Dispatch<React.SetStateAction<Array<number>>>;
 }
 
 
 //функция добавления id системы в массив, описывающий активные элементы галактики
-export const addActivePlanet = (params: IAddActivePlanet) => {
+export const addActiveSystem = (params: IAddActivePlanet) => {
     const {
         activeSystemId,
-        setActiveSystems,
+        setActiveSystemsIds,
     } = params;
 
     const activeSystem = Number(activeSystemId);
@@ -19,7 +19,7 @@ export const addActivePlanet = (params: IAddActivePlanet) => {
         return;
     }
 
-    setActiveSystems((prevState) => {
+    setActiveSystemsIds((prevState) => {
     //ничего не изменяем, если в состоянии уже есть такой же id
         if (prevState.includes(activeSystem)) {
             return prevState;

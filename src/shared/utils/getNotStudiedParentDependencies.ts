@@ -1,14 +1,14 @@
 import { UserProgress } from '@entities/user/model/types';
 
 import {
-    ILastChosenStar,
+    LastChosenSystem,
     SystemDependencyType,
 } from '@entities/galaxy/model/types';
 
 import { MAX_STUDYING_PROGRESS } from '@shared/types/common';
 
 interface GetNotStudiedParentDependencies {
-    lastChosenStar: ILastChosenStar,
+    lastChosenStar: LastChosenSystem,
     userProgress: UserProgress,
 }
 

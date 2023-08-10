@@ -1,31 +1,31 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosError } from 'axios/index';
+import { AxiosError } from 'axios';
 
 import { DEFAULT_ERROR_MESSAGE } from '@entities/user/model/constants';
 
-import { DEFAULT_CHOSEN_STAR } from '@entities/galaxy/model/constants';
-import { ILastChosenStar } from '@entities/galaxy/model/types';
+import { DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE } from '@entities/galaxy/model/constants';
+import { LastChosenSystem } from '@entities/galaxy/model/types';
 
 import { fetchSystemById } from '@entities/orbit/thunks/fetchSystemById';
 
-import { FETCH_AND_SET_CHOSEN_STAR } from '@shared/constants/actions';
+import { FETCH_AND_SET_CHOSEN_SYSTEM } from '@shared/constants/actions';
 
 import { ErrorInterface } from '@shared/types/common';
 
 interface FetchAndSetLastChosenStarInterface {
     id: number | null,
     withDependencies?: boolean,
-    setLastChosenStar: React.Dispatch<React.SetStateAction<ILastChosenStar>>;
+    setLastChosenSystem: React.Dispatch<React.SetStateAction<LastChosenSystem>>;
 }
 
-export const fetchAndSetLastChosenStar = createAsyncThunk<void, FetchAndSetLastChosenStarInterface>(
-    FETCH_AND_SET_CHOSEN_STAR,
+export const fetchAndSetLastChosenSystem = createAsyncThunk<void, FetchAndSetLastChosenStarInterface>(
+    FETCH_AND_SET_CHOSEN_SYSTEM,
     async ({
         id,
         withDependencies,
-        setLastChosenStar,
+        setLastChosenSystem,
     }) => {
         try {
             const data = await fetchSystemById({
@@ -33,8 +33,8 @@ export const fetchAndSetLastChosenStar = createAsyncThunk<void, FetchAndSetLastC
                 withDependencies,
             });
 
-            setLastChosenStar({
-                ...DEFAULT_CHOSEN_STAR,
+            return setLastChosenSystem({
+                ...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
                 ...data,
             });
         }

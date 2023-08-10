@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { addActivePlanet } from '@entities/galaxy/lib/addActivePlanet';
+import { addActiveSystem } from '@entities/galaxy/lib/addActiveSystem';
 import { getColorFromShelf } from '@entities/galaxy/lib/colorShelf';
 import { getCoordsForConnection } from '@entities/galaxy/lib/getCoordsForConnection';
 import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
@@ -23,21 +23,21 @@ interface IShowPlanetsParents {
   systemWidth: number;
   systemHeight: number;
   svgContainer: SVGElement | null;
-  setActiveSystems: React.Dispatch<React.SetStateAction<Array<number>>>;
+  setActiveSystemsIds: React.Dispatch<React.SetStateAction<Array<number>>>;
   color?: string | null;
 }
 
 //рекурсивная функция создания связей между текущей и всеми ее parent зависимостями
 //связи и атрибуты будут настроены у всех зависимых элементов вплоть до крайнего parent элемента без зависимостей
 //(атрибут активности при наведении)
-export const showPlanetsParents = (params: IShowPlanetsParents) => {
+export const showSystemParents = (params: IShowPlanetsParents) => {
     const {
         parentsList,
         currentTarget,
         systemWidth,
         systemHeight,
         svgContainer,
-        setActiveSystems,
+        setActiveSystemsIds,
     } = params;
 
     if (!parentsList || !svgContainer) {
@@ -69,9 +69,9 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
             return;
         }
 
-        addActivePlanet({
+        addActiveSystem({
             activeSystemId: numberElementId,
-            setActiveSystems,
+            setActiveSystemsIds,
         });
 
         const parentElement = document.querySelector<HTMLDivElement>(
@@ -166,13 +166,13 @@ export const showPlanetsParents = (params: IShowPlanetsParents) => {
 
         //если у текущего parent элемента есть parent зависимости
         if (parentElement && parentsListOfCurrentParent) {
-            showPlanetsParents({
+            showSystemParents({
                 parentsList: parentsListOfCurrentParent,
                 currentTarget: parentElement,
                 systemWidth,
                 systemHeight,
                 svgContainer,
-                setActiveSystems,
+                setActiveSystemsIds,
                 color,
             });
         }
