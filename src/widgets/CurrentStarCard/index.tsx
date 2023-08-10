@@ -35,6 +35,8 @@ import { UsersList } from '@shared/UsersList';
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 
+import { TOAST_SUCCES_REJECTED } from '@shared/constants/toasts';
+
 import { ProgressBar } from '@widgets/ProgressBar';
 import { SelectStar } from '@widgets/SelectStar';
 
@@ -64,8 +66,6 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     const courseInfo = useAppSelector(userCourseInfoSelector);
     const systemState = useAppSelector(explorerIsSystemActiveSelector);
     const userInfo = useAppSelector(explorerInfoSelector);
-
-    const TOAST_SUCCES_REJECTED = 'Заявка на обучение отклонена';
 
     const {
         studyRequest,

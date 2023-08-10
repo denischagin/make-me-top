@@ -2,10 +2,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch } from '@app/providers/store/hooks';
 
 import { CourseKeeper } from '@entities/user/model/types';
 import { postCourseRequest } from '@entities/user/thunks/postCourseRequest';
@@ -19,6 +16,7 @@ import { getUserFullName } from '@shared/utils/getUserFullName';
 import { sortByRating } from '@shared/utils/sortByRating';
 
 import { URL_EXPLORER } from '@shared/constants/links';
+import { TOAST_ERROR_CHOOSE_KEEPER } from '@shared/constants/toasts';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
@@ -32,11 +30,6 @@ import {
 } from '@shared/Rating/interfaces';
 
 import { UserListInterface } from '@shared/types/common';
-
-import {
-    TOAST_ERROR_CHOOSE_KEEPER,
-    TOAST_REQUEST_SENT,
-} from './model';
 
 import './styles.scss';
 
@@ -138,7 +131,6 @@ export const SelectUsersList = (props: UserListInterface) => {
                                         keeperId: selectedUser.keeperId,
                                     },
                                 }));
-                                toast.success(TOAST_REQUEST_SENT);
 
                                 return navigate(URL_EXPLORER);
                             }

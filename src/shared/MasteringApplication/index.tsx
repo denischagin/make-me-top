@@ -14,6 +14,8 @@ import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
+import { TOAST_SUCCES_REJECTED } from '@shared/constants/toasts';
+
 import {
     buttonColor,
     buttonSize,
@@ -30,8 +32,6 @@ export const MasteringApplication = () => {
 
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(explorerInfoSelector);
-
-    const TOAST_SUCCES_REJECTED = 'Заявка на обучение отклонена';
 
     const {
         studyRequest,

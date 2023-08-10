@@ -15,6 +15,10 @@ import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { URL_EXPLORER } from '@shared/constants/links';
+import {
+    TOAST_SUCCES_APPROVED,
+    TOAST_SUCCES_REJECTED,
+} from '@shared/constants/toasts';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
@@ -40,9 +44,6 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
     const [block, element] = bem('application-education-card');
 
     const dispatch = useAppDispatch();
-
-    const TOAST_SUCCES_REJECTED = 'Заявка на обучение отклонена';
-    const TOAST_SUCCES_APPROVED = 'Заявка на обучение подтверждена';
 
     return (
         <div className={block()}>

@@ -3,6 +3,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
 import { storageKeys } from '@shared/constants/storageKeys';
+import {
+    TOAST_LOADING_GALAXIES,
+    TOAST_SUCCES_LOGIN,
+} from '@shared/constants/toasts';
 import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
@@ -17,13 +21,21 @@ export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface>(
         payload,
         callback,
     }) => {
+        const toastLoading = toast.loading(TOAST_LOADING_GALAXIES);
+
         try {
             const {
                 data,
             } = await axios.post<ErrorInterface>(`${URL_MMT_STAND}auth/login`, payload);
 
             localStorage.setItem(storageKeys.tokenAuth, JSON.stringify(data));
+
             callback();
+
+            toast.success(TOAST_SUCCES_LOGIN, {
+                id: toastLoading,
+                duration: 1500,
+            });
 
             return data;
         }
@@ -31,10 +43,14 @@ export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface>(
             const error: AxiosError<ErrorInterface> = err as any;
 
             if (error.response) {
-                throw toast.error(error.response.data.errorMessage);
+                throw toast.error(error.response.data.errorMessage, {
+                    id: toastLoading,
+                });
             }
 
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE, {
+                id: toastLoading,
+            });
         }
     },
 );
