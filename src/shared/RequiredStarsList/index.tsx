@@ -3,8 +3,9 @@ import {
     useState,
 } from 'react';
 
+import { useAppDispatch } from '@app/providers/store/hooks';
+
 import {
-    fetchSystemById,
     SystemResponseInterface,
 } from '@entities/orbit/thunks/fetchSystemById';
 
@@ -13,6 +14,7 @@ import { Button } from '@shared/Button';
 import { ReactComponent as StarIcon } from '@shared/images/star.svg';
 
 import { bem } from '@shared/utils/bem';
+import { fetchAndSetAllDependencies } from '@shared/utils/fetchAndSetAllDependencies';
 
 import {
     RequiredStarsListInterface,
@@ -29,23 +31,17 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
         list = [],
     } = props;
 
+    const dispatch = useAppDispatch();
+
     const [block, element] = bem('required-list');
 
     const [fetchedSystemList, setFetchedSystemList] = useState<Array<SystemResponseInterface>>([]);
 
     useEffect(() => {
-        list.forEach((item) => {
-            fetchSystemById({
-                id: item.systemId,
-            }).then((response) => {
-                setFetchedSystemList((prevState) => {
-                    return [
-                        ...prevState,
-                        response,
-                    ];
-                });
-            });
-        });
+        dispatch(fetchAndSetAllDependencies({
+            list,
+            setFetchedSystemList,
+        }));
     }, []);
 
     return (

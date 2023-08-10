@@ -13,16 +13,18 @@ import { ErrorInterface } from '@shared/types/common';
 interface FetchSystemById {
     id: number | null;
     withDependencies?: boolean;
+    callback?: () => void;
 }
 
 export interface SystemResponseInterface extends SystemType, ErrorInterface {
 }
 
-export const fetchSystemById = async (payload: FetchSystemById) => { //todo переделать с использованием callback
+export const fetchSystemById = async (payload: FetchSystemById) => {
     try {
         const {
             id,
             withDependencies,
+            callback,
         } = payload;
 
         const fetchUrl = withDependencies
@@ -32,6 +34,8 @@ export const fetchSystemById = async (payload: FetchSystemById) => { //todo пе
         const {
             data,
         } = await instance.get<SystemResponseInterface>(fetchUrl);
+
+        callback && callback();
 
         return data;
     }
