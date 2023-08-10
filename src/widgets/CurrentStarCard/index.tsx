@@ -1,3 +1,5 @@
+
+import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { TabPanel } from 'react-tabs';
 
@@ -14,16 +16,13 @@ import { showModal } from '@entities/user/model/slice';
 import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
-import {
-    explorerInfoSelector,
-    explorerIsSystemActiveSelector,
-} from '@entities/explorer/model/selectors';
-import { declineCurrentSystem } from '@entities/explorer/model/slice';
+import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 import { leaveCourseRequest } from '@entities/explorer/thunks/leaveCourseRequest';
 
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
 import { CircleModal } from '@shared/CircleModal';
+import { ConfirmModal } from '@shared/ConfirmModal';
 import { CurrentUserItem } from '@shared/CurrentUserItem';
 import { DividingLine } from '@shared/DividingLine';
 import { FinalGrade } from '@shared/FinalGrade';
@@ -35,7 +34,8 @@ import { UsersList } from '@shared/UsersList';
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 
-import { TOAST_SUCCES_REJECTED } from '@shared/constants/toasts';
+import { CONFIRM_CANCEL_LEARNING } from '@shared/constants/modalTitles';
+import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toastTitles';
 
 import { ProgressBar } from '@widgets/ProgressBar';
 import { SelectStar } from '@widgets/SelectStar';
@@ -60,11 +60,12 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     } = props;
 
     const [block, element] = bem('current-star-card');
+    const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
+    const [isStarClosed, setIsStarClosed] = useState(false);
 
     const dispatch = useAppDispatch();
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
     const courseInfo = useAppSelector(userCourseInfoSelector);
-    const systemState = useAppSelector(explorerIsSystemActiveSelector);
     const userInfo = useAppSelector(explorerInfoSelector);
 
     const {
@@ -80,7 +81,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
         keepers,
     } = courseInfo;
 
-    if ((!currentSystem && !studyRequest) || !systemState) {
+    if ((!currentSystem && !studyRequest) || isStarClosed) {
         return <SelectStar />;
     }
 
@@ -119,6 +120,27 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                         </TabPanel>
                     </MmtTabs>
                 </CircleModal>
+            }
+            {
+                isAcceptModalOpen &&
+                <ConfirmModal
+                    confitmTitle={CONFIRM_CANCEL_LEARNING}
+                    rejectButtonTitle='Нет, хочу продолжить'
+                    submitButtonTitle='Да, я уверен'
+                    onClose={() => setIsAcceptModalOpen(false)}
+                    onSubmit={() => {
+                        setIsStarClosed(true);
+                        dispatch(leaveCourseRequest({
+                            payload: {
+                                courseId: currentSystem?.courseId,
+                            },
+                        }));
+                        toast(TOAST_SUCCESS_REJECTED, {
+                            icon: '😔',
+                        });
+                        setIsAcceptModalOpen(false);
+                    }}
+                />
             }
             <Typography
                 className={element('current-star-heading', 'mb-4 mt-5')}
@@ -161,17 +183,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     <Button
                         size={buttonSize.large}
                         title="Отменить"
-                        onClick={() => {
-                            dispatch(declineCurrentSystem());
-                            dispatch(leaveCourseRequest({
-                                payload: {
-                                    courseId: currentSystem?.courseId,
-                                },
-                            }));
-                            toast(TOAST_SUCCES_REJECTED, {
-                                icon: '😔',
-                            });
-                        }}
+                        onClick={() => setIsAcceptModalOpen(true)}
                     />
                     <Button
                         size={buttonSize.large}
@@ -189,6 +201,6 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     />
                 </div>
             </Card>
-        </div>
+        </div >
     );
 };

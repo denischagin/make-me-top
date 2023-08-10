@@ -5,7 +5,7 @@ import axios, { AxiosError } from 'axios';
 import { storageKeys } from '@shared/constants/storageKeys';
 import {
     TOAST_LOADING_GALAXIES,
-    TOAST_SUCCES_LOGIN,
+    TOAST_SUCCESS_LOGIN,
 } from '@shared/constants/toasts';
 import { URL_MMT_STAND } from '@shared/constants/urls';
 
@@ -32,7 +32,7 @@ export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface>(
 
             callback();
 
-            toast.success(TOAST_SUCCES_LOGIN, {
+            toast.success(TOAST_SUCCESS_LOGIN, {
                 id: toastLoading,
                 duration: 1500,
             });

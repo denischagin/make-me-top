@@ -1,0 +1,14 @@
+@import '@app/styles/variables.scss';
+
+.confirm-modal {
+    &__modal-text {
+        text-align: center;
+    }
+
+    &__modal-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 24px;
+        gap: 24px;
+    }
+}

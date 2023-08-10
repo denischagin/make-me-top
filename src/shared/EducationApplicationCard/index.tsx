@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import toast from 'react-hot-toast';
 
 import { useAppDispatch } from '@app/providers/store/hooks';
+
+import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest';
 
 import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
 
 import { Avatar } from '@shared/Avatar';
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
+import { ConfirmModal } from '@shared/ConfirmModal';
 import { Rating } from '@shared/Rating';
 import { RouterLink } from '@shared/RouterLink';
 import { Typography } from '@shared/Typography';
@@ -15,10 +19,8 @@ import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { URL_EXPLORER } from '@shared/constants/links';
-import {
-    TOAST_SUCCES_APPROVED,
-    TOAST_SUCCES_REJECTED,
-} from '@shared/constants/toasts';
+import { CONFIRM_CANCEL_STUDYING_REQUEST } from '@shared/constants/modalTitles';
+import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toasts';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';
@@ -42,11 +44,33 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
     } = props;
 
     const [block, element] = bem('application-education-card');
+    const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
 
     const dispatch = useAppDispatch();
 
     return (
         <div className={block()}>
+            {
+                isAcceptModalOpen &&
+                <ConfirmModal
+                    confitmTitle={CONFIRM_CANCEL_STUDYING_REQUEST}
+                    rejectButtonTitle='Нет, хочу продолжить'
+                    submitButtonTitle='Да, я уверен'
+                    onClose={() => setIsAcceptModalOpen(false)}
+                    onSubmit={() => {
+                        dispatch(acceptOrRejectCourseRequest({
+                            requestId: user.requestId,
+                            rejection: {
+                                approved: false,
+                            },
+                        }));
+                        toast(TOAST_SUCCESS_REJECTED, {
+                            icon: '😔',
+                        });
+                        setIsAcceptModalOpen(false);
+                    }}
+                />
+            }
             <Card
                 size={cardSize.large}
                 glow
@@ -80,36 +104,13 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                             <Button
                                 title={'Отклонить'}
                                 size={buttonSize.large}
-                                onClick={() => {
-                                    dispatch(acceptOrRejectCourseRequest({
-                                        requestId: user.requestId,
-                                        rejection: {
-                                            approved: false,
-                                        },
-                                    },
-                                    ));
-                                    toast(TOAST_SUCCES_REJECTED, {
-                                        icon: '😔',
-                                    });
-                                }}
+                                onClick={() => setIsAcceptModalOpen(true)}
                             />
                             <RouterLink to={`${URL_EXPLORER}/${user?.personId}`}>
                                 <Button
                                     title={'Принять'}
                                     color={buttonColor.filled}
                                     size={buttonSize.large}
-                                    onClick={() => {
-                                        dispatch(acceptOrRejectCourseRequest({
-                                            requestId: user.requestId,
-                                            rejection: {
-                                                approved: true,
-                                            },
-                                        },
-                                        ));
-                                        toast(TOAST_SUCCES_APPROVED, {
-                                            icon: '🤩',
-                                        });
-                                    }}
                                 />
                             </RouterLink>
                         </div>

@@ -9,6 +9,7 @@ import { DEFAULT_ERROR_MESSAGE } from '@entities/user/model/constants';
 
 import { instance } from '@shared/api/instances';
 
+import { TOAST_REQUEST_SENT } from '@shared/constants/toastTitles';
 import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import {
@@ -26,6 +27,8 @@ export const postCourseRequest = createAsyncThunk<ErrorInterface, PostCourseInte
             const {
                 data,
             } = await instance.post<ErrorInterface>(`${URL_MMT_STAND}explorer-cabinet/course-request`, payload);
+
+            toast.success(TOAST_REQUEST_SENT);
 
             return data;
         }

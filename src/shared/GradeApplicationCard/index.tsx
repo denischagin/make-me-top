@@ -1,3 +1,7 @@
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { keeperInfoSelector } from '@entities/keeper/model/selectors';
+
 import { Avatar } from '@shared/Avatar';
 import { Button } from '@shared/Button';
 import { Card } from '@shared/Card';
@@ -22,13 +26,13 @@ import './styles.scss';
 
 export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
     const {
-        finalAssesment,
+        finalAssessment,
         reviewRequest,
     } = props;
 
-    const reviewOrAssesment = finalAssesment || reviewRequest;
-
     const [block, element] = bem('grade-application-card');
+
+    const reviewOrAssessment = finalAssessment || reviewRequest;
 
     return (
         <div className={block()}>
@@ -44,16 +48,16 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                                 className={element('name')}
                                 variant={typographyVariant.regular14}
                             >
-                                {getUserFullName(reviewOrAssesment)}
+                                {getUserFullName(reviewOrAssessment)}
                             </Typography>
                             <Typography
                                 className={element('star-title')}
                                 variant={typographyVariant.regular14}
                             >
-                                {`Звезда: ${reviewOrAssesment?.courseTitle}`}
+                                {`Звезда: ${reviewOrAssessment?.courseTitle}`}
                             </Typography>
                             {
-                                !finalAssesment &&
+                                !finalAssessment &&
                                 <Typography
                                     className={element('planet')}
                                     variant={typographyVariant.medium16}
@@ -64,7 +68,7 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                         </div>
                     </div>
                     <div className={element('button')}>
-                        <RouterLink to={`${URL_EXPLORER}/${reviewOrAssesment?.personId}`}>
+                        <RouterLink to={`${URL_EXPLORER}/${reviewOrAssessment?.personId}`}>
                             <Button
                                 title={'Оценить'}
                                 color={buttonColor.filled}

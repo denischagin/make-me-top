@@ -65,7 +65,7 @@ export const Keeper = () => {
                                         finalAssessments?.map((asset: FinalAssessmentsInterface) => (
                                             <GradeApplicationCard
                                                 key={asset.personId}
-                                                finalAssesment={asset}
+                                                finalAssessment={asset}
                                             />
                                         ))
                                     }

@@ -16,7 +16,7 @@ import { getUserFullName } from '@shared/utils/getUserFullName';
 import { sortByRating } from '@shared/utils/sortByRating';
 
 import { URL_EXPLORER } from '@shared/constants/links';
-import { TOAST_ERROR_CHOOSE_KEEPER } from '@shared/constants/toasts';
+import { TOAST_ERROR_CHOOSE_KEEPER } from '@shared/constants/toastTitles';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
 import {
