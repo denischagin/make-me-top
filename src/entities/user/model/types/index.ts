@@ -1,3 +1,8 @@
+import { Dispatch } from 'react';
+import { AnyAction } from 'redux';
+
+import { AppDispatch } from '@app/providers/store';
+
 export interface InProgressSystemType {
     systemId: number,
     completed: number,
@@ -36,6 +41,7 @@ export interface userDataInterface {
 export interface AuthLoginInterface {
     payload: userDataInterface
     callback: () => void
+    // dispatch: any
 }
 
 export interface CourseInfoInterface {

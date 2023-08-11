@@ -63,6 +63,9 @@
                         "^@entities/user/(.*)$"
                     ],
                     [
+                        "^@entities/loading/(.*)$"
+                    ],
+                    [
                         "^@entities/explorer/(.*)$"
                     ],
                     [

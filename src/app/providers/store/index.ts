@@ -7,6 +7,9 @@ import logger from 'redux-logger';
 import userReducer from '@entities/user/model/slice';
 import { UserState } from '@entities/user/model/types';
 
+import loadingReducer from '@entities/loading/model/loadingSlice';
+import { LoadingState } from '@entities/loading/model/types';
+
 import explorerReducer from '@entities/explorer/model/slice';
 import { ExplorerState } from '@entities/explorer/model/types/interfaces';
 
@@ -21,6 +24,7 @@ export type RootState = {
     keeper: KeeperState;
     user: UserState;
     galaxies: GalaxyState;
+    loading: LoadingState
 };
 
 const rootReducer = combineReducers({
@@ -28,6 +32,7 @@ const rootReducer = combineReducers({
     keeper: keeperReducer,
     user: userReducer,
     galaxies: galaxyReducer,
+    loading: loadingReducer,
 });
 
 export type AppDispatch = typeof store.dispatch;

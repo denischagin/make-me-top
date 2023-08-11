@@ -1,3 +1,7 @@
+interface ElementToNumber {
+    element: string | number | bigint | boolean | undefined | null;
+}
+
 /**
  * Возвращает число по переданному параметру
  *
@@ -22,10 +26,6 @@
  *
  * @return { number } 1
  */
-
-interface ElementToNumber {
-    element: string | number | bigint | boolean | undefined | null;
-}
 
 export function elementToNumber(params: ElementToNumber): number {
     const {
