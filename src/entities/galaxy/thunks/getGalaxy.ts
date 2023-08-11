@@ -30,8 +30,6 @@ export const getGalaxy = createAsyncThunk<GalaxyResponseInterface, GetGalaxyInte
     async (payload, {
         rejectWithValue,
     }) => {
-        const toastLoading = toast.loading(TOAST_LOADING_GALAXIES);
-
         try {
             const {
                 galaxyId = DEFAULT_GALAXY_ID,
@@ -41,24 +39,18 @@ export const getGalaxy = createAsyncThunk<GalaxyResponseInterface, GetGalaxyInte
                 data,
             } = await instance.get<GalaxyResponseInterface>(`${URL_MMT_STAND}galaxy-app/galaxy/${galaxyId}`);
 
-            toast.dismiss(toastLoading);
-
             return data;
         }
         catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
 
             if (error.response) {
-                toast.error(error.response.data.errorMessage, {
-                    id: toastLoading,
-                });
+                toast.error(error.response.data.errorMessage);
 
                 return rejectWithValue(error.response.data);
             }
 
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE, {
-                id: toastLoading,
-            });
+            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
         }
     },
 );

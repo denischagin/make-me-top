@@ -13,6 +13,8 @@ import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRej
 import { getKeeperCardInfo } from '@entities/keeper/thunks/getKeeperCardInfo';
 import { getKeeperInfo } from '@entities/keeper/thunks/getKeeperInfo';
 
+import { getGalaxy } from '@entities/galaxy/thunks/getGalaxy';
+
 import { setLoadingForThunks } from '@shared/utils/setLoadingForThunks';
 
 import { LoadingState } from './types';
@@ -43,6 +45,7 @@ export const loadingSlice = createSlice({
                 acceptOrRejectCourseRequest,
                 getKeeperCardInfo,
                 getKeeperInfo,
+                getGalaxy,
                 // сюда добавляются запросы к которым надо добавить спиннер
             ],
         );

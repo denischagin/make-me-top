@@ -25,7 +25,7 @@ export default function Spinner() {
             <div className={block()}>
                 <RingLoader
                     color={'#ffffff'}
-                    size={150}
+                    size={90}
                     className={element('loader')}
                     aria-label="Загрузка"
                     data-testid="loader"
