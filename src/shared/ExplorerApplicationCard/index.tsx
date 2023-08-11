@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import toast from 'react-hot-toast';
 
 import {
     useAppDispatch,
@@ -18,10 +17,6 @@ import { Typography } from '@shared/Typography';
 import { bem } from '@shared/utils/bem';
 
 import { CONFIRM_CANCEL_TEACHING } from '@shared/constants/modalTitles';
-import {
-    TOAST_SUCCESS_APPROVED,
-    TOAST_SUCCESS_REJECTED,
-} from '@shared/constants/toastTitles';
 
 import {
     buttonColor,
@@ -41,7 +36,6 @@ export const ExplorerApplicationCard = () => {
 
     const {
         studyRequest,
-        reviewRequest,
         currentSystem,
     } = userInfo;
 
@@ -67,9 +61,6 @@ export const ExplorerApplicationCard = () => {
                                 approved: false,
                             },
                         }));
-                        toast(TOAST_SUCCESS_REJECTED, {
-                            icon: '😔',
-                        });
                         setIsAcceptModalOpen(false);
                     }}
                 />
@@ -128,11 +119,7 @@ export const ExplorerApplicationCard = () => {
                                             rejection: {
                                                 approved: true,
                                             },
-                                        },
-                                        ));
-                                        toast(TOAST_SUCCESS_APPROVED, {
-                                            icon: '🤩',
-                                        });
+                                        }));
                                     }}
                                 />
                         }
