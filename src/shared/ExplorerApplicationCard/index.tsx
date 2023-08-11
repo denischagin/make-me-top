@@ -45,11 +45,11 @@ export const ExplorerApplicationCard = () => {
         currentSystem,
     } = userInfo;
 
+    const studyRequestOrСurrentSystem = currentSystem || studyRequest;
+
     if (!currentSystem && !studyRequest) {
         return null;
     }
-
-    const studyRequestOrСurrentSystem = currentSystem || studyRequest;
 
     return (
         <div className={block()}>
@@ -62,7 +62,7 @@ export const ExplorerApplicationCard = () => {
                     onClose={() => setIsAcceptModalOpen(false)}
                     onSubmit={() => {
                         dispatch(acceptOrRejectCourseRequest({
-                            requestId: reviewRequest.requestId,
+                            requestId: studyRequest.requestId,
                             rejection: {
                                 approved: false,
                             },
@@ -90,13 +90,17 @@ export const ExplorerApplicationCard = () => {
                             className={element('planet')}
                             variant={typographyVariant.h2}
                         >
-                            {`Планета: ${studyRequestOrСurrentSystem?.courseId}. ${studyRequestOrСurrentSystem?.courseTitle}`}
+                            {`Звезда: ${studyRequestOrСurrentSystem?.courseId}. ${studyRequestOrСurrentSystem?.courseTitle}`}
                         </Typography>
                         <Typography
                             className={element('star')}
                             variant={typographyVariant.regular14}
                         >
-                            {`Звезда: ${studyRequestOrСurrentSystem?.courseThemeTitle}`}
+                            {
+                                currentSystem
+                                    ? `Звезда: ${currentSystem?.courseThemeTitle}`
+                                    : `Галактика: ${studyRequest?.galaxyName}`
+                            }
                         </Typography>
                     </div>
                     <div className={element('buttons')}>
