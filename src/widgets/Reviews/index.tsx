@@ -12,6 +12,7 @@ import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 
 import { Button } from '@shared/Button';
 import { ReviewCard } from '@shared/ReviewCard';
+import { ShowMoreElemenetsButton } from '@shared/ShowMoreElemenetsButton';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
@@ -60,26 +61,13 @@ export const Reviews = () => {
                     ))
                 }
             </div>
-            {
-                (feedback?.length >= limitEl) ?
-                    <div className={element('button', 'mt-5')}>
-                        <Button
-                            title="Показать ещё"
-                            size={buttonSize.large}
-                            onClick={() => {
-                                setLimitEl(limitEl + DEFAULT_EL_LIMIT);
-                            }}
-                        />
-                    </div>
-                    : !(feedback?.length < DEFAULT_EL_LIMIT) &&
-                    <div className={element('button', 'mt-5')}>
-                        <Button
-                            title="Скрыть"
-                            size={buttonSize.large}
-                            onClick={() => setLimitEl(DEFAULT_EL_LIMIT)}
-                        />
-                    </div>
-            }
+            <ShowMoreElemenetsButton
+                setElLimit={setLimitEl}
+                elementsLength={feedback.length}
+                defaultElementsLimit={DEFAULT_EL_LIMIT}
+                currentElementsLimit={limitEl}
+                buttonSize={buttonSize.large}
+            />
         </div>
     );
 };
