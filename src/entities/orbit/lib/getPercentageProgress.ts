@@ -1,10 +1,11 @@
-import { UserProgress } from '@entities/user/model/types';
-
-import { SystemType } from '@entities/galaxy/model/types';
+import {
+    SystemType,
+    UserProgressInGalaxy,
+} from '@entities/galaxy/model/types';
 
 interface IGetPercentageProgress {
   system: SystemType;
-  userProgress: UserProgress;
+  userProgress: UserProgressInGalaxy;
 }
 
 //функция получения значния из поля обьекта по индексу
@@ -15,7 +16,7 @@ export const getPercentageProgress = (params: IGetPercentageProgress): number =>
     } = params;
 
     //получение прогресса определенной системы
-    const educationSystem = userProgress.inProgressSystemList.find(
+    const educationSystem = userProgress.studiedSystems.find(
         (educationSystem) => {
             return educationSystem.systemId === system.systemId;
         },

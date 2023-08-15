@@ -29,8 +29,3 @@ export const initialCourseInfo = {
     explorers: [],
     keepers: [],
 };
-export const DEFAULT_USER_PROGRESS = {
-    openedSystemList: [],
-    closedSystemList: [],
-    inProgressSystemList: [],
-};

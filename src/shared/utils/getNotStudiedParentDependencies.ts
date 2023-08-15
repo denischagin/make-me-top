@@ -1,15 +1,14 @@
-import { UserProgress } from '@entities/user/model/types';
-
 import {
     LastChosenSystem,
     SystemDependencyType,
+    UserProgressInGalaxy,
 } from '@entities/galaxy/model/types';
 
 import { MAX_STUDYING_PROGRESS } from '@shared/types/common';
 
 interface GetNotStudiedParentDependencies {
     lastChosenStar: LastChosenSystem,
-    userProgress: UserProgress,
+    userProgress: UserProgressInGalaxy,
 }
 
 //фукнция фильтрации списка зависимотей системы
@@ -26,7 +25,7 @@ export function getNotStudiedParentDependencies(params: GetNotStudiedParentDepen
 
     //зависимости с типом parent, у которых прогресс не 100%
     const notStudiedParentDependencies = parentDependencies.filter((dependency) => {
-        const isCurrentDependencyStudied = userProgress.inProgressSystemList.some((system) =>
+        const isCurrentDependencyStudied = userProgress.studiedSystems.some((system) =>
             (
                 (system.systemId === dependency.systemId) &&
                 (system.completed === MAX_STUDYING_PROGRESS)

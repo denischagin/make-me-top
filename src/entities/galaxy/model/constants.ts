@@ -30,6 +30,12 @@ export const DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE: LastChosenSystem = {
     ...DEFAULT_SYSTEM_RESPONSE_MESSAGE,
 };
 
+export const initialUserProgressByGalaxy = {
+    studiedSystems: [],
+    openedSystems: [],
+    closedSystems: [],
+};
+
 
 export const CONNECTION_LINE_CLASS = 'galaxy-page__svg-container--connection-line';
 

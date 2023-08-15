@@ -1,12 +1,13 @@
-import { UserProgress } from '@entities/user/model/types';
-
-import { SystemType } from '@entities/galaxy/model/types';
+import {
+    SystemType,
+    UserProgressInGalaxy,
+} from '@entities/galaxy/model/types';
 
 import { SystemProgressTypes } from '@shared/types/common';
 
 interface IGetPlanetProgress {
   system: SystemType;
-  userProgress: UserProgress;
+  userProgress: UserProgressInGalaxy;
 }
 
 //функция получения типа прогресса системы по прогрессу пользоватея
@@ -16,7 +17,7 @@ export const getSystemProgressType = (params: IGetPlanetProgress) => {
         userProgress,
     } = params; //todo срабатывает 48 раз при наведеии/анфокусе
 
-    const isSystemOpen = userProgress.openedSystemList.some(
+    const isSystemOpen = userProgress.openedSystems.some(
         (openSystemId) => openSystemId === system.systemId,
     );
 
@@ -24,7 +25,7 @@ export const getSystemProgressType = (params: IGetPlanetProgress) => {
         return SystemProgressTypes.SYSTEM_OPEN;
     }
 
-    const isSystemClose = userProgress.closedSystemList.some(
+    const isSystemClose = userProgress.closedSystems.some(
         (closeSystemId) => closeSystemId === system.systemId,
     );
 
@@ -32,7 +33,7 @@ export const getSystemProgressType = (params: IGetPlanetProgress) => {
         return SystemProgressTypes.SYSTEM_CLOSE;
     }
 
-    const isSystemEducation = userProgress.inProgressSystemList.some(
+    const isSystemEducation = userProgress.studiedSystems.some(
         (educationSystemId) => educationSystemId.systemId === system.systemId,
     );
 

@@ -12,12 +12,6 @@ const initialState: UserState = {
     isModalOpen: false,
     planetList: [],
     courseInfo: initialCourseInfo,
-    userData: {
-        openedSystemList: [],
-        closedSystemList: [],
-        inProgressSystemList: [],
-    },
-
 };
 
 export const userSlice = createSlice({
