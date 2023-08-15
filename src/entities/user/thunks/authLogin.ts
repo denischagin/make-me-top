@@ -23,6 +23,7 @@ export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface>(
             } = await axios.post<ErrorInterface>(`${URL_MMT_STAND}auth/login`, payload);
 
             localStorage.setItem(storageKeys.tokenAuth, JSON.stringify(data));
+
             callback();
 
             return data;

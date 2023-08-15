@@ -3,7 +3,6 @@ export const TOAST_SUCCESS_SENT = 'Заявка успешно отправле�
 
 export const TOAST_SUCCESS_REJECTED = 'Заявка на обучение отклонена';
 export const TOAST_SUCCESS_APPROVED = 'Заявка на обучение подтверждена';
-
 export const TOAST_ERROR_CHOOSE_KEEPER = 'Необходимо выбрать хранителя';
 
 export const TOAST_FETCH_SUCESS = 'Данные успешно получены';

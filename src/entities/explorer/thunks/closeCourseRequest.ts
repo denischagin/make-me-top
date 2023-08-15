@@ -3,9 +3,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import {
-    POST_COURSE_REQUEST,
-} from '@entities/user/model/actions';
-import {
     DEFAULT_ERROR_MESSAGE,
     DEFAULT_ID,
 } from '@entities/user/model/constants';
@@ -16,6 +13,8 @@ import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
+import { CLOSE_COURSE_REQUEST } from '../model/actions';
+
 export interface CancelCoursePayloadInterface {
     requestId: number,
 }
@@ -25,7 +24,7 @@ export interface CancelCourseInterface {
 }
 
 export const closeCourseRequest = createAsyncThunk<ErrorInterface, CancelCourseInterface>(
-    POST_COURSE_REQUEST,
+    CLOSE_COURSE_REQUEST,
     async ({
         payload,
     }) => {

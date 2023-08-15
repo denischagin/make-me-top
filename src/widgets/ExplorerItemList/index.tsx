@@ -29,6 +29,7 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
     const [block, element] = bem('explorer-card-list');
     const [limitEl, setLimitEl] = useState<number>(DEFAULT_LIMIT_ITEM);
 
+
     const totalExplorers = explorers?.length || 0;
 
     return (
@@ -50,7 +51,7 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                     explorers?.slice(0, limitEl).map((user) => (
                         <RouterLink
                             to={`${URL_EXPLORER}/${user.personId}`}
-                            key={user.courseId}
+                            key={user.personId}
                         >
                             <ExplorerItem
                                 name={`${user.lastName} ${user.firstName} ${user.patronymic}`}

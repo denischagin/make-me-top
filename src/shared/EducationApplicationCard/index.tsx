@@ -20,7 +20,7 @@ import { getUserFullName } from '@shared/utils/getUserFullName';
 
 import { URL_EXPLORER } from '@shared/constants/links';
 import { CONFIRM_CANCEL_STUDYING_REQUEST } from '@shared/constants/modalTitles';
-import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toastTitles';
+import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toasts';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/Avatar/interfaces';

@@ -49,6 +49,7 @@ export interface StudyRequestsInterface {
     courseId: number;
     courseTitle: string;
     requestId: number;
+    galaxyName: string;
 }
 
 export interface FinalAssessmentsInterface {

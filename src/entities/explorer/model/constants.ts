@@ -83,6 +83,7 @@ export const initialExplorerCardInfo = {
         patronymic: '',
         personId: 0,
         requestId: 0,
+        galaxyName: '',
     },
     rating: null,
     totalFeedback: 0,
