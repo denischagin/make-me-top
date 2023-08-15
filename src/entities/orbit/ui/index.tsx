@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { UserProgress } from '@entities/user/model/types';
-
-import { SystemType } from '@entities/galaxy/model/types';
+import {
+    SystemType,
+    UserProgressInGalaxy,
+} from '@entities/galaxy/model/types';
 
 import { getDigitalAngle } from '@entities/orbit/lib/getDigitalAngle';
 import { getPercentageProgress } from '@entities/orbit/lib/getPercentageProgress';
@@ -26,7 +27,7 @@ import { SystemProgressTypes } from '@shared/types/common';
 import './styles.scss';
 
 interface IOrbitProps {
-    userProgress: UserProgress;
+    userProgress: UserProgressInGalaxy;
     systemList: Array<SystemType>;
     orbitWidth: number;
     orbitHeight: number;

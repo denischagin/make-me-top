@@ -1,4 +1,4 @@
-import { UserProgress } from '@entities/user/model/types';
+import { StudiedSystems } from '@entities/user/model/types';
 
 import { ErrorInterface } from '@shared/types/common';
 
@@ -27,11 +27,18 @@ export interface GalaxyState {
     galaxyId: number;
     galaxyName: string;
     orbitList: Array<OrbitType>;
+    userProgress: UserProgressInGalaxy,
+}
+
+export interface UserProgressInGalaxy {
+    openedSystems: Array<number>,
+    closedSystems: Array<number>,
+    studiedSystems: Array<StudiedSystems>,
 }
 
 export interface IGalaxyProps {
     galaxyPage: HTMLDivElement | null;
-    userProgress: UserProgress;
+    userProgress: UserProgressInGalaxy;
     orbitList: Array<OrbitType>;
     svgContainerClass: string;
     width: number;

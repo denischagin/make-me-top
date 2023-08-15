@@ -13,6 +13,7 @@ import { getExplorerInfo } from '@entities/explorer/thunks/getExplorerInfo';
 
 import { DEFAULT_GALAXY_ID } from '@entities/galaxy/model/constants';
 import { getGalaxy } from '@entities/galaxy/thunks/getGalaxy';
+import { getUserProgressInGalaxy } from '@entities/galaxy/thunks/getUserProgressInGalaxy';
 import Galaxy from '@entities/galaxy/ui';
 
 import { BackgroundGalaxyPage } from '@shared/BackgroundGalaxyPage';
@@ -25,6 +26,7 @@ import { Header } from '@widgets/Header';
 import {
     galaxyNameSelector,
     orbitListSelector,
+    userProgressSelector,
 } from '@pages/GalaxyPage/model';
 
 import './styles.scss';
@@ -36,43 +38,19 @@ export const GalaxyPage: React.FC = () => {
 
     const galaxyPageRef = useRef<HTMLDivElement | null>(null);
 
-    const testUserProgress = { //todo подготовить апишку под прогресс пользователя
-        openedSystemList: [4, 7, 8, 9, 10, 13],
-        closedSystemList: [11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-        inProgressSystemList: [
-            {
-                systemId: 1,
-                completed: 25,
-            },
-            {
-                systemId: 2,
-                completed: 50,
-            },
-            {
-                systemId: 3,
-                completed: 75,
-            },
-            {
-                systemId: 5,
-                completed: 50,
-            },
-            {
-                systemId: 6,
-                completed: 100,
-            },
-        ],
-    };
-
     useEffect(() => {
         dispatch(getGalaxy({
+            galaxyId: DEFAULT_GALAXY_ID,
+        }));
+        dispatch(getUserProgressInGalaxy({
             galaxyId: DEFAULT_GALAXY_ID,
         }));
         dispatch(getExplorerInfo({}));
     }, []);
 
     const galaxyName = useAppSelector(galaxyNameSelector);
-
     const orbitList = useAppSelector(orbitListSelector);
+    const userProgress = useAppSelector(userProgressSelector);
 
     return (
         <div
@@ -87,7 +65,7 @@ export const GalaxyPage: React.FC = () => {
                 height={910}
                 galaxyPage={galaxyPageRef.current}
                 svgContainerClass={element('svg-container')}
-                userProgress={testUserProgress}
+                userProgress={userProgress}
                 orbitList={orbitList}
             />
         </div>

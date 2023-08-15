@@ -3,7 +3,7 @@ import { AnyAction } from 'redux';
 
 import { AppDispatch } from '@app/providers/store';
 
-export interface InProgressSystemType {
+export interface StudiedSystems {
     systemId: number,
     completed: number,
 }
@@ -17,13 +17,6 @@ export interface UserState {
     isModalOpen: boolean;
     planetList: Array<ModalPlanetInterface>;
     courseInfo: CourseInfoInterface;
-    userData: UserProgress;
-}
-
-export interface UserProgress {
-    openedSystemList: Array<number>,
-    closedSystemList: Array<number>,
-    inProgressSystemList: Array<InProgressSystemType>,
 }
 
 export interface ModalPlanetInterface {

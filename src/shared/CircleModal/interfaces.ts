@@ -1,18 +1,19 @@
 import { ReactNode } from 'react';
 
-import { UserProgress } from '@entities/user/model/types';
-
-import { LastChosenSystem } from '@entities/galaxy/model/types';
+import {
+    LastChosenSystem,
+    UserProgressInGalaxy,
+} from '@entities/galaxy/model/types';
 
 export interface ModalInterface {
     header: string;
     isLocked?: boolean;
     data?: {
         lastChosenStar: LastChosenSystem,
-        userProgress: UserProgress,
+        userProgress: UserProgressInGalaxy,
     };
     children: ReactNode;
-    onClose: (dispatch: any) => any;
+    onClose: () => void;
 }
 
 export enum ModalAccessStatus {
