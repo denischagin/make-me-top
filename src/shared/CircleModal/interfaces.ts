@@ -13,7 +13,7 @@ export interface ModalInterface {
         userProgress: UserProgressInGalaxy,
     };
     children: ReactNode;
-    onClose: (dispatch: any) => any;
+    onClose: () => void;
 }
 
 export enum ModalAccessStatus {
