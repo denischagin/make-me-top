@@ -1,27 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {
+    AnyAction,
+    createSlice,
+} from '@reduxjs/toolkit';
 
-import { authLogin } from '@entities/user/thunks/authLogin';
-import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
-import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
-import { postCourseRequest } from '@entities/user/thunks/postCourseRequest';
-
-import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest';
-import { getExplorerCardInfo } from '@entities/explorer/thunks/getExplorerCardInfo';
-import { getExplorerInfo } from '@entities/explorer/thunks/getExplorerInfo';
-
-import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
-import { getKeeperCardInfo } from '@entities/keeper/thunks/getKeeperCardInfo';
-import { getKeeperInfo } from '@entities/keeper/thunks/getKeeperInfo';
-
-import { getGalaxy } from '@entities/galaxy/thunks/getGalaxy';
-
-import { setLoadingForThunks } from '@shared/utils/setLoadingForThunks';
-
-import { LoadingState } from './types';
+import {
+    FulfilledAction,
+    LoadingState,
+    ModifiedRejectedAction,
+    PendingAction,
+} from './types';
 
 const initialState: LoadingState = {
     isLoading: false,
 };
+
+function isPendingAction(action: AnyAction): action is PendingAction {
+    return action.type.endsWith('/pending');
+}
+
+function isFulfilledAction(action: AnyAction): action is FulfilledAction {
+    return action.type.endsWith('/fulfilled');
+}
+
+function isRejectedAction(action: AnyAction): action is ModifiedRejectedAction {
+    return action.type.endsWith('/rejected');
+}
 
 export const loadingSlice = createSlice({
     name: 'loading',
@@ -32,23 +35,16 @@ export const loadingSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        setLoadingForThunks(
-            builder,
-            [
-                authLogin,
-                getModalPlanets,
-                getCourseInfo,
-                postCourseRequest,
-                closeCourseRequest,
-                getExplorerCardInfo,
-                getExplorerInfo,
-                acceptOrRejectCourseRequest,
-                getKeeperCardInfo,
-                getKeeperInfo,
-                getGalaxy,
-                // сюда добавляются запросы к которым надо добавить спиннер
-            ],
-        );
+        builder
+            .addMatcher(isPendingAction, (state) => {
+                state.isLoading = true;
+            })
+            .addMatcher(isFulfilledAction, (state) => {
+                state.isLoading = false;
+            })
+            .addMatcher(isRejectedAction, (state) => {
+                state.isLoading = false;
+            });
     },
 });
 
