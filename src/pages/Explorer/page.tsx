@@ -33,7 +33,6 @@ export const Explorer = () => {
     const userInfo = useAppSelector(explorerInfoSelector);
 
     const {
-        currentSystem,
         investigatedSystems,
     } = userInfo;
 

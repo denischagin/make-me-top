@@ -12,6 +12,7 @@ import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 
 import { Button } from '@shared/Button';
 import { ReviewCard } from '@shared/ReviewCard';
+import { ShowMoreElemenetsButton } from '@shared/ShowMoreElemenetsButton';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
@@ -25,7 +26,7 @@ import './styles.scss';
 
 export const Reviews = () => {
     const [block, element] = bem('reviews');
-    const [limitEl, setLimitEl] = useState<number>(DEFAULT_EL_LIMIT);
+    const [limitElements, setElementsLimit] = useState<number>(DEFAULT_EL_LIMIT);
 
     const location = useLocation();
 
@@ -52,7 +53,7 @@ export const Reviews = () => {
             </Typography>
             <div className={element('cards')}>
                 {
-                    feedback.slice(0, limitEl)?.map((item) => (
+                    feedback.slice(0, limitElements)?.map((item) => (
                         <ReviewCard
                             key={item.courseId}
                             review={item}
@@ -60,26 +61,13 @@ export const Reviews = () => {
                     ))
                 }
             </div>
-            {
-                (feedback?.length >= limitEl) ?
-                    <div className={element('button', 'mt-5')}>
-                        <Button
-                            title="Показать ещё"
-                            size={buttonSize.large}
-                            onClick={() => {
-                                setLimitEl(limitEl + DEFAULT_EL_LIMIT);
-                            }}
-                        />
-                    </div>
-                    : !(feedback?.length < DEFAULT_EL_LIMIT) &&
-                    <div className={element('button', 'mt-5')}>
-                        <Button
-                            title="Скрыть"
-                            size={buttonSize.large}
-                            onClick={() => setLimitEl(DEFAULT_EL_LIMIT)}
-                        />
-                    </div>
-            }
+            <ShowMoreElemenetsButton
+                setElementsLimit={setElementsLimit}
+                elementsLength={feedback.length}
+                defaultElementsLimit={DEFAULT_EL_LIMIT}
+                currentElementsLimit={limitElements}
+                buttonSize={buttonSize.large}
+            />
         </div>
     );
 };
