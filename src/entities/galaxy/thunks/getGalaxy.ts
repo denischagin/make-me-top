@@ -6,6 +6,7 @@ import { FETCH_GALAXY } from '@entities/galaxy/model/actions';
 
 import { instance } from '@shared/api/instances';
 
+import { TOAST_LOADING_GALAXIES } from '@shared/constants/toasts';
 import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';

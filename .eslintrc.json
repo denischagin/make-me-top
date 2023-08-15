@@ -63,6 +63,9 @@
                         "^@entities/user/(.*)$"
                     ],
                     [
+                        "^@entities/loading/(.*)$"
+                    ],
+                    [
                         "^@entities/explorer/(.*)$"
                     ],
                     [
@@ -121,6 +124,7 @@
             "error",
             "single"
         ],
+        "no-unsafe-finally": 0,
         "@typescript-eslint/no-non-null-assertion": 0,
         "react/no-children-prop": 0,
         "@typescript-eslint/no-unused-vars": 0,
