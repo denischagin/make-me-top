@@ -1,17 +1,23 @@
-import { Button } from '@shared/Button';
+import { useState } from 'react';
+
 import { Card } from '@shared/Card';
 import { ExplorerItem } from '@shared/ExplorerItem';
 import { RouterLink } from '@shared/RouterLink';
+import { ShowMoreElemenetsButton } from '@shared/ShowMoreElemenetsButton';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
 import { URL_EXPLORER } from '@shared/constants/links';
 
+import { DEFAULT_EL_LIMIT } from '@widgets/Reviews/model';
+
 import { ExplorerItemListInterface } from './interfaces';
 import { buttonSize } from '@shared/Button/interfaces';
 import { cardSize } from '@shared/Card/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
+
+import { DEFAULT_LIMIT_ITEM } from './model';
 
 import './styles.scss';
 
@@ -20,10 +26,11 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
         explorers,
     } = props;
 
-    const [block, element] = bem('explorer-item-list');
+    const [block, element] = bem('explorer-card-list');
+    const [limitElements, setElementsLimit] = useState<number>(DEFAULT_LIMIT_ITEM);
+
 
     const totalExplorers = explorers?.length || 0;
-    const limitItems = 9;
 
     return (
         <div className={block()}>
@@ -41,7 +48,7 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                     {`Всего учеников: ${totalExplorers}`}
                 </Typography>
                 {
-                    explorers?.slice(0, limitItems).map((user) => (
+                    explorers?.slice(0, limitElements).map((user) => (
                         <RouterLink
                             to={`${URL_EXPLORER}/${user.personId}`}
                             key={user.personId}
@@ -53,15 +60,14 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                         </RouterLink>
                     ))
                 }
-                {
-                    (totalExplorers > limitItems) &&
-                    <div className={element('button', 'mt-3')}>
-                        <Button
-                            title={'Все ученики'}
-                            size={buttonSize.large}
-                        />
-                    </div>
-                }
+                <ShowMoreElemenetsButton
+                    setElementsLimit={setElementsLimit}
+                    openButtonTitle='Все ученики'
+                    elementsLength={explorers?.length}
+                    defaultElementsLimit={DEFAULT_LIMIT_ITEM}
+                    currentElementsLimit={limitElements}
+                    buttonSize={buttonSize.large}
+                />
             </Card>
         </div>
     );
