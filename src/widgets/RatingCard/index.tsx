@@ -26,7 +26,7 @@ import './styles.scss';
 
 export const RatingCard = () => {
     const [block, element] = bem('rating-card');
-    const [limitEl, setLimitEl] = useState<number>(DEFAULT_LIMIT_ITEM);
+    const [limitElements, setElementsLimit] = useState<number>(DEFAULT_LIMIT_ITEM);
 
     const userInfo = useAppSelector(explorerInfoSelector);
 
@@ -56,7 +56,7 @@ export const RatingCard = () => {
                     Общий рейтинг
                 </Typography>
                 {
-                    sortByRating(ratingTable)?.slice(0, limitEl).map((user) => (
+                    sortByRating(ratingTable)?.slice(0, limitElements).map((user) => (
                         <UsersRating
                             key={user.personId}
                             fullname={getUserFullName(user)}
@@ -65,10 +65,10 @@ export const RatingCard = () => {
                     ))
                 }
                 <ShowMoreElemenetsButton
-                    setElLimit={setLimitEl}
+                    setElementsLimit={setElementsLimit}
                     elementsLength={ratingTable.length}
                     defaultElementsLimit={DEFAULT_LIMIT_ITEM}
-                    currentElementsLimit={limitEl}
+                    currentElementsLimit={limitElements}
                     buttonSize={buttonSize.large}
                 />
             </div>

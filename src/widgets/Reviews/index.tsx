@@ -26,7 +26,7 @@ import './styles.scss';
 
 export const Reviews = () => {
     const [block, element] = bem('reviews');
-    const [limitEl, setLimitEl] = useState<number>(DEFAULT_EL_LIMIT);
+    const [limitElements, setElementsLimit] = useState<number>(DEFAULT_EL_LIMIT);
 
     const location = useLocation();
 
@@ -53,7 +53,7 @@ export const Reviews = () => {
             </Typography>
             <div className={element('cards')}>
                 {
-                    feedback.slice(0, limitEl)?.map((item) => (
+                    feedback.slice(0, limitElements)?.map((item) => (
                         <ReviewCard
                             key={item.courseId}
                             review={item}
@@ -62,10 +62,10 @@ export const Reviews = () => {
                 }
             </div>
             <ShowMoreElemenetsButton
-                setElLimit={setLimitEl}
+                setElementsLimit={setElementsLimit}
                 elementsLength={feedback.length}
                 defaultElementsLimit={DEFAULT_EL_LIMIT}
-                currentElementsLimit={limitEl}
+                currentElementsLimit={limitElements}
                 buttonSize={buttonSize.large}
             />
         </div>

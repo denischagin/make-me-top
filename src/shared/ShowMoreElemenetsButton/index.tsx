@@ -13,7 +13,7 @@ export const ShowMoreElemenetsButton = (props: ShowMoreElemenetsButtonInterface)
         openButtonTitle,
         buttonColor,
         buttonSize,
-        setElLimit,
+        setElementsLimit,
     } = props;
     const [block, element] = bem('show-more-elemenets-button');
 
@@ -30,7 +30,7 @@ export const ShowMoreElemenetsButton = (props: ShowMoreElemenetsButtonInterface)
                         size={buttonSize}
                         color={buttonColor}
                         onClick={() => {
-                            setElLimit(currentElementsLimit + defaultElementsLimit);
+                            setElementsLimit(currentElementsLimit + defaultElementsLimit);
                         }}
                     />
                     : !(elementsLength < defaultElementsLimit) &&
@@ -38,7 +38,7 @@ export const ShowMoreElemenetsButton = (props: ShowMoreElemenetsButtonInterface)
                         title={'Скрыть' || closeButtonTitle}
                         size={buttonSize}
                         color={buttonColor}
-                        onClick={() => setElLimit(defaultElementsLimit)}
+                        onClick={() => setElementsLimit(defaultElementsLimit)}
                     />
             }
         </div>

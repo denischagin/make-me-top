@@ -4,7 +4,7 @@ import {
 } from '@shared/Button/interfaces';
 
 export interface ShowMoreElemenetsButtonInterface {
-    setElLimit: (value: any) => void
+    setElementsLimit: (value: any) => void
     elementsLength: number | null | undefined
     defaultElementsLimit: number
     currentElementsLimit: number

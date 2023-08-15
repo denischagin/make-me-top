@@ -27,7 +27,7 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
     } = props;
 
     const [block, element] = bem('explorer-card-list');
-    const [limitEl, setLimitEl] = useState<number>(DEFAULT_LIMIT_ITEM);
+    const [limitElements, setElementsLimit] = useState<number>(DEFAULT_LIMIT_ITEM);
 
 
     const totalExplorers = explorers?.length || 0;
@@ -48,7 +48,7 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                     {`Всего учеников: ${totalExplorers}`}
                 </Typography>
                 {
-                    explorers?.slice(0, limitEl).map((user) => (
+                    explorers?.slice(0, limitElements).map((user) => (
                         <RouterLink
                             to={`${URL_EXPLORER}/${user.personId}`}
                             key={user.personId}
@@ -61,11 +61,11 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                     ))
                 }
                 <ShowMoreElemenetsButton
-                    setElLimit={setLimitEl}
+                    setElementsLimit={setElementsLimit}
                     openButtonTitle='Все ученики'
                     elementsLength={explorers?.length}
                     defaultElementsLimit={DEFAULT_LIMIT_ITEM}
-                    currentElementsLimit={limitEl}
+                    currentElementsLimit={limitElements}
                     buttonSize={buttonSize.large}
                 />
             </Card>
