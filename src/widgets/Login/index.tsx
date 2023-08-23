@@ -78,8 +78,8 @@ export const Login = () => {
                 Вход
             </Typography>
             <Input
-                placeholder="Номер телефона"
-                type="tel"
+                placeholder="Логин"
+                type="text"
                 onChange={handleLoginInputChange}
                 value={inputLogin}
             />
