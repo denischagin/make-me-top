@@ -27,9 +27,11 @@
         margin-bottom: 235px;
         display: flex;
         flex-direction: column;
-        padding: 0px 40px;
+        padding: 0 40px;
         gap: 24px;
         width: 830px;
+        height: 710px;
+        overflow: hidden auto;
     }
 
     &__header {
