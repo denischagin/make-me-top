@@ -22,7 +22,7 @@ import { bem } from '@shared/utils/bem';
 import { ExplorerCardUserInfo } from '@widgets/ExplorerCardUserInfo';
 import { Header } from '@widgets/Header';
 import { Reviews } from '@widgets/Reviews';
-import { StarsList } from '@widgets/StarsList';
+import { SystemsList } from '@widgets/SystemsList';
 
 import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
@@ -68,9 +68,9 @@ export const ExplorerCard = () => {
                 <div className={element('content', 'mt-5')}>
                     <ReviewRequestCard />
                     <ExplorerApplicationCard />
-                    <StarsList
-                        heading='Освоенные звёзды'
-                        stars={investigatedSystems}
+                    <SystemsList
+                        heading='Освоенные системы'
+                        systems={investigatedSystems}
                     />
                     <Reviews />
                 </div>

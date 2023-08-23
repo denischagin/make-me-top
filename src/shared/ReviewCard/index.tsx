@@ -12,7 +12,7 @@ import { cardSize } from '@shared/Card/interfaces';
 import {
     ratingScoreColor,
     ratingSize,
-    ratingStarColor,
+    ratingSystemColor,
 } from '@shared/Rating/interfaces';
 import {
     typographyColor,
@@ -51,7 +51,7 @@ export const ReviewCard = (props: ReviewCardInterface) => {
                         </Typography>
                         <Rating
                             scoreColor={ratingScoreColor.white}
-                            starColor={ratingStarColor.primary500}
+                            systemColor={ratingSystemColor.primary500}
                             size={ratingSize.medium}
                             rating={rating}
                         />
@@ -89,7 +89,7 @@ export const ReviewCard = (props: ReviewCardInterface) => {
                                     </Typography>
                                     <Rating
                                         scoreColor={ratingScoreColor.black}
-                                        starColor={ratingStarColor.primary500}
+                                        systemColor={ratingSystemColor.primary500}
                                         size={ratingSize.medium}
                                         rating={rating}
                                     />

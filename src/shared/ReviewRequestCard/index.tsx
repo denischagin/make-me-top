@@ -70,10 +70,10 @@ export const ReviewRequestCard = () => {
                             {`Планета: ${reviewRequest?.courseId}. ${reviewRequest?.courseTitle}`}
                         </Typography>
                         <Typography
-                            className={element('star')}
+                            className={element('system')}
                             variant={typographyVariant.regular14}
                         >
-                            {`Звезда: ${reviewRequest?.courseThemeTitle}`}
+                            {`Система: ${reviewRequest?.courseThemeTitle}`}
                         </Typography>
                     </div>
                     <div className={element('buttons')}>

@@ -1,4 +1,4 @@
-import { ReactComponent as StarIcon } from '@shared/images/star.svg';
+import { ReactComponent as SystemIcon } from '@shared/images/star.svg';
 
 import { bem } from '@shared/utils/bem';
 
@@ -8,7 +8,7 @@ import './styles.scss';
 
 export const Rating = (props: RatingInterface) => {
     const {
-        starColor,
+        systemColor,
         scoreColor,
         size,
         rating,
@@ -24,26 +24,26 @@ export const Rating = (props: RatingInterface) => {
         <div className={block()}>
             {
                 !reflect &&
-                <StarIcon
-                    className={element('star', {
-                        color: starColor,
+                <SystemIcon
+                    className={element('system', {
+                        color: systemColor,
                         size,
                     })}
                 />
             }
             <span
                 className={element('score', {
-                    size,
                     color: scoreColor,
+                    size,
                 })}
             >
                 {score}
             </span>
             {
                 reflect &&
-                <StarIcon
-                    className={element('star', {
-                        color: starColor,
+                <SystemIcon
+                    className={element('system', {
+                        color: systemColor,
                         size,
                     })}
                 />

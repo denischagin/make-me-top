@@ -13,7 +13,7 @@ import { avatarSize } from '@shared/Avatar/interfaces';
 import {
     ratingScoreColor,
     ratingSize,
-    ratingStarColor,
+    ratingSystemColor,
 } from '@shared/Rating/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
 
@@ -45,7 +45,7 @@ export const UsersRating = (props: UserInfoInterface) => {
                     rating={rating}
                     size={ratingSize.medium}
                     scoreColor={ratingScoreColor.white}
-                    starColor={ratingStarColor.primary500}
+                    systemColor={ratingSystemColor.primary500}
                 />
             </span>
         </div>

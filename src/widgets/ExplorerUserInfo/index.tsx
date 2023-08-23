@@ -14,7 +14,7 @@ import { avatarSize } from '@shared/Avatar/interfaces';
 import {
     ratingScoreColor,
     ratingSize,
-    ratingStarColor,
+    ratingSystemColor,
 } from '@shared/Rating/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
 
@@ -52,12 +52,12 @@ export const ExplorerUserInfo = () => {
                                 scoreColor={ratingScoreColor.white}
                                 rating={rating}
                                 size={ratingSize.large}
-                                starColor={ratingStarColor.primary500}
+                                systemColor={ratingSystemColor.primary500}
                             />
                         }
                     />
                     <InfoCard
-                        title="Кол-во освоенных звёзд"
+                        title="Кол-во освоенных систем"
                         value={totalSystems}
                     />
                 </div>

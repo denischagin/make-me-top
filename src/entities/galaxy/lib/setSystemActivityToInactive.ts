@@ -1,6 +1,6 @@
 import {
-    INACTIVE_STAR_MODIFIER,
-    STAR_CLASS,
+    INACTIVE_SYSTEM_MODIFIER,
+    SYSTEM_CLASS,
 } from '@entities/galaxy/model/constants';
 
 interface SetSystemActivityToInactive {
@@ -8,7 +8,7 @@ interface SetSystemActivityToInactive {
 }
 
 //функция изменения модификаторов активности на "Не активный" всех систем галактики
-export const setStarsActivityToInactive = (params: SetSystemActivityToInactive) => {
+export const setSystemsActivityToInactive = (params: SetSystemActivityToInactive) => {
     const {
         stars,
     } = params;
@@ -16,7 +16,7 @@ export const setStarsActivityToInactive = (params: SetSystemActivityToInactive) 
     stars.forEach((star) => {
         star.setAttribute(
             'class',
-            `${STAR_CLASS} ${INACTIVE_STAR_MODIFIER}`,
+            `${SYSTEM_CLASS} ${INACTIVE_SYSTEM_MODIFIER}`,
         );
     });
 };

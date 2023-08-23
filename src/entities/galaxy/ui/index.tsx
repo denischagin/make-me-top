@@ -23,13 +23,13 @@ import { createSvgContainer } from '@entities/galaxy/lib/createSvgContainer';
 import { deleteAllConnectionLines } from '@entities/galaxy/lib/deleteAllConnectionLines';
 import { fetchAndSetLastChosenSystem } from '@entities/galaxy/lib/fetchAndSetLastChosenSystem';
 import { isSystemLocked } from '@entities/galaxy/lib/isSystemLocked';
-import { setStarsActivityToActive } from '@entities/galaxy/lib/setSystemActivityToActive';
-import { setStarsActivityToInactive } from '@entities/galaxy/lib/setSystemActivityToInactive';
+import { setSystemsActivityToActive } from '@entities/galaxy/lib/setSystemActivityToActive';
+import { setSystemsActivityToInactive } from '@entities/galaxy/lib/setSystemActivityToInactive';
 import { showSystemChildren } from '@entities/galaxy/lib/showSystemChildren';
 import { showSystemParents } from '@entities/galaxy/lib/showSystemParents';
 import {
     DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
-    STAR_CLASS,
+    SYSTEM_CLASS,
 } from '@entities/galaxy/model/constants';
 import {
     IGalaxyProps,
@@ -43,7 +43,6 @@ import {
     DATA_SYSTEM_PARENT_LIST,
     DATA_SYSTEM_PROGRESS_TYPE,
 } from '@entities/orbit/model/types';
-import { fetchSystemById } from '@entities/orbit/thunks/fetchSystemById';
 import Orbit from '@entities/orbit/ui';
 
 import { CircleModal } from '@shared/CircleModal';
@@ -92,7 +91,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const [windowSize, setWindowSize] = useState([0, 0]);
     const [svgContainer, setSvgContainer] = useState<SVGElement | null>(null);
     const [systems, setSystems] = useState<NodeListOf<HTMLDivElement>>(
-        document.querySelectorAll(`.${STAR_CLASS}`),
+        document.querySelectorAll(`.${SYSTEM_CLASS}`),
     );
     const [activeSystemsIds, setActiveSystemsIds] = useState<Array<number>>([]);
     const [lastChosenSystem, setLastChosenSystem] = useState<LastChosenSystem>({
@@ -144,10 +143,10 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     useEffect(() => {
         //поиск на странице и изменение модификаторов элементов в соответствии с состоянием
         setSystems(
-            document.querySelectorAll(`.${STAR_CLASS}`),
+            document.querySelectorAll(`.${SYSTEM_CLASS}`),
         );
 
-        setStarsActivityToActive({
+        setSystemsActivityToActive({
             activeSystemsId: activeSystemsIds,
         });
     }, [activeSystemsIds]);
@@ -201,7 +200,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const handleSystemMouseLeave = () => {
         setActiveSystemsIds([]);
 
-        setStarsActivityToInactive({
+        setSystemsActivityToInactive({
             stars: systems,
         });
 
@@ -247,7 +246,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                 <CircleModal
                     header={lastChosenSystem.systemName}
                     data={{
-                        lastChosenStar: lastChosenSystem,
+                        lastChosenSystem,
                         userProgress,
                     }}
                     isLocked={lastChosenSystem.isLocked}

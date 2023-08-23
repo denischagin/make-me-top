@@ -39,14 +39,14 @@ export const CircleModal = (props: ModalInterface) => {
 
     const modalStatus = data
         ? getModalStatus({
-            lastChosenStar: data.lastChosenStar,
+            lastChosenSystem: data.lastChosenSystem,
             userProgress: data.userProgress,
             courseInfo,
         })
         : ModalAccessStatus.opened;
     const notStudiedParentDependencies = data
         ? getNotStudiedParentDependencies({
-            lastChosenStar: data.lastChosenStar,
+            lastChosenSystem: data.lastChosenSystem,
             userProgress: data.userProgress,
         })
         : [];

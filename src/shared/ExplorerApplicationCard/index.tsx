@@ -69,7 +69,7 @@ export const ExplorerApplicationCard = () => {
                 className={element('heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
             >
-                {currentSystem ? 'Текущая звезда:' : 'Заявка на обучение:'}
+                {currentSystem ? 'Текущая система:' : 'Заявка на обучение:'}
             </Typography>
             <Card
                 size={cardSize.large}
@@ -81,15 +81,15 @@ export const ExplorerApplicationCard = () => {
                             className={element('planet')}
                             variant={typographyVariant.h2}
                         >
-                            {`Звезда: ${studyRequestOrСurrentSystem?.courseId}. ${studyRequestOrСurrentSystem?.courseTitle}`}
+                            {`Система: ${studyRequestOrСurrentSystem?.courseId}. ${studyRequestOrСurrentSystem?.courseTitle}`}
                         </Typography>
                         <Typography
-                            className={element('star')}
+                            className={element('system')}
                             variant={typographyVariant.regular14}
                         >
                             {
                                 currentSystem
-                                    ? `Звезда: ${currentSystem?.courseThemeTitle}`
+                                    ? `Система: ${currentSystem?.courseThemeTitle}`
                                     : `Галактика: ${studyRequest?.galaxyName}`
                             }
                         </Typography>

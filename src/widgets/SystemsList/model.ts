@@ -1,4 +1,4 @@
-export const arrayOfStars = [
+export const arrayOfSystems = [
     {
         name: 'Docker',
         rate: 4.7,

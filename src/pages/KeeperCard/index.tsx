@@ -18,7 +18,7 @@ import { bem } from '@shared/utils/bem';
 import { Header } from '@widgets/Header';
 import { KeeperCardUserInfo } from '@widgets/KeeperCardUserInfo';
 import { Reviews } from '@widgets/Reviews';
-import { StarsList } from '@widgets/StarsList';
+import { SystemsList } from '@widgets/SystemsList';
 
 import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
 
@@ -59,9 +59,9 @@ export const KeeperCard = () => {
                     </div>
                     <KeeperCardUserInfo />
                 </div>
-                <StarsList
-                    heading='Звезды исследователя'
-                    stars={systems}
+                <SystemsList
+                    heading='Системы исследователя'
+                    systems={systems}
                 />
                 <Reviews />
             </div>

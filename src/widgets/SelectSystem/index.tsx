@@ -15,9 +15,8 @@ import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
-
-export const SelectStar = () => {
-    const [block, element] = bem('select-star');
+export const SelectSystem = () => {
+    const [block, element] = bem('select-system');
 
     const navigate = useNavigate();
 
@@ -27,11 +26,11 @@ export const SelectStar = () => {
                 className={element('heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
             >
-                Текущая звезда
+                Текущая система
             </Typography>
             <Button
                 size={buttonSize.large}
-                title="Выбрать звезду"
+                title="Выбрать систему"
                 color={buttonColor.filled}
                 onClick={() => {
                     return navigate(URL_GALAXY);

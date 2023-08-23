@@ -1,5 +1,5 @@
 import { TabInterface } from '@shared/types/common';
 
-export interface CurrentStarCardInterface {
+export interface CurrentSystemCardInterface {
     tabsList: Array<TabInterface>;
 }

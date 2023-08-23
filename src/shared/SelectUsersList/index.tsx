@@ -26,7 +26,7 @@ import {
 import {
     ratingScoreColor,
     ratingSize,
-    ratingStarColor,
+    ratingSystemColor,
 } from '@shared/Rating/interfaces';
 
 import { UserListInterface } from '@shared/types/common';
@@ -108,7 +108,7 @@ export const SelectUsersList = (props: UserListInterface) => {
                             })}
                         >
                             <Rating
-                                starColor={ratingStarColor.primary500}
+                                systemColor={ratingSystemColor.primary500}
                                 size={ratingSize.medium}
                                 scoreColor={ratingScoreColor.black}
                                 rating={user.rating}

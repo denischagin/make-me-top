@@ -32,7 +32,7 @@ import { cardSize } from '@shared/Card/interfaces';
 import {
     ratingScoreColor,
     ratingSize,
-    ratingStarColor,
+    ratingSystemColor,
 } from '@shared/Rating/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
 
@@ -80,7 +80,7 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                         <Avatar size={avatarSize.medium} />
                         <div className={element('about')}>
                             <Typography variant={typographyVariant.regular14}>
-                                {`Звезда: ${user?.courseTitle}`}
+                                {`Система: ${user?.courseTitle}`}
                             </Typography>
                             <Typography
                                 className={element('user-name')}
@@ -93,7 +93,7 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                     <div className={element('extra-content')}>
                         <div className={element('rating')}>
                             <Rating
-                                starColor={ratingStarColor.primary500}
+                                systemColor={ratingSystemColor.primary500}
                                 size={ratingSize.large}
                                 scoreColor={ratingScoreColor.white}
                                 rating={0}

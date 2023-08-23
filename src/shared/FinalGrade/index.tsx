@@ -13,12 +13,12 @@ export const FinalGrade = () => {
     return (
         <div className={block()}>
             <span className={element('text')}>Итоговая оценка</span>
-            <div className={element('stars')}>
+            <div className={element('systems')}>
                 <span>
-                    {GRADES.map((star) => (
+                    {GRADES.map((system) => (
                         <StarIcon
-                            key={star.grade}
-                            className={element('star-icon')}
+                            key={system.grade}
+                            className={element('system-icon')}
                         />
                     ))}
                 </span>

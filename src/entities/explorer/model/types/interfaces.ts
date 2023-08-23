@@ -12,7 +12,7 @@ export interface ExplorerState {
 }
 
 export interface ExplorerApplicationCardInterface {
-    star: string
+    system: string
     planet: string
 }
 

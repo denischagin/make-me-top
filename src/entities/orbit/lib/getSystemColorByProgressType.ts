@@ -1,4 +1,4 @@
-import { starColor } from '@shared/Star/interfaces';
+import { systemColor } from '@shared/System/interfaces';
 
 import { SystemProgressTypes } from '@shared/types/common';
 
@@ -6,7 +6,7 @@ interface getPlanetColorByProgress {
   systemProgressType: string;
 }
 
-//функция получения цвета для компонета Star по переданному типу прогресса системы
+//функция получения цвета для компонета System по переданному типу прогресса системы
 export const getSystemColorByProgressType = (
     params: getPlanetColorByProgress,
 ) => {
@@ -16,19 +16,19 @@ export const getSystemColorByProgressType = (
 
     switch (systemProgressType) {
         case SystemProgressTypes.SYSTEM_OPEN: {
-            return starColor.white;
+            return systemColor.white;
         }
         case SystemProgressTypes.SYSTEM_CLOSE: {
-            return starColor.black;
+            return systemColor.black;
         }
         case SystemProgressTypes.SYSTEM_EDUCATION: {
-            return starColor.primary500;
+            return systemColor.primary500;
         }
         case SystemProgressTypes.PROGRESS_NOT_FOUND: {
-            return starColor.black;
+            return systemColor.black;
         }
         default: {
-            return starColor.black;
+            return systemColor.black;
         }
     }
 };

@@ -28,7 +28,7 @@
         transform: scale(1.5);
     }
 
-    &__star-icon {
+    &__system-icon {
         color: $gray-500;
         transition: 0.2s;
         margin-left: 10px;
@@ -39,7 +39,7 @@
         }
     }
 
-    &__stars {
+    &__systems {
         display: flex;
         justify-content: space-between;
         align-items: center;

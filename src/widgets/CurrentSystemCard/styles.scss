@@ -1,12 +1,12 @@
 @import '@app/styles/variables.scss';
 
-.current-star-card {
+.current-system-card {
     color: $white;
     border-radius: 8px;
     position: relative;
 
     &:hover {
-        .current-star-card__buttons {
+        .current-system-card__buttons {
             opacity: 1;
         }
     }

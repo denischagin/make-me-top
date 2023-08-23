@@ -7,7 +7,7 @@ import {
 import { MAX_STUDYING_PROGRESS } from '@shared/types/common';
 
 interface GetNotStudiedParentDependencies {
-    lastChosenStar: LastChosenSystem,
+    lastChosenSystem: LastChosenSystem,
     userProgress: UserProgressInGalaxy,
 }
 
@@ -16,12 +16,12 @@ interface GetNotStudiedParentDependencies {
 //и типом зависимости - не parent
 export function getNotStudiedParentDependencies(params: GetNotStudiedParentDependencies): Array<SystemDependencyType> {
     const {
-        lastChosenStar,
+        lastChosenSystem,
         userProgress,
     } = params;
 
     //все зависимости с типом parent
-    const parentDependencies = lastChosenStar.systemDependencyList.filter((dependency) => dependency.type === 'parent');
+    const parentDependencies = lastChosenSystem.systemDependencyList.filter((dependency) => dependency.type === 'parent');
 
     //зависимости с типом parent, у которых прогресс не 100%
     const notStudiedParentDependencies = parentDependencies.filter((dependency) => {

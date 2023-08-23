@@ -11,7 +11,7 @@ import { badgeColor } from '@shared/Badge/interfaces';
 import {
     ratingScoreColor,
     ratingSize,
-    ratingStarColor,
+    ratingSystemColor,
 } from '@shared/Rating/interfaces';
 
 import './styles.scss';
@@ -43,7 +43,7 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
                         </Badge>
                     </span>
                     <Rating
-                        starColor={ratingStarColor.primary500}
+                        systemColor={ratingSystemColor.primary500}
                         size={ratingSize.medium}
                         scoreColor={ratingScoreColor.black}
                         rating={keeperOrExplorer?.rating}

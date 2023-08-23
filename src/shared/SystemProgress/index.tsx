@@ -1,16 +1,16 @@
 import React from 'react';
-import { IStarProgressProps } from '@shared/StarProgress/interface';
+import { SystemProgressProps } from '@shared/SystemProgress/interface';
 
 import { bem } from '@shared/utils/bem';
 
 import './styles.scss';
 
-const StarProgress: React.FC<IStarProgressProps> = (props) => {
+const SystemProgress: React.FC<SystemProgressProps> = (props) => {
     const {
         percentageProgress,
     } = props;
 
-    const [block, element] = bem('star-progress');
+    const [block, element] = bem('system-progress');
 
     const isProgress = !!percentageProgress;
 
@@ -29,4 +29,4 @@ const StarProgress: React.FC<IStarProgressProps> = (props) => {
     );
 };
 
-export default StarProgress;
+export default SystemProgress;
