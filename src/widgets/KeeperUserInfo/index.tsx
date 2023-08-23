@@ -58,7 +58,7 @@ export const KeeperUserInfo = () => {
                         }
                     />
                     <InfoCard
-                        title="Кол-во планет"
+                        title="Кол-во систем"
                         value={totalSystems}
                     />
                     <InfoCard

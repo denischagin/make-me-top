@@ -69,7 +69,7 @@ export const ExplorerCard = () => {
                     <ReviewRequestCard />
                     <ExplorerApplicationCard />
                     <StarsList
-                        heading='Освоенные звёзды'
+                        heading='Освоенные системы'
                         stars={investigatedSystems}
                     />
                     <Reviews />

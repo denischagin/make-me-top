@@ -60,7 +60,7 @@ export const KeeperCard = () => {
                     <KeeperCardUserInfo />
                 </div>
                 <StarsList
-                    heading='Звезды исследователя'
+                    heading='Системы исследователя'
                     stars={systems}
                 />
                 <Reviews />

@@ -146,7 +146,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                 className={element('current-star-heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
             >
-                Текущая звезда
+                Текущая система
             </Typography>
             <Card
                 size={cardSize.large}
@@ -162,7 +162,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                     variant={typographyVariant.regular14}
                     className={element('current-star')}
                 >
-                    {`Звезда: ${currentSystem?.courseThemeTitle}`}
+                    {`Система: ${currentSystem?.courseThemeTitle}`}
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}

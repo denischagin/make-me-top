@@ -80,7 +80,7 @@ export const MasteringApplication = () => {
                     variant={typographyVariant.h2}
                     className={element('heading')}
                 >
-                    {`Звезда: ${studyRequest.courseTitle}`}
+                    {`Система: ${studyRequest.courseTitle}`}
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}

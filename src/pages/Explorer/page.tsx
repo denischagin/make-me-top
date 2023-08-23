@@ -55,7 +55,7 @@ export const Explorer = () => {
                             </div>
                             <div className={element('completed-stars')}>
                                 <StarsList
-                                    heading='Освоенные звёзды'
+                                    heading='Освоенные системы'
                                     stars={investigatedSystems}
                                 />
                             </div>

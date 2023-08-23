@@ -80,7 +80,7 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                         <Avatar size={avatarSize.medium} />
                         <div className={element('about')}>
                             <Typography variant={typographyVariant.regular14}>
-                                {`Звезда: ${user?.courseTitle}`}
+                                {`Система: ${user?.courseTitle}`}
                             </Typography>
                             <Typography
                                 className={element('user-name')}

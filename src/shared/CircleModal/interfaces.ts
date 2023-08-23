@@ -18,6 +18,6 @@ export interface ModalInterface {
 
 export enum ModalAccessStatus {
     opened = 'Доступ открыт',
-    closed_choseKeeper = 'Для изучения данной звезды, выберите хранителя и отправьте заявку',
-    closed_needStars = 'Для изучения данной звезды, необходимы знания о звездах:',
+    closed_choseKeeper = 'Для изучения данной системы, выберите хранителя и отправьте заявку',
+    closed_needStars = 'Для изучения данной системы, необходимы знания о системах:',
 }
