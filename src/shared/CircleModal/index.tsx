@@ -56,6 +56,10 @@ export const CircleModal = (props: ModalInterface) => {
     return (
         <Portal target={document.body}>
             <div className={block()}>
+                <div
+                    className={element('background')}
+                    onClick={onClose}
+                />
                 <div className={element('container')}>
                     <div className={element('content')}>
                         <div className={element('header')}>
