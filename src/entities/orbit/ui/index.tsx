@@ -15,7 +15,7 @@ import { getSystemProgressType } from '@entities/orbit/lib/getSystemProgressType
 import { getXCoordinateOnEllipse } from '@entities/orbit/lib/getXCoordinateOnEllipse';
 import { getYCoordinateOnEllipse } from '@entities/orbit/lib/getYCoordinateOnEllipse';
 
-import { Star } from '@shared/Star';
+import { System } from '@shared/System';
 
 import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 
@@ -125,7 +125,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                             data-system-children-list={getSystemChildData(system)}
                             data-system-progress-type={systemProgressType}
                         >
-                            <Star
+                            <System
                                 percentageProgress={systemPercentageProgress}
                                 color={systemColor}
                             >
@@ -133,7 +133,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
                                 <p className={element('content-system--name')}>
                                     {system.systemName}
                                 </p>
-                            </Star>
+                            </System>
                         </div>
                     );
                 })}

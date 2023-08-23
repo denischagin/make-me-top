@@ -17,7 +17,7 @@
                 margin-left: 2rem;
             }
 
-            .required-list__star-icon {
+            .required-list__system-icon {
                 color: $primary-500;
             }
 
@@ -28,13 +28,13 @@
         }
     }
 
-    &__star {
+    &__system {
         display: flex;
         align-items: center;
         gap: 16px;
     }
 
-    &__star-icon {
+    &__system-icon {
         transition: 0.2s;
         transform: scale(1.3);
         color: $gray-600;

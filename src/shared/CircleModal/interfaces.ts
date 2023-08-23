@@ -9,7 +9,7 @@ export interface ModalInterface {
     header: string;
     isLocked?: boolean;
     data?: {
-        lastChosenStar: LastChosenSystem,
+        lastChosenSystem: LastChosenSystem,
         userProgress: UserProgressInGalaxy,
     };
     children: ReactNode;
@@ -19,5 +19,5 @@ export interface ModalInterface {
 export enum ModalAccessStatus {
     opened = 'Доступ открыт',
     closed_choseKeeper = 'Для изучения данной системы, выберите хранителя и отправьте заявку',
-    closed_needStars = 'Для изучения данной системы, необходимы знания о системах:',
+    closed_needSystems = 'Для изучения данной системы, необходимы знания о системах:',
 }

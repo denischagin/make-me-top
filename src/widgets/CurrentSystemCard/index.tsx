@@ -38,9 +38,9 @@ import { CONFIRM_CANCEL_LEARNING } from '@shared/constants/modalTitles';
 import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toastTitles';
 
 import { ProgressBar } from '@widgets/ProgressBar';
-import { SelectStar } from '@widgets/SelectStar';
+import { SelectSystem } from '@widgets/SelectSystem';
 
-import { CurrentStarCardInterface } from './interfaces';
+import { CurrentSystemCardInterface } from './interfaces';
 import {
     buttonColor,
     buttonSize,
@@ -54,12 +54,12 @@ import {
 
 import './styles.scss';
 
-export const CurrentStarCard = (props: CurrentStarCardInterface) => {
+export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     const {
         tabsList = [],
     } = props;
 
-    const [block, element] = bem('current-star-card');
+    const [block, element] = bem('current-system-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
     const [isStarClosed, setIsStarClosed] = useState(false);
 
@@ -82,7 +82,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
     } = courseInfo;
 
     if ((!currentSystem && !studyRequest) || isStarClosed) {
-        return <SelectStar />;
+        return <SelectSystem />;
     }
 
     if (studyRequest) {
@@ -143,7 +143,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                 />
             }
             <Typography
-                className={element('current-star-heading', 'mb-4 mt-5')}
+                className={element('current-system-heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
             >
                 Текущая система
@@ -160,7 +160,7 @@ export const CurrentStarCard = (props: CurrentStarCardInterface) => {
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}
-                    className={element('current-star')}
+                    className={element('current-system')}
                 >
                     {`Система: ${currentSystem?.courseThemeTitle}`}
                 </Typography>

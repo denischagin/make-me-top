@@ -14,7 +14,7 @@ import { avatarSize } from '@shared/Avatar/interfaces';
 import {
     ratingScoreColor,
     ratingSize,
-    ratingStarColor,
+    ratingSystemColor,
 } from '@shared/Rating/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
 
@@ -53,7 +53,7 @@ export const KeeperUserInfo = () => {
                                 scoreColor={ratingScoreColor.white}
                                 rating={rating}
                                 size={ratingSize.large}
-                                starColor={ratingStarColor.primary500}
+                                systemColor={ratingSystemColor.primary500}
                             />
                         }
                     />

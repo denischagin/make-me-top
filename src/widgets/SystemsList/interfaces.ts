@@ -1,6 +1,6 @@
 import { InvestigatedSystemsInterface } from '@entities/explorer/model/types/interfaces';
 
-export interface StarsListInterface {
+export interface SystemsListInterface {
     heading: string
-    stars: Array<InvestigatedSystemsInterface>
+    systems: Array<InvestigatedSystemsInterface>
 }

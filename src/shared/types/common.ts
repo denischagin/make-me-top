@@ -20,7 +20,7 @@ export interface UserInterface {
     avatar: string;
     planets?: number;
     explorers?: number;
-    stars?: number;
+    systems?: number;
     reviews?: number;
     rating?: number | null;
     id: number;
@@ -49,7 +49,7 @@ export interface EducationApplicationInterface {
 export interface GradeApplicationInterface {
     name: string;
     avatar: string;
-    star: string;
+    system: string;
     planet: string;
     rating?: number | null;
     id?: number;

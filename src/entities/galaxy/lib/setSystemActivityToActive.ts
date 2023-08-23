@@ -1,6 +1,6 @@
 import {
-    ACTIVE_STAR_MODIFIER,
-    STAR_CLASS,
+    ACTIVE_SYSTEM_MODIFIER,
+    SYSTEM_CLASS,
 } from '@entities/galaxy/model/constants';
 
 import { DATA_SYSTEM_ID } from '@entities/orbit/model/types';
@@ -10,7 +10,7 @@ interface SetSystemActivityToActive {
 }
 
 //функция изменения модификаторов активности на "Активный" определенных систем в галактике
-export const setStarsActivityToActive = (params: SetSystemActivityToActive) => {
+export const setSystemsActivityToActive = (params: SetSystemActivityToActive) => {
     const {
         activeSystemsId,
     } = params;
@@ -26,9 +26,9 @@ export const setStarsActivityToActive = (params: SetSystemActivityToActive) => {
             return;
         }
 
-        //спускаемся на несколько узлов ниже (из элемента с data атрибутами к компоненту Star),
+        //спускаемся на несколько узлов ниже (из элемента с data атрибутами к компоненту System),
         //что бы заменить там модификатор
-        const systemChild = system.querySelector(`.${STAR_CLASS}`);
+        const systemChild = system.querySelector(`.${SYSTEM_CLASS}`);
 
         //если не был найден
         if (!systemChild) {
@@ -38,7 +38,7 @@ export const setStarsActivityToActive = (params: SetSystemActivityToActive) => {
         //заменяем модификатор
         systemChild.setAttribute(
             'class',
-            `${STAR_CLASS} ${ACTIVE_STAR_MODIFIER}`,
+            `${SYSTEM_CLASS} ${ACTIVE_SYSTEM_MODIFIER}`,
         );
     });
 };

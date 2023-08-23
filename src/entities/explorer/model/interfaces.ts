@@ -5,5 +5,5 @@ export interface ExplorerState {
 
 export interface ApplicationCardInterface {
     planet: string,
-    star: string,
+    system: string,
 }

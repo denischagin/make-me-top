@@ -14,11 +14,11 @@ import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
-import { CurrentStarCard } from '@widgets/CurrentStarCard';
+import { CurrentSystemCard } from '@widgets/CurrentSystemCard';
 import { ExplorerUserInfo } from '@widgets/ExplorerUserInfo';
 import { Header } from '@widgets/Header';
 import { RatingCard } from '@widgets/RatingCard';
-import { StarsList } from '@widgets/StarsList';
+import { SystemsList } from '@widgets/SystemsList';
 
 import { typographyVariant } from '@shared/Typography/interfaces';
 
@@ -49,14 +49,14 @@ export const Explorer = () => {
                     <div className={element('row', 'row')}>
                         <div className={element('profile', 'col-xxl-9')}>
                             <ExplorerUserInfo />
-                            <div className={element('current-star')}>
-                                <CurrentStarCard tabsList={TABS_LIST} />
+                            <div className={element('current-system')}>
+                                <CurrentSystemCard tabsList={TABS_LIST} />
                                 <MasteringApplication />
                             </div>
-                            <div className={element('completed-stars')}>
-                                <StarsList
+                            <div className={element('completed-systems')}>
+                                <SystemsList
                                     heading='Освоенные системы'
-                                    stars={investigatedSystems}
+                                    systems={investigatedSystems}
                                 />
                             </div>
                         </div>

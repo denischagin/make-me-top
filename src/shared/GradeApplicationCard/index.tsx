@@ -51,7 +51,7 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
                                 {getUserFullName(reviewOrAssessment)}
                             </Typography>
                             <Typography
-                                className={element('star-title')}
+                                className={element('system-title')}
                                 variant={typographyVariant.regular14}
                             >
                                 {`Система: ${reviewOrAssessment?.courseTitle}`}

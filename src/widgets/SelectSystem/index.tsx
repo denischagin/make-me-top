@@ -15,9 +15,8 @@ import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
-
-export const SelectStar = () => {
-    const [block, element] = bem('select-star');
+export const SelectSystem = () => {
+    const [block, element] = bem('select-system');
 
     const navigate = useNavigate();
 

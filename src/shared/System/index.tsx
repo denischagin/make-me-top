@@ -1,20 +1,20 @@
-import StarProgress from '@shared/StarProgress';
+import SystemProgress from '@shared/SystemProgress';
 
 import { ReactComponent as OrbitIcon } from '@shared/images/orbit.svg';
 
 import { bem } from '@shared/utils/bem';
 
-import { StarInterface } from './interfaces';
+import { SystemInterface } from './interfaces';
 
 import './styles.scss';
 
-export const Star = (props: StarInterface) => {
+export const System = (props: SystemInterface) => {
     const {
         color,
         children,
     } = props;
 
-    const [block, element] = bem('star');
+    const [block, element] = bem('system');
 
     return (
         <div
@@ -27,7 +27,7 @@ export const Star = (props: StarInterface) => {
                     color,
                 })}
             >
-                <StarProgress percentageProgress={props.percentageProgress} />
+                <SystemProgress percentageProgress={props.percentageProgress} />
                 {children}
                 <div className={element('orbit')}>
                     <OrbitIcon

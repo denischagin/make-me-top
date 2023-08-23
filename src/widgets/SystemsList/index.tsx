@@ -1,33 +1,29 @@
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { explorerInfoSelector } from '@entities/explorer/model/selectors';
-
 import { Rating } from '@shared/Rating';
-import { Star } from '@shared/Star';
+import { System } from '@shared/System';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
-import { StarsListInterface } from './interfaces';
+import { SystemsListInterface } from './interfaces';
 import {
     ratingScoreColor,
     ratingSize,
-    ratingStarColor,
+    ratingSystemColor,
 } from '@shared/Rating/interfaces';
-import { starColor } from '@shared/Star/interfaces';
+import { systemColor } from '@shared/System/interfaces';
 import { typographyVariant } from '@shared/Typography/interfaces';
 
 import './styles.scss';
 
-export const StarsList = (props: StarsListInterface) => {
+export const SystemsList = (props: SystemsListInterface) => {
     const {
         heading,
-        stars,
+        systems,
     } = props;
 
-    const [block, element] = bem('stars-list');
+    const [block, element] = bem('systems-list');
 
-    if (!stars?.length) {
+    if (!systems?.length) {
         return null;
     }
 
@@ -38,24 +34,24 @@ export const StarsList = (props: StarsListInterface) => {
                 variant={typographyVariant.h2}
             >
                 {heading}
-            </Typography><div className={element('stars', 'mb-4')}>
-                {stars?.map((star) => (
-                    <Star
-                        color={starColor.primary500}
-                        key={star.courseId}
+            </Typography><div className={element('systems', 'mb-4')}>
+                {systems?.map((system) => (
+                    <System
+                        color={systemColor.primary500}
+                        key={system.courseId}
                     >
                         <p className={element('label')}>
-                            {star.title}
+                            {system.title}
                         </p>
-                        <div className={element('star-rating')}>
+                        <div className={element('system-rating')}>
                             <Rating
                                 scoreColor={ratingScoreColor.white}
-                                rating={star.rating}
+                                rating={system.rating}
                                 size={ratingSize.small}
-                                starColor={ratingStarColor.white}
+                                systemColor={ratingSystemColor.white}
                             />
                         </div>
-                    </Star>
+                    </System>
                 ))}
             </div>
         </div>

@@ -13,7 +13,7 @@ import { getNotStudiedParentDependencies } from '@shared/utils/getNotStudiedPare
 import { ModalAccessStatus } from '@shared/CircleModal/interfaces';
 
 interface GetModalStatus {
-    lastChosenStar: LastChosenSystem,
+    lastChosenSystem: LastChosenSystem,
     userProgress: UserProgressInGalaxy,
     courseInfo: CourseInfoInterface,
 }
@@ -21,29 +21,29 @@ interface GetModalStatus {
 //функция получения статуса модального окна в зависимоти от данных пользователя и последней выбранной системы
 export function getModalStatus(params: GetModalStatus): ModalAccessStatus {
     const {
-        lastChosenStar,
+        lastChosenSystem,
         userProgress,
         courseInfo,
     } = params;
 
-    if (lastChosenStar.systemId === DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE.systemId) {
+    if (lastChosenSystem.systemId === DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE.systemId) {
         return ModalAccessStatus.opened;
     }
 
     const notStudiedParentDependencies = getNotStudiedParentDependencies({
-        lastChosenStar,
+        lastChosenSystem,
         userProgress,
     });
 
     if (notStudiedParentDependencies.length) {
-        return ModalAccessStatus.closed_needStars;
+        return ModalAccessStatus.closed_needSystems;
     }
 
     if (courseInfo.yourKeeper && courseInfo.yourKeeper.keeperId) {
         return ModalAccessStatus.opened;
     }
 
-    const isSystemInStudy = userProgress.studiedSystems.some(system => system.systemId === lastChosenStar.systemId);
+    const isSystemInStudy = userProgress.studiedSystems.some(system => system.systemId === lastChosenSystem.systemId);
 
     if (!isSystemInStudy) {
         return ModalAccessStatus.closed_choseKeeper;

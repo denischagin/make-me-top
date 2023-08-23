@@ -1,6 +1,6 @@
 @import '@app/styles/variables.scss';
 
-.stars-list {
+.systems-list {
     font-size: 12px;
 
     &__label {
@@ -9,17 +9,17 @@
         margin-bottom: 8px;
     }
 
-    &__stars {
+    &__systems {
         display: flex;
         gap: 24px;
     }
 
-    &__star-rating {
+    &__system-rating {
         display: flex;
         align-items: center;
     }
 
-    &__star-rating-score {
+    &__system-rating-score {
         font-size: 10px;
         margin: 0 2px 0 4px;
     }

@@ -1,4 +1,4 @@
-import { RequiredStarsList } from '@shared/RequiredStarsList';
+import { RequiredSystemsList } from '@shared/RequiredSystemsList';
 
 import { bem } from '@shared/utils/bem';
 
@@ -25,8 +25,8 @@ export const ModalAlert = (props: ModalAlertInterface) => {
                 {title}
             </div>
             {
-                (title === ModalAccessStatus.closed_needStars) &&
-                <RequiredStarsList
+                (title === ModalAccessStatus.closed_needSystems) &&
+                <RequiredSystemsList
                     list={dependencies}
                 />
             }

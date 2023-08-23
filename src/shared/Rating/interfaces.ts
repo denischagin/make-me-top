@@ -1,12 +1,12 @@
 export interface RatingInterface {
     reflect?: boolean;
     rating?: number | null;
-    starColor: ratingStarColor;
+    systemColor: ratingSystemColor;
     size: ratingSize;
     scoreColor: ratingScoreColor;
 }
 
-export enum ratingStarColor {
+export enum ratingSystemColor {
     primary500 = 'primary-500',
     white = 'white',
 }

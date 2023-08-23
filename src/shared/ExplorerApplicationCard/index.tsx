@@ -84,7 +84,7 @@ export const ExplorerApplicationCard = () => {
                             {`Система: ${studyRequestOrСurrentSystem?.courseId}. ${studyRequestOrСurrentSystem?.courseTitle}`}
                         </Typography>
                         <Typography
-                            className={element('star')}
+                            className={element('system')}
                             variant={typographyVariant.regular14}
                         >
                             {

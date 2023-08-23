@@ -17,7 +17,7 @@ import { bem } from '@shared/utils/bem';
 import { fetchAndSetAllDependencies } from '@shared/utils/fetchAndSetAllDependencies';
 
 import {
-    RequiredStarsListInterface,
+    RequiredSystemsListInterface,
 } from './interfaces';
 import {
     buttonColor,
@@ -26,7 +26,7 @@ import {
 
 import './styles.scss';
 
-export const RequiredStarsList = (props: RequiredStarsListInterface) => {
+export const RequiredSystemsList = (props: RequiredSystemsListInterface) => {
     const {
         list = [],
     } = props;
@@ -51,8 +51,8 @@ export const RequiredStarsList = (props: RequiredStarsListInterface) => {
                     key={system.systemId}
                     className={element('item')}
                 >
-                    <div className={element('star')}>
-                        <StarIcon className={element('star-icon')} />
+                    <div className={element('system')}>
+                        <StarIcon className={element('system-icon')} />
                         <span className={element('name')}>
                             {system.systemName}
                         </span>
