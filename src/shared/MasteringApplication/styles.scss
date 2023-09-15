@@ -5,8 +5,13 @@
     border-radius: 8px;
     position: relative;
 
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
     &:hover {
-        .current-system-card__buttons {
+        &__buttons {
             opacity: 1;
         }
     }

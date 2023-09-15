@@ -66,6 +66,8 @@ export const MasteringApplication = () => {
                     }}
                 />
             }
+
+
             <Typography
                 className={element('current-star-heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
@@ -76,35 +78,42 @@ export const MasteringApplication = () => {
                 size={cardSize.large}
                 glow
             >
-                <Typography
-                    variant={typographyVariant.h2}
-                    className={element('heading')}
-                >
-                    {`Система: ${studyRequest.courseTitle}`}
-                </Typography>
-                <Typography
-                    variant={typographyVariant.regular14}
-                    className={element('current-galaxy')}
-                >
-                    {`Галактика: ${studyRequest.galaxyName}`}
-                </Typography>
-                <Typography
-                    variant={typographyVariant.regular14}
-                    className={element('current-keeper', 'mb')}
-                >
-                    {`Преподаватель: ${studyRequest.keeperLastName} ${studyRequest.keeperFirstName} ${studyRequest.keeperPatronymic}`}
-                </Typography>
-                <div className={element('buttons')}>
-                    <Button
-                        size={buttonSize.large}
-                        title="Отменить заявку"
-                        onClick={() => setIsAcceptModalOpen(true)}
-                    />
-                    <Button
-                        size={buttonSize.large}
-                        color={buttonColor.filled}
-                        title="Продолжить"
-                    />
+                <div className={element('wrapper')}>
+                    <div>
+                        <Typography
+                            variant={typographyVariant.h2}
+                            className={element('heading')}
+                        >
+                            {`Планета: ${studyRequest.courseTitle}`}
+                        </Typography>
+                        <Typography
+                            variant={typographyVariant.regular14}
+                            className={element('current-galaxy')}
+                        >
+                            {`Звезда: ${studyRequest.galaxyName}`}
+                        </Typography>
+                        <Typography
+                            variant={typographyVariant.regular14}
+                            className={element('current-keeper', 'mb')}
+                        >
+                            {`Преподаватель: ${studyRequest.keeperLastName} ${studyRequest.keeperFirstName} ${studyRequest.keeperPatronymic}`}
+                        </Typography>
+                    </div>
+
+                    <div>
+                        <div className={element('buttons')}>
+                            <Button
+                                size={buttonSize.large}
+                                title="Отменить заявку"
+                                onClick={() => setIsAcceptModalOpen(true)}
+                            />
+                            <Button
+                                size={buttonSize.large}
+                                color={buttonColor.filled}
+                                title="Продолжить"
+                            />
+                        </div>
+                    </div>
                 </div>
             </Card>
         </div>

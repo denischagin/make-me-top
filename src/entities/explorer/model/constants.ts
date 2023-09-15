@@ -91,3 +91,5 @@ export const initialExplorerCardInfo = {
     investigatedSystems: [],
     feedback: [],
 };
+
+export const initialExplorersList = []

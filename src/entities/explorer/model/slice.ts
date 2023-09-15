@@ -1,56 +1,81 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-import { ExplorerState } from './types/interfaces';
+import { ExplorerState } from "./types/interfaces";
 
-import { getExplorerCardInfo } from '../thunks/getExplorerCardInfo';
-import { getExplorerInfo } from '../thunks/getExplorerInfo';
+import { getExplorerCardInfo } from "../thunks/getExplorerCardInfo";
+import { getExplorerInfo } from "../thunks/getExplorerInfo";
 
 import {
-    initialExplorerCardInfo,
-    initialExplorerInfo,
-} from './constants';
-import { APPLICATION_CARD } from './mocks';
+	initialExplorerCardInfo,
+	initialExplorerInfo,
+	initialExplorersList,
+} from "./constants";
+import { APPLICATION_CARD } from "./mocks";
+import { getListExplorersByFilter } from "../thunks/getFilterExplorers";
+import { roles, storageKeys } from "@shared/constants/storageKeys";
 
 const initialState: ExplorerState = {
-    isExplorer: false,
-    isSystemActive: true,
-    explorerApplicationCard: APPLICATION_CARD,
-    explorerInfo: initialExplorerInfo,
-    explorerCardInfo: initialExplorerCardInfo,
+	isExplorer: false,
+	isSystemActive: true,
+	explorerApplicationCard: APPLICATION_CARD,
+	explorerInfo: initialExplorerInfo,
+	explorerCardInfo: initialExplorerCardInfo,
+	explorersList: initialExplorersList,
+	isError: false,
 };
 
 export const explorerSlice = createSlice({
-    name: 'explorer',
-    initialState,
-    reducers: {
-        selectRoleAsExplorer: (state) => {
-            state.isExplorer = !state.isExplorer;
-        },
-        declineCurrentSystem: (state) => {
-            state.isSystemActive = !state.isSystemActive;
-        },
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(getExplorerInfo.fulfilled, (state: ExplorerState, action) => {
-                state.explorerInfo = action.payload;
-            })
-            .addCase(getExplorerInfo.rejected, (state: ExplorerState) => {
-                state.explorerInfo = initialExplorerInfo;
-            })
+	name: "explorer",
+	initialState,
+	reducers: {
+		selectRoleAsExplorer: (state) => {
+			state.isExplorer = true;
+		},
+		declineCurrentSystem: (state) => {
+			state.isSystemActive = false;
+		},
+	},
+	extraReducers: (builder) => {
+		builder
+			.addCase(getExplorerInfo.fulfilled, (state: ExplorerState, action) => {
+				state.explorerInfo = action.payload;
+				state.isError = false;
+			})
+			.addCase(getExplorerInfo.rejected, (state: ExplorerState, action) => {
+				state.explorerInfo = initialExplorerInfo;
+				state.isError = true;
+			})
 
-            .addCase(getExplorerCardInfo.fulfilled, (state: ExplorerState, action) => {
-                state.explorerCardInfo = action.payload;
-            })
-            .addCase(getExplorerCardInfo.rejected, (state: ExplorerState) => {
-                state.explorerCardInfo = initialExplorerCardInfo;
-            });
-    },
+			.addCase(
+				getExplorerCardInfo.fulfilled,
+				(state: ExplorerState, action) => {
+					state.explorerCardInfo = action.payload;
+					state.isError = false;
+				}
+			)
+			.addCase(getExplorerCardInfo.rejected, (state: ExplorerState, action) => {
+				state.explorerCardInfo = initialExplorerCardInfo;
+				state.isError = true;
+			})
+
+			.addCase(
+				getListExplorersByFilter.fulfilled,
+				(state: ExplorerState, action) => {
+					state.explorersList = action.payload;
+					state.isError = false;
+				}
+			)
+			.addCase(
+				getListExplorersByFilter.rejected,
+				(state: ExplorerState, action) => {
+					state.explorersList = initialExplorersList;
+					state.isError = true;
+				}
+			);
+	},
 });
 
-export const {
-    selectRoleAsExplorer,
-    declineCurrentSystem,
-} = explorerSlice.actions;
+export const { selectRoleAsExplorer, declineCurrentSystem } =
+	explorerSlice.actions;
 
 export default explorerSlice.reducer;

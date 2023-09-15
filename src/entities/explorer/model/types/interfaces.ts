@@ -9,6 +9,21 @@ export interface ExplorerState {
     explorerApplicationCard: ExplorerApplicationCardInterface
     explorerInfo: ExplorerInfoInterface
     explorerCardInfo: ExplorerCardInfoInterface
+    explorersList: ExplorersFilterInterface[]
+    isError: boolean
+}
+
+export interface ExplorersFilterInterface {
+    personId: number;
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+    rating: number;
+    systems: number[];
+    galaxyId: number;
+    galaxyName: string;
+    currentCourseId?: number;
+    currentCourseName?: string;
 }
 
 export interface ExplorerApplicationCardInterface {

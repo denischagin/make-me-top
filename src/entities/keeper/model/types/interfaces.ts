@@ -11,6 +11,7 @@ export interface KeeperState {
     isKeeper: boolean;
     keeperInfo: KeeperInfoInterface
     keeperCardInfo: KeeperCardInfoInterface
+    keepersList: KeepersFilterInterface[]
 }
 
 export interface KeeperInfoInterface {
@@ -22,6 +23,18 @@ export interface KeeperInfoInterface {
     studyRequests: Array<StudyRequestsInterface>;
     finalAssessments: Array<FinalAssessmentsInterface>;
     reviewRequests: Array<ReviewRequestsInterface>;
+}
+
+
+export interface KeepersFilterInterface {
+    personId: number;
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+    rating: number;
+    systems: number[];
+    galaxyId: number;
+    galaxyName: string;
 }
 
 export interface Person {

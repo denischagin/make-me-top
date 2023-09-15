@@ -23,6 +23,7 @@ import { SystemsList } from '@widgets/SystemsList';
 import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
 
 import './styles.scss';
+import { Container } from '@shared/Container';
 
 export const KeeperCard = () => {
     const [block, element] = bem('keeper-card');
@@ -49,7 +50,7 @@ export const KeeperCard = () => {
         <div className={block()}>
             <BackgroundProfile />
             <Header />
-            <div className={element('container', 'container p-0')}>
+            <Container className={element('container')}>
                 <div className={element('profile')}>
                     <div className={element('back-arrow')}>
                         <ArrowButton
@@ -64,7 +65,7 @@ export const KeeperCard = () => {
                     systems={systems}
                 />
                 <Reviews />
-            </div>
+            </Container>
         </div>
     );
 };

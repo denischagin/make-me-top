@@ -1,4 +1,5 @@
 // urls
+export const URL_PROFILE = '/profile'
 export const URL_DEFAULT = '/';
 export const URL_KEEPER = '/keeper';
 export const URL_EXPLORER = '/explorer';
@@ -12,7 +13,7 @@ export const URL_EXPLORER_CARD = '/explorer/:explorerId';
 // header links
 export const HEADER_LINKS = [
     {
-        link: URL_EXPLORER,
+        link: URL_PROFILE,
         text: 'Главная',
     },
     {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEventHandler, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import {
@@ -12,17 +12,15 @@ import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
 import { Input } from '@shared/Input';
 import { PlanetButton } from '@shared/PlanetButton';
-import { RouterLink } from '@shared/RouterLink';
 import { Typography } from '@shared/Typography';
 
 import { bem } from '@shared/utils/bem';
 
 import {
     URL_DEFAULT,
-    URL_EXPLORER,
-    URL_KEEPER,
+    URL_PROFILE,
 } from '@shared/constants/links';
-import { storageKeys } from '@shared/constants/storageKeys';
+import { roles, storageKeys } from '@shared/constants/storageKeys';
 
 import { typographyVariant } from '@shared/Typography/interfaces';
 
@@ -43,7 +41,7 @@ export const Login = () => {
 
     const isExplorer = useAppSelector(explorerIsExplorerSelector);
 
-    const pathByUserRole = isExplorer ? URL_EXPLORER : URL_KEEPER;
+    const pathByUserRole = URL_PROFILE;
 
     function callback() {
         if (!localStorage.getItem(storageKeys.tokenAuth)) {
@@ -53,7 +51,7 @@ export const Login = () => {
         return navigate(pathByUserRole);
     }
 
-    const selectedRole = isExplorer ? EXPLORER_ROLE_STRING : KEEPER_ROLE_STRING;
+    const selectedRole: roles = isExplorer ? EXPLORER_ROLE_STRING : KEEPER_ROLE_STRING;
 
     const payload = {
         login: inputLogin,
@@ -69,8 +67,17 @@ export const Login = () => {
         setInputPassword(event.target.value);
     };
 
+    const handleFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault();
+
+        dispatch(authLogin({
+            payload,
+            callback,
+        }));
+    }
+
     return (
-        <div className={block()}>
+        <form className={block()} onSubmit={handleFormSubmit}>
             <Typography
                 className={element('heading')}
                 variant={typographyVariant.h2}
@@ -90,14 +97,9 @@ export const Login = () => {
                 value={inputPassword}
             />
             <PlanetButton
-                onClick={() => {
-                    dispatch(authLogin({
-                        payload,
-                        callback,
-                    }));
-                }}
+                type='submit'
                 title="Войти"
             />
-        </div>
+        </form>
     );
 };

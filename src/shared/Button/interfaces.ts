@@ -1,4 +1,6 @@
-export interface ButtonInterface {
+import { ButtonHTMLAttributes } from "react";
+
+export interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement>{
     title: string;
     color?: buttonColor;
     size: buttonSize;

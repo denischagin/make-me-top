@@ -31,3 +31,5 @@ export const initialKeeperCardInfo = {
     systems: [],
     feedback: [],
 };
+
+export const initialKeepersList = []

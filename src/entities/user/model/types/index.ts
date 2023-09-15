@@ -2,6 +2,7 @@ import { Dispatch } from 'react';
 import { AnyAction } from 'redux';
 
 import { AppDispatch } from '@app/providers/store';
+import { roles } from '@shared/constants/storageKeys';
 
 export interface StudiedSystems {
     systemId: number,
@@ -28,7 +29,7 @@ export interface ModalPlanetInterface {
 export interface userDataInterface {
     login: string
     password: string
-    role: string
+    role: roles
 }
 
 export interface AuthLoginInterface {

@@ -8,12 +8,15 @@ import { getKeeperInfo } from '../thunks/getKeeperInfo';
 import {
     initialKeeperCardInfo,
     initialKeeperInfo,
+    initialKeepersList,
 } from './constants';
+import { getListKeepersByFilter } from '../thunks/getListKeepersByFilter';
 
 const initialState: KeeperState = {
     isKeeper: false,
     keeperInfo: initialKeeperInfo,
     keeperCardInfo: initialKeeperCardInfo,
+    keepersList: initialKeepersList
 };
 
 export const keeperSlice = createSlice({
@@ -38,6 +41,13 @@ export const keeperSlice = createSlice({
             })
             .addCase(getKeeperCardInfo.rejected, (state: KeeperState) => {
                 state.keeperCardInfo = initialKeeperCardInfo;
+            })
+
+            .addCase(getListKeepersByFilter.fulfilled, (state: KeeperState, action) => {
+                state.keepersList = action.payload;
+            })
+            .addCase(getListKeepersByFilter.rejected, (state: KeeperState) => {
+                state.keepersList = initialKeepersList;
             });
     },
 });

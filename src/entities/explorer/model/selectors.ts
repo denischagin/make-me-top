@@ -13,3 +13,7 @@ export const explorerInfoSelector = createSelector(userState, (userState) => use
 export const explorerCardInfoSelector = createSelector(userState, (userState) => userState.explorerCardInfo);
 
 export const explorerIsSystemActiveSelector = createSelector(userState, (userState) => userState.isSystemActive);
+
+export const explorersListSelector = createSelector(userState, (userState) => userState.explorersList);
+
+export const explorersIsErrorSelector = createSelector(userState, (userState) => userState.isError)

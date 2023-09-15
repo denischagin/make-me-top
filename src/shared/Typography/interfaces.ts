@@ -11,6 +11,7 @@ export interface TypographyInterface {
 export enum typographyColor {
     primary500 = 'primary-500',
     black = 'black',
+    white = 'white',
 }
 
 export enum typographyVariant {

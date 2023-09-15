@@ -8,16 +8,18 @@ export const PlanetButton = (props: PlanetButtonInterface) => {
     const {
         title,
         onClick,
+        ...rest
     } = props;
 
     const [block, element] = bem('planet-button');
 
     return (
-        <div
+        <button
+            {...rest}
             onClick={onClick}
             className={block()}
         >
             {title}
-        </div>
+        </button>
     );
 };

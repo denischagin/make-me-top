@@ -10,12 +10,14 @@ export const Button = (props: ButtonInterface) => {
         size,
         title,
         onClick,
+        ...restProps
     } = props;
 
     const [block, element] = bem('button');
 
     return (
-        <div
+        <button
+            {...restProps}
             onClick={onClick}
             className={block({
                 color,
@@ -23,6 +25,6 @@ export const Button = (props: ButtonInterface) => {
             })}
         >
             {title}
-        </div>
+        </button>
     );
 };

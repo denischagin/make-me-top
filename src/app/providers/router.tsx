@@ -13,6 +13,7 @@ import {
     URL_KEEPER,
     URL_KEEPER_CARD,
     URL_KEEPERS,
+    URL_PROFILE,
 } from '@shared/constants/links';
 
 import { Explorer } from '@pages/Explorer/page';
@@ -23,10 +24,15 @@ import { Home } from '@pages/Home/page';
 import { Keeper } from '@pages/Keeper/page';
 import { KeeperCard } from '@pages/KeeperCard';
 import { Keepers } from '@pages/Keepers/page';
+import { Profile } from '@pages/Profile';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <>
+            <Route
+                path={URL_PROFILE}
+                element={<Profile />}
+            />
             <Route
                 path={URL_DEFAULT}
                 element={<Home />}

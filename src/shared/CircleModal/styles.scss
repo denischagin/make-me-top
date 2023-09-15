@@ -14,7 +14,8 @@
         display: flex;
         justify-content: flex-end;
         z-index: 1;
-        width: 1010px;
+        width: 100%;
+        max-width: 1010px;
         height: 1510px;
         border-top-left-radius: 999px;
         border-bottom-left-radius: 999px;
@@ -29,7 +30,7 @@
         flex-direction: column;
         padding: 0 40px;
         gap: 24px;
-        width: 830px;
+        width: 80%;
         height: 710px;
         overflow: hidden auto;
     }

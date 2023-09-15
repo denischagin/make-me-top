@@ -15,7 +15,7 @@ import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 import { sortByRating } from '@shared/utils/sortByRating';
 
-import { URL_EXPLORER } from '@shared/constants/links';
+import { URL_EXPLORER, URL_PROFILE } from '@shared/constants/links';
 import { TOAST_ERROR_CHOOSE_KEEPER } from '@shared/constants/toastTitles';
 
 import { avatarSize } from '@shared/Avatar/interfaces';
@@ -132,7 +132,7 @@ export const SelectUsersList = (props: UserListInterface) => {
                                     },
                                 }));
 
-                                return navigate(URL_EXPLORER);
+                                return navigate(URL_PROFILE);
                             }
 
                             return toast.error(TOAST_ERROR_CHOOSE_KEEPER);
