@@ -5,6 +5,10 @@
     flex-direction: column;
     margin: 24px auto;
 
+    &__button-select {
+        margin-bottom: 10px;
+    }
+
     &__item {
         display: flex;
         position: relative;
@@ -12,9 +16,10 @@
         align-items: center;
         cursor: default;
         border-radius: 8px;
-        padding: 8px 16px;
+        padding: 26px 16px;
         height: 42px;
         transition: 0.2s;
+        margin-top: 5px;
 
         &--selected {
             background-color: $gray-400;

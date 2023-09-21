@@ -11,7 +11,6 @@ export const useGalaxyWindowSize = () => {
 
 			timeout = setTimeout(() => {
 				const innerWidth = window.innerWidth > 1920 ? 1920 : window.innerWidth;
-				console.log(innerWidth);
 				setWindowSize(innerWidth);
 			}, 100);
 		};

@@ -16,7 +16,6 @@ export const galaxiesApi = createApi({
 		} catch (err) {
 			const error: AxiosError<ErrorInterface> = err as any;
 
-			console.log(error)
 			if (error.response) {
 				toast.error(error.response.data.errorMessage);
 				return { error };

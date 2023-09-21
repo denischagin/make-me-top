@@ -94,6 +94,6 @@ export interface PostCourseInterface {
 }
 export interface PostCourseRequest {
     courseId: number,
-    keeperId: number,
+    keepers: number[],
 }
 export const MAX_STUDYING_PROGRESS = 100;

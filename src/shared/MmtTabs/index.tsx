@@ -7,7 +7,7 @@ import { TabInterface } from "@shared/types/common";
 import "./styles.scss";
 
 export const MmtTabs = (props: TabsListInterface) => {
-	const { list = [], activeTab, setActiveTab, children } = props;
+	const { list = [], activeTab = undefined, setActiveTab, children } = props;
 
 	return (
 		<Tabs

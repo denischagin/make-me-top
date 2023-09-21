@@ -17,8 +17,6 @@ export const GalaxyInformation: React.FC<GalaxyInformationProps> = ({
 }) => {
 	const [block, element] = bem("galaxies-page");
 
-	console.log(keepers);
-
 	return (
 		<>
 			<div className={element("information-description")}>

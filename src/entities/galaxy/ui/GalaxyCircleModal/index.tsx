@@ -15,6 +15,11 @@ import { TabPanel } from "react-tabs";
 import { GalaxyCircleModalProp } from "./interface";
 import "./style.scss";
 import { useState } from "react";
+import { Typography } from "@shared/Typography";
+import {
+	typographyColor,
+	typographyVariant,
+} from "@shared/Typography/interfaces";
 
 export const GalaxyCircleModal = ({
 	lastChosenSystem,
@@ -45,9 +50,9 @@ export const GalaxyCircleModal = ({
 					color={buttonColor.filled}
 					size={buttonSize.large}
 					title="Отправить заявку"
-                    onClick={() => setActiveTab(2)}
+					onClick={() => setActiveTab(2)}
 				/>
-			</div>  
+			</div>
 			{
 				<MmtTabs
 					list={TABS_LIST}
@@ -65,7 +70,18 @@ export const GalaxyCircleModal = ({
 								<DividingLine color={DividingLineColor.gray500} />
 							</>
 						)}
-						<UsersList explorersList={explorers} />
+						{explorers?.length !== 0 ? (
+							<UsersList explorersList={explorers} />
+						) : (
+							<div className={element("empty-text")}>
+								<Typography
+									variant={typographyVariant.h2}
+									color={typographyColor.black}
+								>
+									У данного курса нет исследователей
+								</Typography>
+							</div>
+						)}
 					</TabPanel>
 					<TabPanel>
 						{!!yourKeeper && (
@@ -78,7 +94,18 @@ export const GalaxyCircleModal = ({
 							</>
 						)}
 						{!yourKeeper?.personId ? (
-							<SelectUsersList keepersList={keepers} courseId={courseId} />
+							keepers?.length !== 0 ? (
+								<SelectUsersList keepersList={keepers} courseId={courseId} />
+							) : (
+								<div className={element("empty-text")}>
+									<Typography
+										variant={typographyVariant.h2}
+										color={typographyColor.black}
+									>
+										У данного курса нет хранителей
+									</Typography>
+								</div>
+							)
 						) : (
 							<UsersList keepersList={keepers} />
 						)}
