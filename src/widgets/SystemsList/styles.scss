@@ -2,17 +2,18 @@
 
 .systems-list {
     font-size: 12px;
-
+    
     &__label {
         color: $white;
         margin-top: 2px;
         margin-bottom: 8px;
     }
-
+    
     &__systems {
         display: flex;
         flex-wrap: wrap;
         gap: 24px;
+        height: 80px;
     }
 
     &__system-rating {

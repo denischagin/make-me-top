@@ -15,17 +15,18 @@ export const getPercentageProgress = (params: IGetPercentageProgress): number =>
         userProgress,
     } = params;
 
+
     //получение прогресса определенной системы
     const educationSystem = userProgress.studiedSystems.find(
         (educationSystem) => {
             return educationSystem.systemId === system.systemId;
         },
-    );
+    );    
 
     if (!educationSystem) {
         return 0;
     }
 
     //прогресс найденной системы
-    return educationSystem.completed;
+    return educationSystem.progress;
 };

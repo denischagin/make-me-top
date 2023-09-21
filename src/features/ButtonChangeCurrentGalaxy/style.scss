@@ -1,0 +1,41 @@
+.change-galaxy-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0 30px;
+    width: 169px;
+    height: 169px;
+    border-radius: 50%;
+    transition: background-color 1s;
+    text-wrap: wrap;
+
+    &:hover {        
+        background-color: rgba(218, 218, 218, 0.050);
+
+        .change-galaxy-button__orbit {
+            transform: rotate(50deg);
+        }
+    }
+
+    &__orbit {
+        position: absolute;
+        transform: rotate(0deg);
+        
+        &.orbit1 {
+            transition: transform 0.4s;
+        }
+
+        &.orbit2 {
+            transition: transform 0.7s;
+        }
+
+        &.orbit3 {
+            transition: transform 1s;
+        }
+    }   
+}
+

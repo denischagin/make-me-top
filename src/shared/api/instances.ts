@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { storageKeys } from '@shared/constants/storageKeys';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 export const authToken = () => {
     const token = localStorage.getItem(storageKeys.tokenAuth);
@@ -8,7 +9,9 @@ export const authToken = () => {
     return token ? JSON.parse(token) : null;
 };
 
-export const instance = axios.create();
+export const instance = axios.create({
+    baseURL: URL_MMT_STAND
+});
 
 instance.interceptors.request.use(
     config => {
@@ -21,3 +24,4 @@ instance.interceptors.request.use(
         return config;
     },
 );
+

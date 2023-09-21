@@ -29,9 +29,15 @@ import { TABS_LIST } from "./model";
 
 import "./styles.scss";
 import { Container } from "@shared/Container";
+import { NotFound } from "@pages/NotFound";
+import { Button } from "@shared/Button";
+import { buttonColor, buttonSize } from "@shared/Button/interfaces";
+import { useNavigate } from "react-router-dom";
+import { URL_GALAXY } from "@shared/constants/links";
 
 export const Explorer = () => {
 	const [block, element] = bem("explorer");
+	const navigate = useNavigate();
 
 	const dispatch = useAppDispatch();
 	const userInfo = useAppSelector(explorerInfoSelector);
@@ -43,23 +49,7 @@ export const Explorer = () => {
 		dispatch(getExplorerInfo({}));
 	}, []);
 
-	if (isError)
-		return (
-			<>
-				<BackgroundProfile />
-				<div className={block()}>
-					<Header />
-					<Container>
-						<Typography
-							variant={typographyVariant.h1}
-							color={typographyColor.primary500}
-						>
-							Возникла ошибка 404
-						</Typography>
-					</Container>
-				</div>
-			</>
-		);
+	if (isError) return <NotFound />;
 
 	return (
 		<>
@@ -70,10 +60,21 @@ export const Explorer = () => {
 					<div className={element("row", "row")}>
 						<div className={element("profile", "col-xxl-9")}>
 							<ExplorerUserInfo />
+
 							<div className={element("current-system")}>
 								<CurrentSystemCard tabsList={TABS_LIST} />
 								<MasteringApplication />
 							</div>
+
+							<div className={element("button-galaxy")}>
+								<Button
+									title="Переход на страницу с галактиками"
+									size={buttonSize.large}
+									color={buttonColor.filled}
+									onClick={() => navigate(URL_GALAXY)}
+								/>
+							</div>
+							
 							<div className={element("completed-systems")}>
 								<SystemsList
 									heading="Освоенные системы"
@@ -81,6 +82,7 @@ export const Explorer = () => {
 								/>
 							</div>
 						</div>
+
 						<div className={element("rating", "col-xxl-3")}>
 							<Typography
 								variant={typographyVariant.h2}

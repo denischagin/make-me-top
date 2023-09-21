@@ -6,19 +6,22 @@
     animation-name: shine;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    animation-duration: 1s;
+    animation-duration: 3s;
 
     @keyframes shine {
         from {
             transform: scale(1);
+            opacity: 0
         }
         10% {
             color: $shine;
             transform: scale(1.35);
+            opacity: 0.1
         }
-        25% {
+        30% {
             color: $white;
             transform: scale(1);
+            opacity: 1;
         }
     }
 }

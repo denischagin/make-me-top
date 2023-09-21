@@ -28,7 +28,7 @@ export function getNotStudiedParentDependencies(params: GetNotStudiedParentDepen
         const isCurrentDependencyStudied = userProgress.studiedSystems.some((system) =>
             (
                 (system.systemId === dependency.systemId) &&
-                (system.completed === MAX_STUDYING_PROGRESS)
+                (system.progress === MAX_STUDYING_PROGRESS)
             ),
         );
 

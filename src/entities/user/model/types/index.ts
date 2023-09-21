@@ -6,7 +6,7 @@ import { roles } from '@shared/constants/storageKeys';
 
 export interface StudiedSystems {
     systemId: number,
-    completed: number,
+    progress: number,
 }
 
 export interface PostUser {

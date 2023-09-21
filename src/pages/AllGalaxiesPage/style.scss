@@ -1,0 +1,72 @@
+.galaxies-page {
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__title-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+        margin-bottom: 83px;
+    }
+
+    &__look-more {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 80px;
+    }
+    
+    &__information {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 160px;
+
+        @media screen and (max-width: 1322px) {
+            justify-content: center;
+            gap: 20px;
+        }
+    }
+
+    &__information-description {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 586px;
+        width: 100%;
+
+        @media screen and (max-width: 1322px) {
+            max-width: 800px;
+        }
+
+    }
+
+    &__keepers-section {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 708px;
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+
+    &__keepers-list-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 708px;
+        width: 100%;
+        row-gap: 16px;
+        justify-content: space-between;
+
+        @media screen and (max-width: 1322px) {
+            justify-content: center;
+            gap: 16px
+        }
+    }
+}
+

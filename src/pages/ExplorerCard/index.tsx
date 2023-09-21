@@ -32,6 +32,7 @@ import {
 
 import "./styles.scss";
 import { Container } from "@shared/Container";
+import { NotFound } from "@pages/NotFound";
 
 export const ExplorerCard = () => {
 	const [block, element] = bem("explorer-card");
@@ -53,25 +54,7 @@ export const ExplorerCard = () => {
 		);
 	}, [explorerId]);
 
-	if (isError)
-		return (
-			<>
-				<BackgroundProfile />
-				<div className={block()}>
-					<Header />
-					<Container>
-						<div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-							<Typography
-								variant={typographyVariant.h1}
-								color={typographyColor.white}
-							>
-								Возникла ошибка 404
-							</Typography>
-						</div>
-					</Container>
-				</div>
-			</>
-		);
+	if (isError) return <NotFound />;
 	return (
 		<div className={block()}>
 			<BackgroundProfile />

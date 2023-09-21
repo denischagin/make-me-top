@@ -1,0 +1,90 @@
+import { TABS_LIST } from "@pages/Explorer/model";
+import { Button } from "@shared/Button";
+import { buttonColor, buttonSize } from "@shared/Button/interfaces";
+import { CircleModal } from "@shared/CircleModal";
+import { CurrentUserItem } from "@shared/CurrentUserItem";
+import { DividingLine } from "@shared/DividingLine";
+import { DividingLineColor } from "@shared/DividingLine/interfaces";
+import { FinalGrade } from "@shared/FinalGrade";
+import { MmtTabs } from "@shared/MmtTabs";
+import { PlanetList } from "@shared/PlanetList";
+import { SelectUsersList } from "@shared/SelectUsersList";
+import { UsersList } from "@shared/UsersList";
+import { bem } from "@shared/utils/bem";
+import { TabPanel } from "react-tabs";
+import { GalaxyCircleModalProp } from "./interface";
+import "./style.scss";
+import { useState } from "react";
+
+export const GalaxyCircleModal = ({
+	lastChosenSystem,
+	onClose,
+	userProgress,
+	you,
+	keepers,
+	course,
+	yourKeeper,
+	explorers,
+	courseId,
+}: GalaxyCircleModalProp) => {
+	const [block, element] = bem("galaxy-circle-modal");
+	const [activeTab, setActiveTab] = useState(0);
+
+	return (
+		<CircleModal
+			header={lastChosenSystem.systemName}
+			data={{
+				lastChosenSystem,
+				userProgress,
+			}}
+			isLocked={lastChosenSystem.isLocked}
+			onClose={onClose}
+		>
+			<div className={element("send-button")}>
+				<Button
+					color={buttonColor.filled}
+					size={buttonSize.large}
+					title="Отправить заявку"
+                    onClick={() => setActiveTab(2)}
+				/>
+			</div>  
+			{
+				<MmtTabs
+					list={TABS_LIST}
+					activeTab={activeTab}
+					setActiveTab={setActiveTab}
+				>
+					<TabPanel>
+						<PlanetList currentPlanet={course.title} />
+						<FinalGrade />
+					</TabPanel>
+					<TabPanel>
+						{!!you && (
+							<>
+								<CurrentUserItem explorer={you} badgeTitle="Мой рейтинг" />
+								<DividingLine color={DividingLineColor.gray500} />
+							</>
+						)}
+						<UsersList explorersList={explorers} />
+					</TabPanel>
+					<TabPanel>
+						{!!yourKeeper && (
+							<>
+								<CurrentUserItem
+									keeper={yourKeeper}
+									badgeTitle="Мой хранитель"
+								/>
+								<DividingLine color={DividingLineColor.gray500} />
+							</>
+						)}
+						{!yourKeeper?.personId ? (
+							<SelectUsersList keepersList={keepers} courseId={courseId} />
+						) : (
+							<UsersList keepersList={keepers} />
+						)}
+					</TabPanel>
+				</MmtTabs>
+			}
+		</CircleModal>
+	);
+};
