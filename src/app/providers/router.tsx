@@ -17,20 +17,18 @@ import {
 	URL_NOT_FOUND,
 	URL_PROFILE,
 } from "@shared/constants/links";
-
-import { Explorer } from "@pages/Explorer/page";
-import { ExplorerCard } from "@pages/ExplorerCard";
-import { Explorers } from "@pages/Explorers/page";
-import { GalaxyPage } from "@pages/GalaxyPage/page";
-import { Home } from "@pages/Home/page";
-import { Keeper } from "@pages/Keeper/page";
-import { KeeperCard } from "@pages/KeeperCard";
-import { Keepers } from "@pages/Keepers/page";
-import { Profile } from "@pages/Profile";
-import { NotFound } from "@pages/NotFound";
-import { AllGalaxiesPage } from "@pages/AllGalaxiesPage";
-import { AuthProtect } from "@shared/utils/providers/AuthProtect";
+import { lazy } from "react";
 import { privatePage } from "@shared/utils/helpers/privatePage";
+
+const ExplorerCard = lazy(() => import("@pages/ExplorerCard"));
+const Explorers = lazy(() => import("@pages/Explorers/page"));
+const GalaxyPage = lazy(() => import("@pages/GalaxyPage/page"));
+const Home = lazy(() => import("@pages/Home/page"));
+const KeeperCard = lazy(() => import("@pages/KeeperCard"));
+const Keepers = lazy(() => import("@pages/Keepers/page"));
+const Profile = lazy(() => import("@pages/Profile"));
+const NotFound = lazy(() => import("@pages/NotFound"));
+const AllGalaxiesPage = lazy(() => import("@pages/AllGalaxiesPage"));
 
 interface RouteInterface {
 	path: string;

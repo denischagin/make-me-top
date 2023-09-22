@@ -14,7 +14,7 @@ import { useGetAllGalaxiesQuery } from "@entities/galaxy/model/api";
 import { useShowMore } from "@shared/utils/hooks/use-show-more";
 import { GalaxyListStatistics } from "@widgets/GalaxyListStatistics";
 import "./style.scss";
-import { NotFound } from "@pages/NotFound";
+import NotFound from "@pages/NotFound";
 import { GalaxyInformation } from "@widgets/GalaxyInformation";
 import { useNavigate } from "react-router-dom";
 import { URL_GALAXY } from "@shared/constants/links";
@@ -22,7 +22,7 @@ import { EntryAnimateGalaxies } from "@shared/EntryAnimateGalaxies";
 import { ChangeGalaxyButtons } from "@widgets/ChangeGalaxyButtons";
 import { useCurrentGalaxy } from "./hooks";
 
-export const AllGalaxiesPage = () => {
+const AllGalaxiesPage = () => {
 	const { data: galaxies = [], isLoading, isError } = useGetAllGalaxiesQuery();
 
 	const {
@@ -156,3 +156,5 @@ export const AllGalaxiesPage = () => {
 		</div>
 	);
 };
+
+export default AllGalaxiesPage

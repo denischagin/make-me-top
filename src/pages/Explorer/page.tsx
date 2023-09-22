@@ -29,7 +29,7 @@ import { TABS_LIST } from "./model";
 
 import "./styles.scss";
 import { Container } from "@shared/Container";
-import { NotFound } from "@pages/NotFound";
+import NotFound from "@pages/NotFound";
 import { Button } from "@shared/Button";
 import { buttonColor, buttonSize } from "@shared/Button/interfaces";
 import { useNavigate } from "react-router-dom";

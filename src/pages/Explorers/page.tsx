@@ -19,7 +19,7 @@ import { useShowMore } from "@shared/utils/hooks/use-show-more";
 import { SortCard } from "@shared/SortCard";
 import { Container } from "@shared/Container";
 
-export const Explorers = () => {
+const Explorers = () => {
 	const explorersList = useAppSelector(explorersListSelector);
 
 	const { handleHideAll, handleShowMore, isLastLimit, limitElements } =
@@ -63,3 +63,5 @@ export const Explorers = () => {
 		</div>
 	);
 };
+
+export default Explorers

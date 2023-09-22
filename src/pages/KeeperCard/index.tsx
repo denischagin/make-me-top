@@ -25,7 +25,7 @@ import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
 import './styles.scss';
 import { Container } from '@shared/Container';
 
-export const KeeperCard = () => {
+const KeeperCard = () => {
     const [block, element] = bem('keeper-card');
 
     const navigate = useNavigate();
@@ -69,3 +69,5 @@ export const KeeperCard = () => {
         </div>
     );
 };
+
+export default KeeperCard

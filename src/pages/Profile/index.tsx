@@ -5,7 +5,7 @@ import { URL_DEFAULT } from '@shared/constants/links';
 import { roles, storageKeys } from '@shared/constants/storageKeys';
 import { Navigate } from 'react-router-dom';
 
-export const Profile = () => {
+const Profile = () => {
 	const currentRole = useMemo<roles | "NOT_SELECTED">(() => {
 		const role: roles | null = localStorage.getItem(storageKeys.currentRole) as roles;
 
@@ -28,3 +28,5 @@ export const Profile = () => {
 		</>
 	);
 };
+
+export default Profile

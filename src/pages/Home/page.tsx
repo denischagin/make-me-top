@@ -15,7 +15,7 @@ import { SelectRole } from '@widgets/SelectRole';
 
 import './styles.scss';
 
-export const Home = () => {
+const Home = () => {
     const [block, element] = bem('home');
 
     const isExplorer = useAppSelector(explorerIsExplorerSelector);
@@ -46,3 +46,5 @@ export const Home = () => {
         </>
     );
 };
+
+export default Home

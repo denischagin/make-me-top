@@ -9,7 +9,7 @@ import { bem } from "@shared/utils/bem";
 import { Header } from "@widgets/Header";
 import "./style.scss";
 
-export const NotFound = ({ errorCode = 404 }: { errorCode?: number | string }) => {
+const NotFound = ({ errorCode = 404 }: { errorCode?: number | string }) => {
 	const [block, element] = bem("not-found");
 
 	return (
@@ -31,3 +31,5 @@ export const NotFound = ({ errorCode = 404 }: { errorCode?: number | string }) =
 		</>
 	);
 };
+
+export default NotFound

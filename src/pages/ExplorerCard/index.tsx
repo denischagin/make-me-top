@@ -32,9 +32,9 @@ import {
 
 import "./styles.scss";
 import { Container } from "@shared/Container";
-import { NotFound } from "@pages/NotFound";
+import NotFound from "@pages/NotFound";
 
-export const ExplorerCard = () => {
+const ExplorerCard = () => {
 	const [block, element] = bem("explorer-card");
 
 	const navigate = useNavigate();
@@ -82,3 +82,5 @@ export const ExplorerCard = () => {
 		</div>
 	);
 };
+
+export default ExplorerCard

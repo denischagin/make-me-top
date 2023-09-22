@@ -28,7 +28,7 @@ import { roles, storageKeys } from "@shared/constants/storageKeys";
 import { EntryAnimateGalaxies } from "@shared/EntryAnimateGalaxies";
 import { useGalaxyWindowSize } from "./hooks";
 
-export const GalaxyPage: React.FC = () => {
+const GalaxyPage: React.FC = () => {
 	const [block, element] = bem("galaxy-page");
 	const { galaxyId } = useParams();
 
@@ -61,7 +61,7 @@ export const GalaxyPage: React.FC = () => {
 	const galaxyName = useAppSelector(galaxyNameSelector);
 	const orbitList = useAppSelector(orbitListSelector);
 	const userProgress = useAppSelector(userProgressSelector);
-	
+
 	return (
 		<div
 			className={block()}
@@ -81,3 +81,5 @@ export const GalaxyPage: React.FC = () => {
 		</div>
 	);
 };
+
+export default GalaxyPage

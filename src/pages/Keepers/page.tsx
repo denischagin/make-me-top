@@ -16,7 +16,7 @@ import { buttonSize } from "@shared/Button/interfaces";
 import { SortCard } from "@shared/SortCard";
 import { Container } from "@shared/Container";
 
-export const Keepers = () => {
+const Keepers = () => {
 	const [block, element] = bem("keepers");
 	const keepersList = useAppSelector(keepersListSelector);
 	const dispatch = useAppDispatch();
@@ -59,3 +59,5 @@ export const Keepers = () => {
 		</div>
 	);
 };
+
+export default Keepers
