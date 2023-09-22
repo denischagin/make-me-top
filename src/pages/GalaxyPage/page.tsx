@@ -35,7 +35,7 @@ export const GalaxyPage: React.FC = () => {
 	const dispatch = useAppDispatch();
 
 	const galaxyPageRef = useRef<HTMLDivElement | null>(null);
-
+	
 	const windowWidth = useGalaxyWindowSize();
 
 	useEffect(() => {
@@ -61,9 +61,12 @@ export const GalaxyPage: React.FC = () => {
 	const galaxyName = useAppSelector(galaxyNameSelector);
 	const orbitList = useAppSelector(orbitListSelector);
 	const userProgress = useAppSelector(userProgressSelector);
-
+	
 	return (
-		<div className={block()} ref={galaxyPageRef}>
+		<div
+			className={block()}
+			ref={galaxyPageRef}
+		>
 			<BackgroundGalaxyPage />
 			<Header />
 			<TitleGalaxyPage galaxyName={galaxyName} />

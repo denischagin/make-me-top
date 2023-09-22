@@ -9,17 +9,26 @@ import "./styles.scss";
 export const MmtTabs = (props: TabsListInterface) => {
 	const { list = [], activeTab = undefined, setActiveTab, children } = props;
 
-	return (
-		<Tabs
-			selectedIndex={activeTab}
-			onSelect={setActiveTab ? (index) => setActiveTab(index) : undefined}
-		>
+	const tabsList = (
+		<>
 			<TabList>
 				{list.map((tab: TabInterface) => (
 					<Tab key={tab.id}>{tab.name}</Tab>
 				))}
 			</TabList>
 			{children}
-		</Tabs>
+		</>
+	);
+
+	return (
+		<>
+			{activeTab && setActiveTab ? (
+				<Tabs selectedIndex={activeTab} onSelect={setActiveTab}>
+					{tabsList}
+				</Tabs>
+			) : (
+				<Tabs>{tabsList}</Tabs>
+			)}
+		</>
 	);
 };

@@ -6,6 +6,7 @@ import {
 } from '@entities/galaxy/model/types';
 
 export interface ModalInterface {
+    isOpen: boolean;
     header: string;
     isLocked?: boolean;
     data?: {

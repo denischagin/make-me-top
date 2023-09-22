@@ -8,9 +8,9 @@
     align-items: center;
     position: relative;
     border-radius: 50%;
-    animation: entiryAnimate 1s ease;
-
+    
     &-system {
+      animation: entiryAnimate 1s ease;
       position: absolute;
       display: flex;
       justify-content: center;
@@ -46,12 +46,12 @@
 
 @keyframes entiryAnimate {
   from {
-    transform: scale(0.5);
+    top: 50%;
+    left: 50%;
     opacity: 0;
   }
 
   to {
-    transform: scale(1);
     opacity: 1;
   }
 }

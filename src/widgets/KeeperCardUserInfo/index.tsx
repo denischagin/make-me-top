@@ -1,6 +1,6 @@
 import { useAppSelector } from '@app/providers/store/hooks';
 
-import { keeperInfoSelector } from '@entities/keeper/model/selectors';
+import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 
 import { Avatar } from '@shared/Avatar';
 import { InfoCard } from '@shared/InfoCard';
@@ -23,7 +23,7 @@ import './styles.scss';
 export const KeeperCardUserInfo = () => {
     const [block, element] = bem('keeper-card-user-info');
 
-    const userInfo = useAppSelector(keeperInfoSelector);
+    const userInfo = useAppSelector(keeperCardInfoSelector);
 
     const {
         person,

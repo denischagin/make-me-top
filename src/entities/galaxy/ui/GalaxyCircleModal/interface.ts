@@ -18,4 +18,5 @@ export interface GalaxyCircleModalProp {
 	keepers: CourseKeeper[] | null;
 	explorers: CourseExplorer[] | null;
 	courseId: number;
+	isOpen: boolean
 }

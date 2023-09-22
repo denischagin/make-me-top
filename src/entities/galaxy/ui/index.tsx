@@ -207,22 +207,21 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 				height,
 			}}
 		>
-			{isModalOpen && (
-				<GalaxyCircleModal
-					course={course}
-					courseId={courseId}
-					explorers={explorers}
-					keepers={keepers}
-					lastChosenSystem={lastChosenSystem}
-					onClose={() => {
-						dispatch(showModal());
-						setLastChosenSystem(DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE);
-					}}
-					userProgress={userProgress}
-					you={you}
-					yourKeeper={yourKeeper}
-				/>
-			)}
+			<GalaxyCircleModal
+				isOpen={isModalOpen}
+				course={course}
+				courseId={courseId}
+				explorers={explorers}
+				keepers={keepers}
+				lastChosenSystem={lastChosenSystem}
+				onClose={() => {
+					dispatch(showModal());
+					setLastChosenSystem(DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE);
+				}}
+				userProgress={userProgress}
+				you={you}
+				yourKeeper={yourKeeper}
+			/>
 			<div
 				className={element("background")}
 				style={{

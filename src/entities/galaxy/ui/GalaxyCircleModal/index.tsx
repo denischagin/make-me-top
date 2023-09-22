@@ -31,12 +31,18 @@ export const GalaxyCircleModal = ({
 	yourKeeper,
 	explorers,
 	courseId,
+	isOpen,
 }: GalaxyCircleModalProp) => {
 	const [block, element] = bem("galaxy-circle-modal");
 	const [activeTab, setActiveTab] = useState(0);
 
+	const systemIsOpen = userProgress.openedSystems.some(
+		(systemId) => systemId === lastChosenSystem.systemId
+	);
+
 	return (
 		<CircleModal
+			isOpen={isOpen}
 			header={lastChosenSystem.systemName}
 			data={{
 				lastChosenSystem,
@@ -46,12 +52,14 @@ export const GalaxyCircleModal = ({
 			onClose={onClose}
 		>
 			<div className={element("send-button")}>
-				<Button
-					color={buttonColor.filled}
-					size={buttonSize.large}
-					title="Отправить заявку"
-					onClick={() => setActiveTab(2)}
-				/>
+				{systemIsOpen && (
+					<Button
+						color={buttonColor.filled}
+						size={buttonSize.large}
+						title="Отправить заявку"
+						onClick={() => setActiveTab(2)}
+					/>
+				)}
 			</div>
 			{
 				<MmtTabs
@@ -75,7 +83,7 @@ export const GalaxyCircleModal = ({
 						) : (
 							<div className={element("empty-text")}>
 								<Typography
-									variant={typographyVariant.h2}
+									variant={typographyVariant.medium16}
 									color={typographyColor.black}
 								>
 									У данного курса нет исследователей
@@ -99,7 +107,7 @@ export const GalaxyCircleModal = ({
 							) : (
 								<div className={element("empty-text")}>
 									<Typography
-										variant={typographyVariant.h2}
+										variant={typographyVariant.medium16}
 										color={typographyColor.black}
 									>
 										У данного курса нет хранителей
