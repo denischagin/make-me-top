@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 
 import { SystemType, UserProgressInGalaxy } from "@entities/galaxy/model/types";
 
@@ -12,7 +12,7 @@ import { getSystemProgressType } from "@entities/orbit/lib/getSystemProgressType
 import { getXCoordinateOnEllipse } from "@entities/orbit/lib/getXCoordinateOnEllipse";
 import { getYCoordinateOnEllipse } from "@entities/orbit/lib/getYCoordinateOnEllipse";
 
-import { System } from "@shared/System";
+import System from "@shared/System";
 
 import { ReactComponent as LockIcon } from "@shared/images/lock.svg";
 
@@ -46,6 +46,8 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
 		handleSystemMouseLeave,
 	} = props;
 
+	const [active, setActive] = useState(false);
+
 	const [block, element] = bem("orbit");
 
 	const orbitHalfWidth = orbitWidth / 2;
@@ -60,7 +62,12 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
 	});
 
 	return (
-		<div className={block()}>
+		<div
+			className={block({
+				active,
+			})}
+			onAnimationEnd={() => !active && setActive(true)}
+		>
 			<div
 				className={element("content")}
 				style={{

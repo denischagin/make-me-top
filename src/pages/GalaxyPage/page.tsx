@@ -25,8 +25,8 @@ import {
 import "./styles.scss";
 import { useParams } from "react-router-dom";
 import { roles, storageKeys } from "@shared/constants/storageKeys";
-import { EntryAnimateGalaxies } from "@shared/EntryAnimateGalaxies";
-import { useGalaxyWindowSize } from "./hooks";
+import { useGalaxyWindowSizeDebounce } from "./hooks";
+import { loadingIsLoadingSelector } from "@entities/loading/model/selectors";
 
 const GalaxyPage: React.FC = () => {
 	const [block, element] = bem("galaxy-page");
@@ -35,8 +35,8 @@ const GalaxyPage: React.FC = () => {
 	const dispatch = useAppDispatch();
 
 	const galaxyPageRef = useRef<HTMLDivElement | null>(null);
-	
-	const windowWidth = useGalaxyWindowSize();
+
+	const { windowSizeDebounce } = useGalaxyWindowSizeDebounce();
 
 	useEffect(() => {
 		dispatch(
@@ -63,15 +63,12 @@ const GalaxyPage: React.FC = () => {
 	const userProgress = useAppSelector(userProgressSelector);
 
 	return (
-		<div
-			className={block()}
-			ref={galaxyPageRef}
-		>
+		<div className={block()} ref={galaxyPageRef}>
 			<BackgroundGalaxyPage />
 			<Header />
 			<TitleGalaxyPage galaxyName={galaxyName} />
 			<Galaxy
-				width={windowWidth}
+				width={windowSizeDebounce}
 				height={800}
 				galaxyPage={galaxyPageRef.current}
 				svgContainerClass={element("svg-container")}
@@ -82,4 +79,4 @@ const GalaxyPage: React.FC = () => {
 	);
 };
 
-export default GalaxyPage
+export default GalaxyPage;

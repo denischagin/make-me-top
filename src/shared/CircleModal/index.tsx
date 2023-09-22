@@ -20,8 +20,6 @@ import {
 } from "@shared/Typography/interfaces";
 
 import "./styles.scss";
-import { Button } from "@shared/Button";
-import { buttonColor, buttonSize } from "@shared/Button/interfaces";
 
 export const CircleModal = (props: ModalInterface) => {
 	const { header, isLocked, data, children, onClose, isOpen } = props;
@@ -68,13 +66,13 @@ export const CircleModal = (props: ModalInterface) => {
 							</Typography>
 							<CloseIcon className={element("close-icon")} onClick={onClose} />
 						</div>
-						{/* {
-                            (modalStatus !== ModalAccessStatus.opened) &&
-                            <ModalAlert
-                                title={modalStatus}
-                                dependencies={notStudiedParentDependencies}
-                            />
-                        } */}
+						
+						{modalStatus !== ModalAccessStatus.opened && (
+							<ModalAlert
+								title={modalStatus}
+								dependencies={notStudiedParentDependencies}
+							/>
+						)}
 
 						<div className={element("item-list")}>{children}</div>
 					</div>

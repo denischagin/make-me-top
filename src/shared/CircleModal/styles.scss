@@ -24,7 +24,7 @@
 		border-bottom-left-radius: 999px;
 		right: 0px;
 		top: -215px;
-        transition: transform 1s ease;  
+        transition: transform 0.7s ease;  
 
 	}
 
@@ -87,7 +87,7 @@
         pointer-events: none;
         
         .circle-modal__container {      
-            transform: translateX(100%) scale(0.5);
+            transform: translateX(25%) scale(0.7);
 		}
     }
 }

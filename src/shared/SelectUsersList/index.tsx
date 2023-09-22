@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
-import { useAppDispatch } from "@app/providers/store/hooks";
+import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
 import { CourseKeeper } from "@entities/user/model/types";
 import { postCourseRequest } from "@entities/user/thunks/postCourseRequest";
@@ -31,6 +31,12 @@ import { UserListInterface } from "@shared/types/common";
 import "./styles.scss";
 import { DividingLine } from "@shared/DividingLine";
 import { DividingLineColor } from "@shared/DividingLine/interfaces";
+import {
+	userIsErrorSelector,
+	userIsSuccessSelector,
+} from "@entities/user/model/selectors";
+import { showModal } from "@entities/user/model/slice";
+import { SelectUsersKeepersItem } from "@shared/SelectUsersKeepersItem";
 
 export const SelectUsersList = (props: UserListInterface) => {
 	const { keepersList, courseId } = props;
@@ -39,12 +45,17 @@ export const SelectUsersList = (props: UserListInterface) => {
 
 	const [block, element] = bem("select-list");
 	const [selectedUsers, setSelectedUsers] = useState<CourseKeeper[]>([]);
-
-	function removeUser(userId: number) {
-		setSelectedUsers(selectedUsers.filter((user) => user.personId !== userId));
-	}
+	const isError = useAppSelector(userIsErrorSelector);
+	const isSuccess = useAppSelector(userIsSuccessSelector);
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!isSuccess) return;
+
+		dispatch(showModal());
+		navigate(URL_PROFILE);
+	}, [isSuccess]);
 
 	const handleUnSelectAll = () => {
 		if (keepersList) setSelectedUsers([]);
@@ -52,6 +63,26 @@ export const SelectUsersList = (props: UserListInterface) => {
 
 	const handleSelectAll = () => {
 		if (keepersList) setSelectedUsers(keepersList);
+	};
+
+	function handleRemoveUser(userId: number) {
+		setSelectedUsers(selectedUsers.filter((user) => user.personId !== userId));
+	}
+
+	const handleSendApplication = () => {
+		if (selectedUsers.length === 0)
+			return toast.error(TOAST_ERROR_CHOOSE_KEEPER);
+
+		const keepers = selectedUsers.map((user) => user.keeperId);
+
+		dispatch(
+			postCourseRequest({
+				payload: {
+					courseId: courseId!,
+					keepers,
+				},
+			})
+		);
 	};
 
 	const isSelectedAll = selectedUsers.length === keepersList?.length;
@@ -68,81 +99,25 @@ export const SelectUsersList = (props: UserListInterface) => {
 					/>
 				)}
 			</div>
+
 			{sortByRating(keepersList)?.map((user) => (
-				<div
+				<SelectUsersKeepersItem
 					key={user.personId}
-					className={element("item", {
-						selected: selectedUsers.some(
-							(selectedUser) => selectedUser.personId === user.personId
-						),
-					})}
-				>
-					<div className={element("user")}>
-						<Avatar size={avatarSize.small} />
-						<span className={element("name")}>{getUserFullName(user)}</span>
-					</div>
-					<div className={element("info")}>
-						<div
-							className={element("button", {
-								visible: selectedUsers.some(
-									(selectedUser) => selectedUser.personId === user.personId
-								),
-							})}
-						>
-							{!selectedUsers.some(
-								(selectedUser) => selectedUser.personId === user.personId
-							) ? (
-								<Button
-									size={buttonSize.small}
-									color={buttonColor.filled}
-									onClick={() => setSelectedUsers([...selectedUsers, user])}
-									title="Выбрать хранителя"
-								/>
-							) : (
-								<Button
-									size={buttonSize.small}
-									color={buttonColor.primary500}
-									onClick={() => removeUser(user.personId)}
-									title="Отменить выбор"
-								/>
-							)}
-						</div>
-						<div
-							className={element("rating", {
-								hide: selectedUsers.some(
-									(selectedUser) => selectedUser.personId === user.personId
-								),
-							})}
-						>
-							<Rating
-								systemColor={ratingSystemColor.primary500}
-								size={ratingSize.medium}
-								scoreColor={ratingScoreColor.black}
-								rating={user.rating}
-							/>
-						</div>
-					</div>
-				</div>
+					user={user}
+					selected={selectedUsers.some(
+						(selectedUser) => selectedUser.personId === user.personId
+					)}
+					onRemoveUser={handleRemoveUser}
+					onSelectUser={(user) => setSelectedUsers([...selectedUsers, user])}
+				/>
 			))}
+
 			{!!keepersList?.length && (
 				<div className={element("submit-selected")}>
 					<Button
 						size={buttonSize.large}
 						color={buttonColor.primary500}
-						onClick={() => {
-							if (selectedUsers.length > 0) {
-								dispatch(
-									postCourseRequest({
-										payload: {
-											courseId: courseId!,
-											keepers: selectedUsers.map((user) => user.keeperId),
-										},
-									})
-								);
-								return
-							}
-                            return toast.error(TOAST_ERROR_CHOOSE_KEEPER);
-						}}
+						onClick={handleSendApplication}
 						title="Отправить заявку"
 					/>
 				</div>

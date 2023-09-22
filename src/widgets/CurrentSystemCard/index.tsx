@@ -53,6 +53,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
 	const [block, element] = bem("current-system-card");
 	const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
 	const [isStarClosed, setIsStarClosed] = useState(false);
+	const [activeTab, setActiveTab] = useState(0);
 
 	const dispatch = useAppDispatch();
 	const isModalOpen = useAppSelector(userIsModalOpenSelector);
@@ -78,7 +79,11 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
 				header="Groovy"
 				onClose={() => dispatch(showModal())}
 			>
-				<MmtTabs list={tabsList}>
+				<MmtTabs
+					list={tabsList}
+					activeTab={activeTab}
+					setActiveTab={setActiveTab}
+				>
 					<TabPanel>
 						<PlanetList currentPlanet={course.title} />
 						<FinalGrade />

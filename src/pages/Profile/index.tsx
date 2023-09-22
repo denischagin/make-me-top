@@ -4,6 +4,8 @@ import { Keeper } from '@pages/Keeper/page';
 import { URL_DEFAULT } from '@shared/constants/links';
 import { roles, storageKeys } from '@shared/constants/storageKeys';
 import { Navigate } from 'react-router-dom';
+import { loadingIsLoadingSelector } from '@entities/loading/model/selectors';
+import { useAppSelector } from '@app/providers/store/hooks';
 
 const Profile = () => {
 	const currentRole = useMemo<roles | "NOT_SELECTED">(() => {

@@ -1,57 +1,62 @@
 .orbit {
-  position: absolute;
-  border-radius: 50%;
+	position: absolute;
+	border-radius: 50%;
+  pointer-events: none;
 
-  &__content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border-radius: 50%;
-    
-    &-system {
-      animation: entiryAnimate 1s ease;
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      overflow: unset;
-      text-align: center;
-      border: 2px solid white;
-      transition: all 1s;
-
-      &--name {
-        z-index: 0;
-        font-weight: bold;
-        font-size: 10px;
-        word-break: break-word;
-        
-        @media screen and (max-width: 800px) {
-          word-break: break-all;
-          font-size: 8px;
-        }
-
-        @media screen and (max-width: 600px) {
-          font-size: 7px;
-        }
-
-        &.white {
-          color: white
-        }
-      }
-    }
+	&--active {
+    pointer-events: all;
   }
+
+	&__content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		border-radius: 50%;
+
+		&-system {
+			animation: entryAnimate 1s ease;
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 50%;
+			overflow: unset;
+			text-align: center;
+			border: 2px solid white;
+			transition: all 1s;
+
+			&--name {
+				z-index: 0;
+				font-weight: bold;
+				font-size: 10px;
+				word-break: break-word;
+
+				@media screen and (max-width: 800px) {
+					word-break: break-all;
+					font-size: 8px;
+				}
+
+				@media screen and (max-width: 600px) {
+					font-size: 7px;
+				}
+
+				&.white {
+					color: white;
+				}
+			}
+		}
+	}
 }
 
-@keyframes entiryAnimate {
-  from {
-    top: 50%;
-    left: 50%;
-    opacity: 0;
-  }
+@keyframes entryAnimate {
+	from {
+		top: 50%;
+		left: 50%;
+		opacity: 0;
+	}
 
-  to {
-    opacity: 1;
-  }
+	to {
+		opacity: 1;
+	}
 }

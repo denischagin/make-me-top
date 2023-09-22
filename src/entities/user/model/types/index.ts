@@ -14,6 +14,9 @@ export interface PostUser {
 }
 
 export interface UserState {
+    isLoading: boolean,
+    isSuccess: boolean,
+    isError: boolean,
     isRegistered: boolean;
     isModalOpen: boolean;
     planetList: Array<ModalPlanetInterface>;

@@ -114,7 +114,7 @@ const AllGalaxiesPage = () => {
 						<Button
 							size={buttonSize.large}
 							color={buttonColor.filled}
-							title="Перейти к звездам"
+							title="Перейти к системам"
 							onClick={() =>
 								navigate(URL_GALAXY + `/${currentGalaxy?.galaxyId}`)
 							}

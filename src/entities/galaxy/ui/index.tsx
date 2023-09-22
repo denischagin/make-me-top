@@ -50,9 +50,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 		galaxyPage,
 		userProgress,
 		orbitList,
-		width,
+		width: fullWidth,
 		height,
 	} = props;
+
+	const width = fullWidth > 1920 ? 1920 : fullWidth
 
 	const [block, element] = bem("galaxy");
 
@@ -97,11 +99,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 	useEffect(() => {
 		handleSystemMouseLeave();
 	}, [width]);
-
+	
 	useEffect(() => {
 		//поиск на странице и изменение модификаторов элементов в соответствии с состоянием
 		setSystems(document.querySelectorAll(`.${SYSTEM_CLASS}`));
-
+		
 		setSystemsActivityToActive({
 			activeSystemsId: activeSystemsIds,
 		});

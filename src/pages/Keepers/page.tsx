@@ -15,10 +15,12 @@ import { Button } from "@shared/Button";
 import { buttonSize } from "@shared/Button/interfaces";
 import { SortCard } from "@shared/SortCard";
 import { Container } from "@shared/Container";
+import { loadingIsLoadingSelector } from "@entities/loading/model/selectors";
 
 const Keepers = () => {
 	const [block, element] = bem("keepers");
 	const keepersList = useAppSelector(keepersListSelector);
+	const isLoading = useAppSelector(loadingIsLoadingSelector);
 	const dispatch = useAppDispatch();
 
 	const { handleHideAll, handleShowMore, isLastLimit, limitElements } =
@@ -33,31 +35,33 @@ const Keepers = () => {
 			<BackgroundUsersList />
 			<Header />
 
-			<Container className={element("container")}>
-				<div className={element("sort-panel")}>
-					<SortCard title="Сортировать" value="С 1 до конца" />
-					<SortCard title="Период отображения" value="За весь период" />
-					<SortCard title="За весь период" value="Все звезды" />
-				</div>
+			{!isLoading && (
+				<Container className={element("container")}>
+					<div className={element("sort-panel")}>
+						<SortCard title="Сортировать" value="С 1 до конца" />
+						<SortCard title="Период отображения" value="За весь период" />
+						<SortCard title="За весь период" value="Все звезды" />
+					</div>
 
-				{keepersList.length !== 0 && <KeepersList keepers={limitElements} />}
+					{keepersList.length !== 0 && <KeepersList keepers={limitElements} />}
 
-				{keepersList?.length !== 0 && isLastLimit ? (
-					<Button
-						size={buttonSize.large}
-						title="Скрыть всё"
-						onClick={handleHideAll}
-					/>
-				) : (
-					<Button
-						size={buttonSize.large}
-						title="Показать еще"
-						onClick={handleShowMore}
-					/>
-				)}
-			</Container>
+					{keepersList?.length !== 0 && isLastLimit ? (
+						<Button
+							size={buttonSize.large}
+							title="Скрыть всё"
+							onClick={handleHideAll}
+						/>
+					) : (
+						<Button
+							size={buttonSize.large}	
+							title="Показать еще"
+							onClick={handleShowMore}
+						/>
+					)}
+				</Container>
+			)}
 		</div>
 	);
 };
 
-export default Keepers
+export default Keepers;

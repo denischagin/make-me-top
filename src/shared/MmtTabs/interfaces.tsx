@@ -5,6 +5,6 @@ import { TabInterface } from '@shared/types/common';
 export interface TabsListInterface {
     list: Array<TabInterface>;
     children: ReactNode;
-    setActiveTab?: (tab: number) => void
-    activeTab?: number
+    setActiveTab: (tab: number) => void
+    activeTab: number
 }

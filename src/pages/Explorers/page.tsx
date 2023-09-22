@@ -18,6 +18,7 @@ import { getListExplorersByFilter } from "@entities/explorer/thunks/getFilterExp
 import { useShowMore } from "@shared/utils/hooks/use-show-more";
 import { SortCard } from "@shared/SortCard";
 import { Container } from "@shared/Container";
+import { loadingIsLoadingSelector } from "@entities/loading/model/selectors";
 
 const Explorers = () => {
 	const explorersList = useAppSelector(explorersListSelector);
@@ -26,6 +27,7 @@ const Explorers = () => {
 		useShowMore(explorersList, 10, 5);
 
 	const dispatch = useAppDispatch();
+	const isLoading = useAppSelector(loadingIsLoadingSelector);
 
 	const [block, element] = bem("explorers");
 
@@ -37,31 +39,33 @@ const Explorers = () => {
 		<div className={block()}>
 			<BackgroundUsersList />
 			<Header />
-			<Container className={element("container")}>
-				<div className={element("sort-panel")}>
-                    <SortCard title="Сортировать" value="С 1 до конца"/>
-                    <SortCard title="Период отображения" value="За весь период"/>
-                    <SortCard title="За весь период" value="Все звезды"/>
-				</div>
+			{!isLoading && (
+				<Container className={element("container")}>
+					<div className={element("sort-panel")}>
+						<SortCard title="Сортировать" value="С 1 до конца" />
+						<SortCard title="Период отображения" value="За весь период" />
+						<SortCard title="За весь период" value="Все звезды" />
+					</div>
 
-				<ExplorersList explorers={limitElements} />
+					<ExplorersList explorers={limitElements} />
 
-				{explorersList?.length !== 0 && isLastLimit ? (
-					<Button
-						size={buttonSize.large}
-						title="Скрыть всё"
-						onClick={handleHideAll}
-					/>
-				) : (
-					<Button
-						size={buttonSize.large}
-						title="Показать еще"
-						onClick={handleShowMore}
-					/>
-				)}
-			</Container>
+					{explorersList?.length !== 0 && isLastLimit ? (
+						<Button
+							size={buttonSize.large}
+							title="Скрыть всё"
+							onClick={handleHideAll}
+						/>
+					) : (
+						<Button
+							size={buttonSize.large}
+							title="Показать еще"
+							onClick={handleShowMore}
+						/>
+					)}
+				</Container>
+			)}
 		</div>
 	);
 };
 
-export default Explorers
+export default Explorers;
