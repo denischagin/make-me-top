@@ -8,7 +8,7 @@ import {
 	userCourseInfoSelector,
 	userIsModalOpenSelector,
 } from "@entities/user/model/selectors";
-import { toggleModal } from "@entities/user/model/slice";
+import { closeModal, toggleModal } from "@entities/user/model/slice";
 import { getCourseInfo } from "@entities/user/thunks/getCourseInfo";
 import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 
@@ -77,7 +77,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
 			<CircleModal
 				isOpen={isModalOpen}
 				header="Groovy"
-				onClose={() => dispatch(toggleModal())}
+				onClose={() => dispatch(closeModal())}
 			>
 				<MmtTabs
 					list={tabsList}

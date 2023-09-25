@@ -20,7 +20,7 @@ import {
 } from "@shared/ui/Typography/interfaces";
 
 import "./styles.scss";
-import { useEffect } from "react";
+import { TransitionEventHandler, useEffect } from "react";
 import { closeModal } from "@entities/user/model/slice";
 
 export const CircleModal = (props: ModalInterface) => {
@@ -46,16 +46,6 @@ export const CircleModal = (props: ModalInterface) => {
 		};
 	}, []);
 
-	const handleOnClose = () => {
-		if (!isOpen) {
-			onClose();
-		}
-	};
-
-	const handleCloseModal = () => {
-		dispatch(closeModal());
-	};
-
 	const modalStatus = data
 		? getModalStatus({
 				lastChosenSystem: data.lastChosenSystem,
@@ -75,13 +65,12 @@ export const CircleModal = (props: ModalInterface) => {
 	return (
 		<Portal target={document.body}>
 			<div
-				onTransitionEnd={handleOnClose}
 				className={block({
 					open: isOpen,
 					close: !isOpen,
 				})}
 			>
-				<div className={element("background")} onClick={handleCloseModal} />
+				<div className={element("background")} onClick={onClose} />
 				<div className={element("container")}>
 					<div className={element("content")}>
 						<div className={element("header")}>
@@ -93,10 +82,7 @@ export const CircleModal = (props: ModalInterface) => {
 								{lockIcon}
 								{header}
 							</Typography>
-							<CloseIcon
-								className={element("close-icon")}
-								onClick={handleCloseModal}
-							/>
+							<CloseIcon className={element("close-icon")} onClick={onClose} />
 						</div>
 
 						{modalStatus !== ModalAccessStatus.opened && (

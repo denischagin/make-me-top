@@ -6,7 +6,7 @@ import {
 	userCourseInfoSelector,
 	userIsModalOpenSelector,
 } from "@entities/user/model/selectors";
-import { toggleModal } from "@entities/user/model/slice";
+import { closeModal, toggleModal } from "@entities/user/model/slice";
 import { getCourseInfo } from "@entities/user/thunks/getCourseInfo";
 import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 
@@ -241,7 +241,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 				explorers={explorers}
 				keepers={keepers}
 				lastChosenSystem={lastChosenSystem}
-				onClose={() => setLastChosenSystem(DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE)}
+				onClose={() => dispatch(closeModal())}
 				userProgress={userProgress}
 				you={you}
 				yourKeeper={yourKeeper}
