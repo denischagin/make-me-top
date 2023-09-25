@@ -9,7 +9,7 @@
 	top: 0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.7s ease-in;
+    transition: opacity 0.6s ease;
     
 	&__container {
         background: $modal-background;
@@ -24,8 +24,7 @@
 		border-bottom-left-radius: 999px;
 		right: 0px;
 		bottom: 50%;
-        transition: transform 0.7s ease;  
-
+		transform: translateY(50%)
 	}
 
 	&__content {
@@ -76,18 +75,10 @@
 	&--open {
         opacity: 1;
         pointer-events: all;
-        
-        .circle-modal__container {
-			transform: translateX(0) translateY(50%) scale(1);
-		}
 	}
 
     &--close {
         opacity: 0;
         pointer-events: none;
-        
-        .circle-modal__container {      
-            transform: translateX(25%) translateY(50%) scale(0.7);
-		}
     }
 }

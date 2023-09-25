@@ -20,10 +20,6 @@ export const SystemsList = (props: SystemsListInterface) => {
 
 	const [block, element] = bem("systems-list");
 
-	if (!systems?.length) {
-		return null;
-	}
-
 	return (
 		<div className={block()}>
 			<Typography
@@ -34,17 +30,19 @@ export const SystemsList = (props: SystemsListInterface) => {
 			</Typography>
 			<div className={element("systems", "mb-4")}>
 				{systems?.map((system) => (
-					<System color={systemColor.primary500} key={system.courseId}>
-						<p className={element("label")}>{system.title}</p>
-						<div className={element("system-rating")}>
-							<Rating
-								scoreColor={ratingScoreColor.white}
-								rating={system.rating}
-								size={ratingSize.small}
-								systemColor={ratingSystemColor.white}
-							/>
-						</div>
-					</System>
+					<div className={element('system')}>
+						<System color={systemColor.primary500} key={system.courseId}>
+							<p className={element("label")}>{system.title}</p>
+							<div className={element("system-rating")}>
+								<Rating
+									scoreColor={ratingScoreColor.white}
+									rating={system.rating}
+									size={ratingSize.small}
+									systemColor={ratingSystemColor.white}
+								/>
+							</div>
+						</System>
+					</div>
 				))}
 			</div>
 		</div>

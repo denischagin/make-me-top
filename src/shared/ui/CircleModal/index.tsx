@@ -20,7 +20,7 @@ import {
 } from "@shared/ui/Typography/interfaces";
 
 import "./styles.scss";
-import { TransitionEventHandler, useEffect } from "react";
+import { useEffect } from "react";
 import { closeModal } from "@entities/user/model/slice";
 
 export const CircleModal = (props: ModalInterface) => {

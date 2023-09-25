@@ -57,47 +57,45 @@ export const Explorer = () => {
 		<>
 			<BackgroundProfile />
 			<div className={block()}>
-				<Header />
-				{!isLoading && (
-					<Container className={element("container")}>
-						<div className={element("row", "row")}>
-							<div className={element("profile", "col-xxl-9")}>
-								<ExplorerUserInfo />
+				<Header />(
+				<Container className={element("container")}>
+					<div className={element("row", "row")}>
+						<div className={element("profile", "col-xxl-9")}>
+							<ExplorerUserInfo />
 
-								<div className={element("current-system")}>
-									<CurrentSystemCard tabsList={TABS_LIST} />
-									<MasteringApplication />
-								</div>
-
-								<div className={element("button-galaxy")}>
-									<Button
-										title="Переход на страницу с галактиками"
-										size={buttonSize.large}
-										color={buttonColor.filled}
-										onClick={() => navigate(URL_GALAXY)}
-									/>
-								</div>
-
-								<div className={element("completed-systems")}>
-									<SystemsList
-										heading="Освоенные системы"
-										systems={investigatedSystems}
-									/>
-								</div>
+							<div className={element("current-system")}>
+								<CurrentSystemCard tabsList={TABS_LIST} />
+								<MasteringApplication />
 							</div>
 
-							<div className={element("rating", "col-xxl-3")}>
-								<Typography
-									variant={typographyVariant.h2}
-									className={element("rating-heading", "mt-1 mb-4")}
-								>
-									Рейтинг
-								</Typography>
-								<RatingCard />
+							<div className={element("button-galaxy")}>
+								<Button
+									title="Переход на страницу с галактиками"
+									size={buttonSize.large}
+									color={buttonColor.filled}
+									onClick={() => navigate(URL_GALAXY)}
+								/>
+							</div>
+
+							<div className={element("completed-systems")}>
+								<SystemsList
+									heading="Освоенные системы"
+									systems={investigatedSystems}
+								/>
 							</div>
 						</div>
-					</Container>
-				)}
+
+						<div className={element("rating", "col-xxl-3")}>
+							<Typography
+								variant={typographyVariant.h2}
+								className={element("rating-heading", "mt-1 mb-4")}
+							>
+								Рейтинг
+							</Typography>
+							<RatingCard />
+						</div>
+					</div>
+				</Container>
 			</div>
 		</>
 	);

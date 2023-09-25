@@ -28,12 +28,15 @@ export const userSlice = createSlice({
 		logOut: (state) => {
 			state.isRegistered = true;
 		},
+		showModal: (state) => {
+			state.isModalOpen = true;
+		},
 		toggleModal: (state) => {
 			state.isModalOpen = !state.isModalOpen;
 		},
 		closeModal: (state) => {
-			state.isModalOpen = false
-		} 
+			state.isModalOpen = false;
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -66,6 +69,12 @@ export const userSlice = createSlice({
 	},
 });
 
-export const { selectIsUserRegistered, logOut, toggleModal, closeModal } = userSlice.actions;
+export const {
+	selectIsUserRegistered,
+	logOut,
+	toggleModal,
+	closeModal,
+	showModal,
+} = userSlice.actions;
 
 export default userSlice.reducer;
