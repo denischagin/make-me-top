@@ -12,7 +12,7 @@ import { getSystemProgressType } from "@entities/orbit/lib/getSystemProgressType
 import { getXCoordinateOnEllipse } from "@entities/orbit/lib/getXCoordinateOnEllipse";
 import { getYCoordinateOnEllipse } from "@entities/orbit/lib/getYCoordinateOnEllipse";
 
-import System from "@shared/System";
+import System from "@shared/ui/System";
 
 import { ReactComponent as LockIcon } from "@shared/images/lock.svg";
 

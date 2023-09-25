@@ -19,4 +19,5 @@ export interface GalaxyCircleModalProp {
 	explorers: CourseExplorer[] | null;
 	courseId: number;
 	isOpen: boolean
+	handleChangeSystem?: (systemId: number) => void;
 }

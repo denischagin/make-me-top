@@ -1,6 +1,6 @@
 import React from 'react'
 import { KeepersListProps } from './interface'
-import { UserRatingCard } from '@shared/UserRatingCard'
+import { UserRatingCard } from '@shared/ui/UserRatingCard'
 import { getUserFullName } from '@shared/utils/getUserFullName'
 import { bem } from '@shared/utils/bem'
 import './style.scss'

@@ -3,8 +3,8 @@ import { ButtonChangeCurrentGalaxyProps } from "./interface";
 import { ReactComponent as Orbit1 } from "@shared/images/change-current-galaxy1.svg";
 import { ReactComponent as Orbit2 } from "@shared/images/change-current-galaxy2.svg";
 import { ReactComponent as Orbit3 } from "@shared/images/change-current-galaxy3.svg";
-import { Typography } from "@shared/Typography";
-import { typographyVariant } from "@shared/Typography/interfaces";
+import { Typography } from "@shared/ui/Typography";
+import { typographyVariant } from "@shared/ui/Typography/interfaces";
 import { bem } from "@shared/utils/bem";
 import './style.scss'
 

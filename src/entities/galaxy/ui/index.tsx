@@ -6,7 +6,7 @@ import {
 	userCourseInfoSelector,
 	userIsModalOpenSelector,
 } from "@entities/user/model/selectors";
-import { showModal } from "@entities/user/model/slice";
+import { toggleModal } from "@entities/user/model/slice";
 import { getCourseInfo } from "@entities/user/thunks/getCourseInfo";
 import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 
@@ -42,7 +42,7 @@ import { SystemProgressTypes } from "@shared/types/common";
 
 import "./style.scss";
 import { GalaxyCircleModal } from "./GalaxyCircleModal";
-import { useLinesSvgContainer } from "./hooks";
+import { useLinesSvgContainer } from "../lib/hooks";
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
 	const {
@@ -54,7 +54,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 		height,
 	} = props;
 
-	const width = fullWidth > 1920 ? 1920 : fullWidth
+	const width = fullWidth > 1920 ? 1920 : fullWidth;
 
 	const [block, element] = bem("galaxy");
 
@@ -99,11 +99,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 	useEffect(() => {
 		handleSystemMouseLeave();
 	}, [width]);
-	
+
 	useEffect(() => {
 		//поиск на странице и изменение модификаторов элементов в соответствии с состоянием
 		setSystems(document.querySelectorAll(`.${SYSTEM_CLASS}`));
-		
+
 		setSystemsActivityToActive({
 			activeSystemsId: activeSystemsIds,
 		});
@@ -178,7 +178,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 			...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
 		});
 
-		dispatch(showModal());
+		dispatch(toggleModal());
 		dispatch(
 			getModalPlanets({
 				planetId: targetId,
@@ -193,6 +193,31 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 		dispatch(
 			fetchAndSetLastChosenSystem({
 				id: targetId,
+				withDependencies: true,
+				setLastChosenSystem,
+			})
+		);
+	};
+
+	const handleChangeSystem = (systemId: number) => {
+		setLastChosenSystem({
+			...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
+		});
+
+		dispatch(
+			getModalPlanets({
+				planetId: systemId,
+			})
+		);
+		dispatch(
+			getCourseInfo({
+				courseId: systemId,
+			})
+		);
+
+		dispatch(
+			fetchAndSetLastChosenSystem({
+				id: systemId,
 				withDependencies: true,
 				setLastChosenSystem,
 			})
@@ -216,13 +241,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 				explorers={explorers}
 				keepers={keepers}
 				lastChosenSystem={lastChosenSystem}
-				onClose={() => {
-					dispatch(showModal());
-					setLastChosenSystem(DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE);
-				}}
+				onClose={() => setLastChosenSystem(DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE)}
 				userProgress={userProgress}
 				you={you}
 				yourKeeper={yourKeeper}
+				handleChangeSystem={handleChangeSystem}
 			/>
 			<div
 				className={element("background")}

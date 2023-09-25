@@ -1,5 +1,5 @@
 import { ButtonChangeCurrentGalaxy } from "@features/ButtonChangeCurrentGalaxy";
-import { EntryAnimateGalaxies } from "@shared/EntryAnimateGalaxies";
+import { EntryAnimateGalaxies } from "@shared/ui/EntryAnimateGalaxies";
 import { bem } from "@shared/utils/bem";
 import { ReactComponent as CurrentGalaxy } from "@shared/images/current-galaxy.svg";
 import { ChangeGalaxyButtonsProps } from "./interface";

@@ -10,7 +10,7 @@ import {
 
 import { getNotStudiedParentDependencies } from '@shared/utils/getNotStudiedParentDependencies';
 
-import { ModalAccessStatus } from '@shared/CircleModal/interfaces';
+import { ModalAccessStatus } from '@shared/ui/CircleModal/interfaces';
 
 interface GetModalStatus {
     lastChosenSystem: LastChosenSystem,

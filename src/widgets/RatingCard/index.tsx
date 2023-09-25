@@ -4,21 +4,21 @@ import { useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 
-import { Button } from '@shared/Button';
-import { Card } from '@shared/Card';
-import { DividingLine } from '@shared/DividingLine';
-import { ShowMoreElemenetsButton } from '@shared/ShowMoreElemenetsButton';
-import { Typography } from '@shared/Typography';
-import { UsersRating } from '@shared/UsersRating';
+import { Button } from '@shared/ui/Button';
+import { Card } from '@shared/ui/Card';
+import { DividingLine } from '@shared/ui/DividingLine';
+import { ShowMoreElemenetsButton } from '@shared/ui/ShowMoreElemenetsButton';
+import { Typography } from '@shared/ui/Typography';
+import { UsersRating } from '@shared/ui/UsersRating';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 import { sortByRating } from '@shared/utils/sortByRating';
 
-import { buttonSize } from '@shared/Button/interfaces';
-import { cardSize } from '@shared/Card/interfaces';
-import { DividingLineColor } from '@shared/DividingLine/interfaces';
-import { typographyVariant } from '@shared/Typography/interfaces';
+import { buttonSize } from '@shared/ui/Button/interfaces';
+import { cardSize } from '@shared/ui/Card/interfaces';
+import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
+import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import { DEFAULT_LIMIT_ITEM } from './model';
 

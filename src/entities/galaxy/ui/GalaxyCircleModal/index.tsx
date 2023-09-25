@@ -1,25 +1,25 @@
 import { TABS_LIST } from "@pages/Explorer/model";
-import { Button } from "@shared/Button";
-import { buttonColor, buttonSize } from "@shared/Button/interfaces";
-import { CircleModal } from "@shared/CircleModal";
-import { CurrentUserItem } from "@shared/CurrentUserItem";
-import { DividingLine } from "@shared/DividingLine";
-import { DividingLineColor } from "@shared/DividingLine/interfaces";
-import { FinalGrade } from "@shared/FinalGrade";
-import { MmtTabs } from "@shared/MmtTabs";
-import { PlanetList } from "@shared/PlanetList";
-import { SelectUsersList } from "@shared/SelectUsersList";
-import { UsersList } from "@shared/UsersList";
+import { Button } from "@shared/ui/Button";
+import { buttonColor, buttonSize } from "@shared/ui/Button/interfaces";
+import { CircleModal } from "@shared/ui/CircleModal";
+import { CurrentUserItem } from "@shared/ui/CurrentUserItem";
+import { DividingLine } from "@shared/ui/DividingLine";
+import { DividingLineColor } from "@shared/ui/DividingLine/interfaces";
+import { FinalGrade } from "@shared/ui/FinalGrade";
+import { MmtTabs } from "@shared/ui/MmtTabs";
+import { PlanetList } from "@shared/ui/PlanetList";
+import { SelectUsersList } from "@shared/ui/SelectUsersList";
+import { UsersList } from "@shared/ui/UsersList";
 import { bem } from "@shared/utils/bem";
 import { TabPanel } from "react-tabs";
 import { GalaxyCircleModalProp } from "./interface";
 import "./style.scss";
 import { useState } from "react";
-import { Typography } from "@shared/Typography";
+import { Typography } from "@shared/ui/Typography";
 import {
 	typographyColor,
 	typographyVariant,
-} from "@shared/Typography/interfaces";
+} from "@shared/ui/Typography/interfaces";
 
 export const GalaxyCircleModal = ({
 	lastChosenSystem,
@@ -32,6 +32,7 @@ export const GalaxyCircleModal = ({
 	explorers,
 	courseId,
 	isOpen,
+	handleChangeSystem,
 }: GalaxyCircleModalProp) => {
 	const [block, element] = bem("galaxy-circle-modal");
 	const [activeTab, setActiveTab] = useState(0);
@@ -50,6 +51,7 @@ export const GalaxyCircleModal = ({
 			}}
 			isLocked={lastChosenSystem.isLocked}
 			onClose={onClose}
+			handleChangeSystem={handleChangeSystem}
 		>
 			<div className={element("send-button")}>
 				{systemIsOpen && (

@@ -10,8 +10,8 @@ import {
 import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 import { getKeeperCardInfo } from '@entities/keeper/thunks/getKeeperCardInfo';
 
-import { ArrowButton } from '@shared/ArrowButton';
-import { BackgroundProfile } from '@shared/BackgroundProfile';
+import { ArrowButton } from '@shared/ui/ArrowButton';
+import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 
 import { bem } from '@shared/utils/bem';
 
@@ -20,10 +20,10 @@ import { KeeperCardUserInfo } from '@widgets/KeeperCardUserInfo';
 import { Reviews } from '@widgets/Reviews';
 import { SystemsList } from '@widgets/SystemsList';
 
-import { arrowButtonDirection } from '@shared/ArrowButton/interfaces';
+import { arrowButtonDirection } from '@shared/ui/ArrowButton/interfaces';
 
 import './styles.scss';
-import { Container } from '@shared/Container';
+import { Container } from '@shared/ui/Container';
 
 const KeeperCard = () => {
     const [block, element] = bem('keeper-card');

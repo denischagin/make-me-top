@@ -1,10 +1,10 @@
 import React from "react";
 import { bem } from "@shared/utils/bem";
-import { Typography } from "@shared/Typography";
-import { typographyVariant } from "@shared/Typography/interfaces";
-import { Button } from "@shared/Button";
-import { buttonSize } from "@shared/Button/interfaces";
-import { KeeperRatingCard } from "@shared/KeeperRatingCard";
+import { Typography } from "@shared/ui/Typography";
+import { typographyVariant } from "@shared/ui/Typography/interfaces";
+import { Button } from "@shared/ui/Button";
+import { buttonSize } from "@shared/ui/Button/interfaces";
+import { KeeperRatingCard } from "@shared/ui/KeeperRatingCard";
 import { getUserFullName } from "@shared/utils/getUserFullName";
 import { GalaxyInformationProps } from "./interface";
 

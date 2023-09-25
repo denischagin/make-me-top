@@ -10,9 +10,9 @@ import { authLogin } from '@entities/user/thunks/authLogin';
 
 import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
-import { Input } from '@shared/Input';
-import { PlanetButton } from '@shared/PlanetButton';
-import { Typography } from '@shared/Typography';
+import { Input } from '@shared/ui/Input';
+import { PlanetButton } from '@shared/ui/PlanetButton';
+import { Typography } from '@shared/ui/Typography';
 
 import { bem } from '@shared/utils/bem';
 
@@ -22,7 +22,7 @@ import {
 } from '@shared/constants/links';
 import { roles, storageKeys } from '@shared/constants/storageKeys';
 
-import { typographyVariant } from '@shared/Typography/interfaces';
+import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import {
     EXPLORER_ROLE_STRING,

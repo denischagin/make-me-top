@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 
-import { Button } from '@shared/Button';
-import { Typography } from '@shared/Typography';
+import { Button } from '@shared/ui/Button';
+import { Typography } from '@shared/ui/Typography';
 
 import { bem } from '@shared/utils/bem';
 
@@ -10,8 +10,8 @@ import { URL_GALAXY } from '@shared/constants/links';
 import {
     buttonColor,
     buttonSize,
-} from '@shared/Button/interfaces';
-import { typographyVariant } from '@shared/Typography/interfaces';
+} from '@shared/ui/Button/interfaces';
+import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 

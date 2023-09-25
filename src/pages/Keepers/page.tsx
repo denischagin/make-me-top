@@ -1,4 +1,4 @@
-import { BackgroundUsersList } from "@shared/BackgroundUsersList";
+import { BackgroundUsersList } from "@shared/ui/BackgroundUsersList";
 
 import { bem } from "@shared/utils/bem";
 
@@ -11,10 +11,10 @@ import { keepersListSelector } from "@entities/keeper/model/selectors";
 import { useEffect } from "react";
 import { getListKeepersByFilter } from "@entities/keeper/thunks/getListKeepersByFilter";
 import { useShowMore } from "@shared/utils/hooks/use-show-more";
-import { Button } from "@shared/Button";
-import { buttonSize } from "@shared/Button/interfaces";
-import { SortCard } from "@shared/SortCard";
-import { Container } from "@shared/Container";
+import { Button } from "@shared/ui/Button";
+import { buttonSize } from "@shared/ui/Button/interfaces";
+import { SortCard } from "@shared/ui/SortCard";
+import { Container } from "@shared/ui/Container";
 import { loadingIsLoadingSelector } from "@entities/loading/model/selectors";
 
 const Keepers = () => {

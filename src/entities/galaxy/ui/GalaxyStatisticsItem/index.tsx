@@ -1,5 +1,5 @@
-import { Typography } from "@shared/Typography";
-import { typographyVariant } from "@shared/Typography/interfaces";
+import { Typography } from "@shared/ui/Typography";
+import { typographyVariant } from "@shared/ui/Typography/interfaces";
 import { bem } from "@shared/utils/bem";
 import React from "react";
 import { GalaxyStatisticsItemProps } from "./interface";

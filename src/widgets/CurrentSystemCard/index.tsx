@@ -8,24 +8,24 @@ import {
 	userCourseInfoSelector,
 	userIsModalOpenSelector,
 } from "@entities/user/model/selectors";
-import { showModal } from "@entities/user/model/slice";
+import { toggleModal } from "@entities/user/model/slice";
 import { getCourseInfo } from "@entities/user/thunks/getCourseInfo";
 import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 
 import { explorerInfoSelector } from "@entities/explorer/model/selectors";
 import { leaveCourseRequest } from "@entities/explorer/thunks/leaveCourseRequest";
 
-import { Button } from "@shared/Button";
-import { Card } from "@shared/Card";
-import { CircleModal } from "@shared/CircleModal";
-import { ConfirmModal } from "@shared/ConfirmModal";
-import { CurrentUserItem } from "@shared/CurrentUserItem";
-import { DividingLine } from "@shared/DividingLine";
-import { FinalGrade } from "@shared/FinalGrade";
-import { MmtTabs } from "@shared/MmtTabs";
-import { PlanetList } from "@shared/PlanetList";
-import { Typography } from "@shared/Typography";
-import { UsersList } from "@shared/UsersList";
+import { Button } from "@shared/ui/Button";
+import { Card } from "@shared/ui/Card";
+import { CircleModal } from "@shared/ui/CircleModal";
+import { ConfirmModal } from "@shared/ui/ConfirmModal";
+import { CurrentUserItem } from "@shared/ui/CurrentUserItem";
+import { DividingLine } from "@shared/ui/DividingLine";
+import { FinalGrade } from "@shared/ui/FinalGrade";
+import { MmtTabs } from "@shared/ui/MmtTabs";
+import { PlanetList } from "@shared/ui/PlanetList";
+import { Typography } from "@shared/ui/Typography";
+import { UsersList } from "@shared/ui/UsersList";
 
 import { bem } from "@shared/utils/bem";
 import { getUserFullName } from "@shared/utils/getUserFullName";
@@ -37,13 +37,13 @@ import { ProgressBar } from "@widgets/ProgressBar";
 import { SelectSystem } from "@widgets/SelectSystem";
 
 import { CurrentSystemCardInterface } from "./interfaces";
-import { buttonColor, buttonSize } from "@shared/Button/interfaces";
-import { cardSize } from "@shared/Card/interfaces";
-import { DividingLineColor } from "@shared/DividingLine/interfaces";
+import { buttonColor, buttonSize } from "@shared/ui/Button/interfaces";
+import { cardSize } from "@shared/ui/Card/interfaces";
+import { DividingLineColor } from "@shared/ui/DividingLine/interfaces";
 import {
 	typographyColor,
 	typographyVariant,
-} from "@shared/Typography/interfaces";
+} from "@shared/ui/Typography/interfaces";
 
 import "./styles.scss";
 
@@ -77,7 +77,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
 			<CircleModal
 				isOpen={isModalOpen}
 				header="Groovy"
-				onClose={() => dispatch(showModal())}
+				onClose={() => dispatch(toggleModal())}
 			>
 				<MmtTabs
 					list={tabsList}
@@ -177,7 +177,6 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
 									courseId: currentSystem?.courseId,
 								})
 							);
-							dispatch(showModal());
 						}}
 					/>
 				</div>

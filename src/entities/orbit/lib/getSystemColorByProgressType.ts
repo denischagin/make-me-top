@@ -1,4 +1,4 @@
-import { systemColor } from '@shared/System/interfaces';
+import { systemColor } from '@shared/ui/System/interfaces';
 
 import { SystemProgressTypes } from '@shared/types/common';
 

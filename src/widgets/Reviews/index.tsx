@@ -10,15 +10,15 @@ import {
 
 import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 
-import { Button } from '@shared/Button';
-import { ReviewCard } from '@shared/ReviewCard';
-import { ShowMoreElemenetsButton } from '@shared/ShowMoreElemenetsButton';
-import { Typography } from '@shared/Typography';
+import { Button } from '@shared/ui/Button';
+import { ReviewCard } from '@shared/ui/ReviewCard';
+import { ShowMoreElemenetsButton } from '@shared/ui/ShowMoreElemenetsButton';
+import { Typography } from '@shared/ui/Typography';
 
 import { bem } from '@shared/utils/bem';
 
-import { buttonSize } from '@shared/Button/interfaces';
-import { typographyVariant } from '@shared/Typography/interfaces';
+import { buttonSize } from '@shared/ui/Button/interfaces';
+import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import { DEFAULT_EL_LIMIT } from './model';
 

@@ -1,16 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
 import { getExplorerInfo } from "@entities/explorer/thunks/getExplorerInfo";
 
-import { DEFAULT_GALAXY_ID } from "@entities/galaxy/model/constants";
 import { getGalaxy } from "@entities/galaxy/thunks/getGalaxy";
 import { getUserProgressInGalaxy } from "@entities/galaxy/thunks/getUserProgressInGalaxy";
 import Galaxy from "@entities/galaxy/ui";
 
-import { BackgroundGalaxyPage } from "@shared/BackgroundGalaxyPage";
-import { TitleGalaxyPage } from "@shared/TitleGalaxyPage";
+import { BackgroundGalaxyPage } from "@shared/ui/BackgroundGalaxyPage";
+import { TitleGalaxyPage } from "@shared/ui/TitleGalaxyPage";
 
 import { bem } from "@shared/utils/bem";
 
@@ -26,7 +25,6 @@ import "./styles.scss";
 import { useParams } from "react-router-dom";
 import { roles, storageKeys } from "@shared/constants/storageKeys";
 import { useGalaxyWindowSizeDebounce } from "./hooks";
-import { loadingIsLoadingSelector } from "@entities/loading/model/selectors";
 
 const GalaxyPage: React.FC = () => {
 	const [block, element] = bem("galaxy-page");

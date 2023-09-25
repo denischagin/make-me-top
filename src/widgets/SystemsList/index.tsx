@@ -1,6 +1,6 @@
-import { Rating } from "@shared/Rating";
-import System from "@shared/System";
-import { Typography } from "@shared/Typography";
+import { Rating } from "@shared/ui/Rating";
+import System from "@shared/ui/System";
+import { Typography } from "@shared/ui/Typography";
 
 import { bem } from "@shared/utils/bem";
 
@@ -9,9 +9,9 @@ import {
 	ratingScoreColor,
 	ratingSize,
 	ratingSystemColor,
-} from "@shared/Rating/interfaces";
-import { systemColor } from "@shared/System/interfaces";
-import { typographyVariant } from "@shared/Typography/interfaces";
+} from "@shared/ui/Rating/interfaces";
+import { systemColor } from "@shared/ui/System/interfaces";
+import { typographyVariant } from "@shared/ui/Typography/interfaces";
 
 import "./styles.scss";
 

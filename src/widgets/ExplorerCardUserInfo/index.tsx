@@ -2,21 +2,21 @@ import { useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
 
-import { Avatar } from '@shared/Avatar';
-import { InfoCard } from '@shared/InfoCard';
-import { Rating } from '@shared/Rating';
-import { Typography } from '@shared/Typography';
+import { Avatar } from '@shared/ui/Avatar';
+import { InfoCard } from '@shared/ui/InfoCard';
+import { Rating } from '@shared/ui/Rating';
+import { Typography } from '@shared/ui/Typography';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 
-import { avatarSize } from '@shared/Avatar/interfaces';
+import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import {
     ratingScoreColor,
     ratingSize,
     ratingSystemColor,
-} from '@shared/Rating/interfaces';
-import { typographyVariant } from '@shared/Typography/interfaces';
+} from '@shared/ui/Rating/interfaces';
+import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 

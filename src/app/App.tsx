@@ -2,7 +2,7 @@ import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router";
 
-import Spinner from "@shared/Spinner";
+import Spinner from "@shared/ui/Spinner";
 
 import { bem } from "@shared/utils/bem";
 

@@ -10,12 +10,12 @@ import {
 } from "@entities/explorer/model/selectors";
 import { getExplorerCardInfo } from "@entities/explorer/thunks/getExplorerCardInfo";
 
-import { ArrowButton } from "@shared/ArrowButton";
-import { BackgroundProfile } from "@shared/BackgroundProfile";
-import { EducationApplicationCard } from "@shared/EducationApplicationCard";
-import { ExplorerApplicationCard } from "@shared/ExplorerApplicationCard";
-import { ReviewRequestCard } from "@shared/ReviewRequestCard";
-import { Typography } from "@shared/Typography";
+import { ArrowButton } from "@shared/ui/ArrowButton";
+import { BackgroundProfile } from "@shared/ui/BackgroundProfile";
+import { EducationApplicationCard } from "@shared/ui/EducationApplicationCard";
+import { ExplorerApplicationCard } from "@shared/ui/ExplorerApplicationCard";
+import { ReviewRequestCard } from "@shared/ui/ReviewRequestCard";
+import { Typography } from "@shared/ui/Typography";
 
 import { bem } from "@shared/utils/bem";
 
@@ -24,14 +24,14 @@ import { Header } from "@widgets/Header";
 import { Reviews } from "@widgets/Reviews";
 import { SystemsList } from "@widgets/SystemsList";
 
-import { arrowButtonDirection } from "@shared/ArrowButton/interfaces";
+import { arrowButtonDirection } from "@shared/ui/ArrowButton/interfaces";
 import {
 	typographyColor,
 	typographyVariant,
-} from "@shared/Typography/interfaces";
+} from "@shared/ui/Typography/interfaces";
 
 import "./styles.scss";
-import { Container } from "@shared/Container";
+import { Container } from "@shared/ui/Container";
 import NotFound from "@pages/NotFound";
 
 const ExplorerCard = () => {

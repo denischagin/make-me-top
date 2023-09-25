@@ -6,9 +6,9 @@ import { keeperInfoSelector } from "@entities/keeper/model/selectors";
 import { FinalAssessmentsInterface } from "@entities/keeper/model/types/interfaces";
 import { getKeeperInfo } from "@entities/keeper/thunks/getKeeperInfo";
 
-import { BackgroundProfile } from "@shared/BackgroundProfile";
-import { GradeApplicationCard } from "@shared/GradeApplicationCard";
-import { Typography } from "@shared/Typography";
+import { BackgroundProfile } from "@shared/ui/BackgroundProfile";
+import { GradeApplicationCard } from "@shared/ui/GradeApplicationCard";
+import { Typography } from "@shared/ui/Typography";
 
 import { bem } from "@shared/utils/bem";
 
@@ -18,10 +18,10 @@ import { GradeApplications } from "@widgets/GradeApplications";
 import { Header } from "@widgets/Header";
 import { KeeperUserInfo } from "@widgets/KeeperUserInfo";
 
-import { typographyVariant } from "@shared/Typography/interfaces";
+import { typographyVariant } from "@shared/ui/Typography/interfaces";
 
 import "./styles.scss";
-import { Container } from "@shared/Container";
+import { Container } from "@shared/ui/Container";
 import { loadingIsLoadingSelector } from "@entities/loading/model/selectors";
 
 export const Keeper = () => {

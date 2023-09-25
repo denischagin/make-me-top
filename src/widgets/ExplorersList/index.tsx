@@ -1,7 +1,7 @@
 import { ExplorersListProps } from './interface'
 import { bem } from '@shared/utils/bem';
 import "./style.scss"
-import { UserRatingCard } from '@shared/UserRatingCard';
+import { UserRatingCard } from '@shared/ui/UserRatingCard';
 import { getUserFullName } from '@shared/utils/getUserFullName';
 import { useNavigate } from 'react-router-dom';
 import { MouseEventHandler } from 'react';

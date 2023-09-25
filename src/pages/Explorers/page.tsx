@@ -1,23 +1,23 @@
 import { bem } from "@shared/utils/bem";
-import { BackgroundUsersList } from "@shared/BackgroundUsersList";
+import { BackgroundUsersList } from "@shared/ui/BackgroundUsersList";
 
 import { Header } from "@widgets/Header";
 
 import "./styles.scss";
-import { Card } from "@shared/Card";
-import { cardSize } from "@shared/Card/interfaces";
+import { Card } from "@shared/ui/Card";
+import { cardSize } from "@shared/ui/Card/interfaces";
 import { ExplorersList } from "@widgets/ExplorersList";
-import { Button } from "@shared/Button";
-import { buttonSize } from "@shared/Button/interfaces";
-import { Typography } from "@shared/Typography";
-import { typographyVariant } from "@shared/Typography/interfaces";
+import { Button } from "@shared/ui/Button";
+import { buttonSize } from "@shared/ui/Button/interfaces";
+import { Typography } from "@shared/ui/Typography";
+import { typographyVariant } from "@shared/ui/Typography/interfaces";
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 import { explorersListSelector } from "@entities/explorer/model/selectors";
 import { useEffect, useState } from "react";
 import { getListExplorersByFilter } from "@entities/explorer/thunks/getFilterExplorers";
 import { useShowMore } from "@shared/utils/hooks/use-show-more";
-import { SortCard } from "@shared/SortCard";
-import { Container } from "@shared/Container";
+import { SortCard } from "@shared/ui/SortCard";
+import { Container } from "@shared/ui/Container";
 import { loadingIsLoadingSelector } from "@entities/loading/model/selectors";
 
 const Explorers = () => {
