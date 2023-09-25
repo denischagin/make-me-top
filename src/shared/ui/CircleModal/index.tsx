@@ -40,17 +40,21 @@ export const CircleModal = (props: ModalInterface) => {
 
 	const courseInfo = useAppSelector(userCourseInfoSelector);
 
-	useEffect(
-		() => () => {
+	useEffect(() => {
+		return () => {
 			dispatch(closeModal());
-		},
-		[]
-	);
+		};
+	}, []);
+
+	const handleOnClose = () => {
+		if (!isOpen) {
+			onClose();
+		}
+	};
 
 	const handleCloseModal = () => {
-		dispatch(closeModal())
-		onClose()
-	}
+		dispatch(closeModal());
+	};
 
 	const modalStatus = data
 		? getModalStatus({
@@ -71,6 +75,7 @@ export const CircleModal = (props: ModalInterface) => {
 	return (
 		<Portal target={document.body}>
 			<div
+				onTransitionEnd={handleOnClose}
 				className={block({
 					open: isOpen,
 					close: !isOpen,
@@ -88,7 +93,10 @@ export const CircleModal = (props: ModalInterface) => {
 								{lockIcon}
 								{header}
 							</Typography>
-							<CloseIcon className={element("close-icon")} onClick={handleCloseModal} />
+							<CloseIcon
+								className={element("close-icon")}
+								onClick={handleCloseModal}
+							/>
 						</div>
 
 						{modalStatus !== ModalAccessStatus.opened && (
