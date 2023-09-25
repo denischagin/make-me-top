@@ -76,7 +76,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
 		<div className={block()}>
 			<CircleModal
 				isOpen={isModalOpen}
-				header="Groovy"
+				header={courseInfo.course.title}
 				onClose={() => dispatch(closeModal())}
 			>
 				<MmtTabs

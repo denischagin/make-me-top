@@ -45,7 +45,7 @@ export const Explorer = () => {
 	const isError = useAppSelector(explorersIsErrorSelector);
 	const isLoading = useAppSelector(loadingIsLoadingSelector);
 
-	const { investigatedSystems } = userInfo;
+	const { investigatedSystems, studyRequest, currentSystem } = userInfo;
 
 	useEffect(() => {
 		dispatch(getExplorerInfo({}));
@@ -69,12 +69,14 @@ export const Explorer = () => {
 							</div>
 
 							<div className={element("button-galaxy")}>
-								<Button
-									title="Переход на страницу с галактиками"
-									size={buttonSize.large}
-									color={buttonColor.filled}
-									onClick={() => navigate(URL_GALAXY)}
-								/>
+								{(currentSystem || studyRequest) && (
+									<Button
+										title="Переход на страницу с галактикой"
+										size={buttonSize.large}
+										color={buttonColor.filled}
+										onClick={() => navigate(URL_GALAXY + "/1")}
+									/>
+								)}
 							</div>
 
 							<div className={element("completed-systems")}>

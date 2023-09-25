@@ -55,6 +55,7 @@ const ExplorerCard = () => {
 	}, [explorerId]);
 
 	if (isError) return <NotFound />;
+	
 	return (
 		<div className={block()}>
 			<BackgroundProfile />

@@ -70,7 +70,7 @@ export const routes: RouteInterface[] = [
 	{
 		path: URL_GALAXY,
 		element: <AllGalaxiesPage />,
-		isPrivate: true,
+		isPrivate: false,
 	},
 	{
 		path: URL_KEEPERS,

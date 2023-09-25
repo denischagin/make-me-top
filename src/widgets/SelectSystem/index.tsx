@@ -33,7 +33,7 @@ export const SelectSystem = () => {
                 title="Выбрать систему"
                 color={buttonColor.filled}
                 onClick={() => {
-                    return navigate(URL_GALAXY);
+                    navigate(URL_GALAXY + '/1');
                 }}
             />
         </div>

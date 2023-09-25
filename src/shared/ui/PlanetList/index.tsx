@@ -53,7 +53,7 @@ export const PlanetList = (props: PlanetListInterface) => {
                         <div className={element('info')}>
                             <span className={element('item-text')}>Текущая планета</span>
                             <Button
-                                title="Проверить"
+                                title="Обучение"
                                 size={buttonSize.small}
                                 color={buttonColor.primary500}
                             />

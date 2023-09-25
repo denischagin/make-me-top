@@ -14,7 +14,6 @@ const SystemProgress: React.FC<SystemProgressProps> = (props) => {
 
     const isProgress = !!percentageProgress;
 
-
     return (
         <div className={block()}>
             {
