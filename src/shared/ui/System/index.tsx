@@ -7,6 +7,7 @@ import { bem } from "@shared/utils/bem";
 import { SystemInterface } from "./interfaces";
 
 import "./styles.scss";
+import { memo } from "react";
 
 const System = (props: SystemInterface) => {
 	const { color, children, percentageProgress } = props;
@@ -40,4 +41,4 @@ const System = (props: SystemInterface) => {
 	);
 };
 
-export default System;
+export default memo(System);

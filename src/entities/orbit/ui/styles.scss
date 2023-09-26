@@ -1,11 +1,18 @@
+@mixin create-animation-destroy($animation-name, $animation-duration: 5s) {
+	animation-name: $animation-name;
+	animation-duration: $animation-duration;
+	animation-fill-mode: forwards;
+	pointer-events: none;
+}
+
 .orbit {
 	position: absolute;
 	border-radius: 50%;
-  pointer-events: none;
+	pointer-events: none;
 
 	&--active {
-    pointer-events: all;
-  }
+		pointer-events: all;
+	}
 
 	&__content {
 		display: flex;
@@ -15,6 +22,30 @@
 		border-radius: 50%;
 
 		&-system {
+			&.destroy1 {
+				@include create-animation-destroy(destroy1);
+			}
+
+			&.destroy2 {
+				@include create-animation-destroy(destroy2);
+			}
+
+			&.destroy3 {
+				@include create-animation-destroy(destroy3);
+			}
+
+			&.destroy4 {
+				@include create-animation-destroy(destroy4);
+			}
+
+			&.destroy5 {
+				@include create-animation-destroy(destroy5);
+			}
+
+			&.destroy6 {
+				@include create-animation-destroy(destroy6, 7s);
+			}
+
 			animation: entryAnimate 1s ease;
 			position: absolute;
 			display: flex;
@@ -58,5 +89,84 @@
 
 	to {
 		opacity: 1;
+	}
+}
+
+@keyframes destroy1 {
+	from {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	to {
+		opacity: 0;
+		transform: scale(0);
+	}
+}
+
+@keyframes destroy2 {
+	from {
+		opacity: 1;
+		transform: rotate(0deg);
+	}
+
+	to {
+		opacity: 0;
+		transform: rotate(600deg);
+	}
+}
+
+@keyframes destroy3 {
+	from {
+		opacity: 1;
+		filter: blur(0);
+	}
+
+	to {
+		opacity: 0;
+		filter: blur(5px);
+	}
+}
+
+@keyframes destroy4 {
+	from {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+
+	to {
+		opacity: 0;
+		left: 100vw;
+		transform: rotate(600deg) scale(1.5);
+	}
+}
+
+@keyframes destroy5 {
+	from {
+		opacity: 1;
+		transform: rotate(0deg) scale(1);
+	}
+
+	to {
+		opacity: 0;
+		left: -100vw;
+		transform: rotate(600deg) scale(1.5);
+	}
+}
+
+@keyframes destroy6 {
+	from {
+		transform: rotate(0deg) scale(1) translateX(0);
+		opacity: 1;
+	}
+
+	70% {
+		transform: rotate(0deg) scale(1.5);
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+		transform: rotate(600deg) scale(1.5) translateX(-100vw);
 	}
 }

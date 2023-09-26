@@ -13,84 +13,97 @@
 	background-position: center;
 	background-repeat: repeat;
 
-	&__star-first,
-	&__star-second,
-	&__star-third,
-	&__star-fourth,
-	&__star-fifth,
-	&__star-sixth,
-	&__star-seventh,
-	&__star-eighth,
-	&__star-ninth,
-	&__star-tenth,
-	&__star-eleventh,
-	&__star-twelfth,
-	&__star-thirteenth {
+	&__star {
 		position: absolute;
 	}
 
-	&__star-first {
+	.star-first {
 		left: calc(50% - 15px / 2 - 780px);
 		top: calc(50% - 18px / 2 - 36px);
 	}
 
-	&__star-second {
+	.star-second {
 		left: calc(50% - 15px / 2 + 55px);
 		top: calc(50% - 18px / 2 - 424px);
 	}
 
-	&__star-third {
+	.star-third {
 		left: calc(50% - 20px / 2 - 306px);
 		top: calc(50% - 24px / 2 + 978px);
 	}
 
-	&__star-fourth {
+	.star-fourth {
 		left: calc(50% - 20px / 2 - 713px);
 		top: calc(50% - 24px / 2 + 247px);
 	}
 
-	&__star-fifth {
+	.star-fifth {
 		left: calc(50% - 20px / 2 + 364px);
 		top: calc(50% - 24px / 2 - 114px);
 	}
 
-	&__star-sixth {
+	.star-sixth {
 		left: calc(50% - 15px / 2 + 478.5px);
 		top: calc(50% - 18px / 2 - 377px);
 	}
 
-	&__star-seventh {
+	.star-seventh {
 		left: calc(50% - 15px / 2 - 710.5px);
 		top: calc(50% - 18px / 2 + 1174px);
 	}
 
-	&__star-eighth {
+	.star-eighth {
 		left: calc(50% - 15px / 2 + 149px);
 		top: calc(50% - 18px / 2 - 58px);
 	}
 
-	&__star-ninth {
+	.star-ninth {
 		left: calc(50% - 15px / 2 + 500px);
 		top: calc(50% - 18px / 2 - 45px);
 	}
 
-	&__star-tenth {
+	.star-tenth {
 		left: calc(50% - 15px / 2 - 500px);
 		top: calc(50% - 18px / 2 - 345px);
 	}
 
-	&__star-eleventh {
+	.star-eleventh {
 		left: calc(50% - 15px / 2 + 250px);
 		top: calc(50% - 18px / 2 - 800px);
 	}
 
-	&__star-twelfth {
+	.star-twelfth {
 		left: calc(50% - 15px / 2 - 350px);
 		top: calc(50% - 18px / 2 + 400px);
 	}
 
-	&__star-thirteenth {
+	.star-thirteenth {
 		left: calc(50% - 15px / 2 + 400px);
 		top: calc(50% - 18px / 2 + 500px);
+	}
+
+	.star-fourteenth {
+		left: calc(50% - 15px / 2 + 600px);
+		top: calc(50% - 18px / 2 - 600px);
+	}
+
+	.star-fifteenth {
+		left: calc(50% - 15px / 2 - 700px);
+		top: calc(50% - 18px / 2 + 700px);
+	}
+
+	.star-sixteenth {
+		left: calc(50% - 15px / 2 + 800px);
+		top: calc(50% - 18px / 2 + 800px);
+	}
+
+	.star-seventeenth {
+		left: calc(50% - 15px / 2 - 900px);
+		top: calc(50% - 18px / 2 - 900px);
+	}
+
+	.star-eighteenth {
+		left: calc(50% - 15px / 2 + 1000px);
+		top: calc(50% - 18px / 2 + 1000px);
 	}
 }

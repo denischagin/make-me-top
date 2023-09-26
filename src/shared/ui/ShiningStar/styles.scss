@@ -1,27 +1,37 @@
-@import '@app/styles/variables.scss';
+@import "@app/styles/variables.scss";
 
 .shining-star {
-    color: $white;
+	color: $white;
 
-    animation-name: shine;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-duration: 3s;
+	animation-name: shine;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	animation-duration: 3s;
 
-    @keyframes shine {
-        from {
-            transform: scale(1);
-            opacity: 0
-        }
-        10% {
-            color: $shine;
-            transform: scale(1.35);
-            opacity: 0.1
-        }
-        30% {
-            color: $white;
-            transform: scale(1);
-            opacity: 1;
-        }
-    }
+	@keyframes shine {
+		from {
+			transform: scale(1);
+			opacity: 0;
+		}
+		10% {
+			color: $shine;
+			transform: scale(1.35);
+			opacity: 0.1;
+		}
+		30% {
+			color: $white;
+			transform: scale(1);
+			opacity: 1;
+		}
+
+		70% {
+			color: $white;
+			transform: scale(1);
+			opacity: 1;
+		}
+
+		100% {
+			opacity: 0;
+		}
+	}
 }

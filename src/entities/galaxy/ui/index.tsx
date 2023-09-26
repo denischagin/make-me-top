@@ -1,4 +1,11 @@
-import React, { memo, useEffect, useState } from "react";
+import React, {
+	memo,
+	useCallback,
+	useEffect,
+	useState,
+	MouseEvent,
+	useMemo,
+} from "react";
 
 import { useAppDispatch, useAppSelector } from "@app/providers/store/hooks";
 
@@ -52,6 +59,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 		orbitList,
 		width: fullWidth,
 		height,
+		systemWidth,
 	} = props;
 
 	const width = fullWidth > 1920 ? 1920 : fullWidth;
@@ -77,28 +85,35 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 	const orbitWidthStep = width / (orbitList.length + 1);
 	const orbitHeightStep = height / (orbitList.length + 1);
 
-	const getAdaptiveSystemWidth = (windowWidth: number) => {
+	const getAdaptiveSystemWidth = (
+		windowWidth: number,
+		systemWidth: number | undefined
+	) => {
 		if (windowWidth < 500) return 40;
 		else if (windowWidth < 800) return 50;
 		else if (windowWidth < 1200) return 60;
 
-		return props.systemWidth ?? 80;
+		return systemWidth ?? 80;
 	};
 
-	const orbitSettings: IOrbitSettings = {
-		width,
-		height,
-		systemWidth: getAdaptiveSystemWidth(width),
-		backgroundWidth: width + orbitWidthStep / 2,
-		systemHeight: getAdaptiveSystemWidth(width),
-		backgroundHeight: height + orbitHeightStep / 2,
-	};
+	const adaptiveSystemWidth = useMemo(
+		() => getAdaptiveSystemWidth(width, systemWidth),
+		[width, systemWidth]
+	);
+
+	const orbitSettings: IOrbitSettings = useMemo(
+		() => ({
+			width,
+			height,
+			systemWidth: adaptiveSystemWidth,
+			backgroundWidth: width + orbitWidthStep / 2,
+			systemHeight: adaptiveSystemWidth,
+			backgroundHeight: height + orbitHeightStep / 2,
+		}),
+		[width, height, getAdaptiveSystemWidth, orbitWidthStep, orbitHeightStep]
+	);
 
 	const svgContainer = useLinesSvgContainer(galaxyPage, svgContainerClass);
-
-	useEffect(() => {
-		handleSystemMouseLeave();
-	}, [width]);
 
 	useEffect(() => {
 		//поиск на странице и изменение модификаторов элементов в соответствии с состоянием
@@ -116,48 +131,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 		});
 	}, [lastChosenSystem.systemId]);
 
-	const handleSystemMouseEnter = (event: React.MouseEvent<HTMLDivElement>) => {
-		const currentTarget = event.currentTarget;
-
-		const targetId = currentTarget.getAttribute(DATA_SYSTEM_ID);
-		const childrenList = currentTarget.getAttribute(DATA_SYSTEM_CHILDREN_LIST);
-		const parentsList = currentTarget.getAttribute(DATA_SYSTEM_PARENT_LIST);
-		const systemProgressType = currentTarget.getAttribute(
-			DATA_SYSTEM_PROGRESS_TYPE
-		);
-
-		addActiveSystem({
-			activeSystemId: targetId,
-			setActiveSystemsIds,
-		});
-
-		if (
-			systemProgressType === SystemProgressTypes.SYSTEM_OPEN ||
-			systemProgressType === SystemProgressTypes.SYSTEM_EDUCATION
-		) {
-			showSystemChildren({
-				childrenList,
-				currentTarget,
-				systemWidth: orbitSettings.systemWidth,
-				systemHeight: orbitSettings.systemHeight,
-				svgContainer,
-				setActiveSystemsIds,
-			});
-		}
-
-		if (systemProgressType === SystemProgressTypes.SYSTEM_CLOSE) {
-			showSystemParents({
-				parentsList,
-				currentTarget,
-				systemWidth: orbitSettings.systemWidth,
-				systemHeight: orbitSettings.systemHeight,
-				svgContainer,
-				setActiveSystemsIds,
-			});
-		}
-	};
-
-	const handleSystemMouseLeave = () => {
+	const handleSystemMouseLeave = useCallback(() => {
 		setActiveSystemsIds([]);
 
 		setSystemsActivityToInactive({
@@ -167,7 +141,53 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 		deleteAllConnectionLines({
 			svgContainer,
 		});
-	};
+	}, [systems, svgContainer]);
+
+	const handleSystemMouseEnter = useCallback(
+		(event: MouseEvent<HTMLDivElement>) => {
+			const currentTarget = event.currentTarget;
+
+			const targetId = currentTarget.getAttribute(DATA_SYSTEM_ID);
+			const childrenList = currentTarget.getAttribute(
+				DATA_SYSTEM_CHILDREN_LIST
+			);
+			const parentsList = currentTarget.getAttribute(DATA_SYSTEM_PARENT_LIST);
+			const systemProgressType = currentTarget.getAttribute(
+				DATA_SYSTEM_PROGRESS_TYPE
+			);
+
+			addActiveSystem({
+				activeSystemId: targetId,
+				setActiveSystemsIds,
+			});
+
+			if (
+				systemProgressType === SystemProgressTypes.SYSTEM_OPEN ||
+				systemProgressType === SystemProgressTypes.SYSTEM_EDUCATION
+			) {
+				showSystemChildren({
+					childrenList,
+					currentTarget,
+					systemWidth: orbitSettings.systemWidth,
+					systemHeight: orbitSettings.systemHeight,
+					svgContainer,
+					setActiveSystemsIds,
+				});
+			}
+
+			if (systemProgressType === SystemProgressTypes.SYSTEM_CLOSE) {
+				showSystemParents({
+					parentsList,
+					currentTarget,
+					systemWidth: orbitSettings.systemWidth,
+					systemHeight: orbitSettings.systemHeight,
+					svgContainer,
+					setActiveSystemsIds,
+				});
+			}
+		},
+		[orbitSettings.systemWidth, orbitSettings.systemHeight, svgContainer]
+	);
 
 	const handleSystemClick = (event: React.MouseEvent<HTMLDivElement>) => {
 		const currentTarget = event.currentTarget;
