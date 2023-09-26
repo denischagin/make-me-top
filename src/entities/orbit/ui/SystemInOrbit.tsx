@@ -41,7 +41,7 @@ interface SystemInOrbitProps {
 }
 
 const SystemInOrbit = (props: SystemInOrbitProps) => {
-	console.log('render system in orbit');
+	console.log("system in orbit render");
 
 	const {
 		system,
@@ -55,7 +55,6 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
 		userProgress,
 		systemStyle,
 	} = props;
-
 	const isNoExplorer = useMemo(() => {
 		return (
 			(localStorage.getItem(storageKeys.currentRole) as roles) !== "EXPLORER"
@@ -169,4 +168,16 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
 	);
 };
 
-export default memo(SystemInOrbit);
+export default memo(
+	SystemInOrbit,
+	(prevProps, nextProps) =>
+		prevProps.system.systemId === nextProps.system.systemId &&
+		prevProps.orbitHalfWidth === nextProps.orbitHalfWidth &&
+		prevProps.orbitHalfHeight === nextProps.orbitHalfHeight &&
+		prevProps.elementWidth === nextProps.elementWidth &&
+		prevProps.elementHeight === nextProps.elementHeight &&
+		prevProps.userProgress === nextProps.userProgress &&
+		prevProps.handleSystemClick === nextProps.handleSystemClick &&
+		prevProps.handleSystemMouseLeave === nextProps.handleSystemMouseLeave &&
+		prevProps.handleSystemMouseEnter === nextProps.handleSystemMouseEnter
+);

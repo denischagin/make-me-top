@@ -19,7 +19,7 @@ interface IOrbitProps {
 	handleSystemMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-const Orbit: React.FC<IOrbitProps> = (props) => {	
+const Orbit: React.FC<IOrbitProps> = (props) => {
 	const {
 		userProgress,
 		systemList,
@@ -30,7 +30,7 @@ const Orbit: React.FC<IOrbitProps> = (props) => {
 		handleSystemMouseEnter,
 		handleSystemMouseLeave,
 	} = props;
-
+	
 	const [active, setActive] = useState(false);
 
 	const [block, element] = bem("orbit");

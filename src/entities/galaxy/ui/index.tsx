@@ -115,6 +115,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
 	const svgContainer = useLinesSvgContainer(galaxyPage, svgContainerClass);
 
+	useEffect(() => handleSystemMouseLeave(), [fullWidth]);
+
 	useEffect(() => {
 		//поиск на странице и изменение модификаторов элементов в соответствии с состоянием
 		setSystems(document.querySelectorAll(`.${SYSTEM_CLASS}`));
@@ -141,7 +143,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 		deleteAllConnectionLines({
 			svgContainer,
 		});
-	}, [systems, svgContainer]);
+	}, [systems.length, svgContainer]);
 
 	const handleSystemMouseEnter = useCallback(
 		(event: MouseEvent<HTMLDivElement>) => {
@@ -189,35 +191,38 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 		[orbitSettings.systemWidth, orbitSettings.systemHeight, svgContainer]
 	);
 
-	const handleSystemClick = (event: React.MouseEvent<HTMLDivElement>) => {
-		const currentTarget = event.currentTarget;
+	const handleSystemClick = useCallback(
+		(event: React.MouseEvent<HTMLDivElement>) => {
+			const currentTarget = event.currentTarget;
 
-		const targetId = Number(currentTarget.getAttribute(DATA_SYSTEM_ID));
+			const targetId = Number(currentTarget.getAttribute(DATA_SYSTEM_ID));
 
-		setLastChosenSystem({
-			...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
-		});
+			setLastChosenSystem({
+				...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
+			});
 
-		dispatch(toggleModal());
-		dispatch(
-			getModalPlanets({
-				planetId: targetId,
-			})
-		);
-		dispatch(
-			getCourseInfo({
-				courseId: targetId,
-			})
-		);
+			dispatch(toggleModal());
+			dispatch(
+				getModalPlanets({
+					planetId: targetId,
+				})
+			);
+			dispatch(
+				getCourseInfo({
+					courseId: targetId,
+				})
+			);
 
-		dispatch(
-			fetchAndSetLastChosenSystem({
-				id: targetId,
-				withDependencies: true,
-				setLastChosenSystem,
-			})
-		);
-	};
+			dispatch(
+				fetchAndSetLastChosenSystem({
+					id: targetId,
+					withDependencies: true,
+					setLastChosenSystem,
+				})
+			);
+		},
+		[]
+	);
 
 	const handleChangeSystem = (systemId: number) => {
 		setLastChosenSystem({

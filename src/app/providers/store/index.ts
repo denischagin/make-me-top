@@ -39,7 +39,7 @@ export type AppDispatch = typeof store.dispatch;
 const store = configureStore({
 	reducer: rootReducer,
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware().concat([logger, galaxiesApi.middleware]),
+		getDefaultMiddleware().concat([galaxiesApi.middleware]),
 });
 
 export default store;
