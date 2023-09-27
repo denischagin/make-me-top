@@ -41,8 +41,6 @@ interface SystemInOrbitProps {
 }
 
 const SystemInOrbit = (props: SystemInOrbitProps) => {
-	console.log("system in orbit render");
-
 	const {
 		system,
 		handleSystemClick,

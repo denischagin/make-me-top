@@ -249,6 +249,11 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 		);
 	};
 
+	const handleCloseModal = useCallback(
+		() => dispatch(closeModal()),
+		[isModalOpen]
+	);
+
 	const courseId = lastChosenSystem.systemId;
 
 	return (
@@ -279,15 +284,15 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 					height: orbitSettings.height,
 				}}
 			/>
-			{orbitList.map((orbits) => {
+			{orbitList.map((orbit) => {
 				orbitSettings.width -= orbitWidthStep;
 				orbitSettings.height -= orbitHeightStep;
 
 				return (
 					<Orbit
-						key={orbits.orbitId}
+						key={orbit.orbitId}
 						userProgress={userProgress}
-						systemList={orbits.systemList}
+						systemList={orbit.systemList}
 						orbitWidth={orbitSettings.width}
 						orbitHeight={orbitSettings.height}
 						systemStyle={{

@@ -9,7 +9,6 @@ import {
 import { getExplorerInfo } from "@entities/explorer/thunks/getExplorerInfo";
 
 import { BackgroundProfile } from "@shared/ui/BackgroundProfile";
-import { MasteringApplication } from "@shared/ui/MasteringApplication";
 import { Typography } from "@shared/ui/Typography";
 
 import { bem } from "@shared/utils/bem";
@@ -35,6 +34,7 @@ import { buttonColor, buttonSize } from "@shared/ui/Button/interfaces";
 import { useNavigate } from "react-router-dom";
 import { URL_GALAXY } from "@shared/constants/links";
 import { loadingIsLoadingSelector } from "@entities/loading/model/selectors";
+import { MasteringApplication } from "@entities/explorer";
 
 export const Explorer = () => {
 	const [block, element] = bem("explorer");

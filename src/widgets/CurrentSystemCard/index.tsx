@@ -14,12 +14,12 @@ import { getModalPlanets } from "@entities/user/thunks/getModalPlanets";
 
 import { explorerInfoSelector } from "@entities/explorer/model/selectors";
 import { leaveCourseRequest } from "@entities/explorer/thunks/leaveCourseRequest";
+import { CurrentUserItem } from "@entities/user";
 
 import { Button } from "@shared/ui/Button";
 import { Card } from "@shared/ui/Card";
 import { CircleModal } from "@shared/ui/CircleModal";
 import { ConfirmModal } from "@shared/ui/ConfirmModal";
-import { CurrentUserItem } from "@shared/ui/CurrentUserItem";
 import { DividingLine } from "@shared/ui/DividingLine";
 import { FinalGrade } from "@shared/ui/FinalGrade";
 import { MmtTabs } from "@shared/ui/MmtTabs";
