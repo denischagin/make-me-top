@@ -1,31 +1,48 @@
-import { Card } from '@shared/ui/Card'
-import { cardSize } from '@shared/ui/Card/interfaces'
-import { typographyVariant } from '@shared/ui/Typography/interfaces'
-import { bem } from '@shared/utils/bem'
-import React from 'react'
-import { UserRatingCardProps } from './interface'
-import { Typography } from '@shared/ui/Typography'
-import { Avatar } from '@shared/ui/Avatar'
-import { avatarSize } from '@shared/ui/Avatar/interfaces'
-import { Rating } from '@shared/ui/Rating'
-import { ratingScoreColor, ratingSize, ratingSystemColor } from '@shared/ui/Rating/interfaces'
-import { Button } from '@shared/ui/Button'
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces'
-import "./style.scss"
+import React from 'react';
+import { Avatar } from '@shared/ui/Avatar';
+import { Button } from '@shared/ui/Button';
+import { Card } from '@shared/ui/Card';
+import { Rating } from '@shared/ui/Rating';
+import { Typography } from '@shared/ui/Typography';
+
+import { bem } from '@shared/utils/bem';
+
+import { avatarSize } from '@shared/ui/Avatar/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
+import { cardSize } from '@shared/ui/Card/interfaces';
+import {
+    ratingScoreColor,
+    ratingSize,
+    ratingSystemColor,
+} from '@shared/ui/Rating/interfaces';
+import { typographyVariant } from '@shared/ui/Typography/interfaces';
+
+import { UserRatingCardProps } from './interface';
+
+import './style.scss';
 
 export const UserRatingCard = (props: UserRatingCardProps) => {
-    const { 
-        fullname, 
-        index, 
-        onClick, 
-        rating, 
-        title 
-    } = props
-    const [block, element] = bem('user-rating')
+    const {
+        fullname,
+        index,
+        onClick,
+        rating,
+        title,
+    } = props;
+    const [block, element] = bem('user-rating');
 
     return (
-        <div className={block()} onClick={onClick}>
-            <Card size={cardSize.large} glow    >
+        <div
+            className={block()}
+            onClick={onClick}
+        >
+            <Card
+                size={cardSize.large}
+                glow
+            >
                 { index !== undefined && <Typography variant={typographyVariant.h1}>{index + 1}.</Typography> }
 
                 <Avatar size={avatarSize.medium} />
@@ -57,5 +74,5 @@ export const UserRatingCard = (props: UserRatingCardProps) => {
                 </div>
             </Card>
         </div>
-    )
-}
+    );
+};

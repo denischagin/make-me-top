@@ -92,4 +92,4 @@ export const initialExplorerCardInfo = {
     feedback: [],
 };
 
-export const initialExplorersList = []
+export const initialExplorersList = [];

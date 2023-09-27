@@ -16,4 +16,4 @@ export const explorerIsSystemActiveSelector = createSelector(userState, (userSta
 
 export const explorersListSelector = createSelector(userState, (userState) => userState.explorersList);
 
-export const explorersIsErrorSelector = createSelector(userState, (userState) => userState.isError)
+export const explorersIsErrorSelector = createSelector(userState, (userState) => userState.isError);

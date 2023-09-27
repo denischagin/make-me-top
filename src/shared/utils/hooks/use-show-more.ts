@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState } from 'react';
 
-export interface ReturnUseShowMoreInterface <T> { 
+export interface ReturnUseShowMoreInterface <T> {
     handleShowMore: () => void,
     handleHideLast: () => void,
     handleHideAll: () => void,
@@ -10,19 +10,19 @@ export interface ReturnUseShowMoreInterface <T> {
 }
 
 export const useShowMore = <T> (
-    elements: T[], 
-    initLimit: number, 
-    plusNumber: number
+    elements: T[],
+    initLimit: number,
+    plusNumber: number,
 ): ReturnUseShowMoreInterface<T> => {
-    const [limitElementNumber, setLimitElementsNumber] = useState(initLimit)
+    const [limitElementNumber, setLimitElementsNumber] = useState(initLimit);
 
-    const handleShowMore = () => setLimitElementsNumber(prev => prev + plusNumber)
-    const handleHideLast = () => setLimitElementsNumber(prev => prev - plusNumber)
-    const handleHideAll = () => setLimitElementsNumber(initLimit)
+    const handleShowMore = () => setLimitElementsNumber(prev => prev + plusNumber);
+    const handleHideLast = () => setLimitElementsNumber(prev => prev - plusNumber);
+    const handleHideAll = () => setLimitElementsNumber(initLimit);
 
-    const limitElements = elements.slice(0, limitElementNumber)
+    const limitElements = elements.slice(0, limitElementNumber);
 
-    const isLastLimit = limitElementNumber >= elements.length
+    const isLastLimit = limitElementNumber >= elements.length;
 
     return {
         handleShowMore,
@@ -30,7 +30,7 @@ export const useShowMore = <T> (
         limitElements,
         limitElementNumber,
         isLastLimit,
-        handleHideAll
-    }
+        handleHideAll,
+    };
 
-}
+};

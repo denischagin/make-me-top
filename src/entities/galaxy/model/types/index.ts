@@ -1,11 +1,12 @@
-import { KeeperCardInfoInterface } from "@entities/keeper/model/types/interfaces";
-import { StudiedSystems } from "@entities/user/model/types";
+import { StudiedSystems } from '@entities/user/model/types';
 
-import { ErrorInterface } from "@shared/types/common";
+import { KeeperCardInfoInterface } from '@entities/keeper/model/types/interfaces';
+
+import { ErrorInterface } from '@shared/types/common';
 
 export interface SystemDependencyType {
 	systemId: number | null;
-	type: "child" | "parent";
+	type: 'child' | 'parent';
 	isAlternative: boolean;
 }
 

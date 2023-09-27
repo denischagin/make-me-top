@@ -21,7 +21,7 @@ export const getPercentageProgress = (params: IGetPercentageProgress): number =>
         (educationSystem) => {
             return educationSystem.systemId === system.systemId;
         },
-    );    
+    );
 
     if (!educationSystem) {
         return 0;

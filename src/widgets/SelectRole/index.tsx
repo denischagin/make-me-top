@@ -1,33 +1,34 @@
-import { useAppDispatch } from "@app/providers/store/hooks";
+import { useNavigate } from 'react-router-dom';
+import { PlanetButton } from '@shared/ui/PlanetButton';
 
-import { selectRoleAsExplorer } from "@entities/explorer/model/slice";
+import { useAppDispatch } from '@app/providers/store/hooks';
 
-import { selectRoleAsKeeper } from "@entities/keeper/model/slice";
-import { URL_GALAXY } from "@shared/constants/links";
+import { selectRoleAsExplorer } from '@entities/explorer/model/slice';
 
-import { PlanetButton } from "@shared/ui/PlanetButton";
-import { useNavigate } from "react-router-dom";
+import { selectRoleAsKeeper } from '@entities/keeper/model/slice';
+
+import { URL_GALAXY } from '@shared/constants/links';
 
 export const SelectRole = () => {
-	const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-	return (
-		<>
-			<PlanetButton
-				onClick={() => dispatch(selectRoleAsExplorer())}
-				title="Я – исследователь"
-			/>
-            
-			<PlanetButton
-				onClick={() => dispatch(selectRoleAsKeeper())}
-				title="Я – хранитель"
-			/>
+    return (
+        <>
+            <PlanetButton
+                onClick={() => dispatch(selectRoleAsExplorer())}
+                title="Я – исследователь"
+            />
 
-			<PlanetButton
-				onClick={() => navigate(URL_GALAXY)}
-				title="Я – гость"
-			/>
-		</>
-	);
+            <PlanetButton
+                onClick={() => dispatch(selectRoleAsKeeper())}
+                title="Я – хранитель"
+            />
+
+            <PlanetButton
+                onClick={() => navigate(URL_GALAXY)}
+                title="Я – гость"
+            />
+        </>
+    );
 };

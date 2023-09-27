@@ -1,12 +1,5 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-
-import { useAppDispatch } from '@app/providers/store/hooks';
-
-import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest';
-
-import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
-
 import { Avatar } from '@shared/ui/Avatar';
 import { Button } from '@shared/ui/Button';
 import { Card } from '@shared/ui/Card';
@@ -14,6 +7,12 @@ import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { Rating } from '@shared/ui/Rating';
 import { RouterLink } from '@shared/ui/RouterLink';
 import { Typography } from '@shared/ui/Typography';
+
+import { useAppDispatch } from '@app/providers/store/hooks';
+
+import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest';
+
+import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';

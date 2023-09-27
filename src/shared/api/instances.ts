@@ -10,7 +10,7 @@ export const authToken = () => {
 };
 
 export const instance = axios.create({
-    baseURL: URL_MMT_STAND
+    baseURL: URL_MMT_STAND,
 });
 
 instance.interceptors.request.use(

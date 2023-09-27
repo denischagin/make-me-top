@@ -1,4 +1,4 @@
-import { CourseKeeper } from "@entities/user/model/types";
+import { CourseKeeper } from '@entities/user/model/types';
 
 export interface SelectUsersKeepersItemProps {
 	user: CourseKeeper;

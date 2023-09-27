@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { Button } from '@shared/ui/Button';
+import { Card } from '@shared/ui/Card';
+import { ConfirmModal } from '@shared/ui/ConfirmModal';
+import { Typography } from '@shared/ui/Typography';
 
 import {
     useAppDispatch,
@@ -8,11 +12,6 @@ import {
 import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
 
 import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
-
-import { Button } from '@shared/ui/Button';
-import { Card } from '@shared/ui/Card';
-import { ConfirmModal } from '@shared/ui/ConfirmModal';
-import { Typography } from '@shared/ui/Typography';
 
 import { bem } from '@shared/utils/bem';
 

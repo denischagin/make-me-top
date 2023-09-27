@@ -1,29 +1,35 @@
-import React from 'react'
-import { KeepersListProps } from './interface'
-import { UserRatingCard } from '@shared/ui/UserRatingCard'
-import { getUserFullName } from '@shared/utils/getUserFullName'
-import { bem } from '@shared/utils/bem'
-import './style.scss'
-import { useNavigate } from 'react-router-dom'
-import { URL_KEEPER } from '@shared/constants/links'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserRatingCard } from '@shared/ui/UserRatingCard';
 
-export const KeepersList = ({ keepers }: KeepersListProps) => {
-	const [block, element] = bem('keepers-list');
-	const navigate = useNavigate();
+import { bem } from '@shared/utils/bem';
+import { getUserFullName } from '@shared/utils/getUserFullName';
 
-	return (
-		<div className={block()}>
-			{keepers.map((keeper, index) => (
-				<UserRatingCard
-					key={keeper.personId}
-					onClick={() => {
-                        navigate(`${URL_KEEPER}/${keeper.personId}`)
+import { URL_KEEPER } from '@shared/constants/links';
+
+import { KeepersListProps } from './interface';
+
+import './style.scss';
+
+export const KeepersList = ({
+    keepers,
+}: KeepersListProps) => {
+    const [block, element] = bem('keepers-list');
+    const navigate = useNavigate();
+
+    return (
+        <div className={block()}>
+            {keepers.map((keeper, index) => (
+                <UserRatingCard
+                    key={keeper.personId}
+                    onClick={() => {
+                        navigate(`${URL_KEEPER}/${keeper.personId}`);
                     }}
-					fullname={getUserFullName(keeper)}
-					title={`Галактика: ${keeper.galaxyName}`}
-					rating={keeper.rating}
-				/>
-			))}
-		</div>
-	)
-}
+                    fullname={getUserFullName(keeper)}
+                    title={`Галактика: ${keeper.galaxyName}`}
+                    rating={keeper.rating}
+                />
+            ))}
+        </div>
+    );
+};

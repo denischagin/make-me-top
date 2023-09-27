@@ -1,10 +1,10 @@
+import { ShiningStar } from '@shared/ui/ShiningStar';
+
 import { useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
 import { keeperIsKeeperSelector } from '@entities/keeper/model/selectors';
-
-import { ShiningStar } from '@shared/ui/ShiningStar';
 
 import { bem } from '@shared/utils/bem';
 

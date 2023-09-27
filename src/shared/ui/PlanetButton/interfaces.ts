@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from "react";
+import React, { ButtonHTMLAttributes } from 'react';
 
 export interface PlanetButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement>{
     title: string;

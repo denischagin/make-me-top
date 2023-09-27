@@ -1,5 +1,5 @@
 // urls
-export const URL_PROFILE = '/profile'
+export const URL_PROFILE = '/profile';
 export const URL_DEFAULT = '/';
 export const URL_KEEPER = '/keeper';
 export const URL_EXPLORER = '/explorer';

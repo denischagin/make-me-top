@@ -1,5 +1,12 @@
-import React, { FormEventHandler, useState } from 'react';
+import React,
+{
+    FormEventHandler,
+    useState,
+} from 'react';
 import { useNavigate } from 'react-router';
+import { Input } from '@shared/ui/Input';
+import { PlanetButton } from '@shared/ui/PlanetButton';
+import { Typography } from '@shared/ui/Typography';
 
 import {
     useAppDispatch,
@@ -10,17 +17,16 @@ import { authLogin } from '@entities/user/thunks/authLogin';
 
 import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
-import { Input } from '@shared/ui/Input';
-import { PlanetButton } from '@shared/ui/PlanetButton';
-import { Typography } from '@shared/ui/Typography';
-
 import { bem } from '@shared/utils/bem';
 
 import {
     URL_DEFAULT,
     URL_PROFILE,
 } from '@shared/constants/links';
-import { roles, storageKeys } from '@shared/constants/storageKeys';
+import {
+    roles,
+    storageKeys,
+} from '@shared/constants/storageKeys';
 
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
@@ -74,10 +80,13 @@ export const Login = () => {
             payload,
             callback,
         }));
-    }
+    };
 
     return (
-        <form className={block()} onSubmit={handleFormSubmit}>
+        <form
+            className={block()}
+            onSubmit={handleFormSubmit}
+        >
             <Typography
                 className={element('heading')}
                 variant={typographyVariant.h2}

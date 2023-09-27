@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-
 import { Button } from '@shared/ui/Button';
 import { Modal } from '@shared/ui/Modal';
 import { Typography } from '@shared/ui/Typography';

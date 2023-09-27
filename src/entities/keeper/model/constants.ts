@@ -32,4 +32,4 @@ export const initialKeeperCardInfo = {
     feedback: [],
 };
 
-export const initialKeepersList = []
+export const initialKeepersList = [];

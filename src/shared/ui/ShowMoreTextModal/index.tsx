@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import { Modal } from '@shared/ui/Modal';
 import { Typography } from '@shared/ui/Typography';
 

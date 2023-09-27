@@ -1,10 +1,10 @@
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { explorerInfoSelector } from '@entities/explorer/model/selectors';
-
 import { Avatar } from '@shared/ui/Avatar';
 import { Rating } from '@shared/ui/Rating';
 import { Typography } from '@shared/ui/Typography';
+
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';

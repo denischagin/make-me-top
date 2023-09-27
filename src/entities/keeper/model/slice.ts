@@ -4,19 +4,19 @@ import { KeeperState } from './types/interfaces';
 
 import { getKeeperCardInfo } from '../thunks/getKeeperCardInfo';
 import { getKeeperInfo } from '../thunks/getKeeperInfo';
+import { getListKeepersByFilter } from '../thunks/getListKeepersByFilter';
 
 import {
     initialKeeperCardInfo,
     initialKeeperInfo,
     initialKeepersList,
 } from './constants';
-import { getListKeepersByFilter } from '../thunks/getListKeepersByFilter';
 
 const initialState: KeeperState = {
     isKeeper: false,
     keeperInfo: initialKeeperInfo,
     keeperCardInfo: initialKeeperCardInfo,
-    keepersList: initialKeepersList
+    keepersList: initialKeepersList,
 };
 
 export const keeperSlice = createSlice({

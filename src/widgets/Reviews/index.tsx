@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Button } from '@shared/ui/Button';
+import { ReviewCard } from '@shared/ui/ReviewCard';
+import { ShowMoreElemenetsButton } from '@shared/ui/ShowMoreElemenetsButton';
+import { Typography } from '@shared/ui/Typography';
 
 import { useAppSelector } from '@app/providers/store/hooks';
 
@@ -9,11 +13,6 @@ import {
 } from '@entities/explorer/model/selectors';
 
 import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
-
-import { Button } from '@shared/ui/Button';
-import { ReviewCard } from '@shared/ui/ReviewCard';
-import { ShowMoreElemenetsButton } from '@shared/ui/ShowMoreElemenetsButton';
-import { Typography } from '@shared/ui/Typography';
 
 import { bem } from '@shared/utils/bem';
 

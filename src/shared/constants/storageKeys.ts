@@ -1,7 +1,7 @@
 export const storageKeys = {
     tokenAuth: 'token',
-    currentRole: 'currentRole'
+    currentRole: 'currentRole',
 };
 
-export type roles = "EXPLORER"
-    | "KEEPER"
+export type roles = 'EXPLORER'
+    | 'KEEPER'

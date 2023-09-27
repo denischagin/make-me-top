@@ -1,1 +1,1 @@
-export { MasteringApplication }from "./ui/MasteringApplication";
+export { MasteringApplication }from './ui/MasteringApplication';

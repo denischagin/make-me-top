@@ -1,12 +1,13 @@
 import {
-	LastChosenSystem,
-	UserProgressInGalaxy,
-} from "@entities/galaxy/model/types";
+    Course,
+    CourseExplorer,
+    CourseKeeper,
+} from '@entities/user/model/types';
+
 import {
-	Course,
-	CourseExplorer,
-	CourseKeeper,
-} from "@entities/user/model/types";
+    LastChosenSystem,
+    UserProgressInGalaxy,
+} from '@entities/galaxy/model/types';
 
 export interface GalaxyCircleModalProp {
 	onClose: () => void;

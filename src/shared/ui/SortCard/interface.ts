@@ -1,4 +1,4 @@
 export interface SortCardProps {
     title: string
-    value: string   
+    value: string
 }

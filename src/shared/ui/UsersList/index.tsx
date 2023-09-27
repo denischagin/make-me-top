@@ -1,10 +1,10 @@
+import { Avatar } from '@shared/ui/Avatar';
+import { Rating } from '@shared/ui/Rating';
+
 import {
     CourseExplorer,
     CourseKeeper,
 } from '@entities/user/model/types';
-
-import { Avatar } from '@shared/ui/Avatar';
-import { Rating } from '@shared/ui/Rating';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';

@@ -1,4 +1,7 @@
-import { ButtonHTMLAttributes, MouseEventHandler } from "react";
+import {
+    ButtonHTMLAttributes,
+    MouseEventHandler,
+} from 'react';
 
 export interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement>{
     title: string;

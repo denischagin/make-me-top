@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import { ArrowButton } from '@shared/ui/ArrowButton';
+import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
+import { Container } from '@shared/ui/Container';
 
 import {
     useAppDispatch,
@@ -9,9 +12,6 @@ import {
 
 import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 import { getKeeperCardInfo } from '@entities/keeper/thunks/getKeeperCardInfo';
-
-import { ArrowButton } from '@shared/ui/ArrowButton';
-import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 
 import { bem } from '@shared/utils/bem';
 
@@ -23,7 +23,6 @@ import { SystemsList } from '@widgets/SystemsList';
 import { arrowButtonDirection } from '@shared/ui/ArrowButton/interfaces';
 
 import './styles.scss';
-import { Container } from '@shared/ui/Container';
 
 const KeeperCard = () => {
     const [block, element] = bem('keeper-card');
@@ -70,4 +69,4 @@ const KeeperCard = () => {
     );
 };
 
-export default KeeperCard
+export default KeeperCard;

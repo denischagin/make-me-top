@@ -1,10 +1,10 @@
+import { Button } from '@shared/ui/Button';
+
 import { useAppSelector } from '@app/providers/store/hooks';
 
 import { DEFAULT_ID } from '@entities/user/model/constants';
 import { userPlanetListSelector } from '@entities/user/model/selectors';
 import { ModalPlanetInterface } from '@entities/user/model/types';
-
-import { Button } from '@shared/ui/Button';
 
 import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 

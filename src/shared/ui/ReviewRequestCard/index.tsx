@@ -1,13 +1,12 @@
 import { useState } from 'react';
-
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
-
 import { Button } from '@shared/ui/Button';
 import { Card } from '@shared/ui/Card';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { Typography } from '@shared/ui/Typography';
+
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
 
 import { bem } from '@shared/utils/bem';
 

@@ -1,15 +1,14 @@
 import { useState } from 'react';
-
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { explorerInfoSelector } from '@entities/explorer/model/selectors';
-
 import { Button } from '@shared/ui/Button';
 import { Card } from '@shared/ui/Card';
 import { DividingLine } from '@shared/ui/DividingLine';
 import { ShowMoreElemenetsButton } from '@shared/ui/ShowMoreElemenetsButton';
 import { Typography } from '@shared/ui/Typography';
 import { UsersRating } from '@shared/ui/UsersRating';
+
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';

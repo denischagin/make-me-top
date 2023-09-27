@@ -15,7 +15,7 @@ export const ModalAlert = (props: ModalAlertInterface) => {
         dependencies,
         title,
         children,
-        handleChangeSystem
+        handleChangeSystem,
     } = props;
 
     const [block, element] = bem('modal-alert');

@@ -1,12 +1,12 @@
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { keeperInfoSelector } from '@entities/keeper/model/selectors';
-
 import { Avatar } from '@shared/ui/Avatar';
 import { Button } from '@shared/ui/Button';
 import { Card } from '@shared/ui/Card';
 import { RouterLink } from '@shared/ui/RouterLink';
 import { Typography } from '@shared/ui/Typography';
+
+import { useAppSelector } from '@app/providers/store/hooks';
+
+import { keeperInfoSelector } from '@entities/keeper/model/selectors';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';

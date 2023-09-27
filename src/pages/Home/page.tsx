@@ -1,10 +1,10 @@
+import { BackgroundHome } from '@shared/ui/BackgroundHome';
+
 import { useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
 import { keeperIsKeeperSelector } from '@entities/keeper/model/selectors';
-
-import { BackgroundHome } from '@shared/ui/BackgroundHome';
 
 import { ReactComponent as MakeMeTopIcon } from '@shared/images/make-me-top.svg';
 
@@ -47,4 +47,4 @@ const Home = () => {
     );
 };
 
-export default Home
+export default Home;

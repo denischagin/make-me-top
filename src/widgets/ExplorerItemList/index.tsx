@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import { Card } from '@shared/ui/Card';
 import { ExplorerItem } from '@shared/ui/ExplorerItem';
 import { RouterLink } from '@shared/ui/RouterLink';

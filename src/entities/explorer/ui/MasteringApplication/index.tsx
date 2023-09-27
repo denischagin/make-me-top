@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { Button } from '@shared/ui/Button';
+import { Card } from '@shared/ui/Card';
+import { ConfirmModal } from '@shared/ui/ConfirmModal';
+import { Typography } from '@shared/ui/Typography';
 
 import {
     useAppDispatch,
@@ -8,11 +12,6 @@ import {
 
 import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest';
-
-import { Button } from '@shared/ui/Button';
-import { Card } from '@shared/ui/Card';
-import { ConfirmModal } from '@shared/ui/ConfirmModal';
-import { Typography } from '@shared/ui/Typography';
 
 import { bem } from '@shared/utils/bem';
 

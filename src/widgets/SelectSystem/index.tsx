@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router';
-
 import { Button } from '@shared/ui/Button';
 import { Typography } from '@shared/ui/Typography';
 
