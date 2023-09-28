@@ -18,15 +18,15 @@ export const GalaxyListStatistics = ({
     return (
         <div className={block()}>
             <GalaxyStatisticsItem
-                title="Количество систем:"
+                title='Количество систем:'
                 stat={systemCount}
             />
             <GalaxyStatisticsItem
-                title="Количество исследователей:"
+                title='Количество исследователей:'
                 stat={explorerCount}
             />
             <GalaxyStatisticsItem
-                title="Количество хранителей:"
+                title='Количество хранителей:'
                 stat={keeperCount}
             />
         </div>

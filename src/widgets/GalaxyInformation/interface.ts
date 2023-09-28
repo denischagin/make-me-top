@@ -2,10 +2,8 @@ import { Keeper } from '@entities/explorer/model/types/interfaces';
 
 import { KeeperForGalaxies } from '@entities/galaxy/model/types';
 
+import { CurrentGalaxyInterface } from '@pages/AllGalaxiesPage/interface';
+
 export interface GalaxyInformationProps {
-	galaxyDescription: string | undefined;
-	keepers: KeeperForGalaxies[];
-	handleHideAll: () => void;
-	handleShowMore: () => void;
-	isLastLimit: boolean;
+	currentGalaxy?: null | CurrentGalaxyInterface
 }

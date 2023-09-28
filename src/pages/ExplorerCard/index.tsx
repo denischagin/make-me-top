@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowButton } from '@shared/ui/ArrowButton';
 import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Container } from '@shared/ui/Container';
-import { EducationApplicationCard } from '@shared/ui/EducationApplicationCard';
 import { ExplorerApplicationCard } from '@shared/ui/ExplorerApplicationCard';
 import { ReviewRequestCard } from '@shared/ui/ReviewRequestCard';
-import { Typography } from '@shared/ui/Typography';
 
 import {
     useAppDispatch,
@@ -30,10 +28,6 @@ import { SystemsList } from '@widgets/SystemsList';
 import NotFound from '@pages/NotFound';
 
 import { arrowButtonDirection } from '@shared/ui/ArrowButton/interfaces';
-import {
-    typographyColor,
-    typographyVariant,
-} from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 
@@ -47,7 +41,6 @@ const ExplorerCard = () => {
 
     const {
         investigatedSystems,
-        studyRequest,
     } = userInfo;
 
     const {

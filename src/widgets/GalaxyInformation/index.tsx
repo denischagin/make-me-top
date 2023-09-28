@@ -5,6 +5,7 @@ import { Typography } from '@shared/ui/Typography';
 
 import { bem } from '@shared/utils/bem';
 import { getUserFullName } from '@shared/utils/getUserFullName';
+import { useShowMore } from '@shared/utils/hooks/use-show-more';
 
 import { buttonSize } from '@shared/ui/Button/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
@@ -12,13 +13,16 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { GalaxyInformationProps } from './interface';
 
 export const GalaxyInformation: React.FC<GalaxyInformationProps> = ({
-    galaxyDescription,
-    keepers,
-    handleHideAll,
-    handleShowMore,
-    isLastLimit,
+    currentGalaxy,
 }) => {
     const [block, element] = bem('galaxies-page');
+
+    const {
+        limitElements: keepers,
+        handleShowMore,
+        handleHideAll,
+        isLastLimit,
+    } = useShowMore(currentGalaxy?.keepers!, 9, 3);
 
     return (
         <>
@@ -27,7 +31,7 @@ export const GalaxyInformation: React.FC<GalaxyInformationProps> = ({
                     Описание галактики
                 </Typography>
                 <Typography variant={typographyVariant.regular14}>
-                    {galaxyDescription}
+                    {currentGalaxy?.galaxyDescription}
                 </Typography>
             </div>
 

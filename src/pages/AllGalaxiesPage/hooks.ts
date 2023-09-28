@@ -1,4 +1,5 @@
 import {
+    useCallback,
     useEffect,
     useState,
 } from 'react';
@@ -9,7 +10,7 @@ import { CurrentGalaxyInterface } from './interface';
 
 export const useCurrentGalaxy = (galaxies: GalaxyForGetAll[]) => {
     const [currentGalaxy, setCurrentGalaxy] =
-		useState<CurrentGalaxyInterface | null>(null);
+        useState<CurrentGalaxyInterface | null>(null);
 
     useEffect(() => {
         if (galaxies.length > 0 && currentGalaxy === null) {
@@ -26,8 +27,8 @@ export const useCurrentGalaxy = (galaxies: GalaxyForGetAll[]) => {
     const lastGalaxy = galaxies[galaxies.length - 1];
     const firstGalaxy = galaxies[0];
 
-    const prevGalaxyIndex = currentGalaxy ? currentGalaxy.index - 1 : 0;
-    const nextGalaxyIndex = currentGalaxy ? currentGalaxy.index + 1 : 0;
+    const prevGalaxyIndex = currentGalaxy?.index ?? 0 - 1;
+    const nextGalaxyIndex = currentGalaxy?.index ?? 0 + 1;
 
     const prevGalaxy = currentGalaxy
         ? galaxies[currentGalaxy.index - 1]
@@ -44,6 +45,19 @@ export const useCurrentGalaxy = (galaxies: GalaxyForGetAll[]) => {
         });
     };
 
+    const handlePrevGalaxy = useCallback(
+        () =>
+            handleSwitchCurrentGalaxy(
+                isFirstGalaxy ? galaxies.length - 1 : prevGalaxyIndex,
+            ),
+        [handleSwitchCurrentGalaxy, isFirstGalaxy, galaxies, prevGalaxyIndex],
+    );
+
+    const handleNextGalaxy = useCallback(
+        () => handleSwitchCurrentGalaxy(isLastGalaxy ? 0 : nextGalaxyIndex),
+        [handleSwitchCurrentGalaxy, isLastGalaxy, galaxies, nextGalaxyIndex],
+    );
+
     return {
         currentGalaxy,
         isFirstGalaxy,
@@ -55,5 +69,7 @@ export const useCurrentGalaxy = (galaxies: GalaxyForGetAll[]) => {
         prevGalaxy,
         nextGalaxy,
         handleSwitchCurrentGalaxy,
+        handlePrevGalaxy,
+        handleNextGalaxy,
     };
 };

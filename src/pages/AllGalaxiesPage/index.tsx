@@ -39,31 +39,21 @@ const AllGalaxiesPage = () => {
         isLoading,
         isError,
     } = useGetAllGalaxiesQuery();
-
     const {
         currentGalaxy,
         isFirstGalaxy,
         isLastGalaxy,
         lastGalaxy,
         firstGalaxy,
-        prevGalaxyIndex,
-        nextGalaxyIndex,
         prevGalaxy,
         nextGalaxy,
-        handleSwitchCurrentGalaxy,
+        handleNextGalaxy,
+        handlePrevGalaxy,
     } = useCurrentGalaxy(galaxies);
-
-    const {
-        limitElements: keepers,
-        handleShowMore,
-        handleHideAll,
-        isLastLimit,
-    } = useShowMore(currentGalaxy?.keepers ?? [], 9, 3);
-
-    const [block, element] = bem('galaxies-page');
-
     const informationSectionRef = useRef<HTMLElement>(null);
     const navigate = useNavigate();
+
+    const [block, element] = bem('galaxies-page');
 
     const handleShowInformation = () =>
         informationSectionRef.current?.scrollIntoView({
@@ -77,6 +67,9 @@ const AllGalaxiesPage = () => {
             behavior: 'smooth',
         });
 
+    const handleNavigateSystems = () =>
+        navigate(URL_GALAXY + `/${currentGalaxy?.galaxyId}`);
+
     if (isLoading)
         return (
             <div className={block()}>
@@ -85,7 +78,7 @@ const AllGalaxiesPage = () => {
             </div>
         );
 
-    if (isError) return <NotFound errorCode="" />;
+    if (isError) return <NotFound errorCode='' />;
 
     return (
         <div className={block()}>
@@ -94,36 +87,32 @@ const AllGalaxiesPage = () => {
             <Container>
                 <div className={element('content')}>
                     <EntryAnimateGalaxies
-                        transition={{
-                            duration: 1,
-                        }}
+                        duration={1}
                         className={element('title-wrapper')}
                     >
-                        <TitleGalaxyPage galaxyName={currentGalaxy?.galaxyName ?? ''} />
+                        <TitleGalaxyPage
+                            galaxyName={currentGalaxy?.galaxyName!}
+                        />
                     </EntryAnimateGalaxies>
 
                     <ChangeGalaxyButtons
-                        handlePrevGalaxy={() =>
-                            handleSwitchCurrentGalaxy(
-                                isFirstGalaxy ? galaxies.length - 1 : prevGalaxyIndex,
-                            )
-                        }
-                        handleNextGalaxy={() =>
-                            handleSwitchCurrentGalaxy(isLastGalaxy ? 0 : nextGalaxyIndex)
-                        }
+                        handlePrevGalaxy={handlePrevGalaxy}
+                        handleNextGalaxy={handleNextGalaxy}
                         prevGalaxyName={
-                            isFirstGalaxy ? lastGalaxy.galaxyName : prevGalaxy?.galaxyName
+                            isFirstGalaxy
+                                ? lastGalaxy.galaxyName
+                                : prevGalaxy?.galaxyName
                         }
                         nextGalaxyName={
-                            isLastGalaxy ? firstGalaxy.galaxyName : nextGalaxy?.galaxyName
+                            isLastGalaxy
+                                ? firstGalaxy.galaxyName
+                                : nextGalaxy?.galaxyName
                         }
                     />
 
                     <EntryAnimateGalaxies
-                        transition={{
-                            delay: 0.2,
-                            duration: 1,
-                        }}
+                        delay={0.2}
+                        duration={1}
                     >
                         <GalaxyListStatistics
                             explorerCount={currentGalaxy?.explorerCount}
@@ -133,31 +122,26 @@ const AllGalaxiesPage = () => {
                     </EntryAnimateGalaxies>
 
                     <EntryAnimateGalaxies
-                        transition={{
-                            delay: 0.3,
-                            duration: 1,
-                        }}
+                        delay={0.3}
+                        duration={1}
                     >
                         <Button
                             size={buttonSize.large}
                             color={buttonColor.filled}
-                            title="Перейти к системам"
-                            onClick={() =>
-                                navigate(URL_GALAXY + `/${currentGalaxy?.galaxyId}`)
-                            }
+                            title='Перейти к системам'
+                            onClick={handleNavigateSystems}
                         />
                     </EntryAnimateGalaxies>
 
                     <EntryAnimateGalaxies
-                        transition={{
-                            delay: 0.4,
-                            duration: 1,
-                        }}
+                        delay={0.4}
+                        duration={1}
                         className={element('look-more')}
                     >
                         <Typography variant={typographyVariant.regular14}>
                             Информация о галактике
                         </Typography>
+
                         <ArrowButton
                             direction={arrowButtonDirection.bottom}
                             onClick={handleShowInformation}
@@ -168,13 +152,7 @@ const AllGalaxiesPage = () => {
                         className={element('information')}
                         ref={informationSectionRef}
                     >
-                        <GalaxyInformation
-                            galaxyDescription={currentGalaxy?.galaxyDescription}
-                            keepers={keepers}
-                            handleHideAll={handleHideAll}
-                            handleShowMore={handleShowMore}
-                            isLastLimit={isLastLimit}
-                        />
+                        <GalaxyInformation currentGalaxy={currentGalaxy} />
                     </section>
 
                     <ArrowButton

@@ -19,10 +19,8 @@ export const ChangeGalaxyButtons = ({
 
     return (
         <EntryAnimateGalaxies
-            transition={{
-                delay: 0.1,
-                duration: 1,
-            }}
+            delay={0.1}
+            duration={1}
             className={block()}
         >
             <div className={element('button-orbit')}>

@@ -1,13 +1,10 @@
 import {
     useEffect,
-    useState,
 } from 'react';
 import { BackgroundUsersList } from '@shared/ui/BackgroundUsersList';
 import { Button } from '@shared/ui/Button';
-import { Card } from '@shared/ui/Card';
 import { Container } from '@shared/ui/Container';
 import { SortCard } from '@shared/ui/SortCard';
-import { Typography } from '@shared/ui/Typography';
 
 import {
     useAppDispatch,
@@ -26,8 +23,6 @@ import { ExplorersList } from '@widgets/ExplorersList';
 import { Header } from '@widgets/Header';
 
 import { buttonSize } from '@shared/ui/Button/interfaces';
-import { cardSize } from '@shared/ui/Card/interfaces';
-import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 

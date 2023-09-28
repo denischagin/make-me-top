@@ -1,14 +1,31 @@
-import React, { HTMLAttributes } from 'react';
+import React,
+{
+    HTMLAttributes,
+    ReactNode,
+} from 'react';
 import {
     motion,
     MotionProps,
 } from 'framer-motion';
 
-type EntryAnimateProps = MotionProps & HTMLAttributes<HTMLDivElement>;
+interface EntryAnimateProps {
+    duration: number;
+    children: ReactNode;
+    delay?: number;
+    className?: string;
+}
 
-export const EntryAnimateGalaxies = (props: EntryAnimateProps) => {
+export const EntryAnimateGalaxies = ({
+    delay = 0,
+    duration,
+    ...props
+}: EntryAnimateProps) => {
     return (
         <motion.div
+            transition={{
+                delay,
+                duration,
+            }}
             initial={{
                 translateY: '42px',
                 opacity: 0,
