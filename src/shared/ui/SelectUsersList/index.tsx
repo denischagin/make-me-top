@@ -1,7 +1,4 @@
-import {
-    useEffect,
-    useState,
-} from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 import { Avatar } from '@shared/ui/Avatar';
@@ -10,10 +7,7 @@ import { DividingLine } from '@shared/ui/DividingLine';
 import { Rating } from '@shared/ui/Rating';
 import { SelectUsersKeepersItem } from '@shared/ui/SelectUsersKeepersItem';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import {
     userIsErrorSelector,
@@ -23,21 +17,15 @@ import { toggleModal } from '@entities/user/model/slice';
 import { CourseKeeper } from '@entities/user/model/types';
 import { postCourseRequest } from '@entities/user/thunks/postCourseRequest';
 
-import { bem } from '@shared/utils/bem';
-import { getUserFullName } from '@shared/utils/getUserFullName';
-import { sortByRating } from '@shared/utils/sortByRating';
+import { bem } from '@shared/utils/helpers/bem';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
+import { sortByRating } from '@shared/utils/helpers/sortByRating';
 
-import {
-    URL_EXPLORER,
-    URL_PROFILE,
-} from '@shared/constants/links';
+import { URL_EXPLORER, URL_PROFILE } from '@shared/constants/links';
 import { TOAST_ERROR_CHOOSE_KEEPER } from '@shared/constants/toastTitles';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
 import {
     ratingScoreColor,
@@ -50,10 +38,7 @@ import { UserListInterface } from '@shared/types/common';
 import './styles.scss';
 
 export const SelectUsersList = (props: UserListInterface) => {
-    const {
-        keepersList,
-        courseId,
-    } = props;
+    const { keepersList, courseId } = props;
 
     const dispatch = useAppDispatch();
 
@@ -80,7 +65,9 @@ export const SelectUsersList = (props: UserListInterface) => {
     };
 
     function handleRemoveUser(userId: number) {
-        setSelectedUsers(selectedUsers.filter((user) => user.personId !== userId));
+        setSelectedUsers(
+            selectedUsers.filter((user) => user.personId !== userId),
+        );
     }
 
     const handleSendApplication = () => {
@@ -107,9 +94,17 @@ export const SelectUsersList = (props: UserListInterface) => {
                 {keepersList?.length !== 0 && (
                     <Button
                         size={buttonSize.small}
-                        color={isSelectedAll ? buttonColor.primary500 : buttonColor.filled}
-                        onClick={isSelectedAll ? handleUnSelectAll : handleSelectAll}
-                        title={isSelectedAll ? 'Сбросить выбор' : 'Выбрать всех'}
+                        color={
+                            isSelectedAll
+                                ? buttonColor.primary500
+                                : buttonColor.filled
+                        }
+                        onClick={
+                            isSelectedAll ? handleUnSelectAll : handleSelectAll
+                        }
+                        title={
+                            isSelectedAll ? 'Сбросить выбор' : 'Выбрать всех'
+                        }
                     />
                 )}
             </div>
@@ -119,10 +114,13 @@ export const SelectUsersList = (props: UserListInterface) => {
                     key={user.personId}
                     user={user}
                     selected={selectedUsers.some(
-                        (selectedUser) => selectedUser.personId === user.personId,
+                        (selectedUser) =>
+                            selectedUser.personId === user.personId,
                     )}
                     onRemoveUser={handleRemoveUser}
-                    onSelectUser={(user) => setSelectedUsers([...selectedUsers, user])}
+                    onSelectUser={(user) =>
+                        setSelectedUsers([...selectedUsers, user])
+                    }
                 />
             ))}
 
@@ -132,7 +130,7 @@ export const SelectUsersList = (props: UserListInterface) => {
                         size={buttonSize.large}
                         color={buttonColor.primary500}
                         onClick={handleSendApplication}
-                        title="Отправить заявку"
+                        title='Отправить заявку'
                     />
                 </div>
             )}

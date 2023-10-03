@@ -10,44 +10,42 @@ import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
-import {
-    DEFAULT_ERROR_MESSAGE,
-} from '../model/constants';
+import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 import { UserProgressInGalaxy } from '../model/types';
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
 
 interface GetUserProgressInGalaxy {
-    galaxyId: number
+    galaxyId: number;
 }
 
-export interface GetUserProgressInGalaxyResponse extends UserProgressInGalaxy, ErrorInterface {
-}
+export interface GetUserProgressInGalaxyResponse
+    extends UserProgressInGalaxy,
+        ErrorInterface {}
 
-export const getUserProgressInGalaxy = createAsyncThunk<GetUserProgressInGalaxyResponse, GetUserProgressInGalaxy, { rejectValue: ErrorInterface }>(
-    FETCH_USER_PROGRESS_IN_GALAXY,
-    async (payload, {
-        rejectWithValue,
-    }) => {
-        try {
-            const {
-                galaxyId,
-            } = payload;
+export const getUserProgressInGalaxy = createAsyncThunk<
+    GetUserProgressInGalaxyResponse,
+    GetUserProgressInGalaxy,
+    { rejectValue: ErrorInterface }
+>(FETCH_USER_PROGRESS_IN_GALAXY, async (payload, { rejectWithValue }) => {
+    try {
+        const { galaxyId } = payload;
 
-            const {
-                data,
-            } = await instance.get<GetUserProgressInGalaxyResponse>(`${URL_MMT_STAND}explorer-cabinet/galaxy/${galaxyId}`);
+        const { data } = await instance.get<GetUserProgressInGalaxyResponse>(
+            `${URL_MMT_STAND}explorer-cabinet/galaxy/${galaxyId}`,
+        );
 
-            return data;
+        return data;
+    } catch (err) {
+        const error: AxiosError<ErrorInterface> = err as any;
+
+        noAuthHandler(error);
+
+        if (error.response) {
+            toast.error(error.response.data.errorMessage);
+
+            return rejectWithValue(error.response.data);
         }
-        catch (err) {
-            const error: AxiosError<ErrorInterface> = err as any;
 
-            if (error.response) {
-                toast.error(error.response.data.errorMessage);
-
-                return rejectWithValue(error.response.data);
-            }
-
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
-        }
-    },
-);
+        throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+    }
+});

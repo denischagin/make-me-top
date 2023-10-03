@@ -1,8 +1,5 @@
 import toast from 'react-hot-toast';
-import {
-    createApi,
-    fetchBaseQuery,
-} from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { AxiosError } from 'axios';
 
 import { instance } from '@shared/api/instances';
@@ -13,6 +10,7 @@ import { ErrorInterface } from '@shared/types/common';
 
 import { DEFAULT_ERROR_MESSAGE } from './constants';
 import { GalaxyForGetAll } from './types';
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
 
 export const galaxiesApi = createApi({
     reducerPath: 'galaxiesApi',
@@ -25,6 +23,8 @@ export const galaxiesApi = createApi({
             };
         } catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
+
+            noAuthHandler(error);
 
             if (error.response) {
                 toast.error(error.response.data.errorMessage);
@@ -47,6 +47,4 @@ export const galaxiesApi = createApi({
     }),
 });
 
-export const {
-    useGetAllGalaxiesQuery,
-} = galaxiesApi;
+export const { useGetAllGalaxiesQuery } = galaxiesApi;

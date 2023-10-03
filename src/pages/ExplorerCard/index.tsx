@@ -7,10 +7,7 @@ import { Container } from '@shared/ui/Container';
 import { ExplorerApplicationCard } from '@shared/ui/ExplorerApplicationCard';
 import { ReviewRequestCard } from '@shared/ui/ReviewRequestCard';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import {
     explorerCardInfoSelector,
@@ -18,7 +15,7 @@ import {
 } from '@entities/explorer/model/selectors';
 import { getExplorerCardInfo } from '@entities/explorer/thunks/getExplorerCardInfo';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { ExplorerCardUserInfo } from '@widgets/ExplorerCardUserInfo';
 import { Header } from '@widgets/Header';
@@ -39,13 +36,9 @@ const ExplorerCard = () => {
     const userInfo = useAppSelector(explorerCardInfoSelector);
     const isError = useAppSelector(explorersIsErrorSelector);
 
-    const {
-        investigatedSystems,
-    } = userInfo;
+    const { investigatedSystems } = userInfo;
 
-    const {
-        explorerId,
-    } = useParams();
+    const { explorerId } = useParams();
 
     useEffect(() => {
         dispatch(
@@ -75,7 +68,7 @@ const ExplorerCard = () => {
                     <ReviewRequestCard />
                     <ExplorerApplicationCard />
                     <SystemsList
-                        heading="Освоенные системы"
+                        heading='Освоенные системы'
                         systems={investigatedSystems}
                     />
                     <Reviews />

@@ -1,15 +1,11 @@
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { CardInterface } from './interfaces';
 
 import './styles.scss';
 
 export const Card = (props: CardInterface) => {
-    const {
-        size,
-        children,
-        glow,
-    } = props;
+    const { size, children, glow } = props;
 
     const [block, element] = bem('card');
 

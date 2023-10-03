@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router';
 import Spinner from '@shared/ui/Spinner';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { router } from './providers/router';
 import store from './providers/store';
@@ -19,7 +19,7 @@ export const App = () => {
         <div className={block()}>
             <Provider store={store}>
                 <Spinner />
-                <Toaster position="top-center" />
+                <Toaster position='top-center' />
                 <Suspense fallback={<Spinner loading />}>
                     <RouterProvider router={router} />
                 </Suspense>

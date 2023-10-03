@@ -12,33 +12,34 @@ import { ErrorInterface } from '@shared/types/common';
 
 import { FETCH_KEEPER_LIST } from '../model/actions';
 import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
 
-export interface KeeperFilterResponseInterface extends KeepersFilterInterface, ErrorInterface {
+export interface KeeperFilterResponseInterface
+    extends KeepersFilterInterface,
+        ErrorInterface {}
 
-}
+export const getListKeepersByFilter = createAsyncThunk<
+    KeeperFilterResponseInterface[],
+    any,
+    { rejectValue: ErrorInterface }
+>(FETCH_KEEPER_LIST, async (payload, { rejectWithValue }) => {
+    try {
+        const { data } = await instance.get<KeeperFilterResponseInterface[]>(
+            `${URL_MMT_STAND}info/keeper/`,
+        );
 
-export const getListKeepersByFilter = createAsyncThunk<KeeperFilterResponseInterface[], any, { rejectValue: ErrorInterface }>(
-    FETCH_KEEPER_LIST,
-    async (payload, {
-        rejectWithValue,
-    }) => {
-        try {
-            const {
-                data,
-            } = await instance.get<KeeperFilterResponseInterface[]>(`${URL_MMT_STAND}info/keeper/`);
+        return data;
+    } catch (err) {
+        const error: AxiosError<ErrorInterface> = err as any;
 
-            return data;
+        noAuthHandler(error);
+
+        if (error.response) {
+            toast.error(error.response.data.errorMessage);
+
+            return rejectWithValue(error.response.data);
         }
-        catch (err) {
-            const error: AxiosError<ErrorInterface> = err as any;
 
-            if (error.response) {
-                toast.error(error.response.data.errorMessage);
-
-                return rejectWithValue(error.response.data);
-            }
-
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
-        }
-    },
-);
+        throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+    }
+});

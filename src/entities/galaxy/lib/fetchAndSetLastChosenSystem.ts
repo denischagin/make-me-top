@@ -13,20 +13,20 @@ import { fetchSystemById } from '@entities/orbit/thunks/fetchSystemById';
 import { FETCH_AND_SET_CHOSEN_SYSTEM } from '@shared/constants/actions';
 
 import { ErrorInterface } from '@shared/types/common';
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
 
 interface FetchAndSetLastChosenStarInterface {
-    id: number | null,
-    withDependencies?: boolean,
+    id: number | null;
+    withDependencies?: boolean;
     setLastChosenSystem: React.Dispatch<React.SetStateAction<LastChosenSystem>>;
 }
 
-export const fetchAndSetLastChosenSystem = createAsyncThunk<void, FetchAndSetLastChosenStarInterface>(
+export const fetchAndSetLastChosenSystem = createAsyncThunk<
+    void,
+    FetchAndSetLastChosenStarInterface
+>(
     FETCH_AND_SET_CHOSEN_SYSTEM,
-    async ({
-        id,
-        withDependencies,
-        setLastChosenSystem,
-    }) => {
+    async ({ id, withDependencies, setLastChosenSystem }) => {
         try {
             const data = await fetchSystemById({
                 id,
@@ -37,9 +37,10 @@ export const fetchAndSetLastChosenSystem = createAsyncThunk<void, FetchAndSetLas
                 ...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
                 ...data,
             });
-        }
-        catch (err) {
+        } catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
+
+            noAuthHandler(error);
 
             throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
         }

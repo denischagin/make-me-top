@@ -8,10 +8,7 @@ import React, {
 } from 'react';
 import System from '@shared/ui/System';
 
-import {
-    SystemType,
-    UserProgressInGalaxy,
-} from '@entities/galaxy/model/types';
+import { SystemType, UserProgressInGalaxy } from '@entities/galaxy/model/types';
 
 import { getDigitalAngle } from '@entities/orbit/lib/getDigitalAngle';
 import { getPercentageProgress } from '@entities/orbit/lib/getPercentageProgress';
@@ -25,28 +22,25 @@ import { getYCoordinateOnEllipse } from '@entities/orbit/lib/getYCoordinateOnEll
 
 import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
-import {
-    roles,
-    storageKeys,
-} from '@shared/constants/storageKeys';
+import { roles, storageKeys } from '@shared/constants/storageKeys';
 
 import { SystemProgressTypes } from '@shared/types/common';
 
 import './styles.scss';
 
 interface SystemInOrbitProps {
-	system: SystemType;
-	handleSystemClick: MouseEventHandler<HTMLDivElement>;
-	handleSystemMouseEnter: MouseEventHandler<HTMLDivElement>;
-	handleSystemMouseLeave: MouseEventHandler<HTMLDivElement>;
-	orbitHalfWidth: number;
-	orbitHalfHeight: number;
-	elementWidth: number;
-	elementHeight: number;
-	userProgress: UserProgressInGalaxy;
-	systemStyle?: CSSProperties;
+    system: SystemType;
+    handleSystemClick: MouseEventHandler<HTMLDivElement>;
+    handleSystemMouseEnter: MouseEventHandler<HTMLDivElement>;
+    handleSystemMouseLeave: MouseEventHandler<HTMLDivElement>;
+    orbitHalfWidth: number;
+    orbitHalfHeight: number;
+    elementWidth: number;
+    elementHeight: number;
+    userProgress: UserProgressInGalaxy;
+    systemStyle?: CSSProperties;
 }
 
 const SystemInOrbit = (props: SystemInOrbitProps) => {
@@ -64,7 +58,8 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
     } = props;
     const isNoExplorer = useMemo(() => {
         return (
-            (localStorage.getItem(storageKeys.currentRole) as roles) !== 'EXPLORER'
+            (localStorage.getItem(storageKeys.currentRole) as roles) !==
+            'EXPLORER'
         );
     }, []);
 
@@ -182,12 +177,12 @@ export default memo(
     SystemInOrbit,
     (prevProps, nextProps) =>
         prevProps.system.systemId === nextProps.system.systemId &&
-		prevProps.orbitHalfWidth === nextProps.orbitHalfWidth &&
-		prevProps.orbitHalfHeight === nextProps.orbitHalfHeight &&
-		prevProps.elementWidth === nextProps.elementWidth &&
-		prevProps.elementHeight === nextProps.elementHeight &&
-		prevProps.userProgress === nextProps.userProgress &&
-		prevProps.handleSystemClick === nextProps.handleSystemClick &&
-		prevProps.handleSystemMouseLeave === nextProps.handleSystemMouseLeave &&
-		prevProps.handleSystemMouseEnter === nextProps.handleSystemMouseEnter,
+        prevProps.orbitHalfWidth === nextProps.orbitHalfWidth &&
+        prevProps.orbitHalfHeight === nextProps.orbitHalfHeight &&
+        prevProps.elementWidth === nextProps.elementWidth &&
+        prevProps.elementHeight === nextProps.elementHeight &&
+        prevProps.userProgress === nextProps.userProgress &&
+        prevProps.handleSystemClick === nextProps.handleSystemClick &&
+        prevProps.handleSystemMouseLeave === nextProps.handleSystemMouseLeave &&
+        prevProps.handleSystemMouseEnter === nextProps.handleSystemMouseEnter,
 );

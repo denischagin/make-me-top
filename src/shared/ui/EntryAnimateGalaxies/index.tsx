@@ -1,23 +1,16 @@
-import React,
-{
-    HTMLAttributes,
-    ReactNode,
-} from 'react';
-import {
-    motion,
-    MotionProps,
-} from 'framer-motion';
+import { ReactNode } from 'react';
+import { motion } from 'framer-motion';
 
 interface EntryAnimateProps {
-    duration: number;
     children: ReactNode;
+    duration?: number;
     delay?: number;
     className?: string;
 }
 
 export const EntryAnimateGalaxies = ({
     delay = 0,
-    duration,
+    duration = 1,
     ...props
 }: EntryAnimateProps) => {
     return (

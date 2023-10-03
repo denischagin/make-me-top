@@ -1,7 +1,4 @@
-import {
-    memo,
-    useState,
-} from 'react';
+import { memo, useState } from 'react';
 import { TabPanel } from 'react-tabs';
 import { Button } from '@shared/ui/Button';
 import { CircleModal } from '@shared/ui/CircleModal';
@@ -15,14 +12,11 @@ import { UsersList } from '@shared/ui/UsersList';
 
 import { CurrentUserItem } from '@entities/user';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { TABS_LIST } from '@pages/Explorer/model';
 
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
 import {
     typographyColor,
@@ -70,7 +64,7 @@ export const GalaxyCircleModal = ({
                     <Button
                         color={buttonColor.filled}
                         size={buttonSize.large}
-                        title="Отправить заявку"
+                        title='Отправить заявку'
                         onClick={() => setActiveTab(2)}
                     />
                 )}
@@ -90,9 +84,11 @@ export const GalaxyCircleModal = ({
                             <>
                                 <CurrentUserItem
                                     explorer={you}
-                                    badgeTitle="Мой рейтинг"
+                                    badgeTitle='Мой рейтинг'
                                 />
-                                <DividingLine color={DividingLineColor.gray500} />
+                                <DividingLine
+                                    color={DividingLineColor.gray500}
+                                />
                             </>
                         )}
                         {explorers?.length !== 0 ? (
@@ -113,9 +109,11 @@ export const GalaxyCircleModal = ({
                             <>
                                 <CurrentUserItem
                                     keeper={yourKeeper}
-                                    badgeTitle="Мой хранитель"
+                                    badgeTitle='Мой хранитель'
                                 />
-                                <DividingLine color={DividingLineColor.gray500} />
+                                <DividingLine
+                                    color={DividingLineColor.gray500}
+                                />
                             </>
                         )}
                         {!yourKeeper?.personId ? (
@@ -148,5 +146,5 @@ export default memo(
     GalaxyCircleModal,
     (prev, next) =>
         prev.lastChosenSystem.systemId === next.lastChosenSystem.systemId &&
-		prev.isOpen === next.isOpen,
+        prev.isOpen === next.isOpen,
 );

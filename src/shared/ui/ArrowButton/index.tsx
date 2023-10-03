@@ -1,16 +1,13 @@
 import { ReactComponent as ArrowIcon } from '@shared/images/arrow.svg';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { ArrowButtonInterface } from './interfaces';
 
 import './styles.scss';
 
 export const ArrowButton = (props: ArrowButtonInterface) => {
-    const {
-        direction,
-        onClick,
-    } = props;
+    const { direction, onClick } = props;
 
     const [block, element] = bem('arrow-button');
 

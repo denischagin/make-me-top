@@ -4,7 +4,7 @@ import { Card } from '@shared/ui/Card';
 import { Rating } from '@shared/ui/Rating';
 import { Typography } from '@shared/ui/Typography';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';

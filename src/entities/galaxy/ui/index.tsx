@@ -7,19 +7,13 @@ import React, {
     useState,
 } from 'react';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import {
     userCourseInfoSelector,
     userIsModalOpenSelector,
 } from '@entities/user/model/selectors';
-import {
-    closeModal,
-    toggleModal,
-} from '@entities/user/model/slice';
+import { closeModal, toggleModal } from '@entities/user/model/slice';
 import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
@@ -49,7 +43,7 @@ import {
 } from '@entities/orbit/model/types';
 import Orbit from '@entities/orbit/ui';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { SystemProgressTypes } from '@shared/types/common';
 
@@ -78,13 +72,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const courseInfo = useAppSelector(userCourseInfoSelector);
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
 
-    const {
-        course,
-        you,
-        yourKeeper,
-        explorers,
-        keepers,
-    } = courseInfo;
+    const { course, you, yourKeeper, explorers, keepers } = courseInfo;
 
     const [systems, setSystems] = useState<NodeListOf<HTMLDivElement>>(
         document.querySelectorAll(`.${SYSTEM_CLASS}`),
@@ -124,7 +112,13 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             systemHeight: adaptiveSystemWidth,
             backgroundHeight: height + orbitHeightStep / 2,
         }),
-        [width, height, getAdaptiveSystemWidth, orbitWidthStep, orbitHeightStep],
+        [
+            width,
+            height,
+            getAdaptiveSystemWidth,
+            orbitWidthStep,
+            orbitHeightStep,
+        ],
     );
 
     const svgContainer = useLinesSvgContainer(galaxyPage, svgContainerClass);
@@ -167,7 +161,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             const childrenList = currentTarget.getAttribute(
                 DATA_SYSTEM_CHILDREN_LIST,
             );
-            const parentsList = currentTarget.getAttribute(DATA_SYSTEM_PARENT_LIST);
+            const parentsList = currentTarget.getAttribute(
+                DATA_SYSTEM_PARENT_LIST,
+            );
             const systemProgressType = currentTarget.getAttribute(
                 DATA_SYSTEM_PROGRESS_TYPE,
             );
@@ -179,7 +175,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
             if (
                 systemProgressType === SystemProgressTypes.SYSTEM_OPEN ||
-				systemProgressType === SystemProgressTypes.SYSTEM_EDUCATION
+                systemProgressType === SystemProgressTypes.SYSTEM_EDUCATION
             ) {
                 showSystemChildren({
                     childrenList,

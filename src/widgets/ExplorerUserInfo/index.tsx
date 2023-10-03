@@ -7,8 +7,8 @@ import { useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 
-import { bem } from '@shared/utils/bem';
-import { getUserFullName } from '@shared/utils/getUserFullName';
+import { bem } from '@shared/utils/helpers/bem';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import {
@@ -25,18 +25,11 @@ export const ExplorerUserInfo = () => {
 
     const userInfo = useAppSelector(explorerInfoSelector);
 
-    const {
-        person,
-        rating,
-        totalSystems,
-    } = userInfo;
+    const { person, rating, totalSystems } = userInfo;
 
     return (
         <div className={block()}>
-            <Avatar
-                size={avatarSize.large}
-                orbit
-            />
+            <Avatar size={avatarSize.large} orbit />
             <div className={element('description')}>
                 <Typography
                     variant={typographyVariant.h1}
@@ -46,7 +39,7 @@ export const ExplorerUserInfo = () => {
                 </Typography>
                 <div className={element('cards')}>
                     <InfoCard
-                        title="Рейтинг"
+                        title='Рейтинг'
                         value={
                             <Rating
                                 scoreColor={ratingScoreColor.white}
@@ -57,7 +50,7 @@ export const ExplorerUserInfo = () => {
                         }
                     />
                     <InfoCard
-                        title="Кол-во освоенных систем"
+                        title='Кол-во освоенных систем'
                         value={totalSystems}
                     />
                 </div>

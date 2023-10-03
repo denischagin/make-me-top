@@ -8,26 +8,23 @@ import { ModalPlanetInterface } from '@entities/user/model/types';
 
 import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { PlanetListInterface } from './interfaces';
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 
 import './styles.scss';
 
 export const PlanetList = (props: PlanetListInterface) => {
-    const {
-        currentPlanet,
-    } = props;
+    const { currentPlanet } = props;
 
     const [block, element] = bem('planet-list');
 
     const planetList = useAppSelector(userPlanetListSelector);
 
-    const currentPlanetFromList = planetList?.find((item: ModalPlanetInterface) => item.planetName === currentPlanet) || {
+    const currentPlanetFromList = planetList?.find(
+        (item: ModalPlanetInterface) => item.planetName === currentPlanet,
+    ) || {
         planetId: DEFAULT_ID,
     };
 
@@ -37,28 +34,29 @@ export const PlanetList = (props: PlanetListInterface) => {
                 <div
                     key={planet.planetId}
                     className={element('item', {
-                        active: planet.planetId < currentPlanetFromList.planetId,
+                        active:
+                            planet.planetId < currentPlanetFromList.planetId,
                         current: planet.planetName === currentPlanet,
                     })}
                 >
                     <span className={element('name')}>
                         {++index}. {planet.planetName}
                     </span>
-                    {
-                        (planet.planetId > currentPlanetFromList.planetId) &&
+                    {planet.planetId > currentPlanetFromList.planetId && (
                         <LockIcon className={element('lock-icon')} />
-                    }
-                    {
-                        planet.planetName === currentPlanet &&
+                    )}
+                    {planet.planetName === currentPlanet && (
                         <div className={element('info')}>
-                            <span className={element('item-text')}>Текущая планета</span>
+                            <span className={element('item-text')}>
+                                Текущая планета
+                            </span>
                             <Button
-                                title="Обучение"
+                                title='Обучение'
                                 size={buttonSize.small}
                                 color={buttonColor.primary500}
                             />
                         </div>
-                    }
+                    )}
                 </div>
             ))}
         </div>

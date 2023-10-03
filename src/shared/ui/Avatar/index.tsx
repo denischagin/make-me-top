@@ -1,4 +1,4 @@
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { AvatarInterface } from './interfaces';
 
@@ -19,15 +19,14 @@ export const Avatar = (props: AvatarInterface) => {
                 size,
             })}
         >
-            {
-                orbit && size === 'large' &&
+            {orbit && size === 'large' && (
                 <div className={element('border')}>
                     <div className={element('orbit', 'mt-5')} />
                 </div>
-            }
+            )}
             <img
                 src={image}
-                alt=""
+                alt=''
                 className={element('image', {
                     size,
                 })}

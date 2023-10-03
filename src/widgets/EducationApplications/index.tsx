@@ -1,17 +1,17 @@
 import { EducationApplicationCard } from '@shared/ui/EducationApplicationCard';
 import { Typography } from '@shared/ui/Typography';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { EducationApplicationsInterface } from './interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 
-export const EducationApplications = (props: EducationApplicationsInterface) => {
-    const {
-        applications,
-    } = props;
+export const EducationApplications = (
+    props: EducationApplicationsInterface,
+) => {
+    const { applications } = props;
 
     const [block, element] = bem('education-application');
 
@@ -28,18 +28,18 @@ export const EducationApplications = (props: EducationApplicationsInterface) => 
                 Заявки на обучение
             </Typography>
             <div className={element('cards')}>
-                {
-                    (applications?.length)
-                        ? applications?.map((application) => (
-                            <EducationApplicationCard
-                                key={application.requestId}
-                                user={application}
-                            />
-                        ))
-                        : <Typography variant={typographyVariant.medium16}>
-                            Заявки отсутствуют
-                        </Typography>
-                }
+                {applications?.length ? (
+                    applications?.map((application) => (
+                        <EducationApplicationCard
+                            key={application.requestId}
+                            user={application}
+                        />
+                    ))
+                ) : (
+                    <Typography variant={typographyVariant.medium16}>
+                        Заявки отсутствуют
+                    </Typography>
+                )}
             </div>
         </div>
     );

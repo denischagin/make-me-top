@@ -9,46 +9,42 @@ import { URL_MMT_STAND } from '@shared/constants/urls';
 import { ErrorInterface } from '@shared/types/common';
 
 import { FETCH_COURSE } from '../model/actions';
-import {
-    DEFAULT_ERROR_MESSAGE,
-    DEFAULT_ID,
-} from '../model/constants';
+import { DEFAULT_ERROR_MESSAGE, DEFAULT_ID } from '../model/constants';
 import { CourseInfoInterface } from '../model/types';
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
 
 interface GetCourseInfoInterface {
-    courseId: number
+    courseId: number;
 }
 
-export interface CourseResponseInterface extends CourseInfoInterface, ErrorInterface {
+export interface CourseResponseInterface
+    extends CourseInfoInterface,
+        ErrorInterface {}
 
-}
+export const getCourseInfo = createAsyncThunk<
+    CourseResponseInterface,
+    GetCourseInfoInterface,
+    { rejectValue: ErrorInterface }
+>(FETCH_COURSE, async (payload, { rejectWithValue }) => {
+    try {
+        const { courseId = DEFAULT_ID } = payload;
 
-export const getCourseInfo = createAsyncThunk<CourseResponseInterface, GetCourseInfoInterface, { rejectValue: ErrorInterface }>(
-    FETCH_COURSE,
-    async (payload, {
-        rejectWithValue,
-    }) => {
-        try {
-            const {
-                courseId = DEFAULT_ID,
-            } = payload;
+        const { data } = await instance.get<CourseResponseInterface>(
+            `${URL_MMT_STAND}course-app/course/${courseId}`,
+        );
 
-            const {
-                data,
-            } = await instance.get<CourseResponseInterface>(`${URL_MMT_STAND}course-app/course/${courseId}`);
+        return data;
+    } catch (err) {
+        const error: AxiosError<ErrorInterface> = err as any;
 
-            return data;
+        noAuthHandler(error);
+
+        if (error.response) {
+            toast.error(error.response.data.errorMessage);
+
+            return rejectWithValue(error.response.data);
         }
-        catch (err) {
-            const error: AxiosError<ErrorInterface> = err as any;
 
-            if (error.response) {
-                toast.error(error.response.data.errorMessage);
-
-                return rejectWithValue(error.response.data);
-            }
-
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
-        }
-    },
-);
+        throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+    }
+});

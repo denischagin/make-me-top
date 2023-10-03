@@ -8,7 +8,7 @@ import { keeperIsKeeperSelector } from '@entities/keeper/model/selectors';
 
 import { ReactComponent as MakeMeTopIcon } from '@shared/images/make-me-top.svg';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { Login } from '@widgets/Login';
 import { SelectRole } from '@widgets/SelectRole';
@@ -36,11 +36,7 @@ const Home = () => {
                     <p className={element('heading')}>
                         <MakeMeTopIcon />
                     </p>
-                    {
-                        !isRoleSelected
-                            ? <SelectRole />
-                            : <Login />
-                    }
+                    {!isRoleSelected ? <SelectRole /> : <Login />}
                 </div>
             </div>
         </>

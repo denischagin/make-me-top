@@ -1,7 +1,7 @@
 import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 import { ReactComponent as StarIcon } from '@shared/images/star.svg';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { GRADES } from './model';
 
@@ -22,9 +22,7 @@ export const FinalGrade = () => {
                         />
                     ))}
                 </span>
-                <span>
-                    {<LockIcon className={element('lock-icon')} />}
-                </span>
+                <span>{<LockIcon className={element('lock-icon')} />}</span>
             </div>
         </div>
     );

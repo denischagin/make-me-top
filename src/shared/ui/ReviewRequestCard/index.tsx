@@ -8,17 +8,14 @@ import { useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import {
     CONFIRM_CANCEL_LEARNING,
     CONFIRM_CANCEL_REVIEW,
 } from '@shared/constants/modalTitles';
 
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
@@ -30,9 +27,7 @@ export const ReviewRequestCard = () => {
 
     const userInfo = useAppSelector(explorerCardInfoSelector);
 
-    const {
-        reviewRequest,
-    } = userInfo;
+    const { reviewRequest } = userInfo;
 
     if (!reviewRequest) {
         return null;
@@ -40,8 +35,7 @@ export const ReviewRequestCard = () => {
 
     return (
         <div className={block()}>
-            {
-                isAcceptModalOpen &&
+            {isAcceptModalOpen && (
                 <ConfirmModal
                     confitmTitle={CONFIRM_CANCEL_REVIEW}
                     rejectButtonTitle='Нет, хочу продолжить'
@@ -49,17 +43,14 @@ export const ReviewRequestCard = () => {
                     onClose={() => setIsAcceptModalOpen(false)}
                     onSubmit={() => setIsAcceptModalOpen(false)} // в будущем будет метод отмены оценивания
                 />
-            }
+            )}
             <Typography
                 className={element('heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
             >
                 Запрос на проверку:
             </Typography>
-            <Card
-                size={cardSize.large}
-                glow
-            >
+            <Card size={cardSize.large} glow>
                 <div className={element('content')}>
                     <div className={element('info')}>
                         <Typography

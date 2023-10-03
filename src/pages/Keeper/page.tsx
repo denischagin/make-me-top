@@ -4,10 +4,7 @@ import { Container } from '@shared/ui/Container';
 import { GradeApplicationCard } from '@shared/ui/GradeApplicationCard';
 import { Typography } from '@shared/ui/Typography';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import { loadingIsLoadingSelector } from '@entities/loading/model/selectors';
 
@@ -15,7 +12,7 @@ import { keeperInfoSelector } from '@entities/keeper/model/selectors';
 import { FinalAssessmentsInterface } from '@entities/keeper/model/types/interfaces';
 import { getKeeperInfo } from '@entities/keeper/thunks/getKeeperInfo';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { EducationApplications } from '@widgets/EducationApplications';
 import { ExplorerItemList } from '@widgets/ExplorerItemList';
@@ -40,8 +37,7 @@ export const Keeper = () => {
         studyRequests,
         reviewRequests,
         finalAssessments,
-    } =
-		userInfo;
+    } = userInfo;
 
     useEffect(() => {
         dispatch(getKeeperInfo({}));
@@ -57,17 +53,26 @@ export const Keeper = () => {
                         <div className={element('row', 'row')}>
                             <div className={element('profile', 'col-xxl-9')}>
                                 <KeeperUserInfo />
-                                <EducationApplications applications={studyRequests} />
+                                <EducationApplications
+                                    applications={studyRequests}
+                                />
                                 {!!finalAssessments?.length && (
-                                    <div className={element('final-grade-cards')}>
+                                    <div
+                                        className={element('final-grade-cards')}
+                                    >
                                         <Typography
-                                            className={element('final-grade-heading', 'mb-4 mt-1')}
+                                            className={element(
+                                                'final-grade-heading',
+                                                'mb-4 mt-1',
+                                            )}
                                             variant={typographyVariant.h2}
                                         >
                                             Итоговая оценка
                                         </Typography>
                                         {finalAssessments?.map(
-                                            (asset: FinalAssessmentsInterface) => (
+                                            (
+                                                asset: FinalAssessmentsInterface,
+                                            ) => (
                                                 <GradeApplicationCard
                                                     key={asset.personId}
                                                     finalAssessment={asset}
@@ -76,10 +81,19 @@ export const Keeper = () => {
                                         )}
                                     </div>
                                 )}
-                                <GradeApplications reviewRequest={reviewRequests} />
+                                <GradeApplications
+                                    reviewRequest={reviewRequests}
+                                />
                             </div>
-                            <div className={element('explorers-list', 'col-xxl-3')}>
-                                <ExplorerItemList explorers={studyingExplorers} />
+                            <div
+                                className={element(
+                                    'explorers-list',
+                                    'col-xxl-3',
+                                )}
+                            >
+                                <ExplorerItemList
+                                    explorers={studyingExplorers}
+                                />
                             </div>
                         </div>
                     </Container>

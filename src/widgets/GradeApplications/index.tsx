@@ -1,7 +1,7 @@
 import { GradeApplicationCard } from '@shared/ui/GradeApplicationCard';
 import { Typography } from '@shared/ui/Typography';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { GradeApplicationsInterface } from './interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
@@ -9,10 +9,7 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import './styles.scss';
 
 export const GradeApplications = (props: GradeApplicationsInterface) => {
-    const {
-        finalAssessment,
-        reviewRequest,
-    } = props;
+    const { finalAssessment, reviewRequest } = props;
 
     const [block, element] = bem('grade-application');
 
@@ -29,21 +26,19 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
                 Запрос на проверку
             </Typography>
             <div className={element('cards')}>
-                {
-                    finalAssessment
-                        ? finalAssessment?.map((application) => (
-                            <GradeApplicationCard
-                                key={application.personId}
-                                finalAssessment={application}
-                            />
-                        ))
-                        : reviewRequest?.map((application) => (
-                            <GradeApplicationCard
-                                key={application.personId}
-                                reviewRequest={application}
-                            />
-                        ))
-                }
+                {finalAssessment
+                    ? finalAssessment?.map((application) => (
+                          <GradeApplicationCard
+                              key={application.personId}
+                              finalAssessment={application}
+                          />
+                      ))
+                    : reviewRequest?.map((application) => (
+                          <GradeApplicationCard
+                              key={application.personId}
+                              reviewRequest={application}
+                          />
+                      ))}
             </div>
         </div>
     );

@@ -5,7 +5,7 @@ import { RouterLink } from '@shared/ui/RouterLink';
 import { ShowMoreElemenetsButton } from '@shared/ui/ShowMoreElemenetsButton';
 import { Typography } from '@shared/ui/Typography';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { URL_EXPLORER } from '@shared/constants/links';
 
@@ -21,13 +21,11 @@ import { DEFAULT_LIMIT_ITEM } from './model';
 import './styles.scss';
 
 export const ExplorerItemList = (props: ExplorerItemListInterface) => {
-    const {
-        explorers,
-    } = props;
+    const { explorers } = props;
 
     const [block, element] = bem('explorer-card-list');
-    const [limitElements, setElementsLimit] = useState<number>(DEFAULT_LIMIT_ITEM);
-
+    const [limitElements, setElementsLimit] =
+        useState<number>(DEFAULT_LIMIT_ITEM);
 
     const totalExplorers = explorers?.length || 0;
 
@@ -46,19 +44,17 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                 >
                     {`Всего учеников: ${totalExplorers}`}
                 </Typography>
-                {
-                    explorers?.slice(0, limitElements).map((user) => (
-                        <RouterLink
-                            to={`${URL_EXPLORER}/${user.personId}`}
-                            key={user.personId}
-                        >
-                            <ExplorerItem
-                                name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
-                                avatar=''
-                            />
-                        </RouterLink>
-                    ))
-                }
+                {explorers?.slice(0, limitElements).map((user) => (
+                    <RouterLink
+                        to={`${URL_EXPLORER}/${user.personId}`}
+                        key={user.personId}
+                    >
+                        <ExplorerItem
+                            name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
+                            avatar=''
+                        />
+                    </RouterLink>
+                ))}
                 <ShowMoreElemenetsButton
                     setElementsLimit={setElementsLimit}
                     openButtonTitle='Все ученики'

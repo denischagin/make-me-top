@@ -5,10 +5,7 @@ import { Button } from '@shared/ui/Button';
 import { Container } from '@shared/ui/Container';
 import { Typography } from '@shared/ui/Typography';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import { MasteringApplication } from '@entities/explorer';
 
@@ -20,7 +17,7 @@ import {
 } from '@entities/explorer/model/selectors';
 import { getExplorerInfo } from '@entities/explorer/thunks/getExplorerInfo';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { URL_GALAXY } from '@shared/constants/links';
 
@@ -32,10 +29,7 @@ import { SystemsList } from '@widgets/SystemsList';
 
 import NotFound from '@pages/NotFound';
 
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import {
     typographyColor,
     typographyVariant,
@@ -54,11 +48,7 @@ export const Explorer = () => {
     const isError = useAppSelector(explorersIsErrorSelector);
     const isLoading = useAppSelector(loadingIsLoadingSelector);
 
-    const {
-        investigatedSystems,
-        studyRequest,
-        currentSystem,
-    } = userInfo;
+    const { investigatedSystems, studyRequest, currentSystem } = userInfo;
 
     useEffect(() => {
         dispatch(getExplorerInfo({}));
@@ -84,17 +74,19 @@ export const Explorer = () => {
                             <div className={element('button-galaxy')}>
                                 {(currentSystem || studyRequest) && (
                                     <Button
-                                        title="Переход на страницу с галактикой"
+                                        title='Переход на страницу с галактикой'
                                         size={buttonSize.large}
                                         color={buttonColor.filled}
-                                        onClick={() => navigate(URL_GALAXY + '/1')}
+                                        onClick={() =>
+                                            navigate(URL_GALAXY + '/1')
+                                        }
                                     />
                                 )}
                             </div>
 
                             <div className={element('completed-systems')}>
                                 <SystemsList
-                                    heading="Освоенные системы"
+                                    heading='Освоенные системы'
                                     systems={investigatedSystems}
                                 />
                             </div>
@@ -103,7 +95,10 @@ export const Explorer = () => {
                         <div className={element('rating', 'col-xxl-3')}>
                             <Typography
                                 variant={typographyVariant.h2}
-                                className={element('rating-heading', 'mt-1 mb-4')}
+                                className={element(
+                                    'rating-heading',
+                                    'mt-1 mb-4',
+                                )}
                             >
                                 Рейтинг
                             </Typography>

@@ -14,7 +14,7 @@ import {
 
 import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { buttonSize } from '@shared/ui/Button/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
@@ -25,7 +25,8 @@ import './styles.scss';
 
 export const Reviews = () => {
     const [block, element] = bem('reviews');
-    const [limitElements, setElementsLimit] = useState<number>(DEFAULT_EL_LIMIT);
+    const [limitElements, setElementsLimit] =
+        useState<number>(DEFAULT_EL_LIMIT);
 
     const location = useLocation();
 
@@ -34,9 +35,7 @@ export const Reviews = () => {
         ? useAppSelector(explorerCardInfoSelector)
         : useAppSelector(keeperCardInfoSelector);
 
-    const {
-        feedback,
-    } = reviews;
+    const { feedback } = reviews;
 
     if (!feedback?.length) {
         return null;
@@ -51,14 +50,9 @@ export const Reviews = () => {
                 Отзывы
             </Typography>
             <div className={element('cards')}>
-                {
-                    feedback.slice(0, limitElements)?.map((item) => (
-                        <ReviewCard
-                            key={item.courseId}
-                            review={item}
-                        />
-                    ))
-                }
+                {feedback.slice(0, limitElements)?.map((item) => (
+                    <ReviewCard key={item.courseId} review={item} />
+                ))}
             </div>
             <ShowMoreElemenetsButton
                 setElementsLimit={setElementsLimit}

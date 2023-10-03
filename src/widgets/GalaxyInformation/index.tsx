@@ -3,8 +3,8 @@ import { Button } from '@shared/ui/Button';
 import { KeeperRatingCard } from '@shared/ui/KeeperRatingCard';
 import { Typography } from '@shared/ui/Typography';
 
-import { bem } from '@shared/utils/bem';
-import { getUserFullName } from '@shared/utils/getUserFullName';
+import { bem } from '@shared/utils/helpers/bem';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 import { useShowMore } from '@shared/utils/hooks/use-show-more';
 
 import { buttonSize } from '@shared/ui/Button/interfaces';
@@ -22,7 +22,7 @@ export const GalaxyInformation: React.FC<GalaxyInformationProps> = ({
         handleShowMore,
         handleHideAll,
         isLastLimit,
-    } = useShowMore(currentGalaxy?.keepers!, 9, 3);
+    } = useShowMore(currentGalaxy?.keepers ?? [], 9, 3);
 
     return (
         <>

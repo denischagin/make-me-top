@@ -10,8 +10,7 @@ import { Typography } from '@shared/ui/Typography';
 
 import { useGetAllGalaxiesQuery } from '@entities/galaxy/model/api';
 
-import { bem } from '@shared/utils/bem';
-import { useShowMore } from '@shared/utils/hooks/use-show-more';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { URL_GALAXY } from '@shared/constants/links';
 
@@ -23,10 +22,7 @@ import { Header } from '@widgets/Header';
 import NotFound from '@pages/NotFound';
 
 import { arrowButtonDirection } from '@shared/ui/ArrowButton/interfaces';
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import { useCurrentGalaxy } from './hooks';
@@ -41,15 +37,12 @@ const AllGalaxiesPage = () => {
     } = useGetAllGalaxiesQuery();
     const {
         currentGalaxy,
-        isFirstGalaxy,
-        isLastGalaxy,
-        lastGalaxy,
-        firstGalaxy,
-        prevGalaxy,
-        nextGalaxy,
         handleNextGalaxy,
         handlePrevGalaxy,
+        circleNextGalaxyName,
+        circlePrevGalaxyName,
     } = useCurrentGalaxy(galaxies);
+
     const informationSectionRef = useRef<HTMLElement>(null);
     const navigate = useNavigate();
 
@@ -70,14 +63,6 @@ const AllGalaxiesPage = () => {
     const handleNavigateSystems = () =>
         navigate(URL_GALAXY + `/${currentGalaxy?.galaxyId}`);
 
-    if (isLoading)
-        return (
-            <div className={block()}>
-                <BackgroundGalaxies />
-                <Header />
-            </div>
-        );
-
     if (isError) return <NotFound errorCode='' />;
 
     return (
@@ -86,10 +71,7 @@ const AllGalaxiesPage = () => {
             <Header />
             <Container>
                 <div className={element('content')}>
-                    <EntryAnimateGalaxies
-                        duration={1}
-                        className={element('title-wrapper')}
-                    >
+                    <EntryAnimateGalaxies className={element('title-wrapper')}>
                         <TitleGalaxyPage
                             galaxyName={currentGalaxy?.galaxyName!}
                         />
@@ -98,22 +80,11 @@ const AllGalaxiesPage = () => {
                     <ChangeGalaxyButtons
                         handlePrevGalaxy={handlePrevGalaxy}
                         handleNextGalaxy={handleNextGalaxy}
-                        prevGalaxyName={
-                            isFirstGalaxy
-                                ? lastGalaxy.galaxyName
-                                : prevGalaxy?.galaxyName
-                        }
-                        nextGalaxyName={
-                            isLastGalaxy
-                                ? firstGalaxy.galaxyName
-                                : nextGalaxy?.galaxyName
-                        }
+                        prevGalaxyName={circlePrevGalaxyName}
+                        nextGalaxyName={circleNextGalaxyName}
                     />
 
-                    <EntryAnimateGalaxies
-                        delay={0.2}
-                        duration={1}
-                    >
+                    <EntryAnimateGalaxies delay={0.2}>
                         <GalaxyListStatistics
                             explorerCount={currentGalaxy?.explorerCount}
                             keeperCount={currentGalaxy?.keeperCount}
@@ -121,10 +92,7 @@ const AllGalaxiesPage = () => {
                         />
                     </EntryAnimateGalaxies>
 
-                    <EntryAnimateGalaxies
-                        delay={0.3}
-                        duration={1}
-                    >
+                    <EntryAnimateGalaxies delay={0.3}>
                         <Button
                             size={buttonSize.large}
                             color={buttonColor.filled}
@@ -135,7 +103,6 @@ const AllGalaxiesPage = () => {
 
                     <EntryAnimateGalaxies
                         delay={0.4}
-                        duration={1}
                         className={element('look-more')}
                     >
                         <Typography variant={typographyVariant.regular14}>

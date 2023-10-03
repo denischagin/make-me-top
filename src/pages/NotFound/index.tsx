@@ -2,7 +2,7 @@ import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Container } from '@shared/ui/Container';
 import { Typography } from '@shared/ui/Typography';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { Header } from '@widgets/Header';
 
@@ -13,9 +13,7 @@ import {
 
 import './style.scss';
 
-const NotFound = ({
-    errorCode = 404,
-}: { errorCode?: number | string }) => {
+const NotFound = ({ errorCode = 404 }: { errorCode?: number | string }) => {
     const [block, element] = bem('not-found');
 
     return (

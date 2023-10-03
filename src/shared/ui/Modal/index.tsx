@@ -2,17 +2,14 @@ import { Portal } from '@shared/ui/Portal';
 
 import { ReactComponent as CloseIcon } from '@shared/images/close.svg';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { ReviewModalInterface } from '@shared/types/common';
 
 import './styles.scss';
 
 export const Modal = (props: ReviewModalInterface) => {
-    const {
-        children,
-        onClose,
-    } = props;
+    const { children, onClose } = props;
 
     const [block, element] = bem('modal');
 

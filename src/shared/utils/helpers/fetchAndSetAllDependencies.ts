@@ -15,32 +15,35 @@ import {
 import { FETCH_AND_SET_ALL_DEPENDENCIES } from '@shared/constants/actions';
 
 import { ErrorInterface } from '@shared/types/common';
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
 
 interface FetchAndSetAllDependencies {
     list: Array<SystemDependencyType> | undefined;
-    setFetchedSystemList: React.Dispatch<React.SetStateAction<Array<SystemResponseInterface>>>
+    setFetchedSystemList: React.Dispatch<
+        React.SetStateAction<Array<SystemResponseInterface>>
+    >;
 }
 
-export const fetchAndSetAllDependencies = createAsyncThunk<void, FetchAndSetAllDependencies>(
+export const fetchAndSetAllDependencies = createAsyncThunk<
+    void,
+    FetchAndSetAllDependencies
+>(
     FETCH_AND_SET_ALL_DEPENDENCIES,
-    async ({
-        list = [],
-        setFetchedSystemList,
-    }) => {
+    async ({ list = [], setFetchedSystemList }) => {
         try {
             const allData = await Promise.all(
-                list.map((
-                    {
-                        systemId,
-                    }) => fetchSystemById({
-                    id: systemId,
-                })),
+                list.map(({ systemId }) =>
+                    fetchSystemById({
+                        id: systemId,
+                    }),
+                ),
             );
 
             return setFetchedSystemList(allData);
-        }
-        catch (err) {
+        } catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
+
+            noAuthHandler(error);
 
             throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
         }

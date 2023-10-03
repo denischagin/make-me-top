@@ -6,21 +6,21 @@ import { useAppSelector } from '@app/providers/store/hooks';
 
 import { loadingIsLoadingSelector } from '@entities/loading/model/selectors';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import './styles.scss';
 
 interface SpinnerProps {
-	loading?: boolean;
+    loading?: boolean;
 }
 
-export default function Spinner({
-    loading,
-}: SpinnerProps) {
+export default function Spinner({ loading }: SpinnerProps) {
     const [block, element] = bem('spinner');
 
     const isLoading =
-		loading !== undefined ? loading : useAppSelector(loadingIsLoadingSelector);
+        loading !== undefined
+            ? loading
+            : useAppSelector(loadingIsLoadingSelector);
 
     if (!isLoading) {
         return null;
@@ -33,8 +33,8 @@ export default function Spinner({
                     color={'#ffffff'}
                     size={90}
                     className={element('loader')}
-                    aria-label="Загрузка"
-                    data-testid="loader"
+                    aria-label='Загрузка'
+                    data-testid='loader'
                 />
             </div>
         </Portal>

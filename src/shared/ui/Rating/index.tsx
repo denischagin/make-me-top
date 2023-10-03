@@ -1,19 +1,13 @@
 import { ReactComponent as SystemIcon } from '@shared/images/star.svg';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { RatingInterface } from './interfaces';
 
 import './styles.scss';
 
 export const Rating = (props: RatingInterface) => {
-    const {
-        systemColor,
-        scoreColor,
-        size,
-        rating,
-        reflect,
-    } = props;
+    const { systemColor, scoreColor, size, rating, reflect } = props;
 
     const [block, element] = bem('rating');
 
@@ -22,15 +16,14 @@ export const Rating = (props: RatingInterface) => {
 
     return (
         <div className={block()}>
-            {
-                !reflect &&
+            {!reflect && (
                 <SystemIcon
                     className={element('system', {
                         color: systemColor,
                         size,
                     })}
                 />
-            }
+            )}
             <span
                 className={element('score', {
                     color: scoreColor,
@@ -39,15 +32,14 @@ export const Rating = (props: RatingInterface) => {
             >
                 {score}
             </span>
-            {
-                reflect &&
+            {reflect && (
                 <SystemIcon
                     className={element('system', {
                         color: systemColor,
                         size,
                     })}
                 />
-            }
+            )}
         </div>
     );
 };

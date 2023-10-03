@@ -1,30 +1,23 @@
-import React,
-{
-    memo,
-    useState,
-} from 'react';
+import React, { memo, useState } from 'react';
 
-import {
-    SystemType,
-    UserProgressInGalaxy,
-} from '@entities/galaxy/model/types';
+import { SystemType, UserProgressInGalaxy } from '@entities/galaxy/model/types';
 
-import { bem } from '@shared/utils/bem';
-import { elementToNumber } from '@shared/utils/elementToNumber';
+import { bem } from '@shared/utils/helpers/bem';
+import { elementToNumber } from '@shared/utils/helpers/elementToNumber';
 
 import SystemInOrbit from './SystemInOrbit';
 
 import './styles.scss';
 
 interface IOrbitProps {
-	userProgress: UserProgressInGalaxy;
-	systemList: Array<SystemType>;
-	orbitWidth: number;
-	orbitHeight: number;
-	systemStyle?: React.CSSProperties;
-	handleSystemClick: (event: React.MouseEvent<HTMLDivElement>) => void;
-	handleSystemMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
-	handleSystemMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
+    userProgress: UserProgressInGalaxy;
+    systemList: Array<SystemType>;
+    orbitWidth: number;
+    orbitHeight: number;
+    systemStyle?: React.CSSProperties;
+    handleSystemClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+    handleSystemMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
+    handleSystemMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const Orbit: React.FC<IOrbitProps> = (props) => {

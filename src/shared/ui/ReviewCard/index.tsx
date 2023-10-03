@@ -4,8 +4,8 @@ import { Rating } from '@shared/ui/Rating';
 import { ShowMoreTextModal } from '@shared/ui/ShowMoreTextModal';
 import { Typography } from '@shared/ui/Typography';
 
-import { bem } from '@shared/utils/bem';
-import { getUserFullName } from '@shared/utils/getUserFullName';
+import { bem } from '@shared/utils/helpers/bem';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
@@ -26,21 +26,14 @@ import './styles.scss';
 export const ReviewCard = (props: ReviewCardInterface) => {
     const {
         review,
-        review: {
-            courseTitle,
-            rating,
-            comment,
-        },
+        review: { courseTitle, rating, comment },
     } = props;
 
     const [block, element] = bem('review-card');
 
     return (
         <div className={block()}>
-            <Card
-                size={cardSize.medium}
-                glow
-            >
+            <Card size={cardSize.medium} glow>
                 <div className={element('content')}>
                     <div className={element('heading')}>
                         <Typography
@@ -89,7 +82,9 @@ export const ReviewCard = (props: ReviewCardInterface) => {
                                     </Typography>
                                     <Rating
                                         scoreColor={ratingScoreColor.black}
-                                        systemColor={ratingSystemColor.primary500}
+                                        systemColor={
+                                            ratingSystemColor.primary500
+                                        }
                                         size={ratingSize.medium}
                                         rating={rating}
                                     />

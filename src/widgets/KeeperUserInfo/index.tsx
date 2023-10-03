@@ -7,8 +7,8 @@ import { useAppSelector } from '@app/providers/store/hooks';
 
 import { keeperInfoSelector } from '@entities/keeper/model/selectors';
 
-import { bem } from '@shared/utils/bem';
-import { getUserFullName } from '@shared/utils/getUserFullName';
+import { bem } from '@shared/utils/helpers/bem';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import {
@@ -25,19 +25,11 @@ export const KeeperUserInfo = () => {
 
     const userInfo = useAppSelector(keeperInfoSelector);
 
-    const {
-        person,
-        rating,
-        totalExplorers,
-        totalSystems,
-    } = userInfo;
+    const { person, rating, totalExplorers, totalSystems } = userInfo;
 
     return (
         <div className={block()}>
-            <Avatar
-                size={avatarSize.large}
-                orbit
-            />
+            <Avatar size={avatarSize.large} orbit />
             <div className={element('description')}>
                 <Typography
                     className={element('description-name', 'mb-4')}
@@ -47,7 +39,7 @@ export const KeeperUserInfo = () => {
                 </Typography>
                 <div className={element('cards')}>
                     <InfoCard
-                        title="Рейтинг"
+                        title='Рейтинг'
                         value={
                             <Rating
                                 scoreColor={ratingScoreColor.white}
@@ -57,12 +49,9 @@ export const KeeperUserInfo = () => {
                             />
                         }
                     />
+                    <InfoCard title='Кол-во систем' value={totalSystems} />
                     <InfoCard
-                        title="Кол-во систем"
-                        value={totalSystems}
-                    />
-                    <InfoCard
-                        title="Кол-во исследователей"
+                        title='Кол-во исследователей'
                         value={totalExplorers}
                     />
                 </div>

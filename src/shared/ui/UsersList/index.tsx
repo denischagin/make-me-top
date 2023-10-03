@@ -1,14 +1,11 @@
 import { Avatar } from '@shared/ui/Avatar';
 import { Rating } from '@shared/ui/Rating';
 
-import {
-    CourseExplorer,
-    CourseKeeper,
-} from '@entities/user/model/types';
+import { CourseExplorer, CourseKeeper } from '@entities/user/model/types';
 
-import { bem } from '@shared/utils/bem';
-import { getUserFullName } from '@shared/utils/getUserFullName';
-import { sortByRating } from '@shared/utils/sortByRating';
+import { bem } from '@shared/utils/helpers/bem';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
+import { sortByRating } from '@shared/utils/helpers/sortByRating';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import {
@@ -22,10 +19,7 @@ import { UserListInterface } from '@shared/types/common';
 import './styles.scss';
 
 export const UsersList = (props: UserListInterface) => {
-    const {
-        keepersList,
-        explorersList,
-    } = props;
+    const { keepersList, explorersList } = props;
 
     const [block, element] = bem('users-list');
 
@@ -34,10 +28,7 @@ export const UsersList = (props: UserListInterface) => {
     return (
         <div className={block()}>
             {sortByRating(keepersOrExplorers).map((user, index) => (
-                <div
-                    key={user.personId}
-                    className={element('item')}
-                >
+                <div key={user.personId} className={element('item')}>
                     <div className={element('user')}>
                         <Avatar size={avatarSize.small} />
                         <span className={element('name')}>

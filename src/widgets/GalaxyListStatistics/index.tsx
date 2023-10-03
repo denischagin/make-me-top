@@ -2,7 +2,7 @@ import React from 'react';
 
 import { GalaxyStatisticsItem } from '@entities/galaxy/ui/GalaxyStatisticsItem';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { GalaxyListStatisticsProps } from './interface';
 

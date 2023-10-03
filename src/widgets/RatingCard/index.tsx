@@ -10,9 +10,9 @@ import { useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 
-import { bem } from '@shared/utils/bem';
-import { getUserFullName } from '@shared/utils/getUserFullName';
-import { sortByRating } from '@shared/utils/sortByRating';
+import { bem } from '@shared/utils/helpers/bem';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
+import { sortByRating } from '@shared/utils/helpers/sortByRating';
 
 import { buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
@@ -25,14 +25,12 @@ import './styles.scss';
 
 export const RatingCard = () => {
     const [block, element] = bem('rating-card');
-    const [limitElements, setElementsLimit] = useState<number>(DEFAULT_LIMIT_ITEM);
+    const [limitElements, setElementsLimit] =
+        useState<number>(DEFAULT_LIMIT_ITEM);
 
     const userInfo = useAppSelector(explorerInfoSelector);
 
-    const {
-        ratingTable,
-    } = userInfo;
-
+    const { ratingTable } = userInfo;
 
     return (
         <Card size={cardSize.large}>
@@ -54,15 +52,15 @@ export const RatingCard = () => {
                 >
                     Общий рейтинг
                 </Typography>
-                {
-                    sortByRating(ratingTable)?.slice(0, limitElements).map((user) => (
+                {sortByRating(ratingTable)
+                    ?.slice(0, limitElements)
+                    .map((user) => (
                         <UsersRating
                             key={user.personId}
                             fullname={getUserFullName(user)}
                             rating={user.rating}
                         />
-                    ))
-                }
+                    ))}
                 <ShowMoreElemenetsButton
                     setElementsLimit={setElementsLimit}
                     elementsLength={ratingTable.length}

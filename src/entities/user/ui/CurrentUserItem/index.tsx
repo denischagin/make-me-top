@@ -2,8 +2,8 @@ import { Avatar } from '@shared/ui/Avatar';
 import { Badge } from '@shared/ui/Badge';
 import { Rating } from '@shared/ui/Rating';
 
-import { bem } from '@shared/utils/bem';
-import { getUserFullName } from '@shared/utils/getUserFullName';
+import { bem } from '@shared/utils/helpers/bem';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { CurrentUserItemInterface } from './interfaces';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
@@ -17,11 +17,7 @@ import {
 import './styles.scss';
 
 export const CurrentUserItem = (props: CurrentUserItemInterface) => {
-    const {
-        badgeTitle,
-        keeper,
-        explorer,
-    } = props;
+    const { badgeTitle, keeper, explorer } = props;
 
     const [block, element] = bem('current-user');
 

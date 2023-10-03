@@ -5,15 +5,12 @@ import { ArrowButton } from '@shared/ui/ArrowButton';
 import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Container } from '@shared/ui/Container';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 import { getKeeperCardInfo } from '@entities/keeper/thunks/getKeeperCardInfo';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { Header } from '@widgets/Header';
 import { KeeperCardUserInfo } from '@widgets/KeeperCardUserInfo';
@@ -31,18 +28,16 @@ const KeeperCard = () => {
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(keeperCardInfoSelector);
 
-    const {
-        systems,
-    } = userInfo;
+    const { systems } = userInfo;
 
-    const {
-        keeperId,
-    } = useParams();
+    const { keeperId } = useParams();
 
     useEffect(() => {
-        dispatch(getKeeperCardInfo({
-            keeperId: Number(keeperId),
-        }));
+        dispatch(
+            getKeeperCardInfo({
+                keeperId: Number(keeperId),
+            }),
+        );
     }, [keeperId]);
 
     return (

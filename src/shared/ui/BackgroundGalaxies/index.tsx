@@ -1,7 +1,7 @@
 import React from 'react';
 import { ShiningStar } from '@shared/ui/ShiningStar';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import './styles.scss';
 
@@ -11,13 +11,13 @@ export const BackgroundGalaxies = () => {
     return (
         <div className={block()}>
             <div className={element('star', 'star-first')}>
-                <ShiningStar size="small" />
+                <ShiningStar size='small' />
             </div>
             <div className={element('star', 'star-second')}>
-                <ShiningStar size="small" />
+                <ShiningStar size='small' />
             </div>
             <div className={element('star', 'star-third')}>
-                <ShiningStar size="small" />
+                <ShiningStar size='small' />
             </div>
             <div className={element('star', 'star-fourth')}>
                 <ShiningStar />

@@ -7,8 +7,8 @@ import { useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
 
-import { bem } from '@shared/utils/bem';
-import { getUserFullName } from '@shared/utils/getUserFullName';
+import { bem } from '@shared/utils/helpers/bem';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import {
@@ -25,19 +25,11 @@ export const ExplorerCardUserInfo = () => {
 
     const userInfo = useAppSelector(explorerCardInfoSelector);
 
-    const {
-        person,
-        rating,
-        totalSystems,
-        totalFeedback,
-    } = userInfo;
+    const { person, rating, totalSystems, totalFeedback } = userInfo;
 
     return (
         <div className={block()}>
-            <Avatar
-                size={avatarSize.large}
-                orbit
-            />
+            <Avatar size={avatarSize.large} orbit />
             <div className={element('description')}>
                 <div className={element('description-name', 'mb-4')}>
                     <Typography variant={typographyVariant.h1}>
@@ -46,7 +38,7 @@ export const ExplorerCardUserInfo = () => {
                 </div>
                 <div className={element('cards')}>
                     <InfoCard
-                        title="Рейтинг"
+                        title='Рейтинг'
                         value={
                             <Rating
                                 scoreColor={ratingScoreColor.white}
@@ -56,12 +48,9 @@ export const ExplorerCardUserInfo = () => {
                             />
                         }
                     />
+                    <InfoCard title='Отзывы' value={totalFeedback} />
                     <InfoCard
-                        title="Отзывы"
-                        value={totalFeedback}
-                    />
-                    <InfoCard
-                        title="Кол-во освоенных систем"
+                        title='Кол-во освоенных систем'
                         value={totalSystems}
                     />
                 </div>

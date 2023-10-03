@@ -12,33 +12,34 @@ import { ErrorInterface } from '@shared/types/common';
 
 import { FETCH_EXPLORER_LIST } from '../model/actions';
 import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
 
-export interface ExplorerFilterResponseInterface extends ExplorersFilterInterface, ErrorInterface {
+export interface ExplorerFilterResponseInterface
+    extends ExplorersFilterInterface,
+        ErrorInterface {}
 
-}
+export const getListExplorersByFilter = createAsyncThunk<
+    ExplorerFilterResponseInterface[],
+    any,
+    { rejectValue: ErrorInterface }
+>(FETCH_EXPLORER_LIST, async (payload, { rejectWithValue }) => {
+    try {
+        const { data } = await instance.get<ExplorerFilterResponseInterface[]>(
+            `${URL_MMT_STAND}info/explorer/`,
+        );
 
-export const getListExplorersByFilter = createAsyncThunk<ExplorerFilterResponseInterface[], any, { rejectValue: ErrorInterface }>(
-    FETCH_EXPLORER_LIST,
-    async (payload, {
-        rejectWithValue,
-    }) => {
-        try {
-            const {
-                data,
-            } = await instance.get<ExplorerFilterResponseInterface[]>(`${URL_MMT_STAND}info/explorer/`);
+        return data;
+    } catch (err) {
+        const error: AxiosError<ErrorInterface> = err as any;
 
-            return data;
+        noAuthHandler(error);
+
+        if (error.response) {
+            toast.error(error.response.data.errorMessage);
+
+            return rejectWithValue(error.response.data);
         }
-        catch (err) {
-            const error: AxiosError<ErrorInterface> = err as any;
 
-            if (error.response) {
-                toast.error(error.response.data.errorMessage);
-
-                return rejectWithValue(error.response.data);
-            }
-
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
-        }
-    },
-);
+        throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+    }
+});

@@ -3,7 +3,7 @@ import { EntryAnimateGalaxies } from '@shared/ui/EntryAnimateGalaxies';
 
 import { ReactComponent as CurrentGalaxy } from '@shared/images/current-galaxy.svg';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { ChangeGalaxyButtonsProps } from './interface';
 
@@ -18,11 +18,7 @@ export const ChangeGalaxyButtons = ({
     const [block, element] = bem('change-galaxy-buttons');
 
     return (
-        <EntryAnimateGalaxies
-            delay={0.1}
-            duration={1}
-            className={block()}
-        >
+        <EntryAnimateGalaxies delay={0.1} duration={1} className={block()}>
             <div className={element('button-orbit')}>
                 <ButtonChangeCurrentGalaxy
                     content={prevGalaxyName}

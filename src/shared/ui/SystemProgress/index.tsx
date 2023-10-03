@@ -1,14 +1,12 @@
 import React from 'react';
 import { SystemProgressProps } from '@shared/ui/SystemProgress/interface';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import './styles.scss';
 
 const SystemProgress: React.FC<SystemProgressProps> = (props) => {
-    const {
-        percentageProgress,
-    } = props;
+    const { percentageProgress } = props;
 
     const [block, element] = bem('system-progress');
 
@@ -16,15 +14,14 @@ const SystemProgress: React.FC<SystemProgressProps> = (props) => {
 
     return (
         <div className={block()}>
-            {
-                isProgress &&
+            {isProgress && (
                 <div
                     className={element('circle')}
                     style={{
                         bottom: `${percentageProgress}%`,
                     }}
                 />
-            }
+            )}
         </div>
     );
 };

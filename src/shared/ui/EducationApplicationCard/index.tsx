@@ -14,8 +14,8 @@ import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest
 
 import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
 
-import { bem } from '@shared/utils/bem';
-import { getUserFullName } from '@shared/utils/getUserFullName';
+import { bem } from '@shared/utils/helpers/bem';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { URL_EXPLORER } from '@shared/constants/links';
 import { CONFIRM_CANCEL_STUDYING_REQUEST } from '@shared/constants/modalTitles';
@@ -23,10 +23,7 @@ import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toasts';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import {
     ratingScoreColor,
@@ -37,10 +34,10 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 
-export const EducationApplicationCard = (props: EducationApplicationCardInterface) => {
-    const {
-        user,
-    } = props;
+export const EducationApplicationCard = (
+    props: EducationApplicationCardInterface,
+) => {
+    const { user } = props;
 
     const [block, element] = bem('application-education-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
@@ -49,31 +46,29 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
 
     return (
         <div className={block()}>
-            {
-                isAcceptModalOpen &&
+            {isAcceptModalOpen && (
                 <ConfirmModal
                     confitmTitle={CONFIRM_CANCEL_STUDYING_REQUEST}
                     rejectButtonTitle='Нет, хочу продолжить'
                     submitButtonTitle='Да, я уверен'
                     onClose={() => setIsAcceptModalOpen(false)}
                     onSubmit={() => {
-                        dispatch(acceptOrRejectCourseRequest({
-                            requestId: user.requestId,
-                            rejection: {
-                                approved: false,
-                            },
-                        }));
+                        dispatch(
+                            acceptOrRejectCourseRequest({
+                                requestId: user.requestId,
+                                rejection: {
+                                    approved: false,
+                                },
+                            }),
+                        );
                         toast(TOAST_SUCCESS_REJECTED, {
                             icon: '😔',
                         });
                         setIsAcceptModalOpen(false);
                     }}
                 />
-            }
-            <Card
-                size={cardSize.large}
-                glow
-            >
+            )}
+            <Card size={cardSize.large} glow>
                 <div className={element('content')}>
                     <div className={element('info')}>
                         <Avatar size={avatarSize.medium} />
@@ -105,7 +100,9 @@ export const EducationApplicationCard = (props: EducationApplicationCardInterfac
                                 size={buttonSize.large}
                                 onClick={() => setIsAcceptModalOpen(true)}
                             />
-                            <RouterLink to={`${URL_EXPLORER}/${user?.personId}`}>
+                            <RouterLink
+                                to={`${URL_EXPLORER}/${user?.personId}`}
+                            >
                                 <Button
                                     title={'Принять'}
                                     color={buttonColor.filled}

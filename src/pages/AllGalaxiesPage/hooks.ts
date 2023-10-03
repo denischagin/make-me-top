@@ -38,6 +38,14 @@ export const useCurrentGalaxy = (galaxies: GalaxyForGetAll[]) => {
         ? galaxies[currentGalaxy.index + 1]
         : galaxies[0];
 
+    const circlePrevGalaxyName = isFirstGalaxy
+        ? lastGalaxy.galaxyName
+        : prevGalaxy?.galaxyName;
+
+    const circleNextGalaxyName = isLastGalaxy
+        ? firstGalaxy.galaxyName
+        : nextGalaxy?.galaxyName;
+
     const handleSwitchCurrentGalaxy = (index: number) => {
         setCurrentGalaxy({
             ...galaxies[index],
@@ -60,15 +68,8 @@ export const useCurrentGalaxy = (galaxies: GalaxyForGetAll[]) => {
 
     return {
         currentGalaxy,
-        isFirstGalaxy,
-        isLastGalaxy,
-        lastGalaxy,
-        firstGalaxy,
-        prevGalaxyIndex,
-        nextGalaxyIndex,
-        prevGalaxy,
-        nextGalaxy,
-        handleSwitchCurrentGalaxy,
+        circleNextGalaxyName,
+        circlePrevGalaxyName,
         handlePrevGalaxy,
         handleNextGalaxy,
     };

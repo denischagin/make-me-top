@@ -3,25 +3,17 @@ import { RouterLink } from '@shared/ui/RouterLink';
 import { ReactComponent as ExitIcon } from '@shared/images/exit.svg';
 import { ReactComponent as Logo } from '@shared/images/logo.svg';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
-import {
-    HEADER_LINKS,
-    URL_DEFAULT,
-} from '@shared/constants/links';
+import { HEADER_LINKS, URL_DEFAULT } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
 
-import {
-    HeaderInterface,
-    HeaderLinkInterface,
-} from './interfaces';
+import { HeaderInterface, HeaderLinkInterface } from './interfaces';
 
 import './styles.scss';
 
 export const Header = (props: HeaderInterface) => {
-    const {
-        links = HEADER_LINKS,
-    } = props;
+    const { links = HEADER_LINKS } = props;
 
     const [block, element] = bem('header');
 
@@ -36,9 +28,11 @@ export const Header = (props: HeaderInterface) => {
             <div className={element('links')}>
                 {links.map((item: HeaderLinkInterface) => (
                     <span
-                        className=""
+                        className=''
                         key={item.text}
-                        onClick={() => item.link === URL_DEFAULT && handleLogout()}
+                        onClick={() =>
+                            item.link === URL_DEFAULT && handleLogout()
+                        }
                     >
                         <RouterLink to={item.link}>
                             <span className={element('link')}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from '@shared/ui/Typography';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
@@ -20,9 +20,7 @@ export const GalaxyStatisticsItem = ({
             <Typography variant={typographyVariant.medium14}>
                 {title}
             </Typography>
-            <Typography variant={typographyVariant.h2}>
-                {stat}
-            </Typography>
+            <Typography variant={typographyVariant.h2}>{stat}</Typography>
         </div>
     );
 };

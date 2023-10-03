@@ -1,17 +1,15 @@
 import React from 'react';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import './styles.scss';
 
 interface ITitleGalaxyPage {
-  galaxyName: string;
+    galaxyName: string;
 }
 
 export const TitleGalaxyPage: React.FC<ITitleGalaxyPage> = (props) => {
-    const {
-        galaxyName,
-    } = props;
+    const { galaxyName } = props;
 
     const [block, element] = bem('galaxy-page-name');
 

@@ -12,41 +12,40 @@ import { ErrorInterface } from '@shared/types/common';
 
 import { FETCH_EXPLORER_CARD } from '../model/actions';
 import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
 
 export interface ExplorerIdInterface {
-    explorerId: number
+    explorerId: number;
 }
 
-export interface ExplorerCardInfoResponseInterface extends ExplorerCardInfoInterface, ErrorInterface {
+export interface ExplorerCardInfoResponseInterface
+    extends ExplorerCardInfoInterface,
+        ErrorInterface {}
 
-}
+export const getExplorerCardInfo = createAsyncThunk<
+    ExplorerCardInfoResponseInterface,
+    ExplorerIdInterface,
+    { rejectValue: ErrorInterface }
+>(FETCH_EXPLORER_CARD, async (payload, { rejectWithValue }) => {
+    try {
+        const { explorerId } = payload;
 
-export const getExplorerCardInfo = createAsyncThunk<ExplorerCardInfoResponseInterface, ExplorerIdInterface, { rejectValue: ErrorInterface }>(
-    FETCH_EXPLORER_CARD,
-    async (payload, {
-        rejectWithValue,
-    }) => {
-        try {
-            const {
-                explorerId,
-            } = payload;
+        const { data } = await instance.get<ExplorerCardInfoResponseInterface>(
+            `${URL_MMT_STAND}info/explorer/${explorerId}`,
+        );
 
-            const {
-                data,
-            } = await instance.get<ExplorerCardInfoResponseInterface>(`${URL_MMT_STAND}info/explorer/${explorerId}`);
+        return data;
+    } catch (err) {
+        const error: AxiosError<ErrorInterface> = err as any;
 
-            return data;
+        noAuthHandler(error);
+
+        if (error.response) {
+            toast.error(error.response.data.errorMessage);
+
+            return rejectWithValue(error.response.data);
         }
-        catch (err) {
-            const error: AxiosError<ErrorInterface> = err as any;
 
-            if (error.response) {
-                toast.error(error.response.data.errorMessage);
-
-                return rejectWithValue(error.response.data);
-            }
-
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
-        }
-    },
-);
+        throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+    }
+});

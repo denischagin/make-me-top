@@ -5,7 +5,7 @@ import { ReactComponent as Orbit1 } from '@shared/images/change-current-galaxy1.
 import { ReactComponent as Orbit2 } from '@shared/images/change-current-galaxy2.svg';
 import { ReactComponent as Orbit3 } from '@shared/images/change-current-galaxy3.svg';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
@@ -20,14 +20,13 @@ export const ButtonChangeCurrentGalaxy = ({
     const [block, element] = bem('change-galaxy-button');
 
     return (
-        <button
-            onClick={onClick}
-            className={block()}
-        >
+        <button onClick={onClick} className={block()}>
             <Orbit1 className={element('orbit', 'orbit1')} />
             <Orbit2 className={element('orbit', 'orbit2')} />
             <Orbit3 className={element('orbit', 'orbit3')} />
-            <Typography variant={typographyVariant.medium14}>{content}</Typography>
+            <Typography variant={typographyVariant.medium14}>
+                {content}
+            </Typography>
         </button>
     );
 };

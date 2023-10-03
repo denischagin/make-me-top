@@ -4,23 +4,17 @@ import { Card } from '@shared/ui/Card';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { Typography } from '@shared/ui/Typography';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
 
 import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { CONFIRM_CANCEL_TEACHING } from '@shared/constants/modalTitles';
 
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
@@ -33,10 +27,7 @@ export const ExplorerApplicationCard = () => {
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(explorerCardInfoSelector);
 
-    const {
-        studyRequest,
-        currentSystem,
-    } = userInfo;
+    const { studyRequest, currentSystem } = userInfo;
 
     const studyRequestOrСurrentSystem = currentSystem || studyRequest;
 
@@ -46,34 +37,32 @@ export const ExplorerApplicationCard = () => {
 
     return (
         <div className={block()}>
-            {
-                isAcceptModalOpen &&
+            {isAcceptModalOpen && (
                 <ConfirmModal
                     confitmTitle={CONFIRM_CANCEL_TEACHING}
                     rejectButtonTitle='Нет, хочу продолжить'
                     submitButtonTitle='Да, я уверен'
                     onClose={() => setIsAcceptModalOpen(false)}
                     onSubmit={() => {
-                        dispatch(acceptOrRejectCourseRequest({
-                            requestId: studyRequest.requestId,
-                            rejection: {
-                                approved: false,
-                            },
-                        }));
+                        dispatch(
+                            acceptOrRejectCourseRequest({
+                                requestId: studyRequest.requestId,
+                                rejection: {
+                                    approved: false,
+                                },
+                            }),
+                        );
                         setIsAcceptModalOpen(false);
                     }}
                 />
-            }
+            )}
             <Typography
                 className={element('heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
             >
                 {currentSystem ? 'Текущая система:' : 'Заявка на обучение:'}
             </Typography>
-            <Card
-                size={cardSize.large}
-                glow
-            >
+            <Card size={cardSize.large} glow>
                 <div className={element('content')}>
                     <div className={element('info')}>
                         <Typography
@@ -86,11 +75,9 @@ export const ExplorerApplicationCard = () => {
                             className={element('system')}
                             variant={typographyVariant.regular14}
                         >
-                            {
-                                currentSystem
-                                    ? `Система: ${currentSystem?.courseThemeTitle}`
-                                    : `Галактика: ${studyRequest?.galaxyName}`
-                            }
+                            {currentSystem
+                                ? `Система: ${currentSystem?.courseThemeTitle}`
+                                : `Галактика: ${studyRequest?.galaxyName}`}
                         </Typography>
                     </div>
                     <div className={element('buttons')}>
@@ -101,27 +88,29 @@ export const ExplorerApplicationCard = () => {
                                 onClick={() => setIsAcceptModalOpen(true)}
                             />
                         </div>
-                        {
-                            currentSystem ?
-                                <Button
-                                    title={'Посмотреть'}
-                                    color={buttonColor.filled}
-                                    size={buttonSize.large}
-                                /> :
-                                <Button
-                                    title={'Принять'}
-                                    color={buttonColor.filled}
-                                    size={buttonSize.large}
-                                    onClick={() => {
-                                        dispatch(acceptOrRejectCourseRequest({
+                        {currentSystem ? (
+                            <Button
+                                title={'Посмотреть'}
+                                color={buttonColor.filled}
+                                size={buttonSize.large}
+                            />
+                        ) : (
+                            <Button
+                                title={'Принять'}
+                                color={buttonColor.filled}
+                                size={buttonSize.large}
+                                onClick={() => {
+                                    dispatch(
+                                        acceptOrRejectCourseRequest({
                                             requestId: studyRequest.requestId,
                                             rejection: {
                                                 approved: true,
                                             },
-                                        }));
-                                    }}
-                                />
-                        }
+                                        }),
+                                    );
+                                }}
+                            />
+                        )}
                     </div>
                 </div>
             </Card>

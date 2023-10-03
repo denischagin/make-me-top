@@ -6,7 +6,7 @@ import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
 
 import { keeperIsKeeperSelector } from '@entities/keeper/model/selectors';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import './styles.scss';
 
@@ -22,10 +22,10 @@ export const BackgroundHome = () => {
         <div className={block()}>
             <div className={element('static-bg')} />
             <div className={element('star-first')}>
-                <ShiningStar size="small" />
+                <ShiningStar size='small' />
             </div>
             <div className={element('star-second')}>
-                <ShiningStar size="small" />
+                <ShiningStar size='small' />
             </div>
             <div className={element('star-third')}>
                 <ShiningStar />
@@ -34,7 +34,7 @@ export const BackgroundHome = () => {
                 <ShiningStar />
             </div>
             <div className={element('star-fifth')}>
-                <ShiningStar size="small" />
+                <ShiningStar size='small' />
             </div>
             <div className={element('noice')} />
             <div

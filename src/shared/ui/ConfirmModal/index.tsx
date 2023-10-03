@@ -1,23 +1,18 @@
-
 import { useState } from 'react';
 import { Button } from '@shared/ui/Button';
 import { Modal } from '@shared/ui/Modal';
 import { Typography } from '@shared/ui/Typography';
 
-import { bem } from '@shared/utils/bem';
+import { bem } from '@shared/utils/helpers/bem';
 
 import { ConfirmModalInterface } from './interfaces';
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import {
     typographyColor,
     typographyVariant,
 } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
-
 
 export const ConfirmModal = (props: ConfirmModalInterface) => {
     const {
