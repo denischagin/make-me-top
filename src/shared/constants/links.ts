@@ -1,4 +1,8 @@
 // urls
+export const URL_LOGIN = '/login';
+export const URL_LOGIN_AS_EXPLORER = '/login/explorer';
+export const URL_LOGIN_AS_KEEPER = '/login/keeper';
+
 export const URL_PROFILE = '/profile';
 export const URL_DEFAULT = '/';
 export const URL_KEEPER = '/keeper';
@@ -28,7 +32,7 @@ export const HEADER_LINKS = [
         text: 'Хранители',
     },
     {
-        link: URL_DEFAULT,
+        link: URL_LOGIN,
         text: 'Выйти',
     },
 ];

@@ -1,0 +1,49 @@
+@import '@app/styles/variables.scss';
+
+.login-select-role-layout {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    &__planet {
+        position: absolute;
+        width: 760px;
+        height: 760px;
+        border-radius: 760px;
+        transition: 0.8s;
+        background: $planet-gradient;
+        z-index: 1;
+        box-shadow: -2px 2px 10px 0px $planet-shadow;
+
+        &--isRoleSelected {
+            animation: 0.8s isRoleSelectedAnimation forwards;
+        }
+    }
+
+    &__fields {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+    }
+
+    &__heading {
+        color: $white;
+        margin: 0;
+        font-size: 57px;
+    }
+}
+
+@keyframes isRoleSelectedAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(90deg);
+    }
+}

@@ -1,225 +1,225 @@
 {
-    // "root": true,
-    // "settings": {
-    //     "react": {
-    //         "version": "detect"
-    //     }
-    // },
-    // "env": {
-    //     "browser": true,
-    //     "es2021": true,
-    //     "node": true
-    // },
-    // "extends": [
-    //     "eslint:recommended",
-    //     "plugin:react/recommended",
-    //     "plugin:css-modules/recommended",
-    //     "plugin:putout/jsx"
-    // ],
-    // "parser": "@typescript-eslint/parser",
-    // "parserOptions": {
-    //     "ecmaFeatures": {
-    //         "jsx": true
-    //     },
-    //     "ecmaVersion": 12
-    // },
-    // "plugins": [
-    //     "react",
-    //     "@typescript-eslint",
-    //     "css-modules",
-    //     "putout",
-    //     "simple-import-sort",
-    //     "newline-destructuring"
-    // ],
-    // "rules": {
-    //     "putout/multiple-properties-destructuring": 1,
-    //     "putout/long-properties-destructuring": 1,
-    //     "putout/object-property-newline": 1,
-    //     "putout/add-newlines-between-specifiers": 1,
-    //     "simple-import-sort/imports": [
-    //         "error",
-    //         {
-    //             "groups": [
-    //                 [
-    //                     "^react",
-    //                     "^@?\\w"
-    //                 ],
-    //                 [
-    //                     "^\\u0000"
-    //                 ],
-    //                 [
-    //                     "^@app/[a-zA-Z]+$"
-    //                 ],
-    //                 [
-    //                     "^@app/providers/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@app/styles/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@entities/[a-zA-Z]+$"
-    //                 ],
-    //                 [
-    //                     "^@entities/user/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@entities/loading/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@entities/explorer/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@entities/keeper/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@entities/galaxy/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@entities/orbit/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@shared/[a-zA-Z]+$"
-    //                 ],
-    //                 [
-    //                     "^@shared/images/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@shared/utils/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@shared/api/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@shared/constants/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@widgets/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^@pages/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^(@shared/(.*)/interfaces$)|(./interfaces)$"
-    //                 ],
-    //                 [
-    //                     "^@shared/types/(.*)$"
-    //                 ],
-    //                 [
-    //                     "^\\.\\.(?!/?$)",
-    //                     "^\\.\\./?$"
-    //                 ],
-    //                 [
-    //                     "^\\./(?=.*/)(?!/?$)",
-    //                     "^\\.(?!/?$)",
-    //                     "^\\./?$"
-    //                 ],
-    //                 [
-    //                     "^.+\\.?(scss)$"
-    //                 ]
-    //             ]
-    //         }
-    //     ],
-    //     "simple-import-sort/exports": "error",
-    //     "quotes": [
-    //         "error",
-    //         "single"
-    //     ],
-    //     "no-unsafe-finally": 0,
-    //     "@typescript-eslint/no-non-null-assertion": 0,
-    //     "react/no-children-prop": 0,
-    //     "@typescript-eslint/no-unused-vars": 0,
-    //     "@typescript-eslint/no-non-null-asserted-optional-chain": "warn",
-    //     "react/react-in-jsx-scope": 0,
-    //     "strict": 0,
-    //     "newline-destructuring/newline": [
-    //         "error",
-    //         {
-    //             "items": 1
-    //         }
-    //     ],
-    //     "object-shorthand": [
-    //         "error",
-    //         "always",
-    //         {
-    //             "avoidQuotes": true
-    //         }
-    //     ],
-    //     "indent": [
-    //         "error",
-    //         4,
-    //         {
-    //             "SwitchCase": 1
-    //         }
-    //     ],
-    //     "comma-spacing": [
-    //         "error",
-    //         {
-    //             "before": false,
-    //             "after": true
-    //         }
-    //     ],
-    //     "semi": [
-    //         "error",
-    //         "always"
-    //     ],
-    //     "comma-dangle": [
-    //         "error",
-    //         "always-multiline"
-    //     ],
-    //     "object-curly-newline": [
-    //         "error",
-    //         {
-    //             "ObjectExpression": {
-    //                 "consistent": true,
-    //                 "multiline": true,
-    //                 "minProperties": 1
-    //             },
-    //             "ObjectPattern": {
-    //                 "consistent": true,
-    //                 "multiline": true,
-    //                 "minProperties": 1
-    //             }
-    //         }
-    //     ],
-    //     "max-len": 0,
-    //     "no-empty": "warn",
-    //     "no-cond-assign": [
-    //         "error",
-    //         "always"
-    //     ],
-    //     "no-trailing-spaces": "error",
-    //     "object-property-newline": "error",
-    //     "react/no-array-index-key": 2,
-    //     "space-infix-ops": [
-    //         "error",
-    //         {
-    //             "int32Hint": false
-    //         }
-    //     ],
-    //     "object-curly-spacing": [
-    //         "error",
-    //         "always"
-    //     ],
-    //     "no-unused-vars": 0,
-    //     "no-undef": "warn",
-    //     "key-spacing": [
-    //         "error",
-    //         {
-    //             "afterColon": true,
-    //             "mode": "strict"
-    //         }
-    //     ],
-    //     "newline-before-return": "error",
-    //     "react/jsx-first-prop-new-line": [
-    //         "error",
-    //         "multiline"
-    //     ],
-    //     "react/jsx-max-props-per-line": [
-    //         "error",
-    //         {
-    //             "maximum": 1
-    //         }
-    //     ],
-    //     "react/jsx-closing-bracket-location": "error"
-    // }
+    "root": true,
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:css-modules/recommended",
+        "plugin:putout/jsx"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "css-modules",
+        "putout",
+        "simple-import-sort",
+        "newline-destructuring"
+    ],
+    "rules": {
+        "putout/multiple-properties-destructuring": 1,
+        "putout/long-properties-destructuring": 1,
+        "putout/object-property-newline": 1,
+        "putout/add-newlines-between-specifiers": 1,
+        "simple-import-sort/imports": [
+            "error",
+            {
+                "groups": [
+                    [
+                        "^react",
+                        "^@?\\w"
+                    ],
+                    [
+                        "^\\u0000"
+                    ],
+                    [
+                        "^@app/[a-zA-Z]+$"
+                    ],
+                    [
+                        "^@app/providers/(.*)$"
+                    ],
+                    [
+                        "^@app/styles/(.*)$"
+                    ],
+                    [
+                        "^@entities/[a-zA-Z]+$"
+                    ],
+                    [
+                        "^@entities/user/(.*)$"
+                    ],
+                    [
+                        "^@entities/loading/(.*)$"
+                    ],
+                    [
+                        "^@entities/explorer/(.*)$"
+                    ],
+                    [
+                        "^@entities/keeper/(.*)$"
+                    ],
+                    [
+                        "^@entities/galaxy/(.*)$"
+                    ],
+                    [
+                        "^@entities/orbit/(.*)$"
+                    ],
+                    [
+                        "^@shared/[a-zA-Z]+$"
+                    ],
+                    [
+                        "^@shared/images/(.*)$"
+                    ],
+                    [
+                        "^@shared/utils/(.*)$"
+                    ],
+                    [
+                        "^@shared/api/(.*)$"
+                    ],
+                    [
+                        "^@shared/constants/(.*)$"
+                    ],
+                    [
+                        "^@widgets/(.*)$"
+                    ],
+                    [
+                        "^@pages/(.*)$"
+                    ],
+                    [
+                        "^(@shared/(.*)/interfaces$)|(./interfaces)$"
+                    ],
+                    [
+                        "^@shared/types/(.*)$"
+                    ],
+                    [
+                        "^\\.\\.(?!/?$)",
+                        "^\\.\\./?$"
+                    ],
+                    [
+                        "^\\./(?=.*/)(?!/?$)",
+                        "^\\.(?!/?$)",
+                        "^\\./?$"
+                    ],
+                    [
+                        "^.+\\.?(scss)$"
+                    ]
+                ]
+            }
+        ],
+        "simple-import-sort/exports": "error",
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "no-unsafe-finally": 0,
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "react/no-children-prop": 0,
+        "@typescript-eslint/no-unused-vars": 0,
+        "@typescript-eslint/no-non-null-asserted-optional-chain": "warn",
+        "react/react-in-jsx-scope": 0,
+        "strict": 0,
+        "newline-destructuring/newline": [
+            "error",
+            {
+                "items": 1
+            }
+        ],
+        "object-shorthand": [
+            "error",
+            "always",
+            {
+                "avoidQuotes": true
+            }
+        ],
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "comma-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "object-curly-newline": [
+            "error",
+            {
+                "ObjectExpression": {
+                    "consistent": true,
+                    "multiline": true,
+                    "minProperties": 1
+                },
+                "ObjectPattern": {
+                    "consistent": true,
+                    "multiline": true,
+                    "minProperties": 1
+                }
+            }
+        ],
+        "max-len": 0,
+        "no-empty": "warn",
+        "no-cond-assign": [
+            "error",
+            "always"
+        ],
+        "no-trailing-spaces": "error",
+        "object-property-newline": "error",
+        "react/no-array-index-key": 2,
+        "space-infix-ops": [
+            "error",
+            {
+                "int32Hint": false
+            }
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "no-unused-vars": 0,
+        "no-undef": "warn",
+        "key-spacing": [
+            "error",
+            {
+                "afterColon": true,
+                "mode": "strict"
+            }
+        ],
+        "newline-before-return": "error",
+        "react/jsx-first-prop-new-line": [
+            "error",
+            "multiline"
+        ],
+        "react/jsx-max-props-per-line": [
+            "error",
+            {
+                "maximum": 1
+            }
+        ],
+        "react/jsx-closing-bracket-location": "error"
+    }
 }

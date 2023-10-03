@@ -4,51 +4,47 @@ import { Input } from '@shared/ui/Input';
 import { PlanetButton } from '@shared/ui/PlanetButton';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import { useAppDispatch } from '@app/providers/store/hooks';
 
 import { authLogin } from '@entities/user/thunks/authLogin';
 
-import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
-
 import { bem } from '@shared/utils/helpers/bem';
 
-import { URL_DEFAULT, URL_PROFILE } from '@shared/constants/links';
-import { roles, storageKeys } from '@shared/constants/storageKeys';
+import { URL_LOGIN, URL_PROFILE } from '@shared/constants/links';
+import { storageKeys } from '@shared/constants/storageKeys';
 
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
-import { EXPLORER_ROLE_STRING, KEEPER_ROLE_STRING } from './model';
-
 import './styles.scss';
+import { LoginProps } from '@widgets/Login/interface';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
-export const Login = () => {
+export const Login = ({ role }: LoginProps) => {
     const [block, element] = bem('login');
     const [inputLogin, setInputLogin] = useState<string>('');
     const [inputPassword, setInputPassword] = useState<string>('');
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-
-    const isExplorer = useAppSelector(explorerIsExplorerSelector);
 
     const pathByUserRole = URL_PROFILE;
 
     function callback() {
         if (!localStorage.getItem(storageKeys.tokenAuth)) {
-            return navigate(URL_DEFAULT);
+            return navigate(URL_LOGIN);
         }
 
-        return navigate(pathByUserRole);
-    }
+        const redirect = searchParams.get('redirect');
 
-    const selectedRole: roles = isExplorer
-        ? EXPLORER_ROLE_STRING
-        : KEEPER_ROLE_STRING;
+        if (redirect !== null) return navigate(redirect, { replace: true });
+        return navigate(pathByUserRole, { replace: true });
+    }
 
     const payload = {
         login: inputLogin,
         password: inputPassword,
-        role: selectedRole,
+        role: role,
     };
 
     const handleLoginInputChange = (

@@ -24,7 +24,7 @@ export const galaxiesApi = createApi({
         } catch (err) {
             const error: AxiosError<ErrorInterface> = err as any;
 
-            noAuthHandler(error);
+            // noAuthHandler(error);
 
             if (error.response) {
                 toast.error(error.response.data.errorMessage);
