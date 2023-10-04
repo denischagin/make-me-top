@@ -1,3 +1,5 @@
+import { lazy } from 'react';
+
 import {
     URL_DEFAULT,
     URL_EXPLORER_CARD,
@@ -12,12 +14,11 @@ import {
     URL_NOT_FOUND,
     URL_PROFILE,
 } from '@shared/constants/links';
-
-import { lazy } from 'react';
 const LoginSelectRole = lazy(() => import('@pages/LoginSelectRole/page'));
-import LoginAsKeeper from '@pages/LoginAsKeeper/page';
-import LoginAsExplorer from '@pages/LoginAsExplorer/page';
 import { Navigate } from 'react-router-dom';
+
+import LoginAsExplorer from '@pages/LoginAsExplorer/page';
+import LoginAsKeeper from '@pages/LoginAsKeeper/page';
 const ExplorerCard = lazy(() => import('@pages/ExplorerCard'));
 const Explorers = lazy(() => import('@pages/Explorers/page'));
 const GalaxyPage = lazy(() => import('@pages/GalaxyPage/page'));
@@ -58,7 +59,11 @@ export const routes: RouteInterface[] = [
     },
     {
         path: URL_DEFAULT,
-        element: <Navigate to={URL_LOGIN} replace />,
+        element:
+    <Navigate
+        to={URL_LOGIN}
+        replace
+    />,
     },
     {
         path: URL_KEEPER_CARD,

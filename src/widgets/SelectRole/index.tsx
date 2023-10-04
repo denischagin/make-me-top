@@ -1,4 +1,7 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import {
+    useLocation,
+    useNavigate,
+} from 'react-router-dom';
 import { PlanetButton } from '@shared/ui/PlanetButton';
 
 import {

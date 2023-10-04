@@ -10,7 +10,10 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import './styles.scss';
 
 export const InfoCard = (props: InfoCardInterface) => {
-    const { title, value } = props;
+    const {
+        title,
+        value,
+    } = props;
 
     const [block, element] = bem('info-сard');
 

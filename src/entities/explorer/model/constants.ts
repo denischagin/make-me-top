@@ -1,5 +1,3 @@
-export const DEFAULT_ERROR_MESSAGE = 'Ошибка получения информации об исследователе';
-
 export const initialExplorerInfo = {
     person: {
         personId: 0,

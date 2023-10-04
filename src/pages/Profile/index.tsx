@@ -1,12 +1,11 @@
 import { useMemo } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { loadingIsLoadingSelector } from '@entities/loading/model/selectors';
-
 import { URL_LOGIN } from '@shared/constants/links';
-import { roles, storageKeys } from '@shared/constants/storageKeys';
+import {
+    roles,
+    storageKeys,
+} from '@shared/constants/storageKeys';
 
 import { Explorer } from '@pages/Explorer/page';
 import { Keeper } from '@pages/Keeper/page';

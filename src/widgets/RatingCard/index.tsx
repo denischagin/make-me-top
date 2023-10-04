@@ -30,7 +30,9 @@ export const RatingCard = () => {
 
     const userInfo = useAppSelector(explorerInfoSelector);
 
-    const { ratingTable } = userInfo;
+    const {
+        ratingTable,
+    } = userInfo;
 
     return (
         <Card size={cardSize.large}>

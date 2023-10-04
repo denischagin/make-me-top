@@ -11,7 +11,10 @@ import { SortCardProps } from './interface';
 
 import './style.scss';
 
-export const SortCard = ({ title, value }: SortCardProps) => {
+export const SortCard = ({
+    title,
+    value,
+}: SortCardProps) => {
     const [block] = bem('sort-card');
 
     return (

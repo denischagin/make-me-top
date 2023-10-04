@@ -3,7 +3,10 @@ import { useParams } from 'react-router-dom';
 import { BackgroundGalaxyPage } from '@shared/ui/BackgroundGalaxyPage';
 import { TitleGalaxyPage } from '@shared/ui/TitleGalaxyPage';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
 import Galaxy from '@entities/galaxy/ui';
 
@@ -26,7 +29,9 @@ import './styles.scss';
 
 const GalaxyPage: React.FC = () => {
     const [block, element] = bem('galaxy-page');
-    const { galaxyId } = useParams();
+    const {
+        galaxyId,
+    } = useParams();
 
     const galaxyPageRef = useRef<HTMLDivElement | null>(null);
 
@@ -39,7 +44,10 @@ const GalaxyPage: React.FC = () => {
     useGetAllGalaxyInfoByGalaxyId(Number(galaxyId));
 
     return (
-        <div className={block()} ref={galaxyPageRef}>
+        <div
+            className={block()}
+            ref={galaxyPageRef}
+        >
             <BackgroundGalaxyPage />
             <Header />
             <TitleGalaxyPage galaxyName={galaxyName} />

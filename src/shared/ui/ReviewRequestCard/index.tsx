@@ -15,7 +15,10 @@ import {
     CONFIRM_CANCEL_REVIEW,
 } from '@shared/constants/modalTitles';
 
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
@@ -27,7 +30,9 @@ export const ReviewRequestCard = () => {
 
     const userInfo = useAppSelector(explorerCardInfoSelector);
 
-    const { reviewRequest } = userInfo;
+    const {
+        reviewRequest,
+    } = userInfo;
 
     if (!reviewRequest) {
         return null;
@@ -50,7 +55,10 @@ export const ReviewRequestCard = () => {
             >
                 Запрос на проверку:
             </Typography>
-            <Card size={cardSize.large} glow>
+            <Card
+                size={cardSize.large}
+                glow
+            >
                 <div className={element('content')}>
                     <div className={element('info')}>
                         <Typography

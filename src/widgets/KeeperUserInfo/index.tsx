@@ -25,11 +25,19 @@ export const KeeperUserInfo = () => {
 
     const userInfo = useAppSelector(keeperInfoSelector);
 
-    const { person, rating, totalExplorers, totalSystems } = userInfo;
+    const {
+        person,
+        rating,
+        totalExplorers,
+        totalSystems,
+    } = userInfo;
 
     return (
         <div className={block()}>
-            <Avatar size={avatarSize.large} orbit />
+            <Avatar
+                size={avatarSize.large}
+                orbit
+            />
             <div className={element('description')}>
                 <Typography
                     className={element('description-name', 'mb-4')}
@@ -49,7 +57,10 @@ export const KeeperUserInfo = () => {
                             />
                         }
                     />
-                    <InfoCard title='Кол-во систем' value={totalSystems} />
+                    <InfoCard
+                        title='Кол-во систем'
+                        value={totalSystems}
+                    />
                     <InfoCard
                         title='Кол-во исследователей'
                         value={totalExplorers}

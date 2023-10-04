@@ -8,7 +8,10 @@ import React, {
 } from 'react';
 import System from '@shared/ui/System';
 
-import { SystemType, UserProgressInGalaxy } from '@entities/galaxy/model/types';
+import {
+    SystemType,
+    UserProgressInGalaxy,
+} from '@entities/galaxy/model/types';
 
 import { getDigitalAngle } from '@entities/orbit/lib/getDigitalAngle';
 import { getPercentageProgress } from '@entities/orbit/lib/getPercentageProgress';
@@ -24,7 +27,10 @@ import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import { roles, storageKeys } from '@shared/constants/storageKeys';
+import {
+    roles,
+    storageKeys,
+} from '@shared/constants/storageKeys';
 
 import { SystemProgressTypes } from '@shared/types/common';
 

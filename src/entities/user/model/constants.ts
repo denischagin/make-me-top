@@ -1,6 +1,5 @@
 //дефолтное присваивание id планеты
 export const DEFAULT_ID = 1;
-export const DEFAULT_ERROR_MESSAGE = 'Ошибка получения списка планет с сервера';
 
 export const initialCourseInfo = {
     course: {

@@ -5,7 +5,10 @@ import { Button } from '@shared/ui/Button';
 import { Container } from '@shared/ui/Container';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
 import { MasteringApplication } from '@entities/explorer';
 
@@ -29,7 +32,10 @@ import { SystemsList } from '@widgets/SystemsList';
 
 import NotFound from '@pages/NotFound';
 
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import {
     typographyColor,
     typographyVariant,
@@ -48,7 +54,11 @@ export const Explorer = () => {
     const isError = useAppSelector(explorersIsErrorSelector);
     const isLoading = useAppSelector(loadingIsLoadingSelector);
 
-    const { investigatedSystems, studyRequest, currentSystem } = userInfo;
+    const {
+        investigatedSystems,
+        studyRequest,
+        currentSystem,
+    } = userInfo;
 
     useEffect(() => {
         dispatch(getExplorerInfo({}));

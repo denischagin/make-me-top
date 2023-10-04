@@ -22,7 +22,10 @@ import { UserInfoInterface } from '@shared/types/common';
 import './styles.scss';
 
 export const UsersRating = (props: UserInfoInterface) => {
-    const { fullname, rating } = props;
+    const {
+        fullname,
+        rating,
+    } = props;
 
     const [block, element] = bem('rating-info');
 

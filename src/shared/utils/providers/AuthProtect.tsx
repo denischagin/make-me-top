@@ -1,5 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import {
+    useEffect,
+    useState,
+} from 'react';
+import {
+    Navigate,
+    useLocation,
+} from 'react-router-dom';
 
 import { URL_LOGIN } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
@@ -12,7 +18,9 @@ const getTokenFromLocalStorage = () => {
     return localStorage.getItem(storageKeys.tokenAuth);
 };
 
-export const AuthProtect = ({ children }: AuthProtectProps) => {
+export const AuthProtect = ({
+    children,
+}: AuthProtectProps) => {
     const [isAuth, setIsAuth] = useState(true);
     useEffect(() => {
         const token = getTokenFromLocalStorage();
@@ -30,5 +38,6 @@ export const AuthProtect = ({ children }: AuthProtectProps) => {
             />
         );
     }
+
     return children;
 };

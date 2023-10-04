@@ -26,14 +26,21 @@ import './styles.scss';
 export const ReviewCard = (props: ReviewCardInterface) => {
     const {
         review,
-        review: { courseTitle, rating, comment },
+        review: {
+            courseTitle,
+            rating,
+            comment,
+        },
     } = props;
 
     const [block, element] = bem('review-card');
 
     return (
         <div className={block()}>
-            <Card size={cardSize.medium} glow>
+            <Card
+                size={cardSize.medium}
+                glow
+            >
                 <div className={element('content')}>
                     <div className={element('heading')}>
                         <Typography

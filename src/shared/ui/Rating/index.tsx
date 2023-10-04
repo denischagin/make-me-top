@@ -7,7 +7,13 @@ import { RatingInterface } from './interfaces';
 import './styles.scss';
 
 export const Rating = (props: RatingInterface) => {
-    const { systemColor, scoreColor, size, rating, reflect } = props;
+    const {
+        systemColor,
+        scoreColor,
+        size,
+        rating,
+        reflect,
+    } = props;
 
     const [block, element] = bem('rating');
 

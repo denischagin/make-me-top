@@ -11,7 +11,9 @@ import './styles.scss';
 export const EducationApplications = (
     props: EducationApplicationsInterface,
 ) => {
-    const { applications } = props;
+    const {
+        applications,
+    } = props;
 
     const [block, element] = bem('education-application');
 

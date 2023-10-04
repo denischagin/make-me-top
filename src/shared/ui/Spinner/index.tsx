@@ -14,7 +14,9 @@ interface SpinnerProps {
     loading?: boolean;
 }
 
-export default function Spinner({ loading }: SpinnerProps) {
+export default function Spinner({
+    loading,
+}: SpinnerProps) {
     const [block, element] = bem('spinner');
 
     const isLoading =

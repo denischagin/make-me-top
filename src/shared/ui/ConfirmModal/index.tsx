@@ -6,7 +6,10 @@ import { Typography } from '@shared/ui/Typography';
 import { bem } from '@shared/utils/helpers/bem';
 
 import { ConfirmModalInterface } from './interfaces';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import {
     typographyColor,
     typographyVariant,

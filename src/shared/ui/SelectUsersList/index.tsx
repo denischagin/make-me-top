@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react';
+import {
+    useEffect,
+    useState,
+} from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 import { Avatar } from '@shared/ui/Avatar';
@@ -7,7 +10,10 @@ import { DividingLine } from '@shared/ui/DividingLine';
 import { Rating } from '@shared/ui/Rating';
 import { SelectUsersKeepersItem } from '@shared/ui/SelectUsersKeepersItem';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
 import {
     userIsErrorSelector,
@@ -21,11 +27,17 @@ import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 import { sortByRating } from '@shared/utils/helpers/sortByRating';
 
-import { URL_EXPLORER, URL_PROFILE } from '@shared/constants/links';
+import {
+    URL_EXPLORER,
+    URL_PROFILE,
+} from '@shared/constants/links';
 import { TOAST_ERROR_CHOOSE_KEEPER } from '@shared/constants/toastTitles';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
 import {
     ratingScoreColor,
@@ -38,7 +50,10 @@ import { UserListInterface } from '@shared/types/common';
 import './styles.scss';
 
 export const SelectUsersList = (props: UserListInterface) => {
-    const { keepersList, courseId } = props;
+    const {
+        keepersList,
+        courseId,
+    } = props;
 
     const dispatch = useAppDispatch();
 

@@ -11,8 +11,9 @@ import { KeepersFilterInterface } from '../model/types/interfaces';
 import { ErrorInterface } from '@shared/types/common';
 
 import { FETCH_KEEPER_LIST } from '../model/actions';
-import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
+import { onErrorHandler } from '@shared/api';
+
 
 export interface KeeperFilterResponseInterface
     extends KeepersFilterInterface,
@@ -30,16 +31,10 @@ export const getListKeepersByFilter = createAsyncThunk<
 
         return data;
     } catch (err) {
-        const error: AxiosError<ErrorInterface> = err as any;
-
-        noAuthHandler(error);
-
-        if (error.response) {
-            toast.error(error.response.data.errorMessage);
-
-            return rejectWithValue(error.response.data);
-        }
-
-        throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+        return rejectWithValue(
+            onErrorHandler({
+                err,
+            }),
+        );
     }
 });

@@ -3,14 +3,18 @@ import {
     createRoutesFromElements,
     Route,
 } from 'react-router-dom';
+import { routes } from '@app/constants/routes';
 
 import { privatePage } from '@shared/utils/helpers/privatePage';
-import { routes } from '@app/constants/routes';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <>
-            {routes.map(({ isPrivate, element, path }) =>
+            {routes.map(({
+                isPrivate,
+                element,
+                path,
+            }) =>
                 isPrivate ? (
                     <Route
                         key={path}
@@ -18,7 +22,11 @@ export const router = createBrowserRouter(
                         path={path}
                     />
                 ) : (
-                    <Route key={path} element={element} path={path} />
+                    <Route
+                        key={path}
+                        element={element}
+                        path={path}
+                    />
                 ),
             )}
         </>,

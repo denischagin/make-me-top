@@ -4,7 +4,10 @@ import { Button } from '@shared/ui/Button';
 import { Container } from '@shared/ui/Container';
 import { SortCard } from '@shared/ui/SortCard';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
 import { loadingIsLoadingSelector } from '@entities/loading/model/selectors';
 
@@ -27,7 +30,12 @@ const Keepers = () => {
     const isLoading = useAppSelector(loadingIsLoadingSelector);
     const dispatch = useAppDispatch();
 
-    const { handleHideAll, handleShowMore, isLastLimit, limitElements } =
+    const {
+        handleHideAll,
+        handleShowMore,
+        isLastLimit,
+        limitElements,
+    } =
         useShowMore(keepersList, 10, 5);
 
     useEffect(() => {
@@ -42,12 +50,18 @@ const Keepers = () => {
             {!isLoading && (
                 <Container className={element('container')}>
                     <div className={element('sort-panel')}>
-                        <SortCard title='Сортировать' value='С 1 до конца' />
+                        <SortCard
+                            title='Сортировать'
+                            value='С 1 до конца'
+                        />
                         <SortCard
                             title='Период отображения'
                             value='За весь период'
                         />
-                        <SortCard title='За весь период' value='Все звезды' />
+                        <SortCard
+                            title='За весь период'
+                            value='Все звезды'
+                        />
                     </div>
 
                     {keepersList.length !== 0 && (

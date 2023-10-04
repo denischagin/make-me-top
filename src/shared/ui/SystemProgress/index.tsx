@@ -6,7 +6,9 @@ import { bem } from '@shared/utils/helpers/bem';
 import './styles.scss';
 
 const SystemProgress: React.FC<SystemProgressProps> = (props) => {
-    const { percentageProgress } = props;
+    const {
+        percentageProgress,
+    } = props;
 
     const [block, element] = bem('system-progress');
 

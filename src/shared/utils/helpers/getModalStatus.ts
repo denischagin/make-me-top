@@ -18,7 +18,11 @@ interface GetModalStatus {
 
 //функция получения статуса модального окна в зависимоти от данных пользователя и последней выбранной системы
 export function getModalStatus(params: GetModalStatus): ModalAccessStatus {
-    const { lastChosenSystem, userProgress, courseInfo } = params;
+    const {
+        lastChosenSystem,
+        userProgress,
+        courseInfo,
+    } = params;
 
     if (
         lastChosenSystem.systemId ===

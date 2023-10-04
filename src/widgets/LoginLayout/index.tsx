@@ -4,8 +4,9 @@ import { ReactComponent as MakeMeTopIcon } from '@shared/images/make-me-top.svg'
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import './styles.scss';
 import { LoginSelectRoleLayoutProps } from '@widgets/LoginLayout/interface';
+
+import './styles.scss';
 
 const LoginLayout = ({
     children,

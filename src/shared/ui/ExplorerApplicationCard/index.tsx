@@ -4,7 +4,10 @@ import { Card } from '@shared/ui/Card';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
 import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
 
@@ -14,7 +17,10 @@ import { bem } from '@shared/utils/helpers/bem';
 
 import { CONFIRM_CANCEL_TEACHING } from '@shared/constants/modalTitles';
 
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
@@ -27,7 +33,10 @@ export const ExplorerApplicationCard = () => {
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(explorerCardInfoSelector);
 
-    const { studyRequest, currentSystem } = userInfo;
+    const {
+        studyRequest,
+        currentSystem,
+    } = userInfo;
 
     const studyRequestOrСurrentSystem = currentSystem || studyRequest;
 
@@ -62,7 +71,10 @@ export const ExplorerApplicationCard = () => {
             >
                 {currentSystem ? 'Текущая система:' : 'Заявка на обучение:'}
             </Typography>
-            <Card size={cardSize.large} glow>
+            <Card
+                size={cardSize.large}
+                glow
+            >
                 <div className={element('content')}>
                     <div className={element('info')}>
                         <Typography

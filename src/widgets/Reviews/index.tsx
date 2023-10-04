@@ -35,7 +35,9 @@ export const Reviews = () => {
         ? useAppSelector(explorerCardInfoSelector)
         : useAppSelector(keeperCardInfoSelector);
 
-    const { feedback } = reviews;
+    const {
+        feedback,
+    } = reviews;
 
     if (!feedback?.length) {
         return null;
@@ -51,7 +53,10 @@ export const Reviews = () => {
             </Typography>
             <div className={element('cards')}>
                 {feedback.slice(0, limitElements)?.map((item) => (
-                    <ReviewCard key={item.courseId} review={item} />
+                    <ReviewCard
+                        key={item.courseId}
+                        review={item}
+                    />
                 ))}
             </div>
             <ShowMoreElemenetsButton

@@ -4,7 +4,10 @@ import { Container } from '@shared/ui/Container';
 import { GradeApplicationCard } from '@shared/ui/GradeApplicationCard';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
 import { loadingIsLoadingSelector } from '@entities/loading/model/selectors';
 

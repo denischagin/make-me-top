@@ -21,7 +21,9 @@ import { DEFAULT_LIMIT_ITEM } from './model';
 import './styles.scss';
 
 export const ExplorerItemList = (props: ExplorerItemListInterface) => {
-    const { explorers } = props;
+    const {
+        explorers,
+    } = props;
 
     const [block, element] = bem('explorer-card-list');
     const [limitElements, setElementsLimit] =

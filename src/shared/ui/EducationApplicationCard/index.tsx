@@ -23,7 +23,10 @@ import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toasts';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import {
     ratingScoreColor,
@@ -37,7 +40,9 @@ import './styles.scss';
 export const EducationApplicationCard = (
     props: EducationApplicationCardInterface,
 ) => {
-    const { user } = props;
+    const {
+        user,
+    } = props;
 
     const [block, element] = bem('application-education-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
@@ -68,7 +73,10 @@ export const EducationApplicationCard = (
                     }}
                 />
             )}
-            <Card size={cardSize.large} glow>
+            <Card
+                size={cardSize.large}
+                glow
+            >
                 <div className={element('content')}>
                     <div className={element('info')}>
                         <Avatar size={avatarSize.medium} />

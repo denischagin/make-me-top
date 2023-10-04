@@ -18,7 +18,11 @@ export const ChangeGalaxyButtons = ({
     const [block, element] = bem('change-galaxy-buttons');
 
     return (
-        <EntryAnimateGalaxies delay={0.1} duration={1} className={block()}>
+        <EntryAnimateGalaxies
+            delay={0.1}
+            duration={1}
+            className={block()}
+        >
             <div className={element('button-orbit')}>
                 <ButtonChangeCurrentGalaxy
                     content={prevGalaxyName}

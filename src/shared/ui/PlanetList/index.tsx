@@ -11,12 +11,17 @@ import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 import { bem } from '@shared/utils/helpers/bem';
 
 import { PlanetListInterface } from './interfaces';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 
 import './styles.scss';
 
 export const PlanetList = (props: PlanetListInterface) => {
-    const { currentPlanet } = props;
+    const {
+        currentPlanet,
+    } = props;
 
     const [block, element] = bem('planet-list');
 

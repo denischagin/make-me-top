@@ -22,7 +22,10 @@ import { Header } from '@widgets/Header';
 import NotFound from '@pages/NotFound';
 
 import { arrowButtonDirection } from '@shared/ui/ArrowButton/interfaces';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import { useCurrentGalaxy } from './hooks';

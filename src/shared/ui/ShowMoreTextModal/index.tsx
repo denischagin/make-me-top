@@ -15,7 +15,10 @@ export const ShowMoreTextModal = (props: ShowMoreTextModalInterface) => {
         text,
         maxLength,
         children,
-        typographySettings: { variant = typographyVariant.regular14, color },
+        typographySettings: {
+            variant = typographyVariant.regular14,
+            color,
+        },
     } = props;
 
     const [block, element] = bem('show-more-text');

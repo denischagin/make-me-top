@@ -1,4 +1,7 @@
-import { memo, useState } from 'react';
+import {
+    memo,
+    useState,
+} from 'react';
 import { TabPanel } from 'react-tabs';
 import { Button } from '@shared/ui/Button';
 import { CircleModal } from '@shared/ui/CircleModal';
@@ -16,7 +19,10 @@ import { bem } from '@shared/utils/helpers/bem';
 
 import { TABS_LIST } from '@pages/Explorer/model';
 
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
 import {
     typographyColor,

@@ -17,7 +17,11 @@ import {
 import './styles.scss';
 
 export const CurrentUserItem = (props: CurrentUserItemInterface) => {
-    const { badgeTitle, keeper, explorer } = props;
+    const {
+        badgeTitle,
+        keeper,
+        explorer,
+    } = props;
 
     const [block, element] = bem('current-user');
 

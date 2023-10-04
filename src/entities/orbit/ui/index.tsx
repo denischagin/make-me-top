@@ -1,6 +1,13 @@
-import React, { memo, useState } from 'react';
+import React,
+{
+    memo,
+    useState,
+} from 'react';
 
-import { SystemType, UserProgressInGalaxy } from '@entities/galaxy/model/types';
+import {
+    SystemType,
+    UserProgressInGalaxy,
+} from '@entities/galaxy/model/types';
 
 import { bem } from '@shared/utils/helpers/bem';
 import { elementToNumber } from '@shared/utils/helpers/elementToNumber';

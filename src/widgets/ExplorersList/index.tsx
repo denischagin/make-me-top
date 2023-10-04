@@ -11,7 +11,9 @@ import { ExplorersListProps } from './interface';
 
 import './style.scss';
 
-export const ExplorersList = ({ explorers }: ExplorersListProps) => {
+export const ExplorersList = ({
+    explorers,
+}: ExplorersListProps) => {
     const [block, element] = bem('explorers-list');
     const navigate = useNavigate();
 

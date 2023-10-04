@@ -7,13 +7,19 @@ import React, {
     useState,
 } from 'react';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
 import {
     userCourseInfoSelector,
     userIsModalOpenSelector,
 } from '@entities/user/model/selectors';
-import { closeModal, toggleModal } from '@entities/user/model/slice';
+import {
+    closeModal,
+    toggleModal,
+} from '@entities/user/model/slice';
 import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
@@ -72,7 +78,13 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const courseInfo = useAppSelector(userCourseInfoSelector);
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
 
-    const { course, you, yourKeeper, explorers, keepers } = courseInfo;
+    const {
+        course,
+        you,
+        yourKeeper,
+        explorers,
+        keepers,
+    } = courseInfo;
 
     const [systems, setSystems] = useState<NodeListOf<HTMLDivElement>>(
         document.querySelectorAll(`.${SYSTEM_CLASS}`),

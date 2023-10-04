@@ -16,7 +16,10 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import './styles.scss';
 
 export const SystemsList = (props: SystemsListInterface) => {
-    const { heading, systems } = props;
+    const {
+        heading,
+        systems,
+    } = props;
 
     const [block, element] = bem('systems-list');
 
@@ -30,7 +33,10 @@ export const SystemsList = (props: SystemsListInterface) => {
             </Typography>
             <div className={element('systems', 'mb-4')}>
                 {systems?.map((system) => (
-                    <div className={element('system')} key={system.courseId}>
+                    <div
+                        className={element('system')}
+                        key={system.courseId}
+                    >
                         <System
                             color={systemColor.primary500}
                             key={system.courseId}

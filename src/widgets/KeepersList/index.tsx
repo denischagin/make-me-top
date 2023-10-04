@@ -11,7 +11,9 @@ import { KeepersListProps } from './interface';
 
 import './style.scss';
 
-export const KeepersList = ({ keepers }: KeepersListProps) => {
+export const KeepersList = ({
+    keepers,
+}: KeepersListProps) => {
     const [block, element] = bem('keepers-list');
     const navigate = useNavigate();
 

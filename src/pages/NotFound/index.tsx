@@ -13,7 +13,8 @@ import {
 
 import './style.scss';
 
-const NotFound = ({ errorCode = 404 }: { errorCode?: number | string }) => {
+const NotFound = ({
+}: { errorCode?: number | string }) => {
     const [block, element] = bem('not-found');
 
     return (
@@ -27,7 +28,7 @@ const NotFound = ({ errorCode = 404 }: { errorCode?: number | string }) => {
                             variant={typographyVariant.h1}
                             color={typographyColor.white}
                         >
-                            Возникла ошибка {errorCode}
+                            Это еще неизведанная часть космоса
                         </Typography>
                     </div>
                 </Container>

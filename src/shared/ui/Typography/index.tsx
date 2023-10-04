@@ -5,7 +5,13 @@ import { TypographyInterface } from './interfaces';
 import './styles.scss';
 
 export const Typography = (props: TypographyInterface) => {
-    const { className, color, variant, children, onClick } = props;
+    const {
+        className,
+        color,
+        variant,
+        children,
+        onClick,
+    } = props;
 
     const [block, element] = bem('typography');
 

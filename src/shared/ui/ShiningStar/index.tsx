@@ -8,7 +8,9 @@ import { ShiningStarProps } from './interfaces';
 import './styles.scss';
 
 export const ShiningStar = (props: ShiningStarProps) => {
-    const { size } = props;
+    const {
+        size,
+    } = props;
 
     const [block, element] = bem('shining-star');
 

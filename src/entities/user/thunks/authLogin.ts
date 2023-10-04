@@ -2,21 +2,32 @@ import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
-import { roles, storageKeys } from '@shared/constants/storageKeys';
+import { onErrorHandler } from '@shared/api';
+
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
+
+import {
+    roles,
+    storageKeys,
+} from '@shared/constants/storageKeys';
 import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
 import { FETCH_AUTH } from '../model/actions';
-import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
 import { AuthLoginInterface } from '../model/types';
-import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
+
 
 export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface>(
     FETCH_AUTH,
-    async ({ payload, callback }) => {
+    async ({
+        payload,
+        callback,
+    }) => {
         try {
-            const { data } = await axios.post<ErrorInterface>(
+            const {
+                data,
+            } = await axios.post<ErrorInterface>(
                 `${URL_MMT_STAND}auth/login`,
                 payload,
             );
@@ -38,15 +49,9 @@ export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface>(
 
             return data;
         } catch (err) {
-            const error: AxiosError<ErrorInterface> = err as any;
-
-            noAuthHandler(error);
-
-            if (error.response) {
-                throw toast.error(error.response.data.errorMessage);
-            }
-
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+            throw onErrorHandler({
+                err,
+            });
         }
     },
 );

@@ -6,7 +6,10 @@ import { bem } from '@shared/utils/helpers/bem';
 
 import { URL_GALAXY } from '@shared/constants/links';
 
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';

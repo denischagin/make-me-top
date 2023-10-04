@@ -5,15 +5,23 @@ import { ReactComponent as Logo } from '@shared/images/logo.svg';
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import { HEADER_LINKS, URL_LOGIN } from '@shared/constants/links';
+import {
+    HEADER_LINKS,
+    URL_LOGIN,
+} from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
 
-import { HeaderInterface, HeaderLinkInterface } from './interfaces';
+import {
+    HeaderInterface,
+    HeaderLinkInterface,
+} from './interfaces';
 
 import './styles.scss';
 
 export const Header = (props: HeaderInterface) => {
-    const { links = HEADER_LINKS } = props;
+    const {
+        links = HEADER_LINKS,
+    } = props;
 
     const [block, element] = bem('header');
 

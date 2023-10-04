@@ -3,8 +3,6 @@ import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios/index';
 
-import { DEFAULT_ERROR_MESSAGE } from '@entities/user/model/constants';
-
 import { SystemDependencyType } from '@entities/galaxy/model/types';
 
 import {
@@ -12,10 +10,12 @@ import {
     SystemResponseInterface,
 } from '@entities/orbit/thunks/fetchSystemById';
 
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
+
 import { FETCH_AND_SET_ALL_DEPENDENCIES } from '@shared/constants/actions';
 
 import { ErrorInterface } from '@shared/types/common';
-import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
+import { onErrorHandler } from '@shared/api';
 
 interface FetchAndSetAllDependencies {
     list: Array<SystemDependencyType> | undefined;
@@ -41,11 +41,9 @@ export const fetchAndSetAllDependencies = createAsyncThunk<
 
             return setFetchedSystemList(allData);
         } catch (err) {
-            const error: AxiosError<ErrorInterface> = err as any;
-
-            noAuthHandler(error);
-
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+            throw onErrorHandler({
+                err,
+            });
         }
     },
 );

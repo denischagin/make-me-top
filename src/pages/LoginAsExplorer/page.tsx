@@ -1,6 +1,7 @@
+import React from 'react';
+
 import { Login } from '@widgets/Login';
 import LoginLayout from '@widgets/LoginLayout';
-import React from 'react';
 
 const LoginAsExplorer = () => {
     return (

@@ -4,6 +4,10 @@ import axios, { AxiosError } from 'axios';
 
 import { DEFAULT_ID } from '@entities/user/model/constants';
 
+import { onErrorHandler } from '@shared/api';
+
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
+
 import { instance } from '@shared/api/instances';
 
 import {
@@ -15,8 +19,7 @@ import { URL_MMT_STAND } from '@shared/constants/urls';
 import { ErrorInterface } from '@shared/types/common';
 
 import { ACCEPT_OR_REJECT_COURSE } from '../model/actions';
-import { DEFAULT_ERROR_MESSAGE } from '../model/constants';
-import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
+
 
 export interface RejectCoursePayloadInterface {
     approved: boolean;
@@ -32,9 +35,14 @@ export const acceptOrRejectCourseRequest = createAsyncThunk<
     RejectCourseInterface
 >(ACCEPT_OR_REJECT_COURSE, async (payload) => {
     try {
-        const { requestId = DEFAULT_ID, rejection } = payload;
+        const {
+            requestId = DEFAULT_ID,
+            rejection,
+        } = payload;
 
-        const { data } = await instance.patch<ErrorInterface>(
+        const {
+            data,
+        } = await instance.patch<ErrorInterface>(
             `${URL_MMT_STAND}keeper-cabinet/course-request/${requestId}`,
             rejection,
         );
@@ -53,14 +61,8 @@ export const acceptOrRejectCourseRequest = createAsyncThunk<
 
         return data;
     } catch (err) {
-        const error: AxiosError<ErrorInterface> = err as any;
-
-        noAuthHandler(error);
-
-        if (error.response) {
-            throw toast.error(error.response.data.errorMessage);
-        }
-
-        throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+        throw onErrorHandler({
+            err,
+        });
     }
 });

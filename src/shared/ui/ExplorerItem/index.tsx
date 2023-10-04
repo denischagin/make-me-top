@@ -13,7 +13,9 @@ import { ExplorerItemInterface } from '@shared/types/common';
 import './styles.scss';
 
 export const ExplorerItem = (props: ExplorerItemInterface) => {
-    const { name } = props;
+    const {
+        name,
+    } = props;
 
     const [block, element] = bem('explorer-item');
 

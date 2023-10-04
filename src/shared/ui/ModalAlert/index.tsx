@@ -8,7 +8,12 @@ import { ModalAccessStatus } from '@shared/ui/CircleModal/interfaces';
 import './styles.scss';
 
 export const ModalAlert = (props: ModalAlertInterface) => {
-    const { dependencies, title, children, handleChangeSystem } = props;
+    const {
+        dependencies,
+        title,
+        children,
+        handleChangeSystem,
+    } = props;
 
     const [block, element] = bem('modal-alert');
 

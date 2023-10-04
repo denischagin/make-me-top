@@ -25,11 +25,18 @@ export const ExplorerUserInfo = () => {
 
     const userInfo = useAppSelector(explorerInfoSelector);
 
-    const { person, rating, totalSystems } = userInfo;
+    const {
+        person,
+        rating,
+        totalSystems,
+    } = userInfo;
 
     return (
         <div className={block()}>
-            <Avatar size={avatarSize.large} orbit />
+            <Avatar
+                size={avatarSize.large}
+                orbit
+            />
             <div className={element('description')}>
                 <Typography
                     variant={typographyVariant.h1}

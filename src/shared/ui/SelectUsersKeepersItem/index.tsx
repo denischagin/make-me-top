@@ -6,7 +6,10 @@ import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import {
     ratingScoreColor,
     ratingSize,
@@ -16,7 +19,12 @@ import {
 import { SelectUsersKeepersItemProps } from './interface';
 
 export const SelectUsersKeepersItem = (props: SelectUsersKeepersItemProps) => {
-    const { user, selected, onRemoveUser, onSelectUser } = props;
+    const {
+        user,
+        selected,
+        onRemoveUser,
+        onSelectUser,
+    } = props;
 
     const [block, element] = bem('select-list');
 

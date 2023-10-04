@@ -5,7 +5,10 @@ import { Card } from '@shared/ui/Card';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
 import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest';
@@ -15,7 +18,10 @@ import { bem } from '@shared/utils/helpers/bem';
 import { CONFIRM_CANCEL_LEARNING } from '@shared/constants/modalTitles';
 import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toastTitles';
 
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
@@ -28,7 +34,9 @@ export const MasteringApplication = () => {
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(explorerInfoSelector);
 
-    const { studyRequest } = userInfo;
+    const {
+        studyRequest,
+    } = userInfo;
 
     if (!studyRequest) {
         return null;
@@ -64,7 +72,10 @@ export const MasteringApplication = () => {
             >
                 Заявка на освоение
             </Typography>
-            <Card size={cardSize.large} glow>
+            <Card
+                size={cardSize.large}
+                glow
+            >
                 <div className={element('wrapper')}>
                     <div>
                         <Typography

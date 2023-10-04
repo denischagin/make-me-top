@@ -9,7 +9,9 @@ interface ITitleGalaxyPage {
 }
 
 export const TitleGalaxyPage: React.FC<ITitleGalaxyPage> = (props) => {
-    const { galaxyName } = props;
+    const {
+        galaxyName,
+    } = props;
 
     const [block, element] = bem('galaxy-page-name');
 

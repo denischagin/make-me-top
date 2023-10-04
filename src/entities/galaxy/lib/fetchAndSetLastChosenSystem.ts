@@ -3,17 +3,18 @@ import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { DEFAULT_ERROR_MESSAGE } from '@entities/user/model/constants';
-
 import { DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE } from '@entities/galaxy/model/constants';
 import { LastChosenSystem } from '@entities/galaxy/model/types';
 
 import { fetchSystemById } from '@entities/orbit/thunks/fetchSystemById';
 
+import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
+
 import { FETCH_AND_SET_CHOSEN_SYSTEM } from '@shared/constants/actions';
 
 import { ErrorInterface } from '@shared/types/common';
-import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
+import { onErrorHandler } from '@shared/api';
+
 
 interface FetchAndSetLastChosenStarInterface {
     id: number | null;
@@ -38,11 +39,9 @@ export const fetchAndSetLastChosenSystem = createAsyncThunk<
                 ...data,
             });
         } catch (err) {
-            const error: AxiosError<ErrorInterface> = err as any;
-
-            noAuthHandler(error);
-
-            throw toast.error(error.message || DEFAULT_ERROR_MESSAGE);
+            throw onErrorHandler({
+                err,
+            });
         }
     },
 );

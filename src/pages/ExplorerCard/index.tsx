@@ -7,7 +7,10 @@ import { Container } from '@shared/ui/Container';
 import { ExplorerApplicationCard } from '@shared/ui/ExplorerApplicationCard';
 import { ReviewRequestCard } from '@shared/ui/ReviewRequestCard';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
 import {
     explorerCardInfoSelector,
@@ -36,9 +39,13 @@ const ExplorerCard = () => {
     const userInfo = useAppSelector(explorerCardInfoSelector);
     const isError = useAppSelector(explorersIsErrorSelector);
 
-    const { investigatedSystems } = userInfo;
+    const {
+        investigatedSystems,
+    } = userInfo;
 
-    const { explorerId } = useParams();
+    const {
+        explorerId,
+    } = useParams();
 
     useEffect(() => {
         dispatch(

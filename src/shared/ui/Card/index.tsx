@@ -5,7 +5,11 @@ import { CardInterface } from './interfaces';
 import './styles.scss';
 
 export const Card = (props: CardInterface) => {
-    const { size, children, glow } = props;
+    const {
+        size,
+        children,
+        glow,
+    } = props;
 
     const [block, element] = bem('card');
 

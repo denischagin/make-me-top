@@ -25,11 +25,19 @@ export const ExplorerCardUserInfo = () => {
 
     const userInfo = useAppSelector(explorerCardInfoSelector);
 
-    const { person, rating, totalSystems, totalFeedback } = userInfo;
+    const {
+        person,
+        rating,
+        totalSystems,
+        totalFeedback,
+    } = userInfo;
 
     return (
         <div className={block()}>
-            <Avatar size={avatarSize.large} orbit />
+            <Avatar
+                size={avatarSize.large}
+                orbit
+            />
             <div className={element('description')}>
                 <div className={element('description-name', 'mb-4')}>
                     <Typography variant={typographyVariant.h1}>
@@ -48,7 +56,10 @@ export const ExplorerCardUserInfo = () => {
                             />
                         }
                     />
-                    <InfoCard title='Отзывы' value={totalFeedback} />
+                    <InfoCard
+                        title='Отзывы'
+                        value={totalFeedback}
+                    />
                     <InfoCard
                         title='Кол-во освоенных систем'
                         value={totalSystems}

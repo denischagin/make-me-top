@@ -9,7 +9,10 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import './styles.scss';
 
 export const GradeApplications = (props: GradeApplicationsInterface) => {
-    const { finalAssessment, reviewRequest } = props;
+    const {
+        finalAssessment,
+        reviewRequest,
+    } = props;
 
     const [block, element] = bem('grade-application');
 
@@ -28,17 +31,17 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
             <div className={element('cards')}>
                 {finalAssessment
                     ? finalAssessment?.map((application) => (
-                          <GradeApplicationCard
-                              key={application.personId}
-                              finalAssessment={application}
-                          />
-                      ))
+                        <GradeApplicationCard
+                            key={application.personId}
+                            finalAssessment={application}
+                        />
+                    ))
                     : reviewRequest?.map((application) => (
-                          <GradeApplicationCard
-                              key={application.personId}
-                              reviewRequest={application}
-                          />
-                      ))}
+                        <GradeApplicationCard
+                            key={application.personId}
+                            reviewRequest={application}
+                        />
+                    ))}
             </div>
         </div>
     );

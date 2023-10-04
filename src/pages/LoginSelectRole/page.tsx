@@ -1,6 +1,5 @@
-import { SelectRole } from '@widgets/SelectRole';
-
 import LoginLayout from '@widgets/LoginLayout';
+import { SelectRole } from '@widgets/SelectRole';
 
 const LoginSelectRole = () => {
     return (

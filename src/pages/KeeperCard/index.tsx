@@ -5,7 +5,10 @@ import { ArrowButton } from '@shared/ui/ArrowButton';
 import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Container } from '@shared/ui/Container';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import {
+    useAppDispatch,
+    useAppSelector,
+} from '@app/providers/store/hooks';
 
 import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 import { getKeeperCardInfo } from '@entities/keeper/thunks/getKeeperCardInfo';
@@ -28,9 +31,13 @@ const KeeperCard = () => {
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(keeperCardInfoSelector);
 
-    const { systems } = userInfo;
+    const {
+        systems,
+    } = userInfo;
 
-    const { keeperId } = useParams();
+    const {
+        keeperId,
+    } = useParams();
 
     useEffect(() => {
         dispatch(

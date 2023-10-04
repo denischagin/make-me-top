@@ -20,7 +20,10 @@ export const ButtonChangeCurrentGalaxy = ({
     const [block, element] = bem('change-galaxy-button');
 
     return (
-        <button onClick={onClick} className={block()}>
+        <button
+            onClick={onClick}
+            className={block()}
+        >
             <Orbit1 className={element('orbit', 'orbit1')} />
             <Orbit2 className={element('orbit', 'orbit2')} />
             <Orbit3 className={element('orbit', 'orbit3')} />

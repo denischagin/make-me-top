@@ -10,7 +10,11 @@ import { SystemInterface } from './interfaces';
 import './styles.scss';
 
 const System = (props: SystemInterface) => {
-    const { color, children, percentageProgress } = props;
+    const {
+        color,
+        children,
+        percentageProgress,
+    } = props;
 
     const [block, element] = bem('system');
 
