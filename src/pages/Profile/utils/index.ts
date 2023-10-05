@@ -1,0 +1,1 @@
+export { getRoleFromLocalStorage } from './getRoleFromLocalStorage'

@@ -1,14 +1,9 @@
-import {
-    useEffect,
-    useState,
-} from 'react';
-import {
-    Navigate,
-    useLocation,
-} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
 
 import { URL_LOGIN } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
+import { queryParams } from '@shared/constants';
 
 interface AuthProtectProps {
     children: JSX.Element;
@@ -18,10 +13,9 @@ const getTokenFromLocalStorage = () => {
     return localStorage.getItem(storageKeys.tokenAuth);
 };
 
-export const AuthProtect = ({
-    children,
-}: AuthProtectProps) => {
+export const AuthProtect = ({ children }: AuthProtectProps) => {
     const [isAuth, setIsAuth] = useState(true);
+
     useEffect(() => {
         const token = getTokenFromLocalStorage();
 
@@ -31,7 +25,7 @@ export const AuthProtect = ({
     if (!isAuth) {
         return (
             <Navigate
-                to={`${URL_LOGIN}?redirect=${encodeURIComponent(
+                to={`${URL_LOGIN}?${queryParams.redirect}=${encodeURIComponent(
                     location.pathname,
                 )}`}
                 replace

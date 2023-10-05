@@ -29,6 +29,7 @@ import { LoginProps } from '@widgets/Login/interface';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
+import { queryParams } from '@shared/constants';
 
 export const Login = ({
     role,
@@ -48,7 +49,7 @@ export const Login = ({
             return navigate(URL_LOGIN);
         }
 
-        const redirect = searchParams.get('redirect');
+        const redirect = searchParams.get(queryParams.redirect);
 
         if (redirect !== null) return navigate(redirect, {
             replace: true,

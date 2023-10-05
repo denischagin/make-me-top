@@ -59,11 +59,7 @@ export const routes: RouteInterface[] = [
     },
     {
         path: URL_DEFAULT,
-        element:
-    <Navigate
-        to={URL_LOGIN}
-        replace
-    />,
+        element: <Navigate to={URL_LOGIN} replace />,
     },
     {
         path: URL_KEEPER_CARD,

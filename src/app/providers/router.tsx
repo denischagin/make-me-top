@@ -10,25 +10,13 @@ import { privatePage } from '@shared/utils/helpers/privatePage';
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <>
-            {routes.map(({
-                isPrivate,
-                element,
-                path,
-            }) =>
-                isPrivate ? (
-                    <Route
-                        key={path}
-                        element={privatePage(element)}
-                        path={path}
-                    />
-                ) : (
-                    <Route
-                        key={path}
-                        element={element}
-                        path={path}
-                    />
-                ),
-            )}
+            {routes.map(({ isPrivate, element, path }) => (
+                <Route
+                    key={path}
+                    element={isPrivate ? privatePage(element) : element}
+                    path={path}
+                />
+            ))}
         </>,
     ),
 );
