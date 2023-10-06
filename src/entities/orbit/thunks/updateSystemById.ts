@@ -18,7 +18,6 @@ interface UpdateSystemPayload {
 
 interface UpdateSystemParams {
     systemId: number;
-    galaxyId: number;
 }
 
 export const updateSystem = async (
@@ -26,10 +25,10 @@ export const updateSystem = async (
     payload: UpdateSystemPayload,
 ) => {
     try {
-        const { systemId, galaxyId } = params;
+        const { systemId } = params;
 
         const { data } = await instance.put<ErrorInterface>(
-            `${URL_MMT_STAND}galaxy-app/${galaxyId}/system/${systemId}`,
+            `${URL_MMT_STAND}galaxy-app/systems/${systemId}`,
             payload,
         );
 

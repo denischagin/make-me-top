@@ -5,12 +5,12 @@ import {
 
 export interface ExplorerState {
     isExplorer: boolean;
-    isSystemActive: boolean
-    explorerApplicationCard: ExplorerApplicationCardInterface
-    explorerInfo: ExplorerInfoInterface
-    explorerCardInfo: ExplorerCardInfoInterface
-    explorersList: ExplorersFilterInterface[]
-    isError: boolean
+    isSystemActive: boolean;
+    explorerApplicationCard: ExplorerApplicationCardInterface;
+    explorerInfo: ExplorerInfoInterface;
+    explorerCardInfo: ExplorerCardInfoInterface;
+    explorersList: ExplorersFilterInterface[];
+    isError: boolean;
 }
 
 export interface ExplorersFilterInterface {
@@ -27,8 +27,8 @@ export interface ExplorersFilterInterface {
 }
 
 export interface ExplorerApplicationCardInterface {
-    system: string
-    planet: string
+    system: string;
+    planet: string;
 }
 
 export interface ExplorerInfoInterface {
@@ -37,7 +37,7 @@ export interface ExplorerInfoInterface {
     totalSystems: number;
     currentSystem: CurrentSystem;
     investigatedSystems: Array<InvestigatedSystemsInterface>;
-    studyRequest: StudyRequestCabinetInterface
+    studyRequest: StudyRequestCabinetInterface;
     ratingTable: Array<PersonRating>;
 }
 
@@ -50,14 +50,16 @@ export interface Person {
 }
 
 export interface PersonRating {
-    firstName: string
-    lastName: string
-    patronymic: string
-    personId: number
-    rating: number
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+    personId: number;
+    rating: number;
 }
 
 export interface CurrentSystem {
+    explorerId: number;
+    groupId: number;
     courseThemeId: number;
     courseThemeTitle: string;
     courseId: number;
@@ -78,42 +80,41 @@ export interface InvestigatedSystemsInterface {
     courseId: number;
     title: string;
     rating: number | null;
-    keeperId: number;
 }
 
 export interface ExplorerCardInfoInterface {
-    person: Person
-    rating: number | null
-    totalFeedback: number
-    totalSystems: number
-    currentSystem: CurrentSystem
-    investigatedSystems: Array<InvestigatedSystemsInterface>
-    studyRequest: StudyRequestsInterface
-    feedback: Array<Feedback>
-    reviewRequest: ReviewRequestsInterface
+    person: Person;
+    rating: number | null;
+    totalFeedback: number;
+    totalSystems: number;
+    currentSystem: CurrentSystem;
+    investigatedSystems: Array<InvestigatedSystemsInterface>;
+    studyRequest: StudyRequestsInterface;
+    feedback: Array<Feedback>;
+    reviewRequest: ReviewRequestsInterface;
 }
 
 export interface StudyRequestCabinetInterface {
-    courseId: string
-    courseTitle: string
-    galaxyId: string
-    galaxyName: string
-    keeperFirstName: string
-    keeperId: number
-    keeperLastName: string
-    keeperPatronymic: string
-    keeperPersonId: number
-    requestId: number
+    courseId: string;
+    courseTitle: string;
+    galaxyId: string;
+    galaxyName: string;
+    keeperFirstName: string;
+    keeperId: number;
+    keeperLastName: string;
+    keeperPatronymic: string;
+    keeperPersonId: number;
+    requestId: number;
 }
 
 export interface Feedback {
-    personId: number
-    firstName: string
-    lastName: string
-    patronymic: string
-    keeperId: number
-    courseId: number
-    courseTitle: string
-    rating: number | null
-    comment: string
+    personId: number;
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+    keeperId: number;
+    courseId: number;
+    courseTitle: string;
+    rating: number | null;
+    comment: string;
 }

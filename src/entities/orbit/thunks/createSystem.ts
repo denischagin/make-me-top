@@ -15,11 +15,10 @@ interface CreateSystemPayload {
     systemLevel: number;
     systemPosition: number;
     description: string;
-    orbitId: number;
 }
 
 interface CreateSystemParams {
-    galaxyId: number;
+    orbitId: number;
 }
 
 export const createSystem = async (
@@ -28,13 +27,13 @@ export const createSystem = async (
 ) => {
     try {
         const {
-            galaxyId,
+            orbitId,
         } = params;
 
         const {
             data,
         } = await instance.post<ErrorInterface>(
-            `${URL_MMT_STAND}galaxy-app/${galaxyId}/system`,
+            `${URL_MMT_STAND}galaxy-app/orbits/${orbitId}/systems`,
             payload,
         );
 

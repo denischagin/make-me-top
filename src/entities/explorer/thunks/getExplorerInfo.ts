@@ -31,7 +31,7 @@ export const getExplorerInfo = createAsyncThunk<
         const {
             data,
         } = await instance.get<ExplorerInfoResponseInterface>(
-            `${URL_MMT_STAND}explorer-cabinet/info/`,
+            `${URL_MMT_STAND}person-app/people/explorer-profile`,
         );
 
         return data;

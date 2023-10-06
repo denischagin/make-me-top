@@ -70,7 +70,7 @@ export const Explorer = () => {
         <>
             <BackgroundProfile />
             <div className={block()}>
-                <Header />(
+                <Header />
                 <Container className={element('container')}>
                     <div className={element('row', 'row')}>
                         <div className={element('profile', 'col-xxl-9')}>

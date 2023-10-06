@@ -101,7 +101,6 @@ export interface System {
     courseId: number
     title: string
     rating: number | null
-    keeperId: number
 }
 
 export interface Feedback {

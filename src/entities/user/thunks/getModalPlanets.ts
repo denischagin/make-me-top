@@ -36,13 +36,13 @@ export const getModalPlanets = createAsyncThunk<
 }) => {
     try {
         const {
-            planetId = DEFAULT_ID,
+            planetId: systemId = DEFAULT_ID,
         } = payload;
 
         const {
             data,
         } = await instance.get<PlanetsResponseInterface>(
-            `${URL_MMT_STAND}planet-app/system/${planetId}/planet`,
+            `${URL_MMT_STAND}planet-app/systems/${systemId}/planets`,
         );
 
         return data;

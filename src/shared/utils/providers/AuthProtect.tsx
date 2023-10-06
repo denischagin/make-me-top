@@ -4,6 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { URL_LOGIN } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
 import { queryParams } from '@shared/constants';
+import { useRefreshQuery } from '@entities/viewer/model/api';
 
 interface AuthProtectProps {
     children: JSX.Element;
@@ -15,11 +16,13 @@ const getTokenFromLocalStorage = () => {
 
 export const AuthProtect = ({ children }: AuthProtectProps) => {
     const [isAuth, setIsAuth] = useState(true);
+    
+    // useRefreshQuery()
 
     useEffect(() => {
-        const token = getTokenFromLocalStorage();
+        // const token = getTokenFromLocalStorage();
 
-        if (!token) setIsAuth(false);
+        // if (!token) setIsAuth(false);
     }, []);
 
     if (!isAuth) {

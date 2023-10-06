@@ -4,4 +4,5 @@ export const storageKeys = {
 };
 
 export type roles = 'EXPLORER'
-    | 'KEEPER'
+    | 'KEEPER' | "GUEST"
+

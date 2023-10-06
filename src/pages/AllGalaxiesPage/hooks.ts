@@ -1,8 +1,4 @@
-import {
-    useCallback,
-    useEffect,
-    useState,
-} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { GalaxyForGetAll } from '@entities/galaxy/model/types';
 
@@ -27,8 +23,10 @@ export const useCurrentGalaxy = (galaxies: GalaxyForGetAll[]) => {
     const lastGalaxy = galaxies[galaxies.length - 1];
     const firstGalaxy = galaxies[0];
 
-    const prevGalaxyIndex = currentGalaxy?.index ?? 0 - 1;
-    const nextGalaxyIndex = currentGalaxy?.index ?? 0 + 1;
+    const prevGalaxyIndex =
+        (Number(currentGalaxy?.index) + galaxies.length - 1) % galaxies.length;
+    const nextGalaxyIndex =
+        (Number(currentGalaxy?.index) + 1) % galaxies.length;
 
     const prevGalaxy = currentGalaxy
         ? galaxies[currentGalaxy.index - 1]
@@ -54,16 +52,13 @@ export const useCurrentGalaxy = (galaxies: GalaxyForGetAll[]) => {
     };
 
     const handlePrevGalaxy = useCallback(
-        () =>
-            handleSwitchCurrentGalaxy(
-                isFirstGalaxy ? galaxies.length - 1 : prevGalaxyIndex,
-            ),
-        [handleSwitchCurrentGalaxy, isFirstGalaxy, galaxies, prevGalaxyIndex],
+        () => handleSwitchCurrentGalaxy(prevGalaxyIndex),
+        [handleSwitchCurrentGalaxy, prevGalaxyIndex],
     );
 
     const handleNextGalaxy = useCallback(
-        () => handleSwitchCurrentGalaxy(isLastGalaxy ? 0 : nextGalaxyIndex),
-        [handleSwitchCurrentGalaxy, isLastGalaxy, galaxies, nextGalaxyIndex],
+        () => handleSwitchCurrentGalaxy(nextGalaxyIndex),
+        [handleSwitchCurrentGalaxy, nextGalaxyIndex],
     );
 
     return {

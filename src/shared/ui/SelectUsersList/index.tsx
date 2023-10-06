@@ -95,7 +95,7 @@ export const SelectUsersList = (props: UserListInterface) => {
             postCourseRequest({
                 payload: {
                     courseId: courseId!,
-                    keepers,
+                    keeperIds: keepers,
                 },
             }),
         );

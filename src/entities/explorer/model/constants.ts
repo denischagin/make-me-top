@@ -19,6 +19,8 @@ export const initialExplorerInfo = {
         courseId: 0,
         courseTitle: '',
         progress: 0,
+        groupId: 0,
+        explorerId: 0,
     },
     studyRequest: {
         courseId: '',
@@ -59,6 +61,8 @@ export const initialExplorerCardInfo = {
         courseId: 0,
         courseTitle: '',
         progress: 0,
+        explorerId: 0,
+        groupId: 0,
     },
     reviewRequest: {
         courseId: 0,

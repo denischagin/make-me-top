@@ -13,7 +13,7 @@ import '@app/styles/fonts.scss';
 import '@app/styles/global.scss';
 
 export const App = () => {
-    const [block, element] = bem('App');
+    const [block] = bem('App');
 
     return (
         <div className={block()}>

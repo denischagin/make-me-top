@@ -37,7 +37,7 @@ export const getGalaxy = createAsyncThunk<
         const {
             data,
         } = await instance.get<GalaxyResponseInterface>(
-            `${URL_MMT_STAND}galaxy-app/galaxy/${galaxyId}`,
+            `${URL_MMT_STAND}galaxy-app/galaxies/${galaxyId}`,
         );
 
         return data;

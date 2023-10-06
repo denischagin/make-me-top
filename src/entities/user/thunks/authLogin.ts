@@ -28,7 +28,7 @@ export const authLogin = createAsyncThunk<ErrorInterface, AuthLoginInterface>(
             const {
                 data,
             } = await axios.post<ErrorInterface>(
-                `${URL_MMT_STAND}auth/login`,
+                `${URL_MMT_STAND}auth/login/`,
                 payload,
             );
 

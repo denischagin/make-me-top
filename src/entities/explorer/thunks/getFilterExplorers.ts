@@ -16,7 +16,6 @@ import { ErrorInterface } from '@shared/types/common';
 
 import { FETCH_EXPLORER_LIST } from '../model/actions';
 
-
 export interface ExplorerFilterResponseInterface
     extends ExplorersFilterInterface,
         ErrorInterface {}
@@ -25,14 +24,15 @@ export const getListExplorersByFilter = createAsyncThunk<
     ExplorerFilterResponseInterface[],
     any,
     { rejectValue: ErrorInterface }
->(FETCH_EXPLORER_LIST, async (payload, {
-    rejectWithValue,
-}) => {
+>(FETCH_EXPLORER_LIST, async (payload, { rejectWithValue }) => {
     try {
-        const {
-            data,
-        } = await instance.get<ExplorerFilterResponseInterface[]>(
-            `${URL_MMT_STAND}info/explorer/`,
+        const { data } = await instance.get<ExplorerFilterResponseInterface[]>(
+            `${URL_MMT_STAND}person-app/people`,
+            {
+                params: {
+                    as: 'explorer',
+                },
+            },
         );
 
         return data;

@@ -1,8 +1,5 @@
 import toast from 'react-hot-toast';
-import {
-    createApi,
-    fetchBaseQuery,
-} from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { AxiosError } from 'axios';
 
 import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
@@ -15,43 +12,21 @@ import { ErrorInterface } from '@shared/types/common';
 
 import { GalaxyForGetAll } from './types';
 import { DEFAULT_ERROR_MESSAGE } from '@shared/constants/error';
-
+import { baseQueryWithAuth } from '@shared/api';
 
 export const galaxiesApi = createApi({
     reducerPath: 'galaxiesApi',
     baseQuery: async (arg, api, extraOptions) => {
-        try {
-            const response = await instance(arg, extraOptions);
-
-            return {
-                data: response.data,
-            };
-        } catch (err) {
-            const error: AxiosError<ErrorInterface> = err as any;
-
-            // noAuthHandler(error);
-
-            if (error.response) {
-                toast.error(error.response.data.errorMessage);
-
-                return {
-                    error,
-                };
-            }
-            toast.error(DEFAULT_ERROR_MESSAGE);
-
-            return {
-                error,
-            };
-        }
+        return baseQueryWithAuth({ api, arg, extraOptions });
     },
     endpoints: (builder) => ({
         getAllGalaxies: builder.query<GalaxyForGetAll[], void>({
-            query: () => 'galaxy-app/galaxy/',
+            query: () => ({
+                url: 'galaxy-app/galaxies/',
+                params: { detailed: true },
+            }),
         }),
     }),
 });
 
-export const {
-    useGetAllGalaxiesQuery,
-} = galaxiesApi;
+export const { useGetAllGalaxiesQuery } = galaxiesApi;

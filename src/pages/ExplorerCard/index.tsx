@@ -44,16 +44,16 @@ const ExplorerCard = () => {
     } = userInfo;
 
     const {
-        explorerId,
+        personId,
     } = useParams();
 
     useEffect(() => {
         dispatch(
             getExplorerCardInfo({
-                explorerId: Number(explorerId),
+                personId: Number(personId),
             }),
         );
-    }, [explorerId]);
+    }, [personId]);
 
     if (isError) return <NotFound />;
 

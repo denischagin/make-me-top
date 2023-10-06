@@ -16,7 +16,7 @@ import { FETCH_EXPLORER_CARD } from '../model/actions';
 import { onErrorHandler } from '@shared/api';
 
 export interface ExplorerIdInterface {
-    explorerId: number;
+    personId: number;
 }
 
 export interface ExplorerCardInfoResponseInterface
@@ -29,10 +29,15 @@ export const getExplorerCardInfo = createAsyncThunk<
     { rejectValue: ErrorInterface }
 >(FETCH_EXPLORER_CARD, async (payload, { rejectWithValue }) => {
     try {
-        const { explorerId } = payload;
+        const { personId } = payload;
 
         const { data } = await instance.get<ExplorerCardInfoResponseInterface>(
-            `${URL_MMT_STAND}info/explorer/${explorerId}`,
+            `${URL_MMT_STAND}person-app/people/${personId}`,
+            {
+                params: {
+                    as: 'explorer',
+                },
+            },
         );
 
         return data;

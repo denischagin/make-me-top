@@ -15,7 +15,6 @@ export interface GalaxyCircleModalProp {
 	lastChosenSystem: LastChosenSystem;
 	userProgress: UserProgressInGalaxy;
 	yourKeeper: CourseKeeper;
-	course: Course;
 	keepers: CourseKeeper[] | null;
 	explorers: CourseExplorer[] | null;
 	courseId: number;

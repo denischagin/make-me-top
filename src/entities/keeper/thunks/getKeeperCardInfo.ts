@@ -18,7 +18,7 @@ import { FETCH_KEEPER_CARD } from '../model/actions';
 
 
 export interface KeeperIdInterface {
-    keeperId: number;
+    personId: number;
 }
 
 export interface KeeperCardInfoResponseInterface
@@ -34,13 +34,15 @@ export const getKeeperCardInfo = createAsyncThunk<
 }) => {
     try {
         const {
-            keeperId,
+            personId,
         } = payload;
 
         const {
             data,
         } = await instance.get<KeeperCardInfoResponseInterface>(
-            `${URL_MMT_STAND}info/keeper/${keeperId}`,
+            `${URL_MMT_STAND}person-app/people/${personId}`, {params: {
+                as: "keeper"
+            }}
         );
 
         return data;

@@ -12,10 +12,7 @@ import { PlanetList } from '@shared/ui/PlanetList';
 import { Typography } from '@shared/ui/Typography';
 import { UsersList } from '@shared/ui/UsersList';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import { CurrentUserItem } from '@entities/user';
 
@@ -23,10 +20,7 @@ import {
     userCourseInfoSelector,
     userIsModalOpenSelector,
 } from '@entities/user/model/selectors';
-import {
-    closeModal,
-    showModal,
-} from '@entities/user/model/slice';
+import { closeModal, showModal } from '@entities/user/model/slice';
 import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
@@ -43,10 +37,7 @@ import { ProgressBar } from '@widgets/ProgressBar';
 import { SelectSystem } from '@widgets/SelectSystem';
 
 import { CurrentSystemCardInterface } from './interfaces';
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
 import {
@@ -55,15 +46,13 @@ import {
 } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
+import { DEFAULT_ERROR_MESSAGE } from '@shared/constants/error';
 
 export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
-    const {
-        tabsList = [],
-    } = props;
+    const { tabsList = [] } = props;
 
     const [block, element] = bem('current-system-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
-    const [isStarClosed, setIsStarClosed] = useState(false);
     const [activeTab, setActiveTab] = useState(0);
 
     const dispatch = useAppDispatch();
@@ -71,20 +60,11 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     const courseInfo = useAppSelector(userCourseInfoSelector);
     const userInfo = useAppSelector(explorerInfoSelector);
 
-    const {
-        studyRequest,
-        currentSystem,
-    } = userInfo;
+    const { studyRequest, currentSystem } = userInfo;
 
-    const {
-        course,
-        you,
-        yourKeeper,
-        explorers,
-        keepers,
-    } = courseInfo;
+    const { course, you, yourKeeper, explorers, keepers } = courseInfo;
 
-    if ((!currentSystem && !studyRequest) || isStarClosed) {
+    if (!currentSystem && !studyRequest) {
         return <SelectSystem />;
     }
 
@@ -133,18 +113,25 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                     submitButtonTitle='Да, я уверен'
                     onClose={() => setIsAcceptModalOpen(false)}
                     onSubmit={() => {
-                        setIsStarClosed(true);
                         dispatch(
                             leaveCourseRequest({
                                 payload: {
-                                    courseId: currentSystem?.courseId,
+                                    explorerId: currentSystem?.explorerId,
                                 },
+                                onSuccess: () => {
+                                    toast(TOAST_SUCCESS_REJECTED, {
+                                        icon: '😔',
+                                    });
+                                    setIsAcceptModalOpen(false);
+                                },
+                                onError: (err) => {
+                                    toast(DEFAULT_ERROR_MESSAGE, {
+                                        icon: '😔',
+                                    });
+
+                                }
                             }),
                         );
-                        toast(TOAST_SUCCESS_REJECTED, {
-                            icon: '😔',
-                        });
-                        setIsAcceptModalOpen(false);
                     }}
                 />
             )}
@@ -154,10 +141,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
             >
                 Текущая система
             </Typography>
-            <Card
-                size={cardSize.large}
-                glow
-            >
+            <Card size={cardSize.large} glow>
                 <Typography
                     variant={typographyVariant.h2}
                     className={element('heading')}

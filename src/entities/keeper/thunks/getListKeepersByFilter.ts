@@ -26,7 +26,10 @@ export const getListKeepersByFilter = createAsyncThunk<
 >(FETCH_KEEPER_LIST, async (payload, { rejectWithValue }) => {
     try {
         const { data } = await instance.get<KeeperFilterResponseInterface[]>(
-            `${URL_MMT_STAND}info/keeper/`,
+            `${URL_MMT_STAND}person-app/people`,
+            { params: {
+                as: "keeper"
+            }}
         );
 
         return data;

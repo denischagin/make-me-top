@@ -36,16 +36,16 @@ const KeeperCard = () => {
     } = userInfo;
 
     const {
-        keeperId,
+        personId,
     } = useParams();
 
     useEffect(() => {
         dispatch(
             getKeeperCardInfo({
-                keeperId: Number(keeperId),
+                personId: Number(personId),
             }),
         );
-    }, [keeperId]);
+    }, [personId]);
 
     return (
         <div className={block()}>

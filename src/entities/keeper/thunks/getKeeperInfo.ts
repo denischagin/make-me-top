@@ -32,7 +32,7 @@ export const getKeeperInfo = createAsyncThunk<
         const {
             data,
         } = await instance.get<KeeperInfoResponseInterface>(
-            `${URL_MMT_STAND}keeper-cabinet/info/`,
+            `${URL_MMT_STAND}person-app/people/keeper-profile`,
         );
 
         return data;

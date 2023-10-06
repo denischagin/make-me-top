@@ -6,8 +6,6 @@ import { DEFAULT_ID } from '@entities/user/model/constants';
 
 import { onErrorHandler } from '@shared/api';
 
-import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
-
 import { instance } from '@shared/api/instances';
 
 import {
@@ -43,7 +41,7 @@ export const acceptOrRejectCourseRequest = createAsyncThunk<
         const {
             data,
         } = await instance.patch<ErrorInterface>(
-            `${URL_MMT_STAND}keeper-cabinet/course-request/${requestId}`,
+            `${URL_MMT_STAND}course-registration-app/course-requests/${requestId}`,
             rejection,
         );
 

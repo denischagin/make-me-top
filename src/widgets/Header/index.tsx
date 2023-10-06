@@ -25,6 +25,7 @@ export const Header = (props: HeaderInterface) => {
 
     const [block, element] = bem('header');
 
+
     const handleLogout = () => {
         localStorage.removeItem(storageKeys.tokenAuth);
         localStorage.removeItem(storageKeys.currentRole);

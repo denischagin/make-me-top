@@ -40,7 +40,7 @@ export const getUserProgressInGalaxy = createAsyncThunk<
         const {
             data,
         } = await instance.get<GetUserProgressInGalaxyResponse>(
-            `${URL_MMT_STAND}explorer-cabinet/galaxy/${galaxyId}`,
+            `${URL_MMT_STAND}progress-app/galaxy/${galaxyId}`,
         );
 
         return data;

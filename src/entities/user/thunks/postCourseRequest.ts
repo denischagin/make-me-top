@@ -30,7 +30,7 @@ export const postCourseRequest = createAsyncThunk<
         const {
             data,
         } = await instance.post<ErrorInterface>(
-            `${URL_MMT_STAND}explorer-cabinet/course-request`,
+            `${URL_MMT_STAND}course-registration-app/course-requests`,
             payload,
         );
 

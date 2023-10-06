@@ -1,8 +1,8 @@
-import {
-    combineReducers,
-    configureStore,
-} from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
+
+import viewerReducer, { viewerApi } from '@entities/viewer';
+import { ViewerState } from '@entities/viewer';
 
 import userReducer from '@entities/user/model/slice';
 import { UserState } from '@entities/user/model/types';
@@ -21,11 +21,12 @@ import galaxyReducer from '@entities/galaxy/model/slice';
 import { GalaxyState } from '@entities/galaxy/model/types';
 
 export type RootState = {
-	explorer: ExplorerState;
-	keeper: KeeperState;
-	user: UserState;
-	galaxies: GalaxyState;
-	loading: LoadingState;
+    explorer: ExplorerState;
+    keeper: KeeperState;
+    user: UserState;
+    galaxies: GalaxyState;
+    loading: LoadingState;
+    viewer: ViewerState;
 };
 
 const rootReducer = combineReducers({
@@ -34,7 +35,9 @@ const rootReducer = combineReducers({
     user: userReducer,
     galaxies: galaxyReducer,
     loading: loadingReducer,
+    viewer: viewerReducer,
     [galaxiesApi.reducerPath]: galaxiesApi.reducer,
+    [viewerApi.reducerPath]: viewerApi.reducer,
 });
 
 export type AppDispatch = typeof store.dispatch;
@@ -42,7 +45,10 @@ export type AppDispatch = typeof store.dispatch;
 const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat([galaxiesApi.middleware]),
+        getDefaultMiddleware().concat([
+            galaxiesApi.middleware,
+            viewerApi.middleware
+        ]),
 });
 
 export default store;

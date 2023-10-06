@@ -19,11 +19,13 @@ import { ErrorInterface } from '@shared/types/common';
 
 
 export interface LeaveCoursePayloadInterface {
-    courseId: number;
+    explorerId: number;
 }
 
 export interface LeaveCourseInterface {
     payload: LeaveCoursePayloadInterface;
+    onSuccess?: () => any
+    onError?: (error: ErrorInterface) => any
 }
 
 export const leaveCourseRequest = createAsyncThunk<
@@ -31,20 +33,24 @@ export const leaveCourseRequest = createAsyncThunk<
     LeaveCourseInterface
 >(POST_COURSE_REQUEST, async ({
     payload,
+    onSuccess,
+    onError
 }) => {
     try {
         const {
-            courseId = DEFAULT_ID,
+            explorerId = DEFAULT_ID,
         } = payload;
 
         const {
             data,
         } = await instance.delete<ErrorInterface>(
-            `${URL_MMT_STAND}explorer-cabinet/course/${courseId}`,
+            `${URL_MMT_STAND}explorer-app/explorers/${explorerId}`,
         );
 
+        onSuccess && onSuccess()
         return data;
     } catch (err) {
+        onError && onError(err as ErrorInterface) 
         throw onErrorHandler({
             err,
         });

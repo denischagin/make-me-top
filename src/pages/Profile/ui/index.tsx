@@ -14,12 +14,13 @@ const ProfileByRole: Record<RolesWithNotSelectedType, JSX.Element> = {
     EXPLORER: <Explorer />,
     KEEPER: <Keeper />,
     NOT_SELECTED: <Navigate to={URL_LOGIN} />,
+    GUEST: <Navigate to={URL_LOGIN} />,
 };
 
 const Profile = () => {
     const currentRole = useMemo<RolesWithNotSelectedType>(() => {
         const role = getRoleFromLocalStorage();
-        return role ?? "NOT_SELECTED";
+        return role ?? 'NOT_SELECTED';
     }, []);
 
     return ProfileByRole[currentRole];

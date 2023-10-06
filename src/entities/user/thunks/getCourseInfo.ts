@@ -42,7 +42,10 @@ export const getCourseInfo = createAsyncThunk<
         const {
             data,
         } = await instance.get<CourseResponseInterface>(
-            `${URL_MMT_STAND}course-app/course/${courseId}`,
+            `${URL_MMT_STAND}course-app/courses/${courseId}`,
+            { params: {
+                detailed: true
+            }}
         );
 
         return data;

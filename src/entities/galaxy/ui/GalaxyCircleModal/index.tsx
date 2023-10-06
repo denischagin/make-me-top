@@ -39,7 +39,6 @@ export const GalaxyCircleModal = ({
     userProgress,
     you,
     keepers,
-    course,
     yourKeeper,
     explorers,
     courseId,
@@ -82,7 +81,7 @@ export const GalaxyCircleModal = ({
                     setActiveTab={setActiveTab}
                 >
                     <TabPanel>
-                        <PlanetList currentPlanet={course.title} />
+                        <PlanetList />
                         <FinalGrade />
                     </TabPanel>
                     <TabPanel>

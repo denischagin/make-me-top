@@ -288,7 +288,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         >
             <GalaxyCircleModal
                 isOpen={isModalOpen}
-                course={course}
                 courseId={courseId}
                 explorers={explorers}
                 keepers={keepers}

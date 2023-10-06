@@ -29,8 +29,8 @@ export const fetchSystemById = async (payload: FetchSystemById) => {
         } = payload;
 
         const fetchUrl = withDependencies
-            ? `${URL_MMT_STAND}galaxy-app/system/${id}?withDependencies=true`
-            : `${URL_MMT_STAND}galaxy-app/system/${id}`;
+            ? `${URL_MMT_STAND}galaxy-app/systems/${id}?withDependencies=true`
+            : `${URL_MMT_STAND}galaxy-app/systems/${id}`;
 
         const {
             data,
