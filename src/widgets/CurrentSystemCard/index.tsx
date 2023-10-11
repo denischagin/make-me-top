@@ -24,7 +24,6 @@ import { closeModal, showModal } from '@entities/user/model/slice';
 import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
 import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
 
-import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 import { leaveCourseRequest } from '@entities/explorer/thunks/leaveCourseRequest';
 
 import { bem } from '@shared/utils/helpers/bem';

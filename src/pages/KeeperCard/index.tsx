@@ -7,9 +7,6 @@ import { Container } from '@shared/ui/Container';
 
 import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
-import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
-import { getKeeperCardInfo } from '@entities/keeper/thunks/getKeeperCardInfo';
-
 import { bem } from '@shared/utils/helpers/bem';
 
 import { Header } from '@widgets/Header';
@@ -20,25 +17,27 @@ import { SystemsList } from '@widgets/SystemsList';
 import { arrowButtonDirection } from '@shared/ui/ArrowButton/interfaces';
 
 import './styles.scss';
+import Spinner from '@shared/ui/Spinner';
+import NotFound from '@pages/NotFound';
+import { useGetKeeperCardInfoQuery } from '@entities/keeper/api/api';
 
 const KeeperCard = () => {
     const [block, element] = bem('keeper-card');
 
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-    const userInfo = useAppSelector(keeperCardInfoSelector);
-
-    const { systems, feedback } = userInfo;
 
     const { personId } = useParams();
 
-    useEffect(() => {
-        dispatch(
-            getKeeperCardInfo({
-                personId: Number(personId),
-            }),
-        );
-    }, [personId]);
+    const {
+        data: userInfo,
+        isSuccess,
+        isError,
+    } = useGetKeeperCardInfoQuery(Number(personId));
+
+    if (isError) return <NotFound />;
+    if (!isSuccess) return <Spinner />;
+
+    const { systems } = userInfo;
     return (
         <div className={block()}>
             <BackgroundProfile />
@@ -53,6 +52,7 @@ const KeeperCard = () => {
                     </div>
                     <KeeperCardUserInfo />
                 </div>
+
                 <SystemsList
                     heading='Системы исследователя'
                     systems={systems}

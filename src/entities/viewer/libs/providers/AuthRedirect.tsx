@@ -4,7 +4,7 @@ import { URL_LOGIN, URL_PROFILE } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
 import Spinner from '@shared/ui/Spinner';
 import { useStatus } from '@shared/utils/hooks/use-status';
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export interface AuthRedirectProps {
@@ -12,14 +12,15 @@ export interface AuthRedirectProps {
 }
 
 export const AuthRedirect = ({ children }: AuthRedirectProps) => {
-    const [refreshMutation, { isSuccess, isError, data: tokens }] =
+    const [refreshMutation, { isSuccess, isError, data: tokens, isLoading }] =
         useRefreshMutation();
     const navigate = useNavigate();
+    const [isShowAuth, setIsShowAuth] = useState(false);
 
     useEffect(() => {
         const refreshToken = localStorage.getItem(storageKeys.refreshToken)!;
 
-        if (!refreshToken) return;
+        if (!refreshToken) return setIsShowAuth(true);
 
         refreshMutation(refreshToken);
     }, []);
@@ -37,16 +38,8 @@ export const AuthRedirect = ({ children }: AuthRedirectProps) => {
         navigate(URL_PROFILE, { replace: true });
     }, isSuccess);
 
-    // useStatus(() => {
-    //     navigate(
-    //         `${URL_LOGIN}?${queryParams.redirect}=${encodeURIComponent(
-    //             location.pathname,
-    //         )}`,
-    //         { replace: true },
-    //     );
-    // }, isError);
-
+    if (isLoading) return <Spinner loading />;
     if (isError) return children;
 
-    return <Spinner loading />;
+    return isShowAuth ? children : <Spinner loading />;
 };

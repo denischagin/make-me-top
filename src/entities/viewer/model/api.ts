@@ -12,6 +12,7 @@ export const viewerApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: URL_MMT_STAND,
     }),
+    refetchOnMountOrArgChange: true,
     endpoints: (builder) => ({
         refresh: builder.mutation<AuthResponse, RefreshParams>({
             query: (body) => ({

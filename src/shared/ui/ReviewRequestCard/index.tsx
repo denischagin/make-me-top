@@ -4,39 +4,31 @@ import { Card } from '@shared/ui/Card';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
-
 import { bem } from '@shared/utils/helpers/bem';
 
-import {
-    CONFIRM_CANCEL_LEARNING,
-    CONFIRM_CANCEL_REVIEW,
-} from '@shared/constants/modalTitles';
+import { CONFIRM_CANCEL_REVIEW } from '@shared/constants/modalTitles';
 
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
+import { useGetExplorerCardInfoQuery } from '@entities/explorer/api/api';
+import { useParams } from 'react-router-dom';
 
 export const ReviewRequestCard = () => {
     const [block, element] = bem('review-request-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
 
-    const userInfo = useAppSelector(explorerCardInfoSelector);
+    const { personId } = useParams();
 
-    const {
-        reviewRequest,
-    } = userInfo;
+    const { data: userInfo, isSuccess } = useGetExplorerCardInfoQuery(
+        Number(personId),
+    );
 
-    if (!reviewRequest) {
-        return null;
-    }
+    if (!isSuccess || !userInfo?.reviewRequest) return null;
+
+    const { reviewRequest } = userInfo;
 
     return (
         <div className={block()}>
@@ -55,10 +47,7 @@ export const ReviewRequestCard = () => {
             >
                 Запрос на проверку:
             </Typography>
-            <Card
-                size={cardSize.large}
-                glow
-            >
+            <Card size={cardSize.large} glow>
                 <div className={element('content')}>
                     <div className={element('info')}>
                         <Typography

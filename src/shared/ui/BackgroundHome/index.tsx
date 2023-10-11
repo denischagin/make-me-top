@@ -1,22 +1,14 @@
 import { ShiningStar } from '@shared/ui/ShiningStar';
 
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { explorerIsExplorerSelector } from '@entities/explorer/model/selectors';
-
-import { keeperIsKeeperSelector } from '@entities/keeper/model/selectors';
-
 import { bem } from '@shared/utils/helpers/bem';
 
 import './styles.scss';
+import { useAuth } from '@entities/viewer/hooks/useAuth';
 
 export const BackgroundHome = () => {
     const [block, element] = bem('background-home');
 
-    const isExplorer = useAppSelector(explorerIsExplorerSelector);
-    const isKeeper = useAppSelector(keeperIsKeeperSelector);
-
-    const isAuth = isKeeper || isExplorer;
+    const { isAuth } = useAuth();
 
     return (
         <div className={block()}>

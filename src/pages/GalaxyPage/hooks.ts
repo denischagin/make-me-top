@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { useAppDispatch } from '@app/providers/store/hooks';
-
-import { getExplorerInfo } from '../../entities/explorer/thunks/getExplorerInfo';
 import { getGalaxy } from '../../entities/galaxy/thunks/getGalaxy';
 import { getUserProgressInGalaxy } from '../../entities/galaxy/thunks/getUserProgressInGalaxy';
-import { roles, storageKeys } from '../../shared/constants/storageKeys';
 import { useAuth } from '@entities/viewer/hooks/useAuth';
 
 export const useGalaxyWindowSizeDebounce = () => {
@@ -40,7 +37,8 @@ export const useGalaxyWindowSizeDebounce = () => {
 export const useGetAllGalaxyInfoByGalaxyId = (galaxyId: number | undefined) => {
     const dispatch = useAppDispatch();
 
-    const { currentRole } = useAuth();
+    const { role } = useAuth();
+
     useEffect(() => {
         dispatch(
             getGalaxy({
@@ -49,7 +47,7 @@ export const useGetAllGalaxyInfoByGalaxyId = (galaxyId: number | undefined) => {
         );
         //TODO
 
-        if (currentRole === 'KEEPER') return;
+        if (role === 'KEEPER') return;
 
         dispatch(
             getUserProgressInGalaxy({
@@ -57,6 +55,6 @@ export const useGetAllGalaxyInfoByGalaxyId = (galaxyId: number | undefined) => {
             }),
         );
         //TODO
-        dispatch(getExplorerInfo({}));
+        // dispatch(getExplorerInfo({}));
     }, []);
 };

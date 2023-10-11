@@ -8,14 +8,10 @@ import { Rating } from '@shared/ui/Rating';
 import { RouterLink } from '@shared/ui/RouterLink';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppDispatch } from '@app/providers/store/hooks';
-
-import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest';
-
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
-import { URL_EXPLORER } from '@shared/constants/links';
+import { URL_EXPLORER, getUrlExplorerById } from '@shared/constants/links';
 import { CONFIRM_CANCEL_STUDYING_REQUEST } from '@shared/constants/modalTitles';
 import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toasts';
 
@@ -103,7 +99,7 @@ export const EducationApplicationCard = (
                                 onClick={() => setIsAcceptModalOpen(true)}
                             />
                             <RouterLink
-                                to={`/person/${user?.personId}/explorer`}
+                                to={getUrlExplorerById(user?.personId.toString())}
                             >
                                 <Button
                                     title={'Принять'}

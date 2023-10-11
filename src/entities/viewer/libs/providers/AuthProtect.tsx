@@ -12,7 +12,7 @@ interface AuthProtectProps {
     children: JSX.Element;
 }
 
-const handleLogOut = (navigate: NavigateFunction) => {
+const handleLogout = (navigate: NavigateFunction) => {
     localStorage.removeItem(storageKeys.accessToken);
     localStorage.removeItem(storageKeys.refreshToken);
     navigate(
@@ -31,7 +31,7 @@ export const AuthProtect = ({ children }: AuthProtectProps) => {
     useEffect(() => {
         const refreshToken = localStorage.getItem(storageKeys.refreshToken)!;
 
-        if (!refreshToken) return handleLogOut(navigate);
+        if (!refreshToken) return handleLogout(navigate);
 
         refresh(refreshToken);
     }, []);
@@ -48,12 +48,7 @@ export const AuthProtect = ({ children }: AuthProtectProps) => {
     }, isSuccess);
 
     useStatus(() => {
-        navigate(
-            `${URL_LOGIN}?${queryParams.redirect}=${encodeURIComponent(
-                location.pathname,
-            )}`,
-            { replace: true },
-        );
+        handleLogout(navigate)
     }, isError);
 
     if (isSuccess) return children;

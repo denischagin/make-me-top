@@ -1,16 +1,23 @@
-import { KeeperProfileResponseInterface } from '@entities/keeper/thunks/getKeeperInfo';
 import { createApi } from '@reduxjs/toolkit/dist/query/react';
 import { baseQueryWithAuth } from '@shared/api';
 import { queryTags } from '@shared/api/queryTags';
 import { ErrorInterface } from '@shared/types/common';
 import { RejectCourseInterface } from '../thunks/acceptOrRejectCourseRequest';
-import { KeeperFilterResponseInterface } from '../thunks/getListKeepersByFilter';
-import { KeeperCardInfoResponseInterface } from '../thunks/getKeeperCardInfo';
+import {
+    KeeperCardInfoResponseInterface,
+    KeeperFilterResponseInterface,
+    KeeperProfileResponseInterface,
+} from '@entities/keeper/model/types/api';
 
 export const keeperApi = createApi({
     reducerPath: 'keeperApi',
     baseQuery: baseQueryWithAuth,
-    tagTypes: [queryTags.getKeeperCabinet],
+    tagTypes: [
+        queryTags.getKeeperCabinet,
+        queryTags.getKeeperCardInfo,
+        queryTags.getAllKeepers,
+    ],
+    refetchOnMountOrArgChange: true,
     endpoints: (builder) => ({
         getKeeperProfile: builder.query<KeeperProfileResponseInterface, void>({
             query: () => ({
@@ -35,7 +42,7 @@ export const keeperApi = createApi({
             query: ({ rejection, requestId }) => ({
                 url: `course-registration-app/course-requests/${requestId}`,
                 data: rejection,
-                method: "PATCH"
+                method: 'PATCH',
             }),
             invalidatesTags: [queryTags.getKeeperCabinet],
         }),
@@ -45,6 +52,7 @@ export const keeperApi = createApi({
                 url: `person-app/people`,
                 params: { as: 'keeper' },
             }),
+            providesTags: [queryTags.getAllKeepers],
         }),
 
         getKeeperCardInfo: builder.query<
@@ -57,6 +65,7 @@ export const keeperApi = createApi({
                     as: 'keeper',
                 },
             }),
+            providesTags: [queryTags.getKeeperCardInfo],
         }),
     }),
 });

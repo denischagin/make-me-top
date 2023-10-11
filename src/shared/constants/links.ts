@@ -9,6 +9,11 @@ export const URL_KEEPER = '/keeper';
 export const URL_EXPLORER = '/explorer';
 export const URL_GALAXY = '/galaxies';
 
+export const getUrlExplorerById = (personId: string) =>
+    `/person/${personId}${URL_EXPLORER}/`;
+export const getUrlKeeperById = (personId: string) =>
+    `/person/${personId}${URL_KEEPER}/`;
+
 export const URL_KEEPERS = '/keepers';
 export const URL_EXPLORERS = '/explorers';
 export const URL_NOT_FOUND = '*';

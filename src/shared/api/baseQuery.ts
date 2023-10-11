@@ -14,12 +14,9 @@ export interface BaseQueryArgs {
 
 const baseQuery = async ({ arg }: BaseQueryArgs) => {
     try {
-        console.log(arg);
         return await instance(arg);
     } catch (err) {
         const error: AxiosError<ErrorInterface> = err as any;
-
-        console.log(error);
 
         if (error.response) {
             toast.error(error.response.data.errorMessage);

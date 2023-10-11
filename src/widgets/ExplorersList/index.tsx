@@ -5,7 +5,7 @@ import { UserRatingCard } from '@shared/ui/UserRatingCard';
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
-import { URL_EXPLORER } from '@shared/constants/links';
+import { URL_EXPLORER, getUrlExplorerById } from '@shared/constants/links';
 
 import { ExplorersListProps } from './interface';
 
@@ -17,20 +17,20 @@ export const ExplorersList = ({ explorers }: ExplorersListProps) => {
 
     return (
         <div className={block()}>
-            {explorers.map((explorer, index) => (
-                <UserRatingCard
-                    onClick={() => {
-                        navigate(`/person/${explorer.personId}${URL_EXPLORER}/`);
-                    }}
-                    key={explorer.personId}
-                    fullname={getUserFullName(explorer)}
-                    title={`Текущая система ${
-                        explorer.currentCourseName ?? '-'
-                    }`}
-                    index={index}
-                    rating={explorer.rating}
-                />
-            ))}
+            {explorers.map(
+                ({ personId, currentCourseName, rating, ...user }, index) => (
+                    <UserRatingCard
+                        onClick={() => {
+                            navigate(getUrlExplorerById(personId.toString()));
+                        }}
+                        key={personId}
+                        fullname={getUserFullName(user)}
+                        title={`Текущая система ${currentCourseName ?? '-'}`}
+                        index={index}
+                        rating={rating}
+                    />
+                ),
+            )}
         </div>
     );
 };

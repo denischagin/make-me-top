@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { ArrowButton } from '@shared/ui/ArrowButton';
@@ -6,14 +5,6 @@ import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Container } from '@shared/ui/Container';
 import { ExplorerApplicationCard } from '@shared/ui/ExplorerApplicationCard';
 import { ReviewRequestCard } from '@shared/ui/ReviewRequestCard';
-
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
-
-import {
-    explorerCardInfoSelector,
-    explorersIsErrorSelector,
-} from '@entities/explorer/model/selectors';
-import { getExplorerCardInfo } from '@entities/explorer/thunks/getExplorerCardInfo';
 
 import { bem } from '@shared/utils/helpers/bem';
 
@@ -27,28 +18,25 @@ import NotFound from '@pages/NotFound';
 import { arrowButtonDirection } from '@shared/ui/ArrowButton/interfaces';
 
 import './styles.scss';
+import { useGetExplorerCardInfoQuery } from '@entities/explorer/api/api';
+import Spinner from '@shared/ui/Spinner';
 
 const ExplorerCard = () => {
     const [block, element] = bem('explorer-card');
 
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-    const userInfo = useAppSelector(explorerCardInfoSelector);
-    const isError = useAppSelector(explorersIsErrorSelector);
-
-    const { investigatedSystems } = userInfo;
-
     const { personId } = useParams();
 
-    useEffect(() => {
-        dispatch(
-            getExplorerCardInfo({
-                personId: Number(personId),
-            }),
-        );
-    }, [personId]);
+    const {
+        data: userInfo,
+        isSuccess,
+        isError,
+    } = useGetExplorerCardInfoQuery(Number(personId));
 
     if (isError) return <NotFound />;
+    if (!isSuccess) return <Spinner loading />;
+
+    const { investigatedSystems } = userInfo;
 
     return (
         <div className={block()}>

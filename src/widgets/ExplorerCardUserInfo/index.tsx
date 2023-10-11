@@ -5,8 +5,6 @@ import { Typography } from '@shared/ui/Typography';
 
 import { useAppSelector } from '@app/providers/store/hooks';
 
-import { explorerCardInfoSelector } from '@entities/explorer/model/selectors';
-
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
@@ -19,25 +17,25 @@ import {
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
+import { useGetExplorerCardInfoQuery } from '@entities/explorer/api/api';
+import { useParams } from 'react-router-dom';
 
 export const ExplorerCardUserInfo = () => {
     const [block, element] = bem('explorer-card-user-info');
 
-    const userInfo = useAppSelector(explorerCardInfoSelector);
+    const { personId } = useParams();
 
-    const {
-        person,
-        rating,
-        totalSystems,
-        totalFeedback,
-    } = userInfo;
+    const { data: userInfo, isSuccess } = useGetExplorerCardInfoQuery(
+        Number(personId),
+    );
+
+    if (!isSuccess) return null;
+
+    const { person, rating, totalSystems, totalFeedback } = userInfo;
 
     return (
         <div className={block()}>
-            <Avatar
-                size={avatarSize.large}
-                orbit
-            />
+            <Avatar size={avatarSize.large} orbit />
             <div className={element('description')}>
                 <div className={element('description-name', 'mb-4')}>
                     <Typography variant={typographyVariant.h1}>
@@ -56,10 +54,7 @@ export const ExplorerCardUserInfo = () => {
                             />
                         }
                     />
-                    <InfoCard
-                        title='Отзывы'
-                        value={totalFeedback}
-                    />
+                    <InfoCard title='Отзывы' value={totalFeedback} />
                     <InfoCard
                         title='Кол-во освоенных систем'
                         value={totalSystems}

@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { authLogin } from '../thunks/authLogin';
 import { getCourseInfo } from '../thunks/getCourseInfo';
 import { getModalPlanets } from '../thunks/getModalPlanets';
-import { postCourseRequest } from '../thunks/postCourseRequest';
 
 import { UserState } from './types/index';
 import { initialCourseInfo } from './constants';
@@ -52,19 +51,6 @@ export const userSlice = createSlice({
             })
             .addCase(getCourseInfo.rejected, (state: UserState) => {
                 state.courseInfo = initialCourseInfo;
-            })
-
-            .addCase(postCourseRequest.fulfilled, (state: UserState) => {
-                state.isError = false;
-                state.isSuccess = true;
-            })
-            .addCase(postCourseRequest.pending, (state: UserState) => {
-                state.isError = false;
-                state.isSuccess = false;
-            })
-            .addCase(postCourseRequest.rejected, (state: UserState) => {
-                state.isError = true;
-                state.isSuccess = false;
             });
     },
 });

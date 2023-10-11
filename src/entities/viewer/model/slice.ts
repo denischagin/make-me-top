@@ -5,7 +5,7 @@ import { stat } from 'fs';
 
 export const initialState: ViewerState = {
     isAuth: false,
-    currentRole: 'GUEST',
+    role: 'GUEST',
     accessToken: null,
     refreshToken: null,
 };
@@ -24,7 +24,7 @@ export const viewerSlice = createSlice({
                 viewerApi.endpoints.refresh.matchFulfilled,
                 (state, { payload }) => {
                     state.isAuth = true;
-                    state.currentRole = payload.role;
+                    state.role = payload.role;
                     state.accessToken = payload.accessToken.accessToken;
                     state.refreshToken = payload.refreshToken.refreshToken;
                 },

@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from 'react';
+import React, { FormEventHandler, MouseEventHandler, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 import { Input } from '@shared/ui/Input';
@@ -70,18 +70,7 @@ export const Login = ({ role }: LoginProps) => {
         setInputPassword(event.target.value);
     };
 
-    // const handleFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    //     e.preventDefault();
-
-    //     dispatch(
-    //         authLogin({
-    //             payload,
-    //             callback,
-    //         }),
-    //     );
-    // };
-
-    const handleFormSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
+    const handleFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
 
         dispatch(
@@ -93,7 +82,7 @@ export const Login = ({ role }: LoginProps) => {
     };
 
     return (
-        <form className={block()}>
+        <form className={block()} onSubmit={handleFormSubmit}>
             <Typography
                 className={element('heading')}
                 variant={typographyVariant.h2}
@@ -112,11 +101,7 @@ export const Login = ({ role }: LoginProps) => {
                 onChange={handlePasswordInputChange}
                 value={inputPassword}
             />
-            <PlanetButton
-                type='submit'
-                onClick={handleFormSubmit}
-                title='Войти'
-            />
+            <PlanetButton type='submit' title='Войти' />
         </form>
     );
 };

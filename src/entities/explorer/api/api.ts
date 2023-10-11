@@ -11,12 +11,18 @@ import {
 export const explorerApi = createApi({
     reducerPath: 'explorerApi',
     baseQuery: baseQueryWithAuth,
-    tagTypes: [queryTags.getExplorerCabinet],
+    tagTypes: [
+        queryTags.getExplorerCabinet,
+        queryTags.getExplorerCardInfo,
+        queryTags.getAllExplorers,
+    ],
+    refetchOnMountOrArgChange: true,
     endpoints: (builder) => ({
         getExplorerProfile: builder.query<ExplorerInfoResponseInterface, void>({
             query: () => ({
                 url: 'person-app/people/explorer-profile',
             }),
+            
             providesTags: (result) =>
                 result
                     ? [
@@ -52,6 +58,7 @@ export const explorerApi = createApi({
                     url: `person-app/people`,
                     params: { as: 'explorer' },
                 }),
+                providesTags: [queryTags.getAllExplorers],
             },
         ),
 
@@ -65,6 +72,7 @@ export const explorerApi = createApi({
                     as: 'explorer',
                 },
             }),
+            providesTags: [queryTags.getExplorerCardInfo],
         }),
     }),
 });
@@ -74,5 +82,5 @@ export const {
     useCloseCourseRequestMutation,
     usePostCourseRequestMutation,
     useGetAllExplorersQuery,
-    useGetExplorerCardInfoQuery
+    useGetExplorerCardInfoQuery,
 } = explorerApi;
