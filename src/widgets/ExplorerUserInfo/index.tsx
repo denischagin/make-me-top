@@ -3,10 +3,6 @@ import { InfoCard } from '@shared/ui/InfoCard';
 import { Rating } from '@shared/ui/Rating';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { explorerInfoSelector } from '@entities/explorer/model/selectors';
-
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
@@ -19,24 +15,20 @@ import {
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
+import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 
 export const ExplorerUserInfo = () => {
     const [block, element] = bem('explorer-user-info');
 
-    const userInfo = useAppSelector(explorerInfoSelector);
+    const { data: userInfo, isSuccess } = useGetExplorerProfileQuery();
 
-    const {
-        person,
-        rating,
-        totalSystems,
-    } = userInfo;
+    if (!isSuccess) return null;
+
+    const { person, totalSystems, rating } = userInfo;
 
     return (
         <div className={block()}>
-            <Avatar
-                size={avatarSize.large}
-                orbit
-            />
+            <Avatar size={avatarSize.large} orbit />
             <div className={element('description')}>
                 <Typography
                     variant={typographyVariant.h1}

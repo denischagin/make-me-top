@@ -16,12 +16,9 @@ import { FETCH_EXPLORER_INFO } from '../model/actions';
 import { onErrorHandler } from '@shared/api';
 
 
-export interface ExplorerInfoResponseInterface
-    extends ExplorerInfoInterface,
-        ErrorInterface {}
 
 export const getExplorerInfo = createAsyncThunk<
-    ExplorerInfoResponseInterface,
+    any,
     any,
     { rejectValue: ErrorInterface }
 >(FETCH_EXPLORER_INFO, async (payload, {
@@ -30,7 +27,7 @@ export const getExplorerInfo = createAsyncThunk<
     try {
         const {
             data,
-        } = await instance.get<ExplorerInfoResponseInterface>(
+        } = await instance.get<any>(
             `${URL_MMT_STAND}person-app/people/explorer-profile`,
         );
 

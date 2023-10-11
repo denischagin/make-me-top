@@ -1,17 +1,33 @@
-import { RefreshResponse } from '@entities/viewer/model/types';
-import { createApi } from '@reduxjs/toolkit/dist/query/react';
+import {
+    LogoutResponse,
+    RefreshParams,
+    AuthResponse,
+} from '@entities/viewer/model/types/api';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { baseQueryWithAuth } from '@shared/api';
+import { URL_MMT_STAND } from '@shared/constants/urls';
 
 export const viewerApi = createApi({
     reducerPath: 'viewerApi',
-    baseQuery: async (arg, api, extraOptions) => {
-        return baseQueryWithAuth({ api, arg, extraOptions });
-    },
+    baseQuery: fetchBaseQuery({
+        baseUrl: URL_MMT_STAND,
+    }),
     endpoints: (builder) => ({
-        refresh: builder.query<RefreshResponse, void>({
-            query: () => 'refresh/',
+        refresh: builder.mutation<AuthResponse, RefreshParams>({
+            query: (body) => ({
+                url: 'auth/refresh/',
+                method: 'POST',
+                body,
+            }),
+        }),
+        logout: builder.mutation<LogoutResponse, string>({
+            query: (refreshToken) => ({
+                url: 'auth/logout/',
+                method: 'POST',
+                body: refreshToken,
+            }),
         }),
     }),
 });
 
-export const { useRefreshQuery } = viewerApi;
+export const { useRefreshMutation, useLogoutMutation} = viewerApi;

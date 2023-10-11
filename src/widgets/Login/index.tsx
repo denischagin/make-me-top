@@ -1,13 +1,6 @@
-import React,
-{
-    FormEventHandler,
-    useState,
-} from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import { useNavigate } from 'react-router';
-import {
-    useLocation,
-    useSearchParams,
-} from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { Input } from '@shared/ui/Input';
 import { PlanetButton } from '@shared/ui/PlanetButton';
 import { Typography } from '@shared/ui/Typography';
@@ -18,10 +11,7 @@ import { authLogin } from '@entities/user/thunks/authLogin';
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import {
-    URL_LOGIN,
-    URL_PROFILE,
-} from '@shared/constants/links';
+import { URL_LOGIN, URL_PROFILE } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
 
 import { LoginProps } from '@widgets/Login/interface';
@@ -31,9 +21,7 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import './styles.scss';
 import { queryParams } from '@shared/constants';
 
-export const Login = ({
-    role,
-}: LoginProps) => {
+export const Login = ({ role }: LoginProps) => {
     const [block, element] = bem('login');
     const [inputLogin, setInputLogin] = useState<string>('');
     const [inputPassword, setInputPassword] = useState<string>('');
@@ -45,15 +33,19 @@ export const Login = ({
     const pathByUserRole = URL_PROFILE;
 
     function callback() {
-        if (!localStorage.getItem(storageKeys.tokenAuth)) {
+        if (
+            !localStorage.getItem(storageKeys.accessToken) &&
+            !localStorage.getItem(storageKeys.refreshToken)
+        ) {
             return navigate(URL_LOGIN);
         }
 
         const redirect = searchParams.get(queryParams.redirect);
 
-        if (redirect !== null) return navigate(redirect, {
-            replace: true,
-        });
+        if (redirect !== null)
+            return navigate(redirect, {
+                replace: true,
+            });
 
         return navigate(pathByUserRole, {
             replace: true,
@@ -78,7 +70,18 @@ export const Login = ({
         setInputPassword(event.target.value);
     };
 
-    const handleFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    // const handleFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    //     e.preventDefault();
+
+    //     dispatch(
+    //         authLogin({
+    //             payload,
+    //             callback,
+    //         }),
+    //     );
+    // };
+
+    const handleFormSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
         e.preventDefault();
 
         dispatch(
@@ -90,10 +93,7 @@ export const Login = ({
     };
 
     return (
-        <form
-            className={block()}
-            onSubmit={handleFormSubmit}
-        >
+        <form className={block()}>
             <Typography
                 className={element('heading')}
                 variant={typographyVariant.h2}
@@ -114,6 +114,7 @@ export const Login = ({
             />
             <PlanetButton
                 type='submit'
+                onClick={handleFormSubmit}
                 title='Войти'
             />
         </form>

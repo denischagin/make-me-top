@@ -17,12 +17,12 @@ import { ErrorInterface } from '@shared/types/common';
 import { FETCH_KEEPER_INFO } from '../model/actions';
 
 
-export interface KeeperInfoResponseInterface
+export interface KeeperProfileResponseInterface
     extends KeeperInfoInterface,
         ErrorInterface {}
 
 export const getKeeperInfo = createAsyncThunk<
-    KeeperInfoResponseInterface,
+    KeeperProfileResponseInterface,
     any,
     { rejectValue: ErrorInterface }
 >(FETCH_KEEPER_INFO, async (payload, {
@@ -31,7 +31,7 @@ export const getKeeperInfo = createAsyncThunk<
     try {
         const {
             data,
-        } = await instance.get<KeeperInfoResponseInterface>(
+        } = await instance.get<KeeperProfileResponseInterface>(
             `${URL_MMT_STAND}person-app/people/keeper-profile`,
         );
 

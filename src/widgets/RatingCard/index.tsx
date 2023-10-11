@@ -1,14 +1,9 @@
 import { useState } from 'react';
-import { Button } from '@shared/ui/Button';
 import { Card } from '@shared/ui/Card';
 import { DividingLine } from '@shared/ui/DividingLine';
 import { ShowMoreElemenetsButton } from '@shared/ui/ShowMoreElemenetsButton';
 import { Typography } from '@shared/ui/Typography';
 import { UsersRating } from '@shared/ui/UsersRating';
-
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { explorerInfoSelector } from '@entities/explorer/model/selectors';
 
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
@@ -22,17 +17,18 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { DEFAULT_LIMIT_ITEM } from './model';
 
 import './styles.scss';
+import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 
 export const RatingCard = () => {
     const [block, element] = bem('rating-card');
     const [limitElements, setElementsLimit] =
         useState<number>(DEFAULT_LIMIT_ITEM);
 
-    const userInfo = useAppSelector(explorerInfoSelector);
+    const { data: userInfo, isSuccess } = useGetExplorerProfileQuery();
 
-    const {
-        ratingTable,
-    } = userInfo;
+    if (!isSuccess) return null;
+
+    const { ratingTable } = userInfo;
 
     return (
         <Card size={cardSize.large}>

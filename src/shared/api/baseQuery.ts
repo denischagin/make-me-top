@@ -2,26 +2,24 @@ import { BaseQueryApi } from '@reduxjs/toolkit/dist/query';
 import { instance } from '@shared/api/instances';
 import { DEFAULT_ERROR_MESSAGE } from '@shared/constants/error';
 import { ErrorInterface } from '@shared/types/common';
-import { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { arch } from 'os';
 import toast from 'react-hot-toast';
 
 export interface BaseQueryArgs {
-    arg: any;
-    api: BaseQueryApi;
-    extraOptions: {};
+    arg: AxiosRequestConfig<any>;
+    api?: BaseQueryApi;
+    extraOptions?: object;
 }
 
-export const baseQueryWithAuth = async ({ api, arg, extraOptions }: BaseQueryArgs) => {
+const baseQuery = async ({ arg }: BaseQueryArgs) => {
     try {
-        const response = await instance(arg, extraOptions);
-
-        return {
-            data: response.data,
-        };
+        console.log(arg);
+        return await instance(arg);
     } catch (err) {
         const error: AxiosError<ErrorInterface> = err as any;
 
-        // noAuthHandler(error);
+        console.log(error);
 
         if (error.response) {
             toast.error(error.response.data.errorMessage);
@@ -36,4 +34,8 @@ export const baseQueryWithAuth = async ({ api, arg, extraOptions }: BaseQueryArg
             error,
         };
     }
+};
+
+export const baseQueryWithAuth = async (arg: AxiosRequestConfig) => {
+    return baseQuery({ arg });
 };

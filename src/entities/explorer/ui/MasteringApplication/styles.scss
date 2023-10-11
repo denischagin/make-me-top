@@ -1,17 +1,18 @@
 @import '@app/styles/variables.scss';
 
-.current-system-card {
+.current-request-card {
     color: $white;
     border-radius: 8px;
-    position: relative;
 
     &__wrapper {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        gap: 0px;
     }
 
     &:hover {
-        &__buttons {
+        .current-request-card__buttons {
             opacity: 1;
         }
     }
@@ -23,8 +24,8 @@
 
     &__buttons {
         transition: 0.3s;
+        width: max-content;
         opacity: 0;
-        position: absolute;
         display: flex;
         right: 24px;
         gap: 16px;

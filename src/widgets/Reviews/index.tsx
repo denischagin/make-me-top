@@ -1,18 +1,7 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Button } from '@shared/ui/Button';
 import { ReviewCard } from '@shared/ui/ReviewCard';
 import { ShowMoreElemenetsButton } from '@shared/ui/ShowMoreElemenetsButton';
 import { Typography } from '@shared/ui/Typography';
-
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import {
-    explorerCardInfoSelector,
-    explorerIsExplorerSelector,
-} from '@entities/explorer/model/selectors';
-
-import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 
 import { bem } from '@shared/utils/helpers/bem';
 
@@ -22,22 +11,14 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { DEFAULT_EL_LIMIT } from './model';
 
 import './styles.scss';
+import { ReviewsProps } from '@widgets/Reviews/interfaces';
 
-export const Reviews = () => {
+export const Reviews = ({ reviews }: ReviewsProps) => {
     const [block, element] = bem('reviews');
     const [limitElements, setElementsLimit] =
         useState<number>(DEFAULT_EL_LIMIT);
 
-    const location = useLocation();
-
-    const isExplorerRegex = /\/explorer\/[0-9]+/i;
-    const reviews = isExplorerRegex.test(location.pathname)
-        ? useAppSelector(explorerCardInfoSelector)
-        : useAppSelector(keeperCardInfoSelector);
-
-    const {
-        feedback,
-    } = reviews;
+    const { feedback } = reviews;
 
     if (!feedback?.length) {
         return null;
@@ -53,10 +34,7 @@ export const Reviews = () => {
             </Typography>
             <div className={element('cards')}>
                 {feedback.slice(0, limitElements)?.map((item) => (
-                    <ReviewCard
-                        key={item.courseId}
-                        review={item}
-                    />
+                    <ReviewCard key={item.courseId} review={item} />
                 ))}
             </div>
             <ShowMoreElemenetsButton

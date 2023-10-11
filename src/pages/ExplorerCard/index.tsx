@@ -7,10 +7,7 @@ import { Container } from '@shared/ui/Container';
 import { ExplorerApplicationCard } from '@shared/ui/ExplorerApplicationCard';
 import { ReviewRequestCard } from '@shared/ui/ReviewRequestCard';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import {
     explorerCardInfoSelector,
@@ -39,13 +36,9 @@ const ExplorerCard = () => {
     const userInfo = useAppSelector(explorerCardInfoSelector);
     const isError = useAppSelector(explorersIsErrorSelector);
 
-    const {
-        investigatedSystems,
-    } = userInfo;
+    const { investigatedSystems } = userInfo;
 
-    const {
-        personId,
-    } = useParams();
+    const { personId } = useParams();
 
     useEffect(() => {
         dispatch(
@@ -78,7 +71,7 @@ const ExplorerCard = () => {
                         heading='Освоенные системы'
                         systems={investigatedSystems}
                     />
-                    <Reviews />
+                    <Reviews reviews={userInfo} />
                 </div>
             </Container>
         </div>

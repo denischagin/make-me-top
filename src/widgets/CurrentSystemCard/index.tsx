@@ -47,6 +47,7 @@ import {
 
 import './styles.scss';
 import { DEFAULT_ERROR_MESSAGE } from '@shared/constants/error';
+import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 
 export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     const { tabsList = [] } = props;
@@ -58,19 +59,20 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     const dispatch = useAppDispatch();
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
     const courseInfo = useAppSelector(userCourseInfoSelector);
-    const userInfo = useAppSelector(explorerInfoSelector);
 
-    const { studyRequest, currentSystem } = userInfo;
+
+    const { data: userInfo, isSuccess } = useGetExplorerProfileQuery();
 
     const { course, you, yourKeeper, explorers, keepers } = courseInfo;
 
-    if (!currentSystem && !studyRequest) {
+    if (!userInfo?.currentSystem && !userInfo?.studyRequest) {
         return <SelectSystem />;
     }
 
-    if (studyRequest) {
+    if (userInfo?.studyRequest || !isSuccess) {
         return null;
     }
+    const { currentSystem,  } = userInfo;
 
     return (
         <div className={block()}>
@@ -128,8 +130,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                                     toast(DEFAULT_ERROR_MESSAGE, {
                                         icon: '😔',
                                     });
-
-                                }
+                                },
                             }),
                         );
                     }}
@@ -158,7 +159,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                     variant={typographyVariant.regular14}
                     className={element('current-keeper', 'mb-4')}
                 >
-                    {`Преподаватель: ${getUserFullName(currentSystem?.keeper)}`}
+                    {`Хранитель: ${getUserFullName(currentSystem?.keeper)}`}
                 </Typography>
                 <span className={element('progress')}>
                     <Typography

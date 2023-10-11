@@ -1,18 +1,7 @@
-import { useEffect } from 'react';
 import { BackgroundUsersList } from '@shared/ui/BackgroundUsersList';
 import { Button } from '@shared/ui/Button';
 import { Container } from '@shared/ui/Container';
 import { SortCard } from '@shared/ui/SortCard';
-
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
-
-import { loadingIsLoadingSelector } from '@entities/loading/model/selectors';
-
-import { explorersListSelector } from '@entities/explorer/model/selectors';
-import { getListExplorersByFilter } from '@entities/explorer/thunks/getFilterExplorers';
 
 import { bem } from '@shared/utils/helpers/bem';
 import { useShowMore } from '@shared/utils/hooks/use-show-more';
@@ -23,46 +12,29 @@ import { Header } from '@widgets/Header';
 import { buttonSize } from '@shared/ui/Button/interfaces';
 
 import './styles.scss';
+import { useGetAllExplorersQuery } from '@entities/explorer/api/api';
 
 const Explorers = () => {
-    const explorersList = useAppSelector(explorersListSelector);
-
-    const {
-        handleHideAll,
-        handleShowMore,
-        isLastLimit,
-        limitElements,
-    } =
-        useShowMore(explorersList, 10, 5);
-
-    const dispatch = useAppDispatch();
-    const isLoading = useAppSelector(loadingIsLoadingSelector);
-
     const [block, element] = bem('explorers');
 
-    useEffect(() => {
-        dispatch(getListExplorersByFilter({}));
-    }, []);
+    const { data: explorersList, isSuccess } = useGetAllExplorersQuery();
+
+    const { handleHideAll, handleShowMore, isLastLimit, limitElements } =
+        useShowMore(explorersList ?? [], 10, 5);
 
     return (
         <div className={block()}>
             <BackgroundUsersList />
             <Header />
-            {!isLoading && (
+            {isSuccess && (
                 <Container className={element('container')}>
                     <div className={element('sort-panel')}>
-                        <SortCard
-                            title='Сортировать'
-                            value='С 1 до конца'
-                        />
+                        <SortCard title='Сортировать' value='С 1 до конца' />
                         <SortCard
                             title='Период отображения'
                             value='За весь период'
                         />
-                        <SortCard
-                            title='За весь период'
-                            value='Все звезды'
-                        />
+                        <SortCard title='За весь период' value='Все звезды' />
                     </div>
 
                     <ExplorersList explorers={limitElements} />

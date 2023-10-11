@@ -48,14 +48,17 @@ export const routes: RouteInterface[] = [
     {
         path: URL_LOGIN,
         element: <LoginSelectRole />,
+        isAuthPage: true,
     },
     {
         path: URL_LOGIN_AS_EXPLORER,
         element: <LoginAsExplorer />,
+        isAuthPage: true,
     },
     {
         path: URL_LOGIN_AS_KEEPER,
         element: <LoginAsKeeper />,
+        isAuthPage: true,
     },
     {
         path: URL_DEFAULT,

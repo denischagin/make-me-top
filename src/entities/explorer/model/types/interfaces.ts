@@ -37,7 +37,7 @@ export interface ExplorerInfoInterface {
     totalSystems: number;
     currentSystem: CurrentSystem;
     investigatedSystems: Array<InvestigatedSystemsInterface>;
-    studyRequest: StudyRequestCabinetInterface;
+    studyRequest?: StudyRequestCabinetInterface;
     ratingTable: Array<PersonRating>;
 }
 
@@ -99,12 +99,8 @@ export interface StudyRequestCabinetInterface {
     courseTitle: string;
     galaxyId: string;
     galaxyName: string;
-    keeperFirstName: string;
-    keeperId: number;
-    keeperLastName: string;
-    keeperPatronymic: string;
-    keeperPersonId: number;
     requestId: number;
+    keepers: Keeper[]
 }
 
 export interface Feedback {

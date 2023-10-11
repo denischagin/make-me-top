@@ -1,29 +1,31 @@
 import { useMemo } from 'react';
-import { Navigate } from 'react-router-dom';
 
-import { URL_LOGIN } from '@shared/constants/links';
 import { roles } from '@shared/constants/storageKeys';
 
 import { Explorer } from '@pages/Explorer/page';
 import { Keeper } from '@pages/Keeper/page';
 import { getRoleFromLocalStorage } from '@pages/Profile/utils';
+import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
+import { Header } from '@widgets/Header';
+import { useAuth } from '@entities/viewer/hooks/useAuth';
 
-export type RolesWithNotSelectedType = roles | 'NOT_SELECTED';
+const ProfileDefault = (
+    <>
+        <BackgroundProfile />
+        <Header links={[]} />
+    </>
+);
 
-const ProfileByRole: Record<RolesWithNotSelectedType, JSX.Element> = {
+const ProfileByRole: Record<roles, JSX.Element> = {
     EXPLORER: <Explorer />,
     KEEPER: <Keeper />,
-    NOT_SELECTED: <Navigate to={URL_LOGIN} />,
-    GUEST: <Navigate to={URL_LOGIN} />,
+    GUEST: ProfileDefault,
 };
 
 const Profile = () => {
-    const currentRole = useMemo<RolesWithNotSelectedType>(() => {
-        const role = getRoleFromLocalStorage();
-        return role ?? 'NOT_SELECTED';
-    }, []);
+    const { currentRole } = useAuth();
 
-    return ProfileByRole[currentRole];
+    return ProfileByRole[currentRole ?? "GUEST"];
 };
 
 export default Profile;

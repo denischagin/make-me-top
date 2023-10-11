@@ -2,12 +2,7 @@ import { Avatar } from '@shared/ui/Avatar';
 import { Rating } from '@shared/ui/Rating';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { explorerInfoSelector } from '@entities/explorer/model/selectors';
-
 import { bem } from '@shared/utils/helpers/bem';
-import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import {
@@ -22,10 +17,7 @@ import { UserInfoInterface } from '@shared/types/common';
 import './styles.scss';
 
 export const UsersRating = (props: UserInfoInterface) => {
-    const {
-        fullname,
-        rating,
-    } = props;
+    const { fullname, rating } = props;
 
     const [block, element] = bem('rating-info');
 

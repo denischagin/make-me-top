@@ -5,10 +5,7 @@ import { ArrowButton } from '@shared/ui/ArrowButton';
 import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Container } from '@shared/ui/Container';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import { keeperCardInfoSelector } from '@entities/keeper/model/selectors';
 import { getKeeperCardInfo } from '@entities/keeper/thunks/getKeeperCardInfo';
@@ -31,13 +28,9 @@ const KeeperCard = () => {
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(keeperCardInfoSelector);
 
-    const {
-        systems,
-    } = userInfo;
+    const { systems, feedback } = userInfo;
 
-    const {
-        personId,
-    } = useParams();
+    const { personId } = useParams();
 
     useEffect(() => {
         dispatch(
@@ -46,7 +39,6 @@ const KeeperCard = () => {
             }),
         );
     }, [personId]);
-
     return (
         <div className={block()}>
             <BackgroundProfile />
@@ -65,7 +57,8 @@ const KeeperCard = () => {
                     heading='Системы исследователя'
                     systems={systems}
                 />
-                <Reviews />
+
+                <Reviews reviews={userInfo} />
             </Container>
         </div>
     );

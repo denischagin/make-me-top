@@ -11,9 +11,7 @@ import { KeepersListProps } from './interface';
 
 import './style.scss';
 
-export const KeepersList = ({
-    keepers,
-}: KeepersListProps) => {
+export const KeepersList = ({ keepers }: KeepersListProps) => {
     const [block, element] = bem('keepers-list');
     const navigate = useNavigate();
 
@@ -23,7 +21,7 @@ export const KeepersList = ({
                 <UserRatingCard
                     key={keeper.personId}
                     onClick={() => {
-                        navigate(`${URL_KEEPER}/${keeper.personId}`);
+                        navigate(`/person/${keeper.personId}${URL_KEEPER}/`);
                     }}
                     fullname={getUserFullName(keeper)}
                     title={`Галактика: ${keeper.galaxyName}`}

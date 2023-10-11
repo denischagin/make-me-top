@@ -1,4 +1,6 @@
-export const initialExplorerInfo = {
+import { ExplorerInfoInterface } from "@entities/explorer/model/types/interfaces";
+
+export const initialExplorerInfo: ExplorerInfoInterface = {
     person: {
         personId: 0,
         firstName: '',
@@ -27,12 +29,8 @@ export const initialExplorerInfo = {
         courseTitle: '',
         galaxyId: '',
         galaxyName: '',
-        keeperFirstName: '',
-        keeperId: 0,
-        keeperLastName: '',
-        keeperPatronymic: '',
-        keeperPersonId: 0,
         requestId: 0,
+        keepers: []
     },
     rating: null,
     totalSystems: 0,

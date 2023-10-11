@@ -9,9 +9,9 @@ export interface ErrorConfigWithRetry extends InternalAxiosRequestConfig {
 }
 
 export const authToken = () => {
-    const token = localStorage.getItem(storageKeys.tokenAuth);
+    const accessToken = localStorage.getItem(storageKeys.accessToken);
 
-    return token ? JSON.parse(token) : null;
+    return accessToken ? accessToken : null;
 };
 
 export const instance = axios.create({
@@ -20,10 +20,10 @@ export const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-    const token = authToken();
+    const accessToken = authToken();
 
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+    if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`;
     }
 
     return config;
@@ -41,12 +41,12 @@ instance.interceptors.request.use((config) => {
 //             originalRequest._isRetry = true;
 //             try {
 //                 const response = await axios.get<any>(URL_MMT_STAND + 'refresh');
-                
+
 //                 localStorage.setItem(
 //                     storageKeys.tokenAuth,
 //                     JSON.stringify(response.data.accessToken),
 //                 );
-                
+
 //                 return instance.request(originalRequest);
 //             } catch {
 //                 localStorage.removeItem(storageKeys.tokenAuth);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Avatar } from '@shared/ui/Avatar';
 import { Button } from '@shared/ui/Button';
@@ -12,8 +12,6 @@ import { useAppDispatch } from '@app/providers/store/hooks';
 
 import { closeCourseRequest } from '@entities/explorer/thunks/closeCourseRequest';
 
-import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
-
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
@@ -23,10 +21,7 @@ import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toasts';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import {
     ratingScoreColor,
@@ -36,18 +31,26 @@ import {
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
+import { useAcceptOrRejectCourseRequestMutation } from '@entities/keeper/api/api';
+import { useStatus } from '@shared/utils/hooks/use-status';
 
 export const EducationApplicationCard = (
     props: EducationApplicationCardInterface,
 ) => {
-    const {
-        user,
-    } = props;
+    const { user } = props;
 
     const [block, element] = bem('application-education-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
 
-    const dispatch = useAppDispatch();
+    const [acceptOrRejectCourseRequest, { isSuccess }] =
+        useAcceptOrRejectCourseRequestMutation();
+
+    useStatus(() => {
+        toast(TOAST_SUCCESS_REJECTED, {
+            icon: '😔',
+        });
+        setIsAcceptModalOpen(false);
+    }, isSuccess);
 
     return (
         <div className={block()}>
@@ -57,26 +60,17 @@ export const EducationApplicationCard = (
                     rejectButtonTitle='Нет, хочу продолжить'
                     submitButtonTitle='Да, я уверен'
                     onClose={() => setIsAcceptModalOpen(false)}
-                    onSubmit={() => {
-                        dispatch(
-                            acceptOrRejectCourseRequest({
-                                requestId: user.requestId,
-                                rejection: {
-                                    approved: false,
-                                },
-                            }),
-                        );
-                        toast(TOAST_SUCCESS_REJECTED, {
-                            icon: '😔',
-                        });
-                        setIsAcceptModalOpen(false);
-                    }}
+                    onSubmit={() =>
+                        acceptOrRejectCourseRequest({
+                            requestId: user.requestId,
+                            rejection: {
+                                approved: false,
+                            },
+                        })
+                    }
                 />
             )}
-            <Card
-                size={cardSize.large}
-                glow
-            >
+            <Card size={cardSize.large} glow>
                 <div className={element('content')}>
                     <div className={element('info')}>
                         <Avatar size={avatarSize.medium} />
@@ -109,7 +103,7 @@ export const EducationApplicationCard = (
                                 onClick={() => setIsAcceptModalOpen(true)}
                             />
                             <RouterLink
-                                to={`${URL_EXPLORER}/${user?.personId}`}
+                                to={`/person/${user?.personId}/explorer`}
                             >
                                 <Button
                                     title={'Принять'}

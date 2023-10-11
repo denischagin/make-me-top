@@ -75,7 +75,7 @@ export const explorerSlice = createSlice({
                     state.explorersList = initialExplorersList;
                     state.isError = true;
                 },
-            );
+            )
     },
 });
 

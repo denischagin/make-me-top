@@ -44,7 +44,7 @@ export const leaveCourseRequest = createAsyncThunk<
         const {
             data,
         } = await instance.delete<ErrorInterface>(
-            `${URL_MMT_STAND}explorer-app/explorers/${explorerId}`,
+            `${URL_MMT_STAND}person-app/explorers/${explorerId}`,
         );
 
         onSuccess && onSuccess()

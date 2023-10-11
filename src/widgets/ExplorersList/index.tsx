@@ -11,9 +11,7 @@ import { ExplorersListProps } from './interface';
 
 import './style.scss';
 
-export const ExplorersList = ({
-    explorers,
-}: ExplorersListProps) => {
+export const ExplorersList = ({ explorers }: ExplorersListProps) => {
     const [block, element] = bem('explorers-list');
     const navigate = useNavigate();
 
@@ -22,7 +20,7 @@ export const ExplorersList = ({
             {explorers.map((explorer, index) => (
                 <UserRatingCard
                     onClick={() => {
-                        navigate(`${URL_EXPLORER}/${explorer.personId}`);
+                        navigate(`/person/${explorer.personId}${URL_EXPLORER}/`);
                     }}
                     key={explorer.personId}
                     fullname={getUserFullName(explorer)}

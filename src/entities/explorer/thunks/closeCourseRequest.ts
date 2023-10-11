@@ -40,7 +40,7 @@ export const closeCourseRequest = createAsyncThunk<
 
         const {
             data,
-        } = await instance.delete<ErrorInterface>(
+        } = await instance.patch<ErrorInterface>(
             `${URL_MMT_STAND}course-registration-app/course-requests/${requestId}`,
         );
 

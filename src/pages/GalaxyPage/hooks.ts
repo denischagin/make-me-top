@@ -1,17 +1,12 @@
-import {
-    useEffect,
-    useState,
-} from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAppDispatch } from '@app/providers/store/hooks';
 
 import { getExplorerInfo } from '../../entities/explorer/thunks/getExplorerInfo';
 import { getGalaxy } from '../../entities/galaxy/thunks/getGalaxy';
 import { getUserProgressInGalaxy } from '../../entities/galaxy/thunks/getUserProgressInGalaxy';
-import {
-    roles,
-    storageKeys,
-} from '../../shared/constants/storageKeys';
+import { roles, storageKeys } from '../../shared/constants/storageKeys';
+import { useAuth } from '@entities/viewer/hooks/useAuth';
 
 export const useGalaxyWindowSizeDebounce = () => {
     const [windowSizeDebounce, setWindowSizeDebounce] = useState(
@@ -44,16 +39,15 @@ export const useGalaxyWindowSizeDebounce = () => {
 
 export const useGetAllGalaxyInfoByGalaxyId = (galaxyId: number | undefined) => {
     const dispatch = useAppDispatch();
-    
+
+    const { currentRole } = useAuth();
     useEffect(() => {
         dispatch(
             getGalaxy({
                 galaxyId: Number(galaxyId),
             }),
         );
-        const currentRole: roles = localStorage.getItem(
-            storageKeys.currentRole,
-        ) as roles;
+        //TODO
 
         if (currentRole === 'KEEPER') return;
 
@@ -62,6 +56,7 @@ export const useGetAllGalaxyInfoByGalaxyId = (galaxyId: number | undefined) => {
                 galaxyId: Number(galaxyId),
             }),
         );
+        //TODO
         dispatch(getExplorerInfo({}));
     }, []);
 };

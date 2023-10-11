@@ -16,9 +16,7 @@ import { baseQueryWithAuth } from '@shared/api';
 
 export const galaxiesApi = createApi({
     reducerPath: 'galaxiesApi',
-    baseQuery: async (arg, api, extraOptions) => {
-        return baseQueryWithAuth({ api, arg, extraOptions });
-    },
+    baseQuery: baseQueryWithAuth,
     endpoints: (builder) => ({
         getAllGalaxies: builder.query<GalaxyForGetAll[], void>({
             query: () => ({

@@ -35,7 +35,6 @@ import './style.scss';
 const AllGalaxiesPage = () => {
     const {
         data: galaxies = [],
-        isLoading,
         isError,
     } = useGetAllGalaxiesQuery();
     const {

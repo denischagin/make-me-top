@@ -4,10 +4,6 @@ import { Card } from '@shared/ui/Card';
 import { RouterLink } from '@shared/ui/RouterLink';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppSelector } from '@app/providers/store/hooks';
-
-import { keeperInfoSelector } from '@entities/keeper/model/selectors';
-
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
@@ -15,20 +11,14 @@ import { URL_EXPLORER } from '@shared/constants/links';
 
 import { GradeApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 
 export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
-    const {
-        finalAssessment,
-        reviewRequest,
-    } = props;
+    const { finalAssessment, reviewRequest } = props;
 
     const [block, element] = bem('grade-application-card');
 
@@ -36,10 +26,7 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
 
     return (
         <div className={block()}>
-            <Card
-                size={cardSize.large}
-                glow
-            >
+            <Card size={cardSize.large} glow>
                 <div className={element('content')}>
                     <div className={element('info')}>
                         <Avatar size={avatarSize.medium} />

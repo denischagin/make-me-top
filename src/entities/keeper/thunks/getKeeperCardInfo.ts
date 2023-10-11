@@ -1,10 +1,6 @@
-import toast from 'react-hot-toast';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosError } from 'axios';
 
 import { onErrorHandler } from '@shared/api';
-
-import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
 
 import { instance } from '@shared/api/instances';
 

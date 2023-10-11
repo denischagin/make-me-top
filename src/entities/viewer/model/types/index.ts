@@ -7,8 +7,12 @@ export interface ViewerState {
     refreshToken: string | null;
 }
 
-export interface RefreshResponse {
-    role: 'EXPLORER' | 'KEEPER';
-    accessToken: string;
+export interface RefreshTokenInterface {
     refreshToken: string;
+    expirationTime: string;
+}
+
+export interface AccessTokenInterface {
+    accessToken: string;
+    expirationTime: string;
 }

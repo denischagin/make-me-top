@@ -1,6 +1,6 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, MouseEventHandler } from 'react';
 
 export interface PlanetButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement>{
     title: string;
-    onClick?: () => void;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
 }

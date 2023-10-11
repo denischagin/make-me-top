@@ -5,30 +5,31 @@ import { ReactComponent as Logo } from '@shared/images/logo.svg';
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import {
-    HEADER_LINKS,
-    URL_LOGIN,
-} from '@shared/constants/links';
+import { HEADER_LINKS, URL_LOGIN } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
 
-import {
-    HeaderInterface,
-    HeaderLinkInterface,
-} from './interfaces';
+import { HeaderInterface, HeaderLinkInterface } from './interfaces';
 
 import './styles.scss';
+import { useLogoutMutation } from '@entities/viewer/model/api';
+import { useAuth } from '@entities/viewer/hooks/useAuth';
+import { useAppDispatch } from '@app/providers/store/hooks';
+import { logout } from '@entities/viewer/model/slice';
 
 export const Header = (props: HeaderInterface) => {
-    const {
-        links = HEADER_LINKS,
-    } = props;
+    const { links = HEADER_LINKS } = props;
 
     const [block, element] = bem('header');
 
+    const [logoutMutation] = useLogoutMutation();
+    const dispatch = useAppDispatch();
+    const { refreshToken } = useAuth();
 
     const handleLogout = () => {
-        localStorage.removeItem(storageKeys.tokenAuth);
-        localStorage.removeItem(storageKeys.currentRole);
+        logoutMutation(refreshToken!);
+        dispatch(logout());
+        localStorage.removeItem(storageKeys.accessToken);
+        localStorage.removeItem(storageKeys.refreshToken);
     };
 
     return (

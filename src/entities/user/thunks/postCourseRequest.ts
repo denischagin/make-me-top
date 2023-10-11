@@ -29,7 +29,7 @@ export const postCourseRequest = createAsyncThunk<
     try {
         const {
             data,
-        } = await instance.post<ErrorInterface>(
+        } = await instance.patch<ErrorInterface>(
             `${URL_MMT_STAND}course-registration-app/course-requests`,
             payload,
         );

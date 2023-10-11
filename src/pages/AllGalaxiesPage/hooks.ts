@@ -4,7 +4,17 @@ import { GalaxyForGetAll } from '@entities/galaxy/model/types';
 
 import { CurrentGalaxyInterface } from './interface';
 
-export const useCurrentGalaxy = (galaxies: GalaxyForGetAll[]) => {
+export interface ReturnUseCurrentGalaxy {
+    currentGalaxy: CurrentGalaxyInterface | null;
+    circleNextGalaxyName: string;
+    circlePrevGalaxyName: string;
+    handlePrevGalaxy: () => void;
+    handleNextGalaxy: () => void;
+}
+
+export const useCurrentGalaxy = (
+    galaxies: GalaxyForGetAll[],
+): ReturnUseCurrentGalaxy => {
     const [currentGalaxy, setCurrentGalaxy] =
         useState<CurrentGalaxyInterface | null>(null);
 
@@ -18,13 +28,16 @@ export const useCurrentGalaxy = (galaxies: GalaxyForGetAll[]) => {
     }, [galaxies, currentGalaxy]);
 
     const isFirstGalaxy = currentGalaxy?.index === 0;
+
     const isLastGalaxy = currentGalaxy?.index === galaxies.length - 1;
 
     const lastGalaxy = galaxies[galaxies.length - 1];
+
     const firstGalaxy = galaxies[0];
 
     const prevGalaxyIndex =
         (Number(currentGalaxy?.index) + galaxies.length - 1) % galaxies.length;
+
     const nextGalaxyIndex =
         (Number(currentGalaxy?.index) + 1) % galaxies.length;
 
