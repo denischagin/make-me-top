@@ -25,15 +25,32 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { TABS_LIST } from './model';
 
 import './styles.scss';
-import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
+import {
+    useGetExplorerCardInfoQuery,
+    useGetExplorerProfileQuery,
+} from '@entities/explorer/api/api';
 
 export const Explorer = () => {
     const [block, element] = bem('explorer');
     const navigate = useNavigate();
 
-    const { data: userInfo, isSuccess, isError } = useGetExplorerProfileQuery();
+    const {
+        data: userInfo,
+        isSuccess,
+        isError,
+        isLoading,
+    } = useGetExplorerProfileQuery();
 
     if (isError) return <NotFound />;
+    if (isLoading)
+        return (
+            <>
+                <BackgroundProfile />
+                <div className={block()}>
+                    <Header />
+                </div>
+            </>
+        );
 
     return (
         <>

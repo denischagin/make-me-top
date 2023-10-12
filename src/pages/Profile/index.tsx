@@ -6,7 +6,6 @@ import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Header } from '@widgets/Header';
 import { useAuth } from '@entities/viewer/hooks/useAuth';
 import { useEffect } from 'react';
-import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 
 const ProfileDefault = (
     <>
@@ -15,17 +14,15 @@ const ProfileDefault = (
     </>
 );
 
-const ProfileByRole: Record<roles, JSX.Element> = {
+const ProfileByRole: Record<roles | "GUEST", JSX.Element> = {
     EXPLORER: <Explorer />,
     KEEPER: <Keeper />,
     GUEST: ProfileDefault,
 };
 
 const Profile = () => {
-    const { role, isAuth } = useAuth();
-    console.log(role)
-    const { data: userInfo, isSuccess, isError } = useGetExplorerProfileQuery();
-
+    const { role } = useAuth();
+    
     return ProfileByRole[role ?? 'GUEST'];
 };
 

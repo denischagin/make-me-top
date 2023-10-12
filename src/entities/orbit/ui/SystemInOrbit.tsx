@@ -8,10 +8,7 @@ import React, {
 } from 'react';
 import System from '@shared/ui/System';
 
-import {
-    SystemType,
-    UserProgressInGalaxy,
-} from '@entities/galaxy/model/types';
+import { SystemType, UserProgressInGalaxy } from '@entities/galaxy/model/types';
 
 import { getDigitalAngle } from '@entities/orbit/lib/getDigitalAngle';
 import { getPercentageProgress } from '@entities/orbit/lib/getPercentageProgress';
@@ -27,14 +24,10 @@ import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import {
-    roles,
-    storageKeys,
-} from '@shared/constants/storageKeys';
-
 import { SystemProgressTypes } from '@shared/types/common';
 
 import './styles.scss';
+import { useAuth } from '@entities/viewer/hooks/useAuth';
 
 interface SystemInOrbitProps {
     system: SystemType;
@@ -62,13 +55,8 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
         userProgress,
         systemStyle,
     } = props;
-    const isNoExplorer = useMemo(() => {
-        return (
-            (localStorage.getItem(storageKeys.currentRole) as roles) !==
-            'EXPLORER'
-        );
-    }, []);
-
+    const { role } = useAuth();
+    const isNoExplorer = role !== 'EXPLORER';
     const [destroyCount, setDestoryCount] = useState(0);
     const [randomDestroyClass, setRandomDestroyClass] = useState<string>();
 

@@ -2,6 +2,7 @@ import {
     LogoutResponse,
     RefreshParams,
     AuthResponse,
+    AuthCredentials,
 } from '@entities/viewer/model/types/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { baseQueryWithAuth } from '@shared/api';
@@ -28,7 +29,15 @@ export const viewerApi = createApi({
                 body: refreshToken,
             }),
         }),
+        login: builder.mutation<AuthResponse, AuthCredentials>({
+            query: (credentials) => ({
+                url: 'auth/login/',
+                method: 'POST',
+                body: credentials,
+            }),
+        }),
     }),
 });
 
-export const { useRefreshMutation, useLogoutMutation} = viewerApi;
+export const { useRefreshMutation, useLogoutMutation, useLoginMutation } =
+    viewerApi;

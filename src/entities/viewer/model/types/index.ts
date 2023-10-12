@@ -2,7 +2,7 @@ import { roles } from '@shared/constants/storageKeys';
 
 export interface ViewerState {
     isAuth: boolean;
-    role: roles;
+    role: roles | null;
     accessToken: string | null;
     refreshToken: string | null;
 }

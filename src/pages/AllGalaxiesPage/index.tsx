@@ -8,7 +8,7 @@ import { EntryAnimateGalaxies } from '@shared/ui/EntryAnimateGalaxies';
 import { TitleGalaxyPage } from '@shared/ui/TitleGalaxyPage';
 import { Typography } from '@shared/ui/Typography';
 
-import { useGetAllGalaxiesQuery } from '@entities/galaxy/model/api';
+import { useGetAllGalaxiesQuery } from '@entities/galaxy/api/api';
 
 import { bem } from '@shared/utils/helpers/bem';
 

@@ -10,11 +10,10 @@ import { UserState } from '@entities/user/model/types';
 import loadingReducer from '@entities/loading/model/loadingSlice';
 import { LoadingState } from '@entities/loading/model/types';
 
-import { galaxiesApi } from '@entities/galaxy/model/api';
+import { galaxiesApi } from '@entities/galaxy/api/api';
 import galaxyReducer from '@entities/galaxy/model/slice';
 import { GalaxyState } from '@entities/galaxy/model/types';
 import { explorerApi } from '@entities/explorer/api';
-import { userApi } from '@entities/user/model/api';
 import { keeperApi } from '@entities/keeper/api';
 
 export type RootState = {
@@ -32,7 +31,6 @@ const rootReducer = combineReducers({
     [galaxiesApi.reducerPath]: galaxiesApi.reducer,
     [viewerApi.reducerPath]: viewerApi.reducer,
     [explorerApi.reducerPath]: explorerApi.reducer,
-    [userApi.reducerPath]: userApi.reducer,
     [keeperApi.reducerPath]: keeperApi.reducer,
 });
 
@@ -45,7 +43,6 @@ const store = configureStore({
             galaxiesApi.middleware,
             viewerApi.middleware,
             explorerApi.middleware,
-            userApi.middleware,
             keeperApi.middleware,
         ]),
 });

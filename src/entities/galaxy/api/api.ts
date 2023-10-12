@@ -10,7 +10,7 @@ import { URL_MMT_STAND } from '@shared/constants/urls';
 
 import { ErrorInterface } from '@shared/types/common';
 
-import { GalaxyForGetAll } from './types';
+import { GalaxyForGetAll } from '../model/types';
 import { DEFAULT_ERROR_MESSAGE } from '@shared/constants/error';
 import { baseQueryWithAuth } from '@shared/api';
 

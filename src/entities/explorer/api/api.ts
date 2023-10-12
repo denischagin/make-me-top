@@ -79,6 +79,7 @@ export const explorerApi = createApi({
 
 export const {
     useGetExplorerProfileQuery,
+    useLazyGetExplorerProfileQuery,
     useCloseCourseRequestMutation,
     usePostCourseRequestMutation,
     useGetAllExplorersQuery,

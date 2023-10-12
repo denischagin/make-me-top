@@ -7,8 +7,6 @@ import { Typography } from '@shared/ui/Typography';
 
 import { useAppDispatch } from '@app/providers/store/hooks';
 
-import { authLogin } from '@entities/user/thunks/authLogin';
-
 import { bem } from '@shared/utils/helpers/bem';
 
 import { URL_LOGIN, URL_PROFILE } from '@shared/constants/links';
@@ -20,26 +18,31 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 import { queryParams } from '@shared/constants';
+import { useLoginMutation } from '@entities/viewer/model/api';
+import { useStatus } from '@shared/utils/hooks/use-status';
+import { useAuth } from '@entities/viewer/hooks/useAuth';
+import {
+    AuthCredentials,
+    AuthResponse,
+} from '@entities/viewer/model/types/api';
 
 export const Login = ({ role }: LoginProps) => {
     const [block, element] = bem('login');
     const [inputLogin, setInputLogin] = useState<string>('');
     const [inputPassword, setInputPassword] = useState<string>('');
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
+    const [loginMutation, { isSuccess, data: authReponse }] =
+        useLoginMutation();
+    const { handleLogin } = useAuth();
+
     const pathByUserRole = URL_PROFILE;
 
-    function callback() {
-        if (
-            !localStorage.getItem(storageKeys.accessToken) &&
-            !localStorage.getItem(storageKeys.refreshToken)
-        ) {
-            return navigate(URL_LOGIN);
-        }
-
+    useStatus(() => {
+        handleLogin(authReponse);
         const redirect = searchParams.get(queryParams.redirect);
 
         if (redirect !== null)
@@ -50,9 +53,9 @@ export const Login = ({ role }: LoginProps) => {
         return navigate(pathByUserRole, {
             replace: true,
         });
-    }
+    }, isSuccess);
 
-    const payload = {
+    const credentials = {
         login: inputLogin,
         password: inputPassword,
         role,
@@ -72,13 +75,7 @@ export const Login = ({ role }: LoginProps) => {
 
     const handleFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
-
-        dispatch(
-            authLogin({
-                payload,
-                callback,
-            }),
-        );
+        loginMutation(credentials);
     };
 
     return (

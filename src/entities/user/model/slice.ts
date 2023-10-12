@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { authLogin } from '../thunks/authLogin';
 import { getCourseInfo } from '../thunks/getCourseInfo';
 import { getModalPlanets } from '../thunks/getModalPlanets';
 
