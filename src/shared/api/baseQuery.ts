@@ -1,4 +1,4 @@
-import { BaseQueryApi } from '@reduxjs/toolkit/dist/query';
+import { BaseQueryApi, BaseQueryFn } from '@reduxjs/toolkit/dist/query';
 import { instance } from '@shared/api/instances';
 import { DEFAULT_ERROR_MESSAGE } from '@shared/constants/error';
 import { ErrorInterface } from '@shared/types/common';
@@ -33,6 +33,9 @@ const baseQuery = async ({ arg }: BaseQueryArgs) => {
     }
 };
 
-export const baseQueryWithAuth = async (arg: AxiosRequestConfig) => {
+export const baseQueryWithAuth: BaseQueryFn<
+    AxiosRequestConfig,
+    AxiosError<ErrorInterface>
+> = async (arg: AxiosRequestConfig) => {
     return baseQuery({ arg });
 };

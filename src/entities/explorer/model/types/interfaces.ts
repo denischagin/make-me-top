@@ -87,7 +87,7 @@ export interface ExplorerCardInfoInterface {
     rating: number | null;
     totalFeedback: number;
     totalSystems: number;
-    currentSystem: CurrentSystem;
+    currentSystem?: CurrentSystem;
     investigatedSystems: Array<InvestigatedSystemsInterface>;
     studyRequest: StudyRequestsInterface;
     feedback: Array<Feedback>;

@@ -3,10 +3,7 @@ import { ModalAlert } from '@shared/ui/ModalAlert';
 import { Portal } from '@shared/ui/Portal';
 import { Typography } from '@shared/ui/Typography';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import { userCourseInfoSelector } from '@entities/user/model/selectors';
 import { closeModal } from '@entities/user/model/slice';
@@ -18,10 +15,7 @@ import { bem } from '@shared/utils/helpers/bem';
 import { getModalStatus } from '@shared/utils/helpers/getModalStatus';
 import { getNotStudiedParentDependencies } from '@shared/utils/helpers/getNotStudiedParentDependencies';
 
-import {
-    ModalAccessStatus,
-    ModalInterface,
-} from './interfaces';
+import { ModalAccessStatus, ModalInterface } from './interfaces';
 import {
     typographyColor,
     typographyVariant,
@@ -52,19 +46,21 @@ export const CircleModal = (props: ModalInterface) => {
         };
     }, []);
 
-    const modalStatus = data
-        ? getModalStatus({
-            lastChosenSystem: data.lastChosenSystem,
+    const modalStatus =
+        data && data.userProgress
+            ? getModalStatus({
+                  lastChosenSystem: data.lastChosenSystem,
+                  userProgress: data.userProgress,
+                  courseInfo,
+              })
+            : ModalAccessStatus.opened;
+    const notStudiedParentDependencies =
+        data && data.userProgress
+            ? getNotStudiedParentDependencies({
+                  lastChosenSystem: data.lastChosenSystem,
             userProgress: data.userProgress,
-            courseInfo,
-        })
-        : ModalAccessStatus.opened;
-    const notStudiedParentDependencies = data
-        ? getNotStudiedParentDependencies({
-            lastChosenSystem: data.lastChosenSystem,
-            userProgress: data.userProgress,
-        })
-        : [];
+              })
+            : [];
 
     const lockIcon = isLocked && <LockIcon className={element('lock-icon')} />;
 
@@ -76,10 +72,7 @@ export const CircleModal = (props: ModalInterface) => {
                     close: !isOpen,
                 })}
             >
-                <div
-                    className={element('background')}
-                    onClick={onClose}
-                />
+                <div className={element('background')} onClick={onClose} />
                 <div className={element('container')}>
                     <div className={element('content')}>
                         <div className={element('header')}>

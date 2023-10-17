@@ -3,7 +3,7 @@ import { systemColor } from '@shared/ui/System/interfaces';
 import { SystemProgressTypes } from '@shared/types/common';
 
 interface getPlanetColorByProgress {
-  systemProgressType: string;
+  systemProgressType?: string;
 }
 
 //функция получения цвета для компонета System по переданному типу прогресса системы

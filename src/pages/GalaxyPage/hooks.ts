@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { useAppDispatch } from '@app/providers/store/hooks';
-import { getGalaxy } from '../../entities/galaxy/thunks/getGalaxy';
-import { getUserProgressInGalaxy } from '../../entities/galaxy/thunks/getUserProgressInGalaxy';
-import { useAuth } from '@entities/viewer/hooks/useAuth';
-
 export const useGalaxyWindowSizeDebounce = () => {
     const [windowSizeDebounce, setWindowSizeDebounce] = useState(
         window.innerWidth,
@@ -32,29 +27,4 @@ export const useGalaxyWindowSizeDebounce = () => {
     }, []);
 
     return windowSizeDebounce;
-};
-
-export const useGetAllGalaxyInfoByGalaxyId = (galaxyId: number | undefined) => {
-    const dispatch = useAppDispatch();
-
-    const { role } = useAuth();
-
-    useEffect(() => {
-        dispatch(
-            getGalaxy({
-                galaxyId: Number(galaxyId),
-            }),
-        );
-        //TODO
-
-        if (role === 'KEEPER') return;
-
-        dispatch(
-            getUserProgressInGalaxy({
-                galaxyId: Number(galaxyId),
-            }),
-        );
-        //TODO
-        // dispatch(getExplorerInfo({}));
-    }, []);
 };

@@ -38,7 +38,7 @@ interface SystemInOrbitProps {
     orbitHalfHeight: number;
     elementWidth: number;
     elementHeight: number;
-    userProgress: UserProgressInGalaxy;
+    userProgress?: UserProgressInGalaxy;
     systemStyle?: CSSProperties;
 }
 
@@ -78,19 +78,19 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
         setRandomDestroyClass(randomClass);
     }, [isDestroy]);
 
-    const systemProgressType = getSystemProgressType({
+    const systemProgressType = !!userProgress ? getSystemProgressType({
         system,
         userProgress,
-    });
+    }) : undefined;
 
     const systemColor = getSystemColorByProgressType({
         systemProgressType,
-    });
+    }) ;
 
-    const systemPercentageProgress = getPercentageProgress({
+    const systemPercentageProgress = !!userProgress ? getPercentageProgress({
         system,
         userProgress,
-    });
+    }) : undefined;
 
     const digitalAngle = getDigitalAngle(system.systemPosition);
 
@@ -130,7 +130,7 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
                 <p
                     className={element(
                         'content-system--name',
-                        systemPercentageProgress > 64 ? 'white' : undefined,
+                       systemPercentageProgress && systemPercentageProgress > 64 ? 'white' : undefined,
                     )}
                 >
                     {system.systemName}

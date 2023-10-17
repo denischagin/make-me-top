@@ -23,10 +23,11 @@ import {
     typographyVariant,
 } from '@shared/ui/Typography/interfaces';
 
-import { GalaxyCircleModalProp } from './interface';
+import { GalaxyCircleModalProps } from './interface';
 
 import './style.scss';
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
+import { useAuth } from '@entities/viewer/hooks/useAuth';
 
 export const GalaxyCircleModal = ({
     lastChosenSystem,
@@ -39,15 +40,20 @@ export const GalaxyCircleModal = ({
     courseId,
     isOpen,
     handleChangeSystem,
-}: GalaxyCircleModalProp) => {
+}: GalaxyCircleModalProps) => {
     const [block, element] = bem('galaxy-circle-modal');
     const [activeTab, setActiveTab] = useState(0);
 
-    const systemIsOpen = userProgress.openedSystems.some(
+    const systemIsOpen = userProgress?.openedSystems.some(
         (systemId) => systemId === lastChosenSystem.systemId,
     );
 
-    const { data: explorerProfile } = useGetExplorerProfileQuery();
+    const { role } = useAuth()
+    const isExplorer = role === "EXPLORER"
+
+    const { data: explorerProfile } = useGetExplorerProfileQuery(undefined, {
+        skip: !isExplorer
+    });
 
     return (
         <CircleModal
@@ -80,7 +86,7 @@ export const GalaxyCircleModal = ({
                     <TabPanel>
                         <PlanetList
                             currentPlanet={
-                                explorerProfile?.currentSystem.courseThemeTitle
+                                explorerProfile?.currentSystem?.courseThemeTitle
                             }
                         />
                         <FinalGrade />

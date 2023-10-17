@@ -3,15 +3,16 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { storageKeys } from '@shared/constants/storageKeys';
 import { URL_MMT_STAND } from '@shared/constants/urls';
 import { ErrorInterface } from '@shared/types/common';
+import { AuthResponse } from '@entities/viewer/model/types/api';
 
 export interface ErrorConfigWithRetry extends InternalAxiosRequestConfig {
     _isRetry: boolean;
 }
 
-export const authToken = () => {
+export const getAccessToken = () => {
     const accessToken = localStorage.getItem(storageKeys.accessToken);
 
-    return accessToken ? accessToken : null;
+    return accessToken ?? null;
 };
 
 export const instance = axios.create({
@@ -20,7 +21,7 @@ export const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-    const accessToken = authToken();
+    const accessToken = getAccessToken();
 
     if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
@@ -29,28 +30,35 @@ instance.interceptors.request.use((config) => {
     return config;
 });
 
-// instance.interceptors.response.use(
-//     (config) => config,
-//     async (error: AxiosError<ErrorInterface>) => {
-//         const originalRequest = error.config as ErrorConfigWithRetry;
-//         if (
-//             !originalRequest?._isRetry &&
-//             error.response &&
-//             error.response.status === 401
-//         ) {
-//             originalRequest._isRetry = true;
-//             try {
-//                 const response = await axios.get<any>(URL_MMT_STAND + 'refresh');
+instance.interceptors.response.use(
+    (config) => config,
+    async (error: AxiosError<ErrorInterface>) => {
+        const originalRequest = error.config as ErrorConfigWithRetry;
+        if (
+            !originalRequest?._isRetry &&
+            error.response &&
+            error.response.status === 401
+        ) {
+            originalRequest._isRetry = true;
+            try {
+                const response = await axios.get<AuthResponse>(
+                    URL_MMT_STAND + 'refresh',
+                );
 
-//                 localStorage.setItem(
-//                     storageKeys.tokenAuth,
-//                     JSON.stringify(response.data.accessToken),
-//                 );
+                localStorage.setItem(
+                    storageKeys.accessToken,
+                    response.data.accessToken.accessToken,
+                );
+                localStorage.setItem(
+                    storageKeys.refreshToken,
+                    response.data.refreshToken.refreshToken,
+                );
 
-//                 return instance.request(originalRequest);
-//             } catch {
-//                 localStorage.removeItem(storageKeys.tokenAuth);
-//             }
-//         }
-//     },
-// );
+                return instance.request(originalRequest);
+            } catch {
+                localStorage.removeItem(storageKeys.accessToken);
+                localStorage.removeItem(storageKeys.refreshToken);
+            }
+        }
+    },
+);

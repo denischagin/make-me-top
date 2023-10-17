@@ -29,6 +29,8 @@ import {
     useGetExplorerCardInfoQuery,
     useGetExplorerProfileQuery,
 } from '@entities/explorer/api/api';
+import { useGetAllGalaxiesQuery } from '@entities/galaxy/api/api';
+import Spinner from '@shared/ui/Spinner';
 
 export const Explorer = () => {
     const [block, element] = bem('explorer');
@@ -42,15 +44,7 @@ export const Explorer = () => {
     } = useGetExplorerProfileQuery();
 
     if (isError) return <NotFound />;
-    if (isLoading)
-        return (
-            <>
-                <BackgroundProfile />
-                <div className={block()}>
-                    <Header />
-                </div>
-            </>
-        );
+    if (isLoading) return <Spinner loading />;
 
     return (
         <>

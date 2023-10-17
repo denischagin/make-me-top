@@ -22,10 +22,7 @@ import { Header } from '@widgets/Header';
 import NotFound from '@pages/NotFound';
 
 import { arrowButtonDirection } from '@shared/ui/ArrowButton/interfaces';
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import { useCurrentGalaxy } from './hooks';
@@ -33,10 +30,7 @@ import { useCurrentGalaxy } from './hooks';
 import './style.scss';
 
 const AllGalaxiesPage = () => {
-    const {
-        data: galaxies = [],
-        isError,
-    } = useGetAllGalaxiesQuery();
+    const { data: galaxies = [], isError } = useGetAllGalaxiesQuery();
     const {
         currentGalaxy,
         handleNextGalaxy,
@@ -65,7 +59,7 @@ const AllGalaxiesPage = () => {
     const handleNavigateSystems = () =>
         navigate(URL_GALAXY + `/${currentGalaxy?.galaxyId}`);
 
-    if (isError) return <NotFound errorCode='' />;
+    if (isError) return <NotFound />;
 
     return (
         <div className={block()}>

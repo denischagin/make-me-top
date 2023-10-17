@@ -11,21 +11,18 @@ import loadingReducer from '@entities/loading/model/loadingSlice';
 import { LoadingState } from '@entities/loading/model/types';
 
 import { galaxiesApi } from '@entities/galaxy/api/api';
-import galaxyReducer from '@entities/galaxy/model/slice';
 import { GalaxyState } from '@entities/galaxy/model/types';
 import { explorerApi } from '@entities/explorer/api';
 import { keeperApi } from '@entities/keeper/api';
 
 export type RootState = {
     user: UserState;
-    galaxies: GalaxyState;
     loading: LoadingState;
     viewer: ViewerState;
 };
 
 const rootReducer = combineReducers({
     user: userReducer,
-    galaxies: galaxyReducer,
     loading: loadingReducer,
     viewer: viewerReducer,
     [galaxiesApi.reducerPath]: galaxiesApi.reducer,

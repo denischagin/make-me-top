@@ -13,7 +13,10 @@ import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { URL_EXPLORER, getUrlExplorerById } from '@shared/constants/links';
 import { CONFIRM_CANCEL_STUDYING_REQUEST } from '@shared/constants/modalTitles';
-import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toasts';
+import {
+    TOAST_SUCCESS_APPROVED,
+    TOAST_SUCCESS_REJECTED,
+} from '@shared/constants/toasts';
 
 import { EducationApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
@@ -27,7 +30,10 @@ import {
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
-import { useAcceptOrRejectCourseRequestMutation } from '@entities/keeper/api/api';
+import {
+    useAcceptCourseRequestMutation,
+    useRejectCourseRequestMutation,
+} from '@entities/keeper/api/api';
 import { useStatus } from '@shared/utils/hooks/use-status';
 
 export const EducationApplicationCard = (
@@ -38,16 +44,22 @@ export const EducationApplicationCard = (
     const [block, element] = bem('application-education-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
 
-    const [acceptOrRejectCourseRequest, { isSuccess }] =
-        useAcceptOrRejectCourseRequestMutation();
+    const [accessCourse, { isSuccess: isSuccessAccess }] =
+        useAcceptCourseRequestMutation();
+    const [rejectCourse, { isSuccess: isSuccessReject }] =
+        useRejectCourseRequestMutation();
 
     useStatus(() => {
         toast(TOAST_SUCCESS_REJECTED, {
             icon: '😔',
         });
-        setIsAcceptModalOpen(false);
-    }, isSuccess);
+    }, isSuccessReject);
 
+    useStatus(() => {
+        toast(TOAST_SUCCESS_APPROVED, {
+            icon: '😔',
+        });
+    }, isSuccessAccess);
     return (
         <div className={block()}>
             {isAcceptModalOpen && (
@@ -57,11 +69,8 @@ export const EducationApplicationCard = (
                     submitButtonTitle='Да, я уверен'
                     onClose={() => setIsAcceptModalOpen(false)}
                     onSubmit={() =>
-                        acceptOrRejectCourseRequest({
+                        rejectCourse({
                             requestId: user.requestId,
-                            rejection: {
-                                approved: false,
-                            },
                         })
                     }
                 />
@@ -99,7 +108,9 @@ export const EducationApplicationCard = (
                                 onClick={() => setIsAcceptModalOpen(true)}
                             />
                             <RouterLink
-                                to={getUrlExplorerById(user?.personId.toString())}
+                                to={getUrlExplorerById(
+                                    user?.personId.toString(),
+                                )}
                             >
                                 <Button
                                     title={'Принять'}

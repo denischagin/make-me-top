@@ -147,6 +147,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     }, [activeSystemsIds]);
 
     useEffect(() => {
+        if (!userProgress) return
+
         setLastChosenSystem({
             ...lastChosenSystem,
             isLocked: isSystemLocked(userProgress, lastChosenSystem),

@@ -9,11 +9,11 @@ import {
     UserProgressInGalaxy,
 } from '@entities/galaxy/model/types';
 
-export interface GalaxyCircleModalProp {
+export interface GalaxyCircleModalProps {
 	onClose: () => void;
 	you: CourseExplorer;
 	lastChosenSystem: LastChosenSystem;
-	userProgress: UserProgressInGalaxy;
+	userProgress?: UserProgressInGalaxy;
 	yourKeeper: CourseKeeper;
 	keepers: CourseKeeper[] | null;
 	explorers: CourseExplorer[] | null;

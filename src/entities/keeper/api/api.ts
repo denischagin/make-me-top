@@ -8,16 +8,29 @@ import {
     KeeperFilterResponseInterface,
     KeeperProfileResponseInterface,
 } from '@entities/keeper/model/types/api';
+import toast from 'react-hot-toast';
+import {
+    TOAST_SUCCESS_APPROVED,
+    TOAST_SUCCESS_REJECTED,
+} from '@shared/constants/toastTitles';
+
+const {
+    getExplorerCardInfo,
+    getKeeperCabinet,
+    getAllKeepers,
+    getKeeperCardInfo,
+} = queryTags;
 
 export const keeperApi = createApi({
     reducerPath: 'keeperApi',
     baseQuery: baseQueryWithAuth,
     tagTypes: [
-        queryTags.getKeeperCabinet,
-        queryTags.getKeeperCardInfo,
-        queryTags.getAllKeepers,
+        getKeeperCabinet,
+        getKeeperCardInfo,
+        getAllKeepers,
+        getExplorerCardInfo,
     ],
-    refetchOnMountOrArgChange: true,
+    refetchOnMountOrArgChange: 1,
     endpoints: (builder) => ({
         getKeeperProfile: builder.query<KeeperProfileResponseInterface, void>({
             query: () => ({
@@ -27,24 +40,60 @@ export const keeperApi = createApi({
                 result
                     ? [
                           {
-                              type: queryTags.getKeeperCabinet,
+                              type: getKeeperCabinet,
                               id: result.person.personId,
                           },
-                          queryTags.getKeeperCabinet,
+                          getKeeperCabinet,
                       ]
-                    : [queryTags.getKeeperCabinet],
+                    : [getKeeperCabinet],
         }),
 
-        acceptOrRejectCourseRequest: builder.mutation<
+        acceptCourseRequest: builder.mutation<
+            ErrorInterface,
+            RejectCourseInterface
+        >({
+            query: ({ requestId }) => ({
+                url: `course-registration-app/course-requests/${requestId}`,
+                data: {
+                    rejection: {
+                        approved: false,
+                    },
+                    requestId,
+                } as RejectCourseInterface,
+                method: 'PATCH',
+            }),
+            onQueryStarted: (_, { queryFulfilled }) => {
+                queryFulfilled.then(() => {
+                    toast(TOAST_SUCCESS_APPROVED, {
+                        icon: '🤩',
+                    });
+                });
+            },
+            invalidatesTags: [getExplorerCardInfo],
+        }),
+
+        rejectCourseRequest: builder.mutation<
             ErrorInterface,
             RejectCourseInterface
         >({
             query: ({ rejection, requestId }) => ({
                 url: `course-registration-app/course-requests/${requestId}`,
-                data: rejection,
+                data: {
+                    rejection: {
+                        approved: false,
+                    },
+                    requestId,
+                } as RejectCourseInterface,
                 method: 'PATCH',
             }),
-            invalidatesTags: [queryTags.getKeeperCabinet],
+            onQueryStarted: (_, { queryFulfilled }) => {
+                queryFulfilled.then(() => {
+                    toast(TOAST_SUCCESS_REJECTED, {
+                        icon: '😔',
+                    });
+                });
+            },
+            invalidatesTags: [getExplorerCardInfo],
         }),
 
         getAllKeepers: builder.query<KeeperFilterResponseInterface[], void>({
@@ -52,7 +101,7 @@ export const keeperApi = createApi({
                 url: `person-app/people`,
                 params: { as: 'keeper' },
             }),
-            providesTags: [queryTags.getAllKeepers],
+            providesTags: [getAllKeepers],
         }),
 
         getKeeperCardInfo: builder.query<
@@ -65,14 +114,15 @@ export const keeperApi = createApi({
                     as: 'keeper',
                 },
             }),
-            providesTags: [queryTags.getKeeperCardInfo],
+            providesTags: [getKeeperCardInfo],
         }),
     }),
 });
 
 export const {
     useGetKeeperProfileQuery,
-    useAcceptOrRejectCourseRequestMutation,
+    useAcceptCourseRequestMutation,
+    useRejectCourseRequestMutation,
     useGetAllKeepersQuery,
     useGetKeeperCardInfoQuery,
 } = keeperApi;

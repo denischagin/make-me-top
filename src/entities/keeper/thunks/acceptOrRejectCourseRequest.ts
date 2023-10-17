@@ -25,7 +25,7 @@ export interface RejectCoursePayloadInterface {
 
 export interface RejectCourseInterface {
     requestId: number;
-    rejection: RejectCoursePayloadInterface;
+    rejection?: RejectCoursePayloadInterface;
 }
 
 export const acceptOrRejectCourseRequest = createAsyncThunk<
@@ -45,7 +45,7 @@ export const acceptOrRejectCourseRequest = createAsyncThunk<
             rejection,
         );
 
-        if (payload.rejection.approved) {
+        if (payload.rejection?.approved) {
             toast(TOAST_SUCCESS_APPROVED, {
                 icon: '🤩',
             });

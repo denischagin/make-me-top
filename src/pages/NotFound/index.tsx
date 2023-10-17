@@ -12,9 +12,11 @@ import {
 } from '@shared/ui/Typography/interfaces';
 
 import './style.scss';
+import { NotFoundProps } from '@pages/NotFound/interface';
 
 const NotFound = ({
-}: { errorCode?: number | string }) => {
+    errorMessage = "Это еще неизведанная часть космоса"
+}: NotFoundProps) => {
     const [block, element] = bem('not-found');
 
     return (
@@ -28,7 +30,7 @@ const NotFound = ({
                             variant={typographyVariant.h1}
                             color={typographyColor.white}
                         >
-                            Это еще неизведанная часть космоса
+                           {errorMessage} 
                         </Typography>
                     </div>
                 </Container>

@@ -22,7 +22,7 @@ export const ModalAlert = (props: ModalAlertInterface) => {
             <div className={element('title')}>{title}</div>
             {title === ModalAccessStatus.closed_needSystems && (
                 <RequiredSystemsList
-                    list={dependencies}
+                    systemList={dependencies}
                     handleChangeSystem={handleChangeSystem}
                 />
             )}

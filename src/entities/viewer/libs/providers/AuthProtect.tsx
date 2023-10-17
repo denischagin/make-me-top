@@ -22,7 +22,7 @@ const logout = (navigate: NavigateFunction, handleLogout: () => void) => {
 export const AuthProtect = ({ children }: AuthProtectProps) => {
     const [refresh, { isSuccess, isError, data: tokens }] =
         useRefreshMutation();
-    const { handleLogin, handleLogout, isAuth } = useAuth();
+    const { handleLogout, isAuth } = useAuth();
 
     const navigate = useNavigate();
 
@@ -34,15 +34,6 @@ export const AuthProtect = ({ children }: AuthProtectProps) => {
 
         refresh(refreshToken);
     }, []);
-
-    useStatus(() => {
-        const loginData: UseAuthLoginData = {
-            accessToken: tokens?.accessToken,
-            refreshToken: tokens?.refreshToken,
-            role: tokens?.role,
-        };
-        handleLogin(loginData);
-    }, isSuccess);
 
     useStatus(() => {
         logout(navigate, handleLogout);

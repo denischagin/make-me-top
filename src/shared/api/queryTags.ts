@@ -3,7 +3,7 @@ export const queryTags = {
     getExplorerCardInfo: 'getExplorerCardInfo',
     getAllExplorers: 'getAllExplorers',
 
-    getAllKeepers: 'getAllExplorers',
+    getAllKeepers: 'getAllKeepers',
     getKeeperCardInfo: 'getKeeperCardInfo',
     getKeeperCabinet: 'getKeeperCabinet',
 } as const;

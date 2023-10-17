@@ -16,23 +16,14 @@ export const explorerApi = createApi({
         queryTags.getExplorerCardInfo,
         queryTags.getAllExplorers,
     ],
-    refetchOnMountOrArgChange: true,
+    refetchOnMountOrArgChange: 1,
     endpoints: (builder) => ({
         getExplorerProfile: builder.query<ExplorerInfoResponseInterface, void>({
             query: () => ({
                 url: 'person-app/people/explorer-profile',
             }),
-            
-            providesTags: (result) =>
-                result
-                    ? [
-                          {
-                              type: queryTags.getExplorerCabinet,
-                              id: result.person.personId,
-                          },
-                          queryTags.getExplorerCabinet,
-                      ]
-                    : [queryTags.getExplorerCabinet],
+
+            providesTags: [queryTags.getExplorerCabinet],
         }),
 
         closeCourseRequest: builder.mutation<ErrorInterface, number>({
@@ -79,7 +70,6 @@ export const explorerApi = createApi({
 
 export const {
     useGetExplorerProfileQuery,
-    useLazyGetExplorerProfileQuery,
     useCloseCourseRequestMutation,
     usePostCourseRequestMutation,
     useGetAllExplorersQuery,

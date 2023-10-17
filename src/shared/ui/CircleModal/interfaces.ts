@@ -11,7 +11,7 @@ export interface ModalInterface {
     isLocked?: boolean;
     data?: {
         lastChosenSystem: LastChosenSystem,
-        userProgress: UserProgressInGalaxy,
+        userProgress?: UserProgressInGalaxy,
     };
     children: ReactNode;
     onClose: () => void;

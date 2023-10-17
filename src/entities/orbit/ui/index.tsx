@@ -17,11 +17,11 @@ import SystemInOrbit from './SystemInOrbit';
 import './styles.scss';
 
 interface IOrbitProps {
-    userProgress: UserProgressInGalaxy;
     systemList: Array<SystemType>;
     orbitWidth: number;
     orbitHeight: number;
     systemStyle?: React.CSSProperties;
+    userProgress?: UserProgressInGalaxy;
     handleSystemClick: (event: React.MouseEvent<HTMLDivElement>) => void;
     handleSystemMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
     handleSystemMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;

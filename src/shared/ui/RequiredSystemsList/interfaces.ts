@@ -1,8 +1,6 @@
-import {
-    SystemDependencyType,
-} from '@entities/galaxy/model/types';
+import { SystemDependencyType } from '@entities/galaxy/model/types';
 
 export interface RequiredSystemsListInterface {
-    list: Array<SystemDependencyType> | undefined;
-    handleChangeSystem?: (systemId: number) => void
+    systemList?: SystemDependencyType[];
+    handleChangeSystem?: (systemId: number) => void;
 }

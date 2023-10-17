@@ -32,11 +32,13 @@ export const Reviews = ({ reviews }: ReviewsProps) => {
             >
                 Отзывы
             </Typography>
+
             <div className={element('cards')}>
                 {feedback.slice(0, limitElements)?.map((item) => (
                     <ReviewCard key={item.courseId} review={item} />
                 ))}
             </div>
+
             <ShowMoreElemenetsButton
                 setElementsLimit={setElementsLimit}
                 elementsLength={feedback.length}

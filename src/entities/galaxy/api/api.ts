@@ -1,17 +1,10 @@
-import toast from 'react-hot-toast';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { AxiosError } from 'axios';
+import { createApi } from '@reduxjs/toolkit/query/react';
 
-import { noAuthHandler } from '@shared/utils/helpers/noAuthHandler';
-
-import { instance } from '@shared/api/instances';
-
-import { URL_MMT_STAND } from '@shared/constants/urls';
-
-import { ErrorInterface } from '@shared/types/common';
-
-import { GalaxyForGetAll } from '../model/types';
-import { DEFAULT_ERROR_MESSAGE } from '@shared/constants/error';
+import {
+    GalaxyForGetAll,
+    GalaxyResponseInterface,
+    GetUserProgressInGalaxyResponse,
+} from '../model/types';
 import { baseQueryWithAuth } from '@shared/api';
 
 export const galaxiesApi = createApi({
@@ -25,7 +18,26 @@ export const galaxiesApi = createApi({
                 params: { detailed: true },
             }),
         }),
+
+        getGalaxy: builder.query<GalaxyResponseInterface, number>({
+            query: (galaxyId) => ({
+                url: `galaxy-app/galaxies/${galaxyId}`,
+            }),
+        }),
+
+        getUserProgressInGalaxy: builder.query<
+            GetUserProgressInGalaxyResponse,
+            number
+        >({
+            query: (galaxyId) => ({
+                url: `progress-app/galaxies/${galaxyId}`,
+            }),
+        }),
     }),
 });
 
-export const { useGetAllGalaxiesQuery } = galaxiesApi;
+export const {
+    useGetAllGalaxiesQuery,
+    useGetGalaxyQuery,
+    useGetUserProgressInGalaxyQuery,
+} = galaxiesApi;

@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
 export interface SystemInterface {
-  color: systemColor,
   children: ReactNode,
+  color?: systemColor,
   percentageProgress?: number,
 }
 
