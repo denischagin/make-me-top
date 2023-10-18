@@ -1,9 +1,15 @@
 export const queryTags = {
-    getExplorerCabinet: 'getExplorerCabinet',
+    getExplorerProfile: 'getExplorerProfile',
     getExplorerCardInfo: 'getExplorerCardInfo',
     getAllExplorers: 'getAllExplorers',
 
     getAllKeepers: 'getAllKeepers',
     getKeeperCardInfo: 'getKeeperCardInfo',
-    getKeeperCabinet: 'getKeeperCabinet',
+    getKeeperProfile: 'getKeeperProfile',
+
+    getAllGalaxies: 'getAllGalaxies',
+    getExplorerProgressByExplorerId: 'getExplorerProgressByExporerId',
+    getPlanetsBySystemId: 'getPlanetsBySystemId',
+    getCourseInfoByCourseId: 'getCourseInfoByCourseId',
+    getSystemsBySystemId: 'getSystemsBySystemId',
 } as const;

@@ -4,7 +4,7 @@ import { Navigate, NavigateFunction, useNavigate } from 'react-router-dom';
 import { URL_LOGIN } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
 import { queryParams } from '@shared/constants';
-import { useRefreshMutation } from '@entities/viewer/model/api';
+import { useRefreshMutation } from '@entities/viewer/api/api';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import Spinner from '@shared/ui/Spinner';
 import { UseAuthLoginData, useAuth } from '@entities/viewer/hooks/useAuth';

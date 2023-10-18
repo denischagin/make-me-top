@@ -6,21 +6,16 @@ import { AppDispatch } from '@app/providers/store';
 import { roles } from '@shared/constants/storageKeys';
 
 export interface StudiedSystems {
-    systemId: number,
-    progress: number,
+    systemId: number;
+    progress: number;
 }
 
 export interface PostUser {
-    username: string
+    username: string;
 }
 
 export interface UserState {
-    isLoading: boolean,
-    isSuccess: boolean,
-    isError: boolean,
-    isRegistered: boolean;
     isModalOpen: boolean;
-    planetList: Array<ModalPlanetInterface>;
     courseInfo: CourseInfoInterface;
 }
 
@@ -31,19 +26,19 @@ export interface ModalPlanetInterface {
 }
 
 export interface userDataInterface {
-    login: string
-    password: string
-    role: roles
+    login: string;
+    password: string;
+    role: roles;
 }
 
 export interface AuthLoginInterface {
-    payload: userDataInterface
-    callback: () => void
+    payload: userDataInterface;
+    callback: () => void;
     // dispatch: any
 }
 
 export interface CourseInfoInterface {
-    course: Course;
+    course?: Course;
     you: CourseExplorer;
     yourKeeper: CourseKeeper;
     explorers: Array<CourseExplorer> | null;

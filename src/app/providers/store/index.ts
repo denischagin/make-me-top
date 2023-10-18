@@ -1,8 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
 
-import viewerReducer, { viewerApi } from '@entities/viewer';
-import { ViewerState } from '@entities/viewer';
+import viewerReducer, { viewerApi, ViewerState } from '@entities/viewer';
 
 import userReducer from '@entities/user/model/slice';
 import { UserState } from '@entities/user/model/types';
@@ -14,6 +12,7 @@ import { galaxiesApi } from '@entities/galaxy/api/api';
 import { GalaxyState } from '@entities/galaxy/model/types';
 import { explorerApi } from '@entities/explorer/api';
 import { keeperApi } from '@entities/keeper/api';
+import { baseApi } from '@shared/api/baseApi';
 
 export type RootState = {
     user: UserState;
@@ -29,6 +28,7 @@ const rootReducer = combineReducers({
     [viewerApi.reducerPath]: viewerApi.reducer,
     [explorerApi.reducerPath]: explorerApi.reducer,
     [keeperApi.reducerPath]: keeperApi.reducer,
+    [baseApi.reducerPath]: baseApi.reducer,
 });
 
 export type AppDispatch = typeof store.dispatch;
@@ -41,6 +41,7 @@ const store = configureStore({
             viewerApi.middleware,
             explorerApi.middleware,
             keeperApi.middleware,
+            baseApi.middleware,
         ]),
 });
 

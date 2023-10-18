@@ -1,36 +1,21 @@
 import { useState } from 'react';
-import toast from 'react-hot-toast';
-import { TabPanel } from 'react-tabs';
 import { Button } from '@shared/ui/Button';
 import { Card } from '@shared/ui/Card';
-import { CircleModal } from '@shared/ui/CircleModal';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
-import { DividingLine } from '@shared/ui/DividingLine';
-import { FinalGrade } from '@shared/ui/FinalGrade';
-import { MmtTabs } from '@shared/ui/MmtTabs';
-import { PlanetList } from '@shared/ui/PlanetList';
 import { Typography } from '@shared/ui/Typography';
-import { UsersList } from '@shared/ui/UsersList';
 
 import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
-
-import { CurrentUserItem } from '@entities/user';
 
 import {
     userCourseInfoSelector,
     userIsModalOpenSelector,
 } from '@entities/user/model/selectors';
 import { closeModal, showModal } from '@entities/user/model/slice';
-import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
-import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
-
-import { leaveCourseRequest } from '@entities/explorer/thunks/leaveCourseRequest';
 
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { CONFIRM_CANCEL_LEARNING } from '@shared/constants/modalTitles';
-import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toastTitles';
 
 import { ProgressBar } from '@widgets/ProgressBar';
 import { SelectSystem } from '@widgets/SelectSystem';
@@ -38,31 +23,35 @@ import { SelectSystem } from '@widgets/SelectSystem';
 import { CurrentSystemCardInterface } from './interfaces';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
-import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
 import {
     typographyColor,
     typographyVariant,
 } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
-import { DEFAULT_ERROR_MESSAGE } from '@shared/constants/error';
-import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
+import {
+    useGetExplorerProfileQuery,
+    useLeaveCourseRequestByExplorerIdMutation,
+} from '@entities/explorer/api/api';
+import { CircleModalWithGalaxy } from '@entities/galaxy/ui/CircleModalWithGalaxy';
 
 export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     const { tabsList = [] } = props;
 
     const [block, element] = bem('current-system-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
-    const [activeTab, setActiveTab] = useState(0);
 
     const dispatch = useAppDispatch();
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
-    const courseInfo = useAppSelector(userCourseInfoSelector);
 
+    //TODO
+    // const courseInfo = useAppSelector(userCourseInfoSelector);
 
     const { data: userInfo, isSuccess } = useGetExplorerProfileQuery();
+    const [leaveCourseRequest] = useLeaveCourseRequestByExplorerIdMutation();
 
-    const { course, you, yourKeeper, explorers, keepers } = courseInfo;
+    // const { course, you, yourKeeper, explorers, keepers } = courseInfo;
+    // const [activeTab, setActiveTab] = useState(0);
 
     if (!userInfo?.currentSystem && !userInfo?.studyRequest) {
         return <SelectSystem />;
@@ -71,13 +60,13 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     if (userInfo?.studyRequest || !isSuccess) {
         return null;
     }
-    const { currentSystem,  } = userInfo;
+    const { currentSystem } = userInfo;
 
     return (
         <div className={block()}>
-            <CircleModal
+            {/* <CircleModal
                 isOpen={isModalOpen}
-                header={courseInfo.course.title}
+                header={courseInfo.course?.title!}
                 onClose={() => dispatch(closeModal())}
             >
                 <MmtTabs
@@ -86,7 +75,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                     setActiveTab={setActiveTab}
                 >
                     <TabPanel>
-                        <PlanetList currentPlanet={course.title} />
+                        <PlanetList currentPlanet={course?.title!} />
                         <FinalGrade />
                     </TabPanel>
                     <TabPanel>
@@ -106,7 +95,12 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                         <UsersList keepersList={keepers} />
                     </TabPanel>
                 </MmtTabs>
-            </CircleModal>
+            </CircleModal> */}
+            <CircleModalWithGalaxy
+                handleClose={() => dispatch(closeModal())}
+                isOpen={isModalOpen}
+                currentSystemId={currentSystem.courseId}
+            />
             {isAcceptModalOpen && (
                 <ConfirmModal
                     confitmTitle={CONFIRM_CANCEL_LEARNING}
@@ -114,24 +108,8 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                     submitButtonTitle='Да, я уверен'
                     onClose={() => setIsAcceptModalOpen(false)}
                     onSubmit={() => {
-                        dispatch(
-                            leaveCourseRequest({
-                                payload: {
-                                    explorerId: currentSystem?.explorerId,
-                                },
-                                onSuccess: () => {
-                                    toast(TOAST_SUCCESS_REJECTED, {
-                                        icon: '😔',
-                                    });
-                                    setIsAcceptModalOpen(false);
-                                },
-                                onError: (err) => {
-                                    toast(DEFAULT_ERROR_MESSAGE, {
-                                        icon: '😔',
-                                    });
-                                },
-                            }),
-                        );
+                        leaveCourseRequest(currentSystem?.explorerId);
+                        setIsAcceptModalOpen(false);
                     }}
                 />
             )}
@@ -180,16 +158,16 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                         color={buttonColor.filled}
                         title='Продолжить'
                         onClick={() => {
-                            dispatch(
-                                getModalPlanets({
-                                    planetId: currentSystem?.courseId,
-                                }),
-                            );
-                            dispatch(
-                                getCourseInfo({
-                                    courseId: currentSystem?.courseId,
-                                }),
-                            );
+                            // dispatch(
+                            //     getModalPlanets({
+                            //         planetId: currentSystem?.courseId,
+                            //     }),
+                            // );
+                            // dispatch(
+                            //     getCourseInfo({
+                            //         courseId: currentSystem?.courseId,
+                            //     }),
+                            // );
                             dispatch(showModal());
                         }}
                     />

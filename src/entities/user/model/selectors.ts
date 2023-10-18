@@ -9,11 +9,6 @@ export const userIsModalOpenSelector = createSelector(
     (userState) => userState.isModalOpen,
 );
 
-export const userPlanetListSelector = createSelector(
-    userState,
-    (userState) => userState.planetList,
-);
-
 export const userCourseInfoSelector = createSelector(
     userState,
     (userState) => userState.courseInfo,

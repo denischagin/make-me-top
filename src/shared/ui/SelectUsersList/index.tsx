@@ -59,8 +59,6 @@ export const SelectUsersList = (props: UserListInterface) => {
 
         const keeperIds = selectedUsers.map((user) => user.keeperId);
 
-        console.log(courseId!, keeperIds);
-
         postCourseRequest({
             courseId: courseId as number,
             keeperIds: keeperIds,

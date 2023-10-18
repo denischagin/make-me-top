@@ -1,4 +1,4 @@
-import { viewerApi } from '@entities/viewer/model/api';
+import { viewerApi } from '@entities/viewer/api/api';
 import { ViewerState } from '@entities/viewer/model/types';
 import { AuthResponse } from '@entities/viewer/model/types/api';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
@@ -16,7 +16,10 @@ export const viewerSlice = createSlice({
     initialState,
     reducers: {
         logout: (state) => {
-            state = initialState;
+            state.isAuth = false;
+            state.role = null;
+            state.accessToken = null;
+            state.refreshToken = null;
         },
         login: (state, { payload }: PayloadAction<AuthResponse>) => {
             state.isAuth = true;
@@ -25,20 +28,6 @@ export const viewerSlice = createSlice({
             state.refreshToken = payload.refreshToken.refreshToken;
         },
     },
-    // extraReducers: (builder) =>
-    //     builder
-    //         .addMatcher(
-    //             viewerApi.endpoints.refresh.matchFulfilled,
-    //             (state, { payload }) => {
-    //                 state.isAuth = true;
-    //                 state.role = payload.role;
-    //                 state.accessToken = payload.accessToken.accessToken;
-    //                 state.refreshToken = payload.refreshToken.refreshToken;
-    //             },
-    //         )
-    //         .addMatcher(viewerApi.endpoints.refresh.matchPending, (state) => {
-    //             state = initialState;
-    //         }),
 });
 
 export default viewerSlice.reducer;

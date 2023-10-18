@@ -1,5 +1,9 @@
 import { ErrorInterface } from '@shared/types/common';
-import { KeeperCardInfoInterface, KeeperInfoInterface, KeepersFilterInterface } from './interfaces';
+import {
+    KeeperCardInfoInterface,
+    KeeperInfoInterface,
+    KeepersFilterInterface,
+} from './interfaces';
 
 export interface RejectCoursePayloadInterface {
     approved: boolean;
@@ -7,7 +11,7 @@ export interface RejectCoursePayloadInterface {
 
 export interface RejectCourseInterface {
     requestId: number;
-    rejection: RejectCoursePayloadInterface;
+    rejection?: RejectCoursePayloadInterface;
 }
 
 export interface KeeperFilterResponseInterface

@@ -94,3 +94,22 @@ export interface GalaxyResponseInterface extends GalaxyState, ErrorInterface {}
 export interface GetUserProgressInGalaxyResponse
     extends UserProgressInGalaxy,
         ErrorInterface {}
+
+export interface GetSystemsBySystemIdAgruments {
+    withDependencies: boolean;
+    systemId: number;
+}
+
+export interface GetSystemsBySystemIdResponse extends SystemType {}
+
+export interface ProgressPlanetInterface {
+    courseThemeId: number;
+    title: string;
+    completed: boolean;
+}
+
+export interface GetExplorerProgressByExplorerIdResponse {
+    courseId: number;
+    title: string;
+    planets: ProgressPlanetInterface[];
+}

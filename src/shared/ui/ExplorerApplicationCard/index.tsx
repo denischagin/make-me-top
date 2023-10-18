@@ -4,10 +4,6 @@ import { Card } from '@shared/ui/Card';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppDispatch } from '@app/providers/store/hooks';
-
-import { acceptOrRejectCourseRequest } from '@entities/keeper/thunks/acceptOrRejectCourseRequest';
-
 import { bem } from '@shared/utils/helpers/bem';
 
 import { CONFIRM_CANCEL_TEACHING } from '@shared/constants/modalTitles';
@@ -23,12 +19,6 @@ import {
     useAcceptCourseRequestMutation,
     useRejectCourseRequestMutation,
 } from '@entities/keeper/api/api';
-import { useStatus } from '@shared/utils/hooks/use-status';
-import {
-    TOAST_SUCCESS_APPROVED,
-    TOAST_SUCCESS_REJECTED,
-} from '@shared/constants/toasts';
-import toast from 'react-hot-toast';
 
 export const ExplorerApplicationCard = () => {
     const [block, element] = bem('explorer-application-card');

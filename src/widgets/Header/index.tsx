@@ -11,7 +11,7 @@ import { storageKeys } from '@shared/constants/storageKeys';
 import { HeaderInterface, HeaderLinkInterface } from './interfaces';
 
 import './styles.scss';
-import { useLogoutMutation } from '@entities/viewer/model/api';
+import { useLogoutMutation } from '@entities/viewer/api/api';
 import { useAuth } from '@entities/viewer/hooks/useAuth';
 import { useAppDispatch } from '@app/providers/store/hooks';
 import { logout } from '@entities/viewer/model/slice';
@@ -28,8 +28,7 @@ export const Header = (props: HeaderInterface) => {
     const handleLogout = () => {
         logoutMutation(refreshToken!);
         dispatch(logout());
-        localStorage.removeItem(storageKeys.accessToken);
-        localStorage.removeItem(storageKeys.refreshToken);
+        
     };
 
     return (

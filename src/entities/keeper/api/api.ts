@@ -1,36 +1,27 @@
-import { createApi } from '@reduxjs/toolkit/dist/query/react';
-import { baseQueryWithAuth } from '@shared/api';
 import { queryTags } from '@shared/api/queryTags';
 import { ErrorInterface } from '@shared/types/common';
-import { RejectCourseInterface } from '../thunks/acceptOrRejectCourseRequest';
 import {
     KeeperCardInfoResponseInterface,
     KeeperFilterResponseInterface,
     KeeperProfileResponseInterface,
+    RejectCourseInterface,
 } from '@entities/keeper/model/types/api';
 import toast from 'react-hot-toast';
 import {
     TOAST_SUCCESS_APPROVED,
     TOAST_SUCCESS_REJECTED,
 } from '@shared/constants/toastTitles';
+import { baseApi } from '@shared/api/baseApi';
 
 const {
     getExplorerCardInfo,
-    getKeeperCabinet,
+    getKeeperProfile: getKeeperCabinet,
     getAllKeepers,
     getKeeperCardInfo,
 } = queryTags;
 
-export const keeperApi = createApi({
-    reducerPath: 'keeperApi',
-    baseQuery: baseQueryWithAuth,
-    tagTypes: [
-        getKeeperCabinet,
-        getKeeperCardInfo,
-        getAllKeepers,
-        getExplorerCardInfo,
-    ],
-    refetchOnMountOrArgChange: 1,
+export const keeperApi = baseApi.injectEndpoints({
+    overrideExisting: false,
     endpoints: (builder) => ({
         getKeeperProfile: builder.query<KeeperProfileResponseInterface, void>({
             query: () => ({
@@ -54,7 +45,7 @@ export const keeperApi = createApi({
         >({
             query: ({ requestId }) => ({
                 url: `course-registration-app/course-requests/${requestId}`,
-                data: {
+                body: {
                     rejection: {
                         approved: false,
                     },
@@ -78,7 +69,7 @@ export const keeperApi = createApi({
         >({
             query: ({ rejection, requestId }) => ({
                 url: `course-registration-app/course-requests/${requestId}`,
-                data: {
+                body: {
                     rejection: {
                         approved: false,
                     },

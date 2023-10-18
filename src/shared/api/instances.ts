@@ -15,12 +15,17 @@ export const getAccessToken = () => {
     return accessToken ?? null;
 };
 
-export const instance = axios.create({
+export const authInstance = axios.create({
     baseURL: URL_MMT_STAND,
     withCredentials: true,
 });
 
-instance.interceptors.request.use((config) => {
+export const commonInstance = axios.create({
+    baseURL: URL_MMT_STAND,
+    withCredentials: true,
+});
+
+authInstance.interceptors.request.use((config) => {
     const accessToken = getAccessToken();
 
     if (accessToken) {
@@ -30,7 +35,7 @@ instance.interceptors.request.use((config) => {
     return config;
 });
 
-instance.interceptors.response.use(
+authInstance.interceptors.response.use(
     (config) => config,
     async (error: AxiosError<ErrorInterface>) => {
         const originalRequest = error.config as ErrorConfigWithRetry;
@@ -54,7 +59,7 @@ instance.interceptors.response.use(
                     response.data.refreshToken.refreshToken,
                 );
 
-                return instance.request(originalRequest);
+                return authInstance.request(originalRequest);
             } catch {
                 localStorage.removeItem(storageKeys.accessToken);
                 localStorage.removeItem(storageKeys.refreshToken);

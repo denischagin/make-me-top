@@ -16,7 +16,7 @@ export const RequiredSystemsList = (props: RequiredSystemsListInterface) => {
 
     return (
         <div className={block()}>
-            {systemList.map(({ systemId, systemName }) => (
+            {systemList.map(({ systemId, systemName, type }) => (
                 <div key={systemId} className={element('item')}>
                     <div className={element('system')}>
                         <StarIcon className={element('system-icon')} />

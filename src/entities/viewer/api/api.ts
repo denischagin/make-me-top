@@ -6,15 +6,14 @@ import {
     AuthCredentials,
 } from '@entities/viewer/model/types/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { baseQueryWithAuth } from '@shared/api';
+import { baseQuery } from '@shared/api';
 import { storageKeys } from '@shared/constants/storageKeys';
 import { URL_MMT_STAND } from '@shared/constants/urls';
+import { setTokensToLocalStorage } from '@shared/utils/helpers/tokens-local-storage';
 
 export const viewerApi = createApi({
     reducerPath: 'viewerApi',
-    baseQuery: fetchBaseQuery({
-        baseUrl: URL_MMT_STAND,
-    }),
+    baseQuery,
     refetchOnMountOrArgChange: true,
     endpoints: (builder) => ({
         refresh: builder.mutation<AuthResponse, RefreshParams>({
@@ -29,14 +28,10 @@ export const viewerApi = createApi({
                     const { accessToken, refreshToken, role } = data;
 
                     dispatch(login({ accessToken, refreshToken, role }));
-                    localStorage.setItem(
-                        storageKeys.accessToken,
-                        accessToken.accessToken,
-                    );
-                    localStorage.setItem(
-                        storageKeys.refreshToken,
-                        refreshToken.refreshToken,
-                    );
+                    setTokensToLocalStorage({
+                        accessToken: accessToken.accessToken,
+                        refreshToken: refreshToken.refreshToken,
+                    });
                 } catch (error) {}
             },
         }),

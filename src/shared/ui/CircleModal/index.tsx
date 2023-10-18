@@ -38,6 +38,7 @@ export const CircleModal = (props: ModalInterface) => {
 
     const dispatch = useAppDispatch();
 
+    //TODO
     const courseInfo = useAppSelector(userCourseInfoSelector);
 
     useEffect(() => {
@@ -54,11 +55,12 @@ export const CircleModal = (props: ModalInterface) => {
                   courseInfo,
               })
             : ModalAccessStatus.opened;
+
     const notStudiedParentDependencies =
         data && data.userProgress
             ? getNotStudiedParentDependencies({
                   lastChosenSystem: data.lastChosenSystem,
-            userProgress: data.userProgress,
+                  userProgress: data.userProgress,
               })
             : [];
 

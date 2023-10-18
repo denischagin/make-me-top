@@ -7,25 +7,16 @@ import React, {
     useState,
 } from 'react';
 
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '@app/providers/store/hooks';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import {
     userCourseInfoSelector,
     userIsModalOpenSelector,
 } from '@entities/user/model/selectors';
-import {
-    closeModal,
-    toggleModal,
-} from '@entities/user/model/slice';
-import { getCourseInfo } from '@entities/user/thunks/getCourseInfo';
-import { getModalPlanets } from '@entities/user/thunks/getModalPlanets';
+import { closeModal, toggleModal } from '@entities/user/model/slice';
 
 import { addActiveSystem } from '@entities/galaxy/lib/addActiveSystem';
 import { deleteAllConnectionLines } from '@entities/galaxy/lib/deleteAllConnectionLines';
-import { fetchAndSetLastChosenSystem } from '@entities/galaxy/lib/fetchAndSetLastChosenSystem';
 import { isSystemLocked } from '@entities/galaxy/lib/isSystemLocked';
 import { setSystemsActivityToActive } from '@entities/galaxy/lib/setSystemActivityToActive';
 import { setSystemsActivityToInactive } from '@entities/galaxy/lib/setSystemActivityToInactive';
@@ -55,9 +46,9 @@ import { SystemProgressTypes } from '@shared/types/common';
 
 import { useLinesSvgContainer } from '../lib/hooks';
 
-import { GalaxyCircleModal } from './GalaxyCircleModal';
-
 import './style.scss';
+import { CircleModalWithGalaxy } from '@entities/galaxy/ui/CircleModalWithGalaxy';
+import { useParams } from 'react-router-dom';
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const {
@@ -69,22 +60,14 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         height,
         systemWidth,
     } = props;
+    const { galaxyId } = useParams();
 
     const width = fullWidth > 1920 ? 1920 : fullWidth;
 
     const [block, element] = bem('galaxy');
 
     const dispatch = useAppDispatch();
-    const courseInfo = useAppSelector(userCourseInfoSelector);
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
-
-    const {
-        course,
-        you,
-        yourKeeper,
-        explorers,
-        keepers,
-    } = courseInfo;
 
     const [systems, setSystems] = useState<NodeListOf<HTMLDivElement>>(
         document.querySelectorAll(`.${SYSTEM_CLASS}`),
@@ -93,6 +76,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const [lastChosenSystem, setLastChosenSystem] = useState<LastChosenSystem>({
         ...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
     });
+    const [lastChosenSystemId, setLastChosenSystemId] = useState<
+        number | null
+    >();
 
     //что бы последняя орбита с планетами не была 0x0, уменьшаем шаг между орбитами,
     //увеличив кол-во орбит в подсчетах на 1
@@ -147,7 +133,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     }, [activeSystemsIds]);
 
     useEffect(() => {
-        if (!userProgress) return
+        if (!userProgress) return;
 
         setLastChosenSystem({
             ...lastChosenSystem,
@@ -225,25 +211,27 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                 ...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
             });
 
-            dispatch(toggleModal());
-            dispatch(
-                getModalPlanets({
-                    planetId: targetId,
-                }),
-            );
-            dispatch(
-                getCourseInfo({
-                    courseId: targetId,
-                }),
-            );
+            setLastChosenSystemId(targetId);
 
-            dispatch(
-                fetchAndSetLastChosenSystem({
-                    id: targetId,
-                    withDependencies: true,
-                    setLastChosenSystem,
-                }),
-            );
+            dispatch(toggleModal());
+            // dispatch(
+            //     getModalPlanets({
+            //         planetId: targetId,
+            //     }),
+            // );
+            // dispatch(
+            //     getCourseInfo({
+            //         courseId: targetId,
+            //     }),
+            // );
+
+            // dispatch(
+            //     fetchAndSetLastChosenSystem({
+            //         id: targetId,
+            //         withDependencies: true,
+            //         setLastChosenSystem,
+            //     }),
+            // );
         },
         [],
     );
@@ -253,24 +241,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             ...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
         });
 
-        dispatch(
-            getModalPlanets({
-                planetId: systemId,
-            }),
-        );
-        dispatch(
-            getCourseInfo({
-                courseId: systemId,
-            }),
-        );
-
-        dispatch(
-            fetchAndSetLastChosenSystem({
-                id: systemId,
-                withDependencies: true,
-                setLastChosenSystem,
-            }),
-        );
+        setLastChosenSystemId(systemId);
     };
 
     const handleCloseModal = useCallback(
@@ -288,7 +259,14 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                 height,
             }}
         >
-            <GalaxyCircleModal
+            <CircleModalWithGalaxy
+                isOpen={isModalOpen}
+                handleClose={handleCloseModal}
+                currentSystemId={lastChosenSystemId}
+                handleChangeSystem={handleChangeSystem}
+                galaxyId={Number(galaxyId)}
+            />
+            {/* <GalaxyCircleModal
                 isOpen={isModalOpen}
                 courseId={courseId}
                 explorers={explorers}
@@ -299,7 +277,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                 you={you}
                 yourKeeper={yourKeeper}
                 handleChangeSystem={handleChangeSystem}
-            />
+            /> */}
             <div
                 className={element('background')}
                 style={{

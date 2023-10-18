@@ -28,11 +28,12 @@ const Profile = lazy(() => import('@pages/Profile'));
 const NotFound = lazy(() => import('@pages/NotFound'));
 const AllGalaxiesPage = lazy(() => import('@pages/AllGalaxiesPage'));
 
+export type RouteStatusType = 'protected' | 'auth';
+
 interface RouteInterface {
     path: string;
     element: JSX.Element;
-    isPrivate?: boolean;
-    isAuthPage?: boolean;
+    status?: RouteStatusType;
 }
 
 export const routes: RouteInterface[] = [
@@ -43,22 +44,22 @@ export const routes: RouteInterface[] = [
     {
         path: URL_PROFILE,
         element: <Profile />,
-        isPrivate: true,
+        status: 'protected',
     },
     {
         path: URL_LOGIN,
         element: <LoginSelectRole />,
-        isAuthPage: true,
+        status: 'auth',
     },
     {
         path: URL_LOGIN_AS_EXPLORER,
         element: <LoginAsExplorer />,
-        isAuthPage: true,
+        status: 'auth',
     },
     {
         path: URL_LOGIN_AS_KEEPER,
         element: <LoginAsKeeper />,
-        isAuthPage: true,
+        status: 'auth',
     },
     {
         path: URL_DEFAULT,
@@ -67,31 +68,31 @@ export const routes: RouteInterface[] = [
     {
         path: URL_KEEPER_CARD,
         element: <KeeperCard />,
-        isPrivate: true,
+        status: 'protected',
     },
     {
         path: URL_EXPLORER_CARD,
         element: <ExplorerCard />,
-        isPrivate: true,
+        status: 'protected',
     },
     {
         path: URL_GALAXY_CARD,
         element: <GalaxyPage />,
-        isPrivate: true,
+        status: 'protected',
     },
     {
         path: URL_GALAXY,
         element: <AllGalaxiesPage />,
-        isPrivate: true,
+        status: 'protected',
     },
     {
         path: URL_KEEPERS,
         element: <Keepers />,
-        isPrivate: true,
+        status: 'protected',
     },
     {
         path: URL_EXPLORERS,
         element: <Explorers />,
-        isPrivate: true,
+        status: 'protected',
     },
 ];

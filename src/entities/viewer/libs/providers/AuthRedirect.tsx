@@ -1,5 +1,5 @@
 import { useAuth } from '@entities/viewer/hooks/useAuth';
-import { useRefreshMutation } from '@entities/viewer/model/api';
+import { useRefreshMutation } from '@entities/viewer/api/api';
 import { queryParams } from '@shared/constants';
 import { URL_LOGIN, URL_PROFILE } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';

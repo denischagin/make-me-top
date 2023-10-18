@@ -3,24 +3,27 @@ import {
     createRoutesFromElements,
     Route,
 } from 'react-router-dom';
-import { routes } from '@app/constants/routes';
+import { routes, RouteStatusType } from '@app/constants/routes';
 
 import { privatePage } from '@entities/viewer/libs/helpers/privatePage';
 import { authPage } from '@entities/viewer/libs/helpers/authPage';
 
+const getHocPage: Record<
+    RouteStatusType | 'default',
+    (element: JSX.Element) => JSX.Element
+> = {
+    auth: authPage,
+    protected: privatePage,
+    default: (element: JSX.Element) => element,
+};
+
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <>
-            {routes.map(({ isAuthPage, isPrivate, element, path }) => (
+            {routes.map(({ element, path, status }) => (
                 <Route
                     key={path}
-                    element={
-                        isPrivate
-                            ? privatePage(element)
-                            : isAuthPage
-                            ? authPage(element)
-                            : element
-                    }
+                    element={getHocPage[status ?? 'default'](element)}
                     path={path}
                 />
             ))}

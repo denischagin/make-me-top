@@ -13,6 +13,7 @@
         "@types/node": "^16.18.21",
         "@types/react": "^18.0.29",
         "@types/react-dom": "^18.0.11",
+        "async-mutex": "^0.4.0",
         "axios": "^1.4.0",
         "eslint-plugin-newline-destructuring": "^1.2.1",
         "framer-motion": "^10.9.2",

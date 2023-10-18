@@ -1,16 +1,20 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-
 import {
     GalaxyForGetAll,
     GalaxyResponseInterface,
+    GetExplorerProgressByExplorerIdResponse,
+    GetSystemsBySystemIdAgruments,
+    GetSystemsBySystemIdResponse,
     GetUserProgressInGalaxyResponse,
 } from '../model/types';
-import { baseQueryWithAuth } from '@shared/api';
+import {
+    CourseInfoInterface,
+    ModalPlanetInterface,
+} from '@entities/user/model/types';
+import { queryTags } from '@shared/api/queryTags';
+import { baseApi } from '@shared/api/baseApi';
 
-export const galaxiesApi = createApi({
-    reducerPath: 'galaxiesApi',
-    baseQuery: baseQueryWithAuth,
-    refetchOnMountOrArgChange: true,
+export const galaxiesApi = baseApi.injectEndpoints({
+    overrideExisting: false,
     endpoints: (builder) => ({
         getAllGalaxies: builder.query<GalaxyForGetAll[], void>({
             query: () => ({
@@ -33,6 +37,82 @@ export const galaxiesApi = createApi({
                 url: `progress-app/galaxies/${galaxyId}`,
             }),
         }),
+
+        getPlanetsBySystemId: builder.query<ModalPlanetInterface[], number>({
+            query: (systemId) => ({
+                url: `planet-app/systems/${systemId}/planets`,
+            }),
+            providesTags: (result) =>
+                result
+                    ? [
+                          ...result.map((planet) => ({
+                              type: queryTags.getPlanetsBySystemId,
+                              id: planet.planetId,
+                          })),
+                          queryTags.getPlanetsBySystemId,
+                      ]
+                    : [queryTags.getPlanetsBySystemId],
+        }),
+
+        getCourseInfoByCourseId: builder.query<CourseInfoInterface, number>({
+            query: (courseId) => ({
+                url: `course-app/courses/${courseId}`,
+                params: {
+                    detailed: true,
+                },
+            }),
+            providesTags: (result) =>
+                result
+                    ? [
+                          {
+                              type: queryTags.getCourseInfoByCourseId,
+                              id: result.course?.courseId,
+                          },
+                          queryTags.getCourseInfoByCourseId,
+                      ]
+                    : [queryTags.getCourseInfoByCourseId],
+        }),
+
+        getSystemsBySystemId: builder.query<
+            GetSystemsBySystemIdResponse,
+            GetSystemsBySystemIdAgruments
+        >({
+            query: ({ systemId, withDependencies }) => ({
+                url: `galaxy-app/systems/${systemId}`,
+                params: {
+                    withDependencies,
+                },
+            }),
+            providesTags: (result) =>
+                result
+                    ? [
+                          {
+                              type: queryTags.getSystemsBySystemId,
+                              id: result.systemId,
+                          },
+                          queryTags.getSystemsBySystemId,
+                      ]
+                    : [queryTags.getSystemsBySystemId],
+        }),
+
+        getExplorerProgressByExplorerId: builder.query<
+            GetExplorerProgressByExplorerIdResponse,
+            number
+        >({
+            query: (explorerId) => ({
+                url: `progress-app/explorers/${explorerId}`,
+            }),
+            providesTags: (result) =>
+                result
+                    ? [
+                          {
+                              type: queryTags.getExplorerProgressByExplorerId,
+                              id: result.courseId,
+                          },
+                          queryTags.getExplorerProgressByExplorerId,
+                      ]
+                    : [queryTags.getExplorerProgressByExplorerId],
+        }),
     }),
 });
 
@@ -40,4 +120,8 @@ export const {
     useGetAllGalaxiesQuery,
     useGetGalaxyQuery,
     useGetUserProgressInGalaxyQuery,
+    useGetCourseInfoByCourseIdQuery,
+    useGetPlanetsBySystemIdQuery,
+    useGetSystemsBySystemIdQuery,
+    useGetExplorerProgressByExplorerIdQuery,
 } = galaxiesApi;
