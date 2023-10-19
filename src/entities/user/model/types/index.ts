@@ -53,20 +53,18 @@ export interface Course {
     description: string;
 }
 
-export interface CourseExplorer {
+export interface CourseUser {
     personId: number;
     firstName: string;
     lastName: string;
     patronymic: string;
-    explorerId: number;
     rating: number;
 }
 
-export interface CourseKeeper {
-    personId: number;
-    firstName: string;
-    lastName: string;
-    patronymic: string;
+export interface CourseExplorer extends CourseUser {
+    explorerId: number;
+}
+
+export interface CourseKeeper extends CourseUser{
     keeperId: number;
-    rating: number;
 }

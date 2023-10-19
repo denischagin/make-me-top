@@ -22,6 +22,21 @@ const mutex = new Mutex();
 
 export const baseQuery = fetchBaseQuery({ baseUrl: URL_MMT_STAND });
 
+export interface BaseQueryWithToastsExtraOption {
+    withOutToasts?: boolean;
+}
+
+export const baseQueryWithToasts: BaseQueryFn<
+    string | FetchArgs,
+    unknown,
+    FetchBaseQueryError
+> = async (args, api, extraOptions: BaseQueryWithToastsExtraOption) => {
+    const result = await baseQuery(args, api, extraOptions);
+    if (result.error && !extraOptions.withOutToasts)
+        onErrorHandling(result.error);
+    return result;
+};
+
 export const baseQueryWithReauth: BaseQueryFn<
     string | FetchArgs,
     unknown,
@@ -69,7 +84,7 @@ export const baseQueryWithReauth: BaseQueryFn<
                 } else {
                     api.dispatch(logout());
                     removeTokensFromLocalStorage();
-                    location.href = URL_LOGIN
+                    location.href = URL_LOGIN;
                 }
             } finally {
                 release();
@@ -83,6 +98,7 @@ export const baseQueryWithReauth: BaseQueryFn<
     }
     return result;
 };
+
 const onErrorHandling = (err: unknown) => {
     const error = err as FetchBaseQueryError;
 

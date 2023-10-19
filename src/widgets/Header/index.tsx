@@ -22,13 +22,10 @@ export const Header = (props: HeaderInterface) => {
     const [block, element] = bem('header');
 
     const [logoutMutation] = useLogoutMutation();
-    const dispatch = useAppDispatch();
     const { refreshToken } = useAuth();
 
     const handleLogout = () => {
         logoutMutation(refreshToken!);
-        dispatch(logout());
-        
     };
 
     return (

@@ -3,7 +3,6 @@ import { login } from '@entities/viewer/model/slice';
 import { ViewerState } from '@entities/viewer/model/types';
 import { AuthResponse } from '@entities/viewer/model/types/api';
 import { storageKeys } from '@shared/constants/storageKeys';
-// TODO
 
 export interface UseAuthLoginData extends Partial<AuthResponse> {}
 

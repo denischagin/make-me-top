@@ -1,3 +1,5 @@
+import { UserProgressInGalaxy } from "@entities/galaxy/model/types";
+
 export interface CircleModalWithGalaxyProps {
     isOpen: boolean;
     handleChangeSystem?: (systemId: number) => void;
@@ -5,4 +7,5 @@ export interface CircleModalWithGalaxyProps {
     progress?: number | null;
     currentSystemId?: number | null;
     galaxyId?: number | null;
+    userProgress?: UserProgressInGalaxy
 }

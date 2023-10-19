@@ -47,8 +47,8 @@ import { SystemProgressTypes } from '@shared/types/common';
 import { useLinesSvgContainer } from '../lib/hooks';
 
 import './style.scss';
-import { CircleModalWithGalaxy } from '@entities/galaxy/ui/CircleModalWithGalaxy';
 import { useParams } from 'react-router-dom';
+import CircleModalWithGalaxy from '@entities/galaxy/ui/CircleModalWithGalaxy';
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const {
@@ -73,13 +73,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         document.querySelectorAll(`.${SYSTEM_CLASS}`),
     );
     const [activeSystemsIds, setActiveSystemsIds] = useState<Array<number>>([]);
-    const [lastChosenSystem, setLastChosenSystem] = useState<LastChosenSystem>({
-        ...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
-    });
     const [lastChosenSystemId, setLastChosenSystemId] = useState<
         number | null
     >();
-
     //что бы последняя орбита с планетами не была 0x0, уменьшаем шаг между орбитами,
     //увеличив кол-во орбит в подсчетах на 1
     const orbitWidthStep = width / (orbitList.length + 1);
@@ -121,7 +117,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
     const svgContainer = useLinesSvgContainer(galaxyPage, svgContainerClass);
 
-    useEffect(() => handleSystemMouseLeave(), [fullWidth]);
+    useEffect(() => {
+        handleSystemMouseLeave();
+    }, [fullWidth]);
 
     useEffect(() => {
         //поиск на странице и изменение модификаторов элементов в соответствии с состоянием
@@ -131,15 +129,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             activeSystemsId: activeSystemsIds,
         });
     }, [activeSystemsIds]);
-
-    useEffect(() => {
-        if (!userProgress) return;
-
-        setLastChosenSystem({
-            ...lastChosenSystem,
-            isLocked: isSystemLocked(userProgress, lastChosenSystem),
-        });
-    }, [lastChosenSystem.systemId]);
 
     const handleSystemMouseLeave = useCallback(() => {
         setActiveSystemsIds([]);
@@ -207,40 +196,14 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 
             const targetId = Number(currentTarget.getAttribute(DATA_SYSTEM_ID));
 
-            setLastChosenSystem({
-                ...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
-            });
-
             setLastChosenSystemId(targetId);
 
             dispatch(toggleModal());
-            // dispatch(
-            //     getModalPlanets({
-            //         planetId: targetId,
-            //     }),
-            // );
-            // dispatch(
-            //     getCourseInfo({
-            //         courseId: targetId,
-            //     }),
-            // );
-
-            // dispatch(
-            //     fetchAndSetLastChosenSystem({
-            //         id: targetId,
-            //         withDependencies: true,
-            //         setLastChosenSystem,
-            //     }),
-            // );
         },
         [],
     );
 
     const handleChangeSystem = (systemId: number) => {
-        setLastChosenSystem({
-            ...DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
-        });
-
         setLastChosenSystemId(systemId);
     };
 
@@ -248,8 +211,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         () => dispatch(closeModal()),
         [isModalOpen],
     );
-
-    const courseId = lastChosenSystem.systemId;
 
     return (
         <div
@@ -265,19 +226,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                 currentSystemId={lastChosenSystemId}
                 handleChangeSystem={handleChangeSystem}
                 galaxyId={Number(galaxyId)}
-            />
-            {/* <GalaxyCircleModal
-                isOpen={isModalOpen}
-                courseId={courseId}
-                explorers={explorers}
-                keepers={keepers}
-                lastChosenSystem={lastChosenSystem}
-                onClose={() => dispatch(closeModal())}
                 userProgress={userProgress}
-                you={you}
-                yourKeeper={yourKeeper}
-                handleChangeSystem={handleChangeSystem}
-            /> */}
+            />
+            
             <div
                 className={element('background')}
                 style={{

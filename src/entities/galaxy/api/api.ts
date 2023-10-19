@@ -119,9 +119,19 @@ export const galaxiesApi = baseApi.injectEndpoints({
 export const {
     useGetAllGalaxiesQuery,
     useGetGalaxyQuery,
+    
     useGetUserProgressInGalaxyQuery,
+    useLazyGetUserProgressInGalaxyQuery,
+
     useGetCourseInfoByCourseIdQuery,
+    useLazyGetCourseInfoByCourseIdQuery,
+
     useGetPlanetsBySystemIdQuery,
+    useLazyGetPlanetsBySystemIdQuery,
+
     useGetSystemsBySystemIdQuery,
+    useLazyGetSystemsBySystemIdQuery,
+
     useGetExplorerProgressByExplorerIdQuery,
+    useLazyGetExplorerProgressByExplorerIdQuery,
 } = galaxiesApi;

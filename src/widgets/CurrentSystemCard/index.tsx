@@ -33,7 +33,7 @@ import {
     useGetExplorerProfileQuery,
     useLeaveCourseRequestByExplorerIdMutation,
 } from '@entities/explorer/api/api';
-import { CircleModalWithGalaxy } from '@entities/galaxy/ui/CircleModalWithGalaxy';
+import CircleModalWithGalaxy from '@entities/galaxy/ui/CircleModalWithGalaxy';
 
 export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     const { tabsList = [] } = props;

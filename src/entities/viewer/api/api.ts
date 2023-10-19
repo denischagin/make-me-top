@@ -1,4 +1,4 @@
-import { login } from '@entities/viewer/model/slice';
+import { login, logout } from '@entities/viewer/model/slice';
 import {
     LogoutResponse,
     RefreshParams,
@@ -6,14 +6,17 @@ import {
     AuthCredentials,
 } from '@entities/viewer/model/types/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { baseQuery } from '@shared/api';
+import { BaseQueryWithToastsExtraOption, baseQuery, baseQueryWithToasts } from '@shared/api';
 import { storageKeys } from '@shared/constants/storageKeys';
 import { URL_MMT_STAND } from '@shared/constants/urls';
-import { setTokensToLocalStorage } from '@shared/utils/helpers/tokens-local-storage';
+import {
+    removeTokensFromLocalStorage,
+    setTokensToLocalStorage,
+} from '@shared/utils/helpers/tokens-local-storage';
 
 export const viewerApi = createApi({
     reducerPath: 'viewerApi',
-    baseQuery,
+    baseQuery: baseQueryWithToasts,
     refetchOnMountOrArgChange: true,
     endpoints: (builder) => ({
         refresh: builder.mutation<AuthResponse, RefreshParams>({
@@ -22,6 +25,9 @@ export const viewerApi = createApi({
                 method: 'POST',
                 body,
             }),
+            extraOptions: {
+                withOutToasts: true,
+            } as BaseQueryWithToastsExtraOption,
             onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
                 try {
                     const { data } = await queryFulfilled;
@@ -32,7 +38,9 @@ export const viewerApi = createApi({
                         accessToken: accessToken.accessToken,
                         refreshToken: refreshToken.refreshToken,
                     });
-                } catch (error) {}
+                } catch (error) {
+                    removeTokensFromLocalStorage();
+                }
             },
         }),
         logout: builder.mutation<LogoutResponse, string>({
@@ -41,6 +49,12 @@ export const viewerApi = createApi({
                 method: 'POST',
                 body: refreshToken,
             }),
+            onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+                queryFulfilled.then(() => {
+                    dispatch(logout());
+                    removeTokensFromLocalStorage();
+                });
+            },
         }),
         login: builder.mutation<AuthResponse, AuthCredentials>({
             query: (credentials) => ({

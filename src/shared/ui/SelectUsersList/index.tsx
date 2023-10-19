@@ -22,48 +22,24 @@ import { UserListInterface } from '@shared/types/common';
 import './styles.scss';
 import { usePostCourseRequestMutation } from '@entities/explorer/api/api';
 import { useStatus } from '@shared/utils/hooks/use-status';
+import { SelectUsersListProps } from './interface';
 
-export const SelectUsersList = (props: UserListInterface) => {
-    const { keepersList, courseId } = props;
-
-    const dispatch = useAppDispatch();
+export const SelectUsersList = (props: SelectUsersListProps) => {
+    const { keepersList, courseId, onSelect, selectedUsers } = props;
 
     const [block, element] = bem('select-list');
-    const [selectedUsers, setSelectedUsers] = useState<CourseKeeper[]>([]);
-    const [postCourseRequest, { isSuccess }] = usePostCourseRequestMutation();
-
-    const navigate = useNavigate();
-
-    useStatus(() => {
-        dispatch(toggleModal());
-        navigate(URL_PROFILE);
-    }, isSuccess);
 
     const handleUnSelectAll = () => {
-        if (keepersList) setSelectedUsers([]);
+        if (keepersList) onSelect([]);
     };
 
     const handleSelectAll = () => {
-        if (keepersList) setSelectedUsers(keepersList);
+        if (keepersList) onSelect(keepersList);
     };
 
     function handleRemoveUser(userId: number) {
-        setSelectedUsers(
-            selectedUsers.filter((user) => user.personId !== userId),
-        );
+        onSelect(selectedUsers.filter((user) => user.personId !== userId));
     }
-
-    const handleSendApplication = () => {
-        if (selectedUsers.length === 0)
-            return toast.error(TOAST_ERROR_CHOOSE_KEEPER);
-
-        const keeperIds = selectedUsers.map((user) => user.keeperId);
-
-        postCourseRequest({
-            courseId: courseId as number,
-            keeperIds: keeperIds,
-        });
-    };
 
     const isSelectedAll = selectedUsers.length === keepersList?.length;
 
@@ -97,22 +73,9 @@ export const SelectUsersList = (props: UserListInterface) => {
                             selectedUser.personId === user.personId,
                     )}
                     onRemoveUser={handleRemoveUser}
-                    onSelectUser={(user) =>
-                        setSelectedUsers([...selectedUsers, user])
-                    }
+                    onSelectUser={(user) => onSelect([...selectedUsers, user])}
                 />
             ))}
-
-            {!!keepersList?.length && (
-                <div className={element('submit-selected')}>
-                    <Button
-                        size={buttonSize.large}
-                        color={buttonColor.primary500}
-                        onClick={handleSendApplication}
-                        title='Отправить заявку'
-                    />
-                </div>
-            )}
         </div>
     );
 };

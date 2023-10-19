@@ -9,7 +9,7 @@ export const Button = (props: ButtonInterface) => {
         color,
         size,
         title,
-        onClick,
+        className,
         ...restProps
     } = props;
 
@@ -18,11 +18,10 @@ export const Button = (props: ButtonInterface) => {
     return (
         <button
             {...restProps}
-            onClick={onClick}
             className={block({
                 color,
                 size,
-            })}
+            }, className)}
         >
             {title}
         </button>
