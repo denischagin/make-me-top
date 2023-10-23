@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { BackgroundGalaxyPage } from '@shared/ui/BackgroundGalaxyPage';
 import { TitleGalaxyPage } from '@shared/ui/TitleGalaxyPage';

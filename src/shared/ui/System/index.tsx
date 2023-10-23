@@ -33,7 +33,6 @@ const System = (props: SystemInterface) => {
                 {children}
                 <div className={element('orbit')}>
                     <OrbitIcon
-                        width='auto'
                         height='auto'
                         className={element('orbit-icon', {
                             color,

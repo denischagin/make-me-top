@@ -7,6 +7,7 @@ import { bem } from '@shared/utils/helpers/bem';
 import { ReviewModalInterface } from '@shared/types/common';
 
 import './styles.scss';
+import { useEscModal } from '@shared/utils/hooks/use-esc-modal';
 
 export const Modal = (props: ReviewModalInterface) => {
     const {
@@ -15,6 +16,11 @@ export const Modal = (props: ReviewModalInterface) => {
     } = props;
 
     const [block, element] = bem('modal');
+
+    useEscModal({
+        handleClose: onClose,
+        isOpen: true
+    })
 
     return (
         <Portal target={document.body}>

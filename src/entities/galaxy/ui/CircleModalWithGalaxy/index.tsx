@@ -13,10 +13,8 @@ import { TABS_LIST } from '@pages/Explorer/model';
 import { Button } from '@shared/ui/Button';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { CircleModal } from '@shared/ui/CircleModal';
-import { ModalAccessStatus } from '@shared/ui/CircleModal/interfaces';
 import { MmtTabs } from '@shared/ui/MmtTabs';
 import { ModalAlert } from '@shared/ui/ModalAlert';
-import { RequiredSystemsList } from '@shared/ui/RequiredSystemsList';
 import { bem } from '@shared/utils/helpers/bem';
 import { memo, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +28,6 @@ import { TOAST_ERROR_CHOOSE_KEEPER } from '@shared/constants/toastTitles';
 import { PlanetListTab } from '@entities/galaxy/ui/PlanetListTab';
 import { ExplorersListTab } from '@entities/galaxy/ui/ExplorersListTab';
 import { KeepersListTab } from '@entities/galaxy/ui/KeepersListTab';
-import { getModalStatus } from '@shared/utils/helpers/getModalStatus';
 import { useModalAccessStatus } from '@entities/galaxy/lib/hooks/useModalAccessStatus';
 
 const CircleModalWithGalaxy = ({

@@ -6,16 +6,14 @@ import { Typography } from '@shared/ui/Typography';
 import { bem } from '@shared/utils/helpers/bem';
 
 import { ConfirmModalInterface } from './interfaces';
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import {
     typographyColor,
     typographyVariant,
 } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
+import { useEscModal } from '@shared/utils/hooks/use-esc-modal';
 
 export const ConfirmModal = (props: ConfirmModalInterface) => {
     const {
@@ -27,6 +25,11 @@ export const ConfirmModal = (props: ConfirmModalInterface) => {
     } = props;
 
     const [block, element] = bem('confirm-modal');
+
+    useEscModal({
+        handleClose: onClose,
+        isOpen: true,
+    });
 
     return (
         <div className={block()}>

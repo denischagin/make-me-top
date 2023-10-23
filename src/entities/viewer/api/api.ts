@@ -6,7 +6,11 @@ import {
     AuthCredentials,
 } from '@entities/viewer/model/types/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { BaseQueryWithToastsExtraOption, baseQuery, baseQueryWithToasts } from '@shared/api';
+import {
+    BaseQueryWithToastsExtraOption,
+    baseQuery,
+    baseQueryWithToasts,
+} from '@shared/api';
 import { storageKeys } from '@shared/constants/storageKeys';
 import { URL_MMT_STAND } from '@shared/constants/urls';
 import {
@@ -26,7 +30,7 @@ export const viewerApi = createApi({
                 body,
             }),
             extraOptions: {
-                withOutToasts: true,
+                withToasts: false,
             } as BaseQueryWithToastsExtraOption,
             onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
                 try {
@@ -49,6 +53,9 @@ export const viewerApi = createApi({
                 method: 'POST',
                 body: refreshToken,
             }),
+            extraOptions: {
+                withToasts: true,
+            } as BaseQueryWithToastsExtraOption,
             onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
                 queryFulfilled.then(() => {
                     dispatch(logout());
@@ -62,6 +69,9 @@ export const viewerApi = createApi({
                 method: 'POST',
                 body: credentials,
             }),
+            extraOptions: {
+                withToasts: true,
+            } as BaseQueryWithToastsExtraOption,
         }),
     }),
 });

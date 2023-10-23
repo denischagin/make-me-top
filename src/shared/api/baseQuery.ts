@@ -23,7 +23,7 @@ const mutex = new Mutex();
 export const baseQuery = fetchBaseQuery({ baseUrl: URL_MMT_STAND });
 
 export interface BaseQueryWithToastsExtraOption {
-    withOutToasts?: boolean;
+    withToasts?: boolean;
 }
 
 export const baseQueryWithToasts: BaseQueryFn<
@@ -32,7 +32,7 @@ export const baseQueryWithToasts: BaseQueryFn<
     FetchBaseQueryError
 > = async (args, api, extraOptions: BaseQueryWithToastsExtraOption) => {
     const result = await baseQuery(args, api, extraOptions);
-    if (result.error && !extraOptions.withOutToasts)
+    if (result.error && extraOptions.withToasts)
         onErrorHandling(result.error);
     return result;
 };

@@ -83,7 +83,6 @@ export const routes: RouteInterface[] = [
     {
         path: URL_GALAXY,
         element: <AllGalaxiesPage />,
-        status: 'protected',
     },
     {
         path: URL_KEEPERS,

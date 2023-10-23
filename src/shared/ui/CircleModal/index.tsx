@@ -22,6 +22,7 @@ import {
 } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
+import { useEscModal } from '@shared/utils/hooks/use-esc-modal';
 
 export const CircleModal = (props: ModalInterface) => {
     const {
@@ -46,6 +47,11 @@ export const CircleModal = (props: ModalInterface) => {
             dispatch(closeModal());
         };
     }, []);
+
+    useEscModal({
+        handleClose: onClose,
+        isOpen,
+    });
 
     const lockIcon = isLocked && <LockIcon className={element('lock-icon')} />;
 

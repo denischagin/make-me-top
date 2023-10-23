@@ -74,9 +74,17 @@ export const Keeper = () => {
                                 </div>
                             )}
                             <GradeApplications reviewRequest={reviewRequests} />
-                        </div>
-                        <div className={element('explorers-list', 'col-xxl-3')}>
-                            <ExplorerItemList explorers={studyingExplorers} />
+
+                            <div
+                                className={element(
+                                    'explorers-list',
+                                    'col-xxl-3',
+                                )}
+                            >
+                                <ExplorerItemList
+                                    explorers={studyingExplorers}
+                                />
+                            </div>
                         </div>
                     </div>
                 </Container>
