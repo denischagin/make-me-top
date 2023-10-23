@@ -47,23 +47,6 @@ export const CircleModal = (props: ModalInterface) => {
         };
     }, []);
 
-    const modalStatus =
-        data && data.userProgress
-            ? getModalStatus({
-                  lastChosenSystem: data.lastChosenSystem,
-                  userProgress: data.userProgress,
-                  courseInfo,
-              })
-            : ModalAccessStatus.opened;
-
-    const notStudiedParentDependencies =
-        data && data.userProgress
-            ? getNotStudiedParentDependencies({
-                  lastChosenSystem: data.lastChosenSystem,
-                  userProgress: data.userProgress,
-              })
-            : [];
-
     const lockIcon = isLocked && <LockIcon className={element('lock-icon')} />;
 
     return (
@@ -91,14 +74,6 @@ export const CircleModal = (props: ModalInterface) => {
                                 onClick={onClose}
                             />
                         </div>
-
-                        {modalStatus !== ModalAccessStatus.opened && (
-                            <ModalAlert
-                                title={modalStatus}
-                                dependencies={notStudiedParentDependencies}
-                                handleChangeSystem={handleChangeSystem}
-                            />
-                        )}
 
                         <div className={element('item-list')}>{children}</div>
                     </div>

@@ -9,6 +9,7 @@ import {
 } from '@shared/ui/Typography/interfaces';
 import { SelectUsersList } from '@shared/ui/SelectUsersList';
 import { UsersList } from '@shared/ui/UsersList';
+import { bem } from '@shared/utils/helpers/bem';
 
 export const KeepersListTab = ({
     courseInfo,
@@ -16,6 +17,8 @@ export const KeepersListTab = ({
     selectedKeepers,
     setSelectedKeepers,
 }: KeepersListTabProps) => {
+    const [, element] = bem('circle-modal-galaxy');
+
     return (
         <>
             {!!courseInfo?.yourKeeper && (
@@ -31,6 +34,7 @@ export const KeepersListTab = ({
                 <Typography
                     variant={typographyVariant.medium16}
                     color={typographyColor.black}
+                    className={element('empty-text')}
                 >
                     У данного курса нет хранителей
                 </Typography>

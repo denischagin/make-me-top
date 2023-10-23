@@ -40,6 +40,7 @@ export const Explorer = () => {
         data: userInfo,
         isSuccess,
         isError,
+        isFetching,
         isLoading,
     } = useGetExplorerProfileQuery();
 
@@ -51,6 +52,7 @@ export const Explorer = () => {
             <BackgroundProfile />
             <div className={block()}>
                 <Header />
+                {isFetching && <Spinner loading />}
                 {isSuccess && (
                     <Container className={element('container')}>
                         <div className={element('row', 'row')}>

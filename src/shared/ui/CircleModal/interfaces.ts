@@ -22,4 +22,8 @@ export enum ModalAccessStatus {
     opened = 'Доступ открыт',
     closed_choseKeeper = 'Для изучения данной системы, выберите хранителя и отправьте заявку',
     closed_needSystems = 'Для изучения данной системы, необходимы знания о системах:',
+    closed_youInStuding = "Вы сейчас изучаете другую",
+    closed_youAlreadyKeeper = "Вы являетесь хранителем на данной системе",
+    studied_systemAlreadyDone = "Система уже пройдена"
+
 }

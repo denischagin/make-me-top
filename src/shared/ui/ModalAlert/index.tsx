@@ -8,25 +8,23 @@ import { ModalAccessStatus } from '@shared/ui/CircleModal/interfaces';
 import './styles.scss';
 
 export const ModalAlert = (props: ModalAlertInterface) => {
-    const {
-        dependencies,
-        title,
-        children,
-        handleChangeSystem,
-    } = props;
+    const { dependencies, title, handleChangeSystem, isExplorer } = props;
 
     const [block, element] = bem('modal-alert');
 
     return (
-        <div className={block()}>
-            <div className={element('title')}>{title}</div>
-            {title === ModalAccessStatus.closed_needSystems && (
-                <RequiredSystemsList
-                    systemList={dependencies}
-                    handleChangeSystem={handleChangeSystem}
-                />
+        <>
+            {title && title !== ModalAccessStatus.opened && isExplorer && (
+                <div className={block()}>
+                    <div className={element('title')}>{title}</div>
+                    {dependencies?.length !== 0 && (
+                        <RequiredSystemsList
+                            systemList={dependencies}
+                            handleChangeSystem={handleChangeSystem}
+                        />
+                    )}
+                </div>
             )}
-            {children}
-        </div>
+        </>
     );
 };

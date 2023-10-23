@@ -4,6 +4,13 @@ import { KeeperCardInfoInterface } from '@entities/keeper/model/types/interfaces
 
 import { ErrorInterface } from '@shared/types/common';
 
+interface PersonInterface {
+    personId: number;
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+}
+
 export interface SystemDependencyType {
     systemId: number | null;
     systemName: string;
@@ -33,7 +40,7 @@ export interface GalaxyState {
     userProgress: UserProgressInGalaxy;
 }
 
-export interface UserProgressInGalaxy {
+export interface UserProgressInGalaxy extends PersonInterface {
     openedSystems: Array<number>;
     closedSystems: Array<number>;
     studiedSystems: Array<StudiedSystems>;

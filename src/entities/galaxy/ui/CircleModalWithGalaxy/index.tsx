@@ -30,14 +30,14 @@ import { TOAST_ERROR_CHOOSE_KEEPER } from '@shared/constants/toastTitles';
 import { PlanetListTab } from '@entities/galaxy/ui/PlanetListTab';
 import { ExplorersListTab } from '@entities/galaxy/ui/ExplorersListTab';
 import { KeepersListTab } from '@entities/galaxy/ui/KeepersListTab';
+import { getModalStatus } from '@shared/utils/helpers/getModalStatus';
+import { useModalAccessStatus } from '@entities/galaxy/lib/hooks/useModalAccessStatus';
 
 const CircleModalWithGalaxy = ({
     handleChangeSystem,
     handleClose,
     isOpen,
-    progress,
     currentSystemId,
-    galaxyId,
     userProgress,
 }: CircleModalWithGalaxyProps) => {
     //TODO сделать запрет отправлять заявку, когда уже отправлена заявка
@@ -51,24 +51,27 @@ const CircleModalWithGalaxy = ({
     // Запросы
     const [postCourseRequest, { isSuccess }] = usePostCourseRequestMutation();
 
-    const { data: planets, isFetching: isLoadingPlanets } =
-        useGetPlanetsBySystemIdQuery(Number(currentSystemId), {
+    const { data: planets } = useGetPlanetsBySystemIdQuery(
+        Number(currentSystemId),
+        {
             skip: !isOpen,
-        });
+        },
+    );
 
-    const { data: courseInfo, isFetching: isLoadingCourseInfo } =
-        useGetCourseInfoByCourseIdQuery(Number(currentSystemId), {
+    const { data: courseInfo } = useGetCourseInfoByCourseIdQuery(
+        Number(currentSystemId),
+        {
             skip: !isOpen,
-        });
+        },
+    );
 
-    const { data: system, isFetching: isLoadingSystems } =
-        useGetSystemsBySystemIdQuery(
-            {
-                withDependencies: true,
-                systemId: Number(currentSystemId),
-            },
-            { skip: !isOpen || !isExplorer },
-        );
+    const { data: system } = useGetSystemsBySystemIdQuery(
+        {
+            withDependencies: true,
+            systemId: Number(currentSystemId),
+        },
+        { skip: !isOpen || !isExplorer },
+    );
 
     const { data: explorerProgress } = useGetExplorerProgressByExplorerIdQuery(
         Number(courseInfo?.you?.explorerId),
@@ -79,32 +82,24 @@ const CircleModalWithGalaxy = ({
     const [activeTab, setActiveTab] = useState(0);
 
     // Переменные
-    const systemIsOpen = userProgress?.openedSystems.some(
-        (systemId) => Number(currentSystemId) === systemId,
-    );
+    const {
+        modalAccessStatus,
+        canYouSendCourseRequest,
+        dependencySystemListWithParent,
+    } = useModalAccessStatus({
+        courseInfo,
+        currentSystemId,
+        isExplorer,
+        system,
+        userProgress,
+    });
 
-    const currentPlanetId = explorerProgress?.planets.find(
-        (planet) => !planet.completed,
-    )?.courseThemeId;
-
-    const dependencySystemListWithParent = system?.systemDependencyList.filter(
-        (system) => system.type === 'parent',
-    );
-
-    const isYouInStudying = useMemo(
+    const currentPlanetId = useMemo(
         () =>
-            userProgress?.studiedSystems.some(
-                ({ progress }) => progress < 100 && progress >= 0,
-            ),
-        [currentSystemId, userProgress],
+            explorerProgress?.planets.find((planet) => !planet.completed)
+                ?.courseThemeId,
+        [explorerProgress?.planets],
     );
-    const canYouSendCourseRequest =
-        systemIsOpen && isExplorer && !isYouInStudying;
-
-    const isLoading =
-        isLoadingCourseInfo || isLoadingPlanets || isLoadingSystems;
-
-    const isOpenAfterLoading = isOpen && !isLoading;
 
     useStatus(() => {
         dispatch(toggleModal());
@@ -125,14 +120,18 @@ const CircleModalWithGalaxy = ({
 
     return (
         <CircleModal
-            isOpen={isOpenAfterLoading}
+            isOpen={isOpen}
             header={courseInfo?.course?.title!}
             onClose={handleClose}
         >
             <div className={block()}>
                 {canYouSendCourseRequest && (
                     <Button
-                        color={buttonColor.filled}
+                        color={
+                            selectedKeepers.length === 0 && activeTab === 2
+                                ? buttonColor.primary500
+                                : buttonColor.filled
+                        }
                         size={buttonSize.large}
                         title={
                             selectedKeepers.length === 0 && activeTab === 2
@@ -148,15 +147,13 @@ const CircleModalWithGalaxy = ({
                     />
                 )}
             </div>
-            {dependencySystemListWithParent?.length !== 0 && isExplorer && (
-                <ModalAlert title={ModalAccessStatus.closed_needSystems}>
-                    <RequiredSystemsList
-                        systemList={dependencySystemListWithParent}
-                        handleChangeSystem={handleChangeSystem}
-                    />
-                </ModalAlert>
-            )}
 
+            <ModalAlert
+                isExplorer={isExplorer}
+                title={modalAccessStatus}
+                dependencies={dependencySystemListWithParent}
+                handleChangeSystem={handleChangeSystem}
+            />
             <MmtTabs
                 list={TABS_LIST}
                 activeTab={activeTab}

@@ -228,7 +228,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
                 galaxyId={Number(galaxyId)}
                 userProgress={userProgress}
             />
-            
+
             <div
                 className={element('background')}
                 style={{

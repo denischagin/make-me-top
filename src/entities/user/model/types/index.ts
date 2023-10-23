@@ -39,8 +39,8 @@ export interface AuthLoginInterface {
 
 export interface CourseInfoInterface {
     course?: Course;
-    you: CourseExplorer;
-    yourKeeper: CourseKeeper;
+    you?: CourseExplorer;
+    yourKeeper?: CourseKeeper;
     explorers: Array<CourseExplorer> | null;
     keepers: Array<CourseKeeper> | null;
 }
