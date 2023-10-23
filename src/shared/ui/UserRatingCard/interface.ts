@@ -1,9 +1,8 @@
-import { MouseEventHandler } from 'react';
+import { HTMLAttributes, MouseEventHandler } from 'react';
 
-export interface UserRatingCardProps {
+export interface UserRatingCardProps extends HTMLAttributes<HTMLDivElement>{
     fullname: string
     title: string
     index?: number
     rating?: number | null
-    onClick?: MouseEventHandler<HTMLDivElement>
 }

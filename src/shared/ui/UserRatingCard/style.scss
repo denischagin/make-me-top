@@ -1,13 +1,18 @@
+$adaptiveLargeMobile: 650px;
 
 .user-rating {
     position: relative;
-    
+
     .card {
         cursor: pointer;
         display: flex;
         flex-direction: row;
         gap: 24px;
         align-items: center;
+
+        @media screen and (max-width: $adaptiveLargeMobile) {
+            gap: 10px;
+        }
     }
 
     &__text {
@@ -34,9 +39,30 @@
                 margin-top: 32px;
             }
         }
+
+        @media screen and (max-width: $adaptiveLargeMobile) {
+            .user-rating {
+                &__buttons {
+                    opacity: 1;
+                    pointer-events: all;
+                    right: 5px;
+                }
+
+                &__extra-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: absolute;
+                }
+
+                &__rating {
+                    opacity: 0;
+                }
+            }
+        }
     }
 
-     &__extra-content {
+    &__extra-content {
         display: flex;
         align-items: center;
         position: absolute;
@@ -60,4 +86,3 @@
         display: flex;
     }
 }
-

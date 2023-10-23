@@ -8,10 +8,7 @@ import { Typography } from '@shared/ui/Typography';
 import { bem } from '@shared/utils/helpers/bem';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
-import {
-    buttonColor,
-    buttonSize,
-} from '@shared/ui/Button/interfaces';
+import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import {
     ratingScoreColor,
@@ -25,24 +22,12 @@ import { UserRatingCardProps } from './interface';
 import './style.scss';
 
 export const UserRatingCard = (props: UserRatingCardProps) => {
-    const {
-        fullname,
-        index,
-        onClick,
-        rating,
-        title,
-    } = props;
+    const { fullname, index, rating, title, className } = props;
     const [block, element] = bem('user-rating');
 
     return (
-        <div
-            className={block()}
-            onClick={onClick}
-        >
-            <Card
-                size={cardSize.large}
-                glow
-            >
+        <div className={block(undefined, className)} {...props}>
+            <Card size={cardSize.large} glow>
                 {index !== undefined && (
                     <Typography variant={typographyVariant.h1}>
                         {index + 1}.

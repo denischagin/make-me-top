@@ -54,11 +54,20 @@
         display: inline-block;
         font-size: 14px;
         padding: 10px 16px;
+
+        @media screen and (max-width: 600px) {
+            font-size: 16px;
+            padding: 5px 10px;
+        }
     }
 
     &--size-large {
         display: inline-block;
         font-size: 16px;
         padding: 16px 40px;
+
+        @media screen and (max-width: 600px) {
+            padding: 10px 30px;
+        }
     }
 }
