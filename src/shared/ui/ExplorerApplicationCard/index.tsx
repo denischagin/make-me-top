@@ -23,6 +23,7 @@ import {
 export const ExplorerApplicationCard = () => {
     const [block, element] = bem('explorer-application-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
+    const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
 
     const { personId } = useParams();
 
@@ -47,76 +48,92 @@ export const ExplorerApplicationCard = () => {
         acceptCourse({
             requestId: studyRequest.requestId,
         });
+        setIsAcceptModalOpen(false);
     };
 
     const handleRejectCourse = () => {
         rejectCourse({
             requestId: studyRequest.requestId,
         });
-        setIsAcceptModalOpen(false);
+        setIsRejectModalOpen(false);
     };
 
     return (
-        <div className={block()}>
+        <>
             {isAcceptModalOpen && (
+                <ConfirmModal
+                    confitmTitle='Вы хотите принять запрос на обучение?'
+                    onClose={() => setIsRejectModalOpen(false)}
+                    onSubmit={handleAcceptCourse}
+                    rejectButtonTitle='Нет'
+                    submitButtonTitle='Да, я уверен'
+                />
+            )}
+
+            {isRejectModalOpen && (
                 <ConfirmModal
                     confitmTitle={CONFIRM_CANCEL_TEACHING}
                     rejectButtonTitle='Нет, хочу продолжить'
                     submitButtonTitle='Да, я уверен'
-                    onClose={() => setIsAcceptModalOpen(false)}
+                    onClose={() => setIsRejectModalOpen(false)}
                     onSubmit={handleRejectCourse}
                 />
             )}
-            <Typography
-                className={element('heading', 'mb-4 mt-5')}
-                variant={typographyVariant.h2}
-            >
-                {!!currentSystem ? 'Текущая система:' : 'Заявка на обучение:'}
-            </Typography>
-            <Card size={cardSize.large} glow>
-                <div className={element('content')}>
-                    <div className={element('info')}>
-                        <Typography
-                            className={element('planet')}
-                            variant={typographyVariant.h2}
-                        >
-                            Система: {studyRequestOrСurrentSystem?.courseId}.{' '}
-                            {studyRequestOrСurrentSystem?.courseTitle}
-                        </Typography>
-                        <Typography
-                            className={element('system')}
-                            variant={typographyVariant.regular14}
-                        >
-                            {!!currentSystem
-                                ? `Система: ${currentSystem.courseThemeTitle}`
-                                : `Галактика: ${studyRequest?.galaxyName}`}
-                        </Typography>
-                    </div>
-                    <div className={element('buttons')}>
-                        <div className={element('hidden-button')}>
-                            <Button
-                                title={'Отклонить'}
-                                size={buttonSize.large}
-                                onClick={() => setIsAcceptModalOpen(true)}
-                            />
+
+            <div className={block()}>
+                <Typography
+                    className={element('heading', 'mb-4 mt-5')}
+                    variant={typographyVariant.h2}
+                >
+                    {!!currentSystem
+                        ? 'Текущая система:'
+                        : 'Заявка на обучение:'}
+                </Typography>
+                <Card size={cardSize.large} glow>
+                    <div className={element('content')}>
+                        <div className={element('info')}>
+                            <Typography
+                                className={element('planet')}
+                                variant={typographyVariant.h2}
+                            >
+                                Система: {studyRequestOrСurrentSystem?.courseId}
+                                . {studyRequestOrСurrentSystem?.courseTitle}
+                            </Typography>
+                            <Typography
+                                className={element('system')}
+                                variant={typographyVariant.regular14}
+                            >
+                                {!!currentSystem
+                                    ? `Система: ${currentSystem.courseThemeTitle}`
+                                    : `Галактика: ${studyRequest?.galaxyName}`}
+                            </Typography>
                         </div>
-                        {currentSystem ? (
-                            <Button
-                                title={'Посмотреть'}
-                                color={buttonColor.filled}
-                                size={buttonSize.large}
-                            />
-                        ) : (
-                            <Button
-                                title={'Принять'}
-                                color={buttonColor.filled}
-                                size={buttonSize.large}
-                                onClick={handleAcceptCourse}
-                            />
-                        )}
+                        <div className={element('buttons')}>
+                            <div className={element('hidden-button')}>
+                                <Button
+                                    title={'Отклонить'}
+                                    size={buttonSize.large}
+                                    onClick={() => setIsRejectModalOpen(true)}
+                                />
+                            </div>
+                            {currentSystem ? (
+                                <Button
+                                    title={'Посмотреть'}
+                                    color={buttonColor.filled}
+                                    size={buttonSize.large}
+                                />
+                            ) : (
+                                <Button
+                                    title={'Принять'}
+                                    color={buttonColor.filled}
+                                    size={buttonSize.large}
+                                    onClick={() => setIsAcceptModalOpen(true)}
+                                />
+                            )}
+                        </div>
                     </div>
-                </div>
-            </Card>
-        </div>
+                </Card>
+            </div>
+        </>
     );
 };

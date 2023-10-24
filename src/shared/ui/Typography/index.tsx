@@ -5,25 +5,20 @@ import { TypographyInterface } from './interfaces';
 import './styles.scss';
 
 export const Typography = (props: TypographyInterface) => {
-    const {
-        className,
-        color,
-        variant,
-        children,
-        onClick,
-    } = props;
+    const { className, color, variant } = props;
 
     const [block, element] = bem('typography');
 
     return (
-        <div
-            onClick={onClick}
-            className={block({
-                color,
-                variant,
-            })}
-        >
-            <div className={className}>{children}</div>
-        </div>
+        <p
+            {...props}
+            className={block(
+                {
+                    color,
+                    variant,
+                },
+                className,
+            )}
+        />
     );
 };

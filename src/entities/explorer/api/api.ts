@@ -69,7 +69,7 @@ export const explorerApi = baseApi.injectEndpoints({
                 url: `person-app/explorers/${explorerId}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: [queryTags.getExplorerProfile],
+            invalidatesTags: ['getExplorerCardInfo'],
             onQueryStarted: async (arg, { queryFulfilled }) => {
                 try {
                     await queryFulfilled;

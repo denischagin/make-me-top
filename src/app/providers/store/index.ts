@@ -14,12 +14,6 @@ import { explorerApi } from '@entities/explorer/api';
 import { keeperApi } from '@entities/keeper/api';
 import { baseApi } from '@shared/api/baseApi';
 
-export type RootState = {
-    user: UserState;
-    loading: LoadingState;
-    viewer: ViewerState;
-};
-
 const rootReducer = combineReducers({
     user: userReducer,
     loading: loadingReducer,
@@ -30,6 +24,8 @@ const rootReducer = combineReducers({
     [keeperApi.reducerPath]: keeperApi.reducer,
     [baseApi.reducerPath]: baseApi.reducer,
 });
+
+export type RootState = ReturnType<typeof rootReducer> 
 
 export type AppDispatch = typeof store.dispatch;
 

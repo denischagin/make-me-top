@@ -16,6 +16,7 @@
 		position: fixed;
 		display: flex;
 		justify-content: flex-end;
+		align-items: center;
 		z-index: 1;
 		width: 100%;
 		max-width: 1010px;
@@ -28,8 +29,8 @@
 	}
 
 	&__content {
-        margin-top: 400px;
-		margin-bottom: 235px;
+        // margin-top: 400px;
+		// margin-bottom: 235px;
 		display: flex;
 		flex-direction: column;
 		padding: 0 40px;

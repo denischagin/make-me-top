@@ -6,9 +6,10 @@
 
     &__wrapper {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
-        gap: 0px;
+        gap: 20px;
     }
 
     &:hover {
@@ -27,7 +28,10 @@
         width: max-content;
         opacity: 0;
         display: flex;
-        right: 24px;
         gap: 16px;
+        
+        @media screen and (max-width: 702px) {
+            opacity: 1;
+        }
     }
 }

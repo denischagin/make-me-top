@@ -44,14 +44,8 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     const dispatch = useAppDispatch();
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
 
-    //TODO
-    // const courseInfo = useAppSelector(userCourseInfoSelector);
-
     const { data: userInfo, isSuccess } = useGetExplorerProfileQuery();
     const [leaveCourseRequest] = useLeaveCourseRequestByExplorerIdMutation();
-
-    // const { course, you, yourKeeper, explorers, keepers } = courseInfo;
-    // const [activeTab, setActiveTab] = useState(0);
 
     if (!userInfo?.currentSystem && !userInfo?.studyRequest) {
         return <SelectSystem />;
@@ -64,38 +58,6 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
 
     return (
         <div className={block()}>
-            {/* <CircleModal
-                isOpen={isModalOpen}
-                header={courseInfo.course?.title!}
-                onClose={() => dispatch(closeModal())}
-            >
-                <MmtTabs
-                    list={tabsList}
-                    activeTab={activeTab}
-                    setActiveTab={setActiveTab}
-                >
-                    <TabPanel>
-                        <PlanetList currentPlanet={course?.title!} />
-                        <FinalGrade />
-                    </TabPanel>
-                    <TabPanel>
-                        <CurrentUserItem
-                            explorer={you}
-                            badgeTitle='Мой рейтинг'
-                        />
-                        <DividingLine color={DividingLineColor.gray500} />
-                        <UsersList explorersList={explorers} />
-                    </TabPanel>
-                    <TabPanel>
-                        <CurrentUserItem
-                            keeper={yourKeeper}
-                            badgeTitle='Мой хранитель'
-                        />
-                        <DividingLine color={DividingLineColor.gray500} />
-                        <UsersList keepersList={keepers} />
-                    </TabPanel>
-                </MmtTabs>
-            </CircleModal> */}
             <CircleModalWithGalaxy
                 handleClose={() => dispatch(closeModal())}
                 isOpen={isModalOpen}
@@ -157,19 +119,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                         size={buttonSize.large}
                         color={buttonColor.filled}
                         title='Продолжить'
-                        onClick={() => {
-                            // dispatch(
-                            //     getModalPlanets({
-                            //         planetId: currentSystem?.courseId,
-                            //     }),
-                            // );
-                            // dispatch(
-                            //     getCourseInfo({
-                            //         courseId: currentSystem?.courseId,
-                            //     }),
-                            // );
-                            dispatch(showModal());
-                        }}
+                        onClick={() => dispatch(showModal())}
                     />
                 </div>
             </Card>

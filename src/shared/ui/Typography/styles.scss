@@ -1,4 +1,6 @@
 @import '@app/styles/variables.scss';
+$largeMobileWidth: 800px;
+$mediumMobileWidth: 600px;
 
 .typography {
     color: $white;
@@ -15,17 +17,29 @@
     }
 
     &--color-white {
-        color: $white
+        color: $white;
     }
 
     &--variant-h1 {
         font-family: $font-heading;
         font-size: 35px;
+        @media screen and (max-width: $largeMobileWidth) {
+            font-size: 30px;
+        }
+        @media screen and (max-width: $mediumMobileWidth) {
+            font-size: 25px;
+        }
     }
 
     &--variant-h2 {
         font-family: $font-heading;
         font-size: 26px;
+        @media screen and (max-width: $largeMobileWidth) {
+            font-size: 20px;
+        }
+        @media screen and (max-width: $mediumMobileWidth) {
+            font-size: 18px;
+        }
     }
 
     &--variant-medium16 {

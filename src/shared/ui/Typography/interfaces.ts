@@ -1,11 +1,8 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
-export interface TypographyInterface {
-    children: ReactNode;
+export interface TypographyInterface extends HTMLAttributes<HTMLParagraphElement>{
     variant: typographyVariant;
     color?: typographyColor;
-    className?: string;
-    onClick?: () => void;
 }
 
 export enum typographyColor {

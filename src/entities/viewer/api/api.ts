@@ -56,12 +56,6 @@ export const viewerApi = createApi({
             extraOptions: {
                 withToasts: true,
             } as BaseQueryWithToastsExtraOption,
-            onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
-                queryFulfilled.then(() => {
-                    dispatch(logout());
-                    removeTokensFromLocalStorage();
-                });
-            },
         }),
         login: builder.mutation<AuthResponse, AuthCredentials>({
             query: (credentials) => ({

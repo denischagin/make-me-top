@@ -60,7 +60,7 @@ export const keeperApi = baseApi.injectEndpoints({
                     });
                 });
             },
-            invalidatesTags: [getExplorerCardInfo],
+            invalidatesTags: ['getExplorerCardInfo', 'getKeeperProfile'],
         }),
 
         rejectCourseRequest: builder.mutation<
@@ -84,7 +84,7 @@ export const keeperApi = baseApi.injectEndpoints({
                     });
                 });
             },
-            invalidatesTags: [getExplorerCardInfo],
+            invalidatesTags: ['getExplorerCardInfo', 'getKeeperProfile'],
         }),
 
         getAllKeepers: builder.query<KeeperFilterResponseInterface[], void>({
