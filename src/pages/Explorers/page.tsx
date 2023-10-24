@@ -7,7 +7,7 @@ import { bem } from '@shared/utils/helpers/bem';
 import { useShowMore } from '@shared/utils/hooks/use-show-more';
 
 import { ExplorersList } from '@widgets/ExplorersList';
-import { Header } from '@widgets/Header';
+import { Header } from '@widgets/Header/ui/Header';
 
 import { buttonSize } from '@shared/ui/Button/interfaces';
 

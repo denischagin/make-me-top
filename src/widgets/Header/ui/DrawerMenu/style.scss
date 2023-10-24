@@ -1,0 +1,30 @@
+@import '@app/styles/variables.scss';
+
+.drawer-menu {
+    .drawer-menu__content {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+    }
+
+    @media screen and (min-width: $drawerMenuAdaptiveWidth) {
+        display: none;
+    }
+
+    &__link {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 3px 10px;
+        margin-bottom: 10px;
+
+        &:hover {
+            background-color: $primary-500;
+        }
+
+        &--sign-out {
+            border-top: 2px solid $dark;
+            padding-top: 10px;
+        }
+    }
+}

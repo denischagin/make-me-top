@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import { Header } from '@widgets/Header';
+import { Header } from '@widgets/Header/ui/Header';
 import { KeeperCardUserInfo } from '@widgets/KeeperCardUserInfo';
 import { Reviews } from '@widgets/Reviews';
 import { SystemsList } from '@widgets/SystemsList';

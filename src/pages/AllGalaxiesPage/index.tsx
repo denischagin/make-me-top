@@ -17,7 +17,7 @@ import { URL_GALAXY } from '@shared/constants/links';
 import { ChangeGalaxyButtons } from '@widgets/ChangeGalaxyButtons';
 import { GalaxyInformation } from '@widgets/GalaxyInformation';
 import { GalaxyListStatistics } from '@widgets/GalaxyListStatistics';
-import { Header } from '@widgets/Header';
+import { Header } from '@widgets/Header/ui/Header';
 
 import NotFound from '@pages/NotFound';
 

@@ -1,0 +1,39 @@
+@import '@app/styles/variables.scss';
+
+.custom-drawer {
+    display: flex;
+    justify-content: end;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $opacity-dark;
+    transition: all 0.5s;
+
+    &__content {
+        width: 300px;
+        height: 100%;
+        padding: 10px 15px;
+        background-color: $black;
+        transition: all 0.5s;
+    }
+
+    &--open {
+        opacity: 1;
+        pointer-events: all;
+
+        .custom-drawer__content {
+            transform: translateX(0);
+        }
+    }
+
+    &--close {
+        opacity: 0;
+        pointer-events: none;
+
+        .custom-drawer__content {
+            transform: translateX(100%);
+        }
+    }
+}

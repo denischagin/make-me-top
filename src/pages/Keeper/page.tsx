@@ -10,7 +10,7 @@ import { bem } from '@shared/utils/helpers/bem';
 import { EducationApplications } from '@widgets/EducationApplications';
 import { ExplorerItemList } from '@widgets/ExplorerItemList';
 import { GradeApplications } from '@widgets/GradeApplications';
-import { Header } from '@widgets/Header';
+import { Header } from '@widgets/Header/ui/Header';
 import { KeeperUserInfo } from '@widgets/KeeperUserInfo';
 
 import { typographyVariant } from '@shared/ui/Typography/interfaces';

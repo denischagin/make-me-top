@@ -12,13 +12,17 @@ import { HeaderInterface, HeaderLinkInterface } from './interfaces';
 import './styles.scss';
 import { useLogoutMutation } from '@entities/viewer/api/api';
 import { useAuth } from '@entities/viewer/hooks/useAuth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { DrawerMenu } from '@widgets/Header/ui/DrawerMenu';
+import { Button } from '@shared/ui/Button';
+import { buttonSize } from '@shared/ui/Button/interfaces';
 
 export const Header = (props: HeaderInterface) => {
     const { links = HEADER_LINKS } = props;
 
     const [block, element] = bem('header');
+    const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
     const [logoutMutation, { isSuccess, isError }] = useLogoutMutation();
     const { refreshToken, handleLogout: logoutState } = useAuth();
@@ -26,6 +30,14 @@ export const Header = (props: HeaderInterface) => {
 
     const handleLogout = () => {
         logoutMutation(refreshToken!);
+    };
+
+    const handleCloseModal = () => {
+        setIsOpenDrawer(false);
+    };
+
+    const handleOpenModal = () => {
+        setIsOpenDrawer(true);
     };
 
     useEffect(() => {
@@ -58,6 +70,15 @@ export const Header = (props: HeaderInterface) => {
                     ),
                 )}
             </ul>
+
+            <Button
+                title='Меню'
+                size={buttonSize.large}
+                onClick={handleOpenModal}
+                className={element("burger-menu-button")}
+            />
+
+            <DrawerMenu isOpen={isOpenDrawer} onClose={handleCloseModal} />
         </div>
     );
 };

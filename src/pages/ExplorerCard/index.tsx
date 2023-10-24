@@ -9,7 +9,7 @@ import { ReviewRequestCard } from '@shared/ui/ReviewRequestCard';
 import { bem } from '@shared/utils/helpers/bem';
 
 import { ExplorerCardUserInfo } from '@widgets/ExplorerCardUserInfo';
-import { Header } from '@widgets/Header';
+import { Header } from '@widgets/Header/ui/Header';
 import { Reviews } from '@widgets/Reviews';
 import { SystemsList } from '@widgets/SystemsList';
 

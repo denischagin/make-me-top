@@ -11,6 +11,9 @@
         justify-content: space-between;
         align-items: center;
         gap: 32px;
+        @media screen and (max-width: $drawerMenuAdaptiveWidth) {
+            display: none;
+        }
     }
 
     &__logo {
@@ -27,5 +30,11 @@
     &__icon {
         margin-left: 10px;
         margin-right: 2px;
+    }
+
+    &__burger-menu-button {
+        @media screen and (min-width: $drawerMenuAdaptiveWidth) {
+            display: none;
+        }
     }
 }
