@@ -1,6 +1,9 @@
+@import '@app/styles/variables.scss';
+
 .sort-card {
-	.card {
-		max-width: 250px;
-		gap: 20px;
-	}
+    .card {
+        width: 240px;
+        gap: 7px;
+        padding-bottom: 5px;
+    }
 }

@@ -2,14 +2,16 @@
 
 .keeper-card-user-info {
     display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
 
     &__description {
-        margin-left: 42px;
         margin-top: 4px;
     }
 
     &__cards {
         display: flex;
         gap: 16px;
+        flex-wrap: wrap;
     }
 }

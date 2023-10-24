@@ -29,12 +29,9 @@ const Explorers = () => {
             {isSuccess && (
                 <Container className={element('container')}>
                     <div className={element('sort-panel')}>
-                        <SortCard title='Сортировать' value='С 1 до конца' />
-                        <SortCard
-                            title='Период отображения'
-                            value='За весь период'
-                        />
-                        <SortCard title='За весь период' value='Все звезды' />
+                        <SortCard title='Сортировать' />
+                        <SortCard title='Период отображения' />
+                        <SortCard title='За весь период' />
                     </div>
 
                     <ExplorersList explorers={limitElements} />

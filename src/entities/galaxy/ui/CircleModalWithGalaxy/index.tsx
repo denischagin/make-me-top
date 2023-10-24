@@ -55,25 +55,26 @@ const CircleModalWithGalaxy = ({
         },
     );
 
-    const { data: courseInfo } = useGetCourseInfoByCourseIdQuery(
-        Number(currentSystemId),
-        {
+    const { data: courseInfo, isFetching: isFetchingCourseInfo } =
+        useGetCourseInfoByCourseIdQuery(Number(currentSystemId), {
             skip: !isOpen,
-        },
-    );
+        });
 
-    const { data: system } = useGetSystemsBySystemIdQuery(
-        {
-            withDependencies: true,
-            systemId: Number(currentSystemId),
-        },
-        { skip: !isOpen || !isExplorer },
-    );
+    const { data: system, isFetching: isFetchingSystem } =
+        useGetSystemsBySystemIdQuery(
+            {
+                withDependencies: true,
+                systemId: Number(currentSystemId),
+            },
+            { skip: !isOpen || !isExplorer },
+        );
 
     const { data: explorerProgress } = useGetExplorerProgressByExplorerIdQuery(
         Number(courseInfo?.you?.explorerId),
         { skip: !courseInfo?.you || !isOpen },
     );
+
+    const isFetching = isFetchingCourseInfo || isFetchingSystem;
 
     const [selectedKeepers, setSelectedKeepers] = useState<CourseKeeper[]>([]);
     const [activeTab, setActiveTab] = useState(0);
@@ -118,11 +119,11 @@ const CircleModalWithGalaxy = ({
     return (
         <CircleModal
             isOpen={isOpen}
-            header={courseInfo?.course?.title!}
+            header={!isFetching ? courseInfo?.course?.title! : 'Загрузка...'}
             onClose={handleClose}
         >
             <div className={block()}>
-                {canYouSendCourseRequest && (
+                {!isFetching && canYouSendCourseRequest && (
                     <Button
                         color={
                             selectedKeepers.length === 0 && activeTab === 2
@@ -145,12 +146,14 @@ const CircleModalWithGalaxy = ({
                 )}
             </div>
 
-            <ModalAlert
-                isExplorer={isExplorer}
-                title={modalAccessStatus}
-                dependencies={dependencySystemListWithParent}
-                handleChangeSystem={handleChangeSystem}
-            />
+            {!isFetching && (
+                <ModalAlert
+                    isExplorer={isExplorer}
+                    title={modalAccessStatus}
+                    dependencies={dependencySystemListWithParent}
+                    handleChangeSystem={handleChangeSystem}
+                />
+            )}
             <MmtTabs
                 list={TABS_LIST}
                 activeTab={activeTab}

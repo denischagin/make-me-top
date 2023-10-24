@@ -1,0 +1,70 @@
+@import '@app/styles/variables.scss';
+
+.custom-select {
+    &-container {
+        padding-bottom: 0;
+    }
+
+    &__control {
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid transparent;
+        border-radius: 0;
+        box-shadow: none;
+        cursor: pointer;
+
+        &--menu-is-open {
+            border-bottom-color: $primary-500;
+        }
+    }
+
+    &__value-container {
+    }
+
+    &__indicators {
+        cursor: pointer;
+    }
+
+    &__indicator-separator {
+        display: none;
+    }
+
+    &__menu {
+        background-color: $opacity-gray;
+        border-radius: 3px;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    &__menu-list {
+        padding: 3px 1px;
+        // background-color: orange ;
+    }
+
+    &__option {
+        background-color: $opacity-gray;
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: $primary-600;
+        }
+    }
+    &__input-container {
+        // font-family: 'Feature-Mono-medium' ;
+    }
+    &__input {
+        font-family: 'Feature-Mono-medium';
+        color: white;
+        cursor: pointer;
+    }
+    &__single-value {
+        font-family: 'Feature-Mono-medium';
+        color: white;
+    }
+    &__placeholder {
+        font-family: 'Feature-Mono-medium';
+        color: rgba(255, 255, 255, 0.452);
+    }
+}

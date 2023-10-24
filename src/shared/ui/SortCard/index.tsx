@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from '@shared/ui/Card';
 import { Typography } from '@shared/ui/Typography';
 
@@ -10,10 +10,16 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { SortCardProps } from './interface';
 
 import './style.scss';
+import { CustomSelect } from '@shared/ui/CustomSelect';
 
 export const SortCard = ({
     title,
-    value,
+    options = [
+        { value: 'default', label: 'С 1 до конца' },
+        { value: 'default', label: 'С 2 до конца' },
+        { value: 'default', label: 'С 3 до конца' },
+        { value: 'default', label: 'С 4 до конца' },
+    ],
 }: SortCardProps) => {
     const [block] = bem('sort-card');
 
@@ -24,9 +30,7 @@ export const SortCard = ({
                     {title}
                 </Typography>
 
-                <Typography variant={typographyVariant.medium16}>
-                    {value}
-                </Typography>
+                <CustomSelect options={options} defaultValue={options[0]} />
             </Card>
         </div>
     );
