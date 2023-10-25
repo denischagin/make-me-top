@@ -13,31 +13,42 @@ import './styles.scss';
 import { useLogoutMutation } from '@entities/viewer/api/api';
 import { useAuth } from '@entities/viewer/hooks/useAuth';
 import { useEffect, useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { DrawerMenu } from '@widgets/Header/ui/DrawerMenu';
 import { Button } from '@shared/ui/Button';
 import { buttonSize } from '@shared/ui/Button/interfaces';
+import { ConfirmModal } from '@shared/ui/ConfirmModal';
 
 export const Header = (props: HeaderInterface) => {
     const { links = HEADER_LINKS } = props;
 
     const [block, element] = bem('header');
     const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+    const [isOpenModalConfirm, setisOpenModalConfirm] = useState(false);
 
     const [logoutMutation, { isSuccess, isError }] = useLogoutMutation();
     const { refreshToken, handleLogout: logoutState } = useAuth();
     const navigate = useNavigate();
+    const localtion = useLocation()
 
     const handleLogout = () => {
         logoutMutation(refreshToken!);
     };
 
-    const handleCloseModal = () => {
+    const handleCloseDrawer = () => {
         setIsOpenDrawer(false);
     };
 
-    const handleOpenModal = () => {
+    const handleOpenDrawer = () => {
         setIsOpenDrawer(true);
+    };
+
+    const handleOpenConfirmModal = () => {
+        setisOpenModalConfirm(true);
+    };
+
+    const handleCloseConfirmModal = () => {
+        setisOpenModalConfirm(false);
     };
 
     useEffect(() => {
@@ -48,37 +59,57 @@ export const Header = (props: HeaderInterface) => {
     }, [isSuccess, isError]);
 
     return (
-        <div className={block('container-xxl')}>
-            <RouterLink to={URL_PROFILE}>
-                <Logo className={element('logo')} />
-            </RouterLink>
-            <ul className={element('links')}>
-                {links.map((item) =>
-                    item.link === URL_LOGIN ? (
-                        <li
-                            key={item.link}
-                            className={element('link')}
-                            onClick={handleLogout}
-                        >
-                            {item.text}
-                            <ExitIcon className={element('icon')} />
-                        </li>
-                    ) : (
-                        <li key={item.link} className={element('link')}>
-                            <RouterLink to={item.link}>{item.text}</RouterLink>
-                        </li>
-                    ),
-                )}
-            </ul>
+        <>
+            {isOpenModalConfirm && (
+                <ConfirmModal
+                    confitmTitle='Вы уверены, что хотите выйти?'
+                    rejectButtonTitle={'Нет, я хочу остаться!'}
+                    submitButtonTitle={'Да, я хочу выйти'}
+                    onSubmit={handleLogout}
+                    onClose={handleCloseConfirmModal}
+                />
+            )}
 
-            <Button
-                title='Меню'
-                size={buttonSize.large}
-                onClick={handleOpenModal}
-                className={element("burger-menu-button")}
-            />
+            <div className={block('container-xxl')}>
+                <RouterLink to={URL_PROFILE}>
+                    <Logo className={element('logo')} />
+                </RouterLink>
+                <ul className={element('links')}>
+                    {links.map((item) =>
+                        item.link === URL_LOGIN ? (
+                            <li
+                                key={item.link}
+                                className={element('link')}
+                                onClick={handleOpenConfirmModal}
+                            >
+                                {item.text}
+                                <ExitIcon className={element('icon')} />
+                            </li>
+                        ) : (
+                            <li key={item.link} className={element('link', {
+                                active: location.pathname === item.link
+                            })}>
+                                <RouterLink to={item.link}>
+                                    {item.text}
+                                </RouterLink>
+                            </li>
+                        ),
+                    )}
+                </ul>
 
-            <DrawerMenu isOpen={isOpenDrawer} onClose={handleCloseModal} />
-        </div>
+                <Button
+                    title='Меню'
+                    size={buttonSize.large}
+                    onClick={handleOpenDrawer}
+                    className={element('burger-menu-button')}
+                />
+
+                <DrawerMenu
+                    isOpen={isOpenDrawer}
+                    onClose={handleCloseDrawer}
+                    onSignOut={handleOpenConfirmModal}
+                />
+            </div>
+        </>
     );
 };

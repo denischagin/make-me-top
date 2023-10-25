@@ -11,8 +11,9 @@ export const useGalaxyWindowSizeDebounce = () => {
         const updateSize = () => {
             clearTimeout(timeout);
 
+            const innerWidth = document.documentElement.clientWidth;
+
             timeout = setTimeout(() => {
-                const innerWidth = window.innerWidth;
                 setWindowSizeDebounce(innerWidth);
             }, 100);
         };

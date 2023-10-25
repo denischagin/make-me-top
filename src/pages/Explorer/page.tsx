@@ -45,7 +45,13 @@ export const Explorer = () => {
     } = useGetExplorerProfileQuery();
 
     if (isError) return <NotFound />;
-    if (isLoading) return <Spinner loading />;
+    if (isLoading)
+        return (
+            <>
+                <Header />
+                <Spinner loading />
+            </>
+        );
 
     return (
         <>

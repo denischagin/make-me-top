@@ -4,28 +4,31 @@
     position: relative;
     outline: 1px solid transparent;
 
-    &:hover {
-        .application-education-card {
-            &__buttons {
-                opacity: 1;
-                pointer-events: all;
-                right: 0;
-            }
+    @media screen and (min-width: 670px) {
+        &:hover {
+            .application-education-card {
+                &__buttons {
+                    opacity: 1;
+                    pointer-events: all;
+                    right: 0;
+                }
 
-            &__extra-content {
-                display: flex;
-                align-items: center;
-                position: relative;
-            }
+                &__extra-content {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                }
 
-            &__rating {
-                position: relative;
-                margin-right: 330px;
-                margin-top: 32px;
-            }
+                &__rating {
+                    position: relative;
+                    margin-right: 330px;
+                    margin-top: 32px;
+                    opacity: 0;
+                }
 
-            &__user-name {
-                color: $primary-500;
+                &__user-name {
+                    color: $primary-500;
+                }
             }
         }
     }
@@ -34,6 +37,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @media screen and (max-width: 670px) {
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+        }
     }
 
     &__info {
@@ -59,6 +68,14 @@
         gap: 16px;
         right: 0;
         transition: 0.2s;
+
+        @media screen and (max-width: 670px) {
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
     }
 
     &__rating {
@@ -66,6 +83,12 @@
         position: relative;
         right: 24px;
         bottom: 16px;
+
+        @media screen and (max-width: 670px) {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
     }
 
     &__buttons {
@@ -76,5 +99,11 @@
         right: -450px;
         display: flex;
         gap: 16px;
+
+        @media screen and (max-width: 670px) {
+            position: relative;
+            right: 0;
+            opacity: 1;
+        }
     }
 }

@@ -5,5 +5,11 @@
         width: 240px;
         gap: 7px;
         padding-bottom: 5px;
+        @media screen and (max-width: 550px) {
+            width: 100%;
+        }
+    }
+    @media screen and (max-width: 550px) {
+        width: 100%;
     }
 }

@@ -1,6 +1,7 @@
-export interface ArrowButtonInterface {
+import { HTMLAttributes } from 'react';
+
+export interface ArrowButtonInterface extends HTMLAttributes<HTMLDivElement> {
     direction: arrowButtonDirection;
-    onClick?: () => void;
 }
 
 export enum arrowButtonDirection {

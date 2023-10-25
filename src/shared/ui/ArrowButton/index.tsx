@@ -7,19 +7,19 @@ import { ArrowButtonInterface } from './interfaces';
 import './styles.scss';
 
 export const ArrowButton = (props: ArrowButtonInterface) => {
-    const {
-        direction,
-        onClick,
-    } = props;
+    const { direction, className, ...restProps } = props;
 
     const [block, element] = bem('arrow-button');
 
     return (
         <div
-            onClick={onClick}
-            className={block({
-                direction,
-            })}
+            className={block(
+                {
+                    direction,
+                },
+                className,
+            )}
+            {...restProps}
         >
             <ArrowIcon className={element('arrow')} />
             <div className={element('circle')} />

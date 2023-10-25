@@ -1,17 +1,17 @@
 @import '@app/styles/variables.scss';
 
 .drawer-menu {
-    .drawer-menu__content {
+    &__content {
         display: flex;
         flex-direction: column;
-        padding-top: 20px;
+        position: relative;
     }
 
     @media screen and (min-width: $drawerMenuAdaptiveWidth) {
         display: none;
     }
 
-    &__link {
+    &__menu-item {
         display: flex;
         justify-content: space-between;
         width: 100%;
@@ -23,8 +23,24 @@
         }
 
         &--sign-out {
-            border-top: 2px solid $dark;
+            border-top: 2px solid $opacity-gray;
             padding-top: 10px;
         }
+
+        &--active {
+            background-color: $opacity-primary-500;
+        }
+    }
+
+    &__arrow-button {
+        // position: absolute;
+        // right: 0;
+        // top: 0;
+        // transform: translate(-50%, -50%);
+    }
+
+    &__arrow-button-wrapper {
+        border-bottom: 2px solid $opacity-gray;
+        margin-bottom: 10px;
     }
 }

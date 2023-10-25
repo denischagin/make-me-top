@@ -62,9 +62,13 @@ export const CircleModal = (props: ModalInterface) => {
                     open: isOpen,
                     close: !isOpen,
                 })}
+                onClick={onClose}
             >
-                <div className={element('background')} onClick={onClose} />
-                <div className={element('container')}>
+                {/* <div className={element('background')} onClick={onClose} /> */}
+                <div
+                    className={element('container')}
+                    onClick={(e) => e.stopPropagation()}
+                >
                     <div className={element('content')}>
                         <div className={element('header')}>
                             <Typography

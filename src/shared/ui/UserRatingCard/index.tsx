@@ -22,11 +22,11 @@ import { UserRatingCardProps } from './interface';
 import './style.scss';
 
 export const UserRatingCard = (props: UserRatingCardProps) => {
-    const { fullname, index, rating, title, className } = props;
+    const { fullname, index, rating, title, className, ...restProps } = props;
     const [block, element] = bem('user-rating');
 
     return (
-        <div className={block(undefined, className)} {...props}>
+        <div className={block(undefined, className)} {...restProps}>
             <Card size={cardSize.large} glow>
                 {index !== undefined && (
                     <Typography variant={typographyVariant.h1}>

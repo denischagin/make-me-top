@@ -20,7 +20,6 @@ import {
 } from '@entities/galaxy/api/api';
 import Spinner from '@shared/ui/Spinner';
 import NotFound from '@pages/NotFound';
-import { ErrorInterface } from '@shared/types/common';
 import { useAuth } from '@entities/viewer/hooks/useAuth';
 
 const GalaxyPage: React.FC = () => {
@@ -45,7 +44,13 @@ const GalaxyPage: React.FC = () => {
         { skip: !isExplorer },
     );
 
-    if (isLoadingGalaxy) return <Spinner loading />;
+    if (isLoadingGalaxy)
+        return (
+            <>
+                <Spinner loading />
+                <Header />
+            </>
+        );
     if (!isSuccessGalaxy || isErrorGalaxy) return <NotFound />;
 
     const { galaxyName, orbitList } = galaxy;

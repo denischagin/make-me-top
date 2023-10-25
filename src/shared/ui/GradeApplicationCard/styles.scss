@@ -7,18 +7,19 @@
 
     &:hover {
         .grade-application-card {
-            &__button {
-                opacity: 1;
-                pointer-events: all;
-                right: 24px;
-            }
+            @media screen and (min-width: 600px) {
+                &__button {
+                    opacity: 1;
+                    pointer-events: all;
+                    right: 24px;
+                }
 
-            &__extra-content {
-                display: flex;
-                align-items: center;
-                position: relative;
+                &__extra-content {
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                }
             }
-
             &__planet {
                 color: $primary-500;
             }
@@ -29,11 +30,16 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
+        }
     }
 
     &__info {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
         gap: 24px;
     }
 
@@ -65,5 +71,13 @@
         right: -200px;
         display: flex;
         gap: 16px;
+
+        @media screen and (max-width: 600px) {
+            position: relative;
+            opacity: 1;
+            right: 0;
+            top: 0;
+            margin-top: 20px;
+        }
     }
 }
