@@ -49,6 +49,8 @@ import { useLinesSvgContainer } from '../lib/hooks';
 import './style.scss';
 import { useParams } from 'react-router-dom';
 import CircleModalWithGalaxy from '@entities/galaxy/ui/CircleModalWithGalaxy';
+import { useGalaxy } from '@entities/galaxy/lib/hooks/useGalaxy';
+import { GalaxyProvider } from '@entities/galaxy/lib/providers/GalaxyProvider';
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const {
@@ -72,7 +74,8 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const [systems, setSystems] = useState<NodeListOf<HTMLDivElement>>(
         document.querySelectorAll(`.${SYSTEM_CLASS}`),
     );
-    const [activeSystemsIds, setActiveSystemsIds] = useState<Array<number>>([]);
+    // const [activeSystemsIds, setActiveSystemsIds] = useState<Array<number>>([]);
+    const { activeSystemsIds, setActiveSystemsIds } = useGalaxy();
     const [lastChosenSystemId, setLastChosenSystemId] = useState<
         number | null
     >();
@@ -133,9 +136,9 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const handleSystemMouseLeave = useCallback(() => {
         setActiveSystemsIds([]);
 
-        setSystemsActivityToInactive({
-            stars: systems,
-        });
+        // setSystemsActivityToInactive({
+        //     stars: systems,
+        // });
 
         deleteAllConnectionLines({
             svgContainer,
@@ -156,11 +159,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
             const systemProgressType = currentTarget.getAttribute(
                 DATA_SYSTEM_PROGRESS_TYPE,
             );
-
-            addActiveSystem({
-                activeSystemId: targetId,
-                setActiveSystemsIds,
-            });
 
             if (
                 systemProgressType === SystemProgressTypes.SYSTEM_OPEN ||

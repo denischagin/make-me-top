@@ -14,6 +14,7 @@ const System = (props: SystemInterface) => {
         color,
         children,
         percentageProgress,
+        className
     } = props;
 
     const [block, element] = bem('system');
@@ -31,11 +32,11 @@ const System = (props: SystemInterface) => {
             >
                 <SystemProgress percentageProgress={percentageProgress} />
                 {children}
-                <div className={element('orbit')}>
+                <div className={element('orbit', className)}>
                     <OrbitIcon
                         className={element('orbit-icon', {
                             color,
-                        })}
+                        }, )}
                     />
                 </div>
             </div>

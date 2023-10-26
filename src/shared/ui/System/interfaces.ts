@@ -4,6 +4,7 @@ export interface SystemInterface {
   children: ReactNode,
   color?: systemColor,
   percentageProgress?: number,
+  className?: string
 }
 
 export enum systemColor {

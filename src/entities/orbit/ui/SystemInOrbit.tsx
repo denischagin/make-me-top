@@ -28,6 +28,11 @@ import { SystemProgressTypes } from '@shared/types/common';
 
 import './styles.scss';
 import { useAuth } from '@entities/viewer/hooks/useAuth';
+import { useGalaxy } from '@entities/galaxy/lib/hooks/useGalaxy';
+import {
+    ACTIVE_SYSTEM_MODIFIER,
+    INACTIVE_SYSTEM_MODIFIER,
+} from '@entities/galaxy/model/constants';
 
 interface SystemInOrbitProps {
     system: SystemType;
@@ -56,6 +61,10 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
         systemStyle,
     } = props;
     const { role } = useAuth();
+    const { activeSystemsIds } = useGalaxy();
+
+    const isGalaxyActive = activeSystemsIds.includes(system.systemId);
+
     const isNoExplorer = role !== 'EXPLORER';
     const [destroyCount, setDestoryCount] = useState(0);
     const [randomDestroyClass, setRandomDestroyClass] = useState<string>();
@@ -78,19 +87,23 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
         setRandomDestroyClass(randomClass);
     }, [isDestroy]);
 
-    const systemProgressType = !!userProgress ? getSystemProgressType({
-        system,
-        userProgress,
-    }) : undefined;
+    const systemProgressType = !!userProgress
+        ? getSystemProgressType({
+              system,
+              userProgress,
+          })
+        : undefined;
 
     const systemColor = getSystemColorByProgressType({
         systemProgressType,
-    }) ;
+    });
 
-    const systemPercentageProgress = !!userProgress ? getPercentageProgress({
-        system,
-        userProgress,
-    }) : undefined;
+    const systemPercentageProgress = !!userProgress
+        ? getPercentageProgress({
+              system,
+              userProgress,
+          })
+        : undefined;
 
     const digitalAngle = getDigitalAngle(system.systemPosition);
 
@@ -130,7 +143,10 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
                 <p
                     className={element(
                         'content-system--name',
-                       systemPercentageProgress && systemPercentageProgress > 64 ? 'white' : undefined,
+                        systemPercentageProgress &&
+                            systemPercentageProgress > 64
+                            ? 'white'
+                            : undefined,
                     )}
                 >
                     {system.systemName}
@@ -160,6 +176,11 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
             <System
                 percentageProgress={systemPercentageProgress}
                 color={systemColor}
+                className={
+                    isGalaxyActive
+                        ? ACTIVE_SYSTEM_MODIFIER
+                        : INACTIVE_SYSTEM_MODIFIER
+                }
             >
                 {children}
             </System>

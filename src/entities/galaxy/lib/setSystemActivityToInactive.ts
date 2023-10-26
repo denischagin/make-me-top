@@ -13,10 +13,10 @@ export const setSystemsActivityToInactive = (params: SetSystemActivityToInactive
         stars,
     } = params;
 
-    stars.forEach((star) => {
-        star.setAttribute(
-            'class',
-            `${SYSTEM_CLASS} ${INACTIVE_SYSTEM_MODIFIER}`,
-        );
-    });
+    // stars.forEach((star) => {
+    //     star.setAttribute(
+    //         'class',
+    //         `${SYSTEM_CLASS} ${INACTIVE_SYSTEM_MODIFIER}`,
+    //     );
+    // });
 };
