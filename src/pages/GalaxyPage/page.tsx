@@ -21,6 +21,7 @@ import {
 import Spinner from '@shared/ui/Spinner';
 import NotFound from '@pages/NotFound';
 import { useAuth } from '@entities/viewer/hooks/useAuth';
+import { GalaxyProvider } from '@entities/galaxy/lib/providers/GalaxyProvider';
 
 const GalaxyPage: React.FC = () => {
     const [block, element] = bem('galaxy-page');
@@ -56,19 +57,21 @@ const GalaxyPage: React.FC = () => {
     const { galaxyName, orbitList } = galaxy;
 
     return (
-        <div className={block()} ref={galaxyPageRef}>
-            <BackgroundGalaxyPage />
-            <Header />
-            <TitleGalaxyPage galaxyName={galaxyName} />
-            <Galaxy
-                width={windowSizeDebounce}
-                height={800}
-                galaxyPage={galaxyPageRef.current}
-                svgContainerClass={element('svg-container')}
-                userProgress={userProgress}
-                orbitList={orbitList}
-            />
-        </div>
+        <GalaxyProvider>
+            <div className={block()} ref={galaxyPageRef}>
+                <BackgroundGalaxyPage />
+                <Header />
+                <TitleGalaxyPage galaxyName={galaxyName} />
+                <Galaxy
+                    width={windowSizeDebounce}
+                    height={800}
+                    galaxyPage={galaxyPageRef.current}
+                    svgContainerClass={element('svg-container')}
+                    userProgress={userProgress}
+                    orbitList={orbitList}
+                />
+            </div>
+        </GalaxyProvider>
     );
 };
 

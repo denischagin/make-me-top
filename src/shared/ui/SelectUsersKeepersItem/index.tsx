@@ -50,14 +50,14 @@ export const SelectUsersKeepersItem = (props: SelectUsersKeepersItemProps) => {
                             size={buttonSize.small}
                             color={buttonColor.filled}
                             onClick={() => onSelectUser(user)}
-                            title='Выбрать хранителя'
+                            title='Выбрать'
                         />
                     ) : (
                         <Button
                             size={buttonSize.small}
                             color={buttonColor.primary500}
                             onClick={() => onRemoveUser(user.personId)}
-                            title='Отменить выбор'
+                            title='Отменить'
                         />
                     )}
                 </div>

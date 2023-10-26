@@ -30,7 +30,7 @@ export const ExplorerApplicationCard = () => {
     const { data: userInfo, isSuccess } = useGetExplorerCardInfoQuery(
         Number(personId),
     );
-    const [acceptCourse, { isSuccess: isSuccessAccept }] =
+    const [acceptCourse] =
         useAcceptCourseRequestMutation();
     const [rejectCourse] = useRejectCourseRequestMutation();
 
@@ -62,11 +62,11 @@ export const ExplorerApplicationCard = () => {
         <>
             {isAcceptModalOpen && (
                 <ConfirmModal
-                    confitmTitle='Вы хотите принять запрос на обучение?'
-                    onClose={() => setIsRejectModalOpen(false)}
+                    confitmTitle='Вы уверены, что хотите принять запрос на обучение?'
+                    onClose={() => setIsAcceptModalOpen(false)}
                     onSubmit={handleAcceptCourse}
                     rejectButtonTitle='Нет'
-                    submitButtonTitle='Да, я уверен'
+                    submitButtonTitle='Да, я хочу принять'
                 />
             )}
 

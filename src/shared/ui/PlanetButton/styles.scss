@@ -12,6 +12,11 @@
     border-radius: 56px;
     transition: 0.4s;
 
+    @media screen and (max-width: 600px) {
+        padding: 13px 20px; 
+        width: 300px;
+    }
+
     &:hover {
         transition: 0.4s;
         transform: scale(0.998);

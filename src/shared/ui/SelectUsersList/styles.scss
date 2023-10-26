@@ -37,6 +37,11 @@
                 opacity: 1;
             }
         }
+
+        @media screen and (max-width: 500px) {
+            min-height: 42px;
+            padding: 0;
+        }
     }
 
     &__user,
@@ -44,6 +49,10 @@
         display: flex;
         align-items: center;
         gap: 16px;
+
+        @media screen and (max-width: 500px) {
+            gap: 10px;
+        }
     }
 
     &__rating {
@@ -66,6 +75,10 @@
         opacity: 0;
         transition: 0.3s;
 
+        @media screen and (max-width: 500px) {
+            opacity: 1;
+        }
+
         &--visible {
             margin-right: 0px;
             opacity: 1;
@@ -76,5 +89,4 @@
         margin-top: 16px;
         align-self: center;
     }
-
 }

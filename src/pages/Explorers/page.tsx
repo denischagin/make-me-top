@@ -24,7 +24,6 @@ const Explorers = () => {
 
     return (
         <div className={block()}>
-            <BackgroundUsersList />
             <Header />
             {isSuccess && (
                 <Container className={element('container')}>

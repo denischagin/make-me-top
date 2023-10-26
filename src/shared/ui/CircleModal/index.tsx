@@ -28,19 +28,14 @@ export const CircleModal = (props: ModalInterface) => {
     const {
         header,
         isLocked,
-        data,
         children,
         onClose,
         isOpen,
-        handleChangeSystem,
     } = props;
 
     const [block, element] = bem('circle-modal');
 
     const dispatch = useAppDispatch();
-
-    //TODO
-    const courseInfo = useAppSelector(userCourseInfoSelector);
 
     useEffect(() => {
         return () => {

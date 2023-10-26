@@ -22,7 +22,6 @@ const Keepers = () => {
 
     return (
         <div className={block()}>
-            <BackgroundUsersList />
             <Header />
 
             {isSuccess && (
