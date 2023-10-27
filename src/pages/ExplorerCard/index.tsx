@@ -31,6 +31,7 @@ const ExplorerCard = () => {
         data: userInfo,
         isSuccess,
         isError,
+        isFetching,
     } = useGetExplorerCardInfoQuery(Number(personId));
 
     if (isError) return <NotFound />;
@@ -43,6 +44,7 @@ const ExplorerCard = () => {
             <BackgroundProfile />
             <Header />
             <Container className={element('container')}>
+                { isFetching && <Spinner loading />}
                 <div className={element('profile')}>
                     <div className={element('back-arrow')}>
                         <ArrowButton

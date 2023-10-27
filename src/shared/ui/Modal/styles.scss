@@ -10,6 +10,14 @@
     position: fixed;
     top: 0;
 
+    &--open {
+        display: flex;        
+    }
+
+    &--close {
+        display: none;
+    }
+
     &__container {
         position: relative;
         margin-top: 20px;

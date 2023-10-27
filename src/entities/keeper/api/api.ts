@@ -4,7 +4,8 @@ import {
     KeeperCardInfoResponseInterface,
     KeeperFilterResponseInterface,
     KeeperProfileResponseInterface,
-    RejectCourseInterface,
+    RequestCourseBodyInterface,
+    RequestCourseParamsInterface,
 } from '@entities/keeper/model/types/api';
 import toast from 'react-hot-toast';
 import {
@@ -41,49 +42,29 @@ export const keeperApi = baseApi.injectEndpoints({
 
         acceptCourseRequest: builder.mutation<
             ErrorInterface,
-            RejectCourseInterface
+            RequestCourseParamsInterface
         >({
             query: ({ requestId }) => ({
                 url: `course-registration-app/course-requests/${requestId}`,
-                body: {
-                    rejection: {
-                        approved: false,
-                    },
-                    requestId,
-                } as RejectCourseInterface,
                 method: 'PATCH',
+                body: {
+                    approved: true,
+                } as RequestCourseBodyInterface,
             }),
-            onQueryStarted: (_, { queryFulfilled }) => {
-                queryFulfilled.then(() => {
-                    toast(TOAST_SUCCESS_APPROVED, {
-                        icon: '🤩',
-                    });
-                });
-            },
             invalidatesTags: ['getExplorerCardInfo', 'getKeeperProfile'],
         }),
-
         rejectCourseRequest: builder.mutation<
             ErrorInterface,
-            RejectCourseInterface
+            RequestCourseParamsInterface
         >({
-            query: ({ rejection, requestId }) => ({
+            query: ({ requestId }) => ({
                 url: `course-registration-app/course-requests/${requestId}`,
-                body: {
-                    rejection: {
-                        approved: false,
-                    },
-                    requestId,
-                } as RejectCourseInterface,
                 method: 'PATCH',
+                body: {
+                    approved: false,
+                } as RequestCourseBodyInterface,
             }),
-            onQueryStarted: (_, { queryFulfilled }) => {
-                queryFulfilled.then(() => {
-                    toast(TOAST_SUCCESS_REJECTED, {
-                        icon: '😔',
-                    });
-                });
-            },
+
             invalidatesTags: ['getExplorerCardInfo', 'getKeeperProfile'],
         }),
 

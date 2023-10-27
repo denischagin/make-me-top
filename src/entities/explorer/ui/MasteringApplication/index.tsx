@@ -44,15 +44,14 @@ export const MasteringApplication = () => {
 
     return (
         <div className={block()}>
-            {isAcceptModalOpen && (
-                <ConfirmModal
-                    confitmTitle={CONFIRM_CANCEL_LEARNING}
-                    rejectButtonTitle='Нет, хочу продолжить'
-                    submitButtonTitle='Да, я уверен'
-                    onClose={() => setIsAcceptModalOpen(false)}
-                    onSubmit={() => closeCourseRequest(studyRequest.requestId)}
-                />
-            )}
+            <ConfirmModal
+                isOpen={isAcceptModalOpen}
+                confitmTitle={CONFIRM_CANCEL_LEARNING}
+                rejectButtonTitle='Нет, хочу продолжить'
+                submitButtonTitle='Да, я уверен'
+                onClose={() => setIsAcceptModalOpen(false)}
+                onSubmit={() => closeCourseRequest(studyRequest.requestId)}
+            />
 
             <Typography
                 className={element('current-star-heading', 'mb-4 mt-5')}

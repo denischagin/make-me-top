@@ -63,18 +63,18 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                 isOpen={isModalOpen}
                 currentSystemId={currentSystem.courseId}
             />
-            {isAcceptModalOpen && (
-                <ConfirmModal
-                    confitmTitle={CONFIRM_CANCEL_LEARNING}
-                    rejectButtonTitle='Нет, хочу продолжить'
-                    submitButtonTitle='Да, я уверен'
-                    onClose={() => setIsAcceptModalOpen(false)}
-                    onSubmit={() => {
-                        leaveCourseRequest(currentSystem?.explorerId);
-                        setIsAcceptModalOpen(false);
-                    }}
-                />
-            )}
+            <ConfirmModal
+                isOpen={isAcceptModalOpen}
+                confitmTitle={CONFIRM_CANCEL_LEARNING}
+                rejectButtonTitle='Нет, хочу продолжить'
+                submitButtonTitle='Да, я уверен'
+                onClose={() => setIsAcceptModalOpen(false)}
+                onSubmit={() => {
+                    leaveCourseRequest(currentSystem?.explorerId);
+                    setIsAcceptModalOpen(false);
+                }}
+            />
+
             <Typography
                 className={element('current-system-heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}

@@ -4,28 +4,33 @@ import { ReactComponent as CloseIcon } from '@shared/images/close.svg';
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import { ReviewModalInterface } from '@shared/types/common';
-
 import './styles.scss';
 import { useEscModal } from '@shared/utils/hooks/use-esc-modal';
+import { ReviewModalInterface } from '@shared/ui/Modal/interface';
 
 export const Modal = (props: ReviewModalInterface) => {
-    const {
-        children,
-        onClose,
-    } = props;
+    const { children, onClose, isOpen } = props;
 
     const [block, element] = bem('modal');
 
     useEscModal({
         handleClose: onClose,
-        isOpen: true
-    })
+        isOpen,
+    });
 
     return (
         <Portal target={document.body}>
-            <div className={block()}>
-                <div className={element('container')}>
+            <div
+                className={block({
+                    open: isOpen,
+                    close: !isOpen,
+                })}
+                onClick={onClose}
+            >
+                <div
+                    className={element('container')}
+                    onClick={(e) => e.stopPropagation()}
+                >
                     <div className={element('content')}>
                         <CloseIcon
                             className={element('close-icon')}

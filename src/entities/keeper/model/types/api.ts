@@ -5,13 +5,14 @@ import {
     KeepersFilterInterface,
 } from './interfaces';
 
-export interface RejectCoursePayloadInterface {
-    approved: boolean;
+export interface RejectCoursePayloadInterface {}
+
+export interface RequestCourseParamsInterface {
+    requestId: number;
 }
 
-export interface RejectCourseInterface {
-    requestId: number;
-    rejection?: RejectCoursePayloadInterface;
+export interface RequestCourseBodyInterface {
+    approved: boolean;
 }
 
 export interface KeeperFilterResponseInterface

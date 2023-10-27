@@ -15,10 +15,7 @@ export const ShowMoreTextModal = (props: ShowMoreTextModalInterface) => {
         text,
         maxLength,
         children,
-        typographySettings: {
-            variant = typographyVariant.regular14,
-            color,
-        },
+        typographySettings: { variant = typographyVariant.regular14, color },
     } = props;
 
     const [block, element] = bem('show-more-text');
@@ -26,9 +23,10 @@ export const ShowMoreTextModal = (props: ShowMoreTextModalInterface) => {
 
     return (
         <>
-            {isExpanded && (
-                <Modal onClose={() => setIsExpanded(false)}>{children}</Modal>
-            )}
+            <Modal isOpen={isExpanded} onClose={() => setIsExpanded(false)}>
+                {children}
+            </Modal>
+
             <div className={block()}>
                 <div className={element('content')}>
                     <Typography

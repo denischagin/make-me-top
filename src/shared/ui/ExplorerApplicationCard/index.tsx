@@ -19,6 +19,12 @@ import {
     useAcceptCourseRequestMutation,
     useRejectCourseRequestMutation,
 } from '@entities/keeper/api/api';
+import {
+    TOAST_SUCCESS_APPROVED,
+    TOAST_SUCCESS_REJECTED,
+} from '@shared/constants/toastTitles';
+import { useStatus } from '@shared/utils/hooks/use-status';
+import toast from 'react-hot-toast';
 
 export const ExplorerApplicationCard = () => {
     const [block, element] = bem('explorer-application-card');
@@ -30,19 +36,13 @@ export const ExplorerApplicationCard = () => {
     const { data: userInfo, isSuccess } = useGetExplorerCardInfoQuery(
         Number(personId),
     );
-    const [acceptCourse] =
+    const [acceptCourse, { isSuccess: isSuccessAccept }] =
         useAcceptCourseRequestMutation();
-    const [rejectCourse] = useRejectCourseRequestMutation();
+    const [rejectCourse, { isSuccess: isSuccessReject }] =
+        useRejectCourseRequestMutation();
 
-    if (!isSuccess) return null;
-
-    const { studyRequest, currentSystem } = userInfo;
-
-    if (!currentSystem && !studyRequest) {
-        return null;
-    }
-
-    const studyRequestOrСurrentSystem = currentSystem || studyRequest;
+    const studyRequestOrСurrentSystem =
+        userInfo?.currentSystem || userInfo?.studyRequest;
 
     const handleAcceptCourse = () => {
         acceptCourse({
@@ -58,27 +58,45 @@ export const ExplorerApplicationCard = () => {
         setIsRejectModalOpen(false);
     };
 
+    useStatus(() => {
+        toast(TOAST_SUCCESS_REJECTED, {
+            icon: '😔',
+        });
+    }, isSuccessReject);
+
+    useStatus(() => {
+        toast(TOAST_SUCCESS_APPROVED, {
+            icon: '🤩',
+        });
+    }, isSuccessAccept);
+
+    if (!isSuccess) return null;
+
+    const { studyRequest, currentSystem } = userInfo;
+
+    if (!currentSystem && !studyRequest) {
+        return null;
+    }
+
     return (
         <>
-            {isAcceptModalOpen && (
-                <ConfirmModal
-                    confitmTitle='Вы уверены, что хотите принять запрос на обучение?'
-                    onClose={() => setIsAcceptModalOpen(false)}
-                    onSubmit={handleAcceptCourse}
-                    rejectButtonTitle='Нет'
-                    submitButtonTitle='Да, я хочу принять'
-                />
-            )}
+            <ConfirmModal
+                isOpen={isAcceptModalOpen}
+                confitmTitle='Вы уверены, что хотите принять запрос на обучение?'
+                onClose={() => setIsAcceptModalOpen(false)}
+                onSubmit={handleAcceptCourse}
+                rejectButtonTitle='Нет'
+                submitButtonTitle='Да, я хочу принять'
+            />
 
-            {isRejectModalOpen && (
-                <ConfirmModal
-                    confitmTitle={CONFIRM_CANCEL_TEACHING}
-                    rejectButtonTitle='Нет, хочу продолжить'
-                    submitButtonTitle='Да, я уверен'
-                    onClose={() => setIsRejectModalOpen(false)}
-                    onSubmit={handleRejectCourse}
-                />
-            )}
+            <ConfirmModal
+                isOpen={isRejectModalOpen}
+                confitmTitle={CONFIRM_CANCEL_TEACHING}
+                rejectButtonTitle='Нет, хочу продолжить'
+                submitButtonTitle='Да, я уверен'
+                onClose={() => setIsRejectModalOpen(false)}
+                onSubmit={handleRejectCourse}
+            />
 
             <div className={block()}>
                 <Typography

@@ -136,10 +136,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const handleSystemMouseLeave = useCallback(() => {
         setActiveSystemsIds([]);
 
-        // setSystemsActivityToInactive({
-        //     stars: systems,
-        // });
-
         deleteAllConnectionLines({
             svgContainer,
         });
@@ -149,7 +145,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
         (event: MouseEvent<HTMLDivElement>) => {
             const currentTarget = event.currentTarget;
 
-            const targetId = currentTarget.getAttribute(DATA_SYSTEM_ID);
             const childrenList = currentTarget.getAttribute(
                 DATA_SYSTEM_CHILDREN_LIST,
             );

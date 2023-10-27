@@ -30,10 +30,7 @@ import {
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
-import {
-    useAcceptCourseRequestMutation,
-    useRejectCourseRequestMutation,
-} from '@entities/keeper/api/api';
+import { useRejectCourseRequestMutation } from '@entities/keeper/api/api';
 import { useStatus } from '@shared/utils/hooks/use-status';
 
 export const EducationApplicationCard = (
@@ -42,10 +39,8 @@ export const EducationApplicationCard = (
     const { user } = props;
 
     const [block, element] = bem('application-education-card');
-    const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
+    const [isModalRejectOpen, setIsModalRejectOpen] = useState(false);
 
-    const [accessCourse, { isSuccess: isSuccessAccess }] =
-        useAcceptCourseRequestMutation();
     const [rejectCourse, { isSuccess: isSuccessReject }] =
         useRejectCourseRequestMutation();
 
@@ -55,26 +50,21 @@ export const EducationApplicationCard = (
         });
     }, isSuccessReject);
 
-    useStatus(() => {
-        toast(TOAST_SUCCESS_APPROVED, {
-            icon: '😔',
-        });
-    }, isSuccessAccess);
     return (
         <div className={block()}>
-            {isAcceptModalOpen && (
-                <ConfirmModal
-                    confitmTitle={CONFIRM_CANCEL_STUDYING_REQUEST}
-                    rejectButtonTitle='Нет, хочу продолжить'
-                    submitButtonTitle='Да, я уверен'
-                    onClose={() => setIsAcceptModalOpen(false)}
-                    onSubmit={() =>
-                        rejectCourse({
-                            requestId: user.requestId,
-                        })
-                    }
-                />
-            )}
+            <ConfirmModal
+                isOpen={isModalRejectOpen}
+                confitmTitle={CONFIRM_CANCEL_STUDYING_REQUEST}
+                rejectButtonTitle='Нет, хочу продолжить'
+                submitButtonTitle='Да, я уверен'
+                onClose={() => setIsModalRejectOpen(false)}
+                onSubmit={() =>
+                    rejectCourse({
+                        requestId: user.requestId,
+                    })
+                }
+            />
+
             <Card size={cardSize.large} glow>
                 <div className={element('content')}>
                     <div className={element('info')}>
@@ -105,7 +95,7 @@ export const EducationApplicationCard = (
                             <Button
                                 title={'Отклонить'}
                                 size={buttonSize.large}
-                                onClick={() => setIsAcceptModalOpen(true)}
+                                onClick={() => setIsModalRejectOpen(true)}
                             />
                             <RouterLink
                                 to={getUrlExplorerById(

@@ -4,4 +4,5 @@ export interface ConfirmModalInterface {
     submitButtonTitle: string;
     onSubmit: () => void;
     onClose: () => void;
+    isOpen: boolean;
 }

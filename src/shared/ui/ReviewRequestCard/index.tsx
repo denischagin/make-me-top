@@ -32,15 +32,15 @@ export const ReviewRequestCard = () => {
 
     return (
         <div className={block()}>
-            {isAcceptModalOpen && (
-                <ConfirmModal
-                    confitmTitle={CONFIRM_CANCEL_REVIEW}
-                    rejectButtonTitle='Нет, хочу продолжить'
-                    submitButtonTitle='Да, я уверен'
-                    onClose={() => setIsAcceptModalOpen(false)}
-                    onSubmit={() => setIsAcceptModalOpen(false)} // в будущем будет метод отмены оценивания
-                />
-            )}
+            <ConfirmModal
+                isOpen={isAcceptModalOpen}
+                confitmTitle={CONFIRM_CANCEL_REVIEW}
+                rejectButtonTitle='Нет, хочу продолжить'
+                submitButtonTitle='Да, я уверен'
+                onClose={() => setIsAcceptModalOpen(false)}
+                onSubmit={() => setIsAcceptModalOpen(false)} // в будущем будет метод отмены оценивания
+            />
+
             <Typography
                 className={element('heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}

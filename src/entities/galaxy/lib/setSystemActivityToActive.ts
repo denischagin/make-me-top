@@ -15,30 +15,30 @@ export const setSystemsActivityToActive = (params: SetSystemActivityToActive) =>
         activeSystemsId,
     } = params;
 
-    activeSystemsId.forEach((systemId) => {
-        //поиск активного элемента
-        const system = document.querySelector<HTMLElement>(
-            `[${DATA_SYSTEM_ID}="${systemId}"]`,
-        );
+    // activeSystemsId.forEach((systemId) => {
+    //     //поиск активного элемента
+    //     const system = document.querySelector<HTMLElement>(
+    //         `[${DATA_SYSTEM_ID}="${systemId}"]`,
+    //     );
 
-        //если не был найден
-        if (!system) {
-            return;
-        }
+    //     //если не был найден
+    //     if (!system) {
+    //         return;
+    //     }
 
-        //спускаемся на несколько узлов ниже (из элемента с data атрибутами к компоненту System),
-        //что бы заменить там модификатор
-        const systemChild = system.querySelector(`.${SYSTEM_CLASS}`);
+    //     //спускаемся на несколько узлов ниже (из элемента с data атрибутами к компоненту System),
+    //     //что бы заменить там модификатор
+    //     const systemChild = system.querySelector(`.${SYSTEM_CLASS}`);
 
-        //если не был найден
-        if (!systemChild) {
-            return;
-        }
+    //     //если не был найден
+    //     if (!systemChild) {
+    //         return;
+    //     }
 
-        //заменяем модификатор
-        systemChild.setAttribute(
-            'class',
-            `${SYSTEM_CLASS} ${ACTIVE_SYSTEM_MODIFIER}`,
-        );
-    });
+    //     //заменяем модификатор
+    //     systemChild.setAttribute(
+    //         'class',
+    //         `${SYSTEM_CLASS} ${ACTIVE_SYSTEM_MODIFIER}`,
+    //     );
+    // });
 };

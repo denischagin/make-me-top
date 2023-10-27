@@ -29,7 +29,7 @@ export const Header = (props: HeaderInterface) => {
     const [logoutMutation, { isSuccess, isError }] = useLogoutMutation();
     const { refreshToken, handleLogout: logoutState } = useAuth();
     const navigate = useNavigate();
-    const localtion = useLocation()
+    const localtion = useLocation();
 
     const handleLogout = () => {
         logoutMutation(refreshToken!);
@@ -60,15 +60,14 @@ export const Header = (props: HeaderInterface) => {
 
     return (
         <>
-            {isOpenModalConfirm && (
-                <ConfirmModal
-                    confitmTitle='Вы уверены, что хотите выйти?'
-                    rejectButtonTitle={'Нет, я хочу остаться!'}
-                    submitButtonTitle={'Да, я хочу выйти'}
-                    onSubmit={handleLogout}
-                    onClose={handleCloseConfirmModal}
-                />
-            )}
+            <ConfirmModal
+                isOpen={isOpenModalConfirm}
+                confitmTitle='Вы уверены, что хотите выйти?'
+                rejectButtonTitle={'Нет, я хочу остаться!'}
+                submitButtonTitle={'Да, я хочу выйти'}
+                onSubmit={handleLogout}
+                onClose={handleCloseConfirmModal}
+            />
 
             <div className={block('container-xxl')}>
                 <RouterLink to={URL_PROFILE}>
@@ -86,9 +85,12 @@ export const Header = (props: HeaderInterface) => {
                                 <ExitIcon className={element('icon')} />
                             </li>
                         ) : (
-                            <li key={item.link} className={element('link', {
-                                active: location.pathname === item.link
-                            })}>
+                            <li
+                                key={item.link}
+                                className={element('link', {
+                                    active: location.pathname === item.link,
+                                })}
+                            >
                                 <RouterLink to={item.link}>
                                     {item.text}
                                 </RouterLink>

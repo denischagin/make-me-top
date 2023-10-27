@@ -17,11 +17,16 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
+import Spinner from '@shared/ui/Spinner';
 
 export const Keeper = () => {
     const [block, element] = bem('keeper');
 
-    const { data: userInfo, isSuccess } = useGetKeeperProfileQuery();
+    const {
+        data: userInfo,
+        isSuccess,
+        isFetching,
+    } = useGetKeeperProfileQuery();
 
     if (!isSuccess)
         return (
@@ -42,6 +47,7 @@ export const Keeper = () => {
 
     return (
         <>
+            {isFetching && <Spinner loading />}
             <BackgroundProfile />
             <div className={block()}>
                 <Header />

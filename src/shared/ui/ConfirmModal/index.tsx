@@ -22,6 +22,7 @@ export const ConfirmModal = (props: ConfirmModalInterface) => {
         submitButtonTitle,
         onSubmit,
         onClose,
+        isOpen,
     } = props;
 
     const [block, element] = bem('confirm-modal');
@@ -33,7 +34,7 @@ export const ConfirmModal = (props: ConfirmModalInterface) => {
 
     return (
         <div className={block()}>
-            <Modal onClose={onClose}>
+            <Modal onClose={onClose} isOpen={isOpen}>
                 <Typography
                     variant={typographyVariant.h2}
                     color={typographyColor.black}
