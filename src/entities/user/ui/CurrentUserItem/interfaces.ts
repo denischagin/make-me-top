@@ -1,7 +1,4 @@
-import {
-    CourseExplorer,
-    CourseKeeper,
-} from '@entities/user/model/types';
+import { CourseExplorer, CourseKeeper } from "@entities/course";
 
 export interface CurrentUserItemInterface {
     keeper?: CourseKeeper;

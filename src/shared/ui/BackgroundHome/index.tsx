@@ -3,7 +3,7 @@ import { ShiningStar } from '@shared/ui/ShiningStar';
 import { bem } from '@shared/utils/helpers/bem';
 
 import './styles.scss';
-import { useAuth } from '@entities/viewer/hooks/useAuth';
+import { useAuth } from '@entities/viewer';
 
 export const BackgroundHome = () => {
     const [block, element] = bem('background-home');

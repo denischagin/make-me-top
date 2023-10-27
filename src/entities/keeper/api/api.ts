@@ -1,17 +1,9 @@
 import { queryTags } from '@shared/api/queryTags';
-import { ErrorInterface } from '@shared/types/common';
 import {
     KeeperCardInfoResponseInterface,
     KeeperFilterResponseInterface,
     KeeperProfileResponseInterface,
-    RequestCourseBodyInterface,
-    RequestCourseParamsInterface,
 } from '@entities/keeper/model/types/api';
-import toast from 'react-hot-toast';
-import {
-    TOAST_SUCCESS_APPROVED,
-    TOAST_SUCCESS_REJECTED,
-} from '@shared/constants/toastTitles';
 import { baseApi } from '@shared/api/baseApi';
 
 const {
@@ -40,35 +32,6 @@ export const keeperApi = baseApi.injectEndpoints({
                     : [getKeeperCabinet],
         }),
 
-        acceptCourseRequest: builder.mutation<
-            ErrorInterface,
-            RequestCourseParamsInterface
-        >({
-            query: ({ requestId }) => ({
-                url: `course-registration-app/course-requests/${requestId}`,
-                method: 'PATCH',
-                body: {
-                    approved: true,
-                } as RequestCourseBodyInterface,
-            }),
-            invalidatesTags: ['getExplorerCardInfo', 'getKeeperProfile'],
-        }),
-        
-        rejectCourseRequest: builder.mutation<
-            ErrorInterface,
-            RequestCourseParamsInterface
-        >({
-            query: ({ requestId }) => ({
-                url: `course-registration-app/course-requests/${requestId}`,
-                method: 'PATCH',
-                body: {
-                    approved: false,
-                } as RequestCourseBodyInterface,
-            }),
-
-            invalidatesTags: ['getExplorerCardInfo', 'getKeeperProfile'],
-        }),
-
         getAllKeepers: builder.query<KeeperFilterResponseInterface[], void>({
             query: () => ({
                 url: `person-app/people`,
@@ -94,8 +57,6 @@ export const keeperApi = baseApi.injectEndpoints({
 
 export const {
     useGetKeeperProfileQuery,
-    useAcceptCourseRequestMutation,
-    useRejectCourseRequestMutation,
     useGetAllKeepersQuery,
     useGetKeeperCardInfoQuery,
 } = keeperApi;

@@ -9,10 +9,7 @@ import React, {
 
 import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
-import {
-    userCourseInfoSelector,
-    userIsModalOpenSelector,
-} from '@entities/user/model/selectors';
+import { userIsModalOpenSelector } from '@entities/user/model/selectors';
 import { closeModal, toggleModal } from '@entities/user/model/slice';
 
 import { addActiveSystem } from '@entities/galaxy/lib/addActiveSystem';
@@ -125,9 +122,6 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
     }, [fullWidth]);
 
     useEffect(() => {
-        //поиск на странице и изменение модификаторов элементов в соответствии с состоянием
-        setSystems(document.querySelectorAll(`.${SYSTEM_CLASS}`));
-
         setSystemsActivityToActive({
             activeSystemsId: activeSystemsIds,
         });

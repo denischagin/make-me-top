@@ -1,8 +1,4 @@
-import {
-    CourseExplorer,
-    CourseKeeper,
-    CourseUser,
-} from '@entities/user/model/types';
+import { CourseKeeper } from "@entities/course";
 
 export interface SelectUsersListProps {
     selectedUsers: CourseKeeper[];

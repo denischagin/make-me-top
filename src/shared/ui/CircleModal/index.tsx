@@ -1,21 +1,17 @@
 import { useEffect } from 'react';
-import { ModalAlert } from '@shared/ui/ModalAlert';
 import { Portal } from '@shared/ui/Portal';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
+import { useAppDispatch } from '@app/providers/store/hooks';
 
-import { userCourseInfoSelector } from '@entities/user/model/selectors';
 import { closeModal } from '@entities/user/model/slice';
 
 import { ReactComponent as CloseIcon } from '@shared/images/close.svg';
 import { ReactComponent as LockIcon } from '@shared/images/lock-big.svg';
 
 import { bem } from '@shared/utils/helpers/bem';
-import { getModalStatus } from '@shared/utils/helpers/getModalStatus';
-import { getNotStudiedParentDependencies } from '@shared/utils/helpers/getNotStudiedParentDependencies';
 
-import { ModalAccessStatus, ModalInterface } from './interfaces';
+import { ModalInterface } from './interfaces';
 import {
     typographyColor,
     typographyVariant,
@@ -25,13 +21,7 @@ import './styles.scss';
 import { useEscModal } from '@shared/utils/hooks/use-esc-modal';
 
 export const CircleModal = (props: ModalInterface) => {
-    const {
-        header,
-        isLocked,
-        children,
-        onClose,
-        isOpen,
-    } = props;
+    const { header, isLocked, children, onClose, isOpen } = props;
 
     const [block, element] = bem('circle-modal');
 

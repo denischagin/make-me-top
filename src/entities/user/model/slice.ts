@@ -1,11 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { UserState } from './types/index';
-import { initialCourseInfo } from './constants';
 
 const initialState: UserState = {
     isModalOpen: false,
-    courseInfo: initialCourseInfo,
 };
 
 export const userSlice = createSlice({

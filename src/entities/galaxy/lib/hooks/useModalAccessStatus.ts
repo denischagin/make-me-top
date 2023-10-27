@@ -1,9 +1,9 @@
+import { CourseInfoResponse } from '@entities/course';
 import {
     GetSystemsBySystemIdResponse,
     SystemDependencyType,
     UserProgressInGalaxy,
 } from '@entities/galaxy/model/types';
-import { CourseInfoInterface } from '@entities/user/model/types';
 import { ModalAccessStatus } from '@shared/ui/CircleModal/interfaces';
 import { useMemo } from 'react';
 
@@ -11,7 +11,7 @@ export interface UseModalAccessStatusArgs {
     userProgress?: UserProgressInGalaxy;
     currentSystemId?: number | null;
     isExplorer?: boolean;
-    courseInfo?: CourseInfoInterface;
+    courseInfo?: CourseInfoResponse;
     system?: GetSystemsBySystemIdResponse;
 }
 

@@ -4,7 +4,7 @@ import { Explorer } from '@pages/Explorer/page';
 import { Keeper } from '@pages/Keeper/page';
 import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Header } from '@widgets/Header/ui/Header';
-import { useAuth } from '@entities/viewer/hooks/useAuth';
+import { useAuth } from '@entities/viewer';
 import { useEffect } from 'react';
 
 const ProfileDefault = (

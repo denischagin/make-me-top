@@ -7,13 +7,13 @@ import { bem } from '@shared/utils/helpers/bem';
 
 import { HEADER_LINKS, URL_LOGIN, URL_PROFILE } from '@shared/constants/links';
 
-import { HeaderInterface, HeaderLinkInterface } from './interfaces';
+import { HeaderInterface } from './interfaces';
 
 import './styles.scss';
 import { useLogoutMutation } from '@entities/viewer/api/api';
-import { useAuth } from '@entities/viewer/hooks/useAuth';
+import { useAuth } from '@entities/viewer';
 import { useEffect, useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { DrawerMenu } from '@widgets/Header/ui/DrawerMenu';
 import { Button } from '@shared/ui/Button';
 import { buttonSize } from '@shared/ui/Button/interfaces';
@@ -29,27 +29,12 @@ export const Header = (props: HeaderInterface) => {
     const [logoutMutation, { isSuccess, isError }] = useLogoutMutation();
     const { refreshToken, handleLogout: logoutState } = useAuth();
     const navigate = useNavigate();
-    const localtion = useLocation();
 
-    const handleLogout = () => {
-        logoutMutation(refreshToken!);
-    };
-
-    const handleCloseDrawer = () => {
-        setIsOpenDrawer(false);
-    };
-
-    const handleOpenDrawer = () => {
-        setIsOpenDrawer(true);
-    };
-
-    const handleOpenConfirmModal = () => {
-        setisOpenModalConfirm(true);
-    };
-
-    const handleCloseConfirmModal = () => {
-        setisOpenModalConfirm(false);
-    };
+    const handleLogout = () => logoutMutation(refreshToken!);
+    const handleCloseDrawer = () => setIsOpenDrawer(false);
+    const handleOpenDrawer = () => setIsOpenDrawer(true);
+    const handleOpenConfirmModal = () => setisOpenModalConfirm(true);
+    const handleCloseConfirmModal = () => setisOpenModalConfirm(false);
 
     useEffect(() => {
         if (isSuccess || isError) {

@@ -7,7 +7,6 @@ import {
     GetUserProgressInGalaxyResponse,
 } from '../model/types';
 import {
-    CourseInfoInterface,
     ModalPlanetInterface,
 } from '@entities/user/model/types';
 import { queryTags } from '@shared/api/queryTags';
@@ -52,25 +51,6 @@ export const galaxiesApi = baseApi.injectEndpoints({
                           queryTags.getPlanetsBySystemId,
                       ]
                     : [queryTags.getPlanetsBySystemId],
-        }),
-
-        getCourseInfoByCourseId: builder.query<CourseInfoInterface, number>({
-            query: (courseId) => ({
-                url: `course-app/courses/${courseId}`,
-                params: {
-                    detailed: true,
-                },
-            }),
-            providesTags: (result) =>
-                result
-                    ? [
-                          {
-                              type: queryTags.getCourseInfoByCourseId,
-                              id: result.course?.courseId,
-                          },
-                          queryTags.getCourseInfoByCourseId,
-                      ]
-                    : [queryTags.getCourseInfoByCourseId],
         }),
 
         getSystemsBySystemId: builder.query<
@@ -119,19 +99,13 @@ export const galaxiesApi = baseApi.injectEndpoints({
 export const {
     useGetAllGalaxiesQuery,
     useGetGalaxyQuery,
-    
-    useGetUserProgressInGalaxyQuery,
-    useLazyGetUserProgressInGalaxyQuery,
 
-    useGetCourseInfoByCourseIdQuery,
-    useLazyGetCourseInfoByCourseIdQuery,
+    useGetUserProgressInGalaxyQuery,
+
 
     useGetPlanetsBySystemIdQuery,
-    useLazyGetPlanetsBySystemIdQuery,
 
     useGetSystemsBySystemIdQuery,
-    useLazyGetSystemsBySystemIdQuery,
 
     useGetExplorerProgressByExplorerIdQuery,
-    useLazyGetExplorerProgressByExplorerIdQuery,
 } = galaxiesApi;

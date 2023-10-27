@@ -39,7 +39,6 @@ export const KeepersListTab = ({
                     У данного курса нет хранителей
                 </Typography>
             ) : canYouSendCourseRequest ? (
-                //TODO Баг с переключением текущей системы (сохраняется selectedUsers)
                 <SelectUsersList
                     keepersList={courseInfo?.keepers}
                     onSelect={setSelectedKeepers}

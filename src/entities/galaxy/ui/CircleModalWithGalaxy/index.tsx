@@ -1,17 +1,18 @@
-import { usePostCourseRequestMutation } from '@entities/explorer/api/api';
 import './style.scss';
 import {
-    useGetCourseInfoByCourseIdQuery,
     useGetExplorerProgressByExplorerIdQuery,
     useGetPlanetsBySystemIdQuery,
     useGetSystemsBySystemIdQuery,
 } from '@entities/galaxy/api/api';
 import { CircleModalWithGalaxyProps } from '@entities/galaxy/ui/CircleModalWithGalaxy/interface';
-import { CourseKeeper } from '@entities/user/model/types';
-import { useAuth } from '@entities/viewer/hooks/useAuth';
+import { useAuth } from '@entities/viewer';
 import { TABS_LIST } from '@pages/Explorer/model';
 import { Button } from '@shared/ui/Button';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import {
+    ButtonInterface,
+    buttonColor,
+    buttonSize,
+} from '@shared/ui/Button/interfaces';
 import { CircleModal } from '@shared/ui/CircleModal';
 import { MmtTabs } from '@shared/ui/MmtTabs';
 import { ModalAlert } from '@shared/ui/ModalAlert';
@@ -29,6 +30,11 @@ import { PlanetListTab } from '@entities/galaxy/ui/PlanetListTab';
 import { ExplorersListTab } from '@entities/galaxy/ui/ExplorersListTab';
 import { KeepersListTab } from '@entities/galaxy/ui/KeepersListTab';
 import { useModalAccessStatus } from '@entities/galaxy/lib/hooks/useModalAccessStatus';
+import {
+    CourseKeeper,
+    useGetCourseInfoByCourseIdQuery,
+    usePostCourseRequestMutation,
+} from '@entities/course';
 
 const CircleModalWithGalaxy = ({
     handleChangeSystem,
@@ -121,6 +127,23 @@ const CircleModalWithGalaxy = ({
         });
     };
 
+    const sendButtonProps: Pick<
+        ButtonInterface,
+        'color' | 'onClick' | 'title'
+    > = {
+        color:
+            selectedKeepers.length === 0 && activeTab === 2
+                ? buttonColor.primary500
+                : buttonColor.filled,
+
+        onClick:
+            activeTab === 2 ? handleSendApplication : () => setActiveTab(2),
+        title:
+            selectedKeepers.length === 0 && activeTab === 2
+                ? 'Выберите хранителей'
+                : 'Отправить заявку',
+    };
+
     return (
         <CircleModal
             isOpen={isOpen}
@@ -130,23 +153,9 @@ const CircleModalWithGalaxy = ({
             <div className={block()}>
                 {!isFetching && canYouSendCourseRequest && (
                     <Button
-                        color={
-                            selectedKeepers.length === 0 && activeTab === 2
-                                ? buttonColor.primary500
-                                : buttonColor.filled
-                        }
                         size={buttonSize.large}
-                        title={
-                            selectedKeepers.length === 0 && activeTab === 2
-                                ? 'Выберите хранителей'
-                                : 'Отправить заявку'
-                        }
                         className={element('send-button')}
-                        onClick={
-                            activeTab === 2
-                                ? handleSendApplication
-                                : () => setActiveTab(2)
-                        }
+                        {...sendButtonProps}
                     />
                 )}
             </div>

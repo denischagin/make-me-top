@@ -1,6 +1,5 @@
+import { CourseExplorer, CourseKeeper } from '@entities/course';
 import { ReactNode } from 'react';
-
-import { CourseExplorer, CourseKeeper } from '@entities/user/model/types';
 
 export interface TabInterface {
     name: string;

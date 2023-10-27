@@ -1,27 +1,12 @@
-import { useState } from 'react';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router';
 import { Button } from '@shared/ui/Button';
 import { SelectUsersKeepersItem } from '@shared/ui/SelectUsersKeepersItem';
-
-import { useAppDispatch } from '@app/providers/store/hooks';
-
-import { toggleModal } from '@entities/user/model/slice';
-import { CourseKeeper } from '@entities/user/model/types';
 
 import { bem } from '@shared/utils/helpers/bem';
 import { sortByRating } from '@shared/utils/helpers/sortByRating';
 
-import { URL_PROFILE } from '@shared/constants/links';
-import { TOAST_ERROR_CHOOSE_KEEPER } from '@shared/constants/toastTitles';
-
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 
-import { UserListInterface } from '@shared/types/common';
-
 import './styles.scss';
-import { usePostCourseRequestMutation } from '@entities/explorer/api/api';
-import { useStatus } from '@shared/utils/hooks/use-status';
 import { SelectUsersListProps } from './interface';
 
 export const SelectUsersList = (props: SelectUsersListProps) => {

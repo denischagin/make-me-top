@@ -7,7 +7,7 @@ import { queryParams } from '@shared/constants';
 import { useRefreshMutation } from '@entities/viewer/api/api';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import Spinner from '@shared/ui/Spinner';
-import { UseAuthLoginData, useAuth } from '@entities/viewer/hooks/useAuth';
+import { UseAuthLoginData, useAuth } from '@entities/viewer/libs/hooks/useAuth';
 import { getNavigationPath } from '@entities/viewer/libs/helpers/getNavigationPath';
 
 interface AuthProtectProps {

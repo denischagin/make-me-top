@@ -16,15 +16,15 @@ import './styles.scss';
 import { useGetExplorerCardInfoQuery } from '@entities/explorer/api/api';
 import { useParams } from 'react-router-dom';
 import {
-    useAcceptCourseRequestMutation,
-    useRejectCourseRequestMutation,
-} from '@entities/keeper/api/api';
-import {
     TOAST_SUCCESS_APPROVED,
     TOAST_SUCCESS_REJECTED,
 } from '@shared/constants/toastTitles';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import toast from 'react-hot-toast';
+import {
+    useAcceptCourseRequestMutation,
+    useRejectCourseRequestMutation,
+} from '@entities/course';
 
 export const ExplorerApplicationCard = () => {
     const [block, element] = bem('explorer-application-card');
@@ -44,16 +44,18 @@ export const ExplorerApplicationCard = () => {
     const studyRequestOrСurrentSystem =
         userInfo?.currentSystem || userInfo?.studyRequest;
 
+    const requestId = userInfo?.studyRequest.requestId ?? 0;
+
     const handleAcceptCourse = () => {
         acceptCourse({
-            requestId: studyRequest.requestId,
+            requestId,
         });
         setIsAcceptModalOpen(false);
     };
 
     const handleRejectCourse = () => {
         rejectCourse({
-            requestId: studyRequest.requestId,
+            requestId,
         });
         setIsRejectModalOpen(false);
     };

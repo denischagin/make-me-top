@@ -20,7 +20,7 @@ import './styles.scss';
 import { queryParams } from '@shared/constants';
 import { useLoginMutation } from '@entities/viewer/api/api';
 import { useStatus } from '@shared/utils/hooks/use-status';
-import { useAuth } from '@entities/viewer/hooks/useAuth';
+import { useAuth } from '@entities/viewer';
 import {
     AuthCredentials,
     AuthResponse,

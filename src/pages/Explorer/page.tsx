@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Button } from '@shared/ui/Button';
@@ -11,7 +10,6 @@ import { bem } from '@shared/utils/helpers/bem';
 
 import { URL_GALAXY } from '@shared/constants/links';
 
-import { CurrentSystemCard } from '@widgets/CurrentSystemCard';
 import { ExplorerUserInfo } from '@widgets/ExplorerUserInfo';
 import { Header } from '@widgets/Header/ui/Header';
 import { RatingCard } from '@widgets/RatingCard';
@@ -26,11 +24,11 @@ import { TABS_LIST } from './model';
 
 import './styles.scss';
 import {
-    useGetExplorerCardInfoQuery,
     useGetExplorerProfileQuery,
 } from '@entities/explorer/api/api';
-import { useGetAllGalaxiesQuery } from '@entities/galaxy/api/api';
+
 import Spinner from '@shared/ui/Spinner';
+import { CurrentSystemCard } from '@widgets/CurrentSystemCard';
 
 export const Explorer = () => {
     const [block, element] = bem('explorer');

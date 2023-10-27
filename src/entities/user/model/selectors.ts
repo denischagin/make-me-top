@@ -8,8 +8,3 @@ export const userIsModalOpenSelector = createSelector(
     userState,
     (userState) => userState.isModalOpen,
 );
-
-export const userCourseInfoSelector = createSelector(
-    userState,
-    (userState) => userState.courseInfo,
-);

@@ -27,7 +27,7 @@ import { bem } from '@shared/utils/helpers/bem';
 import { SystemProgressTypes } from '@shared/types/common';
 
 import './styles.scss';
-import { useAuth } from '@entities/viewer/hooks/useAuth';
+import { useAuth } from '@entities/viewer';
 import { useGalaxy } from '@entities/galaxy/lib/hooks/useGalaxy';
 import {
     ACTIVE_SYSTEM_MODIFIER,

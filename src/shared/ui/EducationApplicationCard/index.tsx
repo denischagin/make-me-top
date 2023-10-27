@@ -30,8 +30,8 @@ import {
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
-import { useRejectCourseRequestMutation } from '@entities/keeper/api/api';
 import { useStatus } from '@shared/utils/hooks/use-status';
+import { useRejectCourseRequestMutation } from '@entities/course';
 
 export const EducationApplicationCard = (
     props: EducationApplicationCardInterface,
@@ -50,6 +50,13 @@ export const EducationApplicationCard = (
         });
     }, isSuccessReject);
 
+    const handleSubmitRejectCourse = () => {
+        rejectCourse({
+            requestId: user.requestId,
+        });
+        setIsModalRejectOpen(true);
+    };
+
     return (
         <div className={block()}>
             <ConfirmModal
@@ -58,11 +65,7 @@ export const EducationApplicationCard = (
                 rejectButtonTitle='Нет, хочу продолжить'
                 submitButtonTitle='Да, я уверен'
                 onClose={() => setIsModalRejectOpen(false)}
-                onSubmit={() =>
-                    rejectCourse({
-                        requestId: user.requestId,
-                    })
-                }
+                onSubmit={handleSubmitRejectCourse}
             />
 
             <Card size={cardSize.large} glow>

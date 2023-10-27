@@ -16,10 +16,8 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
-import {
-    useCloseCourseRequestMutation,
-    useGetExplorerProfileQuery,
-} from '@entities/explorer/api/api';
+import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
+import { useCloseCourseRequestMutation } from '@entities/course';
 
 export const MasteringApplication = () => {
     const [block, element] = bem('current-request-card');
@@ -42,6 +40,9 @@ export const MasteringApplication = () => {
 
     const { studyRequest } = userInfo;
 
+    const handleSubmitCloseCourseRequest = () =>
+        closeCourseRequest(studyRequest.requestId);
+
     return (
         <div className={block()}>
             <ConfirmModal
@@ -50,7 +51,7 @@ export const MasteringApplication = () => {
                 rejectButtonTitle='Нет, хочу продолжить'
                 submitButtonTitle='Да, я уверен'
                 onClose={() => setIsAcceptModalOpen(false)}
-                onSubmit={() => closeCourseRequest(studyRequest.requestId)}
+                onSubmit={handleSubmitCloseCourseRequest}
             />
 
             <Typography

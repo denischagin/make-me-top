@@ -1,5 +1,5 @@
-import { CourseInfoInterface } from "@entities/user/model/types";
+import { CourseInfoResponse } from '@entities/course';
 
 export interface ExplorersListTabProps {
-    courseInfo?: CourseInfoInterface
+    courseInfo?: CourseInfoResponse;
 }

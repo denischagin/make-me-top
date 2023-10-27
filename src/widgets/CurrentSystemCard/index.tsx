@@ -6,10 +6,7 @@ import { Typography } from '@shared/ui/Typography';
 
 import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
-import {
-    userCourseInfoSelector,
-    userIsModalOpenSelector,
-} from '@entities/user/model/selectors';
+import { userIsModalOpenSelector } from '@entities/user/model/selectors';
 import { closeModal, showModal } from '@entities/user/model/slice';
 
 import { bem } from '@shared/utils/helpers/bem';
@@ -29,32 +26,42 @@ import {
 } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
-import {
-    useGetExplorerProfileQuery,
-    useLeaveCourseRequestByExplorerIdMutation,
-} from '@entities/explorer/api/api';
+import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 import CircleModalWithGalaxy from '@entities/galaxy/ui/CircleModalWithGalaxy';
+import { useLeaveCourseByExplorerIdMutation } from '@entities/course';
+import { useStatus } from '@shared/utils/hooks/use-status';
+import toast from 'react-hot-toast';
+import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toastTitles';
 
 export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
-    const { tabsList = [] } = props;
-
     const [block, element] = bem('current-system-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
 
     const dispatch = useAppDispatch();
     const isModalOpen = useAppSelector(userIsModalOpenSelector);
 
-    const { data: userInfo, isSuccess } = useGetExplorerProfileQuery();
-    const [leaveCourseRequest] = useLeaveCourseRequestByExplorerIdMutation();
+    const { data: userInfo, isSuccess: isSuccessExplorerProfile } =
+        useGetExplorerProfileQuery();
+    const [leaveCourseRequest, { isSuccess: isSuccessLeaveCourse }] =
+        useLeaveCourseByExplorerIdMutation();
 
-    if (!userInfo?.currentSystem && !userInfo?.studyRequest) {
+    useStatus(() => {
+        toast(TOAST_SUCCESS_REJECTED, {
+            icon: '😔',
+        });
+    }, isSuccessLeaveCourse);
+
+    if (!userInfo?.currentSystem && !userInfo?.studyRequest)
         return <SelectSystem />;
-    }
 
-    if (userInfo?.studyRequest || !isSuccess) {
-        return null;
-    }
+    if (userInfo?.studyRequest || !isSuccessExplorerProfile) return null;
+
     const { currentSystem } = userInfo;
+
+    const handleSubmitLeaveCourse = () => {
+        leaveCourseRequest(currentSystem?.explorerId);
+        setIsAcceptModalOpen(false);
+    };
 
     return (
         <div className={block()}>
@@ -69,10 +76,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                 rejectButtonTitle='Нет, хочу продолжить'
                 submitButtonTitle='Да, я уверен'
                 onClose={() => setIsAcceptModalOpen(false)}
-                onSubmit={() => {
-                    leaveCourseRequest(currentSystem?.explorerId);
-                    setIsAcceptModalOpen(false);
-                }}
+                onSubmit={handleSubmitLeaveCourse}
             />
 
             <Typography

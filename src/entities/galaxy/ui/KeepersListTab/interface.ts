@@ -1,7 +1,7 @@
-import { CourseInfoInterface, CourseKeeper } from '@entities/user/model/types';
+import { CourseInfoResponse, CourseKeeper } from "@entities/course";
 
 export interface KeepersListTabProps {
-    courseInfo?: CourseInfoInterface;
+    courseInfo?: CourseInfoResponse;
     canYouSendCourseRequest?: boolean;
     selectedKeepers: CourseKeeper[];
     setSelectedKeepers: (selectedKeepers: CourseKeeper[]) => void;

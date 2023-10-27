@@ -20,7 +20,7 @@ import {
 } from '@entities/galaxy/api/api';
 import Spinner from '@shared/ui/Spinner';
 import NotFound from '@pages/NotFound';
-import { useAuth } from '@entities/viewer/hooks/useAuth';
+import { useAuth } from '@entities/viewer';
 import { GalaxyProvider } from '@entities/galaxy/lib/providers/GalaxyProvider';
 
 const GalaxyPage: React.FC = () => {
