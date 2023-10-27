@@ -53,6 +53,7 @@ export const keeperApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['getExplorerCardInfo', 'getKeeperProfile'],
         }),
+        
         rejectCourseRequest: builder.mutation<
             ErrorInterface,
             RequestCourseParamsInterface

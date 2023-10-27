@@ -16,7 +16,7 @@ import { CircleModal } from '@shared/ui/CircleModal';
 import { MmtTabs } from '@shared/ui/MmtTabs';
 import { ModalAlert } from '@shared/ui/ModalAlert';
 import { bem } from '@shared/utils/helpers/bem';
-import { memo, useMemo, useState } from 'react';
+import { memo, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TabPanel } from 'react-tabs';
 import { useAppDispatch } from '@app/providers/store/hooks';
@@ -78,6 +78,11 @@ const CircleModalWithGalaxy = ({
 
     const [selectedKeepers, setSelectedKeepers] = useState<CourseKeeper[]>([]);
     const [activeTab, setActiveTab] = useState(0);
+
+    useEffect(() => {
+        setSelectedKeepers([]);
+        setActiveTab(0);
+    }, [currentSystemId]);
 
     // Переменные
     const {
