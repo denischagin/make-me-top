@@ -1,5 +1,6 @@
 import {
     CourseInfoResponse,
+    CurrentCourseRequestInterface,
     RequestCourseBodyInterface,
     RequestCourseParamsInterface,
 } from '@entities/course/model/types/api';
@@ -83,6 +84,15 @@ export const courseApi = baseApi.injectEndpoints({
                       ]
                     : ['getCourseInfoByCourseId'],
         }),
+        getCurrentCourseRequest: builder.query<
+            CurrentCourseRequestInterface,
+            void
+        >({
+            query: () => `course-registration-app/course-requests/processing/`,
+            extraOptions: {
+                withOutToasts: true
+            },
+        }),
     }),
 });
 
@@ -93,4 +103,5 @@ export const {
     useAcceptCourseRequestMutation,
     useRejectCourseRequestMutation,
     useGetCourseInfoByCourseIdQuery,
+    useGetCurrentCourseRequestQuery,
 } = courseApi;

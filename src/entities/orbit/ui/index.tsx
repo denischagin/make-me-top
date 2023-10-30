@@ -24,7 +24,7 @@ interface IOrbitProps {
     userProgress?: UserProgressInGalaxy;
     handleSystemClick: (event: React.MouseEvent<HTMLDivElement>) => void;
     handleSystemMouseEnter: (event: React.MouseEvent<HTMLDivElement>) => void;
-    handleSystemMouseLeave: (event: React.MouseEvent<HTMLDivElement>) => void;
+    handleSystemMouseLeave: () => void;
 }
 
 const Orbit: React.FC<IOrbitProps> = (props) => {

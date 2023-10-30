@@ -2,6 +2,7 @@ import React, {
     CSSProperties,
     memo,
     MouseEventHandler,
+    TransitionEventHandler,
     useEffect,
     useMemo,
     useState,
@@ -38,7 +39,7 @@ interface SystemInOrbitProps {
     system: SystemType;
     handleSystemClick: MouseEventHandler<HTMLDivElement>;
     handleSystemMouseEnter: MouseEventHandler<HTMLDivElement>;
-    handleSystemMouseLeave: MouseEventHandler<HTMLDivElement>;
+    handleSystemMouseLeave: () => void;
     orbitHalfWidth: number;
     orbitHalfHeight: number;
     elementWidth: number;
@@ -132,6 +133,14 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
         isNoExplorer && setDestoryCount((prev) => prev + 1);
     };
 
+    const handleTransitionEnd: TransitionEventHandler = (e) => {
+        const property = e.propertyName;
+
+        if (property === 'top' || property === 'left') {
+            handleSystemMouseLeave();
+        }
+    };
+
     const [block, element] = bem('orbit');
 
     const children = useMemo(
@@ -163,6 +172,7 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
             onClick={handleGalaxyClick}
             onMouseEnter={handleSystemMouseEnter}
             onMouseLeave={handleSystemMouseLeave}
+            onTransitionEnd={handleTransitionEnd}
             style={{
                 ...systemStyle,
                 left: x + 'px',

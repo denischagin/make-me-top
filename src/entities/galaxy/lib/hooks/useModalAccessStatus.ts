@@ -13,6 +13,7 @@ export interface UseModalAccessStatusArgs {
     isExplorer?: boolean;
     courseInfo?: CourseInfoResponse;
     system?: GetSystemsBySystemIdResponse;
+    isCurrentRequestExists?: boolean;
 }
 
 export interface UseModalAccessStatusReturn {
@@ -32,6 +33,7 @@ export interface GetModalAccessStatusAgs {
     isExplorer?: boolean;
     isSystemAlreadyDone?: boolean;
     isSystemNeedParents?: boolean;
+    isCurrentRequestExists?: boolean;
 }
 
 export const useModalAccessStatus = ({
@@ -40,6 +42,7 @@ export const useModalAccessStatus = ({
     isExplorer,
     userProgress,
     system,
+    isCurrentRequestExists,
 }: UseModalAccessStatusArgs): UseModalAccessStatusReturn => {
     const systemIsOpen = useMemo(
         () =>
@@ -49,13 +52,16 @@ export const useModalAccessStatus = ({
         [userProgress, currentSystemId],
     );
 
-    const isYouInStudying = useMemo(
+    const studingSystem = useMemo(
         () =>
-            userProgress?.studiedSystems.some(
+            userProgress?.studiedSystems.find(
                 ({ progress }) => progress < 100 && progress >= 0,
             ),
         [userProgress],
     );
+
+    const isYouInStudying =
+        studingSystem && studingSystem?.systemId !== currentSystemId;
 
     const isYouAlreadyKeeper = useMemo(
         () =>
@@ -76,7 +82,11 @@ export const useModalAccessStatus = ({
     );
 
     const canYouSendCourseRequest =
-        systemIsOpen && isExplorer && !isYouInStudying && !isYouAlreadyKeeper;
+        systemIsOpen &&
+        isExplorer &&
+        !isYouInStudying &&
+        !isYouAlreadyKeeper &&
+        !isCurrentRequestExists;
 
     const dependencySystemListWithParent = useMemo(
         () =>
@@ -98,6 +108,7 @@ export const useModalAccessStatus = ({
         isYouInStudying,
         isSystemAlreadyDone,
         isSystemNeedParents: (dependencySystemListWithParent?.length ?? 0) > 0,
+        isCurrentRequestExists,
     });
 
     return {
@@ -115,10 +126,14 @@ export const getModalAccessStatus = ({
     isYouInStudying,
     isSystemAlreadyDone,
     isSystemNeedParents,
+    isCurrentRequestExists,
 }: GetModalAccessStatusAgs): ModalAccessStatus => {
     if (isSystemNeedParents) return ModalAccessStatus.closed_needSystems;
 
     if (isSystemAlreadyDone) return ModalAccessStatus.studied_systemAlreadyDone;
+
+    if (isCurrentRequestExists)
+        return ModalAccessStatus.closed_currentRequestAlreadyExists;
 
     if (isYouInStudying) return ModalAccessStatus.closed_youInStuding;
 

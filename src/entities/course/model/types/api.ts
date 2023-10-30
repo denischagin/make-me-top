@@ -40,3 +40,10 @@ export interface CourseExplorer extends CourseUser {
 export interface CourseKeeper extends CourseUser{
     keeperId: number;
 }
+
+export interface CurrentCourseRequestInterface {
+    requestId: number
+    courseId: number
+    personId: number
+    statusId: number
+}

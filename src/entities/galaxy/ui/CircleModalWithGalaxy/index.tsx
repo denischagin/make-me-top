@@ -33,6 +33,7 @@ import { useModalAccessStatus } from '@entities/galaxy/lib/hooks/useModalAccessS
 import {
     CourseKeeper,
     useGetCourseInfoByCourseIdQuery,
+    useGetCurrentCourseRequestQuery,
     usePostCourseRequestMutation,
 } from '@entities/course';
 
@@ -43,7 +44,6 @@ const CircleModalWithGalaxy = ({
     currentSystemId,
     userProgress,
 }: CircleModalWithGalaxyProps) => {
-    //TODO сделать запрет отправлять заявку, когда уже отправлена заявка
     const [block, element] = bem('circle-modal-galaxy');
     const { role } = useAuth();
     const isExplorer = role === 'EXPLORER';
@@ -80,6 +80,11 @@ const CircleModalWithGalaxy = ({
         { skip: !courseInfo?.you || !isOpen },
     );
 
+    const { isSuccess: isCurrentRequestExists } =
+        useGetCurrentCourseRequestQuery(undefined, {
+            skip: !isExplorer,
+        });
+
     const isFetching = isFetchingCourseInfo || isFetchingSystem;
 
     const [selectedKeepers, setSelectedKeepers] = useState<CourseKeeper[]>([]);
@@ -101,6 +106,7 @@ const CircleModalWithGalaxy = ({
         isExplorer,
         system,
         userProgress,
+        isCurrentRequestExists,
     });
 
     const currentPlanetId = useMemo(

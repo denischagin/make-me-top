@@ -32,8 +32,7 @@ export const baseQueryWithToasts: BaseQueryFn<
     FetchBaseQueryError
 > = async (args, api, extraOptions: BaseQueryWithToastsExtraOption) => {
     const result = await baseQuery(args, api, extraOptions);
-    if (result.error && extraOptions.withToasts)
-        onErrorHandling(result.error);
+    if (result.error && extraOptions.withToasts) onErrorHandling(result.error);
     return result;
 };
 
@@ -41,7 +40,7 @@ export const baseQueryWithReauth: BaseQueryFn<
     string | FetchArgs,
     unknown,
     FetchBaseQueryError
-> = async (args, api, extraOptions) => {
+> = async (args, api, extraOptions: any) => {
     await mutex.waitForUnlock();
     const { refreshToken, accessToken } = getTokensFromLocalStorage();
 
@@ -49,7 +48,7 @@ export const baseQueryWithReauth: BaseQueryFn<
     let result = await baseQuery(argsWithHeader, api, extraOptions);
 
     if (result.error && result.error.status !== 401)
-        onErrorHandling(result.error);
+        onErrorHandling(result.error, extraOptions);
 
     if (result.error && result.error.status === 401) {
         if (!mutex.isLocked()) {
@@ -99,8 +98,13 @@ export const baseQueryWithReauth: BaseQueryFn<
     return result;
 };
 
-const onErrorHandling = (err: unknown) => {
+const onErrorHandling = (
+    err: unknown,
+    extraOptions?: { withOutToasts: boolean },
+) => {
     const error = err as FetchBaseQueryError;
+
+    if (extraOptions && extraOptions.withOutToasts === true) return;
 
     if (error.data) {
         const errorData = error.data as ErrorInterface;
