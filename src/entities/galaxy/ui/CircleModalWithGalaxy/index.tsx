@@ -36,6 +36,8 @@ import {
     useGetCurrentCourseRequestQuery,
     usePostCourseRequestMutation,
 } from '@entities/course';
+import { useGetGalaxyCircleModalInfo } from '@entities/galaxy/libs/hooks/useGetGalaxyCircleModalInfo';
+import { getSendButtonProps } from '@entities/galaxy/libs/helpers/getSendButtonProps';
 
 const CircleModalWithGalaxy = ({
     handleChangeSystem,
@@ -51,41 +53,16 @@ const CircleModalWithGalaxy = ({
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    // Запросы
-    const [postCourseRequest, { isSuccess }] = usePostCourseRequestMutation();
-
-    const { data: planets } = useGetPlanetsBySystemIdQuery(
-        Number(currentSystemId),
-        {
-            skip: !isOpen,
-        },
-    );
-
-    const { data: courseInfo, isFetching: isFetchingCourseInfo } =
-        useGetCourseInfoByCourseIdQuery(Number(currentSystemId), {
-            skip: !isOpen,
-        });
-
-    const { data: system, isFetching: isFetchingSystem } =
-        useGetSystemsBySystemIdQuery(
-            {
-                withDependencies: true,
-                systemId: Number(currentSystemId),
-            },
-            { skip: !isOpen || !isExplorer },
-        );
-
-    const { data: explorerProgress } = useGetExplorerProgressByExplorerIdQuery(
-        Number(courseInfo?.you?.explorerId),
-        { skip: !courseInfo?.you || !isOpen },
-    );
-
-    const { isSuccess: isCurrentRequestExists } =
-        useGetCurrentCourseRequestQuery(undefined, {
-            skip: !isExplorer,
-        });
-
-    const isFetching = isFetchingCourseInfo || isFetchingSystem;
+    const [postCourseRequest, { isSuccess: isSuccessCourseRequest }] =
+        usePostCourseRequestMutation();
+    const {
+        courseInfo,
+        explorerProgress,
+        isCurrentRequestExists,
+        isFetching,
+        planets,
+        system,
+    } = useGetGalaxyCircleModalInfo({ currentSystemId, isOpen });
 
     const [selectedKeepers, setSelectedKeepers] = useState<CourseKeeper[]>([]);
     const [activeTab, setActiveTab] = useState(0);
@@ -95,7 +72,6 @@ const CircleModalWithGalaxy = ({
         setActiveTab(0);
     }, [currentSystemId]);
 
-    // Переменные
     const {
         modalAccessStatus,
         canYouSendCourseRequest,
@@ -119,7 +95,7 @@ const CircleModalWithGalaxy = ({
     useStatus(() => {
         dispatch(toggleModal());
         navigate(URL_PROFILE);
-    }, isSuccess);
+    }, isSuccessCourseRequest);
 
     const handleSendApplication = () => {
         if (selectedKeepers.length === 0)
@@ -133,22 +109,12 @@ const CircleModalWithGalaxy = ({
         });
     };
 
-    const sendButtonProps: Pick<
-        ButtonInterface,
-        'color' | 'onClick' | 'title'
-    > = {
-        color:
-            selectedKeepers.length === 0 && activeTab === 2
-                ? buttonColor.primary500
-                : buttonColor.filled,
-
-        onClick:
-            activeTab === 2 ? handleSendApplication : () => setActiveTab(2),
-        title:
-            selectedKeepers.length === 0 && activeTab === 2
-                ? 'Выберите хранителей'
-                : 'Отправить заявку',
-    };
+    const sendButtonProps = getSendButtonProps({
+        activeTab,
+        handleSendApplication,
+        keepersListIsEmpty: selectedKeepers.length === 0,
+        setActiveTab,
+    });
 
     return (
         <CircleModal
