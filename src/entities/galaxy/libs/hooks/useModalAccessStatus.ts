@@ -1,4 +1,5 @@
 import { CourseInfoResponse } from '@entities/course';
+import { getModalAccessStatus } from '@entities/galaxy/libs/helpers/getModalAccessStatus';
 import {
     GetSystemsBySystemIdResponse,
     SystemDependencyType,
@@ -24,16 +25,6 @@ export interface UseModalAccessStatusReturn {
     canYouSendCourseRequest?: boolean;
     isSystemAlreadyDone?: boolean;
     dependencySystemListWithParent?: SystemDependencyType[];
-}
-
-export interface GetModalAccessStatusAgs {
-    systemIsOpen?: boolean;
-    isYouInStudying?: boolean;
-    isYouAlreadyKeeper?: boolean;
-    isExplorer?: boolean;
-    isSystemAlreadyDone?: boolean;
-    isSystemNeedParents?: boolean;
-    isCurrentRequestExists?: boolean;
 }
 
 export const useModalAccessStatus = ({
@@ -99,7 +90,6 @@ export const useModalAccessStatus = ({
                             studiedSystem.progress === 100,
                     ),
             ),
-
         [system?.systemDependencyList, userProgress?.studiedSystems],
     );
 
@@ -119,25 +109,4 @@ export const useModalAccessStatus = ({
         systemIsOpen,
         dependencySystemListWithParent,
     };
-};
-
-export const getModalAccessStatus = ({
-    isYouAlreadyKeeper,
-    isYouInStudying,
-    isSystemAlreadyDone,
-    isSystemNeedParents,
-    isCurrentRequestExists,
-}: GetModalAccessStatusAgs): ModalAccessStatus => {
-    if (isSystemNeedParents) return ModalAccessStatus.closed_needSystems;
-
-    if (isSystemAlreadyDone) return ModalAccessStatus.studied_systemAlreadyDone;
-
-    if (isCurrentRequestExists)
-        return ModalAccessStatus.closed_currentRequestAlreadyExists;
-
-    if (isYouInStudying) return ModalAccessStatus.closed_youInStuding;
-
-    if (isYouAlreadyKeeper) return ModalAccessStatus.closed_youAlreadyKeeper;
-
-    return ModalAccessStatus.opened;
 };

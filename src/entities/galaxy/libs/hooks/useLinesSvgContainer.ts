@@ -1,9 +1,9 @@
+import { createSvgContainer } from '@entities/galaxy/libs/helpers/createSvgContainer';
 import {
     useEffect,
     useState,
 } from 'react';
 
-import { createSvgContainer } from '@entities/galaxy/lib/createSvgContainer';
 
 export const useLinesSvgContainer = (
     galaxyPage: HTMLElement | null,

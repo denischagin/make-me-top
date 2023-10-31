@@ -1,4 +1,4 @@
-import { restoreColorShelf } from '@entities/galaxy/lib/colorShelf';
+import { restoreColorShelf } from '@entities/galaxy/libs/helpers/colorShelf';
 import { CONNECTION_LINE_CLASS } from '@entities/galaxy/model/constants';
 
 interface IDeleteAllConnectionLines {

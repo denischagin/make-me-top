@@ -29,7 +29,7 @@ import { SystemProgressTypes } from '@shared/types/common';
 
 import './styles.scss';
 import { useAuth } from '@entities/viewer';
-import { useGalaxy } from '@entities/galaxy/lib/hooks/useGalaxy';
+import { useGalaxy } from '@entities/galaxy/libs/hooks/useGalaxy';
 import {
     ACTIVE_SYSTEM_MODIFIER,
     INACTIVE_SYSTEM_MODIFIER,

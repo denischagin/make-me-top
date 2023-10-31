@@ -21,7 +21,7 @@ import {
 import Spinner from '@shared/ui/Spinner';
 import NotFound from '@pages/NotFound';
 import { useAuth } from '@entities/viewer';
-import { GalaxyProvider } from '@entities/galaxy/lib/providers/GalaxyProvider';
+import { GalaxyProvider } from '@entities/galaxy/libs/providers/GalaxyProvider';
 
 const GalaxyPage: React.FC = () => {
     const [block, element] = bem('galaxy-page');

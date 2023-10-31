@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { addActiveSystem } from '@entities/galaxy/lib/addActiveSystem';
-import { getColorFromShelf } from '@entities/galaxy/lib/colorShelf';
-import { getCoordsForConnection } from '@entities/galaxy/lib/getCoordsForConnection';
-import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
+import { addActiveSystem } from '@entities/galaxy/libs/helpers/addActiveSystem';
+import { getCoordsForConnection } from '@entities/galaxy/libs/helpers/getCoordsForConnection';
+import { getElemCoords } from '@entities/galaxy/libs/helpers/getElemCoords';
 import {
     CONNECTION_LINE_CLASS,
     SVG_NAMESPACE_URL,
@@ -16,6 +15,7 @@ import {
 } from '@entities/orbit/model/types';
 
 import { SystemProgressTypes } from '@shared/types/common';
+import { getColorFromShelf } from '@entities/galaxy/libs/helpers/colorShelf';
 
 interface IShowPlanetsParents {
   parentsList: string | null;

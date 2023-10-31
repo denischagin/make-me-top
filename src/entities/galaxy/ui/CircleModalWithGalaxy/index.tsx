@@ -29,7 +29,7 @@ import { TOAST_ERROR_CHOOSE_KEEPER } from '@shared/constants/toastTitles';
 import { PlanetListTab } from '@entities/galaxy/ui/PlanetListTab';
 import { ExplorersListTab } from '@entities/galaxy/ui/ExplorersListTab';
 import { KeepersListTab } from '@entities/galaxy/ui/KeepersListTab';
-import { useModalAccessStatus } from '@entities/galaxy/lib/hooks/useModalAccessStatus';
+import { useModalAccessStatus } from '@entities/galaxy/libs/hooks/useModalAccessStatus';
 import {
     CourseKeeper,
     useGetCourseInfoByCourseIdQuery,

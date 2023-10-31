@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { addActiveSystem } from '@entities/galaxy/lib/addActiveSystem';
-import { getElemCoords } from '@entities/galaxy/lib/getElemCoords';
+import { addActiveSystem } from '@entities/galaxy/libs/helpers/addActiveSystem';
 import {
     CONNECTION_LINE_CLASS,
     SVG_NAMESPACE_URL,
 } from '@entities/galaxy/model/constants';
 
 import { DATA_SYSTEM_ID } from '@entities/orbit/model/types';
+import { getElemCoords } from '@entities/galaxy/libs/helpers/getElemCoords';
 
 interface IShowChildren {
   childrenList: string | null;

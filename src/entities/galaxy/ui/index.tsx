@@ -12,21 +12,16 @@ import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 import { userIsModalOpenSelector } from '@entities/user/model/selectors';
 import { closeModal, toggleModal } from '@entities/user/model/slice';
 
-import { addActiveSystem } from '@entities/galaxy/lib/addActiveSystem';
-import { deleteAllConnectionLines } from '@entities/galaxy/lib/deleteAllConnectionLines';
-import { isSystemLocked } from '@entities/galaxy/lib/isSystemLocked';
-import { setSystemsActivityToActive } from '@entities/galaxy/lib/setSystemActivityToActive';
-import { setSystemsActivityToInactive } from '@entities/galaxy/lib/setSystemActivityToInactive';
-import { showSystemChildren } from '@entities/galaxy/lib/showSystemChildren';
-import { showSystemParents } from '@entities/galaxy/lib/showSystemParents';
+import { deleteAllConnectionLines } from '@entities/galaxy/libs/helpers/deleteAllConnectionLines';
+import { setSystemsActivityToActive } from '@entities/galaxy/libs/helpers/setSystemActivityToActive';
+import { showSystemChildren } from '@entities/galaxy/libs/helpers/showSystemChildren';
+import { showSystemParents } from '@entities/galaxy/libs/helpers/showSystemParents';
 import {
-    DEFAULT_CHOSEN_SYSTEM_WITH_RESPONSE,
     SYSTEM_CLASS,
 } from '@entities/galaxy/model/constants';
 import {
     IGalaxyProps,
     IOrbitSettings,
-    LastChosenSystem,
 } from '@entities/galaxy/model/types';
 
 import {
@@ -41,13 +36,12 @@ import { bem } from '@shared/utils/helpers/bem';
 
 import { SystemProgressTypes } from '@shared/types/common';
 
-import { useLinesSvgContainer } from '../lib/hooks';
+import { useLinesSvgContainer } from '../libs/hooks/useLinesSvgContainer';
 
 import './style.scss';
 import { useParams } from 'react-router-dom';
 import CircleModalWithGalaxy from '@entities/galaxy/ui/CircleModalWithGalaxy';
-import { useGalaxy } from '@entities/galaxy/lib/hooks/useGalaxy';
-import { GalaxyProvider } from '@entities/galaxy/lib/providers/GalaxyProvider';
+import { useGalaxy } from '@entities/galaxy/libs/hooks/useGalaxy';
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
     const {
