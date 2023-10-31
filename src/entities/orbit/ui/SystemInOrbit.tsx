@@ -66,7 +66,7 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
 
     const isGalaxyActive = activeSystemsIds.includes(system.systemId);
 
-    const isNoExplorer = role !== 'EXPLORER';
+    // const isNoExplorer = role !== 'EXPLORER';
     const [destroyCount, setDestoryCount] = useState(0);
     const [randomDestroyClass, setRandomDestroyClass] = useState<string>();
 
@@ -130,7 +130,7 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
 
     const handleGalaxyClick: MouseEventHandler<HTMLDivElement> = (e) => {
         handleSystemClick(e);
-        isNoExplorer && setDestoryCount((prev) => prev + 1);
+        setDestoryCount((prev) => prev + 1);
     };
 
     const handleTransitionEnd: TransitionEventHandler = (e) => {
