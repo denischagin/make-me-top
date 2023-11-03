@@ -1,7 +1,6 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
-export interface CardInterface {
-    children: ReactNode;
+export interface CardInterface extends HTMLAttributes<HTMLDivElement> {
     size: cardSize;
     glow?: boolean;
 }

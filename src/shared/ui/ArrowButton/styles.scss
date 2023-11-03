@@ -8,6 +8,7 @@
     align-items: center;
     cursor: pointer;
     transition: 0.2s;
+    transform-origin: center;
 
     &--direction-left {
         transform: rotate(0);
@@ -28,7 +29,8 @@
     &:hover {
         .arrow-button__arrow {
             transition: 0.2s;
-            padding-left: 10px;
+            padding-left: 6px;
+            padding-right: 4px;
         }
 
         .arrow-button__circle {
@@ -40,6 +42,7 @@
         margin-left: 5px;
         z-index: 1;
         transition: 0.2s;
+        object-fit: cover;
     }
 
     &__circle {

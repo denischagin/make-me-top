@@ -5,7 +5,6 @@ import { Keeper } from '@pages/Keeper/page';
 import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Header } from '@widgets/Header/ui/Header';
 import { useAuth } from '@entities/viewer';
-import { useEffect } from 'react';
 
 const ProfileDefault = (
     <>

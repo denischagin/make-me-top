@@ -31,7 +31,7 @@ import CircleModalWithGalaxy from '@entities/galaxy/ui/CircleModalWithGalaxy';
 import { useLeaveCourseByExplorerIdMutation } from '@entities/course';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import toast from 'react-hot-toast';
-import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toastTitles';
+import { TOAST_LEAVE_COURSE } from '@shared/constants/toastTitles';
 
 export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     const [block, element] = bem('current-system-card');
@@ -46,7 +46,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
         useLeaveCourseByExplorerIdMutation();
 
     useStatus(() => {
-        toast(TOAST_SUCCESS_REJECTED, {
+        toast(TOAST_LEAVE_COURSE, {
             icon: '😔',
         });
     }, isSuccessLeaveCourse);
