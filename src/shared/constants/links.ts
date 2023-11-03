@@ -10,9 +10,9 @@ export const URL_EXPLORER = '/explorer';
 export const URL_GALAXY = '/galaxies';
 
 export const getUrlExplorerById = (personId: string) =>
-    `/person/${personId}${URL_EXPLORER}/`;
+	`/person/${personId}${URL_EXPLORER}/`;
 export const getUrlKeeperById = (personId: string) =>
-    `/person/${personId}${URL_KEEPER}/`;
+	`/person/${personId}${URL_KEEPER}/`;
 
 export const URL_KEEPERS = '/keepers';
 export const URL_EXPLORERS = '/explorers';
@@ -22,22 +22,39 @@ export const URL_KEEPER_CARD = '/person/:personId/keeper/';
 export const URL_EXPLORER_CARD = '/person/:personId/explorer/';
 export const URL_GALAXY_CARD = '/galaxies/:galaxyId';
 
+export interface HeaderLinkInterface {
+	link: string;
+	text: string;
+	isSignOutButton?: boolean;
+}
+
 // header links
-export const HEADER_LINKS = [
-    {
-        link: URL_PROFILE,
-        text: 'Главная',
-    },
-    {
-        link: URL_EXPLORERS,
-        text: 'Исследователи',
-    },
-    {
-        link: URL_KEEPERS,
-        text: 'Хранители',
-    },
-    {
-        link: URL_LOGIN,
-        text: 'Выйти',
-    },
+export const HEADER_LINKS: HeaderLinkInterface[] = [
+	{
+		link: URL_PROFILE,
+		text: 'Главная',
+	},
+	{
+		link: URL_EXPLORERS,
+		text: 'Исследователи',
+	},
+	{
+		link: URL_KEEPERS,
+		text: 'Хранители',
+	},
+	{
+		link: URL_LOGIN,
+		text: 'Выйти',
+		isSignOutButton: true
+	},
+];
+export const HEADER_LINK_GUEST: HeaderLinkInterface[] = [
+	{
+		link: URL_LOGIN,
+		text: 'Войти'
+	},
+	{
+		link: URL_GALAXY,
+		text: 'Все галактики',
+	},
 ];

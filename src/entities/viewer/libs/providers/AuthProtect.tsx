@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Navigate, NavigateFunction, useNavigate } from 'react-router-dom';
 
 import { URL_LOGIN } from '@shared/constants/links';
@@ -19,7 +19,8 @@ const logout = (navigate: NavigateFunction, handleLogout: () => void) => {
     navigate(getNavigationPath(location.pathname), { replace: true });
 };
 
-export const AuthProtect = ({ children }: AuthProtectProps) => {
+export const AuthProtect = ({ children }: { children: JSX.Element}) => {
+	
     const [refresh, { isSuccess, isError, data: tokens }] =
         useRefreshMutation();
     const { handleLogout, isAuth } = useAuth();

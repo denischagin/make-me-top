@@ -78,7 +78,6 @@ export const routes: RouteInterface[] = [
     {
         path: URL_GALAXY_CARD,
         element: <GalaxyPage />,
-        status: 'protected',
     },
     {
         path: URL_GALAXY,

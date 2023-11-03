@@ -28,104 +28,112 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { useCurrentGalaxy } from './hooks';
 
 import './style.scss';
+import Spinner from '@shared/ui/Spinner';
 
 const AllGalaxiesPage = () => {
-    const { data: galaxies = [], isError } = useGetAllGalaxiesQuery();
-    const {
-        currentGalaxy,
-        handleNextGalaxy,
-        handlePrevGalaxy,
-        circleNextGalaxyName,
-        circlePrevGalaxyName,
-    } = useCurrentGalaxy(galaxies);
-
-    const informationSectionRef = useRef<HTMLElement>(null);
-    const navigate = useNavigate();
-
-    const [block, element] = bem('galaxies-page');
-
-    const handleShowInformation = () =>
-        informationSectionRef.current?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-        });
-
-    const handleReturnToWelcome = () =>
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
-
-    const handleNavigateSystems = () =>
-        navigate(URL_GALAXY + `/${currentGalaxy?.galaxyId}`);
-
-    if (isError) return <NotFound />;
-
-    return (
-        <div className={block()}>
-            <BackgroundGalaxies />
-            <Header />
-            <Container>
-                <div className={element('content')}>
-                    <EntryAnimateGalaxies className={element('title-wrapper')}>
-                        <TitleGalaxyPage
-                            galaxyName={currentGalaxy?.galaxyName!}
-                        />
-                    </EntryAnimateGalaxies>
-
-                    <ChangeGalaxyButtons
-                        handlePrevGalaxy={handlePrevGalaxy}
-                        handleNextGalaxy={handleNextGalaxy}
-                        prevGalaxyName={circlePrevGalaxyName}
-                        nextGalaxyName={circleNextGalaxyName}
-                    />
-
-                    <EntryAnimateGalaxies delay={0.2}>
-                        <GalaxyListStatistics
-                            explorerCount={currentGalaxy?.explorerCount}
-                            keeperCount={currentGalaxy?.keeperCount}
-                            systemCount={currentGalaxy?.systemCount}
-                        />
-                    </EntryAnimateGalaxies>
-
-                    <EntryAnimateGalaxies delay={0.3}>
-                        <Button
-                            size={buttonSize.large}
-                            color={buttonColor.filled}
-                            title='Перейти к системам'
-                            onClick={handleNavigateSystems}
-                        />
-                    </EntryAnimateGalaxies>
-
-                    <EntryAnimateGalaxies
-                        delay={0.4}
-                        className={element('look-more')}
-                    >
-                        <Typography variant={typographyVariant.regular14}>
-                            Информация о галактике
-                        </Typography>
-
-                        <ArrowButton
-                            direction={arrowButtonDirection.bottom}
-                            onClick={handleShowInformation}
-                        />
-                    </EntryAnimateGalaxies>
-
-                    <section
-                        className={element('information')}
-                        ref={informationSectionRef}
-                    >
-                        <GalaxyInformation currentGalaxy={currentGalaxy} />
-                    </section>
-
-                    <ArrowButton
-                        direction={arrowButtonDirection.top}
-                        onClick={handleReturnToWelcome}
-                    />
-                </div>
-            </Container>
-        </div>
-    );
+	const { data: galaxies = [], isError, isSuccess } = useGetAllGalaxiesQuery();
+	const {
+		currentGalaxy,
+		handleNextGalaxy,
+		handlePrevGalaxy,
+		circleNextGalaxyName,
+		circlePrevGalaxyName,
+	} = useCurrentGalaxy(galaxies);
+	
+	const informationSectionRef = useRef<HTMLElement>(null);
+	const navigate = useNavigate();
+	
+	const [block, element] = bem('galaxies-page');
+	
+	const handleShowInformation = () =>
+		informationSectionRef.current?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		});
+	
+	const handleReturnToWelcome = () =>
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
+	
+	const handleNavigateSystems = () =>
+		navigate(URL_GALAXY + `/${currentGalaxy?.galaxyId}`);
+	
+	if (isError) return <NotFound />;
+	if (!isSuccess) return (
+		<div className={block()}>
+			<BackgroundGalaxies />
+			<Header />
+			<Spinner loading />
+		</div>
+	);
+	
+	return (
+		<div className={block()}>
+			<BackgroundGalaxies />
+			<Header />
+			<Container>
+				<div className={element('content')}>
+					<EntryAnimateGalaxies className={element('title-wrapper')}>
+						<TitleGalaxyPage
+							galaxyName={currentGalaxy?.galaxyName!}
+						/>
+					</EntryAnimateGalaxies>
+					
+					<ChangeGalaxyButtons
+						handlePrevGalaxy={handlePrevGalaxy}
+						handleNextGalaxy={handleNextGalaxy}
+						prevGalaxyName={circlePrevGalaxyName}
+						nextGalaxyName={circleNextGalaxyName}
+					/>
+					
+					<EntryAnimateGalaxies delay={0.2}>
+						<GalaxyListStatistics
+							explorerCount={currentGalaxy?.explorerCount}
+							keeperCount={currentGalaxy?.keeperCount}
+							systemCount={currentGalaxy?.systemCount}
+						/>
+					</EntryAnimateGalaxies>
+					
+					<EntryAnimateGalaxies delay={0.3}>
+						<Button
+							size={buttonSize.large}
+							color={buttonColor.filled}
+							title="Перейти к системам"
+							onClick={handleNavigateSystems}
+						/>
+					</EntryAnimateGalaxies>
+					
+					<EntryAnimateGalaxies
+						delay={0.4}
+						className={element('look-more')}
+					>
+						<Typography variant={typographyVariant.regular14}>
+							Информация о галактике
+						</Typography>
+						
+						<ArrowButton
+							direction={arrowButtonDirection.bottom}
+							onClick={handleShowInformation}
+						/>
+					</EntryAnimateGalaxies>
+					
+					<section
+						className={element('information')}
+						ref={informationSectionRef}
+					>
+						<GalaxyInformation currentGalaxy={currentGalaxy} />
+					</section>
+					
+					<ArrowButton
+						direction={arrowButtonDirection.top}
+						onClick={handleReturnToWelcome}
+					/>
+				</div>
+			</Container>
+		</div>
+	);
 };
 
 export default AllGalaxiesPage;

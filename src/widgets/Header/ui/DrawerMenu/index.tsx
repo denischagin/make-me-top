@@ -10,66 +10,74 @@ import { DrawerMenuProps } from '@widgets/Header/ui/DrawerMenu/interface';
 import { ArrowButton } from '@shared/ui/ArrowButton';
 import { arrowButtonDirection } from '@shared/ui/ArrowButton/interfaces';
 import { useLocation } from 'react-router-dom';
+import { useAuth } from '@entities/viewer';
 
-export const DrawerMenu = ({ isOpen, onClose, onSignOut }: DrawerMenuProps) => {
-    const links = HEADER_LINKS;
-    const [block, element] = bem('drawer-menu');
-    const location = useLocation();
-
-    return (
-        <Drawer
-            isOpen={isOpen}
-            onClose={onClose}
-            drawerProps={{
-                className: block(),
-            }}
-        >
-            <div className={element('content')}>
-                <div className={element('arrow-button-wrapper')}>
-                    <ArrowButton
-                        direction={arrowButtonDirection.right}
-                        className={element('arrow-button')}
-                        onClick={onClose}
-                    />
-                </div>
-
-                <ul className={element('menu')}>
-                    {links.map(
-                        ({ link, text }) =>
-                            link !== URL_LOGIN && (
-                                <RouterLink to={link} key={link}>
-                                    <li
-                                        className={element('menu-item', {
-                                            active: location.pathname === link,
-                                        })}
-                                        onClick={onClose}
-                                    >
-                                        <Typography
-                                            variant={typographyVariant.h1}
-                                        >
-                                            {text}
-                                        </Typography>
-                                    </li>
-                                </RouterLink>
-                            ),
-                    )}
-                    <li
-                        className={element('menu-item', {
-                            'sign-out': true,
-                        })}
-                        onClick={() => {
-                            onClose();
-                            onSignOut();
-                        }}
-                    >
-                        <Typography variant={typographyVariant.h1}>
-                            Выйти
-                        </Typography>
-
-                        <ExitIcon />
-                    </li>
-                </ul>
-            </div>
-        </Drawer>
-    );
+export const DrawerMenu = ({
+	isOpen,
+	onClose,
+	onSignOut,
+	links = HEADER_LINKS
+}: DrawerMenuProps) => {
+	const [block, element] = bem('drawer-menu');
+	const location = useLocation();
+	const { isAuth } = useAuth();
+	
+	return (
+		<Drawer
+			isOpen={isOpen}
+			onClose={onClose}
+			drawerProps={{
+				className: block(),
+			}}
+		>
+			<div className={element('content')}>
+				<div className={element('arrow-button-wrapper')}>
+					<ArrowButton
+						direction={arrowButtonDirection.right}
+						className={element('arrow-button')}
+						onClick={onClose}
+					/>
+				</div>
+				
+				<ul className={element('menu')}>
+					{links.map(
+						({ link, text, isSignOutButton }) =>
+							!isSignOutButton && (
+								<RouterLink to={link} key={link}>
+									<li
+										className={element('menu-item', {
+											active: location.pathname === link,
+										})}
+										onClick={onClose}
+									>
+										<Typography
+											variant={typographyVariant.h1}
+										>
+											{text}
+										</Typography>
+									</li>
+								</RouterLink>
+							),
+					)}
+				</ul>
+				{isAuth && (
+					<li
+						className={element('menu-item', {
+							'sign-out': true,
+						})}
+						onClick={() => {
+							onClose();
+							onSignOut();
+						}}
+					>
+						<Typography variant={typographyVariant.h1}>
+							Выйти
+						</Typography>
+						
+						<ExitIcon />
+					</li>
+				)}
+			</div>
+		</Drawer>
+	);
 };
