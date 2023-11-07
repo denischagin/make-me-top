@@ -20,8 +20,6 @@ import { buttonSize } from '@shared/ui/Button/interfaces';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 
 export const Header = (props: HeaderInterface) => {
-	const { links } = props;
-	
 	const [block, element] = bem('header');
 	const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 	const [isOpenModalConfirm, setisOpenModalConfirm] = useState(false);
@@ -74,9 +72,7 @@ export const Header = (props: HeaderInterface) => {
 						) : (
 							<li
 								key={item.link}
-								className={element('link', {
-									active: location.pathname === item.link,
-								})}
+								className={element('link')}
 							>
 								<RouterLink to={item.link}>
 									{item.text}
@@ -86,12 +82,13 @@ export const Header = (props: HeaderInterface) => {
 					)}
 				</ul>
 				
-				<Button
-					title="Меню"
-					size={buttonSize.large}
-					onClick={handleOpenDrawer}
-					className={element('burger-menu-button')}
-				/>
+				<div className={element('burger-menu-button')}>
+					<Button
+						title="Меню"
+						size={buttonSize.large}
+						onClick={handleOpenDrawer}
+					/>
+				</div>
 				
 				<DrawerMenu
 					isOpen={isOpenDrawer}
