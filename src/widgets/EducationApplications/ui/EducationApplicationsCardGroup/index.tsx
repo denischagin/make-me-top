@@ -21,13 +21,13 @@ export const EducationApplicationsCardGroup = (props: EducationApplicationsCardG
 						{groupName}
 					</Typography>
 					<Typography variant={typographyVariant.regular16}>
-						Количество запросов: {studyRequests.length}
+						Количество заявок: {studyRequests.length}
 					</Typography>
 				</>
 			}
 			content={
-				studyRequests.map((request, index) => (
-					<EducationApplicationCard user={request} key={index} />
+				studyRequests.map((request) => (
+					<EducationApplicationCard user={request} key={request.requestId} />
 				))}
 		/>
 	);

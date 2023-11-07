@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  web:
+    build: .
+
+    image: mmt-frontend
+
+    container_name: mmt-frontend
+
+    restart: always
+
+    stdin_open: true
+
+    volumes:
+      - "./app:/home/app"
+
+    ports:
+      - "3000:3000"
