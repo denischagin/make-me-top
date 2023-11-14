@@ -16,144 +16,146 @@ import './styles.scss';
 import { useGetExplorerCardInfoQuery } from '@entities/explorer/api/api';
 import { useParams } from 'react-router-dom';
 import {
-    TOAST_SUCCESS_APPROVED,
-    TOAST_SUCCESS_REJECTED,
+	TOAST_SUCCESS_APPROVED,
+	TOAST_SUCCESS_REJECTED,
 } from '@shared/constants/toastTitles';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import toast from 'react-hot-toast';
 import {
-    useAcceptCourseRequestMutation,
-    useRejectCourseRequestMutation,
+	useAcceptCourseRequestMutation,
+	useRejectCourseRequestMutation,
 } from '@entities/course';
 
 export const ExplorerApplicationCard = () => {
-    const [block, element] = bem('explorer-application-card');
-    const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
-    const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
-
-    const { personId } = useParams();
-
-    const { data: userInfo, isSuccess } = useGetExplorerCardInfoQuery(
-        Number(personId),
-    );
-    const [acceptCourse, { isSuccess: isSuccessAccept }] =
-        useAcceptCourseRequestMutation();
-    const [rejectCourse, { isSuccess: isSuccessReject }] =
-        useRejectCourseRequestMutation();
-
-    const studyRequestOrСurrentSystem =
-        userInfo?.currentSystem || userInfo?.studyRequest;
-
-    const requestId = userInfo?.studyRequest?.requestId!;
-
-    const handleAcceptCourse = () => {
-        acceptCourse({
-            requestId,
-        });
-        setIsAcceptModalOpen(false);
-    };
-
-    const handleRejectCourse = () => {
-        rejectCourse({
-            requestId,
-        });
-        setIsRejectModalOpen(false);
-    };
-
-    useStatus(() => {
-        toast(TOAST_SUCCESS_REJECTED, {
-            icon: '😔',
-        });
-    }, isSuccessReject);
-
-    useStatus(() => {
-        toast(TOAST_SUCCESS_APPROVED, {
-            icon: '🤩',
-        });
-    }, isSuccessAccept);
-
-    if (!isSuccess) return null;
-
-    const { studyRequest, currentSystem } = userInfo;
-
-    if (!currentSystem && !studyRequest) {
-        return null;
-    }
-
-    return (
-        <>
-            <ConfirmModal
-                isOpen={isAcceptModalOpen}
-                confirmTitle='Вы уверены, что хотите принять запрос на обучение?'
-                onClose={() => setIsAcceptModalOpen(false)}
-                onSubmit={handleAcceptCourse}
-                rejectButtonTitle='Нет'
-                submitButtonTitle='Да, я хочу принять'
-            />
-
-            <ConfirmModal
-                isOpen={isRejectModalOpen}
-                confirmTitle={CONFIRM_CANCEL_TEACHING}
-                rejectButtonTitle='Нет, хочу продолжить'
-                submitButtonTitle='Да, я уверен'
-                onClose={() => setIsRejectModalOpen(false)}
-                onSubmit={handleRejectCourse}
-            />
-
-            <div className={block()}>
-                <Typography
-                    className={element('heading', 'mb-4 mt-5')}
-                    variant={typographyVariant.h2}
-                >
-                    {!!currentSystem
-                        ? 'Текущая система:'
-                        : 'Заявка на обучение:'}
-                </Typography>
-                <Card size={cardSize.large} glow>
-                    <div className={element('content')}>
-                        <div className={element('info')}>
-                            <Typography
-                                className={element('planet')}
-                                variant={typographyVariant.h2}
-                            >
-                                Система: {studyRequestOrСurrentSystem?.courseId}
-                                . {studyRequestOrСurrentSystem?.courseTitle}
-                            </Typography>
-                            <Typography
-                                className={element('system')}
-                                variant={typographyVariant.regular14}
-                            >
-                                {!!currentSystem
-                                    ? `Система: ${currentSystem.courseThemeTitle}`
-                                    : `Галактика: ${studyRequest?.galaxyName}`}
-                            </Typography>
-                        </div>
-                        <div className={element('buttons')}>
-                            <div className={element('hidden-button')}>
-                                <Button
-                                    title={'Отклонить'}
-                                    size={buttonSize.large}
-                                    onClick={() => setIsRejectModalOpen(true)}
-                                />
-                            </div>
-                            {currentSystem ? (
-                                <Button
-                                    title={'Посмотреть'}
-                                    color={buttonColor.filled}
-                                    size={buttonSize.large}
-                                />
-                            ) : (
-                                <Button
-                                    title={'Принять'}
-                                    color={buttonColor.filled}
-                                    size={buttonSize.large}
-                                    onClick={() => setIsAcceptModalOpen(true)}
-                                />
-                            )}
-                        </div>
-                    </div>
-                </Card>
-            </div>
-        </>
-    );
+	const [block, element] = bem('explorer-application-card');
+	const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
+	const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
+	
+	const { personId } = useParams();
+	
+	const { data: userInfo, isSuccess } = useGetExplorerCardInfoQuery(
+		Number(personId),
+	);
+	const [acceptCourse, { isSuccess: isSuccessAccept }] =
+		useAcceptCourseRequestMutation();
+	const [rejectCourse, { isSuccess: isSuccessReject }] =
+		useRejectCourseRequestMutation();
+	
+	const studyRequestOrСurrentSystem =
+		userInfo?.currentSystem || userInfo?.studyRequest;
+	
+	const requestId = userInfo?.studyRequest?.requestId!;
+	
+	const handleAcceptCourse = () => {
+		acceptCourse({
+			requestId,
+		});
+		setIsAcceptModalOpen(false);
+	};
+	
+	const handleRejectCourse = () => {
+		rejectCourse({
+			requestId,
+		});
+		setIsRejectModalOpen(false);
+	};
+	
+	useStatus(() => {
+		toast(TOAST_SUCCESS_REJECTED, {
+			icon: '😔',
+		});
+	}, isSuccessReject);
+	
+	useStatus(() => {
+		toast(TOAST_SUCCESS_APPROVED, {
+			icon: '🤩',
+		});
+	}, isSuccessAccept);
+	
+	if (!isSuccess) return null;
+	
+	const { studyRequest, currentSystem } = userInfo;
+	
+	if (!currentSystem && !studyRequest) {
+		return null;
+	}
+	
+	return (
+		<>
+			<ConfirmModal
+				isOpen={isAcceptModalOpen}
+				confirmTitle="Вы уверены, что хотите принять запрос на обучение?"
+				onClose={() => setIsAcceptModalOpen(false)}
+				onSubmit={handleAcceptCourse}
+				rejectButtonTitle="Нет"
+				submitButtonTitle="Да, я хочу принять"
+			/>
+			
+			<ConfirmModal
+				isOpen={isRejectModalOpen}
+				confirmTitle={CONFIRM_CANCEL_TEACHING}
+				rejectButtonTitle="Нет, хочу продолжить"
+				submitButtonTitle="Да, я уверен"
+				onClose={() => setIsRejectModalOpen(false)}
+				onSubmit={handleRejectCourse}
+			/>
+			
+			<div className={block()}>
+				<Typography
+					className={element('heading', 'mb-4 mt-5')}
+					variant={typographyVariant.h2}
+				>
+					{!!currentSystem
+						? 'Текущая система:'
+						: 'Заявка на обучение:'}
+				</Typography>
+				<Card size={cardSize.large} glow>
+					<div className={element('content')}>
+						<div className={element('info')}>
+							<Typography
+								className={element('planet')}
+								variant={typographyVariant.h2}
+							>
+								Система: {studyRequestOrСurrentSystem?.courseId}
+								. {studyRequestOrСurrentSystem?.courseTitle}
+							</Typography>
+							<Typography
+								className={element('system')}
+								variant={typographyVariant.regular14}
+							>
+								{!!currentSystem
+									? `Система: ${currentSystem.courseThemeTitle}`
+									: `Галактика: ${studyRequest?.galaxyName}`}
+							</Typography>
+						</div>
+						<div className={element('buttons')}>
+							{/*<div className={element('hidden-button')}>*/}
+							{/*    <Button*/}
+							{/*        title={'Отклонить'}*/}
+							{/*        size={buttonSize.large}*/}
+							{/*        onClick={() => setIsRejectModalOpen(true)}*/}
+							{/*    />*/}
+							{/*</div>*/}
+							{currentSystem ? (
+								<>
+									{/*<Button*/}
+									{/*	title={'Посмотреть'}*/}
+									{/*	color={buttonColor.filled}*/}
+									{/*	size={buttonSize.large}*/}
+									{/*/>*/}
+								</>
+							) : (
+								<Button
+									title={'Принять'}
+									color={buttonColor.filled}
+									size={buttonSize.large}
+									onClick={() => setIsAcceptModalOpen(true)}
+								/>
+							)}
+						</div>
+					</div>
+				</Card>
+			</div>
+		</>
+	);
 };

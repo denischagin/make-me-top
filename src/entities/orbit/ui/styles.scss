@@ -1,172 +1,169 @@
-@mixin create-animation-destroy($animation-name, $animation-duration: 5s) {
-	animation-name: $animation-name;
-	animation-duration: $animation-duration;
-	animation-fill-mode: forwards;
-	pointer-events: none;
+@mixin create-animation-destroy($animation-name, $animation-duration: 3s) {
+  animation-name: $animation-name;
+  animation-duration: $animation-duration;
+  animation-fill-mode: forwards;
+  pointer-events: none;
 }
 
 .orbit {
-	position: absolute;
-	border-radius: 50%;
-	pointer-events: none;
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
 
-	&--active {
-		pointer-events: all;
-	}
+  &--active {
+    pointer-events: all;
+  }
 
-	&__content {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		position: relative;
-		border-radius: 50%;
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 50%;
 
-		&-system {
-			&.destroy1 {
-				@include create-animation-destroy(destroy1);
-			}
+    &-system {
+      &.destroy1 {
+        @include create-animation-destroy(destroy1);
+      }
 
-			&.destroy2 {
-				@include create-animation-destroy(destroy2);
-			}
+      &.destroy2 {
+        @include create-animation-destroy(destroy2);
+      }
 
-			&.destroy3 {
-				@include create-animation-destroy(destroy3);
-			}
+      &.destroy3 {
+        @include create-animation-destroy(destroy3);
+      }
 
-			&.destroy4 {
-				@include create-animation-destroy(destroy4);
-			}
+      &.destroy4 {
+        @include create-animation-destroy(destroy4);
+      }
 
-			&.destroy5 {
-				@include create-animation-destroy(destroy5);
-			}
+      &.destroy5 {
+        @include create-animation-destroy(destroy5);
+      }
 
-			&.destroy6 {
-				@include create-animation-destroy(destroy6, 7s);
-			}
+      &.destroy6 {
+        @include create-animation-destroy(destroy6);
+      }
 
-			animation: entryAnimate 1s ease;
-			position: absolute;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border-radius: 50%;
-			overflow: unset;
-			text-align: center;
-			border: 2px solid white;
-			transition: all 1s;
+      animation: entryAnimate 1s ease;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      overflow: unset;
+      text-align: center;
+      border: 2px solid white;
+      transition: all 1s;
 
-			&--name {
-				z-index: 0;
-				font-weight: bold;
-				font-size: 10px;
-				word-break: break-word;
+      &--name {
+        z-index: 0;
+        font-weight: bold;
+        font-size: 10px;
+        word-break: break-word;
 
-				@media screen and (max-width: 800px) {
-					word-break: break-all;
-					font-size: 8px;
-				}
+        @media screen and (max-width: 800px) {
+          word-break: break-all;
+          font-size: 8px;
+        }
 
-				@media screen and (max-width: 600px) {
-					font-size: 7px;
-				}
+        @media screen and (max-width: 600px) {
+          font-size: 7px;
+        }
 
-				&.white {
-					color: white;
-				}
-			}
-		}
-	}
+        &.white {
+          color: white;
+        }
+      }
+    }
+  }
 }
 
 @keyframes entryAnimate {
-	from {
-		top: 50%;
-		left: 50%;
-		opacity: 0;
-	}
+  from {
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+  }
 
-	to {
-		opacity: 1;
-	}
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes destroy1 {
-	from {
-		opacity: 1;
-		transform: scale(1);
-	}
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
 
-	to {
-		opacity: 0;
-		transform: scale(0);
-	}
+  to {
+    opacity: 0;
+    transform: scale(0);
+  }
 }
 
 @keyframes destroy2 {
-	from {
-		opacity: 1;
-		transform: rotate(0deg);
-	}
+  from {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
 
-	to {
-		opacity: 0;
-		transform: rotate(600deg);
-	}
+  to {
+    opacity: 0;
+    transform: rotate(600deg);
+  }
 }
 
 @keyframes destroy3 {
-	from {
-		opacity: 1;
-		filter: blur(0);
-	}
+  from {
+    opacity: 1;
+    filter: blur(0);
+  }
 
-	to {
-		opacity: 0;
-		filter: blur(5px);
-	}
+  to {
+    opacity: 0;
+    filter: blur(5px);
+  }
 }
 
 @keyframes destroy4 {
-	from {
-		opacity: 1;
-		transform: rotate(0deg) scale(1);
-	}
+  from {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
 
-	to {
-		opacity: 0;
-		left: 100vw;
-		transform: rotate(600deg) scale(1.5);
-	}
+  to {
+    opacity: 0;
+    left: 100vw;
+    transform: rotate(600deg) scale(1.5);
+  }
 }
 
 @keyframes destroy5 {
-	from {
-		opacity: 1;
-		transform: rotate(0deg) scale(1);
-	}
+  from {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
 
-	to {
-		opacity: 0;
-		left: -100vw;
-		transform: rotate(600deg) scale(1.5);
-	}
+  to {
+    opacity: 0;
+    left: -100vw;
+    transform: rotate(600deg) scale(1.5);
+  }
 }
 
+
 @keyframes destroy6 {
-	from {
-		transform: rotate(0deg) scale(1) translateX(0);
-		opacity: 1;
-	}
+  from {
+    transform: rotate(0deg) scale(1) translateX(0);
+    opacity: 1;
+  }
 
-	70% {
-		transform: rotate(0deg) scale(1.5);
-		opacity: 1;
-	}
-
-	to {
-		opacity: 0;
-		transform: rotate(600deg) scale(1.5) translateX(-100vw);
-	}
+  to {
+    opacity: 0;
+    transform: rotate(-600deg) scale(0.5);
+    top: -200vh;
+  }
 }

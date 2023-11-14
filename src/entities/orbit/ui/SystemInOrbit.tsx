@@ -65,9 +65,10 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
 	const { activeSystemsIds } = useGalaxy();
 	
 	const isGalaxyActive = activeSystemsIds.includes(system.systemId);
+	const { setDeletedSystemsIds, deletedSystemsIds } = useGalaxy();
 	
 	// const isNoExplorer = role !== 'EXPLORER';
-	const [destroyCount, setDestoryCount] = useState(0);
+	const [destroyCount, setDestroyCount] = useState(0);
 	const [randomDestroyClass, setRandomDestroyClass] = useState<string>();
 	
 	const destroyClasses = [
@@ -78,14 +79,17 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
 		'destroy5',
 		'destroy6',
 	];
-	const isDestroy = destroyCount >= 3;
+	const isDestroy = destroyCount >= 1;
 	
 	useEffect(() => {
+		if (!isDestroy) return
 		const randomClass = isDestroy
 			? destroyClasses[Math.floor(Math.random() * destroyClasses.length)]
 			: undefined;
 		
 		setRandomDestroyClass(randomClass);
+		
+		setDeletedSystemsIds(prev => [...prev, system.systemId]);
 	}, [isDestroy]);
 	
 	const systemProgressType = !!userProgress
@@ -165,9 +169,9 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
 	);
 	
 	const handleOnContextMenu: MouseEventHandler = (e) => {
-		e.preventDefault()
+		e.preventDefault();
 		
-		setDestoryCount(prev => prev + 1);
+		setDestroyCount(prev => prev + 1);
 	};
 	
 	return (
@@ -184,7 +188,7 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
 				left: x + 'px',
 				top: y + 'px',
 			}}
-			data-system-id={system.systemId}
+			data-system-id={!deletedSystemsIds.includes(system.systemId) ? system.systemId : null}
 			data-system-parent-list={getSystemParentData(system)}
 			data-system-children-list={getSystemChildData(system)}
 			data-system-progress-type={systemProgressType}

@@ -12,6 +12,7 @@ import { ErrorInterface, PostCourseRequest } from '@shared/types/common';
 import toast from 'react-hot-toast';
 
 export const courseApi = baseApi.injectEndpoints({
+	overrideExisting: false,
 	endpoints: (builder) => ({
 		acceptCourseRequest: builder.mutation<
 			ErrorInterface,
