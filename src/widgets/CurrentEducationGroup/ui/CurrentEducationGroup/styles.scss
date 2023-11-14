@@ -1,0 +1,32 @@
+.current-education-group {
+  &__card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__card-wrapper {
+    &:hover {
+      .current-education-group__profile-button {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__fullname {
+    flex-grow: 1;
+  }
+
+  &__profile-button {
+    display: flex;
+    opacity: 0;
+    transition: .2s ease-in-out;
+  }
+
+}

@@ -1,0 +1,22 @@
+.theme-card-homework {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+
+  p {
+    text-indent: 40px;
+    hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
+  &__button-homework {
+    margin-right: 40px;
+  }
+
+
+}

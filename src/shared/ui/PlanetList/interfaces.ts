@@ -1,7 +1,8 @@
 import { ModalPlanetInterface } from '@entities/user/model/types';
 
 export interface PlanetListProps {
-    currentPlanet?: string;
-    currentPlanetId?: number;
-    planetList?: ModalPlanetInterface[];
+	educationPlanetId?: number;
+	planetList?: ModalPlanetInterface[];
+	isSimple?: boolean;
+	onPlanetClick?: (planetId: number) => void;
 }

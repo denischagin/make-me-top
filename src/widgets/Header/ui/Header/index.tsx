@@ -47,7 +47,7 @@ export const Header = (props: HeaderInterface) => {
 		<>
 			<ConfirmModal
 				isOpen={isOpenModalConfirm}
-				confitmTitle="Вы уверены, что хотите выйти?"
+				confirmTitle="Вы уверены, что хотите выйти?"
 				rejectButtonTitle={'Нет, я хочу остаться!'}
 				submitButtonTitle={'Да, я хочу выйти'}
 				onSubmit={handleLogout}

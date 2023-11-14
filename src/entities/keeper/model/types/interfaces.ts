@@ -14,15 +14,40 @@ export interface KeeperState {
 	keepersList: KeepersFilterInterface[];
 }
 
+export interface KeeperCourseAcceptedRequest {
+	personId: number;
+	requestId: number;
+	firstName: string;
+	lastName: string;
+	patronymic: string;
+	rating: number;
+	responseDate: string;
+}
+
+export interface KeeperCourseGroupAcceptedRequests {
+	courseTitle: string;
+	courseId: number;
+	requests: KeeperCourseAcceptedRequest[];
+}
+
+export interface KeeperCurrentGroupInterface {
+	courseId: number
+	courseTitle: string
+	groupId: string
+	explorers: StudyingExplorersInterface[]
+}
+
 export interface KeeperInfoInterface {
 	person: Person;
 	rating?: number | null;
 	totalSystems: number;
 	totalExplorers: number;
 	studyingExplorers: Array<StudyingExplorersInterface>;
-	studyRequests: Array<StudyRequestsInterface>;
+	studyRequests: StudyRequestGroupInterface[];
 	finalAssessments: Array<FinalAssessmentsInterface>;
 	reviewRequests: Array<ReviewRequestsInterface>;
+	approvedRequests: KeeperCourseGroupAcceptedRequests[];
+	currentGroup: KeeperCurrentGroupInterface;
 }
 
 
@@ -43,6 +68,7 @@ export interface Person {
 	lastName: string;
 	patronymic: string;
 	registrationDate: string;
+	maxExplorers: number;
 }
 
 export interface StudyingExplorersInterface {
@@ -52,6 +78,7 @@ export interface StudyingExplorersInterface {
 	patronymic: string;
 	explorerId: number;
 	courseId: number;
+	groupId: number
 }
 
 export interface StudyRequestsInterface {
@@ -63,13 +90,19 @@ export interface StudyRequestsInterface {
 	courseTitle: string;
 	requestId: number;
 	galaxyName: string;
+	keeperId: number;
+	rating: number;
+	requestDate: string;
+}
+
+export interface StudyRequestGroupInterface {
+	courseId: number;
+	courseTitle: string;
+	requests: StudyRequestsInterface[];
 }
 
 export type StudyRequestsGroupObject = Record<string, StudyRequestsInterface[]>
 
-export interface StudyRequestsGroupInterface {
-	[key: string]: StudyRequestsInterface[];
-}
 
 export interface FinalAssessmentsInterface {
 	personId: number;

@@ -42,6 +42,7 @@ import './style.scss';
 import { useParams } from 'react-router-dom';
 import CircleModalWithGalaxy from '@entities/galaxy/ui/CircleModalWithGalaxy';
 import { useGalaxy } from '@entities/galaxy/libs/hooks/useGalaxy';
+import { useAuth } from '@entities/viewer';
 
 const Galaxy: React.FC<IGalaxyProps> = (props) => {
 	const {
@@ -61,6 +62,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 	
 	const dispatch = useAppDispatch();
 	const isModalOpen = useAppSelector(userIsModalOpenSelector);
+	const { role } = useAuth();
 	
 	const [systems] = useState<NodeListOf<HTMLDivElement>>(
 		document.querySelectorAll(`.${SYSTEM_CLASS}`),
@@ -131,6 +133,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 	
 	const handleSystemMouseEnter = useCallback(
 		(event: MouseEvent<HTMLDivElement>) => {
+			
 			const currentTarget = event.currentTarget;
 			
 			const childrenList = currentTarget.getAttribute(
@@ -173,6 +176,7 @@ const Galaxy: React.FC<IGalaxyProps> = (props) => {
 	
 	const handleSystemClick = useCallback(
 		(event: React.MouseEvent<HTMLDivElement>) => {
+			if (role === null) return;
 			const currentTarget = event.currentTarget;
 			
 			const targetId = Number(currentTarget.getAttribute(DATA_SYSTEM_ID));

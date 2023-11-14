@@ -19,4 +19,5 @@ export interface KeeperCardInfoResponseInterface
 
 export interface KeeperProfileResponseInterface
     extends KeeperInfoInterface,
-        ErrorInterface {}
+        ErrorInterface {
+}

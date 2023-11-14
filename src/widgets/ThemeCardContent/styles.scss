@@ -1,0 +1,27 @@
+@import "@app/styles/variables";
+
+.theme-card-content {
+  &__theme-content {
+
+  }
+
+  &__theme-title-wrapper > p {
+    text-indent: 40px;
+  }
+
+  &__theme-title-wrapper {
+  }
+
+
+  &__theme-text > p {
+    text-indent: 40px;
+    hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    word-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.3em;
+    color: $white;
+  }
+}

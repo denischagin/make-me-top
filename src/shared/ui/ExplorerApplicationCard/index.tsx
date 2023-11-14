@@ -44,7 +44,7 @@ export const ExplorerApplicationCard = () => {
     const studyRequestOrСurrentSystem =
         userInfo?.currentSystem || userInfo?.studyRequest;
 
-    const requestId = userInfo?.studyRequest.requestId ?? 0;
+    const requestId = userInfo?.studyRequest?.requestId!;
 
     const handleAcceptCourse = () => {
         acceptCourse({
@@ -84,7 +84,7 @@ export const ExplorerApplicationCard = () => {
         <>
             <ConfirmModal
                 isOpen={isAcceptModalOpen}
-                confitmTitle='Вы уверены, что хотите принять запрос на обучение?'
+                confirmTitle='Вы уверены, что хотите принять запрос на обучение?'
                 onClose={() => setIsAcceptModalOpen(false)}
                 onSubmit={handleAcceptCourse}
                 rejectButtonTitle='Нет'
@@ -93,7 +93,7 @@ export const ExplorerApplicationCard = () => {
 
             <ConfirmModal
                 isOpen={isRejectModalOpen}
-                confitmTitle={CONFIRM_CANCEL_TEACHING}
+                confirmTitle={CONFIRM_CANCEL_TEACHING}
                 rejectButtonTitle='Нет, хочу продолжить'
                 submitButtonTitle='Да, я уверен'
                 onClose={() => setIsRejectModalOpen(false)}

@@ -9,6 +9,10 @@ export interface RequestCourseBodyInterface {
     approved: boolean;
 }
 
+export interface CourseResponse extends Course {
+
+}
+
 export interface CourseInfoResponse {
     course?: Course;
     you?: CourseExplorer;
@@ -46,4 +50,7 @@ export interface CurrentCourseRequestInterface {
     courseId: number
     personId: number
     statusId: number
+}
+export interface ApprovedCourseRequestInterface {
+
 }

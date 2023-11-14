@@ -21,7 +21,7 @@ export const EducationApplicationsCardGroup = (props: EducationApplicationsCardG
 						{groupName}
 					</Typography>
 					<Typography variant={typographyVariant.regular16}>
-						Количество заявок: {studyRequests.length}
+						Количество заявок: {studyRequests?.length}
 					</Typography>
 				</>
 			}

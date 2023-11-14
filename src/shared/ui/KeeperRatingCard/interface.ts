@@ -1,4 +1,4 @@
 export interface KeeperRatingCardProps {
     fullname: string,
-    rating?: number | null,
+    rating: number | null,
 }

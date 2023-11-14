@@ -18,6 +18,8 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import './styles.scss';
 import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
 import Spinner from '@shared/ui/Spinner';
+import { ApprovedEducationApplications } from '@widgets/ApprovedEducationApplications/ui/ApprovedEducationApplications';
+import { CurrentEducationGroup } from '@widgets/CurrentEducationGroup/ui/CurrentEducationGroup';
 
 export const Keeper = () => {
     const [block, element] = bem('keeper');
@@ -55,9 +57,11 @@ export const Keeper = () => {
                     <div className={element('row', 'row')}>
                         <div className={element('profile', 'col-xxl-9')}>
                             <KeeperUserInfo />
+                            <CurrentEducationGroup />
                             <EducationApplications
                                 applications={studyRequests}
                             />
+                            <ApprovedEducationApplications />
                             {!!finalAssessments?.length && (
                                 <div className={element('final-grade-cards')}>
                                     <Typography
@@ -81,9 +85,9 @@ export const Keeper = () => {
                             )}
                             <GradeApplications reviewRequest={reviewRequests} />
                         </div>
-                        <div className={element('explorers-list', 'col-xxl-3')}>
-                            <ExplorerItemList explorers={studyingExplorers} />
-                        </div>
+                        {/*<div className={element('explorers-list', 'col-xxl-3')}>*/}
+                        {/*    <ExplorerItemList explorers={studyingExplorers} />*/}
+                        {/*</div>*/}
                     </div>
                 </Container>
             </div>

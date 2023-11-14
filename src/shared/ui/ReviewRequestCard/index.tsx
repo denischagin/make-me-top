@@ -34,7 +34,7 @@ export const ReviewRequestCard = () => {
         <div className={block()}>
             <ConfirmModal
                 isOpen={isAcceptModalOpen}
-                confitmTitle={CONFIRM_CANCEL_REVIEW}
+                confirmTitle={CONFIRM_CANCEL_REVIEW}
                 rejectButtonTitle='Нет, хочу продолжить'
                 submitButtonTitle='Да, я уверен'
                 onClose={() => setIsAcceptModalOpen(false)}

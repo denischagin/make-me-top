@@ -10,7 +10,7 @@ export const PlanetListTab = ({
         <>
             <PlanetList
                 planetList={planets}
-                currentPlanetId={currentPlanetId}
+                educationPlanetId={currentPlanetId}
             />
             <FinalGrade />
         </>

@@ -47,7 +47,7 @@ export const MasteringApplication = () => {
         <div className={block()}>
             <ConfirmModal
                 isOpen={isAcceptModalOpen}
-                confitmTitle={CONFIRM_CANCEL_LEARNING}
+                confirmTitle={CONFIRM_CANCEL_LEARNING}
                 rejectButtonTitle='Нет, хочу продолжить'
                 submitButtonTitle='Да, я уверен'
                 onClose={() => setIsAcceptModalOpen(false)}

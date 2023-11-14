@@ -1,5 +1,5 @@
 import {
-    useGetCourseInfoByCourseIdQuery,
+    useGetCourseInfoByCourseIdDetailedQuery,
     useGetCurrentCourseRequestQuery,
 } from '@entities/course';
 import {
@@ -29,7 +29,7 @@ export const useGetGalaxyCircleModalInfo = ({
     );
 
     const { data: courseInfo, isFetching: isFetchingCourseInfo } =
-        useGetCourseInfoByCourseIdQuery(Number(currentSystemId), {
+        useGetCourseInfoByCourseIdDetailedQuery(Number(currentSystemId), {
             skip: !isOpen,
         });
 

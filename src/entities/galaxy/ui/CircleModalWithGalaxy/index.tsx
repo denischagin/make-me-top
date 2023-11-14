@@ -32,7 +32,7 @@ import { KeepersListTab } from '@entities/galaxy/ui/KeepersListTab';
 import { useModalAccessStatus } from '@entities/galaxy/libs/hooks/useModalAccessStatus';
 import {
     CourseKeeper,
-    useGetCourseInfoByCourseIdQuery,
+    useGetCourseInfoByCourseIdDetailedQuery,
     useGetCurrentCourseRequestQuery,
     usePostCourseRequestMutation,
 } from '@entities/course';

@@ -5,15 +5,18 @@
   border-radius: 10px;
   cursor: pointer;
   justify-content: space-between;
+  height: fit-content;
 
   &__content {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   &__info {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
   }
 
   &__group-list {
@@ -21,11 +24,10 @@
     flex-direction: column;
     gap: 5px;
     position: relative;
-    padding: 6px 4px 4px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     pointer-events: none;
-    transition: all .6s;
+    transition: opacity .6s;
 
     opacity: 0;
   }
@@ -44,6 +46,7 @@
     .card-group-details__group-list {
       opacity: 1;
       pointer-events: all;
+      padding: 6px 4px 4px;
     }
   }
 
@@ -55,6 +58,7 @@
     .card-group-details__group-list {
       opacity: 0;
       pointer-events: none;
+      padding: 0;
     }
 
   }

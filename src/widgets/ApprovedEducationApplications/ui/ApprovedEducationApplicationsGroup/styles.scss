@@ -1,0 +1,27 @@
+.approved-education-application-group {
+  &__summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-right: 10px;
+  }
+
+  &:hover {
+    .approved-education-application-group__summary-button {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  &__summary-button {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .5s;
+
+    &--active {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}

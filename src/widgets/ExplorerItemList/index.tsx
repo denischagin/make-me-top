@@ -19,17 +19,18 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { DEFAULT_LIMIT_ITEM } from './model';
 
 import './styles.scss';
+import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
 
 export const ExplorerItemList = (props: ExplorerItemListInterface) => {
     const {
         explorers,
     } = props;
 
+    const { data: userInfo } = useGetKeeperProfileQuery()
+    
     const [block, element] = bem('explorer-card-list');
     const [limitElements, setElementsLimit] =
         useState<number>(DEFAULT_LIMIT_ITEM);
-
-    const totalExplorers = explorers?.length || 0;
 
     return (
         <div className={block()}>
@@ -44,7 +45,7 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                     className={element('card-heading', 'mb-4')}
                     variant={typographyVariant.regular16}
                 >
-                    {`Всего учеников: ${totalExplorers}`}
+                    {`Всего учеников: ${userInfo?.totalExplorers ?? 0}`}
                 </Typography>
                 {explorers?.slice(0, limitElements).map((user) => (
                     <RouterLink

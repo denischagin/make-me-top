@@ -1,5 +1,6 @@
 import {
-	CourseInfoResponse,
+	ApprovedCourseRequestInterface,
+	CourseInfoResponse, CourseResponse,
 	CurrentCourseRequestInterface,
 	RequestCourseBodyInterface,
 	RequestCourseParamsInterface,
@@ -66,7 +67,14 @@ export const courseApi = baseApi.injectEndpoints({
 			invalidatesTags: ['getExplorerProfile'],
 		}),
 		
-		getCourseInfoByCourseId: builder.query<CourseInfoResponse, number>({
+		getCourseInfoByCourseId: builder.query<CourseResponse, number>({
+			query: (courseId) => ({
+				url: `course-app/courses/${courseId}`,
+			}),
+			providesTags: ['getCourseInfoByCourseId'],
+		}),
+		
+		getCourseInfoByCourseIdDetailed: builder.query<CourseInfoResponse, number>({
 			query: (courseId) => ({
 				url: `course-app/courses/${courseId}`,
 				params: {
@@ -93,6 +101,22 @@ export const courseApi = baseApi.injectEndpoints({
 				withOutToasts: true
 			},
 		}),
+		
+		startEducationOnCourse: builder.mutation<void, number>({
+			query: (courseId) => ({
+				url: `course-registration-app/courses/${courseId}/`,
+				method: 'POST',
+			}),
+			invalidatesTags: ['getKeeperProfile']
+		}),
+		
+		addHomework: builder.mutation<void, { groupId: string | number, themeId: string | number }>({
+			query: (args) => ({
+				url: `course-registration-app/courses/${args.themeId}/`,
+				method: 'POST',
+			})
+		})
+		
 	}),
 });
 
@@ -102,6 +126,8 @@ export const {
 	useLeaveCourseByExplorerIdMutation,
 	useAcceptCourseRequestMutation,
 	useRejectCourseRequestMutation,
+	useGetCourseInfoByCourseIdDetailedQuery,
 	useGetCourseInfoByCourseIdQuery,
 	useGetCurrentCourseRequestQuery,
+	useStartEducationOnCourseMutation,
 } = courseApi;

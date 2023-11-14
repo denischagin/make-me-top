@@ -22,6 +22,7 @@ export interface ModalPlanetInterface {
     planetId: number;
     planetName: string;
     systemId: number;
+    planetNumber: number;
 }
 
 export interface userDataInterface {

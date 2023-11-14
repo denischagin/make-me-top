@@ -1,0 +1,55 @@
+@import "src/app/styles/variables";
+
+.planet-list-tabs {
+  &__item {
+    padding: 13px 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+
+    & p {
+      color: $gray-600;
+    }
+
+    &:hover {
+      & p {
+        color: $white
+      }
+    }
+
+    &--selected {
+      background-color: $white;
+      border-left-color: $primary-500;
+      padding-top: 17px;
+      padding-bottom: 17px;
+
+      & p {
+        color: $black;
+      }
+
+      &:hover {
+        & p {
+          color: $black
+        }
+      }
+    }
+
+    &--education {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &:after {
+        content: "";
+        display: inline-block;
+        height: 0;
+        width: 0;
+        border: 10px solid transparent;
+        border-right: 10px solid $primary-600;
+      }
+
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { StudyRequestsGroupInterface, StudyRequestsInterface } from '@entities/keeper/model/types/interfaces';
+import { StudyRequestsInterface } from '@entities/keeper/model/types/interfaces';
 
 export interface EducationApplicationsCardGroupProps {
     groupName: string

@@ -5,7 +5,7 @@ import { queryTags } from "@shared/api/queryTags";
 export const baseApi = createApi({
     reducerPath: "baseApi",
     baseQuery: baseQueryWithReauth,
-    refetchOnMountOrArgChange: 1,
+    refetchOnMountOrArgChange: 120,
     tagTypes: [...Object.values(queryTags)],
     endpoints: () => ({}), 
 })

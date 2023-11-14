@@ -12,4 +12,7 @@ export const queryTags = {
     getPlanetsBySystemId: 'getPlanetsBySystemId',
     getCourseInfoByCourseId: 'getCourseInfoByCourseId',
     getSystemsBySystemId: 'getSystemsBySystemId',
+    
+    getAllThemes: "getAllThemes",
+    getThemeById: "getThemeById",
 } as const;

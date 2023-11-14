@@ -20,7 +20,20 @@ export const URL_NOT_FOUND = '*';
 
 export const URL_KEEPER_CARD = '/person/:personId/keeper/';
 export const URL_EXPLORER_CARD = '/person/:personId/explorer/';
+
 export const URL_GALAXY_CARD = '/galaxies/:galaxyId';
+
+export const URL_THEME_CARD_LAYOUT = '/courses/:courseId';
+export const URL_THEME_CARD = '/courses/:courseId/themes/:themeId';
+
+export const getUrlThemeByCourseId = (args: { courseId: string | number }) =>
+	`/courses/${args.courseId}`;
+
+export const getUrlThemeByCourseIdAndThemeId =
+	(args: {
+		themeId: string | number, courseId: string | number
+	}) =>
+		`/courses/${args.courseId}/themes/${args.themeId}`;
 
 export interface HeaderLinkInterface {
 	link: string;

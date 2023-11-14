@@ -1,0 +1,18 @@
+.theme-card-page {
+  .planet-list {
+    margin: 0;
+  }
+
+  &__content {
+    width: 100%;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 1fr 3fr;
+    gap: 10px;
+  }
+
+  &__course-title {
+    margin-bottom: 10px;
+  }
+
+}

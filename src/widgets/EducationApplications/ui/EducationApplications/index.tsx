@@ -23,15 +23,6 @@ export const EducationApplications = (
 		return null;
 	}
 	
-	const applicationGroups = applications.reduce((acc, value) => {
-		const { courseTitle } = value;
-		return {
-			...acc,
-			[courseTitle]: [...(acc[courseTitle] || []), value]
-		};
-	}, {} as StudyRequestsGroupObject);
-	
-	const groupNames = Object.keys(applicationGroups);
 	
 	return (
 		<div className={block()}>
@@ -42,12 +33,12 @@ export const EducationApplications = (
 				Заявки на обучение
 			</Typography>
 			<div className={element('cards')}>
-				{groupNames.length !== 0
-					? groupNames.map((groupName) => (
+				{applications.length !== 0
+					? applications.map(({ courseTitle, courseId, requests }) => (
 						<EducationApplicationsCardGroup
-							key={groupName}
-							groupName={groupName}
-							studyRequests={applicationGroups[groupName]} />
+							key={courseId}
+							groupName={courseTitle}
+							studyRequests={requests} />
 					)) : (
 						<Typography variant={typographyVariant.medium16}>
 							Заявки отсутствуют

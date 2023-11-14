@@ -1,0 +1,10 @@
+.approved-education-applications {
+  width: 100%;
+
+  &__group-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+}

@@ -1,5 +1,5 @@
-import { StudyRequestsInterface } from '@entities/keeper/model/types/interfaces';
+import { StudyRequestGroupInterface, StudyRequestsInterface } from '@entities/keeper/model/types/interfaces';
 
 export interface EducationApplicationsInterface {
-    applications: Array<StudyRequestsInterface>;
+	applications: Array<StudyRequestGroupInterface>;
 }

@@ -9,13 +9,10 @@
     justify-content: center;
     position: fixed;
     top: 0;
+    animation: entryAnimateModal .2s;
 
     &--open {
-        display: flex;        
-    }
-
-    &--close {
-        display: none;
+        display: flex;
     }
 
     &__container {
@@ -56,5 +53,14 @@
 
     &__user-name {
         margin: 8px 0;
+    }
+}
+
+@keyframes entryAnimateModal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
