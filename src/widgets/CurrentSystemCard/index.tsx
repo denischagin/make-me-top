@@ -90,13 +90,13 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                     variant={typographyVariant.h2}
                     className={element('heading')}
                 >
-                    {`Планета: ${currentSystem?.courseId}. ${currentSystem?.courseTitle}`}
+                    {`Система: ${currentSystem?.courseTitle}`}
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}
                     className={element('current-system')}
                 >
-                    {`Система: ${currentSystem?.courseThemeTitle}`}
+                    {`Планета: ${currentSystem?.courseThemeTitle}`}
                 </Typography>
                 <Typography
                     variant={typographyVariant.regular14}

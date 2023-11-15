@@ -43,7 +43,7 @@ export const useModalAccessStatus = ({
         [userProgress, currentSystemId],
     );
 
-    const studingSystem = useMemo(
+    const studyingSystem = useMemo(
         () =>
             userProgress?.studiedSystems.find(
                 ({ progress }) => progress < 100 && progress >= 0,
@@ -52,7 +52,7 @@ export const useModalAccessStatus = ({
     );
 
     const isYouInStudying =
-        studingSystem && studingSystem?.systemId !== currentSystemId;
+        studyingSystem && studyingSystem?.systemId !== currentSystemId;
 
     const isYouAlreadyKeeper = useMemo(
         () =>
