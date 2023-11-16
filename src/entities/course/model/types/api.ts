@@ -1,12 +1,12 @@
-
-export interface RejectCoursePayloadInterface {}
+export interface RejectCoursePayloadInterface {
+}
 
 export interface RequestCourseParamsInterface {
-    requestId: number;
+	requestId: number;
 }
 
 export interface RequestCourseBodyInterface {
-    approved: boolean;
+	approved: boolean;
 }
 
 export interface CourseResponse extends Course {
@@ -14,43 +14,64 @@ export interface CourseResponse extends Course {
 }
 
 export interface CourseInfoResponse {
-    course?: Course;
-    you?: CourseExplorer;
-    yourKeeper?: CourseKeeper;
-    explorers: Array<CourseExplorer> | null;
-    keepers: Array<CourseKeeper> | null;
+	course?: Course;
+	you?: CourseExplorer;
+	yourKeeper?: CourseKeeper;
+	explorers: Array<CourseExplorer> | null;
+	keepers: Array<CourseKeeper> | null;
 }
 
 export interface Course {
-    courseId: number;
-    title: string;
-    creationDate: string;
-    lastModified: string;
-    description: string;
+	courseId: number;
+	title: string;
+	creationDate: string;
+	lastModified: string;
+	description: string;
 }
 
 export interface CourseUser {
-    personId: number;
-    firstName: string;
-    lastName: string;
-    patronymic: string;
-    rating: number;
+	personId: number;
+	firstName: string;
+	lastName: string;
+	patronymic: string;
+	rating: number;
 }
 
 export interface CourseExplorer extends CourseUser {
-    explorerId: number;
+	explorerId: number;
 }
 
-export interface CourseKeeper extends CourseUser{
-    keeperId: number;
+export interface CourseKeeper extends CourseUser {
+	keeperId: number;
 }
 
 export interface CurrentCourseRequestInterface {
-    requestId: number
-    courseId: number
-    personId: number
-    statusId: number
+	requestId: number;
+	courseId: number;
+	personId: number;
+	statusId: number;
 }
+
 export interface ApprovedCourseRequestInterface {
 
+}
+
+export interface GetExplorerProgressResponseInterface {
+	explorerId: number;
+	groupId: number;
+	currentThemeId: number;
+	progress: ExplorerProgressInterface;
+}
+
+export interface ExplorerProgressInterface {
+	courseId: number;
+	title: string;
+	planets: ExplorerProgressPlanetInterface[];
+}
+
+export interface ExplorerProgressPlanetInterface {
+	courseThemeId: number;
+	title: string;
+	courseThemeNumber: number;
+	completed: boolean;
 }

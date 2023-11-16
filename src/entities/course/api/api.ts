@@ -1,7 +1,7 @@
 import {
 	ApprovedCourseRequestInterface,
 	CourseInfoResponse, CourseResponse,
-	CurrentCourseRequestInterface,
+	CurrentCourseRequestInterface, GetExplorerProgressResponseInterface,
 	RequestCourseBodyInterface,
 	RequestCourseParamsInterface,
 } from '@entities/course/model/types/api';
@@ -116,7 +116,15 @@ export const courseApi = baseApi.injectEndpoints({
 				url: `course-registration-app/courses/${args.themeId}/`,
 				method: 'POST',
 			})
-		})
+		}),
+		
+		getExplorerCourseProgress: builder.query<
+			GetExplorerProgressResponseInterface,
+			string | number
+		>({
+			query: (courseId) => `progress-app/courses/${courseId}`,
+			providesTags: ['getExplorerCourseProgress']
+		}),
 		
 	}),
 });
@@ -131,4 +139,5 @@ export const {
 	useGetCourseInfoByCourseIdQuery,
 	useGetCurrentCourseRequestQuery,
 	useStartEducationOnCourseMutation,
+	useGetExplorerCourseProgressQuery,
 } = courseApi;

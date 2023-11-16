@@ -8,3 +8,5 @@ export const homeworkApi = baseApi.injectEndpoints(({
 		})
 	})
 }));
+
+export const { useGetHomeworksQuery } = homeworkApi

@@ -4,13 +4,16 @@ import { Card } from '@shared/ui/Card';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import { ArrowButton } from '@shared/ui/ArrowButton';
 import { arrowButtonDirection, arrowButtonVariant } from '@shared/ui/ArrowButton/interfaces';
-import './styles.scss'
+import './styles.scss';
 
 export const CardGroupDetails = ({
 	active,
 	setActive,
 	summary,
-	content
+	content,
+	title,
+	showMoreElement,
+	...restProps
 }: CardGroupDetailsProps) => {
 	const [block, element] = bem('card-group-details');
 	
@@ -21,21 +24,30 @@ export const CardGroupDetails = ({
 			active,
 			inactive: !active
 		})}>
-			<div className={element('card')}>
-				<Card size={cardSize.large} onClick={handleToggleActive}>
+			<div title={title} className={element('card')}>
+				<Card size={cardSize.large} onClick={handleToggleActive} {...restProps} >
 					<div className={element('content')}>
 						<div className={element('info')}>
 							{summary}
 						</div>
 						
-						<ArrowButton
-							variant={arrowButtonVariant.simple}
-							direction={
-								active
-									? arrowButtonDirection.bottom
-									: arrowButtonDirection.right
+						<div className={element('show-more-wrapper')}>
+							{showMoreElement ? (
+								active ? showMoreElement.showMoreElementActive : showMoreElement.showMoreElementInactive
+							) : (
+								<ArrowButton
+									variant={arrowButtonVariant.simple}
+									direction={
+										active
+											? arrowButtonDirection.bottom
+											: arrowButtonDirection.right
+									}
+								/>
+							)
 							}
-						/>
+							
+						</div>
+					
 					
 					</div>
 				</Card>

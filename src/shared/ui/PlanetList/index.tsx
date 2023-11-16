@@ -10,6 +10,8 @@ import { PlanetListProps } from './interfaces';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 
 import './styles.scss';
+import { useNavigate } from 'react-router-dom';
+import { getUrlThemeByCourseIdAndThemeId } from '@shared/constants/links';
 
 export const PlanetList = (props: PlanetListProps) => {
 	const {
@@ -17,13 +19,19 @@ export const PlanetList = (props: PlanetListProps) => {
 		planetList,
 		isSimple,
 		onPlanetClick,
+		currentCourseId,
 	} = props;
 	
 	const [block, element] = bem('planet-list');
+	const navigate = useNavigate();
 	
 	const currentPlanetFromList = planetList?.find(
 		(item) => item.planetId === educationPlanetId,
 	);
+	
+	const handleNavigateToCourse = () => {
+		navigate(getUrlThemeByCourseIdAndThemeId({ courseId: currentCourseId, themeId: educationPlanetId! }));
+	};
 	
 	return (
 		<div className={block()}>
@@ -48,7 +56,7 @@ export const PlanetList = (props: PlanetListProps) => {
 							<LockIcon className={element('lock-icon')} />
 						)}
 					{planet.planetId === educationPlanetId && (
-						!isSimple &&  (
+						!isSimple && (
 							<div className={element('info')}>
 								<span className={element('item-text')}>
                                     Текущая планета
@@ -58,6 +66,7 @@ export const PlanetList = (props: PlanetListProps) => {
 										title="Обучение"
 										size={buttonSize.small}
 										color={buttonColor.primary500}
+										onClick={handleNavigateToCourse}
 									/>
 								}
 							</div>

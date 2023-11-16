@@ -5,4 +5,5 @@ export interface PlanetListProps {
 	planetList?: ModalPlanetInterface[];
 	isSimple?: boolean;
 	onPlanetClick?: (planetId: number) => void;
+	currentCourseId: number
 }

@@ -1,33 +1,44 @@
 import { bem } from '@shared/utils/helpers/bem';
 import { PlanetListTabsProps } from '@shared/ui/PlanetListTabs/interface';
+import { ReactComponent as LockIcon } from '@shared/images/lock-white.svg';
 import './styles.scss';
 
 export const PlanetListTabs = (props: PlanetListTabsProps) => {
 	const {
-		planets,
 		selectedPlanetId,
 		educationPlanetId,
 		status,
-		onPlanetClick
+		onPlanetClick,
+		themes,
 	} = props;
 	
 	const [block, element] = bem('planet-list-tabs');
 	
+	const currentThemeFromList = themes?.find(
+		(item) => item.courseThemeId === educationPlanetId,
+	);
+	
+	const getIsLocked = (planetNumber: number) =>
+		currentThemeFromList?.courseThemeNumber! < planetNumber;
 	
 	return (
 		<div className={block()}>
-			{planets?.map((planet, index) => (
+			{themes?.map((planet, index) => (
 				<div
-					key={planet.planetId}
+					key={planet.courseThemeId}
 					className={element('item', {
-						education: planet.planetId === educationPlanetId,
-						selected: planet.planetId === selectedPlanetId
+						education: planet.courseThemeId === educationPlanetId,
+						selected: planet.courseThemeId === selectedPlanetId
 					})}
-					onClick={() => onPlanetClick && onPlanetClick(planet.planetId)}
+					onClick={() => !getIsLocked(planet.courseThemeNumber) && onPlanetClick && onPlanetClick(planet.courseThemeId)}
 				>
 					<p>
-						{index + 1}. {planet.planetName}
+						{index + 1}. {planet.title}
 					</p>
+					
+					{getIsLocked(planet.courseThemeNumber) &&
+					  <LockIcon className={element('lock-icon')} />}
+				
 				</div>
 			))}
 		</div>

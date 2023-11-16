@@ -12,6 +12,7 @@ export const queryTags = {
     getPlanetsBySystemId: 'getPlanetsBySystemId',
     getCourseInfoByCourseId: 'getCourseInfoByCourseId',
     getSystemsBySystemId: 'getSystemsBySystemId',
+    getExplorerCourseProgress: 'getExplorerCourseProgress',
     
     getAllThemes: "getAllThemes",
     getThemeById: "getThemeById",

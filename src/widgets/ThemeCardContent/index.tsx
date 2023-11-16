@@ -2,46 +2,29 @@ import { Typography } from '@shared/ui/Typography';
 import { typographyColor, typographyVariant } from '@shared/ui/Typography/interfaces';
 import { DividingLine } from '@shared/ui/DividingLine';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
-import { Fragment, useMemo } from 'react';
-import { getUrlThemeByCourseId, getUrlThemeByCourseIdAndThemeId } from '@shared/constants/links';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { useGetPlanetsBySystemIdQuery } from '@entities/galaxy/api/api';
+import { Fragment } from 'react';
+import { useParams } from 'react-router-dom';
 import { useGetThemeByThemeIdQuery } from '@entities/theme';
 import { bem } from '@shared/utils/helpers/bem';
 import './styles.scss';
+import { useCourseProgress } from '@entities/course';
 
 export const ThemeCardContent = () => {
-	const { courseId, themeId } = useParams();
-	const navigate = useNavigate();
-	
 	const [block, element] = bem('theme-card-content');
 	
-	const {
-		data: planets,
-		isSuccess: isSuccessPlanets,
-		isError: isErrorPlanets
-	} = useGetPlanetsBySystemIdQuery(Number(courseId));
+	const { themeId } = useParams();
 	
-	
-	const isCurrentThemeInPlanets = useMemo(() =>
-			planets?.some((planet) => planet.planetId === Number(themeId)),
-		[planets, themeId]);
+	const { isSkipThemeQuery, isSuccessExplorerCourseProgress } = useCourseProgress();
 	
 	const { data: themeInfo } = useGetThemeByThemeIdQuery(Number(themeId), {
-		skip: !themeId || !isCurrentThemeInPlanets,
+		skip: isSkipThemeQuery,
 	});
-	
 	
 	const contentItems = themeInfo?.content.split('\n');
 	
 	return (
 		<div className={block()}>
-			
 			<div className={element('theme-content')}>
-				{!!planets && !!themeId && !isCurrentThemeInPlanets &&
-				  <Navigate to={getUrlThemeByCourseId({ courseId: courseId! })} />
-				}
-				
 				{!!themeId ?
 					(
 						<div>
@@ -69,20 +52,21 @@ export const ThemeCardContent = () => {
 								className={element('theme-text')}
 							>
 								{contentItems?.map((contentItem, index) =>
-									index === 0
-										?
+									index === 0 ? (
 										<p key={index}>
 											{contentItem}
 										</p>
-										: <Fragment key={index}>
+									) : (
+										<Fragment key={index}>
 											<br /> {contentItem !== '' && <p>{contentItem}</p>}
-										</Fragment>)}
+										</Fragment>
+									))}
 							</div>
 						
 						</div>
 					)
 					: (
-						isSuccessPlanets &&
+						isSuccessExplorerCourseProgress &&
 						(
 							<div className={element('theme-title-wrapper')}>
 								<Typography variant={typographyVariant.h2}>Выберите нужную тему</Typography>
