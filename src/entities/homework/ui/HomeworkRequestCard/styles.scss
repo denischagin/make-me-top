@@ -1,0 +1,25 @@
+@import "@app/styles/variables";
+
+.homework-request-card {
+  display: flex;
+  gap: 20px;
+
+  .card {
+    width: 100%;
+  }
+
+  &__card-content {
+    display: flex;
+    gap: 20px;
+  }
+
+  &--variant-primary {
+
+  }
+
+  &--variant-secondary {
+    .card {
+      background: $black-500;
+    }
+  }
+}

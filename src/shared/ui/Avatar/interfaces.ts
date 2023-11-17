@@ -7,5 +7,6 @@ export interface AvatarInterface {
 export enum avatarSize {
     small = 'small',
     medium = 'medium',
+    mediumSmall = 'medium-small',
     large = 'large',
 }
