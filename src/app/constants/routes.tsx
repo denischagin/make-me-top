@@ -5,7 +5,7 @@ import {
 	URL_EXPLORER_CARD,
 	URL_EXPLORERS,
 	URL_GALAXY,
-	URL_GALAXY_CARD,
+	URL_GALAXY_CARD, URL_HOMEWORK_REQUEST_CARD,
 	URL_KEEPER_CARD,
 	URL_KEEPERS,
 	URL_LOGIN,
@@ -15,12 +15,11 @@ import {
 	URL_PROFILE, URL_THEME_CARD, URL_THEME_CARD_LAYOUT,
 } from '@shared/constants/links';
 
-const LoginSelectRole = lazy(() => import('@pages/LoginSelectRole/page'));
 import { Navigate } from 'react-router-dom';
 
-import LoginAsExplorer from '@pages/LoginAsExplorer/page';
-import LoginAsKeeper from '@pages/LoginAsKeeper/page';
-
+const LoginAsExplorer = lazy(() => import('@pages/LoginAsExplorer/page'));
+const LoginAsKeeper = lazy(() => import('@pages/LoginAsKeeper/page'));
+const LoginSelectRole = lazy(() => import('@pages/LoginSelectRole/page'));
 const ExplorerCard = lazy(() => import('@pages/ExplorerCard'));
 const Explorers = lazy(() => import('@pages/Explorers/page'));
 const GalaxyPage = lazy(() => import('@pages/GalaxyPage/page'));
@@ -30,6 +29,7 @@ const Profile = lazy(() => import('@pages/Profile'));
 const NotFound = lazy(() => import('@pages/NotFound'));
 const AllGalaxiesPage = lazy(() => import('@pages/AllGalaxiesPage'));
 const ThemeCardPage = lazy(() => import('@pages/ThemeCardPage/page'));
+const HomeworkRequestCard = lazy(() => import('@pages/HomeworkRequestCard/page'));
 
 export type RouteStatusType = 'protected' | 'auth';
 
@@ -105,5 +105,9 @@ export const routes: RouteInterface[] = [
 		path: URL_THEME_CARD_LAYOUT,
 		element: <ThemeCardPage />,
 		status: 'protected',
-	}
+	},
+	{
+		path: URL_HOMEWORK_REQUEST_CARD,
+		element: <HomeworkRequestCard />,
+	},
 ];

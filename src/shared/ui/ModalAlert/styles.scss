@@ -7,6 +7,9 @@
     margin-bottom: 30px;
 
     &__title {
+        display: flex;
+        justify-content: space-between;
         color: $primary-500;
+        align-items: center;
     }
 }

@@ -95,9 +95,9 @@ export interface ExplorerCardInfoInterface {
 }
 
 export interface StudyRequestCabinetInterface {
-    courseId: string;
+    courseId: number;
     courseTitle: string;
-    galaxyId: string;
+    galaxyId: number;
     galaxyName: string;
     requestId: number;
     keepers: Keeper[]

@@ -23,7 +23,7 @@ import { TabPanel } from 'react-tabs';
 import { useAppDispatch } from '@app/providers/store/hooks';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import { toggleModal } from '@entities/user/model/slice';
-import { URL_PROFILE } from '@shared/constants/links';
+import { getUrlThemeByCourseId, URL_PROFILE } from '@shared/constants/links';
 import toast from 'react-hot-toast';
 import { TOAST_ERROR_CHOOSE_KEEPER } from '@shared/constants/toastTitles';
 import { PlanetListTab } from '@entities/galaxy/ui/PlanetListTab';
@@ -138,6 +138,7 @@ const CircleModalWithGalaxy = ({
 					title={modalAccessStatus}
 					dependencies={dependencySystemListWithParent}
 					handleChangeSystem={handleChangeSystem}
+					onClickShow={() => navigate(getUrlThemeByCourseId({ courseId: currentSystemId! }))}
 				/>
 			)}
 			<MmtTabs

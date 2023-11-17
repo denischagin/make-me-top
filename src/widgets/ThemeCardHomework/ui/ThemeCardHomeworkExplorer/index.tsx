@@ -16,7 +16,8 @@ export const ThemeCardHomeworkExplorer = () => {
 		
 		const [isOpenModalHomework, setIsOpenModalHomework] = useState(false);
 		
-		const { explorerCourseProgress, isSkipHomeworkQuery } = useCourseProgress();
+		const { explorerCourseProgress, isSkipHomeworkQuery, isCompletedCurrentPlanet } =
+			useCourseProgress();
 		
 		const {
 			data: homeworks,
@@ -49,13 +50,16 @@ export const ThemeCardHomeworkExplorer = () => {
 						voluptatem! Deleniti dolorem nisi optio perferendis tempora.
 					</Typography>
 					
-					<Button
+					
+					{!isCompletedCurrentPlanet &&
+					  <Button
 						className={element('button-homework')}
 						title={'Ответить'}
 						size={buttonSize.small}
 						color={buttonColor.filled}
 						onClick={() => setIsOpenModalHomework(true)}
-					/>
+					  />
+					}
 				</div>
 				
 				<ModalSendHomework
