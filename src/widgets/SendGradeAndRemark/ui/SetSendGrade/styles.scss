@@ -1,0 +1,17 @@
+.set-grade {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  &__button-send-grade {
+    opacity: 0;
+    pointer-events: none;
+
+    &--active {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@import "src/app/styles/variables";
+
+.textarea {
+  height: 10em;
+  min-width: 10px;
+  padding: 10px;
+  resize: none;
+  background: $black;
+  color: $white;
+  border-radius: 10px;
+  transition: .2s;
+  outline-color: transparent;
+  font-size: 16px;
+
+  &:focus {
+    outline: 1px solid $white;
+  }
+
+  &--fullwidth {
+    width: 100%;
+  }
+}
