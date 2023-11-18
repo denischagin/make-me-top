@@ -1,0 +1,30 @@
+@import "@app/styles/variables";
+
+.grade-radio-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: $gray-500;
+    border-radius: 50%;
+    cursor: pointer;
+    color: black;
+    transition: all .3s;
+    opacity: 0.5;
+
+    &:hover {
+        opacity: 0.7;
+    }
+
+    &--active {
+        background-color: $primary-500;
+        color: white;
+        opacity: 1;
+
+        &:hover {
+            background-color: $primary-600;
+            opacity: 1;
+        }
+    }
+}

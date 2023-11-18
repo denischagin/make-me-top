@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Header } from '@widgets/Header/ui/Header';
 import { bem } from '@shared/utils/helpers/bem';
@@ -8,13 +8,16 @@ import { HomeworkRequestCard, HomeworkRequestList } from '@entities/homework';
 import { HomeworkRequestCardVariant } from '@entities/homework/ui/HomeworkRequestCard/interface';
 import System from '@shared/ui/System';
 import { Typography } from '@shared/ui/Typography';
-import { typographyVariant } from '@shared/ui/Typography/interfaces';
+import { typographyColor, typographyVariant } from '@shared/ui/Typography/interfaces';
 import './styles.scss';
+import { GradeRadioButton } from '@shared/ui/GradeRadioButton';
 
 const HomeworkRequestCardPage = () => {
     const [block, element] = bem('homework-request-page');
 
     const { homeworkRequestId, courseId, themeId } = useParams();
+
+    const [currentGrade, setCurrentGrade] = useState<number | null>(null)
 
     const gradeList = [1, 2, 3, 4, 5];
 
@@ -30,11 +33,13 @@ const HomeworkRequestCardPage = () => {
 
                     <div className={element('grade-wrapper')}>
                         {gradeList.map((grade) => (
-                            <System>
-                                <Typography variant={typographyVariant.h2}>
-                                    {grade}
-                                </Typography>
-                            </System>
+                            <GradeRadioButton
+                                active={currentGrade === grade}
+                                onClick={() => grade === currentGrade
+                                    ? setCurrentGrade(null)
+                                    : setCurrentGrade(grade)}>
+                                {grade}
+                            </GradeRadioButton>
                         ))}
                     </div>
 

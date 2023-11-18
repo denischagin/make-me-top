@@ -1,3 +1,5 @@
+@import "@app/styles/variables";
+
 .homework-request-page {
   &__grade-wrapper {
     display: flex;
@@ -6,4 +8,12 @@
     height: 140px;
     align-items: center;
   }
+
+  &__send-homework-field {
+    height: 100px;
+    width: 100%;
+    resize: none;
+    padding: 20px;
+  }
+
 }
