@@ -7,12 +7,11 @@ import { SendRemark } from '@widgets/SendGradeAndRemark/ui/SendRemark';
 import { SetSendGrade } from '@widgets/SendGradeAndRemark/ui/SetSendGrade';
 
 export const SendGradeAndRemark = () => {
-    const [, element] = bem('send-grade-remark');
+    const [block, element] = bem('send-grade-remark');
     const [isShowRemarkWidget, setIsShowRemarkWidget] = useState(true);
 
-
     return (
-        <>
+        <div className={block()}>
             {isShowRemarkWidget ? <SendRemark /> : <SetSendGrade />}
 
             <Button
@@ -22,6 +21,6 @@ export const SendGradeAndRemark = () => {
                 onClick={() => setIsShowRemarkWidget(prev => !prev)}
                 className={element('button-switch-grade')}
             />
-        </>
+        </div>
     );
 };

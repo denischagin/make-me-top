@@ -1,8 +1,8 @@
 import { bem } from '@shared/utils/helpers/bem';
 import './styles.scss';
-import { HomeworkRequestListProps } from '@entities/homework/ui/HomeworkRequestList/interface';
+import { HomeworkRequestListProps } from '@entities/homework/ui/HomeworkRequestCardGroup/interface';
 
-export const HomeworkRequestList = ({ children }: HomeworkRequestListProps) => {
+export const HomeworkRequestCardGroup = ({ children }: HomeworkRequestListProps) => {
     const [block, element] = bem('homework-request-list');
 
     return (
