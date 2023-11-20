@@ -7,20 +7,20 @@ import { SendRemark } from '@widgets/SendGradeAndRemark/ui/SendRemark';
 import { SetSendGrade } from '@widgets/SendGradeAndRemark/ui/SetSendGrade';
 
 export const SendGradeAndRemark = () => {
-    const [block, element] = bem('send-grade-remark');
-    const [isShowRemarkWidget, setIsShowRemarkWidget] = useState(true);
-
-    return (
-        <div className={block()}>
-            {isShowRemarkWidget ? <SendRemark /> : <SetSendGrade />}
-
-            <Button
-                title={isShowRemarkWidget ? 'Поставить оценку' : 'Написать замечание'}
-                size={buttonSize.small}
-                color={isShowRemarkWidget ? undefined : buttonColor.filled}
-                onClick={() => setIsShowRemarkWidget(prev => !prev)}
-                className={element('button-switch-grade')}
-            />
-        </div>
-    );
+	const [block, element] = bem('send-grade-remark');
+	const [isShowRemarkWidget, setIsShowRemarkWidget] = useState(true);
+	
+	const handleSwitchWidget = () => {
+		setIsShowRemarkWidget(prev => !prev);
+	};
+	
+	return (
+		<div className={block()}>
+			{
+				isShowRemarkWidget
+					? <SendRemark onSwitchClick={handleSwitchWidget} />
+					: <SetSendGrade onSwitchClick={handleSwitchWidget} />
+			}
+		</div>
+	);
 };
