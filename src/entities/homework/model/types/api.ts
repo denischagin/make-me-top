@@ -1,7 +1,7 @@
 export interface HomeworkInterface {
-
+	homeworkId: number;
+	content: string;
+	groupId: number;
 }
 
-export interface GetHomeworksInterface {
-
-}
+export type GetHomeworksType = HomeworkInterface[]

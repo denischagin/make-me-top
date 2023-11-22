@@ -4,11 +4,11 @@ import { getUrlThemeByCourseIdAndThemeId } from '@shared/constants/links';
 import NotFound from '@pages/NotFound';
 import { useNavigate, useParams } from 'react-router-dom';
 
-export const ThemeCardTabs = () => {
+export const ThemeTabs = () => {
 	const { courseId, themeId } = useParams();
 	const navigate = useNavigate();
 	
-	const { explorerCourseProgress, isCompletedCurrentTheme } =
+	const { explorerCourseProgress, isCompletedCurrentSystem } =
 		useCourseProgress();
 	
 	const handlePlanetClick = (planetId: number) =>
@@ -20,7 +20,7 @@ export const ThemeCardTabs = () => {
 			themes={explorerCourseProgress?.progress.planets}
 			onPlanetClick={handlePlanetClick}
 			selectedPlanetId={Number(themeId)}
-			educationPlanetId={isCompletedCurrentTheme ? undefined : currentThemeId}
+			educationPlanetId={isCompletedCurrentSystem ? undefined : currentThemeId}
 		/>
 	
 	);

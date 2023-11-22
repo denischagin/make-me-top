@@ -15,4 +15,9 @@
     margin-bottom: 10px;
   }
 
+  &__homework-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
 }

@@ -1,16 +1,18 @@
 import { createContext } from 'react';
-import { ExplorerProgressPlanetInterface } from '@entities/course';
+import {
+	GetExplorerProgressResponseInterface
+} from '@entities/course';
 
 export type CourseProgressData = {
-	explorerCourseProgress: any;
-	isSuccessExplorerCourseProgress: boolean;
-	isErrorExplorerCourseProgress: boolean;
-	planets: ExplorerProgressPlanetInterface[] | undefined;
+	explorerCourseProgress: GetExplorerProgressResponseInterface | undefined;
+	isSuccess: boolean;
+	isError: boolean;
+	
 	isCurrentThemeInPlanets: boolean;
 	isSkipThemeQuery: boolean;
 	isSkipHomeworkQuery: boolean;
 	isNoValidThemeId: boolean;
-	isCompletedCurrentTheme: boolean;
+	isCompletedCurrentSystem: boolean;
 	isCompletedCurrentPlanet: boolean;
 };
 

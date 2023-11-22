@@ -1,10 +1,17 @@
-.theme-card-homework {
+.homework-issues {
   display: flex;
+  align-items: start;
   flex-direction: column;
   gap: 10px;
-  align-items: start;
 
-  > p {
+  &__title {
+
+  }
+
+  &__content {
+  }
+
+  &__content, &__title {
     text-indent: 40px;
     hyphens: auto;
     -moz-hyphens: auto;
@@ -13,10 +20,4 @@
     word-wrap: break-word;
     word-break: break-word;
   }
-
-  &__button-homework {
-    margin-right: 40px;
-  }
-
-
 }

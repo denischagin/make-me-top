@@ -32,23 +32,21 @@ export const CardGroupDetails = ({
 						</div>
 						
 						<div className={element('show-more-wrapper')}>
-							{showMoreElement ? (
-								active ? showMoreElement.showMoreElementActive : showMoreElement.showMoreElementInactive
-							) : (
-								<ArrowButton
-									variant={arrowButtonVariant.simple}
-									direction={
-										active
-											? arrowButtonDirection.bottom
-											: arrowButtonDirection.right
-									}
-								/>
-							)
+							{
+								showMoreElement ? (
+									active ? showMoreElement.showMoreElementActive : showMoreElement.showMoreElementInactive
+								) : (
+									<ArrowButton
+										variant={arrowButtonVariant.simple}
+										direction={
+											active
+												? arrowButtonDirection.bottom
+												: arrowButtonDirection.right
+										}
+									/>
+								)
 							}
-							
 						</div>
-					
-					
 					</div>
 				</Card>
 			

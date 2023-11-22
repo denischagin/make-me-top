@@ -9,12 +9,12 @@ import { bem } from '@shared/utils/helpers/bem';
 import './styles.scss';
 import { useCourseProgress } from '@entities/course';
 
-export const ThemeCardContent = () => {
+export const ThemeContent = () => {
 	const [block, element] = bem('theme-card-content');
 	
 	const { themeId } = useParams();
 	
-	const { isSkipThemeQuery, isSuccessExplorerCourseProgress } = useCourseProgress();
+	const { isSkipThemeQuery, isSuccess } = useCourseProgress();
 	
 	const { data: themeInfo } = useGetThemeByThemeIdQuery(Number(themeId), {
 		skip: isSkipThemeQuery,
@@ -66,7 +66,7 @@ export const ThemeCardContent = () => {
 						</div>
 					)
 					: (
-						isSuccessExplorerCourseProgress &&
+						isSuccess &&
 						(
 							<div className={element('theme-title-wrapper')}>
 								<Typography variant={typographyVariant.h2}>Выберите нужную тему</Typography>

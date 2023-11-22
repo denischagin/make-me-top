@@ -1,41 +1,56 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { CourseProgressData, useGetExplorerCourseProgressQuery, CourseProgressContext } from '@entities/course';
-import { useEffect, useMemo } from 'react';
+import { ReactNode, useEffect, useMemo } from 'react';
 import { getUrlThemeByCourseId } from '@shared/constants/links';
+import { skipToken } from '@reduxjs/toolkit/query';
+import { useAuth } from '@entities/viewer';
 
 type CourseProgressProviderProps = {
-	children: React.ReactNode;
+	children: ReactNode;
 };
 
 export const CourseProgressProvider = ({ children }: CourseProgressProviderProps) => {
 	const { courseId, themeId } = useParams();
 	const navigate = useNavigate();
+	const { role } = useAuth();
 	
+	const explorerCourseProgressResponse = useGetExplorerCourseProgressQuery(courseId ?? skipToken, {
+		skip: role !== 'EXPLORER'
+	});
 	const {
 		data: explorerCourseProgress,
-		isSuccess: isSuccessExplorerCourseProgress,
-		isError: isErrorExplorerCourseProgress,
-	} = useGetExplorerCourseProgressQuery(courseId!);
+		isSuccess,
+		isError,
+	} = explorerCourseProgressResponse;
 	
 	const planets = explorerCourseProgress?.progress.planets;
 	
-	const isCurrentThemeInPlanets = useMemo(
-		() => planets?.some((planet) => planet.courseThemeId === Number(themeId)),
-		[planets, themeId]
-	)!;
+	const currentTheme = useMemo(
+		() => planets?.find(
+			(planet) => planet.courseThemeId.toString() === themeId
+		),
+		[themeId, explorerCourseProgress]);
 	
-	const isCompletedCurrentTheme = planets?.[planets.length - 1].completed!;
+	const educationTheme = useMemo(
+		() =>
+			planets?.find(
+				(theme) => theme.courseThemeId === explorerCourseProgress?.currentThemeId,
+			),
+		[planets, explorerCourseProgress?.currentThemeId]
+	);
 	
-	const isCompletedCurrentPlanet = useMemo(
-		() => planets?.find((planet) => planet.courseThemeId.toString() === themeId)?.completed,
-		[planets, themeId]
-	)!;
+	const isCurrentThemeInPlanets = !!currentTheme;
 	
-	const isSkipThemeQuery = !themeId || !isCurrentThemeInPlanets;
+	const isCompletedCurrentSystem = planets?.[planets.length - 1].completed!;
 	
-	const isNoValidThemeId = !!planets && !!themeId && !isCurrentThemeInPlanets;
+	const isCompletedCurrentPlanet = currentTheme?.completed!;
 	
-	const isSkipHomeworkQuery = !explorerCourseProgress?.groupId || !themeId;
+	const isNoValidThemeId = !!planets && !!themeId && !isCurrentThemeInPlanets
+		|| (currentTheme?.courseThemeNumber! > educationTheme?.courseThemeNumber!);
+	
+	const isSkipThemeQuery = !themeId || !isCurrentThemeInPlanets || isNoValidThemeId;
+	
+	const isSkipHomeworkQuery = !explorerCourseProgress?.groupId || !themeId || isNoValidThemeId;
 	
 	useEffect(() => {
 		if (!isNoValidThemeId) return;
@@ -45,14 +60,13 @@ export const CourseProgressProvider = ({ children }: CourseProgressProviderProps
 	
 	const courseProgressData: CourseProgressData = {
 		explorerCourseProgress,
-		isSuccessExplorerCourseProgress,
-		isErrorExplorerCourseProgress,
-		planets,
+		isSuccess,
+		isError,
 		isCurrentThemeInPlanets,
 		isSkipThemeQuery,
 		isSkipHomeworkQuery,
 		isNoValidThemeId,
-		isCompletedCurrentTheme,
+		isCompletedCurrentSystem,
 		isCompletedCurrentPlanet,
 	};
 	

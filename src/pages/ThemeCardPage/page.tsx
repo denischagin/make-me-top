@@ -7,31 +7,47 @@ import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import NotFound from '@pages/NotFound';
 import {
-	CourseProgressProvider,
-	useGetExplorerCourseProgressQuery,
+	CourseProgressProvider, useCourseProgress,
 } from '@entities/course';
-import { ThemeCardContent } from '@widgets/ThemeCardContent';
 import { DividingLine } from '@shared/ui/DividingLine';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
-import { ThemeCardTabs } from '@widgets/ThemeCardTabs';
-import { ThemeCardHomework } from '@widgets/ThemeCardHomework/ui/ThemeCardHomework';
-import { useParams } from 'react-router-dom';
+import { ThemeTabs } from '@widgets/ThemeTabs';
+import { ThemeContent } from '@widgets/ThemeContent';
+import { useAuth } from '@entities/viewer';
+import { HomeworkIssues } from '@widgets/HomeworkIssues';
+import { CurrentHomeworkRequests } from '@widgets/CurrentHomeworkRequests';
+import { OldHomeworksRequest } from '@widgets/OldHomeworksRequest';
+import { roles } from '@shared/constants/storageKeys';
+import { ReactElement } from 'react';
 
+
+const homeworkSectionForRole: Record<roles, ReactElement> = {
+	EXPLORER: (
+		<>
+			<HomeworkIssues />
+		</>
+	),
+	KEEPER: (
+		<>
+			<CurrentHomeworkRequests />
+			<OldHomeworksRequest />
+		</>
+	)
+};
 
 const ThemeCardPage = () => {
 	const [block, element] = bem('theme-card-page');
-	const { courseId } = useParams();
+	const { role } = useAuth();
 	
 	const {
-		data: explorerCourseProgress,
-		isSuccess: isSuccessExplorerCourseProgress,
-		isError: isErrorExplorerCourseProgress,
-	} = useGetExplorerCourseProgressQuery(courseId!);
+		explorerCourseProgress,
+		isError,
+	} = useCourseProgress();
 	
-	if (isErrorExplorerCourseProgress) return <NotFound />;
+	if (isError) return <NotFound />;
 	
 	return (
-		<CourseProgressProvider>
+		<>
 			<BackgroundProfile />
 			<div className={block()}>
 				<Header />
@@ -45,21 +61,27 @@ const ThemeCardPage = () => {
 						</Typography>
 						
 						<div className={element('content')}>
-							<ThemeCardTabs />
+							<ThemeTabs />
 							
 							<div>
-								<ThemeCardContent />
+								<ThemeContent />
 								
 								<DividingLine color={DividingLineColor.opacitygray} />
 								
-								<ThemeCardHomework />
+								<div className={element('homework-wrapper')}>
+									{role && homeworkSectionForRole[role]}
+								</div>
 							</div>
 						</div>
 					</div>
 				</Container>
 			</div>
-		</CourseProgressProvider>
+		</>
 	);
 };
 
-export default ThemeCardPage;
+export default () => (
+	<CourseProgressProvider>
+		<ThemeCardPage />
+	</CourseProgressProvider>
+);

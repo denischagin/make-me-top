@@ -47,6 +47,7 @@ export const ReviewRequestCard = () => {
             >
                 Запрос на проверку:
             </Typography>
+            
             <Card size={cardSize.large} glow>
                 <div className={element('content')}>
                     <div className={element('info')}>

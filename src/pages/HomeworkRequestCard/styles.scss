@@ -1,10 +1,18 @@
 @import "@app/styles/variables";
 
 .homework-request-page {
+  padding-bottom: 30px;
+
   &__content {
     display: flex;
     flex-direction: column;
     gap: 30px;
+  }
+
+  &__button-scroll {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
   }
 
 }
