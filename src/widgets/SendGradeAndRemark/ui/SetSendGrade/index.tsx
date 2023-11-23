@@ -8,6 +8,7 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import './styles.scss';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { SetSendGradeProps } from '@widgets/SendGradeAndRemark/ui/SetSendGrade/interface';
+import { Textarea } from '@shared/ui/Textarea';
 
 export const SetSendGrade = ({ onSwitchClick }: SetSendGradeProps) => {
 	const [block, element] = bem('set-grade');
@@ -27,7 +28,12 @@ export const SetSendGrade = ({ onSwitchClick }: SetSendGradeProps) => {
 						currentGrade={currentGrade}
 						onChange={(grade) => setCurrentGrade(grade)}
 					/>
+				
 				</div>
+				
+				{!!currentGrade &&
+				  <Textarea placeholder="Комментарий к оценке" className={element('comment')} fullwidth />
+				}
 				
 				<div className={element('buttons')}>
 					<div

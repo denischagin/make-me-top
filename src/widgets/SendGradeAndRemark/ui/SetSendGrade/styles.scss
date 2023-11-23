@@ -1,4 +1,8 @@
 .set-grade {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
   &__wrapper {
     display: flex;
     align-items: center;
@@ -23,6 +27,11 @@
     display: flex;
     gap: 20px;
     align-items: center;
+  }
+
+  &__comment {
+    animation: showButtons .5s;
+    animation-fill-mode: forwards;
   }
 }
 

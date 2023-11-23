@@ -7,68 +7,36 @@ import './styles.scss';
 import { SendGradeAndRemark } from '@widgets/SendGradeAndRemark/ui/SendGradeAndRemark';
 import { HomeworkRequests } from '@widgets/HomeworkRequests';
 import { ArrowButton } from '@shared/ui/ArrowButton';
-import { arrowButtonDirection } from '@shared/ui/ArrowButton/interfaces';
+import { arrowButtonDirection, arrowButtonVariant } from '@shared/ui/ArrowButton/interfaces';
+import { Typography } from '@shared/ui/Typography';
+import { typographyVariant } from '@shared/ui/Typography/interfaces';
+import { ButtonScrollTopBottom } from '@features/ButtonScrollTopBottom';
 
 const HomeworkRequestCardPage = () => {
 	const [block, element] = bem('homework-request-page');
-	const [isScrollFromBottom, setIsScrollFromBottom] = useState(false);
-	
-	const handleScrollToBottom = () => {
-		window.scroll({
-			top: document.documentElement.scrollHeight,
-			behavior: 'smooth',
-		});
-	};
-	
-	const handleScrollToTop = () => {
-		window.scroll({
-			top: 0,
-			behavior: 'smooth',
-		});
-	};
-	
-	const isShowScrollButton = window.innerHeight - document.documentElement.scrollHeight < 0
-	
-	useEffect(() => {
-		const handleScroll = () => {
-			const indent = 300;
-			const { scrollHeight, scrollTop } = document.documentElement;
-			
-			if (scrollHeight - scrollTop - window.innerHeight < indent)
-				return setIsScrollFromBottom(true);
-			
-			setIsScrollFromBottom(false);
-		};
-		
-		addEventListener('scroll', handleScroll);
-		
-		return () => removeEventListener('scroll', handleScroll);
-	}, []);
 	
 	return (
 		<div>
 			<BackgroundProfile />
 			<Header />
+			<ButtonScrollTopBottom />
 			<div className={block()}>
 				<Container>
 					<div className={element('content')}>
+						<div className={element('homework')}>
+							<Typography variant={typographyVariant.h1}>
+								Домашнее задание
+							</Typography>
+							
+							<Typography className={element('homework-content')} variant={typographyVariant.regular16}>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda cupiditate dicta,
+								explicabo ipsa modi odio, officia omnis possimus quod recusandae suscipit tempora ullam!
+								Ab aliquid asperiores eveniet, labore nostrum officia!
+							</Typography>
+						</div>
+						
 						<SendGradeAndRemark />
 						<HomeworkRequests />
-						
-						{
-							isShowScrollButton
-							&& (isScrollFromBottom
-								? <ArrowButton
-									direction={arrowButtonDirection.top}
-									className={element('button-scroll')}
-									onClick={handleScrollToTop}
-								/> :
-								<ArrowButton
-									direction={arrowButtonDirection.bottom}
-									className={element('button-scroll')}
-									onClick={handleScrollToBottom}
-								/>)
-						}
 					</div>
 				</Container>
 			</div>

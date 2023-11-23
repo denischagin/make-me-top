@@ -3,32 +3,40 @@ import { ReactComponent as ArrowIconSimple } from '@shared/images/arrow-simple.s
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import { ArrowButtonInterface, arrowButtonVariant } from './interfaces';
+import { arrowButtonColor, ArrowButtonInterface, arrowButtonVariant } from './interfaces';
 
 import './styles.scss';
+import { ReactElement } from 'react';
+
 
 export const ArrowButton = (props: ArrowButtonInterface) => {
-	const { direction, className, variant = arrowButtonVariant.default, ...restProps }: ArrowButtonInterface = props;
+	const {
+		direction,
+		className,
+		variant = arrowButtonVariant.default,
+		color = arrowButtonColor.transparent,
+		...restProps
+	}: ArrowButtonInterface = props;
 	
 	const [block, element] = bem('arrow-button');
+	
+	const arrowButtonFromVariant: Record<arrowButtonVariant, ReactElement> = {
+		[arrowButtonVariant.default]: <ArrowIcon className={element('arrow')} />,
+		[arrowButtonVariant.simple]: <ArrowIconSimple className={element('arrow')} />,
+	};
 	
 	return (
 		<div
 			className={block(
 				{
 					direction,
+					color
 				},
 				className,
 			)}
 			{...restProps}
 		>
-			{variant === arrowButtonVariant.default &&
-			  <ArrowIcon className={element('arrow')} />
-			}
-			
-			{variant === arrowButtonVariant.simple &&
-			  <ArrowIconSimple className={element('arrow')} />
-			}
+			{arrowButtonFromVariant[variant]}
 			<div className={element('circle')} />
 		</div>
 	);

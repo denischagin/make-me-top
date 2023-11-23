@@ -31,10 +31,11 @@ export interface KeeperCourseGroupAcceptedRequests {
 }
 
 export interface KeeperCurrentGroupInterface {
-	courseId: number
-	courseTitle: string
-	groupId: string
-	explorers: StudyingExplorersInterface[]
+	courseId: number;
+	courseTitle: string;
+	groupId: number;
+	keeperId: number;
+	explorers: StudyingExplorersInterface[];
 }
 
 export interface KeeperInfoInterface {
@@ -78,7 +79,7 @@ export interface StudyingExplorersInterface {
 	patronymic: string;
 	explorerId: number;
 	courseId: number;
-	groupId: number
+	groupId: number;
 }
 
 export interface StudyRequestsInterface {

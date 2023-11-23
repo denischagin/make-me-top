@@ -48,27 +48,27 @@ export const HomeworkRequests = () => {
                 username={'Тимур'}
                 content={'https://github.com/matvey/isExplorerRegex.git'}
             />
-            <HomeworkRequestCard
-                username={'Денис Чагин'}
-                content={'Молодец'}
-            />
-
-            <HomeworkRequestCard
-                variant={HomeworkRequestCardVariant.secondary}
-                username={'Тимур'}
-                content={'https://github.com/matvey/isExplorerSingleton.git'}
-            />
-
-            <HomeworkRequestCard
-                username={'Денис Чагин'}
-                content={'Не используй regEx, используй в данном случае синглтон, думаю самый лучший вариант'}
-            />
-
-            <HomeworkRequestCard
-                variant={HomeworkRequestCardVariant.secondary}
-                username={'Тимур'}
-                content={'https://github.com/matvey/isExplorerRegex.git'}
-            />
+            {/*<HomeworkRequestCard*/}
+            {/*    username={'Денис Чагин'}*/}
+            {/*    content={'Молодец'}*/}
+            {/*/>*/}
+            
+            {/*<HomeworkRequestCard*/}
+            {/*    variant={HomeworkRequestCardVariant.secondary}*/}
+            {/*    username={'Тимур'}*/}
+            {/*    content={'https://github.com/matvey/isExplorerSingleton.git'}*/}
+            {/*/>*/}
+            
+            {/*<HomeworkRequestCard*/}
+            {/*    username={'Денис Чагин'}*/}
+            {/*    content={'Не используй regEx, используй в данном случае синглтон, думаю самый лучший вариант'}*/}
+            {/*/>*/}
+            
+            {/*<HomeworkRequestCard*/}
+            {/*    variant={HomeworkRequestCardVariant.secondary}*/}
+            {/*    username={'Тимур'}*/}
+            {/*    content={'https://github.com/matvey/isExplorerRegex.git'}*/}
+            {/*/>*/}
         </HomeworkRequestCardGroup>
     );
 };

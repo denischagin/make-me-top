@@ -15,8 +15,8 @@ import { ThemeTabs } from '@widgets/ThemeTabs';
 import { ThemeContent } from '@widgets/ThemeContent';
 import { useAuth } from '@entities/viewer';
 import { HomeworkIssues } from '@widgets/HomeworkIssues';
-import { CurrentHomeworkRequests } from '@widgets/CurrentHomeworkRequests';
-import { OldHomeworksRequest } from '@widgets/OldHomeworksRequest';
+import { CurrentHomeworkRequests } from '@widgets/CurrentHomeworkRequests/ui/CurrentHomeworkRequests';
+import { OldHomeworksRequest } from '@widgets/OldHomeworksRequest/ui/OldHomeworksRequests';
 import { roles } from '@shared/constants/storageKeys';
 import { ReactElement } from 'react';
 

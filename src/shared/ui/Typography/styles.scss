@@ -1,62 +1,69 @@
 @import '@app/styles/variables.scss';
+
 $largeMobileWidth: 800px;
 $mediumMobileWidth: 600px;
 
 .typography {
+  color: $white;
+  font-family: $font-text-regular;
+  font-style: normal;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  word-wrap: break-word;
+  word-break: break-word;
+
+  &--color-primary-500 {
+    color: $primary-500;
+  }
+
+  &--color-black {
+    color: $black;
+  }
+
+  &--color-white {
     color: $white;
-    font-family: $font-text-regular;
-    font-style: normal;
-    font-feature-settings: 'tnum' on, 'lnum' on;
+  }
 
-    &--color-primary-500 {
-        color: $primary-500;
+  &--variant-h1 {
+    font-family: $font-heading;
+    font-size: 35px;
+    @media screen and (max-width: $largeMobileWidth) {
+      font-size: 30px;
     }
+    @media screen and (max-width: $mediumMobileWidth) {
+      font-size: 25px;
+    }
+  }
 
-    &--color-black {
-        color: $black;
+  &--variant-h2 {
+    font-family: $font-heading;
+    font-size: 26px;
+    @media screen and (max-width: $largeMobileWidth) {
+      font-size: 20px;
     }
+    @media screen and (max-width: $mediumMobileWidth) {
+      font-size: 18px;
+    }
+  }
 
-    &--color-white {
-        color: $white;
-    }
+  &--variant-medium16 {
+    font-family: $font-text-medium;
+    font-size: 16px;
+  }
 
-    &--variant-h1 {
-        font-family: $font-heading;
-        font-size: 35px;
-        @media screen and (max-width: $largeMobileWidth) {
-            font-size: 30px;
-        }
-        @media screen and (max-width: $mediumMobileWidth) {
-            font-size: 25px;
-        }
-    }
+  &--variant-medium14 {
+    font-family: $font-text-medium;
+    font-size: 14px;
+  }
 
-    &--variant-h2 {
-        font-family: $font-heading;
-        font-size: 26px;
-        @media screen and (max-width: $largeMobileWidth) {
-            font-size: 20px;
-        }
-        @media screen and (max-width: $mediumMobileWidth) {
-            font-size: 18px;
-        }
-    }
+  &--variant-regular16 {
+    font-size: 16px;
+  }
 
-    &--variant-medium16 {
-        font-family: $font-text-medium;
-        font-size: 16px;
-    }
-
-    &--variant-medium14 {
-        font-family: $font-text-medium;
-        font-size: 14px;
-    }
-
-    &--variant-regular16 {
-        font-size: 16px;
-    }
-
-    &--variant-regular14 {
-        font-size: 14px;
-    }
+  &--variant-regular14 {
+    font-size: 14px;
+  }
 }
