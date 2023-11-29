@@ -9,6 +9,7 @@ export interface CardGroupDetailsProps extends Partial<Omit<CardInterface, 'cont
 	showMoreElement?: {
 		showMoreElementActive: ReactNode
 		showMoreElementInactive: ReactNode
-	}
+	};
+	withOutShowMoreElement?: boolean;
 	title?: string;
 }

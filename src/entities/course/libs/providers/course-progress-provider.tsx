@@ -48,7 +48,7 @@ export const CourseProgressProvider = ({ children }: CourseProgressProviderProps
 	const isNoValidThemeId = !!planets && !!themeId && !isCurrentThemeInPlanets
 		|| (currentTheme?.courseThemeNumber! > educationTheme?.courseThemeNumber!);
 	
-	const isSkipThemeQuery = !themeId || !isCurrentThemeInPlanets || isNoValidThemeId;
+	const isSkipThemeQuery = (role !== 'KEEPER' || !themeId) && (!themeId || !isCurrentThemeInPlanets || isNoValidThemeId);
 	
 	const isSkipHomeworkQuery = !explorerCourseProgress?.groupId || !themeId || isNoValidThemeId;
 	

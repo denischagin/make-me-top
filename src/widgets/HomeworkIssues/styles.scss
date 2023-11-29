@@ -2,7 +2,14 @@
   display: flex;
   align-items: start;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+  }
 
   &__title {
 
@@ -13,5 +20,9 @@
 
   &__content, &__title {
     text-indent: 40px;
+  }
+
+  &__button-homework {
+    margin-left: 40px;
   }
 }

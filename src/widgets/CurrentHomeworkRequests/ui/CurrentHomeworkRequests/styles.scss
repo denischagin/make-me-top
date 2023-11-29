@@ -1,6 +1,5 @@
 .current-homework-requests {
-
-  &__button-homework {
-    align-self: start;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

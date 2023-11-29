@@ -1,0 +1,1 @@
+export { EditHomeworkModal } from './ui';

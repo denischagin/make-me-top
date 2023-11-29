@@ -25,7 +25,7 @@ export const URL_GALAXY_CARD = '/galaxies/:galaxyId';
 
 export const URL_THEME_CARD_LAYOUT = '/courses/:courseId';
 export const URL_THEME_CARD = '/courses/:courseId/themes/:themeId';
-export const URL_HOMEWORK_REQUEST_CARD = '/courses/:courseId/themes/:themeId/homeworks/:homeworkRequestId';
+export const URL_HOMEWORK_REQUEST_CARD = '/homeworks/:homeworkId';
 
 export const getUrlThemeByCourseId = (args: { courseId: string | number }) =>
 	`/courses/${args.courseId}`;
@@ -36,11 +36,11 @@ export const getUrlThemeByCourseIdAndThemeId =
 	}) =>
 		`/courses/${args.courseId}/themes/${args.themeId}`;
 
-export const getUrlThemeByCourseIdThemeIdHomeworkRequestId =
+export const getUrlHomework =
 	(args: {
-		themeId: string | number, courseId: string | number, homeworkRequestId: string | number,
+		homeworkId: string | number, homeworkRequestId: string | number,
 	}) =>
-		`/courses/${args.courseId}/themes/${args.themeId}/homeworks/${args.homeworkRequestId}`;
+		`/homeworks/${args.homeworkId}`;
 
 export interface HeaderLinkInterface {
 	link: string;

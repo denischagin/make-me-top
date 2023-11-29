@@ -6,13 +6,15 @@ import { ModalSendHomeworkProps } from '@entities/homework/ui/ModalSendHomework/
 import { bem } from '@shared/utils/helpers/bem';
 import { Typography } from '@shared/ui/Typography';
 import { typographyColor, typographyVariant } from '@shared/ui/Typography/interfaces';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Textarea } from '@shared/ui/Textarea';
+import { textareaColors } from '@shared/ui/Textarea/interface';
 
 export const ModalSendHomework = (props: ModalSendHomeworkProps) => {
 	const { title, onSubmit, ...restProps } = props;
 	const [block, element] = bem('modal-send-homework');
 	
-	const [homework, setHomework] = useState('');
+	const [homeworkValue, setHomeworkValue] = useState('');
 	
 	return (
 		<Modal {...restProps}>
@@ -24,19 +26,17 @@ export const ModalSendHomework = (props: ModalSendHomeworkProps) => {
 					{title}
 				</Typography>
 				
-				<textarea
-					className={element('homework-field')}
-					cols={30}
-					rows={10}
-					value={homework}
-					onChange={(e) => setHomework(e.target.value)}
+				<Textarea
+					value={homeworkValue}
+					color={textareaColors.white}
+					onChange={(e) => setHomeworkValue(e.target.value)}
 				/>
 				
 				<Button
 					title={'Окей'}
 					size={buttonSize.small}
 					color={buttonColor.filled}
-					onClick={() => onSubmit && onSubmit(homework)}
+					onClick={() => onSubmit && onSubmit(homeworkValue)}
 				/>
 			
 			</div>

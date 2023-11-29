@@ -9,7 +9,7 @@ import { useEscModal } from '@shared/utils/hooks/use-esc-modal';
 import { ReviewModalInterface } from '@shared/ui/Modal/interface';
 
 export const Modal = (props: ReviewModalInterface) => {
-	const { children, onClose, isOpen } = props;
+	const { children, onClose, isOpen, fullwidth } = props;
 	
 	const [block, element] = bem('modal');
 	
@@ -29,7 +29,9 @@ export const Modal = (props: ReviewModalInterface) => {
 					onClick={onClose}
 				>
 					<div
-						className={element('container')}
+						className={element('container', {
+							fullwidth
+						})}
 						onClick={(e) => e.stopPropagation()}
 					>
 						<div className={element('content')}>

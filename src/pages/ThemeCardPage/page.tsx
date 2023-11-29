@@ -7,7 +7,7 @@ import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import NotFound from '@pages/NotFound';
 import {
-	CourseProgressProvider, useCourseProgress,
+	CourseProgressProvider, useCourseProgress, useGetCurrentCourseRequestQuery, useGetKeeperCurrentGroupQuery,
 } from '@entities/course';
 import { DividingLine } from '@shared/ui/DividingLine';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
@@ -43,6 +43,11 @@ const ThemeCardPage = () => {
 		explorerCourseProgress,
 		isError,
 	} = useCourseProgress();
+	const {
+		data: keeperCurrentGroup,
+	} = useGetKeeperCurrentGroupQuery(undefined, {
+		skip: role !== 'KEEPER'
+	});
 	
 	if (isError) return <NotFound />;
 	
@@ -57,7 +62,7 @@ const ThemeCardPage = () => {
 							className={element('course-title')}
 							variant={typographyVariant.h1}
 						>
-							{explorerCourseProgress?.progress.title}
+							{explorerCourseProgress?.progress.title || keeperCurrentGroup?.courseTitle}
 						</Typography>
 						
 						<div className={element('content')}>

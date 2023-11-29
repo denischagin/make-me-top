@@ -5,12 +5,28 @@ import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { Card } from '@shared/ui/Card';
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import { bem } from '@shared/utils/helpers/bem';
+import {
+	GroupDetailsCurrentHomeworkProps
+} from '@widgets/CurrentHomeworkRequests/ui/GroupDetailsCurrentHomework/interface';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
+import './styles.scss';
 
-export const GroupDetailsCurrentHomework = () => {
+export const GroupDetailsCurrentHomework = ({
+	content,
+	onShowMoreClick,
+	homeworkId,
+	requests
+}: GroupDetailsCurrentHomeworkProps) => {
 	const [activeHomework, setActiveHomework] = useState(false);
 	const [block, element] = bem('group-details-current-homework');
+	
+	const handleShowMoreClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+		e.stopPropagation();
+		if (!onShowMoreClick) return;
+		onShowMoreClick(homeworkId);
+	};
 	
 	return (
 		<CardGroupDetails
@@ -18,47 +34,49 @@ export const GroupDetailsCurrentHomework = () => {
 			setActive={setActiveHomework}
 			title="Посмотреть запросы на проверку"
 			size={cardSize.large}
-			showMoreElement={{
-				showMoreElementActive: <Button title={'Скрыть'} size={buttonSize.small}
-				                               color={buttonColor.filled} />,
-				showMoreElementInactive: <Button title={'Запросы: 2шт.'}
-				                                 size={buttonSize.small}
-				                                 color={buttonColor.filled} />
-			}}
+			withOutShowMoreElement
 			summary={
 				<div className={element('summary')}>
-					<Typography variant={typographyVariant.regular14}>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad animi blanditiis
-						consectetur ducimus ea eaque est eveniet harum iste iure maiores omnis provident quidem,
-						quis ut velit vero voluptatem.
-					</Typography>
-					<Button title={'Просмотреть'} size={buttonSize.small} />
-				</div>}
+					<div className={element('summary-content')}>
+						<Typography variant={typographyVariant.regular14}>
+							{content.length > 100 ? content.slice(0, 100) + '...' : content}
+						</Typography>
+					</div>
+					
+					<Button
+						title={'Просмотреть'}
+						size={buttonSize.small}
+						onClick={handleShowMoreClick}
+					/>
+					
+					<Button
+						title={activeHomework ? 'Скрыть' : `Запросы:${requests.length}шт.`}
+						size={buttonSize.small}
+						color={buttonColor.filled}
+					/>
+				</div>
+			}
 			content={
 				<div className={element('content')}>
-					<Card size={cardSize.small}>
-						<div>
-							<Typography variant={typographyVariant.h2}>
-								Какой то чел
-							</Typography>
-							
-							<Typography variant={typographyVariant.regular16}>
-								Запрос на проверку
-								{'https://github.com/adsfasd'}
-							</Typography>
-						</div>
-					</Card>
-					<Card size={cardSize.small}>
-						<div>
-							<Typography variant={typographyVariant.h2}>
-								Чел обычный просто
-							</Typography>
-							
-							<Typography variant={typographyVariant.regular16}>
-								{'https://github.com/denischagin хороший репозиторий и паттерны классные, мне всё понравилось'}
-							</Typography>
-						</div>
-					</Card>
+					{requests.length !== 0 ?
+						requests.map(({ explorer, requestId }) => (
+							<Card key={requestId} size={cardSize.small}>
+								<div>
+									<Typography variant={typographyVariant.h2}>
+										{getUserFullName(explorer)}
+									</Typography>
+								</div>
+							</Card>
+						
+						)) : (
+							<Card size={cardSize.small}>
+								<Typography variant={typographyVariant.regular14}>
+									Запросы отсутствуют
+								</Typography>
+							</Card>
+						)
+					}
+					{}
 				</div>
 			}
 		/>

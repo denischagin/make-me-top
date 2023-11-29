@@ -1,0 +1,21 @@
+.edit-homework-modal {
+  &__modal-content {
+    display: grid;
+    grid-template-columns: 1fr 150px;
+    gap: 15px;
+    margin-top: 5px;
+  }
+
+  &__editing-homework {
+    max-height: 80vh;
+    overflow: scroll;
+  }
+
+  &__editing-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    justify-content: start;
+  }
+}

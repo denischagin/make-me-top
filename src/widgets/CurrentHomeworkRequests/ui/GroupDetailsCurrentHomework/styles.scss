@@ -2,11 +2,15 @@
 .group-details-current-homework {
   &__summary {
     display: flex;
+    gap: 10px;
     align-items: center;
+  }
 
+  &__summary-content {
+    flex-grow: 1;
+    align-self: start;
   }
 
   &__content {
-
   }
 }

@@ -1,7 +1,7 @@
 import {
 	ApprovedCourseRequestInterface,
 	CourseInfoResponse, CourseResponse,
-	CurrentCourseRequestInterface, GetExplorerProgressResponseInterface,
+	CurrentCourseRequestInterface, GetExplorerProgressResponseInterface, GetKeeperCurrentGroupInterface,
 	RequestCourseBodyInterface,
 	RequestCourseParamsInterface,
 } from '@entities/course/model/types/api';
@@ -126,6 +126,13 @@ export const courseApi = baseApi.injectEndpoints({
 			providesTags: ['getExplorerCourseProgress']
 		}),
 		
+		getKeeperCurrentGroup: builder.query<
+			GetKeeperCurrentGroupInterface,
+			void
+		>({
+			query: () => `person-app/groups/current/`,
+			providesTags: ['getKeeperCurrentGroup'],
+		}),
 	}),
 });
 
@@ -140,4 +147,5 @@ export const {
 	useGetCurrentCourseRequestQuery,
 	useStartEducationOnCourseMutation,
 	useGetExplorerCourseProgressQuery,
+	useGetKeeperCurrentGroupQuery,
 } = courseApi;

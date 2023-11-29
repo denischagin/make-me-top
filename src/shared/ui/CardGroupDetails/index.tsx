@@ -13,6 +13,7 @@ export const CardGroupDetails = ({
 	content,
 	title,
 	showMoreElement,
+	withOutShowMoreElement,
 	...restProps
 }: CardGroupDetailsProps) => {
 	const [block, element] = bem('card-group-details');
@@ -33,17 +34,19 @@ export const CardGroupDetails = ({
 						
 						<div className={element('show-more-wrapper')}>
 							{
-								showMoreElement ? (
-									active ? showMoreElement.showMoreElementActive : showMoreElement.showMoreElementInactive
-								) : (
-									<ArrowButton
-										variant={arrowButtonVariant.simple}
-										direction={
-											active
-												? arrowButtonDirection.bottom
-												: arrowButtonDirection.right
-										}
-									/>
+								withOutShowMoreElement === false && (
+									showMoreElement ? (
+										active ? showMoreElement.showMoreElementActive : showMoreElement.showMoreElementInactive
+									) : (
+										<ArrowButton
+											variant={arrowButtonVariant.simple}
+											direction={
+												active
+													? arrowButtonDirection.bottom
+													: arrowButtonDirection.right
+											}
+										/>
+									)
 								)
 							}
 						</div>

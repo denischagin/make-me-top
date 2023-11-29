@@ -56,6 +56,24 @@ export interface ApprovedCourseRequestInterface {
 
 }
 
+export interface ExplorerWithGroupInterface {
+	personId: number;
+	firstName: string;
+	lastName: string;
+	patronymic: string;
+	explorerId: number;
+	courseId: number;
+	groupId: number;
+}
+
+export interface GetKeeperCurrentGroupInterface {
+	groupId: number;
+	courseId: number;
+	keeperId: number;
+	courseTitle: string;
+	explorers: ExplorerWithGroupInterface[];
+}
+
 export interface GetExplorerProgressResponseInterface {
 	explorerId: number;
 	groupId: number;
