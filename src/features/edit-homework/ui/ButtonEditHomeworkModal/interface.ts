@@ -1,5 +1,5 @@
-import { HomeworkInterfaceHomework } from '@entities/homework/model/types/api';
+import { HomeworkInterface } from '@entities/homework/model/types/api';
 
 export interface ButtonEditHomeworkModalProps {
-	currentHomework: HomeworkInterfaceHomework;
+	currentHomework: HomeworkInterface;
 }

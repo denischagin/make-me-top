@@ -13,4 +13,9 @@
 
   &__content {
   }
+
+  &__card-content {
+    display: flex;
+    justify-content: space-between;
+  }
 }

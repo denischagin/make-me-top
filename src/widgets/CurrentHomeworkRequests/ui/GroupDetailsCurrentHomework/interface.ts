@@ -1,8 +1,8 @@
-import { HomeworkInterfaceHomeworkRequest } from '@entities/homework/model/types/api';
+import { HomeworkRequestWithExplorerInfo } from '@entities/homework/model/types/api';
 
 export interface GroupDetailsCurrentHomeworkProps {
 	homeworkId: number
 	content: string;
 	onShowMoreClick?: (homeworkId: number) => void;
-	requests: HomeworkInterfaceHomeworkRequest[],
+	requests: HomeworkRequestWithExplorerInfo[],
 }

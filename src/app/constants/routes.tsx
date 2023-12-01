@@ -5,7 +5,7 @@ import {
 	URL_EXPLORER_CARD,
 	URL_EXPLORERS,
 	URL_GALAXY,
-	URL_GALAXY_CARD, URL_HOMEWORK_REQUEST_CARD,
+	URL_GALAXY_CARD, URL_HOMEWORK_REQUEST_EXPLORER_CARD, URL_HOMEWORK_REQUEST_KEEPER_CARD,
 	URL_KEEPER_CARD,
 	URL_KEEPERS,
 	URL_LOGIN,
@@ -107,7 +107,13 @@ export const routes: RouteInterface[] = [
 		status: 'protected',
 	},
 	{
-		path: URL_HOMEWORK_REQUEST_CARD,
+		path: URL_HOMEWORK_REQUEST_EXPLORER_CARD,
 		element: <HomeworkRequestCard />,
+		status: 'protected',
+	},
+	{
+		path: URL_HOMEWORK_REQUEST_KEEPER_CARD,
+		element: <HomeworkRequestCard />,
+		status: 'protected',
 	},
 ];

@@ -18,14 +18,14 @@ export const ExplorersList = ({ explorers }: ExplorersListProps) => {
     return (
         <div className={block()}>
             {explorers.map(
-                ({ personId, currentCourseName, rating, ...user }, index) => (
+                ({ personId, rating, galaxyName, ...user }, index) => (
                     <UserRatingCard
                         onClick={() => {
                             navigate(getUrlExplorerById(personId.toString()));
                         }}
                         key={personId}
                         fullname={getUserFullName(user)}
-                        title={`Текущая система ${currentCourseName ?? '-'}`}
+                        title={`Текущая галактика: ${galaxyName ?? '-'}`}
                         index={index}
                         rating={rating}
                     />

@@ -125,6 +125,7 @@ export interface ReviewRequestsInterface {
 	requestId: number;
 	explorerId: number;
 	courseThemeId: number;
+	homeworkId: number;
 	courseThemeTitle: string;
 }
 

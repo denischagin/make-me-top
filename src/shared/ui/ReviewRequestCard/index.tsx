@@ -15,6 +15,8 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import './styles.scss';
 import { useGetExplorerCardInfoQuery } from '@entities/explorer/api/api';
 import { useParams } from 'react-router-dom';
+import { RouterLink } from '@shared/ui/RouterLink';
+import { getUrlHomeworkWithRequestId } from '@shared/constants/links';
 
 export const ReviewRequestCard = () => {
 	const [block, element] = bem('review-request-card');
@@ -66,18 +68,18 @@ export const ReviewRequestCard = () => {
 							</Typography>
 						</div>
 						<div className={element('buttons')}>
-							<div className={element('hidden-button')}>
+							<RouterLink
+								to={getUrlHomeworkWithRequestId({
+									requestId: reviewRequest.requestId,
+									homeworkId: reviewRequest.homeworkId
+								})}
+							>
 								<Button
-									title={'Отклонить'}
+									title={'Оценить'}
+									color={buttonColor.filled}
 									size={buttonSize.large}
-									onClick={() => setIsAcceptModalOpen(true)}
 								/>
-							</div>
-							<Button
-								title={'Оценить'}
-								color={buttonColor.filled}
-								size={buttonSize.large}
-							/>
+							</RouterLink>
 						</div>
 					</div>
 				</Card>

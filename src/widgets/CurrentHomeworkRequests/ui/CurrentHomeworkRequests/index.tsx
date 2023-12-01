@@ -22,7 +22,7 @@ export const CurrentHomeworkRequests = () => {
 	const [activeHomework, setActiveHomework] = useState(false);
 	
 	const activeHomeworks = transformHomeworkResponse(homeworkResponse, 'KEEPER')?.activeHomeworks;
-	
+
 	if (!themeId)
 		return null;
 	

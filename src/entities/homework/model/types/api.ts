@@ -4,8 +4,6 @@ export interface HomeworkInterfaceExplorer {
 	groupId: number;
 }
 
-export type HomeworkExplorerResponseType = HomeworkInterfaceExplorer[]
-
 export interface HomeworkInterfaceGroupExplorer {
 	personId: number;
 	firstName: string;
@@ -21,38 +19,94 @@ export interface HomeworkInterfaceGroup {
 	explorers: HomeworkInterfaceGroupExplorer[];
 }
 
-export interface HomeworkInterfaceHomeworkRequest {
+export interface BaseHomeworkRequestInterface {
 	requestId: number;
 	homeworkId: number;
-	explorer: {
-		personId: number
-		firstName: string
-		lastName: string
-		patronymic: string
-		explorerId: number
-	};
+	status: RequestStatusInterface;
 	requestDate: string;
-	status: {
-		statusId: number
-		status: 'CHECKING' | 'EDITING' | 'CLOSED'
-	};
 }
 
-export interface HomeworkInterfaceHomework {
+export interface HomeworkExplorerInterface {
+	personId: number;
+	firstName: string;
+	lastName: string;
+	patronymic: string;
+	explorerId: number;
+}
+
+export interface HomeworkRequestWithExplorerInfo extends BaseHomeworkRequestInterface {
+	explorer: HomeworkExplorerInterface;
+}
+
+export interface HomeworkKeeperInterface {
+	personId: number;
+	firstName: string;
+	lastName: string;
+	patronymic: string;
+	keeperId: number;
+}
+
+export interface HomeworkRequestFeedbackInterface {
+	feedbackId: number;
+	requestVersionId: number;
+	comment: string;
+	creationDate: string;
+	keeper: HomeworkKeeperInterface;
+}
+
+export interface HomeworkVersionInterface {
+	versionId: number,
+	requestId: number,
+	content: string,
+	creationDate: string,
+	explorer: HomeworkExplorerInterface,
+	homeworkRequestFeedbacks: HomeworkRequestFeedbackInterface[]
+}
+
+export interface HomeworkRequestMarkInterface {
+	requestId: number;
+	mark: number;
+	comment: string;
+}
+
+export interface HomeworkRequestWithHomeworkVersion extends BaseHomeworkRequestInterface {
+	explorerId: number;
+	homeworkRequestVersions: HomeworkVersionInterface[];
+	mark?: HomeworkRequestMarkInterface;
+}
+
+export type RequestStatusType = 'CHECKING' | 'EDITING' | 'CLOSED'
+
+export interface RequestStatusInterface {
+	statusId: number;
+	status: RequestStatusType;
+}
+
+
+export interface BaseHomeworkInterface {
 	homeworkId: number;
-	courseThemeId: number;
 	content: string;
+}
+
+export interface HomeworkInterface extends BaseHomeworkInterface {
 	group: HomeworkInterfaceGroup;
 	waitingRequestsCount: number;
-	requests: HomeworkInterfaceHomeworkRequest[];
+	requests: HomeworkRequestWithExplorerInfo[];
+	courseThemeId: number;
 }
 
+export type HomeworkExplorerResponseType = HomeworkInterfaceExplorer[]
+
 export type HomeworkKeeperResponseType = {
-	activeHomeworks: HomeworkInterfaceHomework[];
-	closedHomeworks: HomeworkInterfaceHomework[];
+	activeHomeworks: HomeworkInterface[];
+	closedHomeworks: HomeworkInterface[];
 }
 
 export type GetHomeworksType = HomeworkExplorerResponseType | HomeworkKeeperResponseType
+
+export interface GetHomeworkRequestsInterface extends BaseHomeworkInterface {
+	request?: HomeworkRequestWithHomeworkVersion;
+}
 
 export interface UpdateHomeworkArgsInterface {
 	courseThemeId: number,
@@ -65,4 +119,20 @@ export interface CreateHomeworkArgsInterface {
 	themeId: number,
 	groupId: number,
 	content: string
+}
+
+export interface SendHomeworkVersionArgsInterface {
+	homeworkId: number,
+	content: string
+}
+
+export interface SendHomeworkRequestFeedbackArgsInterface {
+	requestId: number,
+	content: string
+}
+
+export interface SendHomeworkMarkArgsInterface {
+	comment: string;
+	value: number;
+	requestId: number,
 }

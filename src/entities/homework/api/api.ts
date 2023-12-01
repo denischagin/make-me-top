@@ -1,7 +1,11 @@
 import { baseApi } from '@shared/api/baseApi';
 import {
 	CreateHomeworkArgsInterface,
+	GetHomeworkRequestsInterface,
 	GetHomeworksType,
+	SendHomeworkMarkArgsInterface,
+	SendHomeworkRequestFeedbackArgsInterface,
+	SendHomeworkVersionArgsInterface,
 	UpdateHomeworkArgsInterface
 } from '@entities/homework/model/types/api';
 import * as url from 'url';
@@ -50,6 +54,51 @@ export const homeworkApi = baseApi.injectEndpoints(({
 			}),
 			invalidatesTags: ['getHomeworks']
 		}),
+		
+		
+		getHomeworkRequestByHomeworkId: builder.query<GetHomeworkRequestsInterface, string>({
+			query: (homeworkId) => `homework-app/homeworks/${homeworkId}/homework-requests/`,
+			providesTags: ['getHomeworkRequestsByHomeworkId']
+		}),
+		
+		getHomeworkRequestByRequestId: builder.query<GetHomeworkRequestsInterface, string>({
+			query: (requestId) => `homework-app/homework-requests/${requestId}/`,
+			providesTags: ['getHomeworkRequestsByRequestId']
+		}),
+		
+		sendHomeworkVersion: builder.mutation<void, SendHomeworkVersionArgsInterface>({
+			query: ({ homeworkId, content }) => ({
+				url: `homework-app/homeworks/${homeworkId}/homework-requests/`,
+				method: 'POST',
+				body: {
+					content
+				}
+			}),
+			invalidatesTags: ['getHomeworkRequestsByHomeworkId'],
+		}),
+		
+		sendHomeworkRequestFeedback: builder.mutation<void, SendHomeworkRequestFeedbackArgsInterface>({
+			query: ({ requestId, content }) => ({
+				url: `homework-app/homework-requests/${requestId}/feedbacks/`,
+				method: 'POST',
+				body: {
+					content
+				}
+			}),
+			invalidatesTags: ['getHomeworkRequestsByRequestId'],
+		}),
+		
+		sendHomeworkMark: builder.mutation<void, SendHomeworkMarkArgsInterface>({
+			query: ({ requestId, comment, value }) => ({
+				url: `homework-app/homework-requests/${requestId}/marks/`,
+				method: 'POST',
+				body: {
+					comment,
+					value
+				}
+			}),
+			invalidatesTags: ['getHomeworkRequestsByRequestId'],
+		})
 	})
 }));
 
@@ -58,4 +107,9 @@ export const {
 	useCreateHomeworkMutation,
 	useUpdateHomeworkMutation,
 	useDeleteHomeworkMutation,
+	useGetHomeworkRequestByHomeworkIdQuery,
+	useGetHomeworkRequestByRequestIdQuery,
+	useSendHomeworkVersionMutation,
+	useSendHomeworkRequestFeedbackMutation,
+	useSendHomeworkMarkMutation,
 } = homeworkApi;

@@ -1,5 +1,5 @@
 import { GradeRadioButtonSection } from '@shared/ui/GradeRadioButtonSection';
-import React, { useState } from 'react';
+import React, { ChangeEventHandler, useState } from 'react';
 import { bem } from '@shared/utils/helpers/bem';
 import { Button } from '@shared/ui/Button';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
@@ -9,12 +9,33 @@ import './styles.scss';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { SetSendGradeProps } from '@widgets/SendGradeAndRemark/ui/SetSendGrade/interface';
 import { Textarea } from '@shared/ui/Textarea';
+import { useSendHomeworkMarkMutation } from '@entities/homework/api/api';
+import toast from 'react-hot-toast';
+import { useParams } from 'react-router-dom';
 
 export const SetSendGrade = ({ onSwitchClick }: SetSendGradeProps) => {
 	const [block, element] = bem('set-grade');
+	const { requestId } = useParams();
 	const [currentGrade, setCurrentGrade] = useState<number | null>(null);
+	const [commentGradeValue, setCommentGradeValue] = useState('');
 	
 	const [isOpenConfirm, setIsOpenConfirm] = useState(false);
+	
+	const [sendRemark] = useSendHomeworkMarkMutation();
+	
+	const handleSendRemarkClick = () => {
+		if (currentGrade === null) return toast.error('Поставьте оценку');
+		
+		sendRemark({
+			comment: commentGradeValue,
+			value: currentGrade,
+			requestId: Number(requestId)
+		});
+	};
+	
+	const handleChangeCommentGrade: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+		setCommentGradeValue(e.target.value);
+	};
 	
 	return (
 		<>
@@ -32,7 +53,13 @@ export const SetSendGrade = ({ onSwitchClick }: SetSendGradeProps) => {
 				</div>
 				
 				{!!currentGrade &&
-				  <Textarea placeholder="Комментарий к оценке" className={element('comment')} fullwidth />
+				  <Textarea
+					placeholder="Комментарий к оценке"
+					className={element('comment')}
+					fullwidth
+					onChange={handleChangeCommentGrade}
+					value={commentGradeValue}
+				  />
 				}
 				
 				<div className={element('buttons')}>
@@ -47,6 +74,7 @@ export const SetSendGrade = ({ onSwitchClick }: SetSendGradeProps) => {
 							title={'Поставить оценку'}
 							size={buttonSize.large}
 							color={buttonColor.filled}
+							onClick={handleSendRemarkClick}
 						/>
 					
 					</div>

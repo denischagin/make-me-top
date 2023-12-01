@@ -19,4 +19,6 @@ export const queryTags = {
 	getThemeById: 'getThemeById',
 	
 	getHomeworks: 'getHomeworks',
+	getHomeworkRequestsByHomeworkId: 'getHomeworkRequestsByHomeworkId',
+	getHomeworkRequestsByRequestId: 'getHomeworkRequestsByRequestId'
 } as const;

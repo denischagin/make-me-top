@@ -1,74 +1,40 @@
-import { HomeworkRequestCard, HomeworkRequestCardGroup } from '@entities/homework';
-import { HomeworkRequestCardVariant } from '@entities/homework/ui/HomeworkRequestCard/interface';
-import React from 'react';
+import { HomeworkRequestCard, HomeworkRequestCardGroup, useGetHomeworkRequest } from '@entities/homework';
+import { homeworkRequestCardVariant } from '@entities/homework/ui/HomeworkRequestCard/interface';
+import React, { Fragment } from 'react';
+import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
+import { useAuth } from '@entities/viewer';
 
 export const HomeworkRequests = () => {
-    return (
-        <HomeworkRequestCardGroup>
-            <HomeworkRequestCard
-                username={'Денис Чагин'}
-                content={'Молодец'}
-            />
-            
-            <HomeworkRequestCard
-                variant={HomeworkRequestCardVariant.secondary}
-                username={'Тимур'}
-                content={'https://github.com/matvey/isExplorerSingleton.git'}
-            />
-            
-            <HomeworkRequestCard
-                username={'Денис Чагин'}
-                content={'Не используй regEx, используй в данном случае синглтон, думаю самый лучший вариант'}
-            />
-            
-            <HomeworkRequestCard
-                variant={HomeworkRequestCardVariant.secondary}
-                username={'Тимур'}
-                content={'https://github.com/matvey/isExplorerRegex.git'}
-            />
-            
-            <HomeworkRequestCard
-                username={'Денис Чагин'}
-                content={'Молодец'}
-            />
-            
-            <HomeworkRequestCard
-                variant={HomeworkRequestCardVariant.secondary}
-                username={'Тимур'}
-                content={'https://github.com/matvey/isExplorerSingleton.git'}
-            />
-            
-            <HomeworkRequestCard
-                username={'Денис Чагин'}
-                content={'Не используй regEx, используй в данном случае синглтон, думаю самый лучший вариант'}
-            />
-            
-            <HomeworkRequestCard
-                variant={HomeworkRequestCardVariant.secondary}
-                username={'Тимур'}
-                content={'https://github.com/matvey/isExplorerRegex.git'}
-            />
-            {/*<HomeworkRequestCard*/}
-            {/*    username={'Денис Чагин'}*/}
-            {/*    content={'Молодец'}*/}
-            {/*/>*/}
-            
-            {/*<HomeworkRequestCard*/}
-            {/*    variant={HomeworkRequestCardVariant.secondary}*/}
-            {/*    username={'Тимур'}*/}
-            {/*    content={'https://github.com/matvey/isExplorerSingleton.git'}*/}
-            {/*/>*/}
-            
-            {/*<HomeworkRequestCard*/}
-            {/*    username={'Денис Чагин'}*/}
-            {/*    content={'Не используй regEx, используй в данном случае синглтон, думаю самый лучший вариант'}*/}
-            {/*/>*/}
-            
-            {/*<HomeworkRequestCard*/}
-            {/*    variant={HomeworkRequestCardVariant.secondary}*/}
-            {/*    username={'Тимур'}*/}
-            {/*    content={'https://github.com/matvey/isExplorerRegex.git'}*/}
-            {/*/>*/}
-        </HomeworkRequestCardGroup>
-    );
+	const getHomeworkRequest = useGetHomeworkRequest()!;
+	const requestInfo = getHomeworkRequest?.data;
+	const { role } = useAuth();
+	
+	if (!requestInfo || !requestInfo.request) return null;
+	
+	const { request: { homeworkRequestVersions } } = requestInfo;
+	
+	return (
+		<HomeworkRequestCardGroup>
+			{homeworkRequestVersions.map(({ homeworkRequestFeedbacks, explorer, content, versionId }) => (
+				<Fragment key={versionId}>
+					{homeworkRequestFeedbacks.map(({ keeper, comment, feedbackId }) => (
+						<HomeworkRequestCard
+							key={feedbackId}
+							username={getUserFullName(keeper)}
+							content={comment}
+							variant={homeworkRequestCardVariant.secondary}
+							isActive={role === 'KEEPER'}
+						/>
+					))}
+					<HomeworkRequestCard
+						key={versionId}
+						username={getUserFullName(explorer)}
+						content={content}
+						isActive={role === 'EXPLORER'}
+					/>
+				
+				</Fragment>
+			))}
+		</HomeworkRequestCardGroup>
+	);
 };

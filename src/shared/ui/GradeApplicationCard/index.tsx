@@ -7,7 +7,7 @@ import { Typography } from '@shared/ui/Typography';
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
-import { getUrlExplorerById, URL_EXPLORER } from '@shared/constants/links';
+import { getUrlExplorerById, getUrlHomeworkWithRequestId, URL_EXPLORER } from '@shared/constants/links';
 
 import { GradeApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
@@ -55,7 +55,10 @@ export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
 					</div>
 					<div className={element('button')}>
 						<RouterLink
-							to={getUrlExplorerById(reviewOrAssessment?.personId.toString()!)}
+							to={getUrlHomeworkWithRequestId({
+								requestId: reviewRequest?.requestId!,
+								homeworkId: reviewRequest?.homeworkId!
+							})}
 						>
 							<Button
 								title={'Оценить'}

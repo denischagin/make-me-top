@@ -25,8 +25,9 @@ export const HomeworkIssues = () => {
 	const handleNavigateToHomeworkClick =
 		(homeworkId: number): MouseEventHandler<HTMLButtonElement> =>
 			(e) => {
-				navigate(getUrlHomework({ homeworkId, homeworkRequestId: 1 }));
-			};
+				navigate(getUrlHomework({ homeworkId }));
+			}
+	;
 	
 	if (!themeId || !homeworks) return null;
 	

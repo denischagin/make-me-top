@@ -7,14 +7,35 @@ import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { Textarea } from '@shared/ui/Textarea';
 import React, { FormEventHandler, useState } from 'react';
 import { SendRemarkProps } from '@widgets/SendGradeAndRemark/ui/SendRemark/interface';
+import { useSendHomeworkRequestFeedbackMutation } from '@entities/homework/api/api';
+import { useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useStatus } from '@shared/utils/hooks/use-status';
 
 export const SendRemark = ({ onSwitchClick }: SendRemarkProps) => {
 	const [block, element] = bem('send-remark');
+	const { requestId } = useParams();
+	
 	const [remarkValue, setRemarkValue] = useState('');
+	
+	const [sendRequestFeedback, { isSuccess }] = useSendHomeworkRequestFeedbackMutation();
 	
 	const handleSendRemark: FormEventHandler<HTMLFormElement> = (e) => {
 		e.preventDefault();
+		
+		if (remarkValue === '')
+			return toast.error('Заполните поле!');
+		
+		sendRequestFeedback({
+			requestId: Number(requestId),
+			content: remarkValue,
+		});
+		
 	};
+	
+	useStatus(() => {
+		setRemarkValue('');
+	}, isSuccess);
 	
 	return (
 		<div className={block()}>

@@ -12,6 +12,9 @@ import {
 } from '@widgets/CurrentHomeworkRequests/ui/GroupDetailsCurrentHomework/interface';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 import './styles.scss';
+import { useNavigate } from 'react-router-dom';
+import { getUrlHomeworkWithRequestId } from '@shared/constants/links';
+import { RequestStatusType } from '@entities/homework/model/types/api';
 
 export const GroupDetailsCurrentHomework = ({
 	content,
@@ -21,12 +24,24 @@ export const GroupDetailsCurrentHomework = ({
 }: GroupDetailsCurrentHomeworkProps) => {
 	const [activeHomework, setActiveHomework] = useState(false);
 	const [block, element] = bem('group-details-current-homework');
+	const navigate = useNavigate();
 	
 	const handleShowMoreClick: MouseEventHandler<HTMLButtonElement> = (e) => {
 		e.stopPropagation();
 		if (!onShowMoreClick) return;
 		onShowMoreClick(homeworkId);
 	};
+	
+	const stringByRequestStatus: Record<RequestStatusType, string> = {
+		CHECKING: 'Ждет проверки от хранителя',
+		CLOSED: 'Закрыто',
+		EDITING: 'Ждет новой версии от исследователя'
+	};
+	
+	const handleNavigateToRequest = (args: { homeworkId: number, requestId: number }) => () => {
+		navigate(getUrlHomeworkWithRequestId(args));
+	};
+	
 	
 	return (
 		<CardGroupDetails
@@ -59,12 +74,21 @@ export const GroupDetailsCurrentHomework = ({
 			content={
 				<div className={element('content')}>
 					{requests.length !== 0 ?
-						requests.map(({ explorer, requestId }) => (
+						requests.map(({ explorer, requestId, status, homeworkId }) => (
 							<Card key={requestId} size={cardSize.small}>
-								<div>
-									<Typography variant={typographyVariant.h2}>
-										{getUserFullName(explorer)}
-									</Typography>
+								<div className={element('card-content')}>
+									<div>
+										<Typography variant={typographyVariant.medium16}>
+											{getUserFullName(explorer)}
+										</Typography>
+										<Typography variant={typographyVariant.regular14}>
+											Статус: {stringByRequestStatus[status.status]}
+										</Typography>
+									</div>
+									<div>
+										<Button title={'Перейти'} size={buttonSize.small} color={buttonColor.filled}
+										        onClick={handleNavigateToRequest({ homeworkId, requestId })} />
+									</div>
 								</div>
 							</Card>
 						
