@@ -7,7 +7,7 @@ import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import NotFound from '@pages/NotFound';
 import {
-	CourseProgressProvider, useCourseProgress, useGetCurrentCourseRequestQuery, useGetKeeperCurrentGroupQuery,
+    CourseProgressProvider, useCourseProgress, useGetCurrentCourseRequestQuery, useGetKeeperCurrentGroupQuery,
 } from '@entities/course';
 import { DividingLine } from '@shared/ui/DividingLine';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
@@ -22,71 +22,69 @@ import { ReactElement } from 'react';
 
 
 const homeworkSectionForRole: Record<roles, ReactElement> = {
-	EXPLORER: (
-		<>
-			<HomeworkIssues />
-		</>
-	),
-	KEEPER: (
-		<>
-			<CurrentHomeworkRequests />
-			<OldHomeworksRequest />
-		</>
-	)
+    EXPLORER: (
+        <HomeworkIssues />
+    ),
+    KEEPER: (
+        <>
+            <CurrentHomeworkRequests />
+            <OldHomeworksRequest />
+        </>
+    ),
 };
 
 const ThemeCardPage = () => {
-	const [block, element] = bem('theme-card-page');
-	const { role } = useAuth();
-	
-	const {
-		explorerCourseProgress,
-		isError,
-	} = useCourseProgress();
-	const {
-		data: keeperCurrentGroup,
-	} = useGetKeeperCurrentGroupQuery(undefined, {
-		skip: role !== 'KEEPER'
-	});
-	
-	if (isError) return <NotFound />;
-	
-	return (
-		<>
-			<BackgroundProfile />
-			<div className={block()}>
-				<Header />
-				<Container>
-					<div>
-						<Typography
-							className={element('course-title')}
-							variant={typographyVariant.h1}
-						>
-							{explorerCourseProgress?.progress.title || keeperCurrentGroup?.courseTitle}
-						</Typography>
-						
-						<div className={element('content')}>
-							<ThemeTabs />
-							
-							<div>
-								<ThemeContent />
-								
-								<DividingLine color={DividingLineColor.opacitygray} />
-								
-								<div className={element('homework-wrapper')}>
-									{role && homeworkSectionForRole[role]}
-								</div>
-							</div>
-						</div>
-					</div>
-				</Container>
-			</div>
-		</>
-	);
+    const [block, element] = bem('theme-card-page');
+    const { role } = useAuth();
+
+    const {
+        explorerCourseProgress,
+        isError,
+    } = useCourseProgress();
+    const {
+        data: keeperCurrentGroup,
+    } = useGetKeeperCurrentGroupQuery(undefined, {
+        skip: role !== 'KEEPER',
+    });
+
+    if (isError) return <NotFound />;
+
+    return (
+        <>
+            <BackgroundProfile />
+            <div className={block()}>
+                <Header />
+                <Container>
+                    <div>
+                        <Typography
+                            className={element('course-title')}
+                            variant={typographyVariant.h1}
+                        >
+                            {explorerCourseProgress?.progress.title || keeperCurrentGroup?.courseTitle}
+                        </Typography>
+
+                        <div className={element('content')}>
+                            <ThemeTabs />
+
+                            <div>
+                                <ThemeContent />
+
+                                <DividingLine color={DividingLineColor.opacitygray} />
+
+                                <div className={element('homework-wrapper')}>
+                                    {role && homeworkSectionForRole[role]}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Container>
+            </div>
+        </>
+    );
 };
 
 export default () => (
-	<CourseProgressProvider>
-		<ThemeCardPage />
-	</CourseProgressProvider>
+    <CourseProgressProvider>
+        <ThemeCardPage />
+    </CourseProgressProvider>
 );

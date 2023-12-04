@@ -25,7 +25,7 @@ export const ExplorersList = ({ explorers }: ExplorersListProps) => {
                         }}
                         key={personId}
                         fullname={getUserFullName(user)}
-                        title={`Текущая галактика: ${galaxyName ?? '-'}`}
+                        title={`Галактика: ${galaxyName ?? '-'}`}
                         index={index}
                         rating={rating}
                     />

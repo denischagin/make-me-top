@@ -39,6 +39,7 @@ export const HomeworkIssues = () => {
 					homeworkId,
 					content
 				}, index) => (
+					// TODO сделать отображение оценки по homework
 					<div className={element('item')} key={homeworkId}>
 						<Typography className={element('title')} variant={typographyVariant.h2}>
 							Домашнее задание {homeworks.length !== 1 && index + 1}

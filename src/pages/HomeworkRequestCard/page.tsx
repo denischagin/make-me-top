@@ -15,46 +15,58 @@ import { roles } from '@shared/constants/storageKeys';
 import { SendHomeworkVersionForm } from '@widgets/SendHomeworkVersionForm';
 import { GradeRadioButtonSection } from '@shared/ui/GradeRadioButtonSection';
 import { GradeWithComment } from '@widgets/GradeWithComment';
+import NotFound from '@pages/NotFound';
+import Spinner from '@shared/ui/Spinner';
+import { TypographyWithEnter } from '@shared/ui/TypographyWithEnter';
+import { HomeworkContent } from '@widgets/HomeworkContent';
 
 const sendFormByRole: Record<roles, ReactElement> = {
-	KEEPER: <SendGradeAndRemark />,
-	EXPLORER: <SendHomeworkVersionForm />
+    KEEPER: <SendGradeAndRemark />,
+    EXPLORER: <SendHomeworkVersionForm />,
 };
 
 const HomeworkRequestCardPage = () => {
-	const [block, element] = bem('homework-request-page');
-	const { role } = useAuth();
+    const [block, element] = bem('homework-request-page');
+    const { role } = useAuth();
 
-	const getHomeworkRequest = useGetHomeworkRequest();
-	const requestsInfo = getHomeworkRequest?.data;
+    const getHomeworkRequest = useGetHomeworkRequest();
+    const requestsInfo = getHomeworkRequest?.data;
 
-	return (
-		<div>
-			<BackgroundProfile />
-			<Header />
-			<ButtonScrollTopBottom />
-			<div className={block()}>
-				<Container>
-					<div className={element('content')}>
-						<div className={element('homework')}>
-							<Typography variant={typographyVariant.h1}>
-								Домашнее задание
-							</Typography>
+    if (getHomeworkRequest?.isLoading)
+        return (
+            <>
+                <BackgroundProfile />
+                <Spinner loading />
+            </>
+        );
 
-							<Typography className={element('homework-content')} variant={typographyVariant.regular16}>
-								{requestsInfo?.content}
-							</Typography>
-						</div>
+    if (!requestsInfo) return (
+        <>
+            <BackgroundProfile />
+            <NotFound />
+        </>
+    );
 
-						{requestsInfo?.request?.status.status !== 'CLOSED' ?
-							role && sendFormByRole[role] : <GradeWithComment />
-						}
-						<HomeworkRequests />
-					</div>
-				</Container>
-			</div>
-		</div>
-	);
+    return (
+        <div>
+            <BackgroundProfile />
+            <Header />
+            <ButtonScrollTopBottom />
+            <div className={block()}>
+                <Container>
+                    <div className={element('content')}>
+                        <HomeworkContent />
+
+                        {requestsInfo?.request?.status.status !== 'CLOSED' ?
+                            role && sendFormByRole[role] : <GradeWithComment />
+                        }
+
+                        <HomeworkRequests />
+                    </div>
+                </Container>
+            </div>
+        </div>
+    );
 };
 
 export default HomeworkRequestCardPage;
