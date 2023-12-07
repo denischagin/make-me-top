@@ -13,6 +13,12 @@ export interface ExplorerState {
     isError: boolean;
 }
 
+export interface GalaxyExplorerInterface {
+    galaxyId: number;
+    galaxyName: string;
+    galaxyDescription: string
+}
+
 export interface ExplorersFilterInterface {
     personId: number;
     firstName: string;
@@ -20,8 +26,7 @@ export interface ExplorersFilterInterface {
     patronymic: string;
     rating: number;
     systems: number[];
-    galaxyId: number;
-    galaxyName: string;
+    galaxies: GalaxyExplorerInterface[]
 }
 
 export interface ExplorerApplicationCardInterface {
@@ -37,6 +42,25 @@ export interface ExplorerInfoInterface {
     investigatedSystems: Array<InvestigatedSystemsInterface>;
     studyRequest?: StudyRequestCabinetInterface;
     ratingTable: Array<PersonRating>;
+    homeworkRequests?: HomeworkRequestInterface[];
+}
+
+export interface HomeworkRequestInterface {
+    personId: number;
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+    courseId: number;
+    courseTitle: string;
+    requestId: number;
+    explorerId: number;
+    courseThemeId: number;
+    courseThemeTitle: string;
+    homeworkId: number;
+    status: {
+        statusId: number
+        status: 'EDITING' | 'CHECKING' | 'CLOSED'
+    };
 }
 
 export interface Person {

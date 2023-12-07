@@ -7,7 +7,7 @@ import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import NotFound from '@pages/NotFound';
 import {
-    CourseProgressProvider, useCourseProgress, useGetCurrentCourseRequestQuery, useGetKeeperCurrentGroupQuery,
+    CourseProgressProvider, useExplorerCourseProgress, useGetCurrentCourseRequestQuery, useGetKeeperCurrentGroupQuery,
 } from '@entities/course';
 import { DividingLine } from '@shared/ui/DividingLine';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
@@ -40,12 +40,14 @@ const ThemeCardPage = () => {
     const {
         explorerCourseProgress,
         isError,
-    } = useCourseProgress();
+    } = useExplorerCourseProgress();
     const {
         data: keeperCurrentGroup,
     } = useGetKeeperCurrentGroupQuery(undefined, {
         skip: role !== 'KEEPER',
     });
+
+    const courseTitle = explorerCourseProgress?.progress.title || keeperCurrentGroup?.courseTitle
 
     if (isError) return <NotFound />;
 
@@ -60,7 +62,7 @@ const ThemeCardPage = () => {
                             className={element('course-title')}
                             variant={typographyVariant.h1}
                         >
-                            {explorerCourseProgress?.progress.title || keeperCurrentGroup?.courseTitle}
+                            {courseTitle}
                         </Typography>
 
                         <div className={element('content')}>

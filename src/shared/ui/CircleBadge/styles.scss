@@ -1,0 +1,26 @@
+@import "@app/styles/variables";
+
+.circle-badge {
+  position: relative;
+
+  &__badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(25%, -25%);
+    background: $primary-500;
+    border-radius: 50%;
+    min-width: 1.7em;
+    height: 1.7em;
+    color: $white;
+  }
+
+  &__children {
+
+  }
+}

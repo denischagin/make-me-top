@@ -26,22 +26,22 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
                 className={element('heading', 'mb-4')}
                 variant={typographyVariant.h2}
             >
-                Запрос на проверку
+                Запросы на проверку
             </Typography>
+
             <div className={element('cards')}>
-                {finalAssessment
-                    ? finalAssessment?.map((application) => (
-                        <GradeApplicationCard
-                            key={application.personId}
-                            finalAssessment={application}
-                        />
-                    ))
-                    : reviewRequest?.map((application) => (
-                        <GradeApplicationCard
-                            key={application.personId}
-                            reviewRequest={application}
-                        />
-                    ))}
+                {reviewRequest?.map((application) => (
+                    <GradeApplicationCard
+                        key={application.personId}
+                        reviewRequest={application}
+                    />
+                ))}
+                {finalAssessment?.map((application) => (
+                    <GradeApplicationCard
+                        key={application.personId}
+                        finalAssessment={application}
+                    />
+                ))}
             </div>
         </div>
     );

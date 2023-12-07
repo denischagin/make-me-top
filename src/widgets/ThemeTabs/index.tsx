@@ -1,5 +1,5 @@
 import { PlanetListTabs } from '@shared/ui/PlanetListTabs';
-import { useCourseProgress, useGetExplorerCourseProgressQuery } from '@entities/course';
+import { useExplorerCourseProgress, useGetExplorerCourseProgressQuery } from '@entities/course';
 import { getUrlThemeByCourseIdAndThemeId } from '@shared/constants/links';
 import NotFound from '@pages/NotFound';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -15,7 +15,7 @@ export const ThemeTabs = () => {
 	const navigate = useNavigate();
 	
 	const { explorerCourseProgress, isCompletedCurrentSystem } =
-		useCourseProgress();
+		useExplorerCourseProgress();
 	const {
 		data: planets
 	} = useGetPlanetsBySystemIdQuery(courseId!, {
@@ -37,6 +37,5 @@ export const ThemeTabs = () => {
 			selectedPlanetId={Number(themeId)}
 			educationPlanetId={isCompletedCurrentSystem ? undefined : currentThemeId}
 		/>
-	
 	);
 };

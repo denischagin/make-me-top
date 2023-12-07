@@ -4,4 +4,5 @@ export interface PlanetListTabProps {
     planets?: ModalPlanetInterface[];
     currentPlanetId?: number;
     currentCourseId?: number
+    allPlanetsLocked?: boolean
 }

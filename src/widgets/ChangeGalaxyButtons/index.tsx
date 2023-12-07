@@ -1,4 +1,4 @@
-import { ButtonChangeCurrentGalaxy } from '@features/ButtonChangeCurrentGalaxy';
+import { ButtonChangeCurrentGalaxy } from '@features/change-current-galaxy';
 import { EntryAnimateGalaxies } from '@shared/ui/EntryAnimateGalaxies';
 
 import { ReactComponent as CurrentGalaxy } from '@shared/images/current-galaxy.svg';

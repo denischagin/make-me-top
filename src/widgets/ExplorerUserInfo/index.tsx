@@ -49,7 +49,7 @@ export const ExplorerUserInfo = () => {
                         }
                     />
                     <InfoCard
-                        title='Кол-во освоенных систем'
+                        title='Кол-во систем'
                         value={totalSystems}
                     />
                 </div>

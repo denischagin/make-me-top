@@ -8,17 +8,15 @@ import { SendGradeAndRemark } from '@widgets/SendGradeAndRemark/ui/SendGradeAndR
 import { HomeworkRequests } from '@widgets/HomeworkRequests';
 import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
-import { ButtonScrollTopBottom } from '@features/ButtonScrollTopBottom';
 import { useAuth } from '@entities/viewer';
 import { useGetHomeworkRequest } from '@entities/homework';
 import { roles } from '@shared/constants/storageKeys';
 import { SendHomeworkVersionForm } from '@widgets/SendHomeworkVersionForm';
-import { GradeRadioButtonSection } from '@shared/ui/GradeRadioButtonSection';
 import { GradeWithComment } from '@widgets/GradeWithComment';
 import NotFound from '@pages/NotFound';
 import Spinner from '@shared/ui/Spinner';
-import { TypographyWithEnter } from '@shared/ui/TypographyWithEnter';
 import { HomeworkContent } from '@widgets/HomeworkContent';
+import { ButtonScrollTopBottom } from '@features/scroll-top-bottom';
 
 const sendFormByRole: Record<roles, ReactElement> = {
     KEEPER: <SendGradeAndRemark />,
@@ -40,12 +38,13 @@ const HomeworkRequestCardPage = () => {
             </>
         );
 
-    if (!requestsInfo) return (
-        <>
-            <BackgroundProfile />
-            <NotFound />
-        </>
-    );
+    if (!requestsInfo)
+        return (
+            <>
+                <BackgroundProfile />
+                <NotFound />
+            </>
+        );
 
     return (
         <div>

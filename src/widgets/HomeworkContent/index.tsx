@@ -7,6 +7,7 @@ import { useGetHomeworkRequest } from '@entities/homework';
 import './styles.scss';
 import { Button } from '@shared/ui/Button';
 import { buttonSize } from '@shared/ui/Button/interfaces';
+import { useShowAllText } from '@shared/utils';
 
 export const HomeworkContent = () => {
     const [block, element] = bem('homework-content');
@@ -14,9 +15,9 @@ export const HomeworkContent = () => {
     const getHomeworkRequest = useGetHomeworkRequest();
     const requestsInfo = getHomeworkRequest?.data;
 
-    const [isShowAllText, setIsShowAllText] = useState(false);
-
-    const maxTextLength = 255;
+    const { handleToggleShowMoreText, isSmallTextLength, slicedText, isShowAllText } = useShowAllText({
+        text: requestsInfo?.content ?? '',
+    });
 
     return (
         <div className={block()}>
@@ -28,17 +29,17 @@ export const HomeworkContent = () => {
                 className={element('text')}
                 variant={typographyVariant.regular16}
             >
-                {isShowAllText ? requestsInfo?.content : requestsInfo?.content.slice(0, maxTextLength)}
+                {slicedText}
             </TypographyWithEnter>
 
-            {(requestsInfo?.content?.length ?? 0) > 255 && (
+            {(!isSmallTextLength && (
                 isShowAllText ? (
-                    <Button title={'Скрыть'} size={buttonSize.small} onClick={() => setIsShowAllText(prev => !prev)} />
+                    <Button title={'Скрыть'} size={buttonSize.small} onClick={handleToggleShowMoreText} />
                 ) : (
                     <Button title={'Показать всё'} size={buttonSize.small}
-                            onClick={() => setIsShowAllText(prev => !prev)} />
+                            onClick={handleToggleShowMoreText} />
                 )
-            )}
+            ))}
         </div>
     );
 };

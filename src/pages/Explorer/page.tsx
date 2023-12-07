@@ -30,6 +30,7 @@ import {
 import Spinner from '@shared/ui/Spinner';
 import { CurrentSystemCard } from '@widgets/CurrentSystemCard';
 import { ExplorerCompletedSystems } from '@widgets/ExplorerCompletedSystems';
+import { RouterLink } from '@shared/ui/RouterLink';
 
 export const Explorer = () => {
     const [block, element] = bem('explorer');
@@ -72,15 +73,14 @@ export const Explorer = () => {
                                 <div className={element('button-galaxy')}>
                                     {(userInfo.currentSystem ||
                                         userInfo.studyRequest) && (
-                                        <Button
-                                            title='Переход на страницу с галактикой'
-                                            size={buttonSize.large}
-                                            color={buttonColor.filled}
-                                             // TODO хардкод айдишника убрать
-                                            onClick={() =>
-                                                navigate(`${URL_GALAXY}/1`)
-                                            }
-                                        />
+                                        // TODO хардкод айдишника убрать
+                                        <RouterLink to={`${URL_GALAXY}/1`}>
+                                            <Button
+                                                title='Переход на страницу с галактикой'
+                                                size={buttonSize.large}
+                                                color={buttonColor.filled}
+                                            />
+                                        </RouterLink>
                                     )}
                                 </div>
 

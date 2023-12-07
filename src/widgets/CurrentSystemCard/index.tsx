@@ -20,10 +20,7 @@ import { SelectSystem } from '@widgets/SelectSystem';
 import { CurrentSystemCardInterface } from './interfaces';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
-import {
-    typographyColor,
-    typographyVariant,
-} from '@shared/ui/Typography/interfaces';
+import { typographyColor, typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
@@ -44,6 +41,11 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
         useGetExplorerProfileQuery();
     const [leaveCourseRequest, { isSuccess: isSuccessLeaveCourse }] =
         useLeaveCourseByExplorerIdMutation();
+
+    const countEditingRequests = userInfo?.homeworkRequests
+        ?.filter((request) =>
+            request.status.status === 'EDITING')
+        .length;
 
     useStatus(() => {
         toast(TOAST_LEAVE_COURSE, {
@@ -104,6 +106,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                 >
                     {`Хранитель: ${getUserFullName(currentSystem?.keeper)}`}
                 </Typography>
+
                 <span className={element('progress')}>
                     <Typography
                         variant={typographyVariant.medium16}
@@ -113,6 +116,17 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                     </Typography>
                     <ProgressBar progress={currentSystem?.progress} />
                 </span>
+
+                {countEditingRequests !== 0 && (
+                    <Typography
+                        variant={typographyVariant.regular14}
+                        color={typographyColor.white}
+                        className={element('count-checked-requests')}
+                    >
+                        Количество проверенных запросов: {countEditingRequests}
+                    </Typography>
+                )}
+
                 <div className={element('buttons')}>
                     <Button
                         size={buttonSize.large}

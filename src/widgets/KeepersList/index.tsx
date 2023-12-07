@@ -17,14 +17,14 @@ export const KeepersList = ({ keepers }: KeepersListProps) => {
 
     return (
         <div className={block()}>
-            {keepers.map(({ personId, rating, galaxyName, ...user }, index) => (
+            {keepers?.map(({ personId, rating, galaxies, ...user }, index) => (
                 <UserRatingCard
                     key={personId}
                     onClick={() => {
                         navigate(getUrlKeeperById(personId.toString()));
                     }}
                     fullname={getUserFullName(user)}
-                    title={`Галактика: ${galaxyName}`}
+                    title={`Галактики: ${!!galaxies.length && galaxies.map(({ galaxyName }) => galaxyName).join(', ')}`}
                     rating={rating}
                 />
             ))}

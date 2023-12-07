@@ -1,1 +1,1 @@
-export * from './use-course-progress'
+export * from './use-explorer-course-progress'

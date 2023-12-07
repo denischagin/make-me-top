@@ -32,7 +32,7 @@ const Keepers = () => {
                         <SortCard title='За весь период' />
                     </div>
 
-                    {keepersList.length !== 0 && (
+                    {keepersList?.length !== 0 && (
                         <KeepersList keepers={limitElements} />
                     )}
 

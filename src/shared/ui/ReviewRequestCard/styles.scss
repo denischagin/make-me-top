@@ -1,46 +1,50 @@
 @import '@app/styles/variables.scss';
 
 .review-request-card {
-    position: relative;
+  position: relative;
+  align-items: center;
+  border-radius: 8px;
+
+  &:hover {
+    .review-request-card__hidden-button {
+      opacity: 1;
+      position: absolute;
+      right: 170px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    border-radius: 8px;
+    position: relative;
+  }
 
-    &:hover {
-        .review-request-card__hidden-button {
-            opacity: 1;
-            position: absolute;
-            right: 170px;
-        }
-    }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2px;
+  }
 
-    &__content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-    }
+  &__system {
+    margin-top: 8px;
+  }
 
-    &__info {
-        display: flex;
-        flex-direction: column;
-        margin-top: 2px;
-    }
+  &__buttons {
+    transition: 0.2s ease-in-out;
+    right: 0;
+    display: flex;
+    gap: 16px;
+  }
 
-    &__system {
-        margin-top: 8px;
-    }
+  &__hidden-button {
+    transition: 0.2s;
+    opacity: 0;
+    right: 0;
+    position: absolute;
+  }
 
-    &__buttons {
-        transition: 0.2s ease-in-out;
-        right: 0;
-        display: flex;
-        gap: 16px;
-    }
-
-    &__hidden-button {
-        transition: 0.2s;
-        opacity: 0;
-        right: 0;
-        position: absolute;
-    }
+  .card + .card {
+    margin-top: 10px;
+  }
 }

@@ -1,7 +1,7 @@
 import { HomeworkRequestCard, HomeworkRequestCardGroup, useGetHomeworkRequest } from '@entities/homework';
 import { homeworkRequestCardVariant } from '@entities/homework/ui/HomeworkRequestCard/interface';
 import React, { Fragment } from 'react';
-import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
+import { getUserFullName } from '@shared/utils';
 import { useAuth } from '@entities/viewer';
 
 export const HomeworkRequests = () => {
