@@ -22,7 +22,7 @@ export const HomeworkContent = () => {
     return (
         <div className={block()}>
             <Typography variant={typographyVariant.h1}>
-                Домашнее задание
+                {requestsInfo?.title}
             </Typography>
 
             <TypographyWithEnter

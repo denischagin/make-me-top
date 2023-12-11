@@ -13,40 +13,38 @@ import { EditHomeworkModal } from '@features/edit-homework';
 import { ActiveHomeworkItem } from '@widgets/CurrentHomeworkRequests/ui/ActiveHomeworkItem';
 
 export const CurrentHomeworkRequests = () => {
-	const [block, element] = bem('current-homework-requests');
-	const { themeId, courseId } = useParams();
-	const { role } = useAuth();
-	const { data: homeworkResponse } = useGetHomeworksQuery({ themeId: themeId! }, {
-		skip: !themeId || role !== 'KEEPER'
-	});
-	const [activeHomework, setActiveHomework] = useState(false);
-	
-	const activeHomeworks = transformHomeworkResponse(homeworkResponse, 'KEEPER')?.activeHomeworks;
+    const [block, element] = bem('current-homework-requests');
+    const { themeId, courseId } = useParams();
+    const { role } = useAuth();
+    const { data: homeworkResponse, isError: isErrorHomeworks, isLoading: isLoadingHomeworks } = useGetHomeworksQuery({ themeId: themeId! }, {
+        skip: !themeId || role !== 'KEEPER',
+    });
 
-	if (!themeId)
-		return null;
-	
-	return (
-		<>
-			<AddHomeworkButton />
-			
-			<div className={block()}>
-				<Typography variant={typographyVariant.h2}>
-					Текущие домашние задания
-				</Typography>
-				
-				{activeHomeworks && activeHomeworks.length !== 0 ? (
-					activeHomeworks?.map((homework) => (
-						<ActiveHomeworkItem key={homework.homeworkId} homework={homework} />
-					))
-				) : (
-					<Typography variant={typographyVariant.regular16}>
-						Нет активных домашних заданий
-					</Typography>
-				)}
-			</div>
-		
-		</>
-	
-	);
+    const activeHomeworks = transformHomeworkResponse(homeworkResponse, 'KEEPER')?.activeHomeworks;
+
+    if (!themeId || isErrorHomeworks || isLoadingHomeworks)
+        return null;
+
+
+    return (
+        <>
+            <div className={block()}>
+                <Typography variant={typographyVariant.h2}>
+                    Текущие домашние задания
+                </Typography>
+
+                {activeHomeworks && activeHomeworks.length !== 0 ? (
+                    activeHomeworks?.map((homework) => (
+                        <ActiveHomeworkItem key={homework.homeworkId} homework={homework} />
+                    ))
+                ) : (
+                    <Typography variant={typographyVariant.regular16}>
+                        Нет активных домашних заданий
+                    </Typography>
+                )}
+            </div>
+
+        </>
+
+    );
 };

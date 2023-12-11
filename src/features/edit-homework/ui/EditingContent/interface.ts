@@ -2,8 +2,11 @@ import { ChangeEventHandler } from 'react';
 
 export interface EditingContentProps {
     isEditing: boolean,
-    editValue: string,
+    editContent: string,
+    editTitle: string
+    title: string
     content: string,
-    handleChangeEditField: ChangeEventHandler<HTMLTextAreaElement>
+    handleChangeContentField: ChangeEventHandler<HTMLTextAreaElement>
+    handleChangeTitleField: ChangeEventHandler<HTMLInputElement>
 }
 

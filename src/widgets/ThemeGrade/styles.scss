@@ -1,0 +1,43 @@
+@import "@app/styles/variables";
+
+.theme-grade {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__card {
+    &--active {
+      .card {
+        border: 1px solid $primary-600;
+      }
+    }
+  }
+
+  &__card-content {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+  }
+
+  &__name {
+    flex-grow: 1;
+  }
+
+  &__grade-section {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    animation: entryAnimateGradeSection 1s;
+  }
+}
+
+@keyframes entryAnimateGradeSection {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

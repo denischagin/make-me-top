@@ -1,6 +1,25 @@
 @import '@app/styles/variables.scss';
 
 .input {
+  transition: 0.2s;
+
+  &--variant-default {
+    min-width: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: .2s;
+    outline: 0;
+    font-size: 16px;
+    border: 1px solid $gray-600;
+    color: $black;
+
+    &:focus {
+      border: 1px solid $black;
+    }
+
+  }
+
+  &--variant-rounded {
     font-size: 16px;
     font-family: $font-text-regular;
     cursor: text;
@@ -12,13 +31,18 @@
     border: 1px solid transparent;
     border-radius: 56px;
     outline: none;
-    transition: 0.2s;
-
-    &:hover {
-        border: 1px solid $black;
-    }
 
     &:focus {
-        outline: none;
+      border: 1px solid $black;
     }
+  }
+
+  &--fullwidth {
+    width: 100%;
+  }
+
+  //&:hover {
+  //  border: 1px solid $black;
+  //}
+
 }

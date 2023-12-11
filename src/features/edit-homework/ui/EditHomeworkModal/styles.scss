@@ -7,6 +7,9 @@
   }
 
   &__editing-homework {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     max-height: 80vh;
     overflow: scroll;
   }

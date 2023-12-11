@@ -1,4 +1,4 @@
-import React, { FormEventHandler, MouseEventHandler, useState } from 'react';
+import React, { FormEventHandler, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 import { Input } from '@shared/ui/Input';
@@ -9,8 +9,7 @@ import { useAppDispatch } from '@app/providers/store/hooks';
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import { URL_LOGIN, URL_PROFILE } from '@shared/constants/links';
-import { storageKeys } from '@shared/constants/storageKeys';
+import { URL_PROFILE } from '@shared/constants/links';
 
 import { LoginProps } from '@widgets/Login/interface';
 
@@ -21,10 +20,7 @@ import { queryParams } from '@shared/constants';
 import { useLoginMutation } from '@entities/viewer/api/api';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import { useAuth } from '@entities/viewer';
-import {
-    AuthCredentials,
-    AuthResponse,
-} from '@entities/viewer/model/types/api';
+import { inputVariantEnum } from '@shared/ui/Input/interfaces';
 
 export const Login = ({ role }: LoginProps) => {
     const [block, element] = bem('login');
@@ -91,12 +87,14 @@ export const Login = ({ role }: LoginProps) => {
                 type='text'
                 onChange={handleLoginInputChange}
                 value={inputLogin}
+                variant={inputVariantEnum.rounded}
             />
             <Input
                 placeholder='Пароль'
                 type='password'
                 onChange={handlePasswordInputChange}
                 value={inputPassword}
+                variant={inputVariantEnum.rounded}
             />
             <PlanetButton type='submit' title='Войти' />
         </form>

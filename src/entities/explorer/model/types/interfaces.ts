@@ -3,20 +3,10 @@ import {
     StudyRequestsInterface,
 } from '@entities/keeper/model/types/interfaces';
 
-export interface ExplorerState {
-    isExplorer: boolean;
-    isSystemActive: boolean;
-    explorerApplicationCard: ExplorerApplicationCardInterface;
-    explorerInfo: ExplorerInfoInterface;
-    explorerCardInfo: ExplorerCardInfoInterface;
-    explorersList: ExplorersFilterInterface[];
-    isError: boolean;
-}
-
 export interface GalaxyExplorerInterface {
     galaxyId: number;
     galaxyName: string;
-    galaxyDescription: string
+    galaxyDescription: string;
 }
 
 export interface ExplorersFilterInterface {
@@ -26,7 +16,7 @@ export interface ExplorersFilterInterface {
     patronymic: string;
     rating: number;
     systems: number[];
-    galaxies: GalaxyExplorerInterface[]
+    galaxies: GalaxyExplorerInterface[];
 }
 
 export interface ExplorerApplicationCardInterface {
@@ -38,7 +28,7 @@ export interface ExplorerInfoInterface {
     person: Person;
     rating?: number | null;
     totalSystems: number;
-    currentSystem: CurrentSystem;
+    currentSystem: CurrentSystemProfile;
     investigatedSystems: Array<InvestigatedSystemsInterface>;
     studyRequest?: StudyRequestCabinetInterface;
     ratingTable: Array<PersonRating>;
@@ -79,15 +69,19 @@ export interface PersonRating {
     rating: number;
 }
 
-export interface CurrentSystem {
+export interface CurrentSystemBase {
     explorerId: number;
-    groupId: number;
     courseThemeId: number;
     courseThemeTitle: string;
     courseId: number;
     courseTitle: string;
     keeper: Keeper;
+}
+
+export interface CurrentSystemProfile extends CurrentSystemBase {
+    groupId: number;
     progress: number;
+    unfulfilledHomeworksNumber: number;
 }
 
 export interface Keeper {
@@ -109,7 +103,7 @@ export interface ExplorerCardInfoInterface {
     rating: number | null;
     totalFeedback: number;
     totalSystems: number;
-    currentSystem?: CurrentSystem;
+    currentSystem?: CurrentSystemBase;
     investigatedSystems: Array<InvestigatedSystemsInterface>;
     studyRequest: StudyRequestsInterface;
     feedback: Array<Feedback>;

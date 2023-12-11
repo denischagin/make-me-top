@@ -19,7 +19,7 @@ export const App = () => {
         <div className={block()}>
             <Provider store={store}>
                 <Spinner />
-                <Toaster position='top-center' />
+                <Toaster position='top-center'  />
                 <Suspense fallback={<Spinner loading />}>
                     <RouterProvider router={router} />
                 </Suspense>

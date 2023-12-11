@@ -37,59 +37,68 @@ export const HomeworkIssues = () => {
         <>
             <div className={block()}>
 
-                {homeworks.map(({
-                                    homeworkId,
-                                    content,
-                                    status,
-                                    mark,
-                                }, index) => (
-                    // TODO сделать отображение оценки по homework
-                    <div className={element('item')} key={homeworkId}>
-                        <Typography className={element('title')} variant={typographyVariant.h2}>
-                            Домашнее задание {homeworks.length !== 1 && index + 1}
-                        </Typography>
+                <Typography className={element('title')} variant={typographyVariant.h2}>
+                    Домашние задания
+                </Typography>
+
+                {homeworks.length !== 0 ?
+                    homeworks.map(({
+                                       homeworkId,
+                                       content,
+                                       status,
+                                       mark,
+                                       title,
+                                   }, index) => (
+                        <div className={element('item')} key={homeworkId}>
+                            <Typography className={element('content')} variant={typographyVariant.h3}>
+                                {index + 1}. {title.length > 100 ? title.slice(0, 100) + '...' : title}
+                            </Typography>
 
 
-                        <Typography className={element('content')} variant={typographyVariant.regular16}>
-                            {content.length > 300 ? content.slice(0, 300) + '...' : content}
-                        </Typography>
+                            <Typography className={element('content')} variant={typographyVariant.regular16}>
+                                {content.length > 300 ? content.slice(0, 300) + '...' : content}
+                            </Typography>
 
-                        <div className={element('bottom-panel')}>
-                            {!isCompletedCurrentPlanet &&
-                                <Button
-                                    className={element('button-homework')}
-                                    title={'Перейти'}
-                                    size={buttonSize.small}
-                                    color={buttonColor.filled}
-                                    onClick={handleNavigateToHomeworkClick(homeworkId)}
-                                />
-                            }
+                            <div className={element('bottom-panel')}>
+                                {!isCompletedCurrentPlanet &&
+                                    <Button
+                                        className={element('button-homework')}
+                                        title={'Перейти'}
+                                        size={buttonSize.small}
+                                        color={buttonColor.filled}
+                                        onClick={handleNavigateToHomeworkClick(homeworkId)}
+                                    />
+                                }
 
 
-                            {status?.status === 'EDITING' && (
-                                <div className={element('badge')}>
-                                    <Badge color={badgeColor.black}>
-                                        Хранитель проверил задание
-                                    </Badge>
-                                </div>
-                            )}
-                            {status?.status === 'CLOSED' && (
-                                <div className={element('badge')}>
-                                    <Typography variant={typographyVariant.medium14} color={typographyColor.white}>
-                                        Оценка:
-                                    </Typography>
-                                    <Badge color={badgeColor.primary500}>
-                                        {mark?.mark}
-                                    </Badge>
+                                {status?.status === 'EDITING' && (
+                                    <div className={element('badge')}>
+                                        <Badge color={badgeColor.black}>
+                                            Хранитель проверил задание
+                                        </Badge>
+                                    </div>
+                                )}
+                                {status?.status === 'CLOSED' && (
+                                    <div className={element('badge')}>
+                                        <Typography variant={typographyVariant.medium14} color={typographyColor.white}>
+                                            Оценка:
+                                        </Typography>
 
-                                </div>
-                            )}
+                                        <Badge color={badgeColor.primary500}>
+                                            {mark?.mark}
+                                        </Badge>
+                                    </div>
+                                )}
+
+                            </div>
+
 
                         </div>
-
-
-                    </div>
-                ))}
+                    )) : (
+                        <Typography variant={typographyVariant.regular16}>
+                            Домашних заданий пока нет
+                        </Typography>
+                    )}
             </div>
         </>
     );

@@ -49,6 +49,17 @@ $mediumMobileWidth: 600px;
     }
   }
 
+  &--variant-h3 {
+    font-family: $font-heading;
+    font-size: 22px;
+    @media screen and (max-width: $largeMobileWidth) {
+      font-size: 20px;
+    }
+    @media screen and (max-width: $mediumMobileWidth) {
+      font-size: 18px;
+    }
+  }
+
   &--variant-medium16 {
     font-family: $font-text-medium;
     font-size: 16px;

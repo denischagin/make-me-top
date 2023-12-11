@@ -7,6 +7,9 @@
   }
 
   &__summary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     flex-grow: 1;
     align-self: start;
   }

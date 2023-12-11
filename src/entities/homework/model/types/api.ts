@@ -8,6 +8,7 @@ export type RequestStatusType = 'CHECKING' | 'EDITING' | 'CLOSED'
 
 export interface HomeworkInterfaceExplorer {
     homeworkId: number;
+    title: string;
     content: string;
     groupId: number;
     status?: {
@@ -93,6 +94,7 @@ export interface RequestStatusInterface {
 export interface BaseHomeworkInterface {
     homeworkId: number;
     content: string;
+    title: string
 }
 
 export interface HomeworkInterface extends BaseHomeworkInterface {
@@ -119,6 +121,7 @@ export interface UpdateHomeworkArgsInterface {
     courseThemeId: number,
     groupId: number,
     content: string,
+    title: string
     homeworkId: number
 }
 
@@ -126,6 +129,7 @@ export interface CreateHomeworkArgsInterface {
     themeId: number,
     groupId: number,
     content: string
+    title: string
 }
 
 export interface SendHomeworkVersionArgsInterface {

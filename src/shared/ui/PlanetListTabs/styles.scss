@@ -7,14 +7,15 @@
   }
 
   &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 13px 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     transition: all 0.3s;
     border-left: 3px solid transparent;
     cursor: pointer;
-    display: flex;
-    justify-content: space-between;
 
     & p {
       color: $gray-600;
@@ -63,5 +64,9 @@
       }
 
     }
+  }
+
+  &__waiting-text {
+    color: $primary-600!important;
   }
 }

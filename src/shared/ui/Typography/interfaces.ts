@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from 'react';
 
-export interface TypographyInterface extends HTMLAttributes<HTMLParagraphElement>{
+export interface TypographyInterface extends HTMLAttributes<HTMLParagraphElement> {
     variant: typographyVariant;
     color?: typographyColor;
 }
@@ -14,6 +14,7 @@ export enum typographyColor {
 export enum typographyVariant {
     h1 = 'h1',
     h2 = 'h2',
+    h3 = 'h3',
     medium16 = 'medium16',
     medium14 = 'medium14',
     regular16 = 'regular16',

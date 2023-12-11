@@ -2,7 +2,7 @@ import React from 'react';
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import { InputInterface } from './interfaces';
+import { InputInterface, inputVariantEnum } from './interfaces';
 
 import './styles.scss';
 
@@ -12,6 +12,8 @@ export const Input = (props: InputInterface) => {
         type,
         value,
         onChange,
+        fullwidth = false,
+        variant = inputVariantEnum.default,
     } = props;
 
     const [block, element] = bem('input');
@@ -22,7 +24,10 @@ export const Input = (props: InputInterface) => {
             type={type}
             placeholder={placeholder}
             onChange={onChange}
-            className={block()}
+            className={block({
+                variant,
+                fullwidth,
+            })}
         />
     );
 };

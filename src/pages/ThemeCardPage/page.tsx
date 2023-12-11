@@ -18,7 +18,9 @@ import { HomeworkIssues } from '@widgets/HomeworkIssues';
 import { CurrentHomeworkRequests } from '@widgets/CurrentHomeworkRequests/ui/CurrentHomeworkRequests';
 import { OldHomeworksRequest } from '@widgets/OldHomeworksRequest/ui/OldHomeworksRequests';
 import { roles } from '@shared/constants/storageKeys';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
+import { ThemeGrade } from '@widgets/ThemeGrade';
+import { AddHomeworkButton } from '@features/add-homework';
 
 
 const homeworkSectionForRole: Record<roles, ReactElement> = {
@@ -27,6 +29,8 @@ const homeworkSectionForRole: Record<roles, ReactElement> = {
     ),
     KEEPER: (
         <>
+            <AddHomeworkButton />
+            <ThemeGrade />
             <CurrentHomeworkRequests />
             <OldHomeworksRequest />
         </>
@@ -47,7 +51,7 @@ const ThemeCardPage = () => {
         skip: role !== 'KEEPER',
     });
 
-    const courseTitle = explorerCourseProgress?.progress.title || keeperCurrentGroup?.courseTitle
+    const courseTitle = explorerCourseProgress?.progress.title || keeperCurrentGroup?.courseTitle;
 
     if (isError) return <NotFound />;
 
@@ -70,8 +74,6 @@ const ThemeCardPage = () => {
 
                             <div>
                                 <ThemeContent />
-
-                                <DividingLine color={DividingLineColor.opacitygray} />
 
                                 <div className={element('homework-wrapper')}>
                                     {role && homeworkSectionForRole[role]}

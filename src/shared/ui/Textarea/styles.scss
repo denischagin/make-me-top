@@ -6,12 +6,10 @@
   resize: none;
   border-radius: 10px;
   transition: .2s;
-  outline-color: transparent;
   font-size: 16px;
+  border: 1px solid $gray-600;
+  outline: 0;
 
-  &:focus {
-    outline: 1px solid $white;
-  }
 
   &--fullwidth {
     width: 100%;
@@ -20,11 +18,29 @@
   &--color-black {
     color: $white;
     background-color: $black;
+
+    &::placeholder {
+      color: white;
+      opacity: 0.6;
+    }
+
+    &:focus {
+      border: 1px solid $white;
+    }
   }
 
   &--color-white {
     color: $black;
     background-color: $white;
+
+    &:focus {
+      border: 1px solid $black;
+    }
+
+    &::placeholder {
+      color: $black;
+      opacity: 0.6;
+    }
   }
 
 
@@ -36,8 +52,4 @@
     height: 20em;
   }
 
-  &::placeholder {
-    color: white;
-    opacity: 0.6;
-  }
 }

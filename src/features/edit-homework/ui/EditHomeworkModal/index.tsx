@@ -12,13 +12,14 @@ import { EditingContent } from '@features/edit-homework/ui/EditingContent';
 
 export const EditHomeworkModal = (props: EditHomeworkModalProps) => {
     const { currentHomework, ...restProps } = props;
-    const { content, homeworkId, courseThemeId, group: { groupId } } = currentHomework;
+    const { content, homeworkId, courseThemeId, title, group: { groupId } } = currentHomework;
 
     const [updateHomework] = useUpdateHomeworkMutation();
     const [deleteHomework] = useDeleteHomeworkMutation();
 
     const [block, element] = bem('edit-homework-modal');
-    const [editValue, setEditValue] = useState(content);
+    const [editContent, setEditContent] = useState(content);
+    const [editTitle, setEditTitle] = useState(title);
     const [isEditing, setIsEditing] = useState(false);
     const [isOpenConfirm, setIsOpenConfirm] = useState(false);
 
@@ -28,7 +29,8 @@ export const EditHomeworkModal = (props: EditHomeworkModalProps) => {
     const handleStartEditing = () => setIsEditing(true);
     const handleCanselEditing = () => {
         setIsEditing(false);
-        setEditValue(content);
+        setEditTitle(title);
+        setEditContent(content);
     };
 
     const handleSubmitDelete = () => {
@@ -36,10 +38,11 @@ export const EditHomeworkModal = (props: EditHomeworkModalProps) => {
     };
 
     const handleUpdateHomework = () => {
-        if (content === editValue) return setIsEditing(false);
+        if (content === editContent && title === editTitle) return setIsEditing(false);
 
         updateHomework({
-            content: editValue,
+            title: editTitle,
+            content: editContent,
             homeworkId,
             groupId,
             courseThemeId,
@@ -48,8 +51,11 @@ export const EditHomeworkModal = (props: EditHomeworkModalProps) => {
         setIsEditing(false);
     };
 
-    const handleChangeEditField: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-        setEditValue(e.target.value);
+    const handleChangeTitleField: ChangeEventHandler<HTMLInputElement> = (e) => {
+        setEditTitle(e.target.value);
+    };
+    const handleChangeContentField: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+        setEditContent(e.target.value);
     };
 
     return (
@@ -57,7 +63,7 @@ export const EditHomeworkModal = (props: EditHomeworkModalProps) => {
             <Modal fullwidth {...restProps} >
                 <div className={block()}>
                     <Typography
-                        variant={typographyVariant.h2}
+                        variant={typographyVariant.h1}
                         color={typographyColor.black}
                     >
                         Домашнее задание
@@ -67,9 +73,12 @@ export const EditHomeworkModal = (props: EditHomeworkModalProps) => {
                         <div className={element('editing-homework')}>
                             <EditingContent
                                 isEditing={isEditing}
-                                editValue={editValue}
+                                editContent={editContent}
+                                editTitle={editTitle}
                                 content={content}
-                                handleChangeEditField={handleChangeEditField}
+                                title={title}
+                                handleChangeContentField={handleChangeContentField}
+                                handleChangeTitleField={handleChangeTitleField}
                             />
                         </div>
 

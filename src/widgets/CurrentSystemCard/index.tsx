@@ -29,6 +29,8 @@ import { useLeaveCourseByExplorerIdMutation } from '@entities/course';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import toast from 'react-hot-toast';
 import { TOAST_LEAVE_COURSE } from '@shared/constants/toastTitles';
+import { Badge } from '@shared/ui/Badge';
+import { badgeColor } from '@shared/ui/Badge/interfaces';
 
 export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     const [block, element] = bem('current-system-card');
@@ -123,7 +125,20 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                         color={typographyColor.white}
                         className={element('count-checked-requests')}
                     >
-                        Количество проверенных запросов: {countEditingRequests}
+                        Количество проверенных запросов:{' '}
+                        <Badge
+                            color={badgeColor.primary500}>{countEditingRequests}</Badge>
+                    </Typography>
+                )}
+                {userInfo.currentSystem.unfulfilledHomeworksNumber !== 0 && (
+                    <Typography
+                        variant={typographyVariant.regular14}
+                        color={typographyColor.white}
+                        className={element('count-checked-requests')}
+                    >
+                        Количество невыполненных заданий:{' '}
+                        <Badge
+                            color={badgeColor.primary500}>{userInfo.currentSystem.unfulfilledHomeworksNumber}</Badge>
                     </Typography>
                 )}
 

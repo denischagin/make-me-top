@@ -15,50 +15,57 @@ export const ThemeContent = () => {
 
     const { themeId } = useParams();
 
-    const { isSkipThemeQuery, isSuccess } = useExplorerCourseProgress();
+    const { isSkipThemeQuery } = useExplorerCourseProgress();
 
-    const { data: themeInfo } = useGetThemeByThemeIdQuery(Number(themeId), {
+    const { data: themeInfo, isError: isErrorTheme } = useGetThemeByThemeIdQuery(Number(themeId), {
         skip: isSkipThemeQuery,
     });
 
+    if (isErrorTheme)
+        return null;
+
     return (
-        <div className={block()}>
-            <div className={element('theme-content')}>
-                {!!themeId ?
-                    (
-                        <div>
+        <>
+            <div className={block()}>
+                <div className={element('theme-content')}>
+                    {!!themeId ?
+                        (
+                            <div>
+                                <div className={element('theme-title-wrapper')}>
+                                    <Typography
+                                        variant={typographyVariant.h2}
+                                        color={typographyColor.white}
+                                        className={element('theme-title')}
+                                    >
+                                        {themeInfo?.title}
+                                    </Typography>
+
+                                    <Typography
+                                        variant={typographyVariant.medium16}
+                                        color={typographyColor.white}
+                                    >
+                                        {themeInfo?.description}
+                                    </Typography>
+
+                                    <DividingLine color={DividingLineColor.opacitygray} />
+                                </div>
+
+                                <div className={element('theme-text')}>
+                                    <TypographyWithEnter variant={typographyVariant.regular14}>
+                                        {themeInfo?.content === '' ? 'У данной темы пока еще нет контента' : themeInfo?.content}
+                                    </TypographyWithEnter>
+                                </div>
+                            </div>
+                        ) : (
                             <div className={element('theme-title-wrapper')}>
-                                <Typography
-                                    variant={typographyVariant.h2}
-                                    color={typographyColor.white}
-                                    className={element('theme-title')}
-                                >
-                                    {themeInfo?.title}
-                                </Typography>
-
-                                <Typography
-                                    variant={typographyVariant.medium16}
-                                    color={typographyColor.white}
-                                >
-                                    {themeInfo?.description}
-                                </Typography>
-
-                                <DividingLine color={DividingLineColor.opacitygray} />
+                                <Typography variant={typographyVariant.h2}>Выберите нужную тему</Typography>
                             </div>
-
-                            <div className={element('theme-text')}>
-                                <TypographyWithEnter variant={typographyVariant.regular14}>
-                                    {themeInfo?.content === '' ? 'У данной темы пока еще нет контента' : themeInfo?.content}
-                                </TypographyWithEnter>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className={element('theme-title-wrapper')}>
-                            <Typography variant={typographyVariant.h2}>Выберите нужную тему</Typography>
-                        </div>
-                    )
-                }
+                        )
+                    }
+                </div>
             </div>
-        </div>
+
+            <DividingLine color={DividingLineColor.opacitygray} />
+        </>
     );
 };

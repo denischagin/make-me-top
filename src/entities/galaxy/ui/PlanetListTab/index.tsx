@@ -19,7 +19,6 @@ export const PlanetListTab =
 
         return (
             <>
-                {/* TODO сделать так, чтобы нельзя было клинуть по планете*/}
                 <PlanetList
                     planetList={planets}
                     educationPlanetId={currentPlanetId}
