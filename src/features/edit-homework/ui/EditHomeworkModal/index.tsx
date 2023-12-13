@@ -11,7 +11,7 @@ import { EditingButtons } from '@features/edit-homework/ui/EditingButtons';
 import { EditingContent } from '@features/edit-homework/ui/EditingContent';
 
 export const EditHomeworkModal = (props: EditHomeworkModalProps) => {
-    const { currentHomework, ...restProps } = props;
+    const { currentHomework, isClosed, ...restProps } = props;
     const { content, homeworkId, courseThemeId, title, group: { groupId } } = currentHomework;
 
     const [updateHomework] = useUpdateHomeworkMutation();
@@ -83,15 +83,17 @@ export const EditHomeworkModal = (props: EditHomeworkModalProps) => {
                         </div>
 
 
-                        <div className={element('editing-buttons')}>
-                            <EditingButtons
-                                isEditing={isEditing}
-                                handleUpdateHomework={handleUpdateHomework}
-                                handleCanselEditing={handleCanselEditing}
-                                handleStartEditing={handleStartEditing}
-                                handleOpenConfirmDelete={handleOpenConfirmDelete}
-                            />
-                        </div>
+                        {!isClosed && (
+                            <div className={element('editing-buttons')}>
+                                <EditingButtons
+                                    isEditing={isEditing}
+                                    handleUpdateHomework={handleUpdateHomework}
+                                    handleCanselEditing={handleCanselEditing}
+                                    handleStartEditing={handleStartEditing}
+                                    handleOpenConfirmDelete={handleOpenConfirmDelete}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
             </Modal>

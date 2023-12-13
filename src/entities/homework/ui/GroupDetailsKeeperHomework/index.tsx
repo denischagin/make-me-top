@@ -70,13 +70,11 @@ export const GroupDetailsKeeperHomework = ({
                         </Typography>
                     </div>
 
-                    {!isClosed && (
-                        <Button
-                            title={'Просмотреть'}
-                            size={buttonSize.small}
-                            onClick={handleShowMoreClick}
-                        />
-                    )}
+                    <Button
+                        title={'Просмотреть'}
+                        size={buttonSize.small}
+                        onClick={handleShowMoreClick}
+                    />
 
                     <Button
                         title={activeHomework ? 'Скрыть' : `Запросы:${requests.length}шт.`}

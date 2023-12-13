@@ -26,7 +26,7 @@ export const OldHomeworksRequest = () => {
 
             <div className={element('cards')}>
                 {closedHomeworks.map((homework) => (
-                    <KeeperHomeworkItem homework={homework} isClosed />
+                    <KeeperHomeworkItem key={homework.homeworkId} homework={homework} isClosed />
                 ))}
             </div>
 

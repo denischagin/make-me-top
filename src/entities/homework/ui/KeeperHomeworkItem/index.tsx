@@ -20,6 +20,7 @@ export const KeeperHomeworkItem = ({ homework, isClosed = false }: ActiveHomewor
                 currentHomework={homework}
                 isOpen={isOpenModal}
                 onClose={handleCloseModal}
+                isClosed={isClosed}
             />
             <CircleBadge badgeContent={homework.waitingRequestsCount}>
                 <GroupDetailsKeeperHomework
