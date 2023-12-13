@@ -4,11 +4,11 @@ import { Button } from '@shared/ui/Button';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { bem } from '@shared/utils/helpers/bem';
 import {
-	ApprovedEducationApplicationsGroupsSummaryProps
+	ApprovedEducationApplicationsGroupsSummaryProps,
 } from '@widgets/ApprovedEducationApplications/ui/ApprovedEducationApplicationsGroupSummary/interface';
 
 export const ApprovedEducationApplicationsGroupSummary = ({
-	courseTitle, courseRequestsCount, onStartEducation, active
+	courseTitle, courseRequestsCount, onStartEducation, active, canStartEducation
 }: ApprovedEducationApplicationsGroupsSummaryProps) => {
 	const [block, element] = bem('approved-education-application-group');
 	
@@ -28,12 +28,18 @@ export const ApprovedEducationApplicationsGroupSummary = ({
 			<div className={element('summary-button', {
 				active
 			})}>
-				<Button
-					title="Начать обучение"
-					onClick={onStartEducation}
-					size={buttonSize.large}
-					color={buttonColor.filled}
-				/>
+				{ canStartEducation ? (
+					<Button
+						title="Начать обучение"
+						onClick={onStartEducation}
+						size={buttonSize.large}
+						color={buttonColor.filled}
+					/>
+				) : (
+					<Typography variant={typographyVariant.medium16}>
+						Вы не можете начать обучение, у вас уже есть группа
+					</Typography>
+				)}
 			</div>
 		</div>
 	);

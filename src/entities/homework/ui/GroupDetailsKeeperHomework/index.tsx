@@ -9,45 +9,41 @@ import React, { MouseEventHandler, useState } from 'react';
 import { bem } from '@shared/utils/helpers/bem';
 import {
     GroupDetailsCurrentHomeworkProps,
-} from '@widgets/CurrentHomeworkRequests/ui/GroupDetailsCurrentHomework/interface';
+} from '@entities/homework/ui/GroupDetailsKeeperHomework/interface';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 import './styles.scss';
 import { useNavigate } from 'react-router-dom';
 import { getUrlHomeworkWithRequestId } from '@shared/constants/links';
 import { RequestStatusType } from '@entities/homework/model/types/api';
 import { useShowAllText } from '@shared/utils';
+import { stringByRequestStatus } from '@entities/homework/constants';
 
-export const GroupDetailsCurrentHomework = ({
-                                                content,
-                                                onShowMoreClick,
-                                                homeworkId,
-                                                requests,
-                                                title,
-                                            }: GroupDetailsCurrentHomeworkProps) => {
+export const GroupDetailsKeeperHomework = ({
+                                               content,
+                                               onShowMoreClick,
+                                               homeworkId,
+                                               requests,
+                                               title,
+                                               isClosed,
+                                           }: GroupDetailsCurrentHomeworkProps) => {
     const [activeHomework, setActiveHomework] = useState(false);
     const [, element] = bem('group-details-current-homework');
     const navigate = useNavigate();
 
     const { slicedText: contentSliced } = useShowAllText({
         text: content,
-        initTextLength: 100
+        initTextLength: 100,
     });
 
     const { slicedText: titleSliced } = useShowAllText({
         text: title,
-        initTextLength: 50
+        initTextLength: 50,
     });
 
     const handleShowMoreClick: MouseEventHandler<HTMLButtonElement> = (e) => {
         e.stopPropagation();
         if (!onShowMoreClick) return;
         onShowMoreClick(homeworkId);
-    };
-
-    const stringByRequestStatus: Record<RequestStatusType, string> = {
-        CHECKING: 'Ждет проверки от хранителя',
-        CLOSED: 'Закрыто',
-        EDITING: 'Ждет новой версии от исследователя',
     };
 
     const handleNavigateToRequest = (args: { homeworkId: number, requestId: number }) => () => {
@@ -69,16 +65,18 @@ export const GroupDetailsCurrentHomework = ({
                             {titleSliced}
                         </Typography>
 
-                        <Typography variant={typographyVariant.regular14}>
+                        <Typography variant={typographyVariant.regular14} parseLink>
                             {contentSliced}
                         </Typography>
                     </div>
 
-                    <Button
-                        title={'Просмотреть'}
-                        size={buttonSize.small}
-                        onClick={handleShowMoreClick}
-                    />
+                    {!isClosed && (
+                        <Button
+                            title={'Просмотреть'}
+                            size={buttonSize.small}
+                            onClick={handleShowMoreClick}
+                        />
+                    )}
 
                     <Button
                         title={activeHomework ? 'Скрыть' : `Запросы:${requests.length}шт.`}

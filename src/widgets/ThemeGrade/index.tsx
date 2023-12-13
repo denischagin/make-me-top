@@ -10,7 +10,7 @@ import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { useGetExplorersWaitingThemeMarkQuery } from '@entities/theme';
 import { useParams } from 'react-router-dom';
 import { skipToken } from '@reduxjs/toolkit/query';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { GradeRadioButtonSection } from '@shared/ui/GradeRadioButtonSection';
 import './styles.scss';
 import { SendThemeMarkButton } from '@features/send-theme-mark';
@@ -50,44 +50,48 @@ export const ThemeGrade = () => {
             </Typography>
 
             {explorersWaiting?.map(({ explorerId, ...user }) => (
-                <div
+                <Fragment
                     key={explorerId}
-                    className={element('card', {
-                        active: explorerId === activeExplorerIdToGrade,
-                    })}>
-                    <Card
-                        size={cardSize.small}
-                    >
-                        <div
-                            className={element('card-content')}
+                >
+                    <div
+                        className={element('card', {
+                            active: explorerId === activeExplorerIdToGrade,
+                        })}>
+                        <Card
+                            size={cardSize.small}
                         >
-                            <Avatar size={avatarSize.small} />
+                            <div
+                                className={element('card-content')}
+                            >
+                                <Avatar size={avatarSize.small} />
 
-                            <Typography variant={typographyVariant.medium16} className={element('name')}>
-                                {getUserFullName(user)}
-                            </Typography>
+                                <Typography variant={typographyVariant.medium16} className={element('name')}>
+                                    {getUserFullName(user)}
+                                </Typography>
 
-                            <Button
-                                title={'Выставить'}
-                                size={buttonSize.small}
-                                color={buttonColor.filled}
-                                onClick={handleSelectExplorerToGrade(explorerId)}
-                                className={element('button-extra')}
-                            />
+                                <Button
+                                    title={'Выставить'}
+                                    size={buttonSize.small}
+                                    color={buttonColor.filled}
+                                    onClick={handleSelectExplorerToGrade(explorerId)}
+                                    className={element('button-extra')}
+                                />
+                            </div>
+                        </Card>
+                    </div>
+                    {explorerId === activeExplorerIdToGrade && (
+                        <div className={element('grade-section')}>
+                            <GradeRadioButtonSection currentGrade={currentMark} onChange={handleSelectCurrentMark} />
+
+                            {currentMark && (
+                                <SendThemeMarkButton value={currentMark} explorerId={activeExplorerIdToGrade} />
+                            )}
                         </div>
-                    </Card>
-                </div>
+                    )}
+
+                </Fragment>
             ))}
 
-            {activeExplorerIdToGrade && (
-                <div className={element('grade-section')}>
-                    <GradeRadioButtonSection currentGrade={currentMark} onChange={handleSelectCurrentMark} />
-
-                    {currentMark && (
-                        <SendThemeMarkButton value={currentMark} explorerId={activeExplorerIdToGrade} />
-                    )}
-                </div>
-            )}
 
         </div>
     );

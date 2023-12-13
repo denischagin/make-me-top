@@ -27,6 +27,7 @@ export const GradeWithComment = () => {
                     <Typography
                         variant={typographyVariant.medium16}
                         className={element('comment')}
+                        parseLink
                     >
                         {markObject?.comment}
                     </Typography>

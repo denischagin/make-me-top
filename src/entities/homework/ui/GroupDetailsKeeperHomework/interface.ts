@@ -6,4 +6,5 @@ export interface GroupDetailsCurrentHomeworkProps {
     title: string;
     onShowMoreClick?: (homeworkId: number) => void;
     requests: HomeworkRequestWithExplorerInfo[],
+    isClosed?: boolean
 }

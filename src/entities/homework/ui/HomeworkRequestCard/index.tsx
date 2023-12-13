@@ -39,7 +39,7 @@ export const HomeworkRequestCard =
                             {username}
                         </Typography>
 
-                        <Typography variant={typographyVariant.regular16}>
+                        <Typography variant={typographyVariant.regular16} parseLink>
                             {slicedText}
                         </Typography>
 

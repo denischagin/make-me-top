@@ -1,4 +1,3 @@
-import { GradeApplicationCard } from '@shared/ui/GradeApplicationCard';
 import { Typography } from '@shared/ui/Typography';
 
 import { bem } from '@shared/utils/helpers/bem';
@@ -7,6 +6,9 @@ import { GradeApplicationsInterface } from './interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
+import { ApplicationCard } from '@shared/ui/ApplicationCard';
+import { CardWithExtraButton } from '@shared/ui/CardWithExtraButton';
+import { getUserFullName } from '@shared/utils';
 
 export const GradeApplications = (props: GradeApplicationsInterface) => {
     const {
@@ -16,6 +18,7 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
 
     const [block, element] = bem('grade-application');
 
+    //TODO разделить на 2 компонента
     if (!finalAssessment?.length && !reviewRequest?.length) {
         return null;
     }
@@ -31,18 +34,46 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
 
             <div className={element('cards')}>
                 {reviewRequest?.map((application) => (
-                    <GradeApplicationCard
+                    <CardWithExtraButton
+                        fullName={getUserFullName(application)}
                         key={application.personId}
-                        reviewRequest={application}
+                        content={(
+                            <div>
+                                <Typography
+                                    className={element('system-title')}
+                                    variant={typographyVariant.regular14}
+                                >
+                                    {`Система: ${application.courseTitle}`}
+                                </Typography>
+
+                                <Typography
+                                    variant={typographyVariant.medium16}
+                                >
+                                    {`Планета: ${application.courseThemeTitle}`}
+                                </Typography>
+                            </div>
+                        )}
+                        buttonContent={'Оценить'}
                     />
                 ))}
                 {finalAssessment?.map((application) => (
-                    <GradeApplicationCard
+                    <CardWithExtraButton
+                        fullName={getUserFullName(application)}
                         key={application.personId}
-                        finalAssessment={application}
+                        content={(
+                            <div>
+                                <Typography
+                                    variant={typographyVariant.regular14}
+                                >
+                                    {`Система: ${application.courseTitle}`}
+                                </Typography>
+                            </div>
+                        )}
+                        buttonContent={'Оценить'}
                     />
                 ))}
             </div>
         </div>
-    );
+    )
+        ;
 };

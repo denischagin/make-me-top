@@ -7,7 +7,11 @@ import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import NotFound from '@pages/NotFound';
 import {
-    CourseProgressProvider, useExplorerCourseProgress, useGetCurrentCourseRequestQuery, useGetKeeperCurrentGroupQuery,
+    CourseProgressProvider,
+    useExplorerCourseProgress,
+    useGetCourseInfoByCourseIdQuery,
+    useGetCurrentCourseRequestQuery,
+    useGetKeeperCurrentGroupQuery,
 } from '@entities/course';
 import { DividingLine } from '@shared/ui/DividingLine';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
@@ -21,6 +25,7 @@ import { roles } from '@shared/constants/storageKeys';
 import React, { ReactElement } from 'react';
 import { ThemeGrade } from '@widgets/ThemeGrade';
 import { AddHomeworkButton } from '@features/add-homework';
+import { useParams } from 'react-router-dom';
 
 
 const homeworkSectionForRole: Record<roles, ReactElement> = {
@@ -40,6 +45,7 @@ const homeworkSectionForRole: Record<roles, ReactElement> = {
 const ThemeCardPage = () => {
     const [block, element] = bem('theme-card-page');
     const { role } = useAuth();
+    const { courseId } = useParams();
 
     const {
         explorerCourseProgress,
@@ -50,8 +56,9 @@ const ThemeCardPage = () => {
     } = useGetKeeperCurrentGroupQuery(undefined, {
         skip: role !== 'KEEPER',
     });
+    const { data: courseInfo } = useGetCourseInfoByCourseIdQuery(Number(courseId));
 
-    const courseTitle = explorerCourseProgress?.progress.title || keeperCurrentGroup?.courseTitle;
+    const courseTitle = explorerCourseProgress?.progress.title || courseInfo?.title;
 
     if (isError) return <NotFound />;
 

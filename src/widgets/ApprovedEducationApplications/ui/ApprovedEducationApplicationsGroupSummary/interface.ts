@@ -5,4 +5,5 @@ export interface ApprovedEducationApplicationsGroupsSummaryProps {
 	courseRequestsCount: number,
 	onStartEducation: MouseEventHandler<HTMLButtonElement>,
 	active: boolean
+	canStartEducation: boolean
 }

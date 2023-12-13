@@ -45,6 +45,7 @@ export const EditingContent = ({
                     <TypographyWithEnter
                         variant={typographyVariant.regular16}
                         color={typographyColor.black}
+                        parseLink
                     >
                         {content}
                     </TypographyWithEnter>

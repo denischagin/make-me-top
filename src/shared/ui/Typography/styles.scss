@@ -15,6 +15,24 @@ $mediumMobileWidth: 600px;
   word-wrap: break-word;
   word-break: break-word;
 
+  > span, > a {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    font-style: inherit;
+    font-feature-settings: inherit;
+    hyphens: inherit;
+    -moz-hyphens: inherit;
+    -webkit-hyphens: inherit;
+    -ms-hyphens: inherit;
+    word-wrap: inherit;
+    word-break: inherit;
+  }
+
+  > a {
+    text-decoration: underline;
+  }
+
   &--color-primary-500 {
     color: $primary-500;
   }

@@ -1,12 +1,14 @@
 import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
-import { GroupDetailsOldHomework } from '@widgets/OldHomeworksRequest/ui/GroupDetailsOldHomework';
 import { useGetHomeworksQuery } from '@entities/homework/api/api';
-import { transformHomeworkResponse } from '@entities/homework';
+import { KeeperHomeworkItem, transformHomeworkResponse } from '@entities/homework';
 import { useParams } from 'react-router-dom';
+import { bem } from '@shared/utils';
+import './styles.scss';
 
 export const OldHomeworksRequest = () => {
     const { themeId } = useParams();
+    const [block, element] = bem('old-homework-request');
 
     const { data: homeworkResponse, isError, isLoading } = useGetHomeworksQuery({ themeId: themeId! }, {
         skip: !themeId,
@@ -17,18 +19,16 @@ export const OldHomeworksRequest = () => {
         return null;
 
     return (
-        <div>
+        <div className={block()}>
             <Typography variant={typographyVariant.h2}>
                 Предыдущие задания
             </Typography>
 
-            {closedHomeworks.map(({ homeworkId, group: { explorers }, ...restHomework }) => (
-                <GroupDetailsOldHomework
-                    key={homeworkId}
-                    explorers={explorers}
-                    {...restHomework}
-                />
-            ))}
+            <div className={element('cards')}>
+                {closedHomeworks.map((homework) => (
+                    <KeeperHomeworkItem homework={homework} isClosed />
+                ))}
+            </div>
 
         </div>
     );

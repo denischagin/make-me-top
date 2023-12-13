@@ -28,6 +28,7 @@ export const HomeworkContent = () => {
             <TypographyWithEnter
                 className={element('text')}
                 variant={typographyVariant.regular16}
+                parseLink
             >
                 {slicedText}
             </TypographyWithEnter>

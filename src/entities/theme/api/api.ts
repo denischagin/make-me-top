@@ -1,5 +1,9 @@
 import { baseApi } from '@shared/api/baseApi';
-import { GetExplorersWaitingThemeMarkResponse, GetThemeByThemeIdResponse } from '@entities/theme';
+import {
+    GetExplorersWaitingThemeMarkResponse,
+    GetThemeByThemeIdResponse,
+    GetThemesWaitingExplorersMark,
+} from '@entities/theme';
 
 
 export const themeApi = baseApi.injectEndpoints({
@@ -25,7 +29,17 @@ export const themeApi = baseApi.injectEndpoints({
                     value,
                 },
             }),
-            invalidatesTags: ['getExplorersWaitingThemeMark'],
+            invalidatesTags: ['getExplorersWaitingThemeMark', 'getThemesWaitingExplorersMark'],
+        }),
+
+        getThemesWaitingExplorersMark: builder.query<GetThemesWaitingExplorersMark, void>({
+            query: () => ({
+                url: `progress-app/themes/marks/`,
+            }),
+            providesTags: ['getThemesWaitingExplorersMark'],
+            extraOptions: {
+                withOutToasts: true,
+            },
         }),
     }),
 });
@@ -34,4 +48,5 @@ export const {
     useGetThemeByThemeIdQuery,
     useGetExplorersWaitingThemeMarkQuery,
     useSendThemeMarkMutation,
+    useGetThemesWaitingExplorersMarkQuery,
 } = themeApi;

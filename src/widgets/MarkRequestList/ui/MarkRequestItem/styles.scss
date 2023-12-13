@@ -1,0 +1,18 @@
+.mark-request-item {
+  &__mark-wrapper {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    animation: markRequestWrapperAnimation .3s;
+  }
+}
+
+@keyframes markRequestWrapperAnimation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

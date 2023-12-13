@@ -1,10 +1,10 @@
 import { EditHomeworkModal } from '@features/edit-homework';
-import { GroupDetailsCurrentHomework } from '@widgets/CurrentHomeworkRequests/ui/GroupDetailsCurrentHomework';
+import { GroupDetailsKeeperHomework } from '@entities/homework';
 import React, { useState } from 'react';
-import { ActiveHomeworkItemProps } from '@widgets/CurrentHomeworkRequests/ui/ActiveHomeworkItem/interface';
+import { ActiveHomeworkItemProps } from '@entities/homework/ui/KeeperHomeworkItem/interface';
 import { CircleBadge } from '@shared/ui/CircleBadge';
 
-export const ActiveHomeworkItem = ({ homework }: ActiveHomeworkItemProps) => {
+export const KeeperHomeworkItem = ({ homework, isClosed = false }: ActiveHomeworkItemProps) => {
     const [isOpenModal, setIsOpenModal] = useState(false);
 
     const handleCloseModal = () => setIsOpenModal(false);
@@ -13,7 +13,6 @@ export const ActiveHomeworkItem = ({ homework }: ActiveHomeworkItemProps) => {
     const handleShowMoreClick = (homework: number) => {
         handleOpenModal();
     };
-    console.log(homework.waitingRequestsCount);
 
     return (
         <>
@@ -23,9 +22,10 @@ export const ActiveHomeworkItem = ({ homework }: ActiveHomeworkItemProps) => {
                 onClose={handleCloseModal}
             />
             <CircleBadge badgeContent={homework.waitingRequestsCount}>
-                <GroupDetailsCurrentHomework
+                <GroupDetailsKeeperHomework
                     key={homework.homeworkId}
                     onShowMoreClick={handleShowMoreClick}
+                    isClosed={isClosed}
                     {...homework}
                 />
             </CircleBadge>

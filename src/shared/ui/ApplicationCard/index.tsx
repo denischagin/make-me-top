@@ -9,7 +9,7 @@ import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { getUrlExplorerById, getUrlHomeworkWithRequestId, URL_EXPLORER } from '@shared/constants/links';
 
-import { GradeApplicationCardInterface } from './interfaces';
+import { ApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
@@ -18,7 +18,7 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import './styles.scss';
 import { CircleBadge } from '@shared/ui/CircleBadge';
 
-export const GradeApplicationCard = (props: GradeApplicationCardInterface) => {
+export const ApplicationCard = (props: ApplicationCardInterface) => {
     const { finalAssessment, reviewRequest } = props;
 
     const [block, element] = bem('grade-application-card');

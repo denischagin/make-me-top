@@ -12,6 +12,7 @@ export const PlanetListTabs = (props: PlanetListTabsProps) => {
         status,
         onPlanetClick,
         themes,
+        themesWaitingExplorersMark,
     } = props;
 
     const [block, element] = bem('planet-list-tabs');
@@ -34,19 +35,26 @@ export const PlanetListTabs = (props: PlanetListTabsProps) => {
                     })}
                     onClick={() => !getIsLocked(planet.courseThemeNumber) && onPlanetClick && onPlanetClick(planet.courseThemeId)}
                 >
-                    <div>
-                        <p>
+                    <div className={element('item-content')}>
+                        <p className={element('item-text')}>
                             {index + 1}. {planet.title}
                         </p>
 
-                        {getIsLocked(planet.courseThemeNumber) &&
-                            <LockIcon className={element('lock-icon')} />}
+                        <div>
+                            {getIsLocked(planet.courseThemeNumber) &&
+                                <LockIcon className={element('lock-icon')} />}
+                        </div>
 
-                            <Typography variant={typographyVariant.regular14} color={typographyColor.primary500}
-                                        className={element('waiting-text')}>
-                                Ожидает оценки
-                            </Typography>
                     </div>
+
+
+                    {themesWaitingExplorersMark?.includes(planet.courseThemeId) && (
+                        <Typography
+                            variant={typographyVariant.regular14} color={typographyColor.primary500}
+                            className={element('waiting-text')}>
+                            Ожидает оценки
+                        </Typography>
+                    )}
 
 
                 </div>

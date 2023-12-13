@@ -1,0 +1,91 @@
+@import "@app/styles/variables";
+
+.card-with-extra-button {
+  position: relative;
+  align-items: center;
+  border-radius: 8px;
+
+  &--active {
+    .card {
+      border: 1px solid $primary-500;
+    }
+  }
+
+  &:hover {
+    .card-with-extra-button {
+      @media screen and (min-width: 600px) {
+        &__button {
+          opacity: 1;
+          pointer-events: all;
+          right: 24px;
+        }
+
+        &__extra-content {
+          display: flex;
+          align-items: center;
+          position: relative;
+        }
+      }
+
+      &__planet {
+        color: $primary-500;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+    }
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  &__about {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__extra-content {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    gap: 16px;
+    right: 0;
+    transition: 0.2s;
+  }
+
+  &__planet {
+    transition: 0.2s;
+  }
+
+  &__button {
+    pointer-events: none;
+    transition: 0.2s ease-in-out;
+    opacity: 0;
+    position: absolute;
+    top: 24px;
+    right: -200px;
+    display: flex;
+    gap: 16px;
+
+    @media screen and (max-width: 600px) {
+      position: relative;
+      opacity: 1;
+      right: 0;
+      top: 0;
+      margin-top: 20px;
+    }
+  }
+}
+

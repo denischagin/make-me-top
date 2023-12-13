@@ -51,7 +51,10 @@ export const ThemeContent = () => {
                                 </div>
 
                                 <div className={element('theme-text')}>
-                                    <TypographyWithEnter variant={typographyVariant.regular14}>
+                                    <TypographyWithEnter
+                                        variant={typographyVariant.regular14}
+                                        parseLink
+                                    >
                                         {themeInfo?.content === '' ? 'У данной темы пока еще нет контента' : themeInfo?.content}
                                     </TypographyWithEnter>
                                 </div>

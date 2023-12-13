@@ -23,4 +23,5 @@ export const queryTags = {
     getHomeworkRequestsByRequestId: 'getHomeworkRequestsByRequestId',
 
     getExplorersWaitingThemeMark: 'getExplorersWaitingThemeMark',
+    getThemesWaitingExplorersMark: 'getThemesWaitingExplorersMark',
 } as const;

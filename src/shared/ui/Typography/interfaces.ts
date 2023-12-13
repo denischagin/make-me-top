@@ -3,6 +3,7 @@ import { HTMLAttributes, ReactNode } from 'react';
 export interface TypographyInterface extends HTMLAttributes<HTMLParagraphElement> {
     variant: typographyVariant;
     color?: typographyColor;
+    parseLink?: boolean;
 }
 
 export enum typographyColor {

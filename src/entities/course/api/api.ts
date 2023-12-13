@@ -1,15 +1,11 @@
 import {
-    ApprovedCourseRequestInterface,
     CourseInfoResponse, CourseResponse,
     CurrentCourseRequestInterface, GetExplorerProgressResponseInterface, GetKeeperCurrentGroupInterface,
     RequestCourseBodyInterface,
     RequestCourseParamsInterface,
 } from '@entities/course/model/types/api';
 import { baseApi } from '@shared/api/baseApi';
-import { DEFAULT_ERROR_MESSAGE } from '@shared/constants/error';
-import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toastTitles';
 import { ErrorInterface, PostCourseRequest } from '@shared/types/common';
-import toast from 'react-hot-toast';
 
 export const courseApi = baseApi.injectEndpoints({
     overrideExisting: false,
@@ -136,6 +132,15 @@ export const courseApi = baseApi.injectEndpoints({
                 withOutToasts: true,
             },
         }),
+
+        sendCourseMark: builder.mutation<void, { value: number, explorerId: number }>({
+            query: (body) => ({
+                url: `progress-app/marks/`,
+                method: 'POST',
+                body,
+            }),
+            invalidatesTags: ['getKeeperProfile'],
+        }),
     }),
 });
 
@@ -146,9 +151,10 @@ export const {
     useAcceptCourseRequestMutation,
     useRejectCourseRequestMutation,
     useGetCourseInfoByCourseIdDetailedQuery,
-    useGetCourseInfoByCourseIdQuery,
     useGetCurrentCourseRequestQuery,
     useStartEducationOnCourseMutation,
     useGetExplorerCourseProgressQuery,
     useGetKeeperCurrentGroupQuery,
+    useGetCourseInfoByCourseIdQuery,
+    useSendCourseMarkMutation,
 } = courseApi;

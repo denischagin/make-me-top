@@ -13,7 +13,7 @@ import { URL_PROFILE } from '@shared/constants/links';
 
 import { LoginProps } from '@widgets/Login/interface';
 
-import { typographyVariant } from '@shared/ui/Typography/interfaces';
+import { typographyColor, typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 import { queryParams } from '@shared/constants';
@@ -21,6 +21,7 @@ import { useLoginMutation } from '@entities/viewer/api/api';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import { useAuth } from '@entities/viewer';
 import { inputVariantEnum } from '@shared/ui/Input/interfaces';
+import { TypographyWithEnter } from '@shared/ui/TypographyWithEnter';
 
 export const Login = ({ role }: LoginProps) => {
     const [block, element] = bem('login');
@@ -82,6 +83,7 @@ export const Login = ({ role }: LoginProps) => {
             >
                 Вход
             </Typography>
+
             <Input
                 placeholder='Логин'
                 type='text'

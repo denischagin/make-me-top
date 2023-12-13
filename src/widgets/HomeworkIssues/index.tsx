@@ -20,7 +20,6 @@ export const HomeworkIssues = () => {
     const { themeId, courseId } = useParams();
     const navigate = useNavigate();
 
-    const { isCompletedCurrentPlanet, explorerCourseProgress } = useExplorerCourseProgress();
     const { data: homeworkResponse } = useGetHomeworksQuery(themeId ? { themeId } : skipToken);
     const homeworks = transformHomeworkResponse(homeworkResponse, 'EXPLORER');
 
@@ -55,20 +54,18 @@ export const HomeworkIssues = () => {
                             </Typography>
 
 
-                            <Typography className={element('content')} variant={typographyVariant.regular16}>
+                            <Typography className={element('content')} variant={typographyVariant.regular16} parseLink>
                                 {content.length > 300 ? content.slice(0, 300) + '...' : content}
                             </Typography>
 
                             <div className={element('bottom-panel')}>
-                                {!isCompletedCurrentPlanet &&
-                                    <Button
-                                        className={element('button-homework')}
-                                        title={'Перейти'}
-                                        size={buttonSize.small}
-                                        color={buttonColor.filled}
-                                        onClick={handleNavigateToHomeworkClick(homeworkId)}
-                                    />
-                                }
+                                <Button
+                                    className={element('button-homework')}
+                                    title={'Перейти'}
+                                    size={buttonSize.small}
+                                    color={buttonColor.filled}
+                                    onClick={handleNavigateToHomeworkClick(homeworkId)}
+                                />
 
 
                                 {status?.status === 'EDITING' && (
@@ -86,6 +83,13 @@ export const HomeworkIssues = () => {
 
                                         <Badge color={badgeColor.primary500}>
                                             {mark?.mark}
+                                        </Badge>
+                                    </div>
+                                )}
+                                {!status && (
+                                    <div className={element('badge')}>
+                                        <Badge color={badgeColor.white}>
+                                            Невыполненное задание
                                         </Badge>
                                     </div>
                                 )}

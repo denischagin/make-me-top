@@ -35,7 +35,7 @@ export const homeworkApi = baseApi.injectEndpoints(({
                 },
                 method: 'POST',
             }),
-            invalidatesTags: ['getHomeworks', 'getExplorersWaitingThemeMark'],
+            invalidatesTags: ['getHomeworks', 'getExplorersWaitingThemeMark', 'getThemesWaitingExplorersMark'],
         }),
 
         updateHomework: builder.mutation<void, UpdateHomeworkArgsInterface>({
@@ -57,7 +57,7 @@ export const homeworkApi = baseApi.injectEndpoints(({
                 url: `homework-app/homeworks/${homeworkId}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['getHomeworks'],
+            invalidatesTags: ['getHomeworks', 'getExplorersWaitingThemeMark', 'getThemesWaitingExplorersMark'],
         }),
 
 
@@ -102,7 +102,7 @@ export const homeworkApi = baseApi.injectEndpoints(({
                     value,
                 },
             }),
-            invalidatesTags: ['getHomeworkRequestsByRequestId'],
+            invalidatesTags: ['getHomeworkRequestsByRequestId', 'getExplorersWaitingThemeMark', 'getThemesWaitingExplorersMark'],
         }),
     }),
 }));

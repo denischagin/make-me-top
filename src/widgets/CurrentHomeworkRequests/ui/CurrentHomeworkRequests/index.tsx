@@ -2,21 +2,24 @@ import { bem } from '@shared/utils/helpers/bem';
 import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import React, { useState } from 'react';
-import { transformHomeworkResponse } from '@entities/homework';
+import { KeeperHomeworkItem, transformHomeworkResponse } from '@entities/homework';
 import { useParams } from 'react-router-dom';
 import './styles.scss';
-import { GroupDetailsCurrentHomework } from '@widgets/CurrentHomeworkRequests/ui/GroupDetailsCurrentHomework';
+import { GroupDetailsKeeperHomework } from '@entities/homework';
 import { useAuth } from '@entities/viewer';
 import { AddHomeworkButton } from '@features/add-homework';
 import { useGetHomeworksQuery } from '@entities/homework/api/api';
 import { EditHomeworkModal } from '@features/edit-homework';
-import { ActiveHomeworkItem } from '@widgets/CurrentHomeworkRequests/ui/ActiveHomeworkItem';
 
 export const CurrentHomeworkRequests = () => {
     const [block, element] = bem('current-homework-requests');
     const { themeId, courseId } = useParams();
     const { role } = useAuth();
-    const { data: homeworkResponse, isError: isErrorHomeworks, isLoading: isLoadingHomeworks } = useGetHomeworksQuery({ themeId: themeId! }, {
+    const {
+        data: homeworkResponse,
+        isError: isErrorHomeworks,
+        isLoading: isLoadingHomeworks,
+    } = useGetHomeworksQuery({ themeId: themeId! }, {
         skip: !themeId || role !== 'KEEPER',
     });
 
@@ -33,15 +36,17 @@ export const CurrentHomeworkRequests = () => {
                     Текущие домашние задания
                 </Typography>
 
-                {activeHomeworks && activeHomeworks.length !== 0 ? (
-                    activeHomeworks?.map((homework) => (
-                        <ActiveHomeworkItem key={homework.homeworkId} homework={homework} />
-                    ))
-                ) : (
-                    <Typography variant={typographyVariant.regular16}>
-                        Нет активных домашних заданий
-                    </Typography>
-                )}
+                <div className={element('cards')}>
+                    {activeHomeworks && activeHomeworks.length !== 0 ? (
+                        activeHomeworks?.map((homework) => (
+                            <KeeperHomeworkItem key={homework.homeworkId} homework={homework} />
+                        ))
+                    ) : (
+                        <Typography variant={typographyVariant.regular16}>
+                            Нет активных домашних заданий
+                        </Typography>
+                    )}
+                </div>
             </div>
 
         </>

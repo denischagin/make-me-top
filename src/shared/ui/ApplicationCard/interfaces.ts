@@ -3,7 +3,7 @@ import {
     ReviewRequestsInterface,
 } from '@entities/keeper/model/types/interfaces';
 
-export interface GradeApplicationCardInterface {
+export interface ApplicationCardInterface {
     finalAssessment?: FinalAssessmentsInterface;
     reviewRequest?: ReviewRequestsInterface;
 }
