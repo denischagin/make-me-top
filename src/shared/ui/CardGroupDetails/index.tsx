@@ -13,13 +13,13 @@ export const CardGroupDetails = ({
 	content,
 	title,
 	showMoreElement,
-	withOutShowMoreElement,
+	withOutShowMoreElement = false,
 	...restProps
 }: CardGroupDetailsProps) => {
 	const [block, element] = bem('card-group-details');
-	
+
 	const handleToggleActive = () => setActive(!active);
-	
+
 	return (
 		<div className={block({
 			active,
@@ -31,7 +31,7 @@ export const CardGroupDetails = ({
 						<div className={element('info')}>
 							{summary}
 						</div>
-						
+
 						<div className={element('show-more-wrapper')}>
 							{
 								withOutShowMoreElement === false && (
@@ -52,7 +52,7 @@ export const CardGroupDetails = ({
 						</div>
 					</div>
 				</Card>
-			
+
 			</div>
 			<div className={element('group-list')}>
 				{active && content}

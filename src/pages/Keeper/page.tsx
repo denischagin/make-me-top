@@ -22,9 +22,13 @@ import { CurrentEducationGroup } from '@widgets/CurrentEducationGroup/ui/Current
 import { ApplicationCard } from '@shared/ui/ApplicationCard';
 import { ApplicationRequestList } from '@widgets/ApplicationRequestList';
 import { MarkRequestList } from '@widgets/MarkRequestList';
+import { SystemsList } from '@widgets/SystemsList';
+import { useNavigate } from 'react-router-dom';
+import { getUrlThemeByCourseId } from '@shared/constants/links';
 
 export const Keeper = () => {
     const [block, element] = bem('keeper');
+    const navigate = useNavigate();
 
     const {
         data: userInfo,
@@ -47,6 +51,7 @@ export const Keeper = () => {
         studyRequests,
         reviewRequests,
         finalAssessments,
+        systems,
     } = userInfo;
 
     return (
@@ -71,6 +76,13 @@ export const Keeper = () => {
                             />
 
                             <ApprovedEducationApplications />
+                            
+                            <SystemsList heading={'Ваши системы'}
+                                         onSystemClick={(systemId) => {
+                                             navigate(getUrlThemeByCourseId({ courseId: systemId }));
+
+                                         }}
+                                         systems={systems} />
                         </div>
                     </div>
                 </Container>

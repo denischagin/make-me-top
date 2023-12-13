@@ -38,6 +38,12 @@ export interface KeeperCurrentGroupInterface {
     explorers: StudyingExplorersInterface[];
 }
 
+interface SystemInterface {
+    courseId: number,
+    title: string,
+    rating: number
+}
+
 export interface KeeperInfoInterface {
     person: Person;
     rating?: number | null;
@@ -49,6 +55,7 @@ export interface KeeperInfoInterface {
     reviewRequests: Array<ReviewRequestsInterface>;
     approvedRequests: KeeperCourseGroupAcceptedRequests[];
     currentGroup: KeeperCurrentGroupInterface;
+    systems: SystemInterface[];
 }
 
 
