@@ -17,7 +17,9 @@ export const ThemeTabs = () => {
 
     const { explorerCourseProgress, isCompletedCurrentSystem } =
         useExplorerCourseProgress();
-    const { data: themesWaitingExplorersMark } = useGetThemesWaitingExplorersMarkQuery();
+    const { data: themesWaitingExplorersMark } = useGetThemesWaitingExplorersMarkQuery(undefined, {
+        skip: role !== 'KEEPER',
+    });
     const {
         data: planets,
     } = useGetPlanetsBySystemIdQuery(courseId!, {

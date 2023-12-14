@@ -10,6 +10,7 @@ export const PlanetListTab =
          currentPlanetId,
          currentCourseId,
          allPlanetsLocked,
+         currentGrade,
      }: PlanetListTabProps) => {
         const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ export const PlanetListTab =
                     onPlanetClick={handlePlanetClick}
                     allPlanetsLocked={allPlanetsLocked}
                 />
-                <FinalGrade />
+                <FinalGrade currentGrade={currentGrade} />
             </>
         );
     };

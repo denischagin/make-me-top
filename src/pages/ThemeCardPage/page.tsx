@@ -6,15 +6,7 @@ import './styles.scss';
 import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import NotFound from '@pages/NotFound';
-import {
-    CourseProgressProvider,
-    useExplorerCourseProgress,
-    useGetCourseInfoByCourseIdQuery,
-    useGetCurrentCourseRequestQuery,
-    useGetKeeperCurrentGroupQuery,
-} from '@entities/course';
-import { DividingLine } from '@shared/ui/DividingLine';
-import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
+import { CourseProgressProvider, useExplorerCourseProgress, useGetCourseInfoByCourseIdQuery } from '@entities/course';
 import { ThemeTabs } from '@widgets/ThemeTabs';
 import { ThemeContent } from '@widgets/ThemeContent';
 import { useAuth } from '@entities/viewer';
@@ -26,6 +18,8 @@ import React, { ReactElement } from 'react';
 import { ThemeGrade } from '@widgets/ThemeGrade';
 import { AddHomeworkButton } from '@features/add-homework';
 import { useParams } from 'react-router-dom';
+import { Badge } from '@shared/ui/Badge';
+import { badgeColor } from '@shared/ui/Badge/interfaces';
 
 
 const homeworkSectionForRole: Record<roles, ReactElement> = {
@@ -51,11 +45,7 @@ const ThemeCardPage = () => {
         explorerCourseProgress,
         isError,
     } = useExplorerCourseProgress();
-    const {
-        data: keeperCurrentGroup,
-    } = useGetKeeperCurrentGroupQuery(undefined, {
-        skip: role !== 'KEEPER',
-    });
+
     const { data: courseInfo } = useGetCourseInfoByCourseIdQuery(Number(courseId));
 
     const courseTitle = explorerCourseProgress?.progress.title || courseInfo?.title;
@@ -77,7 +67,16 @@ const ThemeCardPage = () => {
                         </Typography>
 
                         <div className={element('content')}>
-                            <ThemeTabs />
+                            <div>
+                                <ThemeTabs />
+
+                                {explorerCourseProgress?.mark && (
+                                    <Typography className={element('mark')} variant={typographyVariant.medium16}>
+                                        Оценка за курс: <Badge
+                                        color={badgeColor.primary500}>{explorerCourseProgress?.mark}</Badge>
+                                    </Typography>
+                                )}
+                            </div>
 
                             <div>
                                 <ThemeContent />

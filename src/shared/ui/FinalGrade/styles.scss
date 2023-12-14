@@ -34,7 +34,7 @@
         margin-left: 10px;
         transform: scale(1.3);
 
-        &:hover {
+        &--active {
             color: $primary-500;
         }
     }

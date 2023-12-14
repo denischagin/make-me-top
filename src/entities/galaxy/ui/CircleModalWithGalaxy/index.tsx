@@ -140,6 +140,7 @@ const CircleModalWithGalaxy =
                             currentPlanetId={currentPlanetId}
                             currentCourseId={currentSystemId!}
                             allPlanetsLocked={modalAccessStatus !== ModalAccessStatus.opened && modalAccessStatus !== ModalAccessStatus.studied_systemAlreadyDone}
+                            currentGrade={courseInfo?.mark}
                         />
                     </TabPanel>
 

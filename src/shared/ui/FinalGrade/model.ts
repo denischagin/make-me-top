@@ -8,4 +8,10 @@ export const GRADES = [
     {
         grade: 3,
     },
+    {
+        grade: 4,
+    },
+    {
+        grade: 5,
+    },
 ];

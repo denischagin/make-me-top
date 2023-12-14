@@ -6,9 +6,12 @@ import { bem } from '@shared/utils/helpers/bem';
 import { GRADES } from './model';
 
 import './styles.scss';
+import { FinalGradeProps } from '@shared/ui/FinalGrade/interface';
 
-export const FinalGrade = () => {
+export const FinalGrade = ({ currentGrade }: FinalGradeProps) => {
     const [block, element] = bem('final-grade');
+
+    console.log(currentGrade);
 
     return (
         <div className={block()}>
@@ -18,11 +21,15 @@ export const FinalGrade = () => {
                     {GRADES.map((system) => (
                         <StarIcon
                             key={system.grade}
-                            className={element('system-icon')}
+                            className={element('system-icon', {
+                                active: currentGrade && system.grade <= currentGrade,
+                            })}
                         />
                     ))}
                 </span>
-                <span>{<LockIcon className={element('lock-icon')} />}</span>
+                {!currentGrade && (
+                    <span>{<LockIcon className={element('lock-icon')} />}</span>
+                )}
             </div>
         </div>
     );
