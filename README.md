@@ -1,5 +1,11 @@
 # How to run it?
 
+## docker 
+```shell
+docker compose up -d --build
+```
+
+## npm
 ```shell
 npm install
 npm start

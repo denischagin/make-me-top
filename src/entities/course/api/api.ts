@@ -99,9 +99,9 @@ export const courseApi = baseApi.injectEndpoints({
             },
         }),
 
-        startEducationOnCourse: builder.mutation<void, number>({
+        startEducationOnCourse: builder.mutation<number, number>({
             query: (courseId) => ({
-                url: `course-registration-app/courses/${courseId}/`,
+                url: `course-registration-app/courses/${courseId}/groups/`,
                 method: 'POST',
             }),
             invalidatesTags: ['getKeeperProfile'],
