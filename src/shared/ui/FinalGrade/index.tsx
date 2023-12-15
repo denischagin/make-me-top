@@ -11,8 +11,6 @@ import { FinalGradeProps } from '@shared/ui/FinalGrade/interface';
 export const FinalGrade = ({ currentGrade }: FinalGradeProps) => {
     const [block, element] = bem('final-grade');
 
-    console.log(currentGrade);
-
     return (
         <div className={block()}>
             <span className={element('text')}>Итоговая оценка</span>

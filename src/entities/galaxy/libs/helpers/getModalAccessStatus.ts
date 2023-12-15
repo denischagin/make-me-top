@@ -1,4 +1,4 @@
-import { ModalAccessStatus } from "@shared/ui/CircleModal/interfaces";
+import { ModalAccessStatus } from '@shared/ui/CircleModal/interfaces';
 
 export interface GetModalAccessStatusAgs {
     systemIsOpen?: boolean;
@@ -8,6 +8,7 @@ export interface GetModalAccessStatusAgs {
     isSystemAlreadyDone?: boolean;
     isSystemNeedParents?: boolean;
     isCurrentRequestExists?: boolean;
+    fromGalaxy?: boolean
 }
 
 export const getModalAccessStatus = ({
@@ -16,7 +17,10 @@ export const getModalAccessStatus = ({
     isSystemAlreadyDone,
     isSystemNeedParents,
     isCurrentRequestExists,
+    fromGalaxy
 }: GetModalAccessStatusAgs): ModalAccessStatus => {
+    if (!fromGalaxy) return ModalAccessStatus.opened
+
     if (isSystemNeedParents) return ModalAccessStatus.closed_needSystems;
 
     if (isSystemAlreadyDone) return ModalAccessStatus.studied_systemAlreadyDone;

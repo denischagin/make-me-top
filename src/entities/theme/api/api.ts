@@ -1,6 +1,6 @@
 import { baseApi } from '@shared/api/baseApi';
 import {
-    GetExplorersWaitingThemeMarkResponse,
+    GetExplorersWaitingThemeMarkResponse, GetExplorerThemesMarksResponse,
     GetThemeByThemeIdResponse,
     GetThemesWaitingExplorersMark,
 } from '@entities/theme';
@@ -41,6 +41,11 @@ export const themeApi = baseApi.injectEndpoints({
                 withOutToasts: true,
             },
         }),
+        getExplorerThemesMarks: builder.query<GetExplorerThemesMarksResponse, number | string>({
+            query: (courseId) => ({
+                url: `progress-app/courses/${courseId}/themes/marks/`,
+            }),
+        }),
     }),
 });
 
@@ -49,4 +54,5 @@ export const {
     useGetExplorersWaitingThemeMarkQuery,
     useSendThemeMarkMutation,
     useGetThemesWaitingExplorersMarkQuery,
+    useGetExplorerThemesMarksQuery,
 } = themeApi;

@@ -4,15 +4,17 @@ import { ReactComponent as LockIcon } from '@shared/images/lock-white.svg';
 import './styles.scss';
 import { Typography } from '@shared/ui/Typography';
 import { typographyColor, typographyVariant } from '@shared/ui/Typography/interfaces';
+import { Badge } from '@shared/ui/Badge';
+import { badgeColor } from '@shared/ui/Badge/interfaces';
 
 export const PlanetListTabs = (props: PlanetListTabsProps) => {
     const {
         selectedPlanetId,
         educationPlanetId,
-        status,
         onPlanetClick,
         themes,
         themesWaitingExplorersMark,
+        themesMarks,
     } = props;
 
     const [block, element] = bem('planet-list-tabs');
@@ -42,7 +44,12 @@ export const PlanetListTabs = (props: PlanetListTabsProps) => {
 
                         <div>
                             {getIsLocked(planet.courseThemeNumber) &&
-                                <LockIcon className={element('lock-icon')} />}
+                                <LockIcon className={element('lock-icon')} />
+                            }
+
+                            {themesMarks && themesMarks[planet.courseThemeId] && (
+                                <Badge color={badgeColor.primary500}>{themesMarks[planet.courseThemeId]}</Badge>
+                            )}
                         </div>
 
                     </div>

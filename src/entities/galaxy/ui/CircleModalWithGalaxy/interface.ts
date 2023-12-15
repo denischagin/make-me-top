@@ -8,4 +8,5 @@ export interface CircleModalWithGalaxyProps {
     currentSystemId?: number | null;
     galaxyId?: number | null;
     userProgress?: UserProgressInGalaxy
+    fromGalaxy?: boolean
 }

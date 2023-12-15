@@ -8,7 +8,7 @@ import { skipToken } from '@reduxjs/toolkit/query';
 import { useAuth } from '@entities/viewer';
 import { mappingListPlanetToListTheme } from '@entities/course/model/mappings';
 import { useMemo } from 'react';
-import { useGetThemesWaitingExplorersMarkQuery } from '@entities/theme';
+import { useGetExplorerThemesMarksQuery, useGetThemesWaitingExplorersMarkQuery } from '@entities/theme';
 
 export const ThemeTabs = () => {
     const { courseId, themeId } = useParams();
@@ -24,6 +24,11 @@ export const ThemeTabs = () => {
         data: planets,
     } = useGetPlanetsBySystemIdQuery(courseId!, {
         skip: role !== 'KEEPER' || !courseId,
+    });
+    const {
+        data: themesMarks,
+    } = useGetExplorerThemesMarksQuery(courseId!, {
+        skip: role !== 'EXPLORER' || !courseId,
     });
 
     const handlePlanetClick = (planetId: number) =>
@@ -41,6 +46,7 @@ export const ThemeTabs = () => {
             selectedPlanetId={Number(themeId)}
             educationPlanetId={isCompletedCurrentSystem ? undefined : currentThemeId}
             themesWaitingExplorersMark={themesWaitingExplorersMark}
+            themesMarks={themesMarks}
         />
     );
 };

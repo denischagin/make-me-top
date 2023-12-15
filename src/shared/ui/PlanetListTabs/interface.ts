@@ -9,6 +9,7 @@ export interface PlanetListTabsProps {
     status?: PlanetListTabsStatus;
     onPlanetClick?: (planetId: number) => void;
     themesWaitingExplorersMark?: number[];
+    themesMarks?: Record<string, number>;
 }
 
 export enum PlanetListTabsStatus {

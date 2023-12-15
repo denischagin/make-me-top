@@ -33,6 +33,7 @@ const CircleModalWithGalaxy =
          isOpen,
          currentSystemId,
          userProgress,
+         fromGalaxy = false,
      }: CircleModalWithGalaxyProps) => {
         const [block, element] = bem('circle-modal-galaxy');
         const { role } = useAuth();
@@ -71,6 +72,7 @@ const CircleModalWithGalaxy =
             system,
             userProgress,
             isCurrentRequestExists,
+            fromGalaxy,
         });
 
         const currentPlanetId = useMemo(
@@ -127,6 +129,7 @@ const CircleModalWithGalaxy =
                         dependencies={dependencySystemListWithParent}
                         handleChangeSystem={handleChangeSystem}
                         onClickShow={() => navigate(getUrlThemeByCourseId({ courseId: currentSystemId! }))}
+                        fromGalaxy={fromGalaxy}
                     />
                 )}
                 <MmtTabs
@@ -139,7 +142,7 @@ const CircleModalWithGalaxy =
                             planets={planets}
                             currentPlanetId={currentPlanetId}
                             currentCourseId={currentSystemId!}
-                            allPlanetsLocked={modalAccessStatus !== ModalAccessStatus.opened && modalAccessStatus !== ModalAccessStatus.studied_systemAlreadyDone}
+                            allPlanetsLocked={fromGalaxy ? modalAccessStatus !== ModalAccessStatus.opened && modalAccessStatus !== ModalAccessStatus.studied_systemAlreadyDone : false}
                             currentGrade={courseInfo?.mark}
                         />
                     </TabPanel>

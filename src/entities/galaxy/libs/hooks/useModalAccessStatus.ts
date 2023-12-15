@@ -15,6 +15,7 @@ export interface UseModalAccessStatusArgs {
     courseInfo?: CourseInfoResponse;
     system?: GetSystemsBySystemIdResponse;
     isCurrentRequestExists?: boolean;
+    fromGalaxy?: boolean
 }
 
 export interface UseModalAccessStatusReturn {
@@ -34,6 +35,7 @@ export const useModalAccessStatus = ({
     userProgress,
     system,
     isCurrentRequestExists,
+    fromGalaxy
 }: UseModalAccessStatusArgs): UseModalAccessStatusReturn => {
     const systemIsOpen = useMemo(
         () =>
@@ -99,6 +101,7 @@ export const useModalAccessStatus = ({
         isSystemAlreadyDone,
         isSystemNeedParents: (dependencySystemListWithParent?.length ?? 0) > 0,
         isCurrentRequestExists,
+        fromGalaxy
     });
 
     return {
