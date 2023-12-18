@@ -12,7 +12,7 @@ const SystemProgress: React.FC<SystemProgressProps> = (props) => {
 
     const [block, element] = bem('system-progress');
 
-    const isProgress = !!percentageProgress;
+    const isProgress = percentageProgress !== undefined;
 
     return (
         <div className={block()}>

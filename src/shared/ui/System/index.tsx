@@ -30,7 +30,7 @@ const System = (props: SystemInterface) => {
                     color,
                 })}
             >
-                <SystemProgress percentageProgress={percentageProgress} />
+                <SystemProgress percentageProgress={percentageProgress}  />
                 {children}
                 <div className={element('orbit', className)}>
                     <OrbitIcon
