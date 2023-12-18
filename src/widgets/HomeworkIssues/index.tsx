@@ -1,20 +1,18 @@
 import { bem } from '@shared/utils/helpers/bem';
 import { Typography } from '@shared/ui/Typography';
-import { typographyColor, typographyVariant } from '@shared/ui/Typography/interfaces';
+import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { Button } from '@shared/ui/Button';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { transformHomeworkResponse } from '@entities/homework';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Fragment, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import './styles.scss';
-import { useExplorerCourseProgress } from '@entities/course';
 import { useGetHomeworksQuery } from '@entities/homework/api/api';
 import { skipToken } from '@reduxjs/toolkit/query';
 import { getUrlHomework } from '@shared/constants/links';
-import { Badge } from '@shared/ui/Badge';
-import { badgeColor } from '@shared/ui/Badge/interfaces';
 import { useGetExplorerThemesMarksQuery } from '@entities/theme';
 import { useAuth } from '@entities/viewer';
+import { ExplorerBadgeByRequestStatus } from '@entities/homework/ui/ExplorerBadgeByRequestStatus';
 
 export const HomeworkIssues = () => {
     const [block, element] = bem('homework-issues');
@@ -78,42 +76,13 @@ export const HomeworkIssues = () => {
                                 )}
 
 
-                                {themesMarks?.[themeId] && status?.status !== 'CLOSED' ? (
-                                    <div className={element('badge')}>
-                                        <Badge color={badgeColor.black}>
-                                            Вам не требуется выполнять это задание
-                                        </Badge>
-                                    </div>
-                                ) : (
-                                    <>
-                                        {status?.status === 'EDITING' && (
-                                            <div className={element('badge')}>
-                                                <Badge color={badgeColor.black}>
-                                                    Хранитель проверил задание
-                                                </Badge>
-                                            </div>
-                                        )}
-                                        {status?.status === 'CLOSED' && (
-                                            <div className={element('badge')}>
-                                                <Typography variant={typographyVariant.medium14}
-                                                            color={typographyColor.white}>
-                                                    Оценка:
-                                                </Typography>
-
-                                                <Badge color={badgeColor.primary500}>
-                                                    {mark?.mark}
-                                                </Badge>
-                                            </div>
-                                        )}
-                                        {!status && (
-                                            <div className={element('badge')}>
-                                                <Badge color={badgeColor.white}>
-                                                    Невыполненное задание
-                                                </Badge>
-                                            </div>
-                                        )}
-                                    </>
-                                )}
+                                <div className={element('badge')}>
+                                    <ExplorerBadgeByRequestStatus
+                                        mark={mark?.mark}
+                                        requestStatus={status?.status}
+                                        alreadyHaveMarkOnTheme={!!themesMarks?.[themeId]}
+                                    />
+                                </div>
                             </div>
 
 

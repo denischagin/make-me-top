@@ -5,6 +5,7 @@ import { CardWithExtraButton } from '@shared/ui/CardWithExtraButton';
 import { ApplicationRequestListProps } from '@widgets/ApplicationRequestList/interface';
 import { getUrlHomeworkWithRequestId } from '@shared/constants/links';
 import { CircleBadge } from '@shared/ui/CircleBadge';
+import './styles.scss';
 
 export const ApplicationRequestList = ({ requestList }: ApplicationRequestListProps) => {
     const [block, element] = bem('application-request-list');
