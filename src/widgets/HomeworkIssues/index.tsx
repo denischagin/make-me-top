@@ -13,15 +13,23 @@ import { skipToken } from '@reduxjs/toolkit/query';
 import { getUrlHomework } from '@shared/constants/links';
 import { Badge } from '@shared/ui/Badge';
 import { badgeColor } from '@shared/ui/Badge/interfaces';
+import { useGetExplorerThemesMarksQuery } from '@entities/theme';
+import { useAuth } from '@entities/viewer';
 
 export const HomeworkIssues = () => {
     const [block, element] = bem('homework-issues');
 
+    const { role } = useAuth();
     const { themeId, courseId } = useParams();
     const navigate = useNavigate();
 
     const { data: homeworkResponse } = useGetHomeworksQuery(themeId ? { themeId } : skipToken);
     const homeworks = transformHomeworkResponse(homeworkResponse, 'EXPLORER');
+    const {
+        data: themesMarks,
+    } = useGetExplorerThemesMarksQuery(courseId!, {
+        skip: role !== 'EXPLORER' || !courseId,
+    });
 
     const handleNavigateToHomeworkClick =
         (homeworkId: number): MouseEventHandler<HTMLButtonElement> =>
@@ -59,41 +67,53 @@ export const HomeworkIssues = () => {
                             </Typography>
 
                             <div className={element('bottom-panel')}>
-                                <Button
-                                    className={element('button-homework')}
-                                    title={'Перейти'}
-                                    size={buttonSize.small}
-                                    color={buttonColor.filled}
-                                    onClick={handleNavigateToHomeworkClick(homeworkId)}
-                                />
+                                {!(themesMarks?.[themeId] && status?.status !== 'CLOSED') && (
+                                    <Button
+                                        className={element('button-homework')}
+                                        title={'Перейти'}
+                                        size={buttonSize.small}
+                                        color={buttonColor.filled}
+                                        onClick={handleNavigateToHomeworkClick(homeworkId)}
+                                    />
+                                )}
 
 
-                                {status?.status === 'EDITING' && (
+                                {themesMarks?.[themeId] && status?.status !== 'CLOSED' ? (
                                     <div className={element('badge')}>
                                         <Badge color={badgeColor.black}>
-                                            Хранитель проверил задание
+                                            Вам не требуется выполнять это задание
                                         </Badge>
                                     </div>
-                                )}
-                                {status?.status === 'CLOSED' && (
-                                    <div className={element('badge')}>
-                                        <Typography variant={typographyVariant.medium14} color={typographyColor.white}>
-                                            Оценка:
-                                        </Typography>
+                                ) : (
+                                    <>
+                                        {status?.status === 'EDITING' && (
+                                            <div className={element('badge')}>
+                                                <Badge color={badgeColor.black}>
+                                                    Хранитель проверил задание
+                                                </Badge>
+                                            </div>
+                                        )}
+                                        {status?.status === 'CLOSED' && (
+                                            <div className={element('badge')}>
+                                                <Typography variant={typographyVariant.medium14}
+                                                            color={typographyColor.white}>
+                                                    Оценка:
+                                                </Typography>
 
-                                        <Badge color={badgeColor.primary500}>
-                                            {mark?.mark}
-                                        </Badge>
-                                    </div>
+                                                <Badge color={badgeColor.primary500}>
+                                                    {mark?.mark}
+                                                </Badge>
+                                            </div>
+                                        )}
+                                        {!status && (
+                                            <div className={element('badge')}>
+                                                <Badge color={badgeColor.white}>
+                                                    Невыполненное задание
+                                                </Badge>
+                                            </div>
+                                        )}
+                                    </>
                                 )}
-                                {!status && (
-                                    <div className={element('badge')}>
-                                        <Badge color={badgeColor.white}>
-                                            Невыполненное задание
-                                        </Badge>
-                                    </div>
-                                )}
-
                             </div>
 
 
