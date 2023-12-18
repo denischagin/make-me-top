@@ -72,8 +72,12 @@ const ThemeCardPage = () => {
 
                                 {explorerCourseProgress?.mark && (
                                     <Typography className={element('mark')} variant={typographyVariant.medium16}>
-                                        Оценка за курс: <Badge
-                                        color={badgeColor.primary500}>{explorerCourseProgress?.mark}</Badge>
+                                        Оценка за курс:
+                                        <Badge
+                                            color={badgeColor.primary500}
+                                        >
+                                            {explorerCourseProgress?.mark}
+                                        </Badge>
                                     </Typography>
                                 )}
                             </div>

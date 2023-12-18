@@ -13,6 +13,7 @@ import { getUrlHomework } from '@shared/constants/links';
 import { useGetExplorerThemesMarksQuery } from '@entities/theme';
 import { useAuth } from '@entities/viewer';
 import { ExplorerBadgeByRequestStatus } from '@entities/homework/ui/ExplorerBadgeByRequestStatus';
+import { HomeworkIssue } from '@entities/homework/ui/HomeworkIssue';
 
 export const HomeworkIssues = () => {
     const [block, element] = bem('homework-issues');
@@ -47,46 +48,13 @@ export const HomeworkIssues = () => {
                 </Typography>
 
                 {homeworks.length !== 0 ?
-                    homeworks.map(({
-                                       homeworkId,
-                                       content,
-                                       status,
-                                       mark,
-                                       title,
-                                   }, index) => (
-                        <div className={element('item')} key={homeworkId}>
-                            <Typography className={element('content')} variant={typographyVariant.h3}>
-                                {index + 1}. {title.length > 100 ? title.slice(0, 100) + '...' : title}
-                            </Typography>
-
-
-                            <Typography className={element('content')} variant={typographyVariant.regular16} parseLink>
-                                {content.length > 300 ? content.slice(0, 300) + '...' : content}
-                            </Typography>
-
-                            <div className={element('bottom-panel')}>
-                                {!(themesMarks?.[themeId] && status?.status !== 'CLOSED') && (
-                                    <Button
-                                        className={element('button-homework')}
-                                        title={'Перейти'}
-                                        size={buttonSize.small}
-                                        color={buttonColor.filled}
-                                        onClick={handleNavigateToHomeworkClick(homeworkId)}
-                                    />
-                                )}
-
-
-                                <div className={element('badge')}>
-                                    <ExplorerBadgeByRequestStatus
-                                        mark={mark?.mark}
-                                        requestStatus={status?.status}
-                                        alreadyHaveMarkOnTheme={!!themesMarks?.[themeId]}
-                                    />
-                                </div>
-                            </div>
-
-
-                        </div>
+                    homeworks.map((homework, index) => (
+                        <HomeworkIssue
+                            key={homework.homeworkId}
+                            {...homework}
+                            homeworkIndex={index}
+                            onHomeworkClick={handleNavigateToHomeworkClick(homework.homeworkId)}
+                        />
                     )) : (
                         <Typography variant={typographyVariant.regular16}>
                             Домашних заданий пока нет

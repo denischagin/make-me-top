@@ -37,7 +37,9 @@ export const ApprovedEducationApplicationsGroup = ({
     };
 
     useStatus(() => {
-        toast('Обучение успешно началось');
+        toast('Обучение успешно началось', {
+            icon: '🤩',
+        });
         setIsOpenConfirm(false);
     }, isSuccessStartEducation);
 
