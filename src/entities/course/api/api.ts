@@ -1,8 +1,12 @@
 import {
-    CourseInfoResponse, CourseResponse,
-    CurrentCourseRequestInterface, GetExplorerProgressResponseInterface, GetKeeperCurrentGroupInterface,
+    CourseInfoResponse,
+    CourseResponse,
+    CurrentCourseRequestInterface,
+    GetExplorerProgressResponseInterface,
+    GetKeeperCurrentGroupInterface,
+    GetKeeperRejectionReasons,
     RequestCourseBodyInterface,
-    RequestCourseParamsInterface,
+    AcceptCourseParamsInterface, RejectCourseParamsInterface,
 } from '@entities/course/model/types/api';
 import { baseApi } from '@shared/api/baseApi';
 import { ErrorInterface, PostCourseRequest } from '@shared/types/common';
@@ -12,28 +16,25 @@ export const courseApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         acceptCourseRequest: builder.mutation<
             ErrorInterface,
-            RequestCourseParamsInterface
+            AcceptCourseParamsInterface
         >({
             query: ({ requestId }) => ({
                 url: `course-registration-app/course-requests/${requestId}`,
                 method: 'PATCH',
-                body: {
-                    approved: true,
-                } as RequestCourseBodyInterface,
             }),
             invalidatesTags: ['getExplorerCardInfo', 'getKeeperProfile'],
         }),
 
         rejectCourseRequest: builder.mutation<
             ErrorInterface,
-            RequestCourseParamsInterface
+            RejectCourseParamsInterface
         >({
-            query: ({ requestId }) => ({
-                url: `course-registration-app/course-requests/${requestId}`,
-                method: 'PATCH',
+            query: ({ requestId, reasonId }) => ({
+                url: `course-registration-app/course-requests/${requestId}/rejections/`,
+                method: 'POST',
                 body: {
-                    approved: false,
-                } as RequestCourseBodyInterface,
+                    reasonId,
+                },
             }),
 
             invalidatesTags: ['getExplorerCardInfo', 'getKeeperProfile'],
@@ -141,6 +142,20 @@ export const courseApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['getKeeperProfile'],
         }),
+
+
+        getKeeperRejectionReasons: builder.query<
+            GetKeeperRejectionReasons,
+            void
+        >({
+            query: () => `course-registration-app/course-requests/rejections/`,
+            providesTags: ['getKeeperRejectionReasons'],
+            extraOptions: {
+                withOutToasts: true,
+            },
+        }),
+
+
     }),
 });
 
@@ -157,4 +172,5 @@ export const {
     useGetKeeperCurrentGroupQuery,
     useGetCourseInfoByCourseIdQuery,
     useSendCourseMarkMutation,
+    useGetKeeperRejectionReasonsQuery,
 } = courseApi;

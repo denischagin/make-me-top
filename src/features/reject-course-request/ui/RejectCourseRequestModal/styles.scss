@@ -1,0 +1,16 @@
+.reject-course-request-modal {
+  &__rejections-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    row-gap: 16px;
+    margin-top: 10px;
+  }
+
+  &__rejections-item {
+    display: flex;
+    gap: 10px;
+    padding-left: 10px;
+    align-items: center;
+  }
+}

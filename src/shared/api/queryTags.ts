@@ -24,4 +24,5 @@ export const queryTags = {
 
     getExplorersWaitingThemeMark: 'getExplorersWaitingThemeMark',
     getThemesWaitingExplorersMark: 'getThemesWaitingExplorersMark',
+    getKeeperRejectionReasons: 'getKeeperRejectionReasons',
 } as const;

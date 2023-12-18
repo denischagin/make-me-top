@@ -1,8 +1,13 @@
 export interface RejectCoursePayloadInterface {
 }
 
-export interface RequestCourseParamsInterface {
+export interface AcceptCourseParamsInterface {
     requestId: number;
+}
+
+export interface RejectCourseParamsInterface {
+    requestId: number;
+    reasonId: number;
 }
 
 export interface RequestCourseBodyInterface {
@@ -19,7 +24,7 @@ export interface CourseInfoResponse {
     yourKeeper?: CourseKeeper;
     explorers: Array<CourseExplorer> | null;
     keepers: Array<CourseKeeper> | null;
-    mark?: number
+    mark?: number;
 }
 
 export interface Course {
@@ -95,3 +100,10 @@ export interface ExplorerProgressPlanetInterface {
     courseThemeNumber: number;
     completed: boolean;
 }
+
+export interface RejectionReasonInterface {
+    reasonId: number;
+    name: string;
+}
+
+export type GetKeeperRejectionReasons = RejectionReasonInterface[]
