@@ -1,5 +1,5 @@
 import { CardGroupDetails } from '@shared/ui/CardGroupDetails';
-import { MouseEventHandler, useMemo, useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
 import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
@@ -13,8 +13,9 @@ import './styles.scss';
 import { Avatar } from '@shared/ui/Avatar';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import { useNavigate } from 'react-router-dom';
-import { getUrlExplorerById, getUrlThemeByCourseId, getUrlThemeByCourseIdAndThemeId } from '@shared/constants/links';
+import { getUrlExplorerById, getUrlThemeByCourseId } from '@shared/constants/links';
 import { RouterLink } from '@shared/ui/RouterLink';
+import { ExpelButton } from '@features/expel';
 
 export const CurrentEducationGroup = () => {
     const [block, element] = bem('current-education-group');
@@ -39,12 +40,6 @@ export const CurrentEducationGroup = () => {
 
     return (
         <>
-            {/*<ModalSendHomework*/}
-            {/*	isOpen={isOpenSendHomeworkModal}*/}
-            {/*	onClose={() => setIsOpenSendHomeworkModal(false)}*/}
-            {/*	options={planetsListToSelect}*/}
-            {/*/>*/}
-
             <div className={block()}>
                 <Typography className={'mb-4'} variant={typographyVariant.h2}>
                     Текущая группа
@@ -91,6 +86,8 @@ export const CurrentEducationGroup = () => {
                                         </Typography>
 
                                         <div className={element('profile-button')}>
+                                            <ExpelButton explorerId={explorer.explorerId} />
+
                                             <RouterLink
                                                 to={getUrlExplorerById(explorer.personId.toString())}>
                                                 <Button

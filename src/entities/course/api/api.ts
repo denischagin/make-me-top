@@ -45,7 +45,7 @@ export const courseApi = baseApi.injectEndpoints({
                 url: `person-app/explorers/${explorerId}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['getExplorerProfile', 'getExplorerCardInfo'],
+            invalidatesTags: ['getExplorerProfile', 'getExplorerCardInfo', 'getKeeperProfile'],
         }),
 
         closeCourseRequest: builder.mutation<ErrorInterface, number>({
