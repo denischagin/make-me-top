@@ -15,7 +15,7 @@ export const ExpelButton = ({ explorerId }: ExpelButtonProps) => {
     };
 
     useStatus(() => {
-        toast('Вы потеряли бойца', {
+        toast('Вы потеряли члена экипажа', {
             icon: '😔',
         });
     }, isSuccess);

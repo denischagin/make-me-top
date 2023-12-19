@@ -24,7 +24,8 @@ export const KeepersListTab = ({
             {!!courseInfo?.yourKeeper && (
                 <>
                     <CurrentUserItem
-                        keeper={courseInfo.yourKeeper}
+                        {...courseInfo.yourKeeper}
+                        role='KEEPER'
                         badgeTitle='Мой хранитель'
                     />
                     <DividingLine color={DividingLineColor.gray500} />

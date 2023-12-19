@@ -15,41 +15,51 @@ import {
 } from '@shared/ui/Rating/interfaces';
 
 import './styles.scss';
+import { RouterLink } from '@shared/ui/RouterLink';
+import { roles } from '@shared/constants/storageKeys';
+import { getUrlExplorerById, getUrlKeeperById } from '@shared/constants/links';
+import { NavLink } from 'react-router-dom';
 
 export const CurrentUserItem = (props: CurrentUserItemInterface) => {
     const {
         badgeTitle,
-        keeper,
-        explorer,
+        personId,
+        role,
+        ...person
     } = props;
 
     const [block, element] = bem('current-user');
 
-    const keeperOrExplorer = keeper || explorer;
+    const linkByRole: Record<roles, string> = {
+        EXPLORER: getUrlExplorerById(personId.toString()),
+        KEEPER: getUrlKeeperById(personId.toString()),
+    };
 
     return (
-        <div className={block()}>
-            <div className={element('item')}>
-                <div className={element('user')}>
-                    <Avatar size={avatarSize.small} />
-                    <span className={element('my-name')}>
-                        {getUserFullName(keeperOrExplorer)}
-                    </span>
-                </div>
-                <div className={element('info')}>
+        <NavLink to={linkByRole[role]}>
+            <div className={block()}>
+                <div className={element('item')}>
+                    <div className={element('user')}>
+                        <Avatar size={avatarSize.small} />
+                        <span className={element('my-name')}>
+                             {getUserFullName(person)}
+                        </span>
+                    </div>
+                    <div className={element('info')}>
                     <span className={element('badge')}>
                         <Badge color={badgeColor.primary500}>
                             {badgeTitle}
                         </Badge>
                     </span>
-                    <Rating
-                        systemColor={ratingSystemColor.primary500}
-                        size={ratingSize.medium}
-                        scoreColor={ratingScoreColor.black}
-                        rating={keeperOrExplorer?.rating}
-                    />
+                        <Rating
+                            systemColor={ratingSystemColor.primary500}
+                            size={ratingSize.medium}
+                            scoreColor={ratingScoreColor.black}
+                            rating={person?.rating}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
+        </NavLink>
     );
 };

@@ -68,15 +68,14 @@ export const ExplorerApplicationCard = () => {
                                 className={element('planet')}
                                 variant={typographyVariant.h2}
                             >
-                                Система: {studyRequestOrCurrentSystem?.courseId}
-                                . {studyRequestOrCurrentSystem?.courseTitle}
+                                Система: {studyRequestOrCurrentSystem?.courseTitle}
                             </Typography>
                             <Typography
                                 className={element('system')}
                                 variant={typographyVariant.regular14}
                             >
                                 {!!currentSystem
-                                    ? `Система: ${currentSystem.courseThemeTitle}`
+                                    ? `Планета: ${currentSystem.courseThemeTitle}`
                                     : `Галактика: ${studyRequest?.galaxyName}`}
                             </Typography>
                         </div>

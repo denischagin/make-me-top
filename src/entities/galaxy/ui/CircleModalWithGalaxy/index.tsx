@@ -142,7 +142,7 @@ const CircleModalWithGalaxy =
                             planets={planets}
                             currentPlanetId={currentPlanetId}
                             currentCourseId={currentSystemId!}
-                            allPlanetsLocked={fromGalaxy ? modalAccessStatus !== ModalAccessStatus.opened && modalAccessStatus !== ModalAccessStatus.studied_systemAlreadyDone : false}
+                            allPlanetsLocked={fromGalaxy ? modalAccessStatus !== ModalAccessStatus.opened && modalAccessStatus !== ModalAccessStatus.studied_systemAlreadyDone || canYouSendCourseRequest : false}
                             currentGrade={courseInfo?.mark}
                         />
                     </TabPanel>

@@ -1,7 +1,11 @@
-import { CourseExplorer, CourseKeeper } from "@entities/course";
+import { roles } from '@shared/constants/storageKeys';
 
 export interface CurrentUserItemInterface {
-    keeper?: CourseKeeper;
-    explorer?: CourseExplorer
+    personId: number;
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+    rating: number;
+    role: roles;
     badgeTitle: string;
 }

@@ -18,7 +18,8 @@ export const ExplorersListTab = ({ courseInfo }: ExplorersListTabProps) => {
             {!!courseInfo?.you && (
                 <>
                     <CurrentUserItem
-                        explorer={courseInfo.you}
+                        {...courseInfo.you}
+                        role='EXPLORER'
                         badgeTitle='Мой рейтинг'
                     />
                     <DividingLine color={DividingLineColor.gray500} />
@@ -30,7 +31,7 @@ export const ExplorersListTab = ({ courseInfo }: ExplorersListTabProps) => {
                 <Typography
                     variant={typographyVariant.medium16}
                     color={typographyColor.black}
-                    className={element("empty-text")}
+                    className={element('empty-text')}
                 >
                     У данного курса нет исследователей
                 </Typography>
