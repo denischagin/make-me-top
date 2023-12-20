@@ -16,7 +16,7 @@ export const HomeworkIssue = ({
                                   homeworkIndex,
                                   onHomeworkClick,
                               }: HomeworkIssueProps) => {
-    const [block, element] = bem('homework-issue');
+    const [block, element] = bem('homework-issues');
     const { slicedText: titleSliced } = useShowAllText({
         text: title,
         initTextLength: 100,

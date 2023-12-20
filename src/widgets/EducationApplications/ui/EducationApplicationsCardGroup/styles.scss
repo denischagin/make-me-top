@@ -1,0 +1,9 @@
+.education-applications-card-group {
+  &__summary {
+    display: flex;
+  }
+
+  &__summary-text {
+    flex-grow: 1;
+  }
+}

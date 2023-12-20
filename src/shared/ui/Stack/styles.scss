@@ -1,0 +1,28 @@
+.stack {
+  display: flex;
+
+  &--spacing-small {
+    gap: 5px;
+  }
+
+  &--spacing-medium {
+    gap: 10px;
+  }
+
+  &--spacing-large {
+    gap: 15px;
+  }
+
+  &--spacing-largest {
+    gap: 20px;
+  }
+
+
+  &--direction-horizontal {
+    flex-direction: row;
+  }
+
+  &--direction-vertical {
+    flex-direction: column;
+  }
+}

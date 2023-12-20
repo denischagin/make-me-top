@@ -1,0 +1,14 @@
+.card-details-content {
+  margin-top: 6px;
+  animation: cardDetailsContentEntry 400ms forwards ease;
+}
+
+@keyframes cardDetailsContentEntry {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

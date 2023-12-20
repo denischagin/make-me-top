@@ -1,6 +1,5 @@
-import { CardGroupDetails } from '@shared/ui/CardGroupDetails';
 import { bem } from '@shared/utils/helpers/bem';
-import { MouseEvent, MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import { ApprovedEducationApplicationsGroupProps } from './interface';
 import './styles.scss';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
@@ -13,6 +12,8 @@ import {
 import { useStartEducationOnCourseMutation } from '@entities/course';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import toast from 'react-hot-toast';
+import { CardDetails, CardDetailsContent, CardDetailsSummary } from '@shared/ui/CardDetails';
+import { Stack } from '@shared/ui/Stack';
 
 
 export const ApprovedEducationApplicationsGroup = ({
@@ -20,7 +21,6 @@ export const ApprovedEducationApplicationsGroup = ({
                                                        canStartEducation = true,
                                                    }: ApprovedEducationApplicationsGroupProps) => {
     const [block, element] = bem('approved-education-application-group');
-    const [active, setActive] = useState(false);
     const [isOpenConfirm, setIsOpenConfirm] = useState(false);
     const { data: userInfo } = useGetKeeperProfileQuery();
     const [startEducation, {
@@ -65,23 +65,27 @@ export const ApprovedEducationApplicationsGroup = ({
             />
 
             <div className={block()}>
-                <CardGroupDetails
-                    active={active}
-                    setActive={setActive}
-                    summary={
-                        <ApprovedEducationApplicationsGroupSummary
-                            courseTitle={course.courseTitle}
-                            courseRequestsCount={course.requests.length}
-                            onStartEducation={handleClickStartEducation}
-                            active={active}
-                            canStartEducation={canStartEducation}
-                        />
-                    }
-                    content={
-                        course.requests.map((request, index) => (
-                            <RequestRatingCard key={request.requestId} {...request} />
-                        ))
-                    }
+                <CardDetails
+                    renderSummary={({ isActive, handleToggle }) => (
+                        <CardDetailsSummary isActive={isActive} onClick={handleToggle}>
+                            <ApprovedEducationApplicationsGroupSummary
+                                courseTitle={course.courseTitle}
+                                courseRequestsCount={course.requests.length}
+                                onStartEducation={handleClickStartEducation}
+                                canStartEducation={canStartEducation}
+                                isActive={isActive}
+                            />
+                        </CardDetailsSummary>
+                    )}
+                    renderContent={({ isActive }) => (
+                        <CardDetailsContent isActive={isActive}>
+                            <Stack>
+                                {course.requests.map((request, index) => (
+                                    <RequestRatingCard key={request.requestId} {...request} />
+                                ))}
+                            </Stack>
+                        </CardDetailsContent>
+                    )}
                 />
             </div>
 

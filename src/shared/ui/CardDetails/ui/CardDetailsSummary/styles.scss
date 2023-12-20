@@ -1,0 +1,15 @@
+@import "@app/styles/variables";
+
+.card-details-summary {
+  & .card {
+    width: 100%;
+    border: 1px solid transparent;
+  }
+
+  &--active {
+    .card {
+      border-color: $white;
+    }
+  }
+
+}

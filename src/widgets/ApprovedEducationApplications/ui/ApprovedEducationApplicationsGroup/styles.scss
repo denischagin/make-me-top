@@ -1,10 +1,13 @@
 .approved-education-application-group {
   &__summary {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
     margin-right: 10px;
+  }
+
+  &__summary-text {
+    flex-grow: 1;
   }
 
   &:hover {

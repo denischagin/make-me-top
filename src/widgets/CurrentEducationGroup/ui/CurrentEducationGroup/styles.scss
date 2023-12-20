@@ -15,8 +15,11 @@
 
   &__summary {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+  }
+
+  &__summary-text-wrapper {
+    flex-grow: 1;
   }
 
   &__fullname {

@@ -6,6 +6,8 @@ import {
     ApprovedEducationApplicationsGroup,
 } from '@widgets/ApprovedEducationApplications/ui/ApprovedEducationApplicationsGroup';
 import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
+import { Stack } from '@shared/ui/Stack';
+import { stackSpacing } from '@shared/ui/Stack/interface';
 
 export const ApprovedEducationApplications = () => {
     const [, element] = bem('approved-education-applications');
@@ -16,7 +18,7 @@ export const ApprovedEducationApplications = () => {
     if (courses.length === 0) return null;
 
     return (
-        <div>
+        <Stack spacing={stackSpacing.large}>
             <Typography
                 variant={typographyVariant.h2}
             >
@@ -32,6 +34,6 @@ export const ApprovedEducationApplications = () => {
                     />
                 ))}
             </div>
-        </div>
+        </Stack>
     );
 };
