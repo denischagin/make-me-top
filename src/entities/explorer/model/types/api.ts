@@ -1,13 +1,20 @@
-import { ErrorInterface } from "@shared/types/common";
-import { ExplorerCardInfoInterface, ExplorerInfoInterface, ExplorersFilterInterface } from "./interfaces";
+import { ErrorInterface } from '@shared/types/common';
+import { ExplorerCardInfoInterface, ExplorerInfoInterface, ExplorersFilterInterface } from './interfaces';
 
 export interface ExplorerInfoResponseInterface
     extends ExplorerInfoInterface,
-        ErrorInterface {}
+        ErrorInterface {
+}
 
 export interface ExplorerFilterResponseInterface
     extends ExplorersFilterInterface,
-        ErrorInterface {}
+        ErrorInterface {
+}
+
+export type GetExplorersList = {
+    content: ExplorerFilterResponseInterface[]
+    totalPages: number
+}
 
 
 export interface ExplorerIdInterface {
@@ -16,4 +23,5 @@ export interface ExplorerIdInterface {
 
 export interface ExplorerCardInfoResponseInterface
     extends ExplorerCardInfoInterface,
-        ErrorInterface {}
+        ErrorInterface {
+}

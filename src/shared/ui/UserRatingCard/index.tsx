@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Avatar } from '@shared/ui/Avatar';
 import { Button } from '@shared/ui/Button';
 import { Card } from '@shared/ui/Card';
@@ -10,23 +10,19 @@ import { bem } from '@shared/utils/helpers/bem';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
-import {
-    ratingScoreColor,
-    ratingSize,
-    ratingSystemColor,
-} from '@shared/ui/Rating/interfaces';
+import { ratingScoreColor, ratingSize, ratingSystemColor } from '@shared/ui/Rating/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import { UserRatingCardProps } from './interface';
 
 import './style.scss';
 
-export const UserRatingCard = (props: UserRatingCardProps) => {
+export const UserRatingCard = forwardRef<HTMLDivElement, UserRatingCardProps>((props: UserRatingCardProps, ref) => {
     const { fullname, index, rating, title, className, ...restProps } = props;
     const [block, element] = bem('user-rating');
 
     return (
-        <div className={block(undefined, className)} {...restProps}>
+        <div className={block(undefined, className)} {...restProps} ref={ref}>
             <Card size={cardSize.large} glow>
                 {index !== undefined && (
                     <Typography variant={typographyVariant.h1}>
@@ -65,4 +61,4 @@ export const UserRatingCard = (props: UserRatingCardProps) => {
             </Card>
         </div>
     );
-};
+});

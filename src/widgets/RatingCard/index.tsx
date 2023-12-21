@@ -1,7 +1,5 @@
-import { useState } from 'react';
 import { Card } from '@shared/ui/Card';
 import { DividingLine } from '@shared/ui/DividingLine';
-import { ShowMoreElemenetsButton } from '@shared/ui/ShowMoreElemenetsButton';
 import { Typography } from '@shared/ui/Typography';
 import { UsersRating } from '@shared/ui/UsersRating';
 
@@ -14,15 +12,15 @@ import { cardSize } from '@shared/ui/Card/interfaces';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
-import { DEFAULT_LIMIT_ITEM } from './model';
-
 import './styles.scss';
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
+import { Button } from '@shared/ui/Button';
+import { NavLink } from 'react-router-dom';
+import { URL_EXPLORERS } from '@shared/constants/links';
 
 export const RatingCard = () => {
     const [block, element] = bem('rating-card');
-    const [limitElements, setElementsLimit] =
-        useState<number>(DEFAULT_LIMIT_ITEM);
+    const limitElements = 9;
 
     const { data: userInfo, isSuccess } = useGetExplorerProfileQuery();
 
@@ -59,13 +57,10 @@ export const RatingCard = () => {
                             rating={user.rating}
                         />
                     ))}
-                <ShowMoreElemenetsButton
-                    setElementsLimit={setElementsLimit}
-                    elementsLength={ratingTable.length}
-                    defaultElementsLimit={DEFAULT_LIMIT_ITEM}
-                    currentElementsLimit={limitElements}
-                    buttonSize={buttonSize.large}
-                />
+
+                <NavLink to={URL_EXPLORERS}>
+                    <Button title={'Показать ещё'} size={buttonSize.large} />
+                </NavLink>
             </div>
         </Card>
     );

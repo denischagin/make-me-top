@@ -1,5 +1,6 @@
 import { queryTags } from '@shared/api/queryTags';
 import {
+    GetAllKeepersList,
     KeeperCardInfoResponseInterface,
     KeeperFilterResponseInterface,
     KeeperProfileResponseInterface,
@@ -23,19 +24,19 @@ export const keeperApi = baseApi.injectEndpoints({
             providesTags: (result) =>
                 result
                     ? [
-                          {
-                              type: getKeeperCabinet,
-                              id: result.person.personId,
-                          },
-                          getKeeperCabinet,
-                      ]
+                        {
+                            type: getKeeperCabinet,
+                            id: result.person.personId,
+                        },
+                        getKeeperCabinet,
+                    ]
                     : [getKeeperCabinet],
         }),
 
-        getAllKeepers: builder.query<KeeperFilterResponseInterface[], void>({
-            query: () => ({
+        getAllKeepers: builder.query<GetAllKeepersList, { page: number, size: number }>({
+            query: ({ page, size }) => ({
                 url: `person-app/people`,
-                params: { as: 'keeper' },
+                params: { as: 'keeper', page, size },
             }),
             providesTags: [getAllKeepers],
         }),
@@ -52,8 +53,8 @@ export const keeperApi = baseApi.injectEndpoints({
             }),
             providesTags: [getKeeperCardInfo],
         }),
-        
-        
+
+
     }),
 });
 

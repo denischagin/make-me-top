@@ -1,8 +1,8 @@
 import { queryTags } from '@shared/api/queryTags';
 import {
     ExplorerCardInfoResponseInterface,
-    ExplorerFilterResponseInterface,
     ExplorerInfoResponseInterface,
+    GetExplorersList,
 } from '../model/types/api';
 import { baseApi } from '@shared/api/baseApi';
 
@@ -17,11 +17,11 @@ export const explorerApi = baseApi.injectEndpoints({
             providesTags: [queryTags.getExplorerProfile],
         }),
 
-        getAllExplorers: builder.query<ExplorerFilterResponseInterface[], void>(
+        getAllExplorers: builder.query<GetExplorersList, { page: number, size: number }>(
             {
-                query: () => ({
+                query: ({ page, size }) => ({
                     url: `person-app/people`,
-                    params: { as: 'explorer' },
+                    params: { as: 'explorer', page, size },
                 }),
                 providesTags: [queryTags.getAllExplorers],
             },
