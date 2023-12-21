@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { GalaxyForGetAll } from '@entities/galaxy/model/types';
+import { GalaxyBaseInfo } from '@entities/galaxy/model/types';
 
 import { CurrentGalaxyInterface } from './interface';
+import { useSearchParams } from 'react-router-dom';
+import { searchParamKeys } from '@shared/constants';
 
 export interface ReturnUseCurrentGalaxy {
     currentGalaxy: CurrentGalaxyInterface | null;
+    currentGalaxyIndex: number | null;
     circleNextGalaxyName: string;
     circlePrevGalaxyName: string;
     handlePrevGalaxy: () => void;
@@ -13,56 +16,65 @@ export interface ReturnUseCurrentGalaxy {
 }
 
 export const useCurrentGalaxy = (
-    galaxies: GalaxyForGetAll[],
+    galaxies: GalaxyBaseInfo[] = [],
 ): ReturnUseCurrentGalaxy => {
-    const [currentGalaxy, setCurrentGalaxy] =
-        useState<CurrentGalaxyInterface | null>(null);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const [currentGalaxyIndex, setCurrentGalaxyIndex] = useState<number | null>(null);
+
+    const handleSwitchCurrentGalaxy = (index: number) => {
+        setCurrentGalaxyIndex(index);
+        setSearchParams({ [searchParamKeys.galaxyId]: galaxies[index].galaxyId.toString() });
+    };
+
 
     useEffect(() => {
-        if (galaxies.length > 0 && currentGalaxy === null) {
-            setCurrentGalaxy({
-                ...galaxies[0],
-                index: 0,
-            });
+        const currentGalaxyId = searchParams.get(searchParamKeys.galaxyId);
+        if (currentGalaxyId) {
+            const galaxyIndex = galaxies.findIndex((galaxy) => galaxy.galaxyId === Number(currentGalaxyId));
+            if (galaxies.length !== 0 && galaxyIndex === -1) {
+                return handleSwitchCurrentGalaxy(0);
+            }
+            if (galaxies.length === 0) {
+                setCurrentGalaxyIndex(null);
+            }
+            return setCurrentGalaxyIndex(galaxyIndex);
         }
-    }, [galaxies, currentGalaxy]);
 
-    const isFirstGalaxy = currentGalaxy?.index === 0;
+        if (galaxies.length > 0 && currentGalaxyIndex === null) {
+            handleSwitchCurrentGalaxy(0);
+        }
+    }, [galaxies, currentGalaxyIndex]);
 
-    const isLastGalaxy = currentGalaxy?.index === galaxies.length - 1;
+    const isFirstGalaxy = currentGalaxyIndex === 0;
+
+    const isLastGalaxy = currentGalaxyIndex === galaxies.length - 1;
 
     const lastGalaxy = galaxies[galaxies.length - 1];
 
     const firstGalaxy = galaxies[0];
 
     const prevGalaxyIndex =
-        (Number(currentGalaxy?.index) + galaxies.length - 1) % galaxies.length;
+        (Number(currentGalaxyIndex) + galaxies.length - 1) % galaxies.length;
 
     const nextGalaxyIndex =
-        (Number(currentGalaxy?.index) + 1) % galaxies.length;
+        (Number(currentGalaxyIndex) + 1) % galaxies.length;
 
-    const prevGalaxy = currentGalaxy
-        ? galaxies[currentGalaxy.index - 1]
+    const prevGalaxy = currentGalaxyIndex
+        ? galaxies[currentGalaxyIndex - 1]
         : galaxies[0];
 
-    const nextGalaxy = currentGalaxy
-        ? galaxies[currentGalaxy.index + 1]
+    const nextGalaxy = currentGalaxyIndex
+        ? galaxies[currentGalaxyIndex + 1]
         : galaxies[0];
 
     const circlePrevGalaxyName = isFirstGalaxy
-        ? lastGalaxy.galaxyName
+        ? lastGalaxy?.galaxyName
         : prevGalaxy?.galaxyName;
 
     const circleNextGalaxyName = isLastGalaxy
-        ? firstGalaxy.galaxyName
+        ? firstGalaxy?.galaxyName
         : nextGalaxy?.galaxyName;
-
-    const handleSwitchCurrentGalaxy = (index: number) => {
-        setCurrentGalaxy({
-            ...galaxies[index],
-            index,
-        });
-    };
 
     const handlePrevGalaxy = useCallback(
         () => handleSwitchCurrentGalaxy(prevGalaxyIndex),
@@ -75,7 +87,8 @@ export const useCurrentGalaxy = (
     );
 
     return {
-        currentGalaxy,
+        currentGalaxy: galaxies[currentGalaxyIndex ?? 0],
+        currentGalaxyIndex,
         circleNextGalaxyName,
         circlePrevGalaxyName,
         handlePrevGalaxy,

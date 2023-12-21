@@ -1,5 +1,4 @@
-import { GalaxyForGetAll } from '@entities/galaxy/model/types';
+import { GalaxyBaseInfo } from '@entities/galaxy/model/types';
 
-export interface CurrentGalaxyInterface extends GalaxyForGetAll {
-    index: number;
+export interface CurrentGalaxyInterface extends GalaxyBaseInfo {
 }

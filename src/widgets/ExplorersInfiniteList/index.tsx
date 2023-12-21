@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { UserRatingCard } from '@shared/ui/UserRatingCard';
 
 import { bem } from '@shared/utils/helpers/bem';
@@ -17,7 +17,6 @@ import { getGalaxiesListString, getInfiniteItemIndex, getIsLastInfiniteElement, 
 
 export const ExplorersInfiniteList = ({}: ExplorersInfiniteListProps) => {
     const [block, element] = bem('explorers-infinite-list');
-    const navigate = useNavigate();
 
     const observerElementRef = useRef<HTMLDivElement>(null);
     const { nextPage, size, pageNumber } = usePages(0, 20);

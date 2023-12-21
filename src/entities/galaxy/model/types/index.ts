@@ -1,7 +1,5 @@
 import { StudiedSystems } from '@entities/user/model/types';
 
-import { KeeperCardInfoInterface } from '@entities/keeper/model/types/interfaces';
-
 import { ErrorInterface } from '@shared/types/common';
 
 interface PersonInterface {
@@ -70,7 +68,8 @@ export interface SystemProgress {
     isLocked: boolean;
 }
 
-interface Explorer {}
+interface Explorer {
+}
 
 export interface KeeperForGalaxies {
     personId: number;
@@ -81,10 +80,13 @@ export interface KeeperForGalaxies {
     systems: number[];
 }
 
-export interface GalaxyForGetAll {
+export interface GalaxyBaseInfo {
     galaxyName: string;
     galaxyDescription: string;
     galaxyId: number;
+}
+
+export interface GalaxyFullInfo extends GalaxyBaseInfo {
     systemCount: number;
     explorerCount: number;
     keeperCount: number;
@@ -94,20 +96,27 @@ export interface GalaxyForGetAll {
 export interface LastChosenSystem
     extends SystemType,
         SystemProgress,
-        ErrorInterface {}
+        ErrorInterface {
+}
 
-export interface GalaxyResponseInterface extends GalaxyState, ErrorInterface {}
+export interface GalaxyResponseInterface extends GalaxyState, ErrorInterface {
+}
+
+export interface GalaxyResponseDetailedInterface extends GalaxyFullInfo {
+}
 
 export interface GetUserProgressInGalaxyResponse
     extends UserProgressInGalaxy,
-        ErrorInterface {}
+        ErrorInterface {
+}
 
 export interface GetSystemsBySystemIdAgruments {
     withDependencies: boolean;
     systemId: number;
 }
 
-export interface GetSystemsBySystemIdResponse extends SystemType {}
+export interface GetSystemsBySystemIdResponse extends SystemType {
+}
 
 export interface ProgressPlanetInterface {
     courseThemeId: number;

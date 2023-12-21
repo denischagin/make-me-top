@@ -1,6 +1,6 @@
 import { useAuth } from '@entities/viewer';
 import { useRefreshMutation } from '@entities/viewer/api/api';
-import { queryParams } from '@shared/constants';
+import { searchParamKeys } from '@shared/constants';
 import { URL_LOGIN, URL_PROFILE } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
 import Spinner from '@shared/ui/Spinner';

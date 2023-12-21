@@ -1,1 +1,1 @@
-export { queryParams } from '@shared/constants/queryParams';
+export { searchParamKeys } from '@shared/constants/searchParamKeys';

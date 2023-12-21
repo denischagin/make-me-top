@@ -13,15 +13,14 @@ import { URL_PROFILE } from '@shared/constants/links';
 
 import { LoginProps } from '@widgets/Login/interface';
 
-import { typographyColor, typographyVariant } from '@shared/ui/Typography/interfaces';
+import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
-import { queryParams } from '@shared/constants';
+import { searchParamKeys } from '@shared/constants';
 import { useLoginMutation } from '@entities/viewer/api/api';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import { useAuth } from '@entities/viewer';
 import { inputVariantEnum } from '@shared/ui/Input/interfaces';
-import { TypographyWithEnter } from '@shared/ui/TypographyWithEnter';
 
 export const Login = ({ role }: LoginProps) => {
     const [block, element] = bem('login');
@@ -40,7 +39,7 @@ export const Login = ({ role }: LoginProps) => {
 
     useStatus(() => {
         handleLogin(authReponse);
-        const redirect = searchParams.get(queryParams.redirect);
+        const redirect = searchParams.get(searchParamKeys.redirect);
 
         if (redirect !== null)
             return navigate(redirect, {
