@@ -13,11 +13,13 @@ export const RejectCourseRequestModal = (props: RejectCourseRequestModalProps) =
     const [, element] = bem('reject-course-request-modal');
     const [selectedReasonId, setSelectedReasonId] = useState<string | undefined>(undefined);
 
-    const { requestId, onClose } = props;
+    const { requestId, onClose, isOpen } = props;
     const [rejectCourse, { isSuccess: isSuccessReject }] =
         useRejectCourseRequestMutation();
 
-    const { data: rejections } = useGetKeeperRejectionReasonsQuery();
+    const { data: rejections } = useGetKeeperRejectionReasonsQuery(undefined, {
+        skip: !isOpen,
+    });
 
     useStatus(() => {
         toast(TOAST_SUCCESS_REJECTED, {
@@ -43,6 +45,7 @@ export const RejectCourseRequestModal = (props: RejectCourseRequestModalProps) =
     return (
         <ConfirmModal
             {...props}
+            isOpen={isOpen}
             confirmTitle={CONFIRM_CANCEL_STUDYING_REQUEST}
             rejectButtonTitle='Нет, хочу продолжить'
             submitButtonTitle='Да, я уверен'

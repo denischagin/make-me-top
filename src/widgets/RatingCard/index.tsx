@@ -17,6 +17,7 @@ import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 import { Button } from '@shared/ui/Button';
 import { NavLink } from 'react-router-dom';
 import { URL_EXPLORERS } from '@shared/constants/links';
+import { useAuth } from '@entities/viewer';
 
 export const RatingCard = () => {
     const [block, element] = bem('rating-card');

@@ -1,30 +1,23 @@
 import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Container } from '@shared/ui/Container';
-import { Typography } from '@shared/ui/Typography';
-
-import { FinalAssessmentsInterface } from '@entities/keeper/model/types/interfaces';
 
 import { bem } from '@shared/utils/helpers/bem';
 
 import { EducationApplications } from '@widgets/EducationApplications';
-import { ExplorerItemList } from '@widgets/ExplorerItemList';
-import { GradeApplications } from '@widgets/GradeApplications';
 import { Header } from '@widgets/Header/ui/Header';
 import { KeeperUserInfo } from '@widgets/KeeperUserInfo';
-
-import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
 import Spinner from '@shared/ui/Spinner';
 import { ApprovedEducationApplications } from '@widgets/ApprovedEducationApplications/ui/ApprovedEducationApplications';
 import { CurrentEducationGroup } from '@widgets/CurrentEducationGroup/ui/CurrentEducationGroup';
-import { ApplicationCard } from '@shared/ui/ApplicationCard';
 import { ApplicationRequestList } from '@widgets/ApplicationRequestList';
 import { MarkRequestList } from '@widgets/MarkRequestList';
 import { SystemsList } from '@widgets/SystemsList';
 import { useNavigate } from 'react-router-dom';
 import { getUrlThemeByCourseId } from '@shared/constants/links';
+import { useAuth } from '@entities/viewer';
 
 export const Keeper = () => {
     const [block, element] = bem('keeper');
@@ -76,7 +69,7 @@ export const Keeper = () => {
                             />
 
                             <ApprovedEducationApplications />
-                            
+
                             <SystemsList heading={'Ваши системы'}
                                          onSystemClick={(systemId) => {
                                              navigate(getUrlThemeByCourseId({ courseId: systemId }));

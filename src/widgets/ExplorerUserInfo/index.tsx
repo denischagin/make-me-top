@@ -7,15 +7,12 @@ import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
-import {
-    ratingScoreColor,
-    ratingSize,
-    ratingSystemColor,
-} from '@shared/ui/Rating/interfaces';
+import { ratingScoreColor, ratingSize, ratingSystemColor } from '@shared/ui/Rating/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
+import { useAuth } from '@entities/viewer';
 
 export const ExplorerUserInfo = () => {
     const [block, element] = bem('explorer-user-info');

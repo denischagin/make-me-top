@@ -2,7 +2,6 @@ import { queryTags } from '@shared/api/queryTags';
 import {
     GetAllKeepersList,
     KeeperCardInfoResponseInterface,
-    KeeperFilterResponseInterface,
     KeeperProfileResponseInterface,
 } from '@entities/keeper/model/types/api';
 import { baseApi } from '@shared/api/baseApi';

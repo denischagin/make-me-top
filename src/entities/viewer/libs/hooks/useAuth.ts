@@ -3,6 +3,7 @@ import { login, logout } from '@entities/viewer/model/slice';
 import { ViewerState } from '@entities/viewer/model/types';
 import { AuthResponse } from '@entities/viewer/model/types/api';
 import { storageKeys } from '@shared/constants/storageKeys';
+import { baseApi } from '@shared/api/baseApi';
 
 export interface UseAuthLoginData extends Partial<AuthResponse> {
 }
@@ -32,6 +33,7 @@ export const useAuth = (): ReturnUseAuth => {
 		dispatch(logout());
 		localStorage.removeItem(storageKeys.accessToken);
 		localStorage.removeItem(storageKeys.refreshToken);
+		dispatch(baseApi.util?.resetApiState());
 	};
 	
 	return {

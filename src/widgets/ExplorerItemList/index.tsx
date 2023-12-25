@@ -9,8 +9,6 @@ import { bem } from '@shared/utils/helpers/bem';
 
 import { URL_EXPLORER } from '@shared/constants/links';
 
-import { DEFAULT_EL_LIMIT } from '@widgets/Reviews/model';
-
 import { ExplorerItemListInterface } from './interfaces';
 import { buttonSize } from '@shared/ui/Button/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
@@ -20,14 +18,15 @@ import { DEFAULT_LIMIT_ITEM } from './model';
 
 import './styles.scss';
 import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
+import { useAuth } from '@entities/viewer';
 
 export const ExplorerItemList = (props: ExplorerItemListInterface) => {
     const {
         explorers,
     } = props;
 
-    const { data: userInfo } = useGetKeeperProfileQuery()
-    
+    const { data: userInfo } = useGetKeeperProfileQuery();
+
     const [block, element] = bem('explorer-card-list');
     const [limitElements, setElementsLimit] =
         useState<number>(DEFAULT_LIMIT_ITEM);

@@ -1,5 +1,4 @@
 import { SystemsList } from '@widgets/SystemsList';
-import { getUrlThemeByCourseId } from '@shared/constants/links';
 import { bem } from '@shared/utils/helpers/bem';
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { userIsModalOpenSelector } from '@entities/user/model/selectors';
 import { useAppDispatch } from '@app/providers/store/hooks';
 import { useState } from 'react';
+import { useAuth } from '@entities/viewer';
 
 export const ExplorerCompletedSystems = () => {
     const [, element] = bem('explorer');

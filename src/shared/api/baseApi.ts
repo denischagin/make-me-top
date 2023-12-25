@@ -1,11 +1,11 @@
-import { createApi } from "@reduxjs/toolkit/dist/query/react";
-import { baseQueryWithReauth } from "@shared/api/baseQuery";
-import { queryTags } from "@shared/api/queryTags";
+import { createApi } from '@reduxjs/toolkit/dist/query/react';
+import { baseQueryWithReauth } from '@shared/api/baseQuery';
+import { queryTags } from '@shared/api/queryTags';
 
 export const baseApi = createApi({
-    reducerPath: "baseApi",
+    reducerPath: 'baseApi',
     baseQuery: baseQueryWithReauth,
-    refetchOnMountOrArgChange: 1,
+    keepUnusedDataFor: 30,
     tagTypes: [...Object.values(queryTags)],
-    endpoints: () => ({}), 
-})
+    endpoints: () => ({}),
+});

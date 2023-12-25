@@ -8,12 +8,11 @@ import { MasteringApplication } from '@entities/explorer';
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import { getUrlThemeByCourseId, URL_GALAXY } from '@shared/constants/links';
+import { URL_GALAXY } from '@shared/constants/links';
 
 import { ExplorerUserInfo } from '@widgets/ExplorerUserInfo';
 import { Header } from '@widgets/Header/ui/Header';
 import { RatingCard } from '@widgets/RatingCard';
-import { SystemsList } from '@widgets/SystemsList';
 
 import NotFound from '@pages/NotFound';
 
@@ -23,9 +22,7 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { TABS_LIST } from './model';
 
 import './styles.scss';
-import {
-    useGetExplorerProfileQuery,
-} from '@entities/explorer/api/api';
+import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 
 import Spinner from '@shared/ui/Spinner';
 import { CurrentSystemCard } from '@widgets/CurrentSystemCard';

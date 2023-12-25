@@ -18,6 +18,7 @@ import './styles.scss';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 import { useCloseCourseRequestMutation } from '@entities/course';
+import { useAuth } from '@entities/viewer';
 
 export const MasteringApplication = () => {
     const [block, element] = bem('current-request-card');

@@ -12,6 +12,7 @@ export const explorerApi = baseApi.injectEndpoints({
         getExplorerProfile: builder.query<ExplorerInfoResponseInterface, void>({
             query: () => ({
                 url: 'person-app/people/explorer-profile',
+
             }),
 
             providesTags: [queryTags.getExplorerProfile],
