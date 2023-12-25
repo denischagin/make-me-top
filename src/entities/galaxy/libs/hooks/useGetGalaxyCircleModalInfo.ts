@@ -1,7 +1,4 @@
-import {
-    useGetCourseInfoByCourseIdDetailedQuery,
-    useGetCurrentCourseRequestQuery,
-} from '@entities/course';
+import { useGetCourseInfoByCourseIdDetailedQuery, useGetCurrentCourseRequestQuery } from '@entities/course';
 import {
     useGetExplorerProgressByExplorerIdQuery,
     useGetPlanetsBySystemIdQuery,
@@ -15,9 +12,9 @@ export interface UseGetGalaxyCircleModalInfoParams {
 }
 
 export const useGetGalaxyCircleModalInfo = ({
-    currentSystemId,
-    isOpen,
-}: UseGetGalaxyCircleModalInfoParams) => {
+                                                currentSystemId,
+                                                isOpen,
+                                            }: UseGetGalaxyCircleModalInfoParams) => {
     const { role } = useAuth();
     const isExplorer = role === 'EXPLORER';
 
@@ -49,7 +46,7 @@ export const useGetGalaxyCircleModalInfo = ({
 
     const { isSuccess: isCurrentRequestExists } =
         useGetCurrentCourseRequestQuery(undefined, {
-            skip: !isExplorer,
+            skip: !isExplorer || !isOpen,
         });
 
     const isFetching = isFetchingCourseInfo || isFetchingSystem;
@@ -60,6 +57,6 @@ export const useGetGalaxyCircleModalInfo = ({
         isCurrentRequestExists,
         isFetching,
         system,
-        courseInfo
+        courseInfo,
     };
 };

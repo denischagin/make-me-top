@@ -1,11 +1,4 @@
-import React, {
-    memo,
-    MouseEvent,
-    useCallback,
-    useEffect,
-    useMemo,
-    useState,
-} from 'react';
+import React, { memo, MouseEvent, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
@@ -16,13 +9,8 @@ import { deleteAllConnectionLines } from '@entities/galaxy/libs/helpers/deleteAl
 import { setSystemsActivityToActive } from '@entities/galaxy/libs/helpers/setSystemActivityToActive';
 import { showSystemChildren } from '@entities/galaxy/libs/helpers/showSystemChildren';
 import { showSystemParents } from '@entities/galaxy/libs/helpers/showSystemParents';
-import {
-    SYSTEM_CLASS,
-} from '@entities/galaxy/model/constants';
-import {
-    IGalaxyProps,
-    IOrbitSettings,
-} from '@entities/galaxy/model/types';
+import { SYSTEM_CLASS } from '@entities/galaxy/model/constants';
+import { IGalaxyProps, IOrbitSettings } from '@entities/galaxy/model/types';
 
 import {
     DATA_SYSTEM_CHILDREN_LIST,

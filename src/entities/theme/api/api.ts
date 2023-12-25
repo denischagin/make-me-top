@@ -1,6 +1,7 @@
 import { baseApi } from '@shared/api/baseApi';
 import {
-    GetExplorersWaitingThemeMarkResponse, GetExplorerThemesMarksResponse,
+    GetExplorersWaitingThemeMarkResponse,
+    GetExplorerThemesMarksResponse,
     GetThemeByThemeIdResponse,
     GetThemesWaitingExplorersMark,
 } from '@entities/theme';
@@ -29,7 +30,7 @@ export const themeApi = baseApi.injectEndpoints({
                     value,
                 },
             }),
-            invalidatesTags: ['getExplorersWaitingThemeMark', 'getThemesWaitingExplorersMark'],
+            invalidatesTags: ['getExplorersWaitingThemeMark', 'getThemesWaitingExplorersMark', 'getExplorerCardInfo'],
         }),
 
         getThemesWaitingExplorersMark: builder.query<GetThemesWaitingExplorersMark, void>({

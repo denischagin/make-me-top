@@ -1,12 +1,12 @@
 import {
+    AcceptCourseParamsInterface,
     CourseInfoResponse,
     CourseResponse,
     CurrentCourseRequestInterface,
     GetExplorerProgressResponseInterface,
     GetKeeperCurrentGroupInterface,
     GetKeeperRejectionReasons,
-    RequestCourseBodyInterface,
-    AcceptCourseParamsInterface, RejectCourseParamsInterface,
+    RejectCourseParamsInterface,
 } from '@entities/course/model/types/api';
 import { baseApi } from '@shared/api/baseApi';
 import { ErrorInterface, PostCourseRequest } from '@shared/types/common';
@@ -105,14 +105,7 @@ export const courseApi = baseApi.injectEndpoints({
                 url: `course-registration-app/courses/${courseId}/groups/`,
                 method: 'POST',
             }),
-            invalidatesTags: ['getKeeperProfile'],
-        }),
-
-        addHomework: builder.mutation<void, { groupId: string | number, themeId: string | number }>({
-            query: (args) => ({
-                url: `course-registration-app/courses/${args.themeId}/`,
-                method: 'POST',
-            }),
+            invalidatesTags: ['getKeeperProfile', 'getExplorerCardInfo'],
         }),
 
         getExplorerCourseProgress: builder.query<
@@ -140,7 +133,7 @@ export const courseApi = baseApi.injectEndpoints({
                 method: 'POST',
                 body,
             }),
-            invalidatesTags: ['getKeeperProfile'],
+            invalidatesTags: ['getKeeperProfile', 'getExplorerCardInfo'],
         }),
 
 
@@ -162,11 +155,11 @@ export const courseApi = baseApi.injectEndpoints({
 export const {
     useCloseCourseRequestMutation,
     usePostCourseRequestMutation,
-    useLeaveCourseByExplorerIdMutation,
     useAcceptCourseRequestMutation,
     useRejectCourseRequestMutation,
-    useGetCourseInfoByCourseIdDetailedQuery,
     useGetCurrentCourseRequestQuery,
+    useLeaveCourseByExplorerIdMutation,
+    useGetCourseInfoByCourseIdDetailedQuery,
     useStartEducationOnCourseMutation,
     useGetExplorerCourseProgressQuery,
     useGetKeeperCurrentGroupQuery,
