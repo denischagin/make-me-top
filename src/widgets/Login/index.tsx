@@ -21,40 +21,26 @@ import { useLoginMutation } from '@entities/viewer/api/api';
 import { useStatus } from '@shared/utils/hooks/use-status';
 import { useAuth } from '@entities/viewer';
 import { inputVariantEnum } from '@shared/ui/Input/interfaces';
+import { AuthResponse } from '@entities/viewer/model/types/api';
 
 export const Login = ({ role }: LoginProps) => {
     const [block, element] = bem('login');
     const [inputLogin, setInputLogin] = useState<string>('');
     const [inputPassword, setInputPassword] = useState<string>('');
-    const [searchParams] = useSearchParams();
 
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-
-    const [loginMutation, { isSuccess, data: authReponse }] =
+    const [loginMutation] =
         useLoginMutation();
-    const { handleLogin } = useAuth();
-
-    const pathByUserRole = URL_PROFILE;
-
-    useStatus(() => {
-        handleLogin(authReponse);
-        const redirect = searchParams.get(searchParamKeys.redirect);
-
-        if (redirect !== null)
-            return navigate(redirect, {
-                replace: true,
-            });
-
-        return navigate(pathByUserRole, {
-            replace: true,
-        });
-    }, isSuccess);
+    const { handleLogin, handleLoginRedirect } = useAuth();
 
     const credentials = {
         login: inputLogin,
         password: inputPassword,
         role,
+    };
+
+    const handleSuccessLogin = (authResponse: AuthResponse) => {
+        handleLogin(authResponse);
+        handleLoginRedirect();
     };
 
     const handleLoginInputChange = (
@@ -71,7 +57,9 @@ export const Login = ({ role }: LoginProps) => {
 
     const handleFormSubmit: FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
-        loginMutation(credentials);
+        loginMutation(credentials)
+            .unwrap()
+            .then((response) => handleSuccessLogin(response));
     };
 
     return (

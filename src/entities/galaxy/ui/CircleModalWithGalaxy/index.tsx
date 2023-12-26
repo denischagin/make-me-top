@@ -25,6 +25,7 @@ import { CourseKeeper, usePostCourseRequestMutation } from '@entities/course';
 import { useGetGalaxyCircleModalInfo } from '@entities/galaxy/libs/hooks/useGetGalaxyCircleModalInfo';
 import { getSendButtonProps } from '@entities/galaxy/libs/helpers/getSendButtonProps';
 import { ModalAccessStatus } from '@shared/ui/CircleModal/interfaces';
+import { SendCourseRequestButton } from '@features/send-course-request/ui/SendCourseRequestButton';
 
 const CircleModalWithGalaxy =
     ({
@@ -114,10 +115,12 @@ const CircleModalWithGalaxy =
             >
                 <div className={block()}>
                     {!isFetching && canYouSendCourseRequest && (
-                        <Button
-                            size={buttonSize.large}
+                        <SendCourseRequestButton
+                            activeTabIndex={activeTab}
+                            handleSendApplication={handleSendApplication}
+                            keepersListIsEmpty={selectedKeepers.length === 0}
+                            setActiveTab={setActiveTab}
                             className={element('send-button')}
-                            {...sendButtonProps}
                         />
                     )}
                 </div>

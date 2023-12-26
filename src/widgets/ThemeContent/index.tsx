@@ -19,7 +19,7 @@ export const ThemeContent = () => {
 
     const { data: themeInfo, isError: isErrorTheme } = useGetThemeByThemeIdQuery(Number(themeId), {
         skip: isSkipThemeQuery,
-    });
+});
 
     if (isErrorTheme)
         return null;

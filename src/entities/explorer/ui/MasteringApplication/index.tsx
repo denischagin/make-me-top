@@ -24,25 +24,25 @@ export const MasteringApplication = () => {
     const [block, element] = bem('current-request-card');
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
 
-    const [closeCourseRequest, { isSuccess: isSuccessCourseRequest }] =
-        useCloseCourseRequestMutation();
+    const [closeCourseRequest] = useCloseCourseRequestMutation();
     const { data: userInfo, isSuccess } = useGetExplorerProfileQuery();
 
-    useEffect(() => {
-        if (isSuccessCourseRequest) {
-            toast(TOAST_SUCCESS_REJECTED, {
-                icon: '😔',
-            });
-            setIsAcceptModalOpen(false);
-        }
-    }, [isSuccessCourseRequest]);
+    const handleOnSuccessRejectCourseRequest = () => {
+        toast(TOAST_SUCCESS_REJECTED, {
+            icon: '😔',
+        });
+        setIsAcceptModalOpen(false);
+    };
 
     if (!isSuccess || !userInfo.studyRequest) return null;
 
     const { studyRequest } = userInfo;
 
-    const handleSubmitCloseCourseRequest = () =>
-        closeCourseRequest(studyRequest.requestId);
+    const handleSubmitCloseCourseRequest = () => {
+        closeCourseRequest(studyRequest.requestId)
+            .unwrap()
+            .then(() => handleOnSuccessRejectCourseRequest());
+    };
 
     return (
         <div className={block()}>
