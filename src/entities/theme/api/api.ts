@@ -30,7 +30,12 @@ export const themeApi = baseApi.injectEndpoints({
                     value,
                 },
             }),
-            invalidatesTags: ['getExplorersWaitingThemeMark', 'getThemesWaitingExplorersMark', 'getExplorerCardInfo'],
+            invalidatesTags: [
+                'getExplorersWaitingThemeMark',
+                'getThemesWaitingExplorersMark',
+                'getExplorerCardInfo',
+                'getKeeperProfile',
+            ],
         }),
 
         getThemesWaitingExplorersMark: builder.query<GetThemesWaitingExplorersMark, void>({

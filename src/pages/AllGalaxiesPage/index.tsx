@@ -46,7 +46,9 @@ const AllGalaxiesPage = () => {
     const {
         data: galaxyFullInfo,
         isError: isErrorGalaxyDetailed,
-    } = useGetGalaxyDetailedQuery(currentGalaxy?.galaxyId ?? skipToken);
+    } = useGetGalaxyDetailedQuery(currentGalaxy?.galaxyId ?? skipToken, {
+        refetchOnMountOrArgChange: false,
+    });
 
     const [informationSectionRef, handleShowInformation] = useScrollIntoView();
 

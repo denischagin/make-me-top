@@ -40,6 +40,7 @@ export const galaxiesApi = baseApi.injectEndpoints({
             query: (galaxyId) => ({
                 url: `progress-app/galaxies/${galaxyId}`,
             }),
+            providesTags: ['getUserProgressInGalaxy'],
         }),
 
         getPlanetsBySystemId: builder.query<ModalPlanetInterface[], number | string>({

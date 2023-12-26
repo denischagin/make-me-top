@@ -6,6 +6,7 @@ export const baseApi = createApi({
     reducerPath: 'baseApi',
     baseQuery: baseQueryWithReauth,
     keepUnusedDataFor: 30,
+    refetchOnMountOrArgChange: 1,
     tagTypes: [...Object.values(queryTags)],
     endpoints: () => ({}),
 });

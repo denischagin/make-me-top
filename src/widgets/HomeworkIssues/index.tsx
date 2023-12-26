@@ -1,8 +1,6 @@
 import { bem } from '@shared/utils/helpers/bem';
 import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
-import { Button } from '@shared/ui/Button';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { transformHomeworkResponse } from '@entities/homework';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MouseEventHandler } from 'react';
@@ -12,7 +10,6 @@ import { skipToken } from '@reduxjs/toolkit/query';
 import { getUrlHomework } from '@shared/constants/links';
 import { useGetExplorerThemesMarksQuery } from '@entities/theme';
 import { useAuth } from '@entities/viewer';
-import { ExplorerBadgeByRequestStatus } from '@entities/homework/ui/ExplorerBadgeByRequestStatus';
 import { HomeworkIssue } from '@entities/homework/ui/HomeworkIssue';
 
 export const HomeworkIssues = () => {

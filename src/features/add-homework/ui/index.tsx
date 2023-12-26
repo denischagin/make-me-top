@@ -2,7 +2,7 @@ import { Button } from '@shared/ui/Button';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import React, { useState } from 'react';
 import { bem } from '@shared/utils/helpers/bem';
-import { ModalSendHomework, transformHomeworkResponse } from '@entities/homework';
+import { ModalSendHomework } from '@entities/homework';
 import { useCreateHomeworkMutation, useGetHomeworksQuery } from '@entities/homework/api/api';
 import { useAuth } from '@entities/viewer';
 import { useExplorerCourseProgress, useGetKeeperCurrentGroupQuery } from '@entities/course';

@@ -45,7 +45,13 @@ export const courseApi = baseApi.injectEndpoints({
                 url: `person-app/explorers/${explorerId}/`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['getExplorerProfile', 'getExplorerCardInfo', 'getKeeperProfile'],
+            invalidatesTags: [
+                'getExplorerProfile',
+                'getExplorerCardInfo',
+                'getKeeperProfile',
+                'getExplorerCourseProgress',
+                'getCurrentCourseRequest',
+            ],
         }),
 
         closeCourseRequest: builder.mutation<ErrorInterface, number>({
@@ -53,7 +59,7 @@ export const courseApi = baseApi.injectEndpoints({
                 url: `course-registration-app/course-requests/${requestId}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['getExplorerProfile'],
+            invalidatesTags: ['getExplorerProfile', 'getCurrentCourseRequest'],
         }),
 
         postCourseRequest: builder.mutation<ErrorInterface, PostCourseRequest>({
@@ -98,6 +104,7 @@ export const courseApi = baseApi.injectEndpoints({
             extraOptions: {
                 withOutToasts: true,
             },
+            providesTags: ['getCurrentCourseRequest'],
         }),
 
         startEducationOnCourse: builder.mutation<number, number>({

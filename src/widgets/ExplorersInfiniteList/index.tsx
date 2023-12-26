@@ -1,11 +1,6 @@
 import { useRef } from 'react';
-import { NavLink } from 'react-router-dom';
-import { UserRatingCard } from '@shared/ui/UserRatingCard';
 
 import { bem } from '@shared/utils/helpers/bem';
-import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
-
-import { getUrlExplorerById } from '@shared/constants/links';
 
 import { ExplorersInfiniteListProps } from './interface';
 
@@ -13,7 +8,10 @@ import './style.scss';
 import { useObserver } from '@shared/utils/hooks/use-observer';
 import { useGetAllExplorersQuery } from '@entities/explorer/api/api';
 import { useInfinite } from '@shared/utils/hooks/use-infinite';
-import { getGalaxiesListString, getInfiniteItemIndex, getIsLastInfiniteElement, usePages } from '@shared/utils';
+import { getGalaxiesListString, getInfiniteItemIndex, getUserFullName, usePages } from '@shared/utils';
+import { NavLink } from 'react-router-dom';
+import { getUrlExplorerById } from '@shared/constants/links';
+import { UserRatingCard } from '@shared/ui/UserRatingCard';
 
 export const ExplorersInfiniteList = ({}: ExplorersInfiniteListProps) => {
     const [block, element] = bem('explorers-infinite-list');
@@ -48,14 +46,9 @@ export const ExplorersInfiniteList = ({}: ExplorersInfiniteListProps) => {
                                 index={getInfiniteItemIndex({ pageIndex, size, itemIndex: explorerIndex })}
                                 rating={rating}
                                 ref={
-                                    getIsLastInfiniteElement({
-                                        indent: 1,
-                                        itemIndex: explorerIndex,
-                                        pageIndex,
-                                        pageNumber,
-                                        pageLength: page.length,
-                                    }) ?
-                                        observerElementRef : undefined}
+                                    explorerIndex === page.length - 2 ?
+                                        observerElementRef : undefined
+                                }
 
                             />
                         </NavLink>
@@ -64,6 +57,5 @@ export const ExplorersInfiniteList = ({}: ExplorersInfiniteListProps) => {
                 )
             ))}
         </div>
-    )
-        ;
+    );
 };

@@ -10,14 +10,7 @@ import { getUrlKeeperById } from '@shared/constants/links';
 import { KeepersInfiniteListProps } from './interface';
 
 import './style.scss';
-import {
-    getGalaxiesListString,
-    getInfiniteItemIndex,
-    getIsLastInfiniteElement,
-    useInfinite,
-    useObserver,
-    usePages,
-} from '@shared/utils';
+import { getGalaxiesListString, getInfiniteItemIndex, useInfinite, useObserver, usePages } from '@shared/utils';
 import { useGetAllKeepersQuery } from '@entities/keeper/api/api';
 
 export const KeepersInfiniteList = ({}: KeepersInfiniteListProps) => {
@@ -27,7 +20,8 @@ export const KeepersInfiniteList = ({}: KeepersInfiniteListProps) => {
 
     const { nextPage, size, pageNumber } = usePages(0, 20);
 
-    const { data: keepersListObject, isFetching, isSuccess } = useGetAllKeepersQuery({ page: pageNumber, size });
+    const { data: keepersListObject, isFetching, isSuccess } =
+        useGetAllKeepersQuery({ page: pageNumber, size });
     const keepersList = keepersListObject?.content;
     const keepersListInfinite = useInfinite(keepersList, pageNumber);
 
@@ -54,15 +48,9 @@ export const KeepersInfiniteList = ({}: KeepersInfiniteListProps) => {
                                 index={getInfiniteItemIndex({ pageIndex, size, itemIndex: keeperIndex })}
                                 rating={rating}
                                 ref={
-                                    getIsLastInfiniteElement({
-                                        pageLength: page.length,
-                                        pageNumber,
-                                        pageIndex,
-                                        itemIndex: keeperIndex,
-                                        indent: 1,
-                                    }) ?
-                                        observerElementRef : undefined}
-
+                                    keeperIndex === page.length - 2 ?
+                                        observerElementRef : undefined
+                                }
                             />
                         </NavLink>
 

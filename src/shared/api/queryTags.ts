@@ -8,7 +8,7 @@ export const queryTags = {
     getKeeperProfile: 'getKeeperProfile',
 
     getAllGalaxies: 'getAllGalaxies',
-    getExplorerProgressByExplorerId: 'getExplorerProgressByExporerId',
+    getExplorerProgressByExplorerId: 'getExplorerProgressByExplorerId',
     getPlanetsBySystemId: 'getPlanetsBySystemId',
     getCourseInfoByCourseId: 'getCourseInfoByCourseId',
     getSystemsBySystemId: 'getSystemsBySystemId',
@@ -25,4 +25,6 @@ export const queryTags = {
     getExplorersWaitingThemeMark: 'getExplorersWaitingThemeMark',
     getThemesWaitingExplorersMark: 'getThemesWaitingExplorersMark',
     getKeeperRejectionReasons: 'getKeeperRejectionReasons',
+    getUserProgressInGalaxy: 'getUserProgressInGalaxy',
+    getCurrentCourseRequest: 'getCurrentCourseRequest'
 } as const;
