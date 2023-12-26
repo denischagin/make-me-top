@@ -24,6 +24,23 @@ export interface ExplorerApplicationCardInterface {
     planet: string;
 }
 
+export interface ExplorerFeedback {
+    personId: number;
+    explorerId: number
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+    keeperId: number;
+    courseId: number
+    courseTitle: string
+}
+
+export interface CourseFeedback {
+    explorerId: number
+    courseId: number
+    courseTitle: string
+}
+
 export interface ExplorerInfoInterface {
     person: Person;
     rating?: number | null;
@@ -33,6 +50,8 @@ export interface ExplorerInfoInterface {
     studyRequest?: StudyRequestCabinetInterface;
     ratingTable: Array<PersonRating>;
     homeworkRequests?: HomeworkRequestInterface[];
+    explorerFeedbacks?: ExplorerFeedback[];
+    courseFeedbacks?: CourseFeedback[]
 }
 
 export interface HomeworkRequestInterface {

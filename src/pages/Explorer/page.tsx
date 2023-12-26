@@ -28,6 +28,7 @@ import Spinner from '@shared/ui/Spinner';
 import { CurrentSystemCard } from '@widgets/CurrentSystemCard';
 import { ExplorerCompletedSystems } from '@widgets/ExplorerCompletedSystems';
 import { RouterLink } from '@shared/ui/RouterLink';
+import { FeedbackOffer } from '@widgets/FeedbackOffer';
 
 export const Explorer = () => {
     const [block, element] = bem('explorer');
@@ -82,6 +83,7 @@ export const Explorer = () => {
                                 </div>
 
                                 <ExplorerCompletedSystems />
+                                <FeedbackOffer />
                             </div>
 
                             <div className={element('rating', 'col-xxl-3')}>
