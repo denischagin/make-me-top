@@ -1,33 +1,38 @@
 import {
-	createBrowserRouter,
-	createRoutesFromElements,
-	Route,
+    createBrowserRouter,
+    createRoutesFromElements,
+    Route,
 } from 'react-router-dom';
-import { routes, RouteStatusType } from '@app/constants/routes';
+import { authPage, openPage, protectPage } from '@entities/viewer';
+import { authRoutes, openRoutes, protectedRoutes } from '@app/constants';
 
-import { privatePage } from '@entities/viewer/libs/helpers/privatePage';
-import { authPage } from '@entities/viewer/libs/helpers/authPage';
-import { openPage } from '@entities/viewer/libs/helpers/openPage';
-
-const getHocPage: Record<
-	RouteStatusType | 'default',
-	(element: JSX.Element) => JSX.Element
-> = {
-	auth: authPage,
-	protected: privatePage,
-	default: openPage,
-};
 
 export const router = createBrowserRouter(
-	createRoutesFromElements(
-		<>
-			{routes.map(({ element, path, status }) => (
-				<Route
-					key={path}
-					element={getHocPage[status ?? 'default'](element)}
-					path={path}
-				/>
-			))}
-		</>,
-	),
+    createRoutesFromElements(
+        <>
+            {protectedRoutes.map(({ element, path }) => (
+                <Route
+                    key={path}
+                    element={protectPage(element)}
+                    path={path}
+                />
+            ))}
+
+            {authRoutes.map(({ element, path }) => (
+                <Route
+                    key={path}
+                    element={authPage(element)}
+                    path={path}
+                />
+            ))}
+
+            {openRoutes.map(({ element, path }) => (
+                <Route
+                    key={path}
+                    element={openPage(element)}
+                    path={path}
+                />
+            ))}
+        </>,
+    ),
 );

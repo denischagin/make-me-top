@@ -1,4 +1,10 @@
-export { default } from './model/slice';
-export * from './model/types';
-export { viewerApi } from '@entities/viewer/api/api';
-export { useAuth } from './libs/hooks'
+export * from './model';
+export { default } from './model';
+export * from './libs';
+
+export * from './model';
+export * from './api';
+
+
+
+
