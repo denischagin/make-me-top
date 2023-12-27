@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
 import { Button } from '@shared/ui/Button';
 import { Container } from '@shared/ui/Container';
@@ -28,11 +27,10 @@ import Spinner from '@shared/ui/Spinner';
 import { CurrentSystemCard } from '@widgets/CurrentSystemCard';
 import { ExplorerCompletedSystems } from '@widgets/ExplorerCompletedSystems';
 import { RouterLink } from '@shared/ui/RouterLink';
-import { FeedbackOffer } from '@widgets/FeedbackOffer';
+import { FeedbackOfferExplorerProfile } from '@widgets/FeedbackOffer';
 
 export const Explorer = () => {
     const [block, element] = bem('explorer');
-    const navigate = useNavigate();
 
     const {
         data: userInfo,
@@ -83,7 +81,8 @@ export const Explorer = () => {
                                 </div>
 
                                 <ExplorerCompletedSystems />
-                                <FeedbackOffer />
+
+                                <FeedbackOfferExplorerProfile />
                             </div>
 
                             <div className={element('rating', 'col-xxl-3')}>

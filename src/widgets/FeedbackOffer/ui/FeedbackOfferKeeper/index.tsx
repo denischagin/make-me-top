@@ -14,7 +14,7 @@ export const FeedbackOfferKeeper = () => {
         <Stack className={block()}>
             {keeperInfo?.keeperFeedbacks?.map((explorer) => (
                 <FeedbackOfferCard
-                    title={`Вам исследователь на системе ${explorer.courseTitle}?`}
+                    title={`Вам понравился исследователь на системе ${explorer.courseTitle}?`}
                     heading={getUserFullName(explorer)}
                     buttons={(
                         <>
