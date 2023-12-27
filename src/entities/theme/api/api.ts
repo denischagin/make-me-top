@@ -34,7 +34,6 @@ export const themeApi = baseApi.injectEndpoints({
                 'getExplorersWaitingThemeMark',
                 'getThemesWaitingExplorersMark',
                 'getExplorerCardInfo',
-                'getKeeperProfile',
             ],
         }),
 

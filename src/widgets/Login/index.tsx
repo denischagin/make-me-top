@@ -1,24 +1,16 @@
 import React, { FormEventHandler, useState } from 'react';
-import { useNavigate } from 'react-router';
-import { useSearchParams } from 'react-router-dom';
 import { Input } from '@shared/ui/Input';
 import { PlanetButton } from '@shared/ui/PlanetButton';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppDispatch } from '@app/providers/store/hooks';
-
 import { bem } from '@shared/utils/helpers/bem';
-
-import { URL_PROFILE } from '@shared/constants/links';
 
 import { LoginProps } from '@widgets/Login/interface';
 
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
-import { searchParamKeys } from '@shared/constants';
 import { useLoginMutation } from '@entities/viewer/api/api';
-import { useStatus } from '@shared/utils/hooks/use-status';
 import { useAuth } from '@entities/viewer';
 import { inputVariantEnum } from '@shared/ui/Input/interfaces';
 import { AuthResponse } from '@entities/viewer/model/types/api';
@@ -59,7 +51,8 @@ export const Login = ({ role }: LoginProps) => {
         e.preventDefault();
         loginMutation(credentials)
             .unwrap()
-            .then((response) => handleSuccessLogin(response));
+            .then(handleSuccessLogin)
+
     };
 
     return (

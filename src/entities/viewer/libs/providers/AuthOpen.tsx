@@ -16,13 +16,11 @@ export const AuthOpen = ({ children }: { children: JSX.Element }) => {
 		if (!refreshToken) return handleLogout;
 		if (isAuth) return;
 		
-		refresh(refreshToken);
+		refresh(refreshToken)
+			.unwrap()
+			.catch(handleLogout)
 	}, []);
-	
-	useStatus(() => {
-		handleLogout();
-	}, isError);
-	
+
 	if (isSuccess || isError || !refreshToken || isAuth) return children;
 	
 	return <Spinner loading />;

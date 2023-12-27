@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { Navigate, NavigateFunction, useNavigate } from 'react-router-dom';
 
 import { URL_LOGIN } from '@shared/constants/links';
@@ -11,15 +11,15 @@ import { UseAuthLoginData, useAuth } from '@entities/viewer/libs/hooks/useAuth';
 import { getNavigationPath } from '@entities/viewer/libs/helpers/getNavigationPath';
 
 interface AuthProtectProps {
-    children: JSX.Element;
+    children: ReactElement;
 }
 
-const logout = (navigate: NavigateFunction, handleLogout: () => void) => {
+const logoutAndNavigate = (navigate: NavigateFunction, handleLogout: () => void) => {
     handleLogout();
     navigate(getNavigationPath(location.pathname), { replace: true });
 };
 
-export const AuthProtect = ({ children }: { children: JSX.Element}) => {
+export const AuthProtect = ({ children }: AuthProtectProps) => {
 	
     const [refresh, { isSuccess, isError, data: tokens }] =
         useRefreshMutation();
@@ -30,15 +30,13 @@ export const AuthProtect = ({ children }: { children: JSX.Element}) => {
     useEffect(() => {
         const refreshToken = localStorage.getItem(storageKeys.refreshToken)!;
 
-        if (!refreshToken) return logout(navigate, handleLogout);
+        if (!refreshToken) return logoutAndNavigate(navigate, handleLogout);
         if (isAuth) return;
 
-        refresh(refreshToken);
+        refresh(refreshToken)
+            .unwrap()
+            .catch(() => logoutAndNavigate(navigate, handleLogout))
     }, []);
-
-    useStatus(() => {
-        logout(navigate, handleLogout);
-    }, isError);
 
     if (isSuccess || isAuth) return children;
 

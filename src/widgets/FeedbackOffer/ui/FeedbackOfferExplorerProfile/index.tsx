@@ -4,7 +4,6 @@ import { stackSpacing } from '@shared/ui/Stack/interface';
 import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
-import { useAuth } from '@entities/viewer';
 import { roles } from '@shared/constants/storageKeys';
 import { ReactElement } from 'react';
 import { FeedbackOfferExplorer } from '@widgets/FeedbackOffer/ui/FeedbackOfferExplorer';
@@ -14,8 +13,6 @@ import { FeedbackOfferKeeper } from '@widgets/FeedbackOffer/ui/FeedbackOfferKeep
 const feedbackByRole: Record<roles, ReactElement> = {
     EXPLORER: (
         <>
-            <FeedbackOfferExplorer />
-            <FeedbackOfferCourse />
         </>
     ),
     KEEPER: (
@@ -23,11 +20,10 @@ const feedbackByRole: Record<roles, ReactElement> = {
     ),
 };
 
-export const FeedbackOffer = () => {
+export const FeedbackOfferExplorerProfile = () => {
     const [block, element] = bem('feedback-offer');
 
     const { data: explorerInfo } = useGetExplorerProfileQuery();
-    const { role } = useAuth();
 
     if (
         !explorerInfo?.courseFeedbacks &&
@@ -42,7 +38,8 @@ export const FeedbackOffer = () => {
                     Отзывы:
                 </Typography>
 
-                {role && feedbackByRole[role]}
+                <FeedbackOfferExplorer />
+                <FeedbackOfferCourse />
             </Stack>
         </div>
     );

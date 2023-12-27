@@ -21,12 +21,12 @@ export const RejectCourseRequestModal = (props: RejectCourseRequestModalProps) =
         skip: !isOpen,
     });
 
-    useStatus(() => {
+    const handleSuccessRejectCourse = () => {
         toast(TOAST_SUCCESS_REJECTED, {
             icon: '😔',
         });
         onClose();
-    }, isSuccessReject);
+    };
 
     const handleSubmitRejectCourse = () => {
         if (!selectedReasonId)
@@ -35,7 +35,9 @@ export const RejectCourseRequestModal = (props: RejectCourseRequestModalProps) =
         rejectCourse({
             requestId: requestId,
             reasonId: Number(selectedReasonId),
-        });
+        })
+            .unwrap()
+            .then(handleSuccessRejectCourse)
     };
 
     const handleChangeReason: ChangeEventHandler<HTMLInputElement> = (e) => {

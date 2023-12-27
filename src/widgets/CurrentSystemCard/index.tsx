@@ -26,7 +26,6 @@ import './styles.scss';
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 import CircleModalWithGalaxy from '@entities/galaxy/ui/CircleModalWithGalaxy';
 import { useLeaveCourseByExplorerIdMutation } from '@entities/course';
-import { useStatus } from '@shared/utils/hooks/use-status';
 import toast from 'react-hot-toast';
 import { TOAST_LEAVE_COURSE } from '@shared/constants/toastTitles';
 import { Badge } from '@shared/ui/Badge';
@@ -41,7 +40,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
 
     const { data: userInfo, isSuccess: isSuccessExplorerProfile } =
         useGetExplorerProfileQuery();
-    const [leaveCourseRequest, { isSuccess: isSuccessLeaveCourse }] =
+    const [leaveCourseRequest] =
         useLeaveCourseByExplorerIdMutation();
 
     const countEditingRequests = userInfo?.homeworkRequests
@@ -49,11 +48,11 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
             request.status.status === 'EDITING')
         .length;
 
-    useStatus(() => {
+    const handleSuccessLeaveCourse = () => {
         toast(TOAST_LEAVE_COURSE, {
             icon: '😔',
         });
-    }, isSuccessLeaveCourse);
+    };
 
     if (!userInfo?.currentSystem && !userInfo?.studyRequest)
         return <SelectSystem />;
@@ -63,7 +62,9 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     const { currentSystem } = userInfo;
 
     const handleSubmitLeaveCourse = () => {
-        leaveCourseRequest(currentSystem?.explorerId);
+        leaveCourseRequest(currentSystem?.explorerId)
+            .unwrap()
+            .then(handleSuccessLeaveCourse);
         setIsAcceptModalOpen(false);
     };
 

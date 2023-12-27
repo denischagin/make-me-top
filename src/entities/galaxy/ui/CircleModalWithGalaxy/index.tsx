@@ -83,10 +83,10 @@ const CircleModalWithGalaxy =
             [explorerProgress?.planets],
         );
 
-        useStatus(() => {
+        const handleSuccessCourseRequest = () => {
             dispatch(toggleModal());
             navigate(URL_PROFILE);
-        }, isSuccessCourseRequest);
+        }
 
         const handleSendApplication = () => {
             if (selectedKeepers.length === 0)
@@ -97,15 +97,10 @@ const CircleModalWithGalaxy =
             postCourseRequest({
                 courseId: courseInfo?.course?.courseId as number,
                 keeperIds: keeperIds,
-            });
+            })
+                .unwrap()
+                .then(handleSuccessCourseRequest)
         };
-
-        const sendButtonProps = getSendButtonProps({
-            activeTab,
-            handleSendApplication,
-            keepersListIsEmpty: selectedKeepers.length === 0,
-            setActiveTab,
-        });
 
         return (
             <CircleModal

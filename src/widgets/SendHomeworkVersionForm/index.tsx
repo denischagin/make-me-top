@@ -9,7 +9,6 @@ import { useSendHomeworkVersionMutation } from '@entities/homework/api/api';
 import { useParams } from 'react-router-dom';
 import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useStatus } from '@shared/utils/hooks/use-status';
 
 export const SendHomeworkVersionForm = () => {
     const [block, element] = bem('send-homework-version-form');
@@ -18,9 +17,7 @@ export const SendHomeworkVersionForm = () => {
 
     const [sendHomeworkVersion, { isSuccess }] = useSendHomeworkVersionMutation();
 
-    useStatus(() => {
-        setHomeworkVersionValue('');
-    }, isSuccess);
+    const handleSuccessSendHomeworkVersion = () => setHomeworkVersionValue('');
 
     const handleChangeHomeworkValue: ChangeEventHandler<HTMLTextAreaElement> = (e) =>
         setHomeworkVersionValue(e.target.value);
@@ -33,7 +30,9 @@ export const SendHomeworkVersionForm = () => {
         sendHomeworkVersion({
             homeworkId: Number(homeworkId),
             content: homeworkVersionValue,
-        });
+        })
+            .unwrap()
+            .then(handleSuccessSendHomeworkVersion);
     };
 
     return (

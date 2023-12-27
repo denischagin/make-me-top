@@ -1,11 +1,9 @@
 import { useAuth } from '@entities/viewer';
 import { useRefreshMutation } from '@entities/viewer/api/api';
-import { searchParamKeys } from '@shared/constants';
-import { URL_LOGIN, URL_PROFILE } from '@shared/constants/links';
+import { URL_PROFILE } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
 import Spinner from '@shared/ui/Spinner';
-import { useStatus } from '@shared/utils/hooks/use-status';
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export interface AuthRedirectProps {
@@ -20,18 +18,20 @@ export const AuthRedirect = ({ children }: AuthRedirectProps) => {
     const navigate = useNavigate();
     const [isShowAuth, setIsShowAuth] = useState(false);
 
+    const handleSuccessRefresh = () => {
+        handleLogin(loginData);
+        navigate(URL_PROFILE, { replace: true });
+    };
+
     useEffect(() => {
         const refreshToken = localStorage.getItem(storageKeys.refreshToken)!;
 
         if (!refreshToken) return setIsShowAuth(true);
 
-        refreshMutation(refreshToken);
+        refreshMutation(refreshToken)
+            .unwrap()
+            .then(handleSuccessRefresh);
     }, []);
-
-    useStatus(() => {
-        handleLogin(loginData)
-        navigate(URL_PROFILE, { replace: true });
-    }, isSuccess);
 
     if (isLoading) return <Spinner loading />;
     if (isError) return children;

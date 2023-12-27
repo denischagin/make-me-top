@@ -2,7 +2,6 @@ import { Button } from '@shared/ui/Button';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { useAcceptCourseRequestMutation } from '@entities/course';
 import { useState } from 'react';
-import { useStatus } from '@shared/utils/hooks/use-status';
 import toast from 'react-hot-toast';
 import { TOAST_SUCCESS_APPROVED } from '@shared/constants/toastTitles';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
@@ -15,21 +14,24 @@ export const AcceptCourseRequestButton = ({ requestId }: AcceptCourseRequestButt
         useAcceptCourseRequestMutation();
 
     const handleAcceptCourse = () => {
+        setIsAcceptModalOpen(false);
         acceptCourse({
             requestId,
-        });
-        setIsAcceptModalOpen(false);
+        })
+            .unwrap()
+            .then(handleSuccessAcceptCourse);
     };
 
-    useStatus(() => {
+    const handleSuccessAcceptCourse = () => {
         toast(TOAST_SUCCESS_APPROVED, {
             icon: '🤩',
         });
-    }, isSuccessAccept);
+    };
 
     return (
         <>
-            <Button title={'Принять'} size={buttonSize.large} color={buttonColor.filled} onClick={() => setIsAcceptModalOpen(true)}/>
+            <Button title={'Принять'} size={buttonSize.large} color={buttonColor.filled}
+                    onClick={() => setIsAcceptModalOpen(true)} />
             <ConfirmModal
                 isOpen={isAcceptModalOpen}
                 confirmTitle='Вы уверены, что хотите принять запрос на обучение?'

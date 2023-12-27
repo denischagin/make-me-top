@@ -10,7 +10,6 @@ import {
     ApprovedEducationApplicationsGroupSummary,
 } from '@widgets/ApprovedEducationApplications/ui/ApprovedEducationApplicationsGroupSummary';
 import { useStartEducationOnCourseMutation } from '@entities/course';
-import { useStatus } from '@shared/utils/hooks/use-status';
 import toast from 'react-hot-toast';
 import { CardDetails, CardDetailsContent, CardDetailsSummary } from '@shared/ui/CardDetails';
 import { Stack } from '@shared/ui/Stack';
@@ -23,29 +22,31 @@ export const ApprovedEducationApplicationsGroup = ({
     const [block, element] = bem('approved-education-application-group');
     const [isOpenConfirm, setIsOpenConfirm] = useState(false);
     const { data: userInfo } = useGetKeeperProfileQuery();
-    const [startEducation, {
-        isSuccess: isSuccessStartEducation, isError: isErrorStartEducation,
-    }] = useStartEducationOnCourseMutation();
+    const [startEducation] = useStartEducationOnCourseMutation();
 
     const handleClickStartEducation: MouseEventHandler<HTMLButtonElement> = (e) => {
         e.stopPropagation();
         setIsOpenConfirm(true);
     };
 
-    const handleSubmitStartEducation = () => {
-        startEducation(course.courseId);
-    };
-
-    useStatus(() => {
+    const handleSuccessStartEducation = () => {
         toast('Обучение успешно началось', {
             icon: '🤩',
         });
         setIsOpenConfirm(false);
-    }, isSuccessStartEducation);
+    };
 
-    useStatus(() => {
+    const handleErrorStartEducation = () => {
         setIsOpenConfirm(false);
-    }, isErrorStartEducation);
+    };
+
+    const handleSubmitStartEducation = () => {
+        startEducation(course.courseId)
+            .unwrap()
+            .then(handleSuccessStartEducation)
+            .catch(handleErrorStartEducation);
+
+    };
     const handleCloseConfirm = () => setIsOpenConfirm(false);
 
     const explorersToEducation =
