@@ -1,24 +1,34 @@
 import { bem, getUserFullName } from '@shared/utils';
 import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
 import { Stack } from '@shared/ui/Stack';
-import { FeedbackOfferCard } from '@entities/user';
+import { FeedbackOfferCard, useRejectKeeperFeedbackOfferMutation } from '@entities/feedback';
 import { Button } from '@shared/ui/Button';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import { ButtonRejectFeedback } from '@features/reject-feedback';
 
 export const FeedbackOfferKeeper = () => {
     const [block, element] = bem('feedback-offer-keeper');
 
     const { data: keeperInfo } = useGetKeeperProfileQuery();
+    const [rejectKeeperFeedback] = useRejectKeeperFeedbackOfferMutation();
+
+    const handleRejectKeeperFeedback = (explorerId: number) => () => {
+        rejectKeeperFeedback(explorerId);
+    };
 
     return (
         <Stack className={block()}>
-            {keeperInfo?.keeperFeedbacks?.map((explorer) => (
+            {keeperInfo?.keeperFeedbacks?.map(({ courseTitle, explorerId, ...explorer }) => (
                 <FeedbackOfferCard
-                    title={`Вам понравился исследователь на системе ${explorer.courseTitle}?`}
+                    title={`Вам понравился исследователь на системе ${courseTitle}?`}
                     heading={getUserFullName(explorer)}
                     buttons={(
                         <>
-                            <Button title={'Отклонить'} size={buttonSize.small} />
+                            <ButtonRejectFeedback
+                                title={'Отклонить'}
+                                size={buttonSize.small}
+                                onSubmit={handleRejectKeeperFeedback(explorerId)}
+                            />
 
                             <Button
                                 title={'Оставить отзыв'}

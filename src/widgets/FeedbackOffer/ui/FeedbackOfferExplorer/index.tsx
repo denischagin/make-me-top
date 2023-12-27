@@ -4,22 +4,33 @@ import { bem, getUserFullName } from '@shared/utils';
 import './styles.scss';
 import { Button } from '@shared/ui/Button';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
-import { FeedbackOfferCard } from '@entities/user/ui/FeedbackOfferCard/ui';
+import { FeedbackOfferCard, useRejectExplorerFeedbackOfferMutation } from '@entities/feedback';
+import { ButtonRejectFeedback } from '@features/reject-feedback';
 
 export const FeedbackOfferExplorer = () => {
     const { data: explorerInfo } = useGetExplorerProfileQuery();
 
     const [block, element] = bem('feedback-offer-explorer');
 
+    const [rejectExplorerFeedback] = useRejectExplorerFeedbackOfferMutation();
+
+    const handleRejectExplorerFeedback = (explorerId: number) => () => {
+        rejectExplorerFeedback(explorerId);
+    };
+
     return (
         <Stack className={block()}>
-            {explorerInfo?.explorerFeedbacks?.map((keeper) => (
+            {explorerInfo?.explorerFeedbacks?.map(({ courseTitle, explorerId, ...keeper }) => (
                 <FeedbackOfferCard
-                    title={`Вам понравился хранитель на системе ${keeper.courseTitle}?`}
+                    title={`Вам понравился хранитель на системе ${courseTitle}?`}
                     heading={getUserFullName(keeper)}
                     buttons={(
                         <>
-                            <Button title={'Отклонить'} size={buttonSize.small} />
+                            <ButtonRejectFeedback
+                                title={'Отклонить'}
+                                size={buttonSize.small}
+                                onSubmit={handleRejectExplorerFeedback(explorerId)}
+                            />
 
                             <Button
                                 title={'Оставить отзыв'}

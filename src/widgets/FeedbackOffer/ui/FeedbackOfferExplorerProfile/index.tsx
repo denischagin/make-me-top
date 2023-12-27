@@ -26,8 +26,8 @@ export const FeedbackOfferExplorerProfile = () => {
     const { data: explorerInfo } = useGetExplorerProfileQuery();
 
     if (
-        !explorerInfo?.courseFeedbacks &&
-        !explorerInfo?.explorerFeedbacks
+        !explorerInfo?.courseFeedbacks?.length &&
+        !explorerInfo?.explorerFeedbacks?.length
     ) return null;
 
 

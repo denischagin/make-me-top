@@ -11,7 +11,7 @@ export const FeedbackOfferKeeperProfile = () => {
 
     const { data: keeperInfo } = useGetKeeperProfileQuery();
 
-    if (!keeperInfo?.keeperFeedbacks)
+    if (!keeperInfo?.keeperFeedbacks?.length)
         return null;
 
 

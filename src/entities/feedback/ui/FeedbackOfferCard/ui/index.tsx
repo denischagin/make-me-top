@@ -5,7 +5,7 @@ import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { bem } from '@shared/utils';
 import { stackDirection, stackSpacing } from '@shared/ui/Stack/interface';
-import { FeedbackOfferCardProps } from '@entities/user/ui/FeedbackOfferCard/ui/interface';
+import { FeedbackOfferCardProps } from './interface';
 import './styles.scss';
 
 export const FeedbackOfferCard = ({ heading, title, buttons }: FeedbackOfferCardProps) => {
