@@ -1,1 +1,2 @@
-export { CurrentUserItem } from './ui/CurrentUserItem';
+export * from './ui';
+

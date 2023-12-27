@@ -56,6 +56,18 @@ export interface KeeperInfoInterface {
     approvedRequests: KeeperCourseGroupAcceptedRequests[];
     currentGroup: KeeperCurrentGroupInterface;
     systems: SystemInterface[];
+    keeperFeedbacks?: KeeperFeedback[];
+}
+
+export interface KeeperFeedback {
+    personId: number;
+    explorerId: number;
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+    keeperId: number;
+    courseId: number;
+    courseTitle: string;
 }
 
 
