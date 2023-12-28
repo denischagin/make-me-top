@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Button } from '@shared/ui/Button';
 import { Card } from '@shared/ui/Card';
@@ -18,7 +18,7 @@ import './styles.scss';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 import { useCloseCourseRequestMutation } from '@entities/course';
-import { useAuth } from '@entities/viewer';
+import { onErrorHandling } from '@shared/api';
 
 export const MasteringApplication = () => {
     const [block, element] = bem('current-request-card');
@@ -41,7 +41,8 @@ export const MasteringApplication = () => {
     const handleSubmitCloseCourseRequest = () => {
         closeCourseRequest(studyRequest.requestId)
             .unwrap()
-            .then(() => handleOnSuccessRejectCourseRequest());
+            .then(() => handleOnSuccessRejectCourseRequest())
+            .catch();
     };
 
     return (

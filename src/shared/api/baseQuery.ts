@@ -98,7 +98,7 @@ export const baseQueryWithReauth: BaseQueryFn<
 	return result;
 };
 
-const onErrorHandling = (
+export const onErrorHandling = (
 	err: unknown,
 	extraOptions?: { withOutToasts: boolean },
 ) => {

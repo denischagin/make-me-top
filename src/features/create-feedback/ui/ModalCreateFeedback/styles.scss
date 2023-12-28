@@ -1,0 +1,15 @@
+.modal-create-feedback {
+  &__extra-button {
+    animation: modalCreateFeedbackButtonEntry 300ms forwards ease;
+  }
+}
+
+@keyframes modalCreateFeedbackButtonEntry {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

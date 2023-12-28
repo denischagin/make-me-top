@@ -8,6 +8,7 @@ import { TOAST_SUCCESS_REJECTED } from '@shared/constants/toasts';
 import { bem } from '@shared/utils';
 import './styles.scss';
 import { ChangeEventHandler, useState } from 'react';
+import { onErrorHandling } from '@shared/api';
 
 export const RejectCourseRequestModal = (props: RejectCourseRequestModalProps) => {
     const [, element] = bem('reject-course-request-modal');
@@ -38,6 +39,7 @@ export const RejectCourseRequestModal = (props: RejectCourseRequestModalProps) =
         })
             .unwrap()
             .then(handleSuccessRejectCourse)
+            .catch()
     };
 
     const handleChangeReason: ChangeEventHandler<HTMLInputElement> = (e) => {

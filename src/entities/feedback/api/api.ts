@@ -1,4 +1,9 @@
 import { baseApi } from '@shared/api/baseApi';
+import {
+    CreateCourseRatingParamsInterface,
+    CreateExplorerFeedbackParamsInterface,
+    CreateKeeperFeedbackParamsInterface,
+} from '@entities/feedback/model';
 
 export const feedbackApi = baseApi.injectEndpoints({
     overrideExisting: true,
@@ -39,6 +44,45 @@ export const feedbackApi = baseApi.injectEndpoints({
             invalidatesTags: ['getExplorerProfile'],
         }),
 
+        createCourseRating: builder.mutation<
+            number,
+            CreateCourseRatingParamsInterface
+        >({
+            query: (body) => ({
+                url: `feedback-app/course-feedbacks`,
+                method: 'POST',
+                body,
+            }),
+
+            invalidatesTags: ['getExplorerProfile'],
+        }),
+
+        createExplorerFeedback: builder.mutation<
+            number,
+            CreateExplorerFeedbackParamsInterface
+        >({
+            query: (body) => ({
+                url: `feedback-app/explorer-feedbacks/`,
+                method: 'POST',
+                body,
+            }),
+
+            invalidatesTags: ['getExplorerProfile'],
+        }),
+
+        createKeeperFeedback: builder.mutation<
+            number,
+            CreateKeeperFeedbackParamsInterface
+        >({
+            query: (body) => ({
+                url: `feedback-app/keeper-feedbacks/`,
+                method: 'POST',
+                body,
+            }),
+
+            invalidatesTags: ['getKeeperProfile'],
+        }),
+
     }),
 });
 
@@ -46,4 +90,7 @@ export const {
     useRejectCourseFeedbackOfferMutation,
     useRejectExplorerFeedbackOfferMutation,
     useRejectKeeperFeedbackOfferMutation,
+    useCreateExplorerFeedbackMutation,
+    useCreateCourseRatingMutation,
+    useCreateKeeperFeedbackMutation,
 } = feedbackApi;

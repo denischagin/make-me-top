@@ -13,6 +13,7 @@ import { useStartEducationOnCourseMutation } from '@entities/course';
 import toast from 'react-hot-toast';
 import { CardDetails, CardDetailsContent, CardDetailsSummary } from '@shared/ui/CardDetails';
 import { Stack } from '@shared/ui/Stack';
+import { onErrorHandling } from '@shared/api';
 
 
 export const ApprovedEducationApplicationsGroup = ({
@@ -36,7 +37,7 @@ export const ApprovedEducationApplicationsGroup = ({
         setIsOpenConfirm(false);
     };
 
-    const handleErrorStartEducation = () => {
+    const handleErrorStartEducation = (err: unknown) => {
         setIsOpenConfirm(false);
     };
 
@@ -45,7 +46,6 @@ export const ApprovedEducationApplicationsGroup = ({
             .unwrap()
             .then(handleSuccessStartEducation)
             .catch(handleErrorStartEducation);
-
     };
     const handleCloseConfirm = () => setIsOpenConfirm(false);
 

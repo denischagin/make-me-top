@@ -26,6 +26,7 @@ import { useGetGalaxyCircleModalInfo } from '@entities/galaxy/libs/hooks/useGetG
 import { getSendButtonProps } from '@entities/galaxy/libs/helpers/getSendButtonProps';
 import { ModalAccessStatus } from '@shared/ui/CircleModal/interfaces';
 import { SendCourseRequestButton } from '@features/send-course-request/ui/SendCourseRequestButton';
+import { onErrorHandling } from '@shared/api';
 
 const CircleModalWithGalaxy =
     ({
@@ -100,6 +101,7 @@ const CircleModalWithGalaxy =
             })
                 .unwrap()
                 .then(handleSuccessCourseRequest)
+                .catch()
         };
 
         return (

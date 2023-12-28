@@ -10,6 +10,7 @@ import { SendRemarkProps } from '@widgets/SendGradeAndRemark/ui/SendRemark/inter
 import { useSendHomeworkRequestFeedbackMutation } from '@entities/homework/api/api';
 import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { onErrorHandling } from '@shared/api';
 
 export const SendRemark = ({ onSwitchClick }: SendRemarkProps) => {
     const [block, element] = bem('send-remark');
@@ -32,7 +33,8 @@ export const SendRemark = ({ onSwitchClick }: SendRemarkProps) => {
             content: remarkValue,
         })
             .unwrap()
-            .then(handleSendRequestFeedbackSuccess);
+            .then(handleSendRequestFeedbackSuccess)
+            .catch()
     };
 
     return (

@@ -2,10 +2,10 @@ import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 import { Stack } from '@shared/ui/Stack';
 import { bem, getUserFullName } from '@shared/utils';
 import './styles.scss';
-import { Button } from '@shared/ui/Button';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import { buttonSize } from '@shared/ui/Button/interfaces';
 import { FeedbackOfferCard, useRejectExplorerFeedbackOfferMutation } from '@entities/feedback';
 import { ButtonRejectFeedback } from '@features/reject-feedback';
+import { ButtonCreateFeedback, ModalCreateFeedbackExplorer } from '@features/create-feedback';
 
 export const FeedbackOfferExplorer = () => {
     const { data: explorerInfo } = useGetExplorerProfileQuery();
@@ -32,10 +32,10 @@ export const FeedbackOfferExplorer = () => {
                                 onSubmit={handleRejectExplorerFeedback(explorerId)}
                             />
 
-                            <Button
-                                title={'Оставить отзыв'}
-                                size={buttonSize.small}
-                                color={buttonColor.filled}
+                            <ButtonCreateFeedback
+                                renderModal={(modalProps) => (
+                                    <ModalCreateFeedbackExplorer explorerId={explorerId} {...modalProps} />
+                                )}
                             />
                         </>
                     )}

@@ -2,9 +2,9 @@ import { bem, getUserFullName } from '@shared/utils';
 import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
 import { Stack } from '@shared/ui/Stack';
 import { FeedbackOfferCard, useRejectKeeperFeedbackOfferMutation } from '@entities/feedback';
-import { Button } from '@shared/ui/Button';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import { buttonSize } from '@shared/ui/Button/interfaces';
 import { ButtonRejectFeedback } from '@features/reject-feedback';
+import { ButtonCreateFeedback, ModalCreateFeedbackKeeper } from '@features/create-feedback';
 
 export const FeedbackOfferKeeper = () => {
     const [block, element] = bem('feedback-offer-keeper');
@@ -30,10 +30,10 @@ export const FeedbackOfferKeeper = () => {
                                 onSubmit={handleRejectKeeperFeedback(explorerId)}
                             />
 
-                            <Button
-                                title={'Оставить отзыв'}
-                                size={buttonSize.small}
-                                color={buttonColor.filled}
+                            <ButtonCreateFeedback
+                                renderModal={(modalProps) => (
+                                    <ModalCreateFeedbackKeeper explorerId={explorerId} {...modalProps} />
+                                )}
                             />
                         </>
                     )}

@@ -25,4 +25,22 @@
   &--direction-vertical {
     flex-direction: column;
   }
+
+
+  &--align-center {
+    align-items: center;
+  }
+
+  &--align-right {
+    align-items: end;
+  }
+
+  &--align-left {
+    align-items: start;
+  }
+
+  &--align-stretch {
+    align-items: stretch;
+  }
+
 }

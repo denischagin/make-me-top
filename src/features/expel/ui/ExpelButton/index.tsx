@@ -5,6 +5,7 @@ import { ExpelButtonProps } from '@features/expel';
 import toast from 'react-hot-toast';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { useState } from 'react';
+import { onErrorHandling } from '@shared/api';
 
 export const ExpelButton = ({ explorerId }: ExpelButtonProps) => {
     const [expelExplorer] = useLeaveCourseByExplorerIdMutation();
@@ -12,7 +13,8 @@ export const ExpelButton = ({ explorerId }: ExpelButtonProps) => {
     const handleExpelExplorerClick = () => {
         expelExplorer(explorerId)
             .unwrap()
-            .then(handleSuccessExpelExplorer);
+            .then(handleSuccessExpelExplorer)
+            .catch(onErrorHandling);
     };
 
     const handleSuccessExpelExplorer = () => {

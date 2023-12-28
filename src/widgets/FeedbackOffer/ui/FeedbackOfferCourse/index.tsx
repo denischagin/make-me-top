@@ -1,10 +1,10 @@
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 import { bem } from '@shared/utils';
 import { Stack } from '@shared/ui/Stack';
-import { Button } from '@shared/ui/Button';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import { buttonSize } from '@shared/ui/Button/interfaces';
 import { FeedbackOfferCard, useRejectCourseFeedbackOfferMutation } from '@entities/feedback';
 import { ButtonRejectFeedback } from '@features/reject-feedback';
+import { ButtonCreateFeedback, ModalCreateCourseRating } from '@features/create-feedback';
 
 export const FeedbackOfferCourse = () => {
     const { data: explorerInfo } = useGetExplorerProfileQuery();
@@ -32,10 +32,10 @@ export const FeedbackOfferCourse = () => {
                                     onSubmit={handleRejectCourseFeedback(explorerId)}
                                 />
 
-                                <Button
-                                    title={'Оставить отзыв'}
-                                    size={buttonSize.small}
-                                    color={buttonColor.filled}
+                                <ButtonCreateFeedback
+                                    renderModal={(modalProps) => (
+                                        <ModalCreateCourseRating explorerId={explorerId} {...modalProps} />
+                                    )}
                                 />
                             </>
                         )}

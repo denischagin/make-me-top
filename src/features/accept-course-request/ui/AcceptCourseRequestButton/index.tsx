@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { TOAST_SUCCESS_APPROVED } from '@shared/constants/toastTitles';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { AcceptCourseRequestButtonProps } from './interface';
+import { onErrorHandling } from '@shared/api';
 
 export const AcceptCourseRequestButton = ({ requestId }: AcceptCourseRequestButtonProps) => {
     const [isAcceptModalOpen, setIsAcceptModalOpen] = useState(false);
@@ -19,7 +20,8 @@ export const AcceptCourseRequestButton = ({ requestId }: AcceptCourseRequestButt
             requestId,
         })
             .unwrap()
-            .then(handleSuccessAcceptCourse);
+            .then(handleSuccessAcceptCourse)
+            .catch();
     };
 
     const handleSuccessAcceptCourse = () => {

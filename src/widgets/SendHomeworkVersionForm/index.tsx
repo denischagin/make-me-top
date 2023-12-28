@@ -9,6 +9,7 @@ import { useSendHomeworkVersionMutation } from '@entities/homework/api/api';
 import { useParams } from 'react-router-dom';
 import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 import toast from 'react-hot-toast';
+import { onErrorHandling } from '@shared/api';
 
 export const SendHomeworkVersionForm = () => {
     const [block, element] = bem('send-homework-version-form');
@@ -32,7 +33,8 @@ export const SendHomeworkVersionForm = () => {
             content: homeworkVersionValue,
         })
             .unwrap()
-            .then(handleSuccessSendHomeworkVersion);
+            .then(handleSuccessSendHomeworkVersion)
+            .catch()
     };
 
     return (
