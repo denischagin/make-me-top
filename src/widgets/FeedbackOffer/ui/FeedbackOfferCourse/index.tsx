@@ -19,9 +19,10 @@ export const FeedbackOfferCourse = () => {
 
     return (
         <Stack className={block()}>
-            {explorerInfo?.courseFeedbacks?.map(({ explorerId, courseTitle }) => (
+            {explorerInfo?.courseFeedbacks?.map(({ explorerId, courseTitle, courseId }) => (
                 <>
                     <FeedbackOfferCard
+                        key={courseId}
                         title={`Вам понравился курс?`}
                         heading={courseTitle}
                         buttons={(

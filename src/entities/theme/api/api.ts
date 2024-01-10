@@ -19,7 +19,10 @@ export const themeApi = baseApi.injectEndpoints({
             query: (themeId) => ({
                 url: `progress-app/themes/${themeId}/marks/`,
             }),
-            providesTags: ['getExplorersWaitingThemeMark'],
+            providesTags: (_result, _error, arg) => ([{
+                type: 'getExplorersWaitingThemeMark' as const,
+                id: arg,
+            }]),
         }),
         sendThemeMark: builder.mutation<number, { themeId: string, explorerId: number, value: number }>({
             query: ({ themeId, value, explorerId }) => ({
@@ -30,11 +33,11 @@ export const themeApi = baseApi.injectEndpoints({
                     value,
                 },
             }),
-            invalidatesTags: [
-                'getExplorersWaitingThemeMark',
+            invalidatesTags: (_result, _error, arg) => ([
+                { type: 'getExplorersWaitingThemeMark', id: arg.themeId },
                 'getThemesWaitingExplorersMark',
                 'getExplorerCardInfo',
-            ],
+            ]),
         }),
 
         getThemesWaitingExplorersMark: builder.query<GetThemesWaitingExplorersMark, void>({
