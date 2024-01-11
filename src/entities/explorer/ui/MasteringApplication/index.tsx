@@ -41,7 +41,8 @@ export const MasteringApplication = () => {
         closeCourseRequest(studyRequest.requestId)
             .unwrap()
             .then(handleOnSuccessRejectCourseRequest)
-            .catch(function(){});
+            .catch(function() {
+            });
     };
 
     return (
@@ -94,11 +95,6 @@ export const MasteringApplication = () => {
                                 title='Отменить заявку'
                                 onClick={() => setIsAcceptModalOpen(true)}
                             />
-                            {/* <Button
-                                size={buttonSize.large}
-                                color={buttonColor.filled}
-                                title='Продолжить'
-                            /> */}
                         </div>
                     </div>
                 </div>
