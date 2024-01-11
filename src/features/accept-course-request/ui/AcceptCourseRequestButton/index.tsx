@@ -21,7 +21,7 @@ export const AcceptCourseRequestButton = ({ requestId }: AcceptCourseRequestButt
         })
             .unwrap()
             .then(handleSuccessAcceptCourse)
-            .catch();
+            .catch(() => {});
     };
 
     const handleSuccessAcceptCourse = () => {

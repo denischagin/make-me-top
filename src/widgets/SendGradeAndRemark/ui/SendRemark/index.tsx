@@ -34,7 +34,7 @@ export const SendRemark = ({ onSwitchClick }: SendRemarkProps) => {
         })
             .unwrap()
             .then(handleSendRequestFeedbackSuccess)
-            .catch()
+            .catch(() => {})
     };
 
     return (

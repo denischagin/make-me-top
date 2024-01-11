@@ -16,7 +16,7 @@ export const ModalCreateFeedbackKeeper = (props: ModalCreateFeedbackKeeperProps)
         })
             .unwrap()
             .then(onClose)
-            .catch()
+            .catch(() => {})
     };
 
     return (

@@ -39,7 +39,7 @@ export const RejectCourseRequestModal = (props: RejectCourseRequestModalProps) =
         })
             .unwrap()
             .then(handleSuccessRejectCourse)
-            .catch()
+            .catch(() => {})
     };
 
     const handleChangeReason: ChangeEventHandler<HTMLInputElement> = (e) => {

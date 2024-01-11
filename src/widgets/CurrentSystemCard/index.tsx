@@ -68,7 +68,7 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
         leaveCourseRequest(currentSystem?.explorerId)
             .unwrap()
             .then(handleSuccessLeaveCourse)
-            .catch();
+            .catch(() => {});
     };
 
     return (

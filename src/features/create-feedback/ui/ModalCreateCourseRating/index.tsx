@@ -10,7 +10,6 @@ import { typographyColor, typographyVariant } from '@shared/ui/Typography/interf
 import { Button } from '@shared/ui/Button';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { bem } from '@shared/utils';
-import { onErrorHandling } from '@shared/api';
 
 export const ModalCreateCourseRating = (props: ModalCreateFeedbackCourseProps) => {
     const [block, element] = bem('modal-create-course-rating');
@@ -33,7 +32,7 @@ export const ModalCreateCourseRating = (props: ModalCreateFeedbackCourseProps) =
         })
             .unwrap()
             .then(onClose)
-            .catch()
+            .catch(() => {})
     };
 
     return (

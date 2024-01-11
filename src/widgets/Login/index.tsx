@@ -14,8 +14,6 @@ import { useLoginMutation } from '@entities/viewer/api/api';
 import { useAuth } from '@entities/viewer';
 import { inputVariantEnum } from '@shared/ui/Input/interfaces';
 import { AuthResponse } from '@entities/viewer/model/types/api';
-import toast from 'react-hot-toast';
-import { ErrorInterface } from '@shared/types/common';
 import { onErrorHandling } from '@shared/api';
 
 export const Login = ({ role }: LoginProps) => {
@@ -55,7 +53,7 @@ export const Login = ({ role }: LoginProps) => {
         loginMutation(credentials)
             .unwrap()
             .then(handleSuccessLogin)
-            .catch()
+            .catch(() => {});
     };
 
     return (

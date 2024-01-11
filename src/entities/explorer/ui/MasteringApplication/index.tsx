@@ -18,7 +18,6 @@ import './styles.scss';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 import { useCloseCourseRequestMutation } from '@entities/course';
-import { onErrorHandling } from '@shared/api';
 
 export const MasteringApplication = () => {
     const [block, element] = bem('current-request-card');
@@ -41,8 +40,8 @@ export const MasteringApplication = () => {
     const handleSubmitCloseCourseRequest = () => {
         closeCourseRequest(studyRequest.requestId)
             .unwrap()
-            .then(() => handleOnSuccessRejectCourseRequest())
-            .catch();
+            .then(handleOnSuccessRejectCourseRequest)
+            .catch(function(){});
     };
 
     return (

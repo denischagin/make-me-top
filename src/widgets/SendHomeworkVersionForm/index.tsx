@@ -34,7 +34,7 @@ export const SendHomeworkVersionForm = () => {
         })
             .unwrap()
             .then(handleSuccessSendHomeworkVersion)
-            .catch()
+            .catch(() => {})
     };
 
     return (

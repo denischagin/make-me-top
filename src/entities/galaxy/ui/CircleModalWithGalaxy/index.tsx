@@ -101,7 +101,7 @@ const CircleModalWithGalaxy =
             })
                 .unwrap()
                 .then(handleSuccessCourseRequest)
-                .catch()
+                .catch(() => {})
         };
 
         return (
