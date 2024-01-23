@@ -1,22 +1,20 @@
-import React, { ReactElement } from 'react';
-import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
-import { Header } from '@widgets/Header/ui/Header';
-import { bem } from '@shared/utils/helpers/bem';
-import { Container } from '@shared/ui/Container';
-import './styles.scss';
-import { SendGradeAndRemark } from '@widgets/SendGradeAndRemark/ui/SendGradeAndRemark';
-import { HomeworkRequests } from '@widgets/HomeworkRequests';
-import { Typography } from '@shared/ui/Typography';
-import { typographyVariant } from '@shared/ui/Typography/interfaces';
-import { useAuth } from '@entities/viewer';
 import { useGetHomeworkRequest } from '@entities/homework';
-import { roles } from '@shared/constants/storageKeys';
-import { SendHomeworkVersionForm } from '@widgets/SendHomeworkVersionForm';
-import { GradeWithComment } from '@widgets/GradeWithComment';
-import NotFound from '@pages/NotFound';
-import Spinner from '@shared/ui/Spinner';
-import { HomeworkContent } from '@widgets/HomeworkContent';
+import { useAuth } from '@entities/viewer';
 import { ButtonScrollTopBottom } from '@features/scroll-top-bottom';
+import NotFound from '@pages/NotFound';
+import { roles } from '@shared/constants/storageKeys';
+import { BackgroundProfile } from '@shared/ui/BackgroundProfile';
+import { Container } from '@shared/ui/Container';
+import Spinner from '@shared/ui/Spinner';
+import { bem } from '@shared/utils/helpers/bem';
+import { GradeWithComment } from '@widgets/GradeWithComment';
+import { Header } from '@widgets/Header/ui/Header';
+import { HomeworkContent } from '@widgets/HomeworkContent';
+import { HomeworkRequests } from '@widgets/HomeworkRequests';
+import { SendGradeAndRemark } from '@widgets/SendGradeAndRemark/ui/SendGradeAndRemark';
+import { SendHomeworkVersionForm } from '@widgets/SendHomeworkVersionForm';
+import React, { ReactElement } from 'react';
+import './styles.scss';
 
 const sendFormByRole: Record<roles, ReactElement> = {
     KEEPER: <SendGradeAndRemark />,
@@ -56,9 +54,11 @@ const HomeworkRequestCardPage = () => {
                     <div className={element('content')}>
                         <HomeworkContent />
 
-                        {requestsInfo?.request?.status.status !== 'CLOSED' ?
-                            role && sendFormByRole[role] : <GradeWithComment />
-                        }
+                        {requestsInfo?.request?.status.status !== 'CLOSED' ? (
+                            role && sendFormByRole[role]
+                        ) : (
+                            <GradeWithComment />
+                        )}
 
                         <HomeworkRequests />
                     </div>

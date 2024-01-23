@@ -7,7 +7,9 @@ import { getUrlHomeworkWithRequestId } from '@shared/constants/links';
 import { CircleBadge } from '@shared/ui/CircleBadge';
 import './styles.scss';
 
-export const ApplicationRequestList = ({ requestList }: ApplicationRequestListProps) => {
+export const ApplicationRequestList = ({
+                                           requestList,
+                                       }: ApplicationRequestListProps) => {
     const [block, element] = bem('application-request-list');
 
     if (!requestList.length) return null;
@@ -23,35 +25,33 @@ export const ApplicationRequestList = ({ requestList }: ApplicationRequestListPr
 
             <div className={element('card')}>
                 {requestList?.map((reviewRequest) => (
-                    <CircleBadge emptyContent={reviewRequest?.status.status === 'CHECKING'}>
+                    <CircleBadge
+                        emptyContent
+                        showBadge={reviewRequest?.status.status === 'CHECKING'}
+                        key={reviewRequest.personId}
+                    >
                         <CardWithExtraButton
                             fullName={getUserFullName(reviewRequest)}
-                            key={reviewRequest.personId}
-                            content={(
+                            content={
                                 <div>
-                                    <Typography
-                                        variant={typographyVariant.regular14}
-                                    >
+                                    <Typography variant={typographyVariant.regular14}>
                                         {`Система: ${reviewRequest.courseTitle}`}
                                     </Typography>
 
-                                    <Typography
-                                        variant={typographyVariant.regular14}
-                                    >
+                                    <Typography variant={typographyVariant.regular14}>
                                         {`Планета: ${reviewRequest.courseThemeTitle}`}
                                     </Typography>
                                 </div>
-                            )}
+                            }
                             buttonContent={'Оценить'}
                             buttonHref={getUrlHomeworkWithRequestId({
-                                requestId: reviewRequest?.requestId!,
-                                homeworkId: reviewRequest?.homeworkId!,
+                                requestId: reviewRequest?.requestId ?? 0,
+                                homeworkId: reviewRequest?.homeworkId ?? 0,
                             })}
                         />
                     </CircleBadge>
                 ))}
             </div>
-
         </div>
     );
 };

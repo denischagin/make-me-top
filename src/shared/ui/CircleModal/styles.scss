@@ -74,6 +74,10 @@
     z-index: -1;
   }
 
+  &__item-list {
+    overflow-y: auto;
+  }
+
   &--open {
     pointer-events: all;
     animation: circleModalEntryAnimation 0.6s ease forwards;

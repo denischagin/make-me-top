@@ -17,7 +17,7 @@ const Explorers = () => {
     return (
         <div className={block()}>
             <Header />
-            <Container className={element('container')}>
+            <Container>
                 <Stack spacing={stackSpacing.large}>
                     <Typography variant={typographyVariant.h2}>
                         Список исследователей

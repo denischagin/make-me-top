@@ -1,13 +1,9 @@
-import { ReactElement, ReactNode, useEffect, useState } from 'react';
-import { Navigate, NavigateFunction, useNavigate } from 'react-router-dom';
-
-import { URL_LOGIN } from '@shared/constants/links';
+import { ReactElement, useEffect } from 'react';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { storageKeys } from '@shared/constants/storageKeys';
-import { searchParamKeys } from '@shared/constants';
 import { useRefreshMutation } from '@entities/viewer/api/api';
-import { useStatus } from '@shared/utils/hooks/use-status';
 import Spinner from '@shared/ui/Spinner';
-import { UseAuthLoginData, useAuth } from '@entities/viewer/libs/hooks/useAuth';
+import { useAuth } from '@entities/viewer/libs/hooks/useAuth';
 import { getNavigationPath } from '@entities/viewer/libs/helpers/getNavigationPath';
 
 interface AuthProtectProps {
@@ -20,10 +16,10 @@ const logoutAndNavigate = (navigate: NavigateFunction, handleLogout: () => void)
 };
 
 export const AuthProtect = ({ children }: AuthProtectProps) => {
-	
+
     const [refresh, { isSuccess, isError, data: tokens }] =
         useRefreshMutation();
-    const { handleLogout, isAuth } = useAuth();
+    const { handleLogout, isAuth, handleLogin } = useAuth();
 
     const navigate = useNavigate();
 
@@ -35,10 +31,11 @@ export const AuthProtect = ({ children }: AuthProtectProps) => {
 
         refresh(refreshToken)
             .unwrap()
-            .catch(() => logoutAndNavigate(navigate, handleLogout))
+            .then((loginData) => handleLogin(loginData))
+            .catch(() => logoutAndNavigate(navigate, handleLogout));
     }, []);
 
-    if (isSuccess || isAuth) return children;
+    if (isAuth) return children;
 
     return <Spinner loading />;
 };

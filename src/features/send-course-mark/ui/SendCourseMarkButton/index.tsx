@@ -1,9 +1,8 @@
 import { Button } from '@shared/ui/Button';
-import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { useSendCourseMarkMutation } from '@entities/course';
 import { SendCourseMarkButtonProps } from './interface';
 
-export const SendCourseMarkButton = ({ valueMark, explorerId }: SendCourseMarkButtonProps) => {
+export const SendCourseMarkButton = ({ valueMark, explorerId, ...restProps }: SendCourseMarkButtonProps) => {
     const [sendMark] = useSendCourseMarkMutation();
 
     const handleClickSendMark = () => {
@@ -15,9 +14,7 @@ export const SendCourseMarkButton = ({ valueMark, explorerId }: SendCourseMarkBu
 
     return (
         <Button
-            title={'Принять'}
-            size={buttonSize.small}
-            color={buttonColor.filled}
+            {...restProps}
             onClick={handleClickSendMark}
         />
     );

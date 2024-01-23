@@ -1,7 +1,20 @@
 import { ReactNode } from 'react';
 
-export interface CircleBadgeProps {
-    badgeContent?: number;
+export type CircleBadgeProps = CircleBadgeEmptyContent | CircleBadgeWithContent
+
+export interface CircleBadgeCommonProps {
+    emptyContent: boolean;
     children: ReactNode;
-    emptyContent?: boolean;
 }
+
+export interface CircleBadgeEmptyContent extends CircleBadgeCommonProps {
+    emptyContent: true;
+    showBadge?: boolean;
+}
+
+export interface CircleBadgeWithContent extends CircleBadgeCommonProps {
+    emptyContent: false;
+    badgeContent?: string | number;
+    showZero?: boolean;
+}
+

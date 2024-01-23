@@ -18,6 +18,10 @@
 
   &__current-keeper {
     margin: 8px 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__progress {

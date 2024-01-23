@@ -7,7 +7,7 @@ import { Typography } from '@shared/ui/Typography';
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
-import { getUrlExplorerById, getUrlHomeworkWithRequestId, URL_EXPLORER } from '@shared/constants/links';
+import { getUrlHomeworkWithRequestId } from '@shared/constants/links';
 
 import { ApplicationCardInterface } from './interfaces';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
@@ -26,7 +26,7 @@ export const ApplicationCard = (props: ApplicationCardInterface) => {
     const reviewOrAssessment = finalAssessment || reviewRequest;
 
     return (
-        <CircleBadge emptyContent={reviewRequest?.status.status === 'CHECKING'}>
+        <CircleBadge emptyContent showBadge={reviewRequest?.status.status === 'CHECKING'}>
             <div className={block()}>
                 <Card size={cardSize.large} glow>
                     <div className={element('content')}>

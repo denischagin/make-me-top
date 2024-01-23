@@ -22,7 +22,7 @@ import { ConfirmModal } from '@shared/ui/ConfirmModal';
 export const Header = (props: HeaderInterface) => {
 	const [block, element] = bem('header');
 	const [isOpenDrawer, setIsOpenDrawer] = useState(false);
-	const [isOpenModalConfirm, setisOpenModalConfirm] = useState(false);
+	const [isOpenModalConfirm, setIsOpenModalConfirm] = useState(false);
 	
 	const [logoutMutation, { isSuccess, isError }] = useLogoutMutation();
 	const { refreshToken, handleLogout: logoutState, isAuth } = useAuth();
@@ -33,8 +33,8 @@ export const Header = (props: HeaderInterface) => {
 	const handleLogout = () => logoutMutation(refreshToken!);
 	const handleCloseDrawer = () => setIsOpenDrawer(false);
 	const handleOpenDrawer = () => setIsOpenDrawer(true);
-	const handleOpenConfirmModal = () => setisOpenModalConfirm(true);
-	const handleCloseConfirmModal = () => setisOpenModalConfirm(false);
+	const handleOpenConfirmModal = () => setIsOpenModalConfirm(true);
+	const handleCloseConfirmModal = () => setIsOpenModalConfirm(false);
 	
 	useEffect(() => {
 		if (isSuccess || isError) {

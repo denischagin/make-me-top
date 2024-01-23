@@ -1,10 +1,31 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { ComponentProps } from 'react';
 
-export interface TypographyInterface extends HTMLAttributes<HTMLParagraphElement> {
-    variant: typographyVariant;
+export type TypographyAsType = 'p' | 'span' | 'a'
+
+export interface TypographyCommonProps {
+    as?: TypographyAsType;
+    variant?: typographyVariant;
     color?: typographyColor;
+}
+
+export interface TypographyAsParagraphProps
+    extends Omit<ComponentProps<'p'>, 'color'>, TypographyCommonProps {
+    as?: 'p';
     parseLink?: boolean;
 }
+
+export interface TypographyAsSpanProps
+    extends Omit<ComponentProps<'span'>, 'color'>, TypographyCommonProps {
+    as?: 'span';
+}
+
+export interface TypographyAsLinkProps
+    extends Omit<ComponentProps<'a'>, 'color'>, TypographyCommonProps {
+    as?: 'a';
+    underline?: boolean;
+}
+
+export type TypographyProps = TypographyAsParagraphProps | TypographyAsSpanProps | TypographyAsLinkProps
 
 export enum typographyColor {
     primary500 = 'primary-500',

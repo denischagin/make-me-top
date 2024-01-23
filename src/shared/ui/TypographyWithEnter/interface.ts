@@ -1,6 +1,6 @@
-import { TypographyInterface } from '@shared/ui/Typography/interfaces';
+import { TypographyAsParagraphProps } from '@shared/ui/Typography/interfaces';
 
-export interface TypographyWithEnterProps extends Omit<TypographyInterface, 'children'> {
-	children?: string;
-	withIndent?: boolean;
+export interface TypographyWithEnterProps extends Omit<TypographyAsParagraphProps, 'children'> {
+    children?: string;
+    withIndent?: boolean;
 }

@@ -30,7 +30,8 @@ import toast from 'react-hot-toast';
 import { TOAST_LEAVE_COURSE } from '@shared/constants/toastTitles';
 import { Badge } from '@shared/ui/Badge';
 import { badgeColor } from '@shared/ui/Badge/interfaces';
-import { onErrorHandling } from '@shared/api';
+import { Link } from 'react-router-dom';
+import { getUrlKeeperById } from '@shared/constants/links';
 
 export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
     const [block, element] = bem('current-system-card');
@@ -68,7 +69,8 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
         leaveCourseRequest(currentSystem?.explorerId)
             .unwrap()
             .then(handleSuccessLeaveCourse)
-            .catch(() => {});
+            .catch(() => {
+            });
     };
 
     return (
@@ -106,12 +108,17 @@ export const CurrentSystemCard = (props: CurrentSystemCardInterface) => {
                 >
                     {`Планета: ${currentSystem?.courseThemeTitle}`}
                 </Typography>
-                <Typography
-                    variant={typographyVariant.regular14}
+
+                <Link
+                    to={getUrlKeeperById(currentSystem?.keeper?.personId?.toString())}
                     className={element('current-keeper', 'mb-4')}
                 >
-                    {`Хранитель: ${getUserFullName(currentSystem?.keeper)}`}
-                </Typography>
+                    <Typography
+                        variant={typographyVariant.regular14}
+                    >
+                        {`Хранитель: ${getUserFullName(currentSystem?.keeper)}`}
+                    </Typography>
+                </Link>
 
                 <span className={element('progress')}>
                     <Typography

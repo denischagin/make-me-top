@@ -2,8 +2,6 @@ import './style.scss';
 import { CircleModalWithGalaxyProps } from '@entities/galaxy/ui/CircleModalWithGalaxy/interface';
 import { useAuth } from '@entities/viewer';
 import { TABS_LIST } from '@pages/Explorer/model';
-import { Button } from '@shared/ui/Button';
-import { buttonSize } from '@shared/ui/Button/interfaces';
 import { CircleModal } from '@shared/ui/CircleModal';
 import { MmtTabs } from '@shared/ui/MmtTabs';
 import { ModalAlert } from '@shared/ui/ModalAlert';
@@ -12,7 +10,6 @@ import { memo, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TabPanel } from 'react-tabs';
 import { useAppDispatch } from '@app/providers/store/hooks';
-import { useStatus } from '@shared/utils/hooks/use-status';
 import { toggleModal } from '@entities/user/model/slice';
 import { getUrlThemeByCourseId, URL_PROFILE } from '@shared/constants/links';
 import toast from 'react-hot-toast';
@@ -23,10 +20,8 @@ import { KeepersListTab } from '@entities/galaxy/ui/KeepersListTab';
 import { useModalAccessStatus } from '@entities/galaxy/libs/hooks/useModalAccessStatus';
 import { CourseKeeper, usePostCourseRequestMutation } from '@entities/course';
 import { useGetGalaxyCircleModalInfo } from '@entities/galaxy/libs/hooks/useGetGalaxyCircleModalInfo';
-import { getSendButtonProps } from '@entities/galaxy/libs/helpers/getSendButtonProps';
 import { ModalAccessStatus } from '@shared/ui/CircleModal/interfaces';
 import { SendCourseRequestButton } from '@features/send-course-request/ui/SendCourseRequestButton';
-import { onErrorHandling } from '@shared/api';
 
 const CircleModalWithGalaxy =
     ({
@@ -87,7 +82,7 @@ const CircleModalWithGalaxy =
         const handleSuccessCourseRequest = () => {
             dispatch(toggleModal());
             navigate(URL_PROFILE);
-        }
+        };
 
         const handleSendApplication = () => {
             if (selectedKeepers.length === 0)
@@ -101,7 +96,8 @@ const CircleModalWithGalaxy =
             })
                 .unwrap()
                 .then(handleSuccessCourseRequest)
-                .catch(() => {})
+                .catch(() => {
+                });
         };
 
         return (

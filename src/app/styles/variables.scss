@@ -32,9 +32,9 @@ $progress-bar-progress: linear-gradient(90deg, $primary-500 50%, $black 50%);
 $progress-bar-line: linear-gradient(90deg, $opacity-white 50%, $black 50%);
 
 // fonts
-$font-montserrat: 'Montserrat';
-$font-heading: 'Wattauchimma';
-$font-text-regular: 'Feature-Mono-regular';
-$font-text-medium: 'Feature-Mono-medium';
+$font-montserrat: 'Montserrat', sans-serif;
+$font-heading: 'Wattauchimma', sans-serif;
+$font-text-regular: 'Feature-Mono-regular', sans-serif;
+$font-text-medium: 'Feature-Mono-medium', sans-serif;
 
 $drawerMenuAdaptiveWidth: 600px;

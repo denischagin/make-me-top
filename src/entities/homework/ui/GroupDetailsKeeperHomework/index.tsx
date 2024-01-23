@@ -82,21 +82,23 @@ export const GroupDetailsKeeperHomework = (props: GroupDetailsCurrentHomeworkPro
             renderContent={({ isActive }) => (
                 <CardDetailsContent isActive={isActive}>
                     <Stack>
-                        {
-                            requests.length !== 0 ?
-                                requests.map((request) => (
-                                    <KeeperHomeworkRequestItem handleNavigateToRequest={handleNavigateToRequest({
+                        {requests.length !== 0 ?
+                            requests.map((request) => (
+                                <KeeperHomeworkRequestItem
+                                    key={request.requestId}
+                                    handleNavigateToRequest={handleNavigateToRequest({
                                         homeworkId,
                                         requestId: request.requestId,
-                                    })} {...request} />
-                                )) : (
-                                    <Card size={cardSize.small}>
-                                        <Typography variant={typographyVariant.regular14}>
-                                            Запросы отсутствуют
-                                        </Typography>
-                                    </Card>
-                                )
-                        }
+                                    })}
+                                    {...request}
+                                />
+                            )) : (
+                                <Card size={cardSize.small}>
+                                    <Typography variant={typographyVariant.regular14}>
+                                        Запросы отсутствуют
+                                    </Typography>
+                                </Card>
+                            )}
                     </Stack>
                 </CardDetailsContent>
             )}

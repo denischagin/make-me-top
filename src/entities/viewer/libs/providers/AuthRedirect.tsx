@@ -3,22 +3,23 @@ import { useRefreshMutation } from '@entities/viewer/api/api';
 import { URL_PROFILE } from '@shared/constants/links';
 import { storageKeys } from '@shared/constants/storageKeys';
 import Spinner from '@shared/ui/Spinner';
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthResponse } from '@entities/viewer/model/types/api';
 
 export interface AuthRedirectProps {
-    children: JSX.Element;
+    children: ReactElement;
 }
 
 export const AuthRedirect = ({ children }: AuthRedirectProps) => {
-    const [refreshMutation, { isSuccess, isError, data: loginData, isLoading }] =
+    const [refreshMutation] =
         useRefreshMutation();
     const { handleLogin } = useAuth();
 
     const navigate = useNavigate();
     const [isShowAuth, setIsShowAuth] = useState(false);
 
-    const handleSuccessRefresh = () => {
+    const handleSuccessRefresh = (loginData: AuthResponse) => {
         handleLogin(loginData);
         navigate(URL_PROFILE, { replace: true });
     };
@@ -30,11 +31,9 @@ export const AuthRedirect = ({ children }: AuthRedirectProps) => {
 
         refreshMutation(refreshToken)
             .unwrap()
-            .then(handleSuccessRefresh);
+            .then(handleSuccessRefresh)
+            .catch(() => setIsShowAuth(true));
     }, []);
-
-    if (isLoading) return <Spinner loading />;
-    if (isError) return children;
 
     return isShowAuth ? children : <Spinner loading />;
 };
