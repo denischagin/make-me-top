@@ -32,6 +32,7 @@ export const KeeperUserInfo = () => {
             <Avatar size={avatarSize.large} orbit />
             <div className={element('description')}>
                 <Typography
+                    as='h1'
                     className={element('description-name', 'mb-4')}
                     variant={typographyVariant.h1}
                 >

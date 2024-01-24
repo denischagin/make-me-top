@@ -17,6 +17,7 @@ export const ApplicationRequestList = ({
     return (
         <div className={block()}>
             <Typography
+                as='h2'
                 className={element('heading', 'mb-4')}
                 variant={typographyVariant.h2}
             >

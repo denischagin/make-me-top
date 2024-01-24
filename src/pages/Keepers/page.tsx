@@ -19,7 +19,7 @@ const Keepers = () => {
 
             <Container className={element('container')}>
                 <Stack spacing={stackSpacing.large}>
-                    <Typography variant={typographyVariant.h2}>
+                    <Typography as="h1" variant={typographyVariant.h2}>
                         Список хранителей
                     </Typography>
 

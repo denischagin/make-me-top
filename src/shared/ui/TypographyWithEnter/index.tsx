@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { TypographyWithEnterProps } from '@shared/ui/TypographyWithEnter/interface';
 import { Typography } from '@shared/ui/Typography';
 import { bem } from '@shared/utils/helpers/bem';
@@ -11,21 +10,9 @@ export const TypographyWithEnter = ({ children, withIndent = true, ...restProps 
     return (
         <div className={block()}>
             {contentItems?.map((contentItem, index) =>
-                index === 0 ? (
-                    <Typography
-                        key={index}
-                        className={element('text', {
-                            'with-indent': withIndent,
-                        })}
-                        {...restProps}
-                    >
-                        {contentItem}
-                    </Typography>
-                ) : (
-                    <Fragment key={index}>
-                        {contentItem === '' && <br />}
-
+                    !!contentItem && (
                         <Typography
+                            key={index}
                             className={element('text', {
                                 'with-indent': withIndent,
                             })}
@@ -33,8 +20,7 @@ export const TypographyWithEnter = ({ children, withIndent = true, ...restProps 
                         >
                             {contentItem}
                         </Typography>
-                    </Fragment>
-                ),
+                    ),
             )}
         </div>
     );

@@ -1,22 +1,34 @@
-import {
-    TypographyAsLinkProps,
-    TypographyAsParagraphProps,
-    TypographyAsSpanProps,
-    TypographyAsType,
-    TypographyProps,
-} from './interfaces';
+import { TypographyProps, TypographyPropsByAs } from './interfaces';
 
 import './styles.scss';
-import { TypographyAsLink, TypographyAsParagraph, TypographyAsSpan } from '@shared/ui/Typography/ui';
-import { ReactElement } from 'react';
+import {
+    TypographyAsH1,
+    TypographyAsH2,
+    TypographyAsH3,
+    TypographyAsH4,
+    TypographyAsLink,
+    TypographyAsParagraph,
+    TypographyAsSpan,
+} from '@shared/ui/Typography/ui';
+import { ComponentType } from 'react';
 
+type TypographyComponentsType = {
+    [key in keyof TypographyPropsByAs]: ComponentType<TypographyPropsByAs[key]>
+}
 
 export const Typography = (props: TypographyProps) => {
-    const typographyByAs: Record<TypographyAsType, ReactElement> = {
-        p: <TypographyAsParagraph {...props as TypographyAsParagraphProps} />,
-        span: <TypographyAsSpan {...props as TypographyAsSpanProps} />,
-        a: <TypographyAsLink {...props as TypographyAsLinkProps} />,
+    const typographyByAs: TypographyComponentsType = {
+        p: TypographyAsParagraph,
+        span: TypographyAsSpan,
+        a: TypographyAsLink,
+        h1: TypographyAsH1,
+        h2: TypographyAsH2,
+        h3: TypographyAsH3,
+        h4: TypographyAsH4,
     };
 
-    return typographyByAs[props.as ?? 'p'];
+    const TypographyComponent =
+        typographyByAs[props.as ?? 'p'] as ComponentType<TypographyProps>;
+
+    return <TypographyComponent {...props as TypographyProps} />;
 };

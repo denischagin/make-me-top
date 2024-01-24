@@ -87,6 +87,7 @@ export const Explorer = () => {
 
                             <div className={element('rating', 'col-xxl-3')}>
                                 <Typography
+                                    as='h2'
                                     variant={typographyVariant.h2}
                                     className={element(
                                         'rating-heading',

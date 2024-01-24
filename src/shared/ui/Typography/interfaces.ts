@@ -1,6 +1,26 @@
-import { ComponentProps } from 'react';
+import {
+    TypographyAsH1Props,
+    TypographyAsH2Props,
+    TypographyAsH3Props,
+    TypographyAsH4Props,
+    TypographyAsLinkProps,
+    TypographyAsParagraphProps,
+    TypographyAsSpanProps,
+} from '@shared/ui/Typography/ui';
 
-export type TypographyAsType = 'p' | 'span' | 'a'
+export type TypographyPropsByAs = {
+    'p': TypographyAsParagraphProps,
+    'a': TypographyAsLinkProps,
+    'span': TypographyAsSpanProps,
+    'h1': TypographyAsH1Props,
+    'h2': TypographyAsH2Props,
+    'h3': TypographyAsH3Props,
+    'h4': TypographyAsH4Props,
+}
+
+export type TypographyAsType = keyof TypographyPropsByAs
+
+export type TypographyProps = TypographyPropsByAs[TypographyAsType]
 
 export interface TypographyCommonProps {
     as?: TypographyAsType;
@@ -8,24 +28,6 @@ export interface TypographyCommonProps {
     color?: typographyColor;
 }
 
-export interface TypographyAsParagraphProps
-    extends Omit<ComponentProps<'p'>, 'color'>, TypographyCommonProps {
-    as?: 'p';
-    parseLink?: boolean;
-}
-
-export interface TypographyAsSpanProps
-    extends Omit<ComponentProps<'span'>, 'color'>, TypographyCommonProps {
-    as?: 'span';
-}
-
-export interface TypographyAsLinkProps
-    extends Omit<ComponentProps<'a'>, 'color'>, TypographyCommonProps {
-    as?: 'a';
-    underline?: boolean;
-}
-
-export type TypographyProps = TypographyAsParagraphProps | TypographyAsSpanProps | TypographyAsLinkProps
 
 export enum typographyColor {
     primary500 = 'primary-500',

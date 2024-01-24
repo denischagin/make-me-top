@@ -1,88 +1,91 @@
 $adaptiveLargeMobile: 650px;
 
 .user-rating {
-    position: relative;
+  position: relative;
 
-    .card {
-        cursor: pointer;
-        display: flex;
-        flex-direction: row;
-        gap: 24px;
-        align-items: center;
+  .card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: center;
 
-        @media screen and (max-width: $adaptiveLargeMobile) {
-            gap: 10px;
-        }
+    @media screen and (max-width: $adaptiveLargeMobile) {
+      gap: 10px;
     }
+  }
 
-    &__text {
-        flex-grow: 1;
-    }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-grow: 1;
+  }
 
-    &:hover {
-        .user-rating {
-            &__buttons {
-                opacity: 1;
-                pointer-events: all;
-                right: 0;
-            }
-
-            &__extra-content {
-                display: flex;
-                align-items: center;
-                position: relative;
-            }
-
-            &__rating {
-                position: relative;
-                margin-right: 160px;
-                margin-top: 32px;
-            }
-        }
-
-        @media screen and (max-width: $adaptiveLargeMobile) {
-            .user-rating {
-                &__buttons {
-                    opacity: 1;
-                    pointer-events: all;
-                    right: 5px;
-                }
-
-                &__extra-content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    position: absolute;
-                }
-
-                &__rating {
-                    opacity: 0;
-                }
-            }
-        }
-    }
-
-    &__extra-content {
-        display: flex;
-        align-items: center;
-        position: absolute;
+  &:hover {
+    .user-rating {
+      &__buttons {
+        opacity: 1;
+        pointer-events: all;
         right: 0;
-        transition: 0.2s;
-    }
+      }
 
-    &__rating {
-        transition: 0.2s;
-        position: relative;
-        right: 24px;
-        bottom: 16px;
-    }
-
-    &__buttons {
-        pointer-events: none;
-        transition: 0.2s;
-        opacity: 0;
-        position: absolute;
-        right: -250px;
+      &__extra-content {
         display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      &__rating {
+        position: relative;
+        margin-right: 160px;
+        margin-top: 32px;
+      }
     }
+
+    @media screen and (max-width: $adaptiveLargeMobile) {
+      .user-rating {
+        &__buttons {
+          opacity: 1;
+          pointer-events: all;
+          right: 5px;
+        }
+
+        &__extra-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+        }
+
+        &__rating {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  &__extra-content {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    transition: 0.2s;
+  }
+
+  &__rating {
+    transition: 0.2s;
+    position: relative;
+    right: 24px;
+    bottom: 16px;
+  }
+
+  &__buttons {
+    pointer-events: none;
+    transition: 0.2s;
+    opacity: 0;
+    position: absolute;
+    right: -250px;
+    display: flex;
+  }
 }

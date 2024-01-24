@@ -1,28 +1,23 @@
 import {  typographyVariant } from '@shared/ui/Typography/interfaces';
 import { useTypographyClass } from '@shared/ui/Typography/libs';
-import { TypographyAsLinkProps } from '@shared/ui/Typography/ui';
+import { TypographyAsH1Props } from '@shared/ui/Typography/ui';
 
-export const TypographyAsLink = (props: TypographyAsLinkProps) => {
+export const TypographyAsH1 = (props: TypographyAsH1Props) => {
     const {
         color,
         variant = typographyVariant.regular14,
         children,
         as,
-        underline = true,
         ...restProps
     } = props;
-    const className = useTypographyClass({
-        ...props, modifiers: {
-            underline,
-        },
-    });
+    const className = useTypographyClass({ ...props });
 
     return (
-        <a
+        <h1
             {...restProps}
             className={className}
         >
             {children}
-        </a>
+        </h1>
     );
 };

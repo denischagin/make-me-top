@@ -8,7 +8,6 @@ import {
 import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
 import { Stack } from '@shared/ui/Stack';
 import { stackSpacing } from '@shared/ui/Stack/interface';
-import { useAuth } from '@entities/viewer';
 
 export const ApprovedEducationApplications = () => {
     const [, element] = bem('approved-education-applications');
@@ -21,6 +20,7 @@ export const ApprovedEducationApplications = () => {
     return (
         <Stack spacing={stackSpacing.large}>
             <Typography
+                as='h2'
                 variant={typographyVariant.h2}
             >
                 Принятые заявки

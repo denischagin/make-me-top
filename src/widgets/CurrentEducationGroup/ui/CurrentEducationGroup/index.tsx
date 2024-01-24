@@ -33,7 +33,7 @@ export const CurrentEducationGroup = () => {
     return (
         <>
             <div className={block()}>
-                <Typography className={'mb-4'} variant={typographyVariant.h2}>
+                <Typography as='h2' className={'mb-4'} variant={typographyVariant.h2}>
                     Текущая группа
                 </Typography>
 

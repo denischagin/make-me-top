@@ -147,7 +147,7 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
                 {systemProgressType === SystemProgressTypes.SYSTEM_CLOSE && (
                     <LockIcon />
                 )}
-                <p
+                <h3
                     className={element(
                         'content-system--name',
                         systemPercentageProgress &&
@@ -157,7 +157,7 @@ const SystemInOrbit = (props: SystemInOrbitProps) => {
                     )}
                 >
                     {system.systemName}
-                </p>
+                </h3>
             </>
         ),
         [systemProgressType, system.systemName, systemPercentageProgress],

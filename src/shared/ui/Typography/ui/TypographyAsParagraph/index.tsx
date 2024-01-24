@@ -1,11 +1,9 @@
 import { Fragment } from 'react';
-import { TypographyAsParagraphProps } from '@shared/ui/Typography/interfaces';
-import { bem } from '@shared/utils';
-import { TypographyAsLink } from '@shared/ui/Typography/ui';
+import { TypographyAsLink, TypographyAsParagraphProps } from '@shared/ui/Typography/ui';
+import { useTypographyClass } from '@shared/ui/Typography/libs';
 
 export const TypographyAsParagraph = (props: TypographyAsParagraphProps) => {
     const {
-        className,
         color,
         variant,
         children,
@@ -13,8 +11,8 @@ export const TypographyAsParagraph = (props: TypographyAsParagraphProps) => {
         as,
         ...restProps
     } = props;
+    const className = useTypographyClass({ ...props });
 
-    const [block, element] = bem('typography');
     const regex = /(?<=\s|^)(?:www\.)?([a-zA-Z0-9-.]+\.(com|org|net|ru|gov|edu|mil|int|info|biz|name|pro|aero|coop|museum))/ig;
     const regexWithHttps = /(?<=\s|^)https?:\/\/(?:www\.)?([a-zA-Z0-9-.]+\.(com|org|net|ru|gov|edu|mil|int|info|biz|name|pro|aero|coop|museum))/ig;
     const isStringChildren = typeof children === 'string';
@@ -22,13 +20,7 @@ export const TypographyAsParagraph = (props: TypographyAsParagraphProps) => {
     return (
         <p
             {...restProps}
-            className={block(
-                {
-                    color,
-                    variant,
-                },
-                className,
-            )}
+            className={className}
         >
             {isStringChildren && parseLink ? children.split(/[\s\n]/i).map((word, index) => {
                 const isUrlWithHttp = regexWithHttps.test(word);

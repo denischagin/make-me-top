@@ -12,7 +12,6 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
-import { useAuth } from '@entities/viewer';
 
 export const ExplorerUserInfo = () => {
     const [block, element] = bem('explorer-user-info');
@@ -28,6 +27,7 @@ export const ExplorerUserInfo = () => {
             <Avatar size={avatarSize.large} orbit />
             <div className={element('description')}>
                 <Typography
+                    as='h1'
                     variant={typographyVariant.h1}
                     className={element('description-name', 'mb-4')}
                 >

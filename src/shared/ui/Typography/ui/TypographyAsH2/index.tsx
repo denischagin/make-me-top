@@ -1,8 +1,8 @@
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { useTypographyClass } from '@shared/ui/Typography/libs';
-import { TypographyAsSpanProps } from '@shared/ui/Typography/ui';
+import { TypographyAsH2Props } from '@shared/ui/Typography/ui';
 
-export const TypographyAsSpan = (props: TypographyAsSpanProps) => {
+export const TypographyAsH2 = (props: TypographyAsH2Props) => {
     const {
         color,
         variant = typographyVariant.regular14,
@@ -13,11 +13,11 @@ export const TypographyAsSpan = (props: TypographyAsSpanProps) => {
     const className = useTypographyClass({ ...props });
 
     return (
-        <span
+        <h2
             {...restProps}
             className={className}
         >
             {children}
-        </span>
+        </h2>
     );
 };

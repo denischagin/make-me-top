@@ -34,7 +34,7 @@ export const FeedbackOfferExplorerProfile = () => {
     return (
         <div className={block()}>
             <Stack spacing={stackSpacing.large}>
-                <Typography variant={typographyVariant.h2}>
+                <Typography as='h2' variant={typographyVariant.h2}>
                     Отзывы:
                 </Typography>
 

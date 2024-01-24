@@ -57,6 +57,7 @@ export const MasteringApplication = () => {
             />
 
             <Typography
+                as="h2"
                 className={element('current-star-heading', 'mb-4 mt-5')}
                 variant={typographyVariant.h2}
             >

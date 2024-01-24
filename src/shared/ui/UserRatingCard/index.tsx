@@ -33,10 +33,10 @@ export const UserRatingCard = forwardRef<HTMLDivElement, UserRatingCardProps>((p
                 <Avatar size={avatarSize.medium} />
 
                 <div className={element('text')}>
-                    <Typography variant={typographyVariant.medium14}>
+                    <Typography as='h4' variant={typographyVariant.medium14}>
                         {title}
                     </Typography>
-                    <p>{fullname}</p>
+                    <Typography as='h3' variant={typographyVariant.regular16}>{fullname}</Typography>
                 </div>
 
                 <div className={element('extra-content')}>

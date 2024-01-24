@@ -19,7 +19,7 @@ const Explorers = () => {
             <Header />
             <Container>
                 <Stack spacing={stackSpacing.large}>
-                    <Typography variant={typographyVariant.h2}>
+                    <Typography as='h1' variant={typographyVariant.h2}>
                         Список исследователей
                     </Typography>
 

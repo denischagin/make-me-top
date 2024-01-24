@@ -3,6 +3,7 @@ import React from 'react';
 import { bem } from '@shared/utils/helpers/bem';
 
 import './styles.scss';
+import { Typography } from '@shared/ui/Typography';
 
 interface ITitleGalaxyPage {
     galaxyName: string;
@@ -18,7 +19,7 @@ export const TitleGalaxyPage: React.FC<ITitleGalaxyPage> = (props) => {
     return (
         <div className={block()}>
             <div className={element('page-context')}>Галактика</div>
-            <div className={element('galaxy-name')}>{galaxyName}</div>
+            <Typography as='h1' className={element('galaxy-name')}>{galaxyName}</Typography>
         </div>
     );
 };

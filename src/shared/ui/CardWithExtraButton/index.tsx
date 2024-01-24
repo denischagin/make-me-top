@@ -1,4 +1,4 @@
-import { bem, getUserFullName } from '@shared/utils';
+import { bem } from '@shared/utils';
 import { Card } from '@shared/ui/Card';
 import { cardSize } from '@shared/ui/Card/interfaces';
 import { Avatar } from '@shared/ui/Avatar';
@@ -6,7 +6,6 @@ import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import { Typography } from '@shared/ui/Typography';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 import { RouterLink } from '@shared/ui/RouterLink';
-import { getUrlHomeworkWithRequestId } from '@shared/constants/links';
 import { Button } from '@shared/ui/Button';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 import { CardWithExtraButtonProps } from '@shared/ui/CardWithExtraButton/interface';
@@ -32,6 +31,7 @@ export const CardWithExtraButton = ({
                         <Avatar size={avatarSize.medium} />
                         <div className={element('about')}>
                             <Typography
+                                as='h3'
                                 className={element('name')}
                                 variant={typographyVariant.medium16}
                             >
