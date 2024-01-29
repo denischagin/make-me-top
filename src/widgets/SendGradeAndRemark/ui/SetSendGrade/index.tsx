@@ -42,7 +42,7 @@ export const SetSendGrade = ({ onSwitchClick }: SetSendGradeProps) => {
     return (
         <>
             <div className={block()}>
-                <Typography variant={typographyVariant.h1}>Оценить</Typography>
+                <Typography variant={typographyVariant.h1}>Принять задание</Typography>
 
                 {!!currentGrade && (
                     <Textarea
@@ -58,7 +58,7 @@ export const SetSendGrade = ({ onSwitchClick }: SetSendGradeProps) => {
                     <ButtonEstimateHomework
                         color={buttonColor.filled}
                         size={buttonSize.large}
-                        title='Оценить'
+                        title='Принять'
                     />
                     <div
                         className={element('button-send-grade', {

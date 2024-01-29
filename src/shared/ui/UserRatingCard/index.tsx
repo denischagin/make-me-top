@@ -36,6 +36,7 @@ export const UserRatingCard = forwardRef<HTMLDivElement, UserRatingCardProps>((p
                     <Typography as='h4' variant={typographyVariant.medium14}>
                         {title}
                     </Typography>
+
                     <Typography as='h3' variant={typographyVariant.regular16}>{fullname}</Typography>
                 </div>
 

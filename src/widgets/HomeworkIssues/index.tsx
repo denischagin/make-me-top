@@ -50,6 +50,7 @@ export const HomeworkIssues = () => {
                             key={homework.homeworkId}
                             {...homework}
                             homeworkIndex={index}
+                            alreadyHaveMarkOnTheme={!!themesMarks?.[themeId] && homework.status?.status !== 'CLOSED'}
                             onHomeworkClick={handleNavigateToHomeworkClick(homework.homeworkId)}
                         />
                     )) : (

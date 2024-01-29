@@ -10,6 +10,10 @@
     align-items: start;
     animation: markRequestWrapperAnimation .3s;
   }
+
+  &__mark-text {
+    margin-top: 0.25em;
+  }
 }
 
 @keyframes markRequestWrapperAnimation {

@@ -8,6 +8,8 @@ import './styles.scss';
 import { Textarea } from '@shared/ui/Textarea';
 import { ChangeEventHandler, useState } from 'react';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
+import { Badge } from '@shared/ui/Badge';
+import { badgeColor } from '@shared/ui/Badge/interfaces';
 
 export const MarkRequestItem = (props: MarkRequestItemProps) => {
     const {
@@ -40,6 +42,10 @@ export const MarkRequestItem = (props: MarkRequestItemProps) => {
                     <div>
                         <Typography variant={typographyVariant.regular14}>
                             {`Система: ${courseTitle}`}
+                        </Typography>
+
+                        <Typography className={element("mark-text")} variant={typographyVariant.regular14}>
+                            Оценка на выставление: 4.5 <Badge color={badgeColor.primary500}>5</Badge>
                         </Typography>
                     </div>
                 }
