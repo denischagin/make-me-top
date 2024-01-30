@@ -10,7 +10,9 @@ export const OldHomeworksRequest = () => {
     const { themeId } = useParams();
     const [block, element] = bem('old-homework-request');
 
-    const { data: homeworkResponse, isError, isLoading } = useGetHomeworksQuery({ themeId: themeId! });
+    const { data: homeworkResponse, isError, isLoading } = useGetHomeworksQuery({ themeId: themeId! }, {
+        skip: !themeId
+    });
     const closedHomeworks = transformHomeworkResponse(homeworkResponse, 'KEEPER')?.closedHomeworks;
 
     if (!closedHomeworks || closedHomeworks.length === 0 || isLoading || isError)

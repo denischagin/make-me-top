@@ -94,12 +94,11 @@ export const homeworkApi = baseApi.injectEndpoints(({
         }),
 
         sendHomeworkMark: builder.mutation<void, SendHomeworkMarkArgsInterface>({
-            query: ({ requestId, comment, value }) => ({
+            query: ({ requestId, comment }) => ({
                 url: `homework-app/homework-requests/${requestId}/marks/`,
                 method: 'POST',
                 body: {
                     comment,
-                    value,
                 },
             }),
             invalidatesTags: ['getHomeworkRequestsByRequestId', 'getExplorersWaitingThemeMark', 'getThemesWaitingExplorersMark'],

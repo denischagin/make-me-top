@@ -9,7 +9,6 @@ import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import { SetSendGradeProps } from '@widgets/SendGradeAndRemark/ui/SetSendGrade/interface';
 import { Textarea } from '@shared/ui/Textarea';
 import { useSendHomeworkMarkMutation } from '@entities/homework/api/api';
-import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import { ButtonEstimateHomework } from '@features/estimate-homework';
 
@@ -21,14 +20,11 @@ export const SetSendGrade = ({ onSwitchClick }: SetSendGradeProps) => {
 
     const [isOpenConfirm, setIsOpenConfirm] = useState(false);
 
-    const [sendRemark] = useSendHomeworkMarkMutation();
+    const [acceptHomework] = useSendHomeworkMarkMutation();
 
-    const handleSendRemarkClick = () => {
-        if (currentGrade === null) return toast.error('Поставьте оценку');
-
-        sendRemark({
+    const handleAcceptHomework = () => {
+        acceptHomework({
             comment: commentGradeValue,
-            value: currentGrade,
             requestId: Number(requestId),
         });
     };
@@ -44,21 +40,20 @@ export const SetSendGrade = ({ onSwitchClick }: SetSendGradeProps) => {
             <div className={block()}>
                 <Typography variant={typographyVariant.h1}>Принять задание</Typography>
 
-                {!!currentGrade && (
-                    <Textarea
-                        placeholder='Комментарий к оценке'
-                        className={element('comment')}
-                        fullwidth
-                        onChange={handleChangeCommentGrade}
-                        value={commentGradeValue}
-                    />
-                )}
+                <Textarea
+                    placeholder='Комментарий к оценке (необязательно)'
+                    className={element('comment')}
+                    fullwidth
+                    onChange={handleChangeCommentGrade}
+                    value={commentGradeValue}
+                />
 
                 <div className={element('buttons')}>
                     <ButtonEstimateHomework
                         color={buttonColor.filled}
                         size={buttonSize.large}
                         title='Принять'
+                        handleAcceptHomework={handleAcceptHomework}
                     />
                     <div
                         className={element('button-send-grade', {
@@ -71,7 +66,7 @@ export const SetSendGrade = ({ onSwitchClick }: SetSendGradeProps) => {
                             title={'Поставить оценку'}
                             size={buttonSize.large}
                             color={buttonColor.filled}
-                            onClick={handleSendRemarkClick}
+                            onClick={handleAcceptHomework}
                         />
                     </div>
 

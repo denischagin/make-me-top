@@ -11,20 +11,13 @@ import { ReactElement } from "react";
 
 export const ExplorerBadgeByRequestStatus = ({
 	requestStatus,
-	mark,
 	alreadyHaveMarkOnTheme,
 }: ExplorerBadgeByRequestStatusProps) => {
 	const badgeByRequestStatus: Record<RequestStatusType, ReactElement> = {
 		EDITING: <Badge color={badgeColor.white}>Хранитель проверил задание</Badge>,
 		CLOSED: (
 			<>
-				{/* <Typography variant={typographyVariant.medium14} */}
-				{/*             color={typographyColor.white}> */}
-				{/*     Оценка: */}
-				{/* </Typography> */}
-				{/**/}
 				<Badge color={badgeColor.primary500}>
-					{/* {mark} */}
 					Выполнено
 				</Badge>
 			</>

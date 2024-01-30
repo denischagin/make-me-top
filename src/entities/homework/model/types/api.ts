@@ -1,6 +1,5 @@
 export interface HomeworkRequestMarkInterface {
     requestId: number;
-    mark: number;
     comment: string;
 }
 
@@ -144,6 +143,5 @@ export interface SendHomeworkRequestFeedbackArgsInterface {
 
 export interface SendHomeworkMarkArgsInterface {
     comment: string;
-    value: number;
     requestId: number,
 }

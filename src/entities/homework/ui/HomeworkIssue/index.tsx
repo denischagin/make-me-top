@@ -10,7 +10,6 @@ export const HomeworkIssue = ({
 	homeworkId,
 	content,
 	status,
-	mark,
 	title,
 	alreadyHaveMarkOnTheme,
 	homeworkIndex,
@@ -53,7 +52,6 @@ export const HomeworkIssue = ({
 
 				<div className={element("badge")}>
 					<ExplorerBadgeByRequestStatus
-						mark={mark?.mark}
 						requestStatus={status?.status}
 						alreadyHaveMarkOnTheme={alreadyHaveMarkOnTheme}
 					/>
