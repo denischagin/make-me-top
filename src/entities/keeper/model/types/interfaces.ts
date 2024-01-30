@@ -137,6 +137,7 @@ export interface FinalAssessmentsInterface {
     courseId: number;
     courseTitle: string;
     explorerId: number;
+    averageMark: number;
 }
 
 export interface ReviewRequestsInterface {
