@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export interface ReviewModalInterface {
+export interface ModalInterface {
     children: ReactNode;
     onClose: () => void;
     isOpen: boolean

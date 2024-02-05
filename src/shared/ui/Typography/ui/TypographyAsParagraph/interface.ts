@@ -1,8 +1,8 @@
 import { ComponentProps } from 'react';
-import { TypographyCommonProps } from '@shared/ui/Typography/interfaces';
+import { TypographyCommonProps, GetTypographyCommonProps } from '@shared/ui/Typography/interfaces';
 
 export interface TypographyAsParagraphProps
-    extends Omit<ComponentProps<'p'>, 'color'>, TypographyCommonProps {
+    extends GetTypographyCommonProps<"p"> {
     as?: 'p';
     parseLink?: boolean;
 }

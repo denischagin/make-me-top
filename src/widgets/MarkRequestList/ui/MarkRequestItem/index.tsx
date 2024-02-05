@@ -65,7 +65,7 @@ export const MarkRequestItem = (props: MarkRequestItemProps) => {
                 buttonContent={active ? 'Отменить' : 'Оценить'}
                 onButtonClick={handleClickChangeExplorer}
             />
-            <ConfirmModal confirmTitle={'Вы уверены, что хотите выставить оценку по курсу?'}
+            <ConfirmModal confirmTitle={`Вы уверены, что хотите выставить оценку ${roundedMark} по курсу?`}
                           rejectButtonTitle={'Нет, не хочу'} submitButtonTitle={'Да, хочу выставить'}
                           onSubmit={handleClickSendMark} onClose={() => handleChangeExplorer(null)} isOpen={active} />
             {/*{active && (*/}

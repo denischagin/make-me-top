@@ -5,7 +5,7 @@ import {
     UserProgressInGalaxy,
 } from '@entities/galaxy/model/types';
 
-export interface ModalInterface {
+export interface CircleModalInterface {
     isOpen: boolean;
     header: string;
     isLocked?: boolean;

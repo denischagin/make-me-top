@@ -4,6 +4,10 @@
     display: flex;
 
     &__description {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 15px;
         margin-left: 40px;
         margin-top: 4px;
     }

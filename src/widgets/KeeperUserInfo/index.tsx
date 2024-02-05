@@ -12,6 +12,8 @@ import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
+import { ShowUserInfo, ShowUserInfoButton, ShowUserInfoModal } from '@features/show-user-info';
+import { buttonSize } from '@shared/ui/Button/interfaces';
 
 export const KeeperUserInfo = () => {
     const [block, element] = bem('keeper-user-info');
@@ -60,6 +62,13 @@ export const KeeperUserInfo = () => {
                         value={person.maxExplorers}
                     />
                 </div>
+
+
+                <ShowUserInfo {...userInfo?.person} fullname={getUserFullName(userInfo?.person)}>
+                    <ShowUserInfoModal />
+
+                    <ShowUserInfoButton title={'Подробнее'} size={buttonSize.small} />`
+                </ShowUserInfo>
             </div>
         </div>
     );

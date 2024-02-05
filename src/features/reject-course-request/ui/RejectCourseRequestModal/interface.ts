@@ -1,5 +1,5 @@
-import { ModalInterface } from '@shared/ui/CircleModal/interfaces';
+import { CircleModalInterface } from '@shared/ui/CircleModal/interfaces';
 
-export interface RejectCourseRequestModalProps extends Pick<ModalInterface, 'isOpen' | 'onClose'> {
+export interface RejectCourseRequestModalProps extends Pick<CircleModalInterface, 'isOpen' | 'onClose'> {
     requestId: number;
 }

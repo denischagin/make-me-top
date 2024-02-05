@@ -94,6 +94,10 @@ export interface Person {
     patronymic: string;
     registrationDate: string;
     maxExplorers: number;
+    skype?: string
+    phoneNumber?: string
+    email?: string
+    telegram?: string
 }
 
 export interface StudyingExplorersInterface {

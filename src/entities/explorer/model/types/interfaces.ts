@@ -1,7 +1,4 @@
-import {
-    ReviewRequestsInterface,
-    StudyRequestsInterface,
-} from '@entities/keeper/model/types/interfaces';
+import { ReviewRequestsInterface, StudyRequestsInterface } from '@entities/keeper/model/types/interfaces';
 
 export interface GalaxyExplorerInterface {
     galaxyId: number;
@@ -26,19 +23,19 @@ export interface ExplorerApplicationCardInterface {
 
 export interface ExplorerFeedback {
     personId: number;
-    explorerId: number
+    explorerId: number;
     firstName: string;
     lastName: string;
     patronymic: string;
     keeperId: number;
-    courseId: number
-    courseTitle: string
+    courseId: number;
+    courseTitle: string;
 }
 
 export interface CourseFeedback {
-    explorerId: number
-    courseId: number
-    courseTitle: string
+    explorerId: number;
+    courseId: number;
+    courseTitle: string;
 }
 
 export interface ExplorerInfoInterface {
@@ -51,7 +48,7 @@ export interface ExplorerInfoInterface {
     ratingTable: Array<PersonRating>;
     homeworkRequests?: HomeworkRequestInterface[];
     explorerFeedbacks?: ExplorerFeedback[];
-    courseFeedbacks?: CourseFeedback[]
+    courseFeedbacks?: CourseFeedback[];
 }
 
 export interface HomeworkRequestInterface {
@@ -78,6 +75,10 @@ export interface Person {
     lastName: string;
     patronymic: string;
     registrationDate: string;
+    email: string;
+    phoneNumber?: string;
+    telegram?: string;
+    skype?: string;
 }
 
 export interface PersonRating {

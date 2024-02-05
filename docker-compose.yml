@@ -1,19 +1,32 @@
 version: "3.5"
 
 services:
-  web:
-    build: .
-
-    image: mmt-frontend
-
-    container_name: mmt-frontend
-
-    restart: always
-
-    stdin_open: true
-
-    volumes:
-      - "./app:/home/app"
-
+  jenkins-frontend:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
     ports:
-      - "3000:3000"
+      - "8080:8080"
+      - "50000:50000"
+    container_name: jenkins-frontend
+    volumes:
+      - ${HOME}/jenkins_compose/jenkins_configuration:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
+#  web:
+#    build: .
+#
+#    image: mmt-frontend
+#
+#    container_name: mmt-frontend
+#
+#    restart: always
+#
+#    stdin_open: true
+#
+#    volumes:
+#      - "./app:/home/app"
+#
+#    ports:
+#      - "3000:3000"

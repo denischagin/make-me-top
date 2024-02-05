@@ -5,8 +5,13 @@ import {
     TypographyAsH4Props,
     TypographyAsLinkProps,
     TypographyAsParagraphProps,
-    TypographyAsSpanProps,
+    TypographyAsSpanProps, TypographyAsStrongProps,
 } from '@shared/ui/Typography/ui';
+import { ComponentProps, JSX, JSXElementConstructor } from 'react';
+
+export type GetTypographyCommonProps<T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>>
+    = Omit<ComponentProps<T>, 'color'> & TypographyCommonProps
+
 
 export type TypographyPropsByAs = {
     'p': TypographyAsParagraphProps,
@@ -16,6 +21,7 @@ export type TypographyPropsByAs = {
     'h2': TypographyAsH2Props,
     'h3': TypographyAsH3Props,
     'h4': TypographyAsH4Props,
+    'strong': TypographyAsStrongProps,
 }
 
 export type TypographyAsType = keyof TypographyPropsByAs

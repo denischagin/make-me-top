@@ -3,22 +3,18 @@ import { InfoCard } from '@shared/ui/InfoCard';
 import { Rating } from '@shared/ui/Rating';
 import { Typography } from '@shared/ui/Typography';
 
-import { useAppSelector } from '@app/providers/store/hooks';
-
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
-import {
-    ratingScoreColor,
-    ratingSize,
-    ratingSystemColor,
-} from '@shared/ui/Rating/interfaces';
+import { ratingScoreColor, ratingSize, ratingSystemColor } from '@shared/ui/Rating/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
 import { useGetKeeperCardInfoQuery } from '@entities/keeper/api/api';
 import { useParams } from 'react-router-dom';
+import { ShowUserInfo, ShowUserInfoButton, ShowUserInfoModal } from '@features/show-user-info';
+import { buttonSize } from '@shared/ui/Button/interfaces';
 
 export const KeeperCardUserInfo = () => {
     const [block, element] = bem('keeper-card-user-info');
@@ -54,12 +50,20 @@ export const KeeperCardUserInfo = () => {
                             />
                         }
                     />
+
                     <InfoCard title='Кол-во систем' value={totalSystems} />
+
                     <InfoCard
                         title='Всего исследователей'
                         value={totalExplorers}
                     />
                 </div>
+
+                <ShowUserInfo {...userInfo?.person} fullname={getUserFullName(userInfo?.person)}>
+                    <ShowUserInfoModal />
+
+                    <ShowUserInfoButton title={'Подробнее'} size={buttonSize.small} />`
+                </ShowUserInfo>
             </div>
         </div>
     );

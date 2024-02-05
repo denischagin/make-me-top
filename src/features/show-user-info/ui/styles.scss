@@ -1,0 +1,16 @@
+.user-info-modal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+
+  &__icon {
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 1em;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+  }
+}

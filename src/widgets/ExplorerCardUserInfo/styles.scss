@@ -3,20 +3,21 @@
 $adapriveWidth: 800px;
 
 .explorer-card-user-info {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__description {
+    margin-left: 42px;
+    margin-top: 4px;
+    @media screen and (max-width: $adapriveWidth) {
+      margin: 10px 0 0 0;
+    }
+  }
+
+  &__cards {
     display: flex;
+    gap: 16px;
     flex-wrap: wrap;
-
-    &__description {
-        margin-left: 42px;
-        margin-top: 4px;
-        @media screen and (max-width: $adapriveWidth) {
-            margin: 10px 0 0 0 ; 
-        }
-    }
-
-    &__cards {
-        display: flex;
-        gap: 16px;
-        flex-wrap: wrap;
-    }
+    margin-bottom: 13px;
+  }
 }

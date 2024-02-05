@@ -8,7 +8,7 @@ import {
     TypographyAsH4,
     TypographyAsLink,
     TypographyAsParagraph,
-    TypographyAsSpan,
+    TypographyAsSpan, TypographyAsStrong,
 } from '@shared/ui/Typography/ui';
 import { ComponentType } from 'react';
 
@@ -25,6 +25,7 @@ export const Typography = (props: TypographyProps) => {
         h2: TypographyAsH2,
         h3: TypographyAsH3,
         h4: TypographyAsH4,
+        strong: TypographyAsStrong,
     };
 
     const TypographyComponent =

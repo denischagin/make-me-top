@@ -6,9 +6,9 @@ import { bem } from '@shared/utils/helpers/bem';
 
 import './styles.scss';
 import { useEscModal } from '@shared/utils/hooks/use-esc-modal';
-import { ReviewModalInterface } from '@shared/ui/Modal/interface';
+import { ModalInterface } from '@shared/ui/Modal/interface';
 
-export const Modal = (props: ReviewModalInterface) => {
+export const Modal = (props: ModalInterface) => {
 	const { children, onClose, isOpen, fullwidth } = props;
 	
 	const [block, element] = bem('modal');

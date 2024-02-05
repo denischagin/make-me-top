@@ -1,5 +1,5 @@
-import { ReviewModalInterface } from '@shared/ui/Modal/interface';
+import { ModalInterface } from '@shared/ui/Modal/interface';
 
-export interface ModalCreateFeedbackKeeperProps extends Omit<ReviewModalInterface, 'children'> {
+export interface ModalCreateFeedbackKeeperProps extends Omit<ModalInterface, 'children'> {
     explorerId: number;
 }

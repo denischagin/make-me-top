@@ -20,3 +20,4 @@ export enum buttonSize {
     small = 'small',
     large = 'large',
 }
+

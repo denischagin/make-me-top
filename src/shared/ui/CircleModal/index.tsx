@@ -11,7 +11,7 @@ import { ReactComponent as LockIcon } from '@shared/images/lock-big.svg';
 
 import { bem } from '@shared/utils/helpers/bem';
 
-import { ModalInterface } from './interfaces';
+import { CircleModalInterface } from './interfaces';
 import {
     typographyColor,
     typographyVariant,
@@ -20,7 +20,7 @@ import {
 import './styles.scss';
 import { useEscModal } from '@shared/utils/hooks/use-esc-modal';
 
-export const CircleModal = (props: ModalInterface) => {
+export const CircleModal = (props: CircleModalInterface) => {
     const { header, isLocked, children, onClose, isOpen } = props;
 
     const [block, element] = bem('circle-modal');

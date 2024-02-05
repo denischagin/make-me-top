@@ -1,16 +1,17 @@
 @import '@app/styles/variables.scss';
 
 .keeper-user-info {
+  display: flex;
+
+  &__description {
+    margin-left: 40px;
+    margin-top: 4px;
+  }
+
+  &__cards {
     display: flex;
-
-    &__description {
-        margin-left: 40px;
-        margin-top: 4px;
-    }
-
-    &__cards {
-        display: flex;
-        gap: 16px;
-        flex-wrap: wrap;
-    }
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 13px;
+  }
 }

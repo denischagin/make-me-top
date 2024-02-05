@@ -1,0 +1,1 @@
+export const SHOW_USER_INFO_BLOCK = 'user-info-modal'
