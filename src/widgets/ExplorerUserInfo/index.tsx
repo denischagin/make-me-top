@@ -1,12 +1,9 @@
-import { Avatar } from '@shared/ui/Avatar';
 import { InfoCard } from '@shared/ui/InfoCard';
 import { Rating } from '@shared/ui/Rating';
 import { Typography } from '@shared/ui/Typography';
 
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
-
-import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import { ratingScoreColor, ratingSize, ratingSystemColor } from '@shared/ui/Rating/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
@@ -17,6 +14,7 @@ import { Stack } from '@shared/ui/Stack';
 import { stackAlign, stackSpacing } from '@shared/ui/Stack/interface';
 import { useState } from 'react';
 import { ShowUserInfo, ShowUserInfoButton, ShowUserInfoModal } from '@features/show-user-info';
+import { LoadAvatarImage } from '@features/load-avatar';
 
 
 export const ExplorerUserInfo = () => {
@@ -37,7 +35,9 @@ export const ExplorerUserInfo = () => {
         <>
             <Stack align={stackAlign.left} spacing={stackSpacing.large}>
                 <div className={block()}>
-                    <Avatar size={avatarSize.large} orbit />
+                    <LoadAvatarImage orbit />
+
+                    {/*<Avatar size={avatarSize.large} orbit />*/}
                     <div className={element('description')}>
                         <Typography
                             as='h1'

@@ -58,7 +58,7 @@ export const AddHomeworkButton = () => {
 
     if (isErrorCurrentGroup || isErrorTheme)
         return null;
-    if (!themeId || isErrorHomeworks || isLoadingHomeworks)
+    if (!themeId || isErrorHomeworks || isLoadingHomeworks || keeperCurrentGroup?.courseId.toString() !== courseId)
         return null;
 
     return (

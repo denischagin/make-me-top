@@ -1,38 +1,39 @@
-import { bem } from "@shared/utils/helpers/bem";
-import avatarImg from "./avatar.jpg";
+import { bem } from '@shared/utils/helpers/bem';
+import avatarImg from './avatar.jpg';
 
-import { AvatarInterface } from "./interfaces";
+import { AvatarInterface } from './interfaces';
 
-import "./styles.scss";
+import './styles.scss';
 
 export const Avatar = (props: AvatarInterface) => {
-	const { size, orbit, isActive, image = avatarImg } = props;
+    const { size, orbit, isActive, image = avatarImg, ...restProps } = props;
 
-	const [block, element] = bem("avatar");
+    const [block, element] = bem('avatar');
 
-	return (
-		<div
-			className={block({
-				size,
-			})}
-		>
-			{orbit && (
-				<div
-					className={element("border", {
-						size,
-					})}
-				>
-					<div className={element("orbit", "mt-5")} />
-				</div>
-			)}
-			<img
-				src={image}
-				alt=""
-				className={element("image", {
-					size,
-					active: isActive,
-				})}
-			/>
-		</div>
-	);
+    return (
+        <div
+            className={block({
+                size,
+            })}
+            {...restProps}
+        >
+            {orbit && (
+                <div
+                    className={element('border', {
+                        size,
+                    })}
+                >
+                    <div className={element('orbit', 'mt-5')} />
+                </div>
+            )}
+            <img
+                src={image}
+                alt=''
+                className={element('image', {
+                    size,
+                    active: isActive,
+                })}
+            />
+        </div>
+    );
 };

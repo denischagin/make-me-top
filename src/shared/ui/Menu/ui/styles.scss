@@ -1,0 +1,39 @@
+@import "@app/styles/variables";
+@import "@app/styles/animations";
+
+.menu {
+  position: relative;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    position: absolute;
+    margin-top: 5px;
+
+    border-radius: 10px;
+    padding: 7px;
+    animation: fadeIn 400ms forwards;
+    background: $dark;
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.36);
+  }
+
+  &__item {
+    bottom: 0;
+    padding: 10px 15px;
+    background: transparent;
+    border-radius: 4px;
+    transition: background-color 300ms;
+    cursor: pointer;
+
+    &:hover {
+      background: $opacity-primary-500;
+    }
+  }
+
+  &__button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
