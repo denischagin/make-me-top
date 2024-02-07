@@ -1,11 +1,11 @@
 import { Avatar } from '@shared/ui/Avatar';
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
-import { LoadAvatarImageProps } from '@features/load-avatar/ui/LoadAvatarImage/interface';
+import { LoadAvatarImageProps } from './interface';
 import { Menu, MenuButton, MenuContent, MenuItem } from '@shared/ui/Menu';
 import React, { useState } from 'react';
 import { Modal } from '@shared/ui/Modal';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
-import { FileInput } from '@shared/ui/FileInput';
+import { FileLoader, FileLoaderDrag, FileLoaderInput } from '@shared/ui/FileLoader';
 
 export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
     const [isOpenAddPhoto, setIsOpenAddPhoto] = useState(false);
@@ -47,7 +47,11 @@ export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
             </Menu>
 
             <Modal onClose={handleCloseAddPhoto} isOpen={isOpenAddPhoto}>
-                <FileInput />
+                <FileLoader>
+                    <FileLoaderDrag />
+
+                    <FileLoaderInput />
+                </FileLoader>
             </Modal>
 
             <ConfirmModal

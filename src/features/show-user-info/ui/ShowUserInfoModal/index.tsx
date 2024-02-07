@@ -60,6 +60,7 @@ export const ShowUserInfoModal = (props: ShowUserInfoModalProps) => {
                 <div className={blockModalInfo()}>
                     {userInfoItems.map((itemProps) => (
                         <ShowUserInfoItem
+                            key={itemProps.href}
                             {...itemProps}
                             href={itemProps.text ? itemProps.href : undefined}
                         />
