@@ -1,4 +1,4 @@
 export interface AvatarCropperProps {
     image: File | null;
-    onSave: (croppedImage: Blob) => void;
+    onSave: (croppedImage: File) => void;
 }

@@ -1,4 +1,5 @@
 import { bem } from '@shared/utils/helpers/bem';
+import defaultImg from './anonimous.jpeg';
 
 import { AvatarInterface } from './interfaces';
 
@@ -39,6 +40,10 @@ export const Avatar = (props: AvatarInterface) => {
                     size,
                     active: isActive,
                 })}
+                onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src = defaultImg;
+                }}
             />
         </div>
     );

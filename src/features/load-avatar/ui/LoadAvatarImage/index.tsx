@@ -6,11 +6,14 @@ import React, { useState } from 'react';
 import 'react-image-crop/dist/ReactCrop.css';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import LoadAvatarModal from '@features/load-avatar/ui/LoadAvatarModal';
+import { useDeleteAvatarMutation } from '@entities/avatar';
 
 
 export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
     const [isOpenAddPhoto, setIsOpenAddPhoto] = useState(false);
     const [isOpenDelete, setIsOpenDelete] = useState(false);
+
+    const [deleteAvatar] = useDeleteAvatarMutation();
 
     const handleOpenAddPhoto = () => {
         setIsOpenAddPhoto(true);
@@ -21,6 +24,8 @@ export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
     };
 
     const handleDeleteAvatar = () => {
+        deleteAvatar();
+        handleCloseDelete();
     };
 
     const handleCloseDelete = () => {

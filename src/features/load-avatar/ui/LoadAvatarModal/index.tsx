@@ -6,16 +6,26 @@ import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
 import AvatarCropper from '@features/load-avatar/ui/AvatarCropper';
 import { useState } from 'react';
 import { LoadAvatarModalProps } from './interface';
+import { useSetAvatarMutation } from '@entities/avatar';
 
 
 const LoadAvatarModal = ({ isOpen, onClose }: LoadAvatarModalProps) => {
     const [currentAvatar, setCurrentAvatar] = useState<File | null>(null);
 
+    const [setAvatarMutation] = useSetAvatarMutation();
+
     const handleFileLoad = (file: File) => {
         setCurrentAvatar(file);
     };
 
-    const handleSaveFile = (file: Blob) => {
+    const handleSaveFile = (file: File) => {
+        const formData = new FormData();
+
+        formData.append('file', file);
+
+        setAvatarMutation(formData);
+
+        onClose();
     };
 
     return (
