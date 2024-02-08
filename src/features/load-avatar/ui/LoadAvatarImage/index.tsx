@@ -3,7 +3,6 @@ import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import { LoadAvatarImageProps } from './interface';
 import { Menu, MenuButton, MenuContent, MenuItem } from '@shared/ui/Menu';
 import React, { useState } from 'react';
-import 'react-image-crop/dist/ReactCrop.css';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import LoadAvatarModal from '@features/load-avatar/ui/LoadAvatarModal';
 import { useDeleteAvatarMutation } from '@entities/avatar';

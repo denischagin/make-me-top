@@ -3,7 +3,7 @@ import { modalPosition } from '@shared/ui/Modal/interface';
 import { FileLoader, FileLoaderDrag, FileLoaderInput } from '@shared/ui/FileLoader';
 import { DividingLine } from '@shared/ui/DividingLine';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
-import AvatarCropper from '@features/load-avatar/ui/AvatarCropper';
+import { AvatarCropper} from '@features/load-avatar';
 import { useState } from 'react';
 import { LoadAvatarModalProps } from './interface';
 import { useSetAvatarMutation } from '@entities/avatar';
