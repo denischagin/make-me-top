@@ -1,11 +1,13 @@
 import { bem } from '@shared/utils';
 import { FILE_LOADER_BLOCK, useFileLoader } from '@shared/ui/FileLoader';
 import { DragEventHandler } from 'react';
-import toast from 'react-hot-toast';
+import { FileLoaderDragProps } from './interface';
 
-export const FileLoaderDrag = () => {
+export const FileLoaderDrag = (props: FileLoaderDragProps) => {
+    const { className, children, ...restProps } = props;
+
     const [, element] = bem(FILE_LOADER_BLOCK);
-    const { handleChangeDragStatus, dragStatus } = useFileLoader();
+    const { handleChangeDragStatus, dragStatus, handleFileLoad } = useFileLoader();
 
     const handleDragEnter: DragEventHandler<HTMLDivElement> = (e) => {
         e.preventDefault();
@@ -22,22 +24,7 @@ export const FileLoaderDrag = () => {
 
         handleChangeDragStatus('leave');
 
-        const requiredTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-
-        if (!requiredTypes.includes(e.dataTransfer?.files[0]?.type)) {
-            return toast.error('Такой формат фото не поддерживается!');
-        }
-
-        console.log(e.dataTransfer?.items);
-        console.log(e.dataTransfer?.items[0]);
-        console.log(e.dataTransfer?.items[0]?.type);
-
-        console.log('chrome dlya pidorasov');
-
-        console.log(e.dataTransfer?.files);
-        console.log(e.dataTransfer?.files[0]);
-        console.log(e.dataTransfer?.files[0]?.type);
-
+        handleFileLoad(e.dataTransfer.files[0]);
     };
 
     const handleDragOver: DragEventHandler<HTMLDivElement> = (e) => {
@@ -46,15 +33,16 @@ export const FileLoaderDrag = () => {
 
     return (
         <div
+            {...restProps}
             className={element('drag', {
                 hidden: dragStatus !== 'enter',
-            })}
+            }, className)}
             onDragEnter={handleDragEnter}
             onDragLeave={handleDragLeave}
             onDragOver={handleDragOver}
             onDrop={handleDrop}
         >
-            Перетащите файл
+            {children}
         </div>
     );
 };

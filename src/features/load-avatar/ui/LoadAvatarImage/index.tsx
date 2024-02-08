@@ -3,9 +3,10 @@ import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import { LoadAvatarImageProps } from './interface';
 import { Menu, MenuButton, MenuContent, MenuItem } from '@shared/ui/Menu';
 import React, { useState } from 'react';
-import { Modal } from '@shared/ui/Modal';
+import 'react-image-crop/dist/ReactCrop.css';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
-import { FileLoader, FileLoaderDrag, FileLoaderInput } from '@shared/ui/FileLoader';
+import LoadAvatarModal from '@features/load-avatar/ui/LoadAvatarModal';
+
 
 export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
     const [isOpenAddPhoto, setIsOpenAddPhoto] = useState(false);
@@ -34,10 +35,7 @@ export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
         <>
             <Menu>
                 <MenuButton>
-                    <Avatar
-                        size={avatarSize.large}
-                        {...props}
-                    />
+                    <Avatar size={avatarSize.large} {...props} />
                 </MenuButton>
 
                 <MenuContent>
@@ -46,16 +44,13 @@ export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
                 </MenuContent>
             </Menu>
 
-            <Modal onClose={handleCloseAddPhoto} isOpen={isOpenAddPhoto}>
-                <FileLoader>
-                    <FileLoaderDrag />
-
-                    <FileLoaderInput />
-                </FileLoader>
-            </Modal>
+            <LoadAvatarModal
+                isOpen={isOpenAddPhoto}
+                onClose={handleCloseAddPhoto}
+            />
 
             <ConfirmModal
-                confirmTitle={'Вы уведерены, что хотите удалить фото?'}
+                confirmTitle={'Вы уверены, что хотите удалить фото?'}
                 rejectButtonTitle={'Нет, хочу оставить'}
                 submitButtonTitle={'Да, хочу удалить'}
                 onSubmit={handleDeleteAvatar}

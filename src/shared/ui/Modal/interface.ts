@@ -6,6 +6,7 @@ export interface ModalInterface {
     isOpen: boolean;
     fullwidth?: boolean;
     position?: modalPosition;
+    closeOnBackground?: boolean;
 }
 
 export enum modalPosition {

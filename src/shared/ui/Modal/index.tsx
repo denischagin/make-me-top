@@ -15,6 +15,7 @@ export const Modal = (props: ModalInterface) => {
         isOpen,
         fullwidth,
         position = modalPosition.top,
+        closeOnBackground = true,
     } = props;
 
     const [block, element] = bem('modal');
@@ -24,6 +25,13 @@ export const Modal = (props: ModalInterface) => {
         isOpen,
     });
 
+    const handleCloseOnBackgroundClick = () => {
+        if (!closeOnBackground)
+            return;
+
+        onClose();
+    };
+
     return (
         isOpen ?
             <Portal target={document.body}>
@@ -31,9 +39,9 @@ export const Modal = (props: ModalInterface) => {
                     className={block({
                         open: isOpen,
                         close: !isOpen,
-                        position
+                        position,
                     })}
-                    onClick={onClose}
+                    onClick={handleCloseOnBackgroundClick}
                 >
                     <div
                         className={element('container', {
