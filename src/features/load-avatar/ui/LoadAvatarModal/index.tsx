@@ -7,6 +7,7 @@ import { AvatarCropper} from '@features/load-avatar';
 import { useState } from 'react';
 import { LoadAvatarModalProps } from './interface';
 import { useSetAvatarMutation } from '@entities/avatar';
+import { FileLoaderClipboard } from '@shared/ui/FileLoader/ui/FileLoaderClipboard';
 
 
 const LoadAvatarModal = ({ isOpen, onClose }: LoadAvatarModalProps) => {
@@ -34,6 +35,8 @@ const LoadAvatarModal = ({ isOpen, onClose }: LoadAvatarModalProps) => {
                 <FileLoaderDrag>Перетащите сюда файл</FileLoaderDrag>
 
                 <FileLoaderInput>Загрузить файл</FileLoaderInput>
+
+                <FileLoaderClipboard />
             </FileLoader>
 
             {currentAvatar && (

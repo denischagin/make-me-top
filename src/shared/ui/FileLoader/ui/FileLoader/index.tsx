@@ -8,6 +8,7 @@ export interface FileLoaderContextInterface {
     dragStatus: FileLoadDragStatuses;
     handleChangeDragStatus: (newStatus: FileLoadDragStatuses) => void;
     handleFileLoad: (file?: File) => void;
+    onFileLoad?: (file: File) => void;
     fileTypes: FileLoadType;
 }
 
@@ -17,6 +18,8 @@ const FileLoaderContext =
         handleChangeDragStatus: () => {
         },
         handleFileLoad: () => {
+        },
+        onFileLoad: () => {
         },
         fileTypes: '*/*',
     });
@@ -48,6 +51,7 @@ export const FileLoader = (props: FileLoaderProps) => {
         dragStatus,
         handleChangeDragStatus,
         handleFileLoad,
+        onFileLoad,
         fileTypes: fileTypes ?? '*/*',
     };
 
