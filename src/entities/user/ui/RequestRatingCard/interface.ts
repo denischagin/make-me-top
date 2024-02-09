@@ -1,8 +1,9 @@
 export interface RequestRatingCardProps {
-	requestId: number;
-	responseDate: string;
-	rating: number;
-	firstName: string;
-	lastName: string;
-	patronymic: string;
+    requestId: number;
+    responseDate: string;
+    rating: number;
+    firstName: string;
+    lastName: string;
+    patronymic: string;
+    personId: number;
 }

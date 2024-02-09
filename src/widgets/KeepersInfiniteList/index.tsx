@@ -43,6 +43,7 @@ export const KeepersInfiniteList = ({}: KeepersInfiniteListProps) => {
                           }, keeperIndex) => (
                         <NavLink to={getUrlKeeperById((personId.toString()))} key={personId}>
                             <UserRatingCard
+                                personId={personId}
                                 fullname={getUserFullName(user)}
                                 title={`Галактика: ${getGalaxiesListString(galaxies)}`}
                                 index={getInfiniteItemIndex({ pageIndex, size, itemIndex: keeperIndex })}

@@ -9,15 +9,8 @@ import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
 
 import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import { cardSize } from '@shared/ui/Card/interfaces';
-import {
-    ratingScoreColor,
-    ratingSize,
-    ratingSystemColor,
-} from '@shared/ui/Rating/interfaces';
-import {
-    typographyColor,
-    typographyVariant,
-} from '@shared/ui/Typography/interfaces';
+import { ratingScoreColor, ratingSize, ratingSystemColor } from '@shared/ui/Rating/interfaces';
+import { typographyColor, typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import { ReviewCardInterface } from '@shared/types/common';
 
@@ -57,7 +50,7 @@ export const ReviewCard = (props: ReviewCardInterface) => {
                         />
                     </div>
                     <div className={element('user')}>
-                        <Avatar size={avatarSize.small} />
+                        <Avatar size={avatarSize.small} personId={review.personId} />
                         <Typography variant={typographyVariant.regular16}>
                             {getUserFullName(review)}
                         </Typography>
@@ -71,7 +64,7 @@ export const ReviewCard = (props: ReviewCardInterface) => {
                             }}
                         >
                             <div className={element('user')}>
-                                <Avatar size={avatarSize.large} />
+                                <Avatar size={avatarSize.large} personId={review.personId} type={'NORMAL'} />
                                 <div className={element('user-info')}>
                                     <Typography
                                         variant={typographyVariant.regular14}

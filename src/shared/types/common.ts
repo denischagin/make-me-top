@@ -9,6 +9,7 @@ export interface TabInterface {
 export interface UserInfoInterface {
     fullname: string;
     rating?: number | null;
+    personId: number
 }
 
 export interface UserInterface {
@@ -31,7 +32,7 @@ export interface UserListInterface {
 export interface ExplorerItemInterface {
     name: string;
     avatar: string;
-    id?: number;
+    id: number;
 }
 
 export interface EducationApplicationInterface {

@@ -48,6 +48,7 @@ export const GalaxyInformation: React.FC<GalaxyInformationProps> = ({
 					
 					{keepers.map((keeper) => (
 						<KeeperRatingCard
+							personId={keeper.personId}
 							key={keeper.personId}
 							fullname={getUserFullName(keeper)}
 							rating={keeper.rating}

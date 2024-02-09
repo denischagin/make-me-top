@@ -5,7 +5,14 @@ export interface AvatarInterface extends ComponentProps<'div'> {
     size: avatarSize;
     orbit?: boolean;
     isActive?: boolean;
+
+    hash?: string;
+    personId?: number;
+    type?: AvatarTypes;
+
 }
+
+export type AvatarTypes = 'NORMAL' | 'MINIATURE'
 
 export enum avatarSize {
     small = 'small',

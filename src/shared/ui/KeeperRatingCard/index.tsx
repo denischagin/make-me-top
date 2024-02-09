@@ -22,13 +22,14 @@ import './style.scss';
 export const KeeperRatingCard = ({
     fullname,
     rating,
+    personId
 }: KeeperRatingCardProps) => {
     const [block, element] = bem('keeper-rating-card');
 
     return (
         <div className={block()}>
             <Card size={cardSize.medium}>
-                <Avatar size={avatarSize.large} />
+                <Avatar size={avatarSize.large} personId={personId} />
                 <Typography variant={typographyVariant.medium14}>
                     {fullname}
                 </Typography>

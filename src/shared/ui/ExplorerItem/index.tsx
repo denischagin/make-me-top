@@ -15,13 +15,14 @@ import './styles.scss';
 export const ExplorerItem = (props: ExplorerItemInterface) => {
     const {
         name,
+        id
     } = props;
 
     const [block, element] = bem('explorer-item');
 
     return (
         <div className={block()}>
-            <Avatar size={avatarSize.small} />
+            <Avatar size={avatarSize.small} personId={id} />
             <Typography
                 className={element('name')}
                 variant={typographyVariant.regular14}

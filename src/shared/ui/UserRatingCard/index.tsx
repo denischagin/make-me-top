@@ -18,7 +18,7 @@ import { UserRatingCardProps } from './interface';
 import './style.scss';
 
 export const UserRatingCard = forwardRef<HTMLDivElement, UserRatingCardProps>((props: UserRatingCardProps, ref) => {
-    const { fullname, index, rating, title, className, ...restProps } = props;
+    const { fullname, index, rating, personId, title, className, ...restProps } = props;
     const [block, element] = bem('user-rating');
 
     return (
@@ -30,7 +30,7 @@ export const UserRatingCard = forwardRef<HTMLDivElement, UserRatingCardProps>((p
                     </Typography>
                 )}
 
-                <Avatar size={avatarSize.medium} />
+                <Avatar size={avatarSize.medium} personId={personId} />
 
                 <div className={element('text')}>
                     <Typography as='h4' variant={typographyVariant.medium14}>

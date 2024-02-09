@@ -31,7 +31,7 @@ export const ExplorerCardUserInfo = () => {
 
     return (
         <div className={block()}>
-            <Avatar size={avatarSize.large} orbit />
+            <Avatar size={avatarSize.large} orbit personId={userInfo.person.personId} type='NORMAL' />
             <div className={element('description')}>
                 <div className={element('description-name', 'mb-4')}>
                     <Typography variant={typographyVariant.h1}>

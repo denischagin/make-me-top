@@ -74,7 +74,7 @@ export const CurrentEducationGroup = () => {
                                         <div key={explorer.explorerId} className={element('card-wrapper')}>
                                             <Card size={cardSize.small}>
                                                 <div className={element('card')}>
-                                                    <Avatar size={avatarSize.small} />
+                                                    <Avatar size={avatarSize.small} personId={explorer.personId}/>
 
                                                     <Typography
                                                         className={element('fullname')}

@@ -52,6 +52,7 @@ export const ExplorerItemList = (props: ExplorerItemListInterface) => {
                         key={user.personId}
                     >
                         <ExplorerItem
+                            id={user.personId}
                             name={`${user.lastName} ${user.firstName} ${user.patronymic}`}
                             avatar=''
                         />

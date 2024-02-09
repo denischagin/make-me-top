@@ -63,7 +63,7 @@ export const ThemeGrade = () => {
                             <div
                                 className={element('card-content')}
                             >
-                                <Avatar size={avatarSize.small} />
+                                <Avatar size={avatarSize.small} personId={user.personId} />
 
                                 <Typography variant={typographyVariant.medium16} className={element('name')}>
                                     {getUserFullName(user)}

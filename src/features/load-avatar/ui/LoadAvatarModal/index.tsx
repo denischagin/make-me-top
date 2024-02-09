@@ -3,14 +3,14 @@ import { modalPosition } from '@shared/ui/Modal/interface';
 import { FileLoader, FileLoaderDrag, FileLoaderInput } from '@shared/ui/FileLoader';
 import { DividingLine } from '@shared/ui/DividingLine';
 import { DividingLineColor } from '@shared/ui/DividingLine/interfaces';
-import { AvatarCropper} from '@features/load-avatar';
+import { AvatarCropper } from '@features/load-avatar';
 import { useState } from 'react';
 import { LoadAvatarModalProps } from './interface';
 import { useSetAvatarMutation } from '@entities/avatar';
 import { FileLoaderClipboard } from '@shared/ui/FileLoader/ui/FileLoaderClipboard';
 
 
-const LoadAvatarModal = ({ isOpen, onClose }: LoadAvatarModalProps) => {
+const LoadAvatarModal = ({ isOpen, onClose, onChangeAvatarHash }: LoadAvatarModalProps) => {
     const [currentAvatar, setCurrentAvatar] = useState<File | null>(null);
 
     const [setAvatarMutation] = useSetAvatarMutation();
@@ -19,12 +19,20 @@ const LoadAvatarModal = ({ isOpen, onClose }: LoadAvatarModalProps) => {
         setCurrentAvatar(file);
     };
 
+    const handleSuccessSaveFile = () => {
+        onChangeAvatarHash();
+    };
+
     const handleSaveFile = (file: File) => {
         const formData = new FormData();
 
         formData.append('file', file);
 
-        setAvatarMutation(formData);
+        setAvatarMutation(formData)
+            .unwrap()
+            .then(handleSuccessSaveFile)
+            .catch(() => {
+            });
 
         onClose();
     };

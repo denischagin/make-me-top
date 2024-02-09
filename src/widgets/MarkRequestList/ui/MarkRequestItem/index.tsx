@@ -48,6 +48,7 @@ export const MarkRequestItem = (props: MarkRequestItemProps) => {
     return (
         <div className={block()}>
             <CardWithExtraButton
+                personId={markRequestRest.personId}
                 fullName={getUserFullName(markRequestRest)}
                 active={active}
                 content={

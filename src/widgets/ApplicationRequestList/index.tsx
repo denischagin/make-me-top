@@ -32,6 +32,7 @@ export const ApplicationRequestList = ({
                         key={reviewRequest.personId}
                     >
                         <CardWithExtraButton
+                            personId={reviewRequest.personId}
                             fullName={getUserFullName(reviewRequest)}
                             content={
                                 <div>

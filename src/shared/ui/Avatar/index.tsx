@@ -11,7 +11,10 @@ export const Avatar = (props: AvatarInterface) => {
         size,
         orbit,
         isActive,
-        image = URL_MMT_STAND + 'pics/12/?type=NORMAL',
+        hash = '',
+        type = 'MINIATURE',
+        personId = 'personId',
+        image = URL_MMT_STAND + `pics/${personId}/?type=${type}&hash=${hash}`,
         ...restProps
     } = props;
 

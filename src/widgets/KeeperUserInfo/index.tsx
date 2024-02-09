@@ -1,12 +1,9 @@
-import { Avatar } from '@shared/ui/Avatar';
 import { InfoCard } from '@shared/ui/InfoCard';
 import { Rating } from '@shared/ui/Rating';
 import { Typography } from '@shared/ui/Typography';
 
 import { bem } from '@shared/utils/helpers/bem';
 import { getUserFullName } from '@shared/utils/helpers/getUserFullName';
-
-import { avatarSize } from '@shared/ui/Avatar/interfaces';
 import { ratingScoreColor, ratingSize, ratingSystemColor } from '@shared/ui/Rating/interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
@@ -14,6 +11,7 @@ import './styles.scss';
 import { useGetKeeperProfileQuery } from '@entities/keeper/api/api';
 import { ShowUserInfo, ShowUserInfoButton, ShowUserInfoModal } from '@features/show-user-info';
 import { buttonSize } from '@shared/ui/Button/interfaces';
+import { LoadAvatarImage } from '@features/load-avatar';
 
 export const KeeperUserInfo = () => {
     const [block, element] = bem('keeper-user-info');
@@ -31,7 +29,8 @@ export const KeeperUserInfo = () => {
 
     return (
         <div className={block()}>
-            <Avatar size={avatarSize.large} orbit />
+            <LoadAvatarImage orbit personId={person.personId} />
+
             <div className={element('description')}>
                 <Typography
                     as='h1'

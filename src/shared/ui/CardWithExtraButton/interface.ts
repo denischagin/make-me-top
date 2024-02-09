@@ -6,5 +6,6 @@ export interface CardWithExtraButtonProps {
     buttonContent: string;
     onButtonClick?: () => void;
     buttonHref?: string;
-    active?: boolean
+    active?: boolean;
+    personId: number;
 }

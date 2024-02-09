@@ -6,7 +6,6 @@ import { GradeApplicationsInterface } from './interfaces';
 import { typographyVariant } from '@shared/ui/Typography/interfaces';
 
 import './styles.scss';
-import { ApplicationCard } from '@shared/ui/ApplicationCard';
 import { CardWithExtraButton } from '@shared/ui/CardWithExtraButton';
 import { getUserFullName } from '@shared/utils';
 
@@ -35,6 +34,7 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
             <div className={element('cards')}>
                 {reviewRequest?.map((application) => (
                     <CardWithExtraButton
+                        personId={application.personId}
                         fullName={getUserFullName(application)}
                         key={application.personId}
                         content={(
@@ -58,6 +58,7 @@ export const GradeApplications = (props: GradeApplicationsInterface) => {
                 ))}
                 {finalAssessment?.map((application) => (
                     <CardWithExtraButton
+                        personId={application.personId}
                         fullName={getUserFullName(application)}
                         key={application.personId}
                         content={(

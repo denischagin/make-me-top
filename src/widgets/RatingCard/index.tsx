@@ -39,6 +39,7 @@ export const RatingCard = () => {
                     Мой рейтинг
                 </Typography>
                 <UsersRating
+                    personId={userInfo.person.personId}
                     fullname={getUserFullName(userInfo.person)}
                     rating={userInfo.rating}
                 />
@@ -53,6 +54,7 @@ export const RatingCard = () => {
                     ?.slice(0, limitElements)
                     .map((user) => (
                         <UsersRating
+                            personId={user.personId}
                             key={user.personId}
                             fullname={getUserFullName(user)}
                             rating={user.rating}

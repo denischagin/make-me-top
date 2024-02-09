@@ -36,7 +36,7 @@ export const SelectUsersKeepersItem = (props: SelectUsersKeepersItemProps) => {
             })}
         >
             <div className={element('user')}>
-                <Avatar size={avatarSize.small} />
+                <Avatar size={avatarSize.small} personId={user.personId} />
                 <span className={element('name')}>{getUserFullName(user)}</span>
             </div>
             <div className={element('info')}>

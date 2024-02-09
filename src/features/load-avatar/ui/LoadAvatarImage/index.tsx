@@ -11,9 +11,17 @@ import { useDeleteAvatarMutation } from '@entities/avatar';
 export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
     const [isOpenAddPhoto, setIsOpenAddPhoto] = useState(false);
     const [isOpenDelete, setIsOpenDelete] = useState(false);
+    const [avatarHash, setAvatarHash] = useState(() => `${new Date().getTime()}`);
 
     const [deleteAvatar] = useDeleteAvatarMutation();
 
+    const handleSuccessDeleteAvatar = () => {
+        handleChangeAvatarHash();
+    };
+
+    const handleChangeAvatarHash = () => {
+        setAvatarHash(`${new Date().getTime()}`);
+    };
     const handleOpenAddPhoto = () => {
         setIsOpenAddPhoto(true);
     };
@@ -23,7 +31,11 @@ export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
     };
 
     const handleDeleteAvatar = () => {
-        deleteAvatar();
+        deleteAvatar()
+            .unwrap()
+            .then(handleSuccessDeleteAvatar)
+            .catch(() => {
+            });
         handleCloseDelete();
     };
 
@@ -39,7 +51,7 @@ export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
         <>
             <Menu>
                 <MenuButton>
-                    <Avatar size={avatarSize.large} {...props} />
+                    <Avatar size={avatarSize.large} {...props} type='NORMAL' hash={avatarHash} />
                 </MenuButton>
 
                 <MenuContent>
@@ -51,6 +63,7 @@ export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
             <LoadAvatarModal
                 isOpen={isOpenAddPhoto}
                 onClose={handleCloseAddPhoto}
+                onChangeAvatarHash={handleChangeAvatarHash}
             />
 
             <ConfirmModal

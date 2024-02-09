@@ -35,7 +35,7 @@ export const ExplorerUserInfo = () => {
         <>
             <Stack align={stackAlign.left} spacing={stackSpacing.large}>
                 <div className={block()}>
-                    <LoadAvatarImage orbit />
+                    <LoadAvatarImage orbit personId={person.personId} />
 
                     {/*<Avatar size={avatarSize.large} orbit />*/}
                     <div className={element('description')}>

@@ -31,7 +31,7 @@ export const ApplicationCard = (props: ApplicationCardInterface) => {
                 <Card size={cardSize.large} glow>
                     <div className={element('content')}>
                         <div className={element('info')}>
-                            <Avatar size={avatarSize.medium} />
+                            <Avatar size={avatarSize.medium} personId={reviewOrAssessment?.personId} />
                             <div className={element('about')}>
                                 <Typography
                                     className={element('name')}

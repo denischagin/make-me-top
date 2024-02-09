@@ -18,6 +18,7 @@ export const CardWithExtraButton = ({
                                         fullName,
                                         buttonHref,
                                         active,
+                                        personId,
                                     }: CardWithExtraButtonProps) => {
     const [block, element] = bem('card-with-extra-button');
 
@@ -28,7 +29,7 @@ export const CardWithExtraButton = ({
             <Card size={cardSize.large} glow>
                 <div className={element('content')}>
                     <div className={element('info')}>
-                        <Avatar size={avatarSize.medium} />
+                        <Avatar size={avatarSize.medium} personId={personId} />
                         <div className={element('about')}>
                             <Typography
                                 as='h3'

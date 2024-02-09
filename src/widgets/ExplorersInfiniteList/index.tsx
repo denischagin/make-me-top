@@ -41,6 +41,7 @@ export const ExplorersInfiniteList = ({}: ExplorersInfiniteListProps) => {
                           }, explorerIndex) => (
                         <NavLink to={getUrlExplorerById(personId.toString())} key={personId}>
                             <UserRatingCard
+                                personId={personId}
                                 fullname={getUserFullName(user)}
                                 title={`Галактика: ${getGalaxiesListString(galaxies)} `}
                                 index={getInfiniteItemIndex({ pageIndex, size, itemIndex: explorerIndex })}

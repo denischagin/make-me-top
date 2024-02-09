@@ -44,7 +44,7 @@ export const EducationApplicationCard = (
             <Card size={cardSize.large} glow>
                 <div className={element('content')}>
                     <div className={element('info')}>
-                        <Avatar size={avatarSize.medium} />
+                        <Avatar size={avatarSize.medium} personId={user.personId} />
                         <div className={element('about')}>
                             <Typography variant={typographyVariant.regular14}>
                                 Дата запроса: {user.requestDate}

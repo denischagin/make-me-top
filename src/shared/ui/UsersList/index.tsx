@@ -28,7 +28,7 @@ export const UsersList = (props: UserListInterface) => {
             {sortByRating(keepersOrExplorers).map((user, index) => (
                 <div key={user.personId} className={element('item')}>
                     <div className={element('user')}>
-                        <Avatar size={avatarSize.small} />
+                        <Avatar size={avatarSize.small} personId={user.personId} />
                         <span className={element('name')}>
                             {getUserFullName(keepersOrExplorers[index])}
                         </span>

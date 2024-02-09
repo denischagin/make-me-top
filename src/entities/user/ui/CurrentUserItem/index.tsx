@@ -40,7 +40,7 @@ export const CurrentUserItem = (props: CurrentUserItemInterface) => {
             <div className={block()}>
                 <div className={element('item')}>
                     <div className={element('user')}>
-                        <Avatar size={avatarSize.small} />
+                        <Avatar size={avatarSize.small} personId={personId} />
                         <span className={element('my-name')}>
                              {getUserFullName(person)}
                         </span>
