@@ -1,5 +1,4 @@
 import { CourseExplorer, CourseKeeper } from '@entities/course';
-import { ReactNode } from 'react';
 
 export interface TabInterface {
     name: string;
@@ -9,7 +8,8 @@ export interface TabInterface {
 export interface UserInfoInterface {
     fullname: string;
     rating?: number | null;
-    personId: number
+    personId: number;
+    avatarHash?: string;
 }
 
 export interface UserInterface {
@@ -84,8 +84,10 @@ export enum SystemProgressTypes {
 export interface PostCourseInterface {
     payload: PostCourseRequest;
 }
+
 export interface PostCourseRequest {
     courseId: number;
     keeperIds: number[];
 }
+
 export const MAX_STUDYING_PROGRESS = 100;

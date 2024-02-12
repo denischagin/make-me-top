@@ -17,14 +17,14 @@ import { UserInfoInterface } from '@shared/types/common';
 import './styles.scss';
 
 export const UsersRating = (props: UserInfoInterface) => {
-    const { fullname, rating, personId } = props;
+    const { fullname, rating, personId, avatarHash } = props;
 
     const [block, element] = bem('rating-info');
 
     return (
         <div className={block()}>
             <span className={element('user-info')}>
-                <Avatar size={avatarSize.small} personId={personId} />
+                <Avatar size={avatarSize.small} personId={personId} hash={avatarHash} />
                 <Typography
                     variant={typographyVariant.regular14}
                     className={element('user-name')}

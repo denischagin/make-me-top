@@ -5,13 +5,15 @@ import { Menu, MenuButton, MenuContent, MenuItem } from '@shared/ui/Menu';
 import React, { useState } from 'react';
 import { ConfirmModal } from '@shared/ui/ConfirmModal';
 import LoadAvatarModal from '@features/load-avatar/ui/LoadAvatarModal';
-import { useDeleteAvatarMutation } from '@entities/avatar';
+import { setProfileAvatarHash, useDeleteAvatarMutation } from '@entities/avatar';
+import { useAppDispatch, useAppSelector } from '@app/providers/store/hooks';
 
 
 export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
     const [isOpenAddPhoto, setIsOpenAddPhoto] = useState(false);
     const [isOpenDelete, setIsOpenDelete] = useState(false);
-    const [avatarHash, setAvatarHash] = useState(() => `${new Date().getTime()}`);
+    const dispatch = useAppDispatch();
+    const { profileAvatarHash } = useAppSelector((state) => state.avatar);
 
     const [deleteAvatar] = useDeleteAvatarMutation();
 
@@ -20,7 +22,7 @@ export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
     };
 
     const handleChangeAvatarHash = () => {
-        setAvatarHash(`${new Date().getTime()}`);
+        dispatch(setProfileAvatarHash());
     };
     const handleOpenAddPhoto = () => {
         setIsOpenAddPhoto(true);
@@ -51,7 +53,7 @@ export const LoadAvatarImage = (props: LoadAvatarImageProps) => {
         <>
             <Menu>
                 <MenuButton>
-                    <Avatar size={avatarSize.large} {...props} type='NORMAL' hash={avatarHash} />
+                    <Avatar size={avatarSize.large} {...props} type='NORMAL' hash={profileAvatarHash} />
                 </MenuButton>
 
                 <MenuContent>

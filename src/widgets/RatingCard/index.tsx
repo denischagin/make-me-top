@@ -17,13 +17,14 @@ import { useGetExplorerProfileQuery } from '@entities/explorer/api/api';
 import { Button } from '@shared/ui/Button';
 import { NavLink } from 'react-router-dom';
 import { URL_EXPLORERS } from '@shared/constants/links';
-import { useAuth } from '@entities/viewer';
+import { useAppSelector } from '@app/providers/store/hooks';
 
 export const RatingCard = () => {
     const [block, element] = bem('rating-card');
     const limitElements = 9;
 
     const { data: userInfo, isSuccess } = useGetExplorerProfileQuery();
+    const { profileAvatarHash } = useAppSelector(state => state.avatar);
 
     if (!isSuccess) return null;
 
@@ -39,6 +40,7 @@ export const RatingCard = () => {
                     Мой рейтинг
                 </Typography>
                 <UsersRating
+                    avatarHash={profileAvatarHash}
                     personId={userInfo.person.personId}
                     fullname={getUserFullName(userInfo.person)}
                     rating={userInfo.rating}
