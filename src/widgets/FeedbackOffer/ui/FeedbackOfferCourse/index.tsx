@@ -9,7 +9,7 @@ import { ButtonCreateFeedback, ModalCreateCourseRating } from '@features/create-
 export const FeedbackOfferCourse = () => {
     const { data: explorerInfo } = useGetExplorerProfileQuery();
 
-    const [block, element] = bem('feedback-offer-course');
+    const [block] = bem('feedback-offer-course');
 
     const [rejectCourseFeedback] = useRejectCourseFeedbackOfferMutation();
 
@@ -20,28 +20,26 @@ export const FeedbackOfferCourse = () => {
     return (
         <Stack className={block()}>
             {explorerInfo?.courseFeedbacks?.map(({ explorerId, courseTitle, courseId }) => (
-                <>
-                    <FeedbackOfferCard
-                        key={courseId}
-                        title={`Вам понравился курс?`}
-                        heading={courseTitle}
-                        buttons={(
-                            <>
-                                <ButtonRejectFeedback
-                                    title={'Отклонить'}
-                                    size={buttonSize.small}
-                                    onSubmit={handleRejectCourseFeedback(explorerId)}
-                                />
+                <FeedbackOfferCard
+                    key={courseId}
+                    title={`Вам понравился курс?`}
+                    heading={courseTitle}
+                    buttons={(
+                        <>
+                            <ButtonRejectFeedback
+                                title={'Отклонить'}
+                                size={buttonSize.small}
+                                onSubmit={handleRejectCourseFeedback(explorerId)}
+                            />
 
-                                <ButtonCreateFeedback
-                                    renderModal={(modalProps) => (
-                                        <ModalCreateCourseRating explorerId={explorerId} {...modalProps} />
-                                    )}
-                                />
-                            </>
-                        )}
-                    />
-                </>
+                            <ButtonCreateFeedback
+                                renderModal={(modalProps) => (
+                                    <ModalCreateCourseRating explorerId={explorerId} {...modalProps} />
+                                )}
+                            />
+                        </>
+                    )}
+                />
             ))}
 
         </Stack>

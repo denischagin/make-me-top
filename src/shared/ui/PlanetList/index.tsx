@@ -1,7 +1,5 @@
 import { Button } from '@shared/ui/Button';
 
-import { ModalPlanetInterface } from '@entities/user/model/types';
-
 import { ReactComponent as LockIcon } from '@shared/images/lock.svg';
 
 import { bem } from '@shared/utils/helpers/bem';
@@ -10,20 +8,16 @@ import { PlanetListProps } from './interfaces';
 import { buttonColor, buttonSize } from '@shared/ui/Button/interfaces';
 
 import './styles.scss';
-import { useNavigate } from 'react-router-dom';
-import { getUrlThemeByCourseIdAndThemeId } from '@shared/constants/links';
 
 export const PlanetList = (props: PlanetListProps) => {
     const {
         educationPlanetId,
         planetList,
         onPlanetClick,
-        currentCourseId,
         allPlanetsLocked,
     } = props;
 
     const [block, element] = bem('planet-list');
-    const navigate = useNavigate();
 
     const currentPlanetFromList = planetList?.find(
         (item) => item.planetId === educationPlanetId,
@@ -31,10 +25,6 @@ export const PlanetList = (props: PlanetListProps) => {
 
     const getIsLocked = (planetNumber: number) => allPlanetsLocked || currentPlanetFromList &&
         planetNumber > currentPlanetFromList.planetNumber;
-
-    const handleNavigateToCourse = () => {
-        navigate(getUrlThemeByCourseIdAndThemeId({ courseId: currentCourseId, themeId: educationPlanetId! }));
-    };
 
     return (
         <div className={block()}>
@@ -67,7 +57,6 @@ export const PlanetList = (props: PlanetListProps) => {
                                     title='Обучение'
                                     size={buttonSize.small}
                                     color={buttonColor.primary500}
-                                    onClick={handleNavigateToCourse}
                                 />
                             }
                         </div>
