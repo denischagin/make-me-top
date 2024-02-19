@@ -60,13 +60,9 @@ export const useCurrentGalaxy = (
     const nextGalaxyIndex =
         (Number(currentGalaxyIndex) + 1) % galaxies.length;
 
-    const prevGalaxy = currentGalaxyIndex
-        ? galaxies[currentGalaxyIndex - 1]
-        : galaxies[0];
+    const prevGalaxy = galaxies[prevGalaxyIndex];
 
-    const nextGalaxy = currentGalaxyIndex
-        ? galaxies[currentGalaxyIndex + 1]
-        : galaxies[0];
+    const nextGalaxy = galaxies[nextGalaxyIndex];
 
     const circlePrevGalaxyName = isFirstGalaxy
         ? lastGalaxy?.galaxyName

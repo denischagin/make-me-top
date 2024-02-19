@@ -35,7 +35,7 @@ export const Reviews = ({ reviews }: ReviewsProps) => {
 
             <div className={element('cards')}>
                 {feedback.slice(0, limitElements)?.map((item) => (
-                    <ReviewCard key={item.courseId} review={item} />
+                    <ReviewCard key={item.personId} review={item} />
                 ))}
             </div>
 

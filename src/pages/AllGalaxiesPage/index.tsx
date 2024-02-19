@@ -65,6 +65,7 @@ const AllGalaxiesPage = () => {
 
     if (isErrorGalaxies || isErrorGalaxyDetailed) return <NotFound />;
     if (galaxies?.length === 0) return <NotFound errorMessage={'Галактик нет'} />;
+
     if (!isSuccessGalaxies || !galaxyFullInfo) return <Spinner loading />;
 
     const {
