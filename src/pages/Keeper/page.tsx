@@ -54,7 +54,7 @@ export const Keeper = () => {
                 <Header />
                 <Container className={element('container')}>
                     <div className={element('row', 'row')}>
-                        <div className={element('profile', 'col-xxl-9')}>
+                        <div className={element('profile')}>
                             <KeeperUserInfo />
 
                             <CurrentEducationGroup />

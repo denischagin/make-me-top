@@ -54,7 +54,7 @@ const KeeperCard = () => {
                 </div>
 
                 <SystemsList
-                    heading='Системы исследователя'
+                    heading='Системы хранителя'
                     systems={systems}
                 />
 

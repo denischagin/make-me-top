@@ -13,7 +13,6 @@ import { useStartEducationOnCourseMutation } from '@entities/course';
 import toast from 'react-hot-toast';
 import { CardDetails, CardDetailsContent, CardDetailsSummary } from '@shared/ui/CardDetails';
 import { Stack } from '@shared/ui/Stack';
-import { onErrorHandling } from '@shared/api';
 
 
 export const ApprovedEducationApplicationsGroup = ({

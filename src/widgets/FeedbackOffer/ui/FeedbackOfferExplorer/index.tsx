@@ -22,6 +22,7 @@ export const FeedbackOfferExplorer = () => {
         <Stack className={block()}>
             {explorerInfo?.explorerFeedbacks?.map(({ courseTitle, explorerId, ...keeper }) => (
                 <FeedbackOfferCard
+                    key={keeper.personId}
                     title={`Вам понравился хранитель на системе ${courseTitle}?`}
                     heading={getUserFullName(keeper)}
                     buttons={(

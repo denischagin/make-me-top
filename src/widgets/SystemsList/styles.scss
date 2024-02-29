@@ -1,32 +1,33 @@
 @import "@app/styles/variables.scss";
 
 .systems-list {
-	font-size: 12px;
+  font-size: 12px;
 
-	&__label {
-		color: $white;
-		margin-top: 2px;
-		margin-bottom: 8px;
-	}
+  &__label {
+    color: $white;
+    margin-top: 2px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
 
-	&__systems {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 24px;
-	}
-	
-	&__system {
-		width: 80px;
-		height: 80px;
-	}
+  &__systems {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
 
-	&__system-rating {
-		display: flex;
-		align-items: center;
-	}
+  &__system {
+    width: 80px;
+    height: 80px;
+  }
 
-	&__system-rating-score {
-		font-size: 10px;
-		margin: 0 2px 0 4px;
-	}
+  &__system-rating {
+    display: flex;
+    align-items: center;
+  }
+
+  &__system-rating-score {
+    font-size: 10px;
+    margin: 0 2px 0 4px;
+  }
 }
