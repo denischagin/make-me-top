@@ -41,7 +41,7 @@ export const ThemeGrade = () => {
         };
     }, [themeId]);
 
-    if (!explorersWaiting || explorersWaiting.length === 0) return null;
+    if (!explorersWaiting || explorersWaiting.length === 0 || !themeId) return null;
 
     return (
         <div className={block()}>
